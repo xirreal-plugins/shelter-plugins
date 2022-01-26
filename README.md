@@ -9,5 +9,5 @@ No, it can't show the contents. You won't get to see the staff's feet pics.
 
 <a target="_blank" href="https://send.cumcord.com/#https://cumcord.xirreal.dev/hiddenChannels"><img height="50" src="https://yellowsink.github.io/cc-plugins/assets/cumdump_button.png" /></a>
 
-[Source](https://github.com/xirreal-plugins/xirreal-plugins.github.io/hiddenChannels)
+[Source](https://github.com/xirreal-plugins/xirreal-plugins.github.io/tree/master/hiddenChannels)
 
