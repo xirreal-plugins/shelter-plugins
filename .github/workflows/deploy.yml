@@ -57,4 +57,4 @@ jobs:
                   # This creates the CNAME file required to host github pages on a custom domain
                   # Remove this to use default [username].github.io domain
                   # Reminder: using a free domain service like freenom *can* result in your users getting hacked
-                  cname: cc.remty.xyz
+                  cname: cumcord.xirreal.dev
