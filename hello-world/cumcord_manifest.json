@@ -1,0 +1,7 @@
+{
+  "name": "Hello world",
+  "description": "Simple hello world plugin.",
+  "author": "Remty",
+  "file": "index.js",
+  "license": "Unlicense"
+}

@@ -1,0 +1,60 @@
+name: Build and deploy
+
+on:
+    push:
+        branches: [master]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Prepare environment
+              uses: actions/setup-node@v2
+              with:
+                  node-version: "16"
+
+            - run: npm install --global sperm
+
+              # Magic happens here:
+              # - finds every folder in repo (which is why dist dir is hidden)
+              # - cd into source
+              # - sperm build into dist directory
+              # - cd into parent and repeat for every folder
+              # Change this however you want but this should be good enough for simple plugins
+            - name: Build plugin(s)
+              run: |
+                  mkdir .dist
+                  for plugin in */
+                  do
+                    cd "$plugin"
+                    sperm build --outdir "../.dist/$plugin"
+                    cd ..
+                  done
+
+              # Foolproof feature:
+              # - Copies over README so that the root of the deployed website shows it
+              # - Changes 404 page to README so that you don't get lost while clicking links
+              # If you remove this step then you should probably remove the enable_jekyll option in the next one
+            - name: Copy additional files
+              run: |
+                  cp README.md .dist/README.md
+                  printf -- "---\npermalink: /404.html\n---\n" > .dist/404.md
+                  printf -- "> **Note:** You accessed a link that returned a 404, probably by clicking one of the plugin links. You're supposed to copy the link address and add it into Cumcord.\n\n" >> .dist/404.md
+                  cat README.md >> .dist/404.md
+
+              # Documentation: https://github.com/peaceiris/actions-gh-pages
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./.dist
+                  # Makes it so the md files in the previous step get processed by GitHub Pages
+                  enable_jekyll: true
+                  # https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site
+                  # This creates the CNAME file required to host github pages on a custom domain
+                  # Remove this to use default [username].github.io domain
+                  # Reminder: using a free domain service like freenom *can* result in your users getting hacked
+                  cname: cc.remty.xyz
