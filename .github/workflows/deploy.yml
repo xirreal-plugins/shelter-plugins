@@ -16,7 +16,10 @@ jobs:
               with:
                   node-version: "16"
 
-            - run: npm install --global sperm
+            - run: npm install --global sperm pnpm
+
+            - name: Install deps
+              run: pnpm m i
 
               # Magic happens here:
               # - finds every folder in repo (which is why dist dir is hidden)
@@ -53,8 +56,5 @@ jobs:
                   publish_dir: ./.dist
                   # Makes it so the md files in the previous step get processed by GitHub Pages
                   enable_jekyll: true
-                  # https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site
                   # This creates the CNAME file required to host github pages on a custom domain
-                  # Remove this to use default [username].github.io domain
-                  # Reminder: using a free domain service like freenom *can* result in your users getting hacked
                   cname: cumcord.xirreal.dev
