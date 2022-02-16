@@ -1,6 +1,6 @@
 {
   "name": "Hidden Channels",
-  "description": "Want to know if you're not in the kool kids klub? This plugin lets you see the name and description of channels you're normally not able to see. Does NOT show the contents of the channel!",
+  "description": "Want to know if you're not in the cool club? This plugin lets you see the name and description of channels you're normally not able to see. Does NOT show the contents of the channel!",
   "author": "lith#0281",
   "file": "src/index.js",
   "license": "MIT"

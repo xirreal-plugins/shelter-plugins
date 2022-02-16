@@ -1,32 +1,27 @@
-import { log, warn, error } from "@cumcord/utils/logger"
-import { webpack, common } from "@cumcord/modules"
-import { patcher } from "@cumcord"
+import * as webpack from "@cumcord/modules/webpack"
+import * as patcher from "@cumcord/patcher"
+import { ChannelTypes, Permissions } from "@cumcord/modules/common/constants"
 import injectStyle from "../assets/style.css";
-import { Cache, CacheEntry } from "./cache.js"
+import Notice from "./Notice";
 const unpatchList = {};
 
-// Webpack modules 
-const {
-    getChannel: fetchChannel, 
-    getMutableGuildChannelsByGuild: getAllChannelsByGuild 
-} = webpack.findByProps("getMutableGuildChannels");
+const getChannel = webpack.findByProps("getMutableGuildChannels").getChannel;
+const getVoiceID = webpack.findByProps("getVoiceStateStats").getChannelId;
+const getGuild   = webpack.findByProps("getGuild").getGuild;
 
-const { ChannelTypes, Permissions } = common.constants;
-const checkPermission = webpack.findByProps("computePermissions").can;
-const currentUser     = webpack.findByProps("getCurrentUser").getCurrentUser();
+const Route = webpack.findByDisplayName("RouteWithImpression", false);
+const computePermissions = webpack.findByProps("getChannelPermissions");
+const unreadManager = webpack.findByProps("hasUnread");
+const fetchMessages = webpack.findByProps("fetchMessages", "sendMessage");
+const channelItem   = webpack.findByDisplayName('ChannelItem', false);
+const Channel       = webpack.findByPrototypes("isManaged");
 
-// Stuff to patch
-const getCategories   = webpack.findByProps("getCategories", "initialize");
-const unreadManager   = webpack.findByProps("hasUnread");
-const fetchMessages   = webpack.findByProps("fetchMessages", "sendMessage");
-const channelItem     = webpack.findByDisplayName('ChannelItem', false);
-
-const SERVER_CACHE = new Cache();
+const originalCan = computePermissions.can.bind({});
 
 const isVisibile = channel => {
     if(typeof(channel) !== 'object' && !channel.id) {
         try {
-            channel = fetchChannel(channel);
+            channel = getChannel(channel);
         } catch { }
     }
 
@@ -45,96 +40,51 @@ const isVisibile = channel => {
         ChannelTypes.PUBLIC_THREAD
     ].includes(channel.type);
 
-    let canBeSeen = checkPermission(Permissions.VIEW_CHANNEL, currentUser, channel);
+    let canBeSeen = channel.canBeSeen();
 
     return hasCorrectType && canBeSeen;
-}
-
-const cacheAll = () => {
-    const guilds = getAllChannelsByGuild();
-    for(let [ guildId, channels ] of Object.entries(guilds)) {
-        const newEntry = new CacheEntry();
-        channels = Object.values(channels);
-        newEntry.setChannelAmount(channels.length);
-        for(let channel of channels) {
-            if(!isVisibile(channel)) 
-                newEntry.addChannel(channel.id, channel);
-        }
-        SERVER_CACHE.add(guildId, newEntry);
-    };
-}
-
-const cacheNewServer = (guildId) => {
-    const channels = Object.values(getAllChannelsByGuild()[guildId]);
-    if(channels?.length == 0) return;
-    const newEntry = new CacheEntry();
-    newEntry.setChannelAmount(channels.length);
-    for(let channel of channels) {
-        if(!isVisibile(channel)) 
-            newEntry.addChannel(channel.id, channel);
-    }
-    SERVER_CACHE.add(guildId, newEntry);
-}
-
-const appendHiddenChannelNotice = () => {
-    const messagesWrapper = document.querySelector(`.${webpack.findByProps("messagesWrapper").messagesWrapper}`);
-    if (!messagesWrapper) return;
-
-    messagesWrapper.firstChild.style.display = "none";
-    if(messagesWrapper.firstChild.nextSibling) messagesWrapper.firstChild.nextSibling.style.display = "none";
-        messagesWrapper.parentElement.children[1].style.display = "none";
-        messagesWrapper.parentElement.parentElement.children[1].style.display = "none";
-
-    const toolbar = document.querySelector(`.${webpack.findByProps("toolbar", "selected").toolbar}`);
-
-    toolbar.style.display = "none";
-
-    const newMessage = document.createElement("div");
-    const txt = webpack.findByProps("h5");
-    const flex = webpack.findByProps("flex", "directionColumn", "alignCenter");
-
-    newMessage.className = flex.flexCenter;
-    newMessage.style.width = "100%";
-
-    newMessage.innerHTML = `
-        <div class="${flex.flex} ${flex.directionColumn} ${flex.alignCenter}">
-        <h2 class="${txt.h2} ${txt.defaultColor}">This is a hidden channel.</h2>
-        <h5 class="${txt.h5} ${txt.defaultColor}">You cannot see the contents of this channel. However, you may see its name and topic.</h5>
-        </div>`;
-
-    messagesWrapper.appendChild(newMessage);
-}
-
-const handleChannelChange = data => {
-    if(!isVisibile(data?.channelId)) setImmediate(appendHiddenChannelNotice);
 }
 
 export default (data) => {
     return {
         onLoad() {
             unpatchList.css = injectStyle();
-            cacheAll();
 
-            unpatchList.getCategories = patcher.after("getCategories", getCategories, (originalArgs, previousReturn) => {
-                if(!SERVER_CACHE.has(originalArgs[0])) {
-                    cacheNewServer(originalArgs[0]);
-                };
+            unpatchList.Channel = () => {
+                delete Channel.prototype.isHidden;
+            };
+            Channel.prototype.canBeSeen = function () {
+                return originalCan(Permissions.VIEW_CHANNEL, this);
+            };
 
-                for(let [id, channel] of SERVER_CACHE.get(originalArgs[0]).hiddenChannels) {
-                    if(!channel) return previousReturn;
-                    const channelsInCategory = previousReturn[channel.parent_id || "null"];
-                    if (channelsInCategory.filter((item) => item?.channel?.id === channel.id).length) return previousReturn;
-                    channelsInCategory.push({ channel: channel, index: 0 });
-                };
-
+            unpatchList.can = patcher.after("can", computePermissions, (originalArgs, previousReturn) => {
+                if(originalArgs[0] == Permissions.VIEW_CHANNEL) {
+                    return true;
+                }
                 return previousReturn;
             });
 
-            unpatchList.channelSelect = () => {common.FluxDispatcher.unsubscribe("CHANNEL_SELECT", handleChannelChange)};
-            common.FluxDispatcher.subscribe("CHANNEL_SELECT", handleChannelChange);
-            
+            unpatchList.Route = patcher.after("default", Route, (originalArgs, previousReturn) => {
+                const channelId = previousReturn.props?.computedMatch?.params?.channelId;
+                const guildId = previousReturn.props?.computedMatch?.params?.guildId;
+
+                let channel;
+                try {
+                    channel = getChannel(channelId);
+                } catch { return previousReturn }
+
+                if (!isVisibile(channel) && channel.id != getVoiceID()) {
+                    previousReturn.props.render = () => Notice({
+                        channel: channel,
+                        guild: getGuild(guildId)
+                    });
+                };
+        
+                return previousReturn;
+            });
+
             unpatchList.channelItem = patcher.before("default", channelItem, (originalArgs) => {
-                if(!isVisibile(originalArgs[0].channel.id)) originalArgs[0]["aria-label"] += " hidden";
+                if(!isVisibile(originalArgs[0].channel)) originalArgs[0]["aria-label"] += " hidden";
                 return originalArgs;
             });
 
@@ -151,7 +101,7 @@ export default (data) => {
             unpatchList.fetchMessages = patcher.instead("fetchMessages", fetchMessages, (originalArgs, originalFunction) => {
                 if(!isVisibile(originalArgs[0].channelId)) return;
                 return originalFunction(...originalArgs)
-            })
+            });
 
         },
         onUnload() {
