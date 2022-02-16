@@ -19,7 +19,7 @@ const Channel       = webpack.findByPrototypes("isManaged");
 const originalCan = computePermissions.can.bind({});
 
 const isVisibile = channel => {
-    if(typeof(channel) !== 'object' && !channel.id) {
+    if(typeof(channel) !== 'object' && !channel?.id) {
         try {
             channel = getChannel(channel);
         } catch { }
@@ -73,7 +73,7 @@ export default (data) => {
                     channel = getChannel(channelId);
                 } catch { return previousReturn }
 
-                if (!isVisibile(channel) && channel.id != getVoiceID()) {
+                if (!isVisibile(channel) && guildId && channel?.id != getVoiceID()) {
                     previousReturn.props.render = () => Notice({
                         channel: channel,
                         guild: getGuild(guildId)
