@@ -5,7 +5,7 @@ import injectStyle from "../assets/style.css";
 import Notice from "./Notice";
 const unpatchList = {};
 
-const getChannel = webpack.findByProps("getMutableGuildChannels").getChannel;
+const getChannel = webpack.findByProps("hasChannel").getChannel;
 const getVoiceID = webpack.findByProps("getVoiceStateStats").getChannelId;
 const getGuild   = webpack.findByProps("getGuild").getGuild;
 
