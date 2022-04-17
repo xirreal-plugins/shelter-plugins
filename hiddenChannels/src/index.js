@@ -22,27 +22,21 @@ const isVisibile = channel => {
     if(typeof(channel) !== 'object' && !channel?.id) {
         try {
             channel = getChannel(channel);
-        } catch { }
+        } catch { channel = null } // Just in case Discord fucks up permissions again, so it doesn't crash.
     }
 
     // Exclude DM channels or invalid channels
-    if(!channel ||
-       [ChannelTypes.DM, ChannelTypes.GROUP_DM, ChannelTypes.GUILD_CATEGORY].includes(channel.type)
+    if(!channel || [
+           ChannelTypes.DM,
+           ChannelTypes.GROUP_DM,
+           ChannelTypes.GUILD_CATEGORY,
+           ChannelTypes.GUILD_STORE,
+           ChannelTypes.GUILD_STORE,
+           ChannelTypes.GUILD_DIRECTORY
+        ].includes(channel.type)
     ) return true;
 
-    let hasCorrectType = [ 
-        ChannelTypes.GUILD_TEXT, 
-        ChannelTypes.GUILD_VOICE, 
-        ChannelTypes.GUILD_STAGE_VOICE, 
-        ChannelTypes.GUILD_ANNOUNCEMENT, 
-        ChannelTypes.ANNOUNCEMENT_THREAD, 
-        ChannelTypes.PRIVATE_THREAD, 
-        ChannelTypes.PUBLIC_THREAD
-    ].includes(channel.type);
-
-    let canBeSeen = channel.canBeSeen();
-
-    return hasCorrectType && canBeSeen;
+    return channel.canBeSeen();
 }
 
 export default (data) => {
@@ -79,7 +73,7 @@ export default (data) => {
                         guild: getGuild(guildId)
                     });
                 };
-        
+
                 return previousReturn;
             });
 
