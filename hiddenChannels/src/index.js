@@ -1,6 +1,7 @@
 import * as webpack from "@cumcord/modules/webpack"
 import * as patcher from "@cumcord/patcher"
-import { ChannelTypes, Permissions } from "@cumcord/modules/common/constants"
+import { ActionTypes, ChannelTypes, Permissions } from "@cumcord/modules/common/constants"
+import { dispatch } from "@cumcord/modules/common/FluxDispatcher"
 import injectStyle from "../assets/style.css";
 import Notice from "./Notice";
 const unpatchList = {};
@@ -92,8 +93,21 @@ export default (data) => {
                 return originalArgs;
             });
 
+            unpatchList.hasUnreadPins = patcher.before("getMentionCount", unreadManager, (originalArgs) => {
+                if(!isVisibile(originalArgs[0])) return 0;
+                return originalArgs;
+            });
+
             unpatchList.fetchMessages = patcher.instead("fetchMessages", fetchMessages, (originalArgs, originalFunction) => {
-                if(!isVisibile(originalArgs[0].channelId)) return;
+                if(!isVisibile(originalArgs[0].channelId)) {
+
+                    dispatch({
+                        type: ActionTypes.LOAD_MESSAGES_FAILURE,
+                        channelId: originalArgs[0].channelId
+                    });
+
+                    return
+                };
                 return originalFunction(...originalArgs)
             });
 
