@@ -93,9 +93,9 @@ export default (data) => {
                 return originalArgs;
             });
 
-            unpatchList.hasUnreadPins = patcher.after("getMentionCount", unreadManager, (originalArgs) => {
+            unpatchList.hasUnreadMentions = patcher.after("getMentionCount", unreadManager, (originalArgs, previousReturn) => {
                 if(!isVisibile(originalArgs[0])) return 0;
-                return originalArgs;
+                return previousReturn;
             });
 
             unpatchList.fetchMessages = patcher.instead("fetchMessages", fetchMessages, (originalArgs, originalFunction) => {
@@ -106,7 +106,7 @@ export default (data) => {
                         channelId: originalArgs[0].channelId
                     });
 
-                    return
+                    return;
                 };
                 return originalFunction(...originalArgs)
             });
