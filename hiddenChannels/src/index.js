@@ -93,7 +93,7 @@ export default (data) => {
                 return originalArgs;
             });
 
-            unpatchList.hasUnreadPins = patcher.before("getMentionCount", unreadManager, (originalArgs) => {
+            unpatchList.hasUnreadPins = patcher.after("getMentionCount", unreadManager, (originalArgs) => {
                 if(!isVisibile(originalArgs[0])) return 0;
                 return originalArgs;
             });
