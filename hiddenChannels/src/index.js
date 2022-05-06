@@ -21,7 +21,7 @@ const originalCan = computePermissions.can.bind({});
 
 const hasSubscription = (channel) => {
     if(channel.permissionOverwrites) {
-        const roles = Object.values(getGuild(channel.guild_id)?.roles || {})?.filter(r => r.tags.subscription_listing_id !== undefined);
+        const roles = Object.values(getGuild(channel.guild_id)?.roles || {})?.filter(r => r?.tags?.subscription_listing_id !== undefined);
 
         if(roles && roles.length > 0) {
             for(const roleId of Object.keys(channel.permissionOverwrites)) {
