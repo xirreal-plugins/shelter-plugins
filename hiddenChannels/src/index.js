@@ -19,6 +19,19 @@ const Channel       = webpack.findByPrototypes("isManaged");
 
 const originalCan = computePermissions.can.bind({});
 
+const hasSubscription = (channel) => {
+    if(channel.permissionOverwrites) {
+        const roles = Object.values(getGuild(channel.guild_id)?.roles || {});
+
+        if(roles) {
+            for(const roleId of Object.keys(channel.permissionOverwrites)) {
+                if(roles.find(role => role.id === roleId && role?.tags?.subscription_listing_id !== undefined)) return true;
+            }
+        }
+    }
+    return false;
+}
+
 const isVisibile = channel => {
     if(typeof(channel) !== 'object' && !channel?.id) {
         try {
@@ -34,8 +47,8 @@ const isVisibile = channel => {
            ChannelTypes.GUILD_STORE,
            ChannelTypes.GUILD_STORE,
            ChannelTypes.GUILD_DIRECTORY
-        ].includes(channel.type) ||
-        Object.values(channel.permissionOverwrites).some((p) => p.type == 1)
+        ].includes(channel.type)
+        || hasSubscription(channel)
     ) return true;
 
     return channel.canBeSeen();
@@ -47,15 +60,14 @@ export default (data) => {
             unpatchList.css = injectStyle();
 
             unpatchList.Channel = () => {
-                delete Channel.prototype.isHidden;
+                delete Channel.prototype.canBeSeen;
             };
             Channel.prototype.canBeSeen = function () {
                 return originalCan(Permissions.VIEW_CHANNEL, this);
             };
 
             unpatchList.can = patcher.after("can", computePermissions, (originalArgs, previousReturn) => {
-                if(originalArgs[0] == Permissions.VIEW_CHANNEL &&
-                  !(Object.values(originalArgs[1].permissionOverwrites || {}).some((p) => p.type == 1)))
+                if(originalArgs[0] == Permissions.VIEW_CHANNEL && !hasSubscription(originalArgs[1]))
                     return true;
 
                 return previousReturn;
