@@ -21,11 +21,11 @@ const originalCan = computePermissions.can.bind({});
 
 const hasSubscription = (channel) => {
     if(channel.permissionOverwrites) {
-        const roles = Object.values(getGuild(channel.guild_id)?.roles || {});
+        const roles = Object.values(getGuild(channel.guild_id)?.roles.filter(r => r.tags.subscription_listing_id !== undefined) || {});
 
         if(roles) {
             for(const roleId of Object.keys(channel.permissionOverwrites)) {
-                if(roles.find(role => role.id === roleId && role?.tags?.subscription_listing_id !== undefined)) return true;
+                if(roles.find(role => role.id === roleId)) return true;
             }
         }
     }
@@ -66,11 +66,11 @@ export default (data) => {
                 return originalCan(Permissions.VIEW_CHANNEL, this);
             };
 
-            unpatchList.can = patcher.after("can", computePermissions, (originalArgs, previousReturn) => {
+            unpatchList.can = patcher.instead("can", computePermissions, (originalArgs, originalFunction) => {
                 if(originalArgs[0] == Permissions.VIEW_CHANNEL && !hasSubscription(originalArgs[1]))
                     return true;
 
-                return previousReturn;
+                return originalFunction(...originalArgs);
             });
 
             unpatchList.Route = patcher.after("default", Route, (originalArgs, previousReturn) => {
