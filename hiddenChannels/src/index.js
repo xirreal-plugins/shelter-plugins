@@ -34,7 +34,8 @@ const isVisibile = channel => {
            ChannelTypes.GUILD_STORE,
            ChannelTypes.GUILD_STORE,
            ChannelTypes.GUILD_DIRECTORY
-        ].includes(channel.type)
+        ].includes(channel.type) ||
+        Object.values(channel.permissionOverwrites).some((p) => p.type == 1)
     ) return true;
 
     return channel.canBeSeen();
@@ -53,9 +54,10 @@ export default (data) => {
             };
 
             unpatchList.can = patcher.after("can", computePermissions, (originalArgs, previousReturn) => {
-                if(originalArgs[0] == Permissions.VIEW_CHANNEL) {
+                if(originalArgs[0] == Permissions.VIEW_CHANNEL &&
+                  !(Object.values(originalArgs[1].permissionOverwrites || {}).some((p) => p.type == 1)))
                     return true;
-                }
+
                 return previousReturn;
             });
 
