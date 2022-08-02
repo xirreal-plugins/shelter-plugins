@@ -1,6 +1,6 @@
 import * as webpack from "@cumcord/modules/webpack"
 import * as patcher from "@cumcord/patcher"
-import { ActionTypes, ChannelTypes, Permissions } from "@cumcord/modules/common/constants"
+import { ChannelTypes, Permissions } from "@cumcord/modules/common/constants"
 import { dispatch } from "@cumcord/modules/common/FluxDispatcher"
 import injectStyle from "../assets/style.css";
 import Notice from "./Notice";
@@ -116,7 +116,7 @@ export default (data) => {
                 if(!isVisibile(originalArgs[0].channelId)) {
 
                     dispatch({
-                        type: ActionTypes.LOAD_MESSAGES_FAILURE,
+                        type: "LOAD_MESSAGES_FAILURE",
                         channelId: originalArgs[0].channelId
                     });
 
