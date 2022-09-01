@@ -19,9 +19,14 @@ const Channel       = webpack.findByPrototypes("isManaged");
 
 const originalCan = computePermissions.can.bind({});
 
+const isPassportChannel = (channel) => {
+    return channel?.permissionOverwrites.length > 0;
+}
+
+
 const hasSubscription = (channel) => {
     if(channel?.permissionOverwrites) {
-        const roles = Object.values(getGuild(channel.guild_id)?.roles || {})?.filter(r => r?.tags?.subscription_listing_id !== undefined);
+        const roles = Object.values(getGuild(channel.guild_id)?.roles || {})?.filter(r => r?.tags?.guild_connections === null);
 
         if(roles && roles.length > 0) {
             for(const roleId of Object.keys(channel.permissionOverwrites)) {
@@ -48,7 +53,7 @@ const isVisibile = channel => {
            ChannelTypes.GUILD_STORE,
            ChannelTypes.GUILD_DIRECTORY
         ].includes(channel.type)
-        || hasSubscription(channel)
+        || isPassportChannel(channel)
     ) return true;
 
     return channel.canBeSeen();
