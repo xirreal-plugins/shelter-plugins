@@ -32,8 +32,8 @@ jobs:
                   mkdir .dist
                   for plugin in */
                   do
-                    if [[ $plugin != "/public" ]]
-                      then
+                    if [[ $plugin != "public" ]]
+                      thenv
                         cd "$plugin"
                         sperm build --outdir "../.dist/$plugin"
                         cd ..
