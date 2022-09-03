@@ -1,5 +1,6 @@
 import { findByDisplayName } from "@cumcord/modules/webpack"
 import { before } from "@cumcord/patcher"
+import { showToast } from "@cumcord/ui/toasts"
 
 import Timer from "./Timer";
 const unpatchList = {};
@@ -23,7 +24,7 @@ export default () => {
                 }
                 catch(err) {
                     console.error(err);
-                    !hasFailed && cumcord.ui.toasts.showToast({
+                    !hasFailed && showToast({
                         title: "VC Timer",
                         content: "An error has occured. Please check the console for more information.",
                         duration: 3000
