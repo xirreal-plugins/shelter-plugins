@@ -32,9 +32,11 @@ jobs:
                   mkdir .dist
                   for plugin in */
                   do
-                    cd "$plugin"
-                    sperm build --outdir "../.dist/$plugin"
-                    cd ..
+                    if [[ $plugin != "/public" ]]
+                      cd "$plugin"
+                      sperm build --outdir "../.dist/$plugin"
+                      cd ..
+                    fi
                   done
 
               # Foolproof feature:
