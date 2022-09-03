@@ -33,7 +33,7 @@ jobs:
                   for plugin in */
                   do
                     if [[ $plugin != "public" ]]
-                      thenv
+                      then
                         cd "$plugin"
                         sperm build --outdir "../.dist/$plugin"
                         cd ..
