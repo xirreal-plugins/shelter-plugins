@@ -51,7 +51,6 @@ const isVisibile = channel => {
            ChannelTypes.GROUP_DM,
            ChannelTypes.GUILD_CATEGORY,
            ChannelTypes.GUILD_STORE,
-           ChannelTypes.GUILD_STORE,
            ChannelTypes.GUILD_DIRECTORY
         ].includes(channel.type)
     ) return true;
@@ -103,7 +102,7 @@ export default (data) => {
             });
 
             unpatchList.unreadStateManager = patcher.after("canTrackUnreads", unreadStateManager, (originalArgs, previousReturn) => {
-                return previousReturn && getChannel(originalArgs[0])?.canBeSeen();
+                return previousReturn && isVisibile(originalArgs[0]);
             });
 
             unpatchList.fetchMessages = patcher.instead("fetchMessages", fetchMessages, (originalArgs, originalFunction) => {
