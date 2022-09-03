@@ -101,8 +101,8 @@ export default (data) => {
                 return originalArgs;
             });
 
-            unpatchList.unreadStateManager = patcher.after("canTrackUnreads", unreadStateManager, (originalArgs, previousReturn) => {
-                return previousReturn && isVisibile(originalArgs[0]);
+            unpatchList.unreadStateManager = patcher.after("canTrackUnreads", unreadStateManager, function (originalArgs, previousReturn) {
+                return previousReturn && isVisibile(this.channelId);
             });
 
             unpatchList.fetchMessages = patcher.instead("fetchMessages", fetchMessages, (originalArgs, originalFunction) => {

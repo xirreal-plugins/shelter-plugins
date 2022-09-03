@@ -1,0 +1,7 @@
+{
+  "name": "VC Timer",
+  "description": "Shows you how much time you wasted in voice chat.",
+  "author": "lith#0281",
+  "file": "src/index.js",
+  "license": "MIT"
+}
