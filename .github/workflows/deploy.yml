@@ -32,6 +32,7 @@ jobs:
                   mkdir .dist
                   for plugin in */
                   do
+                    echo $plugin
                     if [[ $plugin != "public" ]]
                       then
                         cd "$plugin"
