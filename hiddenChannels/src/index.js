@@ -103,7 +103,7 @@ export default (data) => {
             });
 
             unpatchList.unreadStateManager = patcher.after("canTrackUnreads", unreadStateManager, (originalArgs, previousReturn) => {
-                return previousReturn && Channel.prototype.canBeSeen(originalArgs[0]);
+                return previousReturn && getChannel(originalArgs[0])?.canBeSeen();
             });
 
             unpatchList.fetchMessages = patcher.instead("fetchMessages", fetchMessages, (originalArgs, originalFunction) => {
