@@ -4,6 +4,10 @@ import { findByProps, findByDisplayName } from "@cumcord/modules/webpack"
 const text = findByProps("h5");
 const FormDivider = findByDisplayName("FormDivider");
 
+const formatTime = (time) => {
+    return (time / 3600).toFixed(0).padStart(2,"0") + ":" + (new Date(time * 1000).toISOString().slice(14, 19))
+}
+
 export default class Timer extends React.Component {
   constructor (props) {
     super(props);
@@ -38,7 +42,7 @@ export default class Timer extends React.Component {
       <div>
         <FormDivider style={{"margin-top": "6px", "margin-bottom": "4px"}}/>
           Time elapsed: <span className={`${text.h5} ${text.defaultColor}`}>
-            {new Date(this.state.elapsedTime * 1000).toISOString().slice(11, 19)}
+            {formatTime(this.state.elapsedTime)}
           </span>
       </div>
     );
