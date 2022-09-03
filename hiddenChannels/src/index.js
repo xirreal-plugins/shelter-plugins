@@ -9,24 +9,25 @@ const unpatchList = {};
 const getChannel = webpack.findByProps("hasChannel").getChannel;
 const getVoiceID = webpack.findByProps("getVoiceStateStats").getChannelId;
 const getGuild   = webpack.findByProps("getGuild").getGuild;
+const getMember  = webpack.findByProps("getMember").getMember;
+const getCurrentUser = webpack.findByProps("getCurrentUser").getCurrentUser;
 
 const Route = webpack.findByDisplayName("RouteWithImpression", false);
 const computePermissions = webpack.findByProps("getChannelPermissions");
-const unreadManager = webpack.findByProps("hasUnread");
+const unreadStateManager = webpack.findByProps("ReadState").ReadState.prototype;
 const fetchMessages = webpack.findByProps("fetchMessages", "sendMessage");
 const channelItem   = webpack.findByDisplayName('ChannelItem', false);
 const Channel       = webpack.findByPrototypes("isManaged");
 
 const originalCan = computePermissions.can.bind({});
 
-const isPassportChannel = (channel) => {
-    return channel?.permissionOverwrites.length > 0;
+const isRestricedChannel = (channel) => {
+    return channel?.permissionOverwrites?.length > 0;
 }
 
-
-const hasSubscription = (channel) => {
+const hasAccess = (channel) => { // Unused, will be used if i figure out passports
     if(channel?.permissionOverwrites) {
-        const roles = Object.values(getGuild(channel.guild_id)?.roles || {})?.filter(r => r?.tags?.guild_connections === null);
+        const roles = getMember(channel.guild_id, getCurrentUser()?.id).roles;
 
         if(roles && roles.length > 0) {
             for(const roleId of Object.keys(channel.permissionOverwrites)) {
@@ -53,7 +54,6 @@ const isVisibile = channel => {
            ChannelTypes.GUILD_STORE,
            ChannelTypes.GUILD_DIRECTORY
         ].includes(channel.type)
-        || isPassportChannel(channel)
     ) return true;
 
     return channel.canBeSeen();
@@ -72,7 +72,7 @@ export default (data) => {
             };
 
             unpatchList.can = patcher.instead("can", computePermissions, (originalArgs, originalFunction) => {
-                if(originalArgs[0] == Permissions.VIEW_CHANNEL && !hasSubscription(originalArgs[1]))
+                if(originalArgs[0] == Permissions.VIEW_CHANNEL && !isRestricedChannel(originalArgs[1]))
                     return true;
 
                 return originalFunction(...originalArgs);
@@ -102,19 +102,8 @@ export default (data) => {
                 return originalArgs;
             });
 
-            unpatchList.hasUnread = patcher.before("hasUnread", unreadManager, (originalArgs) => {
-                if(!isVisibile(originalArgs[0])) originalArgs[0] = "";
-                return originalArgs;
-            });
-
-            unpatchList.hasUnreadPins = patcher.before("hasUnreadPins", unreadManager, (originalArgs) => {
-                if(!isVisibile(originalArgs[0])) return ["unread"];
-                return originalArgs;
-            });
-
-            unpatchList.hasUnreadMentions = patcher.after("getMentionCount", unreadManager, (originalArgs, previousReturn) => {
-                if(!isVisibile(originalArgs[0])) return 0;
-                return previousReturn;
+            unpatchList.unreadStateManager = patcher.after("canTrackUnreads", unreadStateManager, (originalArgs, previousReturn) => {
+                return previousReturn && canBeSeen(originalArgs[0]);
             });
 
             unpatchList.fetchMessages = patcher.instead("fetchMessages", fetchMessages, (originalArgs, originalFunction) => {
