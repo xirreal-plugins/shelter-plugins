@@ -5,7 +5,7 @@ const text = findByProps("h5");
 const FormDivider = findByDisplayName("FormDivider");
 
 const formatTime = (time) => {
-    return (time / 3600).toFixed(0).padStart(2,"0") + ":" + (new Date(time * 1000).toISOString().slice(14, 19))
+    return Math.floor(time / 3600).toFixed(0).padStart(2,"0") + ":" + (new Date(time * 1000).toISOString().slice(14, 19))
 }
 
 export default class Timer extends React.Component {
