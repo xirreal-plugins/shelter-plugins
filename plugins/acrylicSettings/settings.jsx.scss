@@ -1,0 +1,22 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.rowItem {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.label {
+  color: var(--header-primary);
+  line-height: 24px;
+  font-weight: 500;
+  flex: 1;
+}
+
+.alignRightFlex {
+  flex: 0 0 auto;
+}
