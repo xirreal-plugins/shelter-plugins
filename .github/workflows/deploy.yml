@@ -16,7 +16,10 @@ jobs:
         with:
           node-version: "16"
 
-      - run: pnpm m i
+      - run: npm install --global pnpm
+
+      - name: Install deps
+        run: pnpm m i
 
       - name: Build plugin(s)
         run: node ./build.mjs
