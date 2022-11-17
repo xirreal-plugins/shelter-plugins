@@ -1,5 +1,6 @@
 const {
   plugin: { store },
+  ui: { injectCss },
 } = shelter;
 
 import { css } from "./settings.jsx.scss";
@@ -35,17 +36,14 @@ let injectedCss = null;
 
 export function onLoad() {
   if (!injectedCss) {
-    const e = document.createElement("style");
-    e.innerHTML = `<style>${css}</style>`;
-    document.head.append(e);
-    injectedCss = e;
+    injectedCss = injectCss(css);
   }
 
   syncSettings();
 }
 
 export function onUnload() {
-  injectedCss?.remove();
+  injectedCss?.();
 }
 
 export { default as settings } from "./settings";
