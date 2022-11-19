@@ -341,7 +341,7 @@
               return originalArgs;
             const channelId = this.props?.computedMatch?.params?.channelId;
             const guildId = this.props?.computedMatch?.params?.guildId;
-            if (!isVisibile(channelId) && guildId && headerBar !== null && (isInVoice() ? channelId != getVoiceID(guildId) : true)) {
+            if (!isVisibile(channelId) && guildId && headerBar !== null) {
               this.props.render = () => {
                 return renderSolidInReact3(Notice_default, {
                   channel: getChannel(channelId),
