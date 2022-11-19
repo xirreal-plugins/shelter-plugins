@@ -176,8 +176,8 @@ export function onLoad() {
           if (
             !isVisibile(channelId) &&
             guildId &&
-            headerBar !== null &&
-            (isInVoice() ? channelId != getVoiceID(guildId) : true)
+            headerBar !== null
+            // && (isInVoice() ? channelId != getVoiceID(guildId) : true) TODO: Actually fix!!!
           ) {
             this.props.render = () => {
               return renderSolidInReact(Notice, {
