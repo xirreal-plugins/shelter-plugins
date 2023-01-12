@@ -26,6 +26,12 @@ export function openEditor() {
 }
 
 export function syncSettings() {
+  
+  if(window.acrylic == undefined) {
+    setTimeout(syncSettings(), 500);
+    return;
+  }
+  
   const acrylicSettings = window.acrylic.internal.getSettings();
   store.acrylic = acrylicSettings.acrylic;
   store.css = acrylicSettings.css;
