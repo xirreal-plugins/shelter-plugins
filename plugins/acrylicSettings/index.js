@@ -28,7 +28,7 @@ export function openEditor() {
 export function syncSettings() {
   
   if(window.acrylic == undefined) {
-    setTimeout(syncSettings(), 500);
+    setTimeout(syncSettings, 500);
     return;
   }
   
