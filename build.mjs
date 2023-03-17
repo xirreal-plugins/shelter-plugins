@@ -7,9 +7,7 @@ import { postcssModules, sassPlugin } from "esbuild-sass-plugin-ysink";
 
 const MD5 = (data) => createHash("md5").update(data).digest("hex").toString();
 
-if (existsSync("dist")) await rm("dist", { recursive: true });
-
-for (const plug of await readdir("plugins")) {
+async function buildPlugin(plug) {
   const outfile = `dist/${plug}/plugin.js`;
   const entryPoint = `plugins/${plug}/index.js`;
 
@@ -60,3 +58,20 @@ for (const plug of await readdir("plugins")) {
     )
   );
 }
+
+if (existsSync("dist")) await rm("dist", { recursive: true });
+
+let promises = [];
+
+for (const plug of await readdir("plugins")) {
+  promises.push(buildPlugin(plug));
+}
+
+Promise.all(promises).then(async () => {
+  console.log("Plugins built:");
+  for (const plug of await readdir("dist")) {
+    console.log("  " + plug);
+  }
+});
+
+export default buildPlugin;

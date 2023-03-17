@@ -52,7 +52,7 @@ function canBeSeen(channel) {
   return originalCan(Permissions.VIEW_CHANNEL, channel);
 }
 
-const isRestricedChannel = (channel) => {
+const isRestrictedChannel = (channel) => {
   return channel?.permissionOverwrites?.length > 0;
 };
 
@@ -90,7 +90,7 @@ export function onLoad() {
     (originalArgs, originalFunction) => {
       if (
         originalArgs[0] == Permissions.VIEW_CHANNEL &&
-        !isRestricedChannel(originalArgs[1])
+        !isRestrictedChannel(originalArgs[1])
       )
         return true;
 
@@ -104,7 +104,6 @@ export function onLoad() {
       queueMicrotask(() => {
         const channelId = element.dataset.listItemId.split("___")[1];
         if (isNaN(parseInt(channelId))) return;
-
         const component = reactFiberWalker(
           getFiber(element),
           "aria-label",
@@ -115,12 +114,22 @@ export function onLoad() {
 
         stopObservingChannelItem();
 
+        if (unpatchList.channelItem) {
+          return;
+        }
+
         unpatchList.channelItem = patcher.before(
           "render",
           component,
           (originalArgs) => {
-            if (!isVisibile(originalArgs[0].children[0].props.channel))
-              originalArgs[0]["aria-label"] += " hidden";
+            // Find if the element has a child with the channel prop
+            for (let i = 0; i < originalArgs[0].children.length; i++) {
+              if (!isVisibile(originalArgs[0].children[i]?.props?.channel)) {
+                originalArgs[0]["aria-label"] += " hidden";
+                break;
+              }
+            }
+
             return originalArgs;
           }
         );
@@ -145,7 +154,8 @@ export function onLoad() {
         true,
         true
       )?.type;
-      if (!component || typeof component.Icon !== "function") return;
+      if (!component || typeof component.Icon !== "function" || headerBar)
+        return;
       stopObservingHeaderBar();
       headerBar = component;
     });
@@ -163,6 +173,8 @@ export function onLoad() {
         return;
 
       stopObservingRoute();
+
+      if (unpatchList.Route) return;
 
       unpatchList.Route = patcher.before(
         "render",
