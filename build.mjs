@@ -64,7 +64,7 @@ if (existsSync("dist")) await rm("dist", { recursive: true });
 let promises = [];
 
 for (const plug of await readdir("plugins")) {
-  promises.push(buildPlugin(plug));
+  promises.push(buildPlugin(plug).catch(() => {}));
 }
 
 Promise.all(promises).then(async () => {
