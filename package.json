@@ -1,19 +1,18 @@
 {
-	"devDependencies": {
-		"@uwu/lune": "^1.0.1",
-		"@uwu/shelter-defs": "^1.0.2",
-		"postcss": "^8.4.21",
-		"prettier": "^2.8.7",
-		"rimraf": "^3.0.2",
-		"solid-js": "^1.5.7"
-	},
-	"scripts": {
-		"build": "pnpm lune ci",
-		"clean": "rimraf dist",
-		"format": "prettier --write ."
-	},
-	"type": "module",
-	"dependencies": {
-		"postcss-modules": "^6.0.0"
-	}
+  "dependencies": {
+    "esbuild": "^0.15.13",
+    "esbuild-plugin-solid": "^0.4.2",
+    "esbuild-sass-plugin-ysink": "^2.3.3",
+    "postcss": "^8.4.17",
+    "postcss-modules": "^5.0.0",
+    "solid-js": "^1.6.2"
+  },
+  "devDependencies": {
+    "@uwu/shelter-defs": "^1.0.2",
+    "websocket": "^1.0.34"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node dev.mjs"
+  }
 }
