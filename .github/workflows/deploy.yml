@@ -22,7 +22,7 @@ jobs:
            run: pnpm m i
 
          - name: Build plugin(s)
-           run: node ./build.mjs
+           run: pnpm run build
 
            # Foolproof feature:
            # - Copies over README so that the root of the deployed website shows it
