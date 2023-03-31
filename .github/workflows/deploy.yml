@@ -22,7 +22,7 @@ jobs:
            run: pnpm m i --no-frozen-lockfile
 
          - name: Build plugin(s)
-           run: pnpm run build
+           run: pnpm build
 
            # Foolproof feature:
            # - Copies over README so that the root of the deployed website shows it

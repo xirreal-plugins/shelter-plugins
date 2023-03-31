@@ -1,14 +1,19 @@
 {
 	"devDependencies": {
+		"@uwu/lune": "^1.0.1",
+		"@uwu/shelter-defs": "^1.0.2",
+		"postcss": "^8.4.21",
 		"prettier": "^2.8.7",
 		"rimraf": "^3.0.2",
-		"@uwu/lune": "^1.0.1",
-		"@uwu/shelter-defs": "^1.0.2"
+		"solid-js": "^1.7.0"
 	},
 	"scripts": {
 		"build": "pnpm lune ci",
 		"clean": "rimraf dist",
 		"format": "prettier --write ."
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"postcss-modules": "^6.0.0"
+	}
 }
