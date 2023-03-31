@@ -1,63 +1,63 @@
 [aria-label$="hidden"] > div > svg > path[d^="M2"][d*="19"],
 [aria-label$="hidden"] > div > svg > path[d^="M17"][d*="19"] {
-  fill: #ed4245 !important;
+	fill: #ed4245 !important;
 }
 
 .divider {
-  width: 1px;
-  height: 24px;
-  margin: 0 8px;
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  background: var(--background-modifier-accent);
+	width: 1px;
+	height: 24px;
+	margin: 0 8px;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	background: var(--background-modifier-accent);
 }
 
 .topic {
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  position: relative;
-  min-width: 0;
-  margin: 0 0 0 8px;
-  font-weight: 500;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-size: 14px;
-  line-height: 18px;
-  color: var(--header-secondary);
-  padding-top: 4px; // Horrible. I know.
-  cursor: pointer;
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	position: relative;
+	min-width: 0;
+	margin: 0 0 0 8px;
+	font-weight: 500;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-size: 14px;
+	line-height: 18px;
+	color: var(--header-secondary);
+	padding-top: 4px; // Horrible. I know.
+	cursor: pointer;
 }
 
 .topicWrapper {
-  display: flex;
-  flex-direction: row;
-  -webkit-box-flex: 1;
-  -ms-flex: 0 0 auto;
-  flex: 1 1 auto;
+	display: flex;
+	flex-direction: row;
+	-webkit-box-flex: 1;
+	-ms-flex: 0 0 auto;
+	flex: 1 1 auto;
 }
 
 .mainBody {
-  &:before {
-    content: "";
-    transform: translate(0px, -1px);
-    height: 1px;
-    -webkit-box-shadow: var(--elevation-low);
-    box-shadow: var(--elevation-low);
-    z-index: 1;
-    pointer-events: none;
-  }
+	&:before {
+		content: "";
+		transform: translate(0px, -1px);
+		height: 1px;
+		-webkit-box-shadow: var(--elevation-low);
+		box-shadow: var(--elevation-low);
+		z-index: 1;
+		pointer-events: none;
+	}
 }
 
 .chat {
-  display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex: 0 0 auto;
-  flex: 1 1 auto;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+	display: flex;
+	-webkit-box-flex: 1;
+	-ms-flex: 0 0 auto;
+	flex: 1 1 auto;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 }
