@@ -5,6 +5,8 @@ const {
    ui: { injectCss, showToast },
 } = shelter;
 
+import { css, classes } from "./index.jsx.scss";
+
 let unpatchList = [];
 
 const trustedUrls = [
@@ -23,15 +25,15 @@ function Card(props) {
    };
 
    return (
-      <div class="card">
-         <div class="title">{props.json.name}</div>
-         <div class="description">{props.json.description}</div>
-         <div class="author">
+      <div class={classes.card}>
+         <div class={classes.title}>{props.json.name}</div>
+         <div class={classes.description}>{props.json.description}</div>
+         <div class={classes.author}>
             By <b>{props.json.author}</b>
          </div>
-         <div class="buttons">
+         <div class={classes.buttons}>
             <button
-               class={isInstalled() ? "buttonInstalled" : "button"}
+               class={isInstalled() ? classes.buttonInstalled : classes.button}
                onClick={async () => {
                   if (!isInstalled()) {
                      await plugins.addRemotePlugin(pluginId, props.url);
@@ -46,77 +48,15 @@ function Card(props) {
                {isInstalled() ? "Installed" : "Install"}
             </button>
             <a href={props.url} target="_blank">
-               <button class="button">View</button>
+               <button class={classes.button}>View</button>
             </a>
          </div>
       </div>
    );
 }
 
-const CSS = `
-.card {
-   background-color: var(--background-primary);
-   border-radius: 4px;
-   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
-   display: flex;
-   flex-direction: column;
-   margin: 10px 0;
-   padding: 10px;
-   max-width: 500px;
-}
-
-.title {
-   font-size: 16px;
-   font-weight: 800;
-}
-
-.description {
-   font-size: 14px;
-   margin-top: 5px;
-}
-
-.author {
-   font-size: 12px;
-   margin-top: 5px;
-}
-
-.buttons {
-   display: flex;
-   margin-top: 10px;
-}
-
-.button {
-   background-color: var(--brand-experiment);
-   border-radius: 4px;
-   border: none;
-   color: var(--text-normal);
-   cursor: pointer;
-   font-size: 12px;
-   font-weight: 600;
-   margin-right: 5px;
-   padding: 5px 10px;
-}
-
-.button:hover {
-   background-color: var(--brand-experiment-560);
-   transition: background-color 0.2s ease;
-}
-
-.buttonInstalled {
-   background-color: var(--background-secondary);
-   border-radius: 4px;
-   border: none;
-   color: var(--text-normal);
-   cursor: pointer;
-   font-size: 12px;
-   font-weight: 600;
-   margin-right: 5px;
-   padding: 5px 10px;
-}
-`;
-
 export function onLoad() {
-   unpatchList.push(injectCss(CSS));
+   unpatchList.push(injectCss(css));
    unpatchList.push(
       observeDom("[class*=messageContent-] [class^=anchor-]", (element) => {
          queueMicrotask(async () => {
