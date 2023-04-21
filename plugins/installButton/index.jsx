@@ -13,6 +13,7 @@ const trustedUrls = [
    "https://yellowsink.github.io/shelter-plugins/",
    "https://shelter.xirreal.dev",
    "https://ioj4.github.io/shelter-plugins/",
+   "https://shelter.ioj4.net/",
    "https://redstonekasi.github.io/shelter-plugins/",
    "https://beefers.github.io/furniture/",
 ];
