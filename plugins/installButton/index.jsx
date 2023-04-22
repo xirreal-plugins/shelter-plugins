@@ -1,8 +1,8 @@
 const {
+   flux: { dispatcher, stores: { SelectedChannelStore } },
    observeDom,
    plugins,
-   solid,
-   ui: { injectCss, showToast },
+   ui: { injectCss, showToast }
 } = shelter;
 
 import { css, classes } from "./index.jsx.scss";
@@ -55,51 +55,75 @@ function Card(props) {
    );
 }
 
+function handleDispatch(payload) {
+   if (
+      (payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") &&
+      payload.message.channel_id !== SelectedChannelStore.getChannelId()
+   )
+      return;
+
+   const unobs = observeDom("[class*=messageContent-] [class^=anchor-]:not([data-instbtn])", async (element) => {
+      // don't find element we've already replaced
+      element.dataset.instbtn = 1;
+      unobs();
+
+      let url = element.href.endsWith("/")
+         ? element.href
+         : element.href + "/";
+
+      // If the URL ends with plugin.json/ remove it
+      if (url.endsWith("plugin.json/")) {
+         url = url.slice(0, -12);
+      }
+
+      // Check if the URL is trusted
+      if (!trustedUrls.some((trustedUrl) => url.startsWith(trustedUrl))) {
+         return;
+      }
+
+      try {
+         let response = await fetch(url + "plugin.json");
+         if (!response.ok) return;
+
+         let json = await response.json();
+         let card = (
+            <Card
+               json={{
+                  name: json.name,
+                  description: json.description,
+                  author: json.author
+               }}
+               url={url}
+            />
+         );
+
+         // removing the element entirely causes react to blow up
+         // and react fails to remove us if we insert at the same level
+         element.className = "";
+         element.style.all = "unset";
+         element.style.display = "contents";
+         element.replaceChildren(card);
+      } catch (e) {
+         console.error(e);
+      }
+   });
+
+   // just in case
+   setTimeout(unobs, 200);
+}
+
+const TRIGGERS = [
+   "MESSAGE_CREATE", "MESSAGE_UPDATE", "UPDATE_CHANNEL_DIMENSIONS"
+];
+
 export function onLoad() {
+   for (const t of TRIGGERS) dispatcher.subscribe(t, handleDispatch);
    unpatchList.push(injectCss(css));
-   unpatchList.push(
-      observeDom("[class*=messageContent-] [class^=anchor-]", (element) => {
-         queueMicrotask(async () => {
-            let url = element.href.endsWith("/")
-               ? element.href
-               : element.href + "/";
-
-            // If the URL ends with plugin.json/ remove it
-            if (url.endsWith("plugin.json/")) {
-               url = url.slice(0, -12);
-            }
-
-            // Check if the URL is trusted
-            if (!trustedUrls.some((trustedUrl) => url.startsWith(trustedUrl))) {
-               return;
-            }
-
-            try {
-               let response = await fetch(url + "plugin.json");
-               if (!response.ok) return;
-
-               let json = await response.json();
-               let card = (
-                  <Card
-                     json={{
-                        name: json.name,
-                        description: json.description,
-                        author: json.author,
-                     }}
-                     url={url}
-                  />
-               );
-
-               element.replaceWith(card);
-            } catch (e) {
-               console.error(e);
-            }
-         });
-      })
-   );
 }
 
 export function onUnload() {
+   for (const t of TRIGGERS) dispatcher.unsubscribe(t, handleDispatch);
+
    for (let unpatch of Object.values(unpatchList)) unpatch();
    unpatchList = [];
 }
