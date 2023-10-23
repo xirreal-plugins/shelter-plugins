@@ -36,13 +36,11 @@ const ChannelTypes = {
 };
 
 const getChannel = ChannelStore.getChannel;
-const getVoiceID = VoiceStateStore.getCurrentClientVoiceChannelId;
-const isInVoice = VoiceStateStore.isCurrentClientInVoiceChannel;
 const getGuild = GuildStore.getGuild;
 
 const originalCan = PermissionStore.can.bind({});
 
-import { css } from "./assets/style.scss";
+import { css, classes } from "./assets/style.scss";
 import { default as Notice } from "./assets/Notice.jsx";
 
 const unpatchList = {};
@@ -128,7 +126,7 @@ export function onLoad() {
                      originalArgs[0]["data-list-item-id"].split("___")[1];
 
                   if (!isVisibile(channelId)) {
-                     originalArgs[0].className += " shelter_hiddenChannel";
+                     originalArgs[0].className += ` ${classes.hiddenChannel}`;
                   }
 
                   return originalArgs;
