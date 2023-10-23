@@ -4,13 +4,7 @@ const {
    flux: {
       intercept,
       dispatcher,
-      stores: {
-         PermissionStore,
-         ChannelStore,
-         VoiceStateStore,
-         GuildStore,
-         ReadStateStore,
-      },
+      stores: { PermissionStore, ChannelStore, GuildStore, ReadStateStore },
    },
    ui: { injectCss, renderSolidInReact },
    util: { getFiber, reactFiberWalker },
