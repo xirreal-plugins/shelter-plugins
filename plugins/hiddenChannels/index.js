@@ -116,6 +116,8 @@ export function onLoad() {
                "render",
                component,
                (originalArgs) => {
+                  if(!originalArgs[0]["data-list-item-id"]) return originalArgs;
+
                   const channelId =
                      originalArgs[0]["data-list-item-id"].split("___")[1];
 
