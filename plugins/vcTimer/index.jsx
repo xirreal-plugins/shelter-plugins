@@ -8,7 +8,7 @@ function format(milliseconds) {
    const minutes = Math.floor((milliseconds % 3600000) / 60000);
    const seconds = Math.floor((milliseconds % 60000) / 1000);
 
-   return `${hours > 0 ? hours.padStart(2, "0") + ":" : ""}${minutes
+   return `${hours > 0 ? hours.toString().padStart(2, "0") + ":" : ""}${minutes
       .toString()
       .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 }
@@ -24,7 +24,7 @@ function Timer() {
    onCleanup(() => clearInterval(timer));
 
    return (
-      <div style={"font-weight: bold"}>
+      <div id="vcTimer" style={"font-weight: bold"}>
          {format(elapsed())}
          <br />
       </div>
@@ -33,6 +33,8 @@ function Timer() {
 
 function onVoiceJoin(e) {
    if (e.state != "RTC_CONNECTED") return;
+
+   if (document.querySelector("#vcTimer")) return;
 
    document
       .querySelector('[class^="rtcConnectionStatus-"] + a > div')
