@@ -142,7 +142,7 @@ export function onLoad() {
    );
 
    unpatchList.stopObservingHeaderBar = observeDom(
-      "[class^=title-]",
+      "[class^=title_]",
       (element) => {
          queueMicrotask(() => {
             const component = reactFiberWalker(
@@ -160,7 +160,7 @@ export function onLoad() {
    );
 
    unpatchList.stopObservingRoute = observeDom(
-      '[class^="chat-"]',
+      '[class^="chat_"]',
       (element) => {
          queueMicrotask(() => {
             const component = reactFiberWalker(

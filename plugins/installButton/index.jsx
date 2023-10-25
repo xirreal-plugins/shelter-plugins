@@ -63,7 +63,7 @@ function handleDispatch(payload) {
    )
       return;
 
-   const unobs = observeDom("[class*=messageContent-] [class^=anchor-]:not([data-instbtn])", async (element) => {
+   const unobs = observeDom("[class*=messageContent_] [class^=anchor_]:not([data-instbtn])", async (element) => {
       // don't find element we've already replaced
       element.dataset.instbtn = 1;
       unobs();

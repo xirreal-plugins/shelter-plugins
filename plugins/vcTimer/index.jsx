@@ -34,10 +34,10 @@ function Timer() {
 function onVoiceJoin(e) {
    if (e.state != "RTC_CONNECTED") return;
 
-   if (document.querySelector("#vcTimer")) return;
+   if (document.getElementById("vcTimer")) return;
 
    document
-      .querySelector('[class^="rtcConnectionStatus-"] + a > div')
+      .querySelector('[class^="rtcConnectionStatus_"] + a > div')
       .prepend(<Timer />);
 }
 
