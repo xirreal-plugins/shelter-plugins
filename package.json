@@ -1,18 +1,11 @@
 {
-  "dependencies": {
-    "esbuild": "^0.15.13",
-    "esbuild-plugin-solid": "^0.4.2",
-    "esbuild-sass-plugin-ysink": "^2.3.3",
-    "postcss": "^8.4.17",
-    "postcss-modules": "^5.0.0",
-    "solid-js": "^1.6.2"
-  },
-  "devDependencies": {
-    "@uwu/shelter-defs": "^1.0.2",
-    "websocket": "^1.0.34"
-  },
-  "scripts": {
-    "build": "node build.mjs",
-    "dev": "node dev.mjs"
-  }
+   "devDependencies": {
+      "@uwu/lune": "^1.3.0",
+      "@uwu/shelter-defs": "^1.3.0",
+      "prettier": "^3.0.3"
+   },
+   "type": "module",
+   "scripts": {
+      "format": "prettier --write ."
+   }
 }

@@ -87,7 +87,7 @@ export function onLoad() {
             return true;
 
          return originalFunction(...originalArgs);
-      }
+      },
    );
 
    unpatchList.stopObservingChannelItem = observeDom(
@@ -101,7 +101,7 @@ export function onLoad() {
                getFiber(element),
                "aria-label",
                true,
-               true
+               true,
             )?.type;
 
             if (!component || typeof component.render !== "function") return;
@@ -126,7 +126,7 @@ export function onLoad() {
                   }
 
                   return originalArgs;
-               }
+               },
             );
 
             const channelReadState = ReadStateStore.getForDebugging(channelId);
@@ -135,10 +135,10 @@ export function onLoad() {
                channelReadState.__proto__,
                function (_, previousReturn) {
                   return previousReturn && isVisibile(this.channelId);
-               }
+               },
             );
          });
-      }
+      },
    );
 
    unpatchList.stopObservingHeaderBar = observeDom(
@@ -149,14 +149,14 @@ export function onLoad() {
                getFiber(element),
                "toolbar",
                true,
-               true
+               true,
             )?.type;
             if (!component || typeof component.Icon !== "function" || headerBar)
                return;
             unpatchList.stopObservingHeaderBar();
             headerBar = component;
          });
-      }
+      },
    );
 
    unpatchList.stopObservingRoute = observeDom(
@@ -167,7 +167,7 @@ export function onLoad() {
                getFiber(element),
                "computedMatch",
                true,
-               true
+               true,
             )?.type;
             if (!component || typeof component.prototype.render !== "function")
                return;
@@ -204,10 +204,10 @@ export function onLoad() {
                   }
 
                   return originalArgs;
-               }
+               },
             );
          });
-      }
+      },
    );
 
    let shouldIgnoreNextMessageFetch = false;
