@@ -22,7 +22,7 @@ jobs:
            run: pnpm m i
 
          - name: Build plugin(s)
-           run: lune ci
+           run: pnpm exec lune ci
 
            # Foolproof feature:
            # - Copies over README so that the root of the deployed website shows it
