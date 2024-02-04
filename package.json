@@ -2,7 +2,7 @@
    "devDependencies": {
       "@uwu/lune": "^1.3.0",
       "@uwu/shelter-defs": "^1.3.0",
-      "prettier": "^3.0.3"
+      "prettier": "^3.2.5"
    },
    "type": "module",
    "scripts": {

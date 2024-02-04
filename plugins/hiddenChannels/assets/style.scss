@@ -1,8 +1,17 @@
+// Old icons
 .hiddenChannel > div > div > svg > path[d^="M21"][d$="5Z"], // Channel lock
 .hiddenChannel > div > div > svg > path[d^="M19"][d$="7Z"], // NSFW Icon
 .hiddenChannel > div > div > svg > path[d^="M17"][d$="11Z"], // Voice chat lock
 shltr-rroot > svg > path[d^="M21"][d$="5Z"], // Lock in header
 shltr-rroot > svg > path[d^="M19"][d$="7Z"]  // NSFW in header
+{
+   fill: #ed4245 !important;
+}
+
+// New icons
+.hiddenChannel > div > div > svg > path[d^="M16"][d$="0Z"], // Channel lock
+.hiddenChannel > div > div > svg > path[d^="M18"][d$="2Z"], // NSFW Icon
+.hiddenChannel > div > div > svg > path[d^="M6"][d$="14Z"] // Voice chat lock
 {
    fill: #ed4245 !important;
 }
