@@ -12,7 +12,7 @@ import { css, classes } from "./index.jsx.scss";
 
 let unpatchList = [];
 
-const trustedUrls = [
+let trustedUrls = [
    "https://yellowsink.github.io/shelter-plugins/",
    "https://shelter.xirreal.dev",
    "https://xirreal-plugins.github.io/shelter-plugins/",
@@ -22,8 +22,10 @@ const trustedUrls = [
    "https://maisymoe.github.io/furniture/",
 ];
 
+const REGEX_PROTO = /https?:\/\//;
+
 function Card(props) {
-   const pluginId = props.url.replace("https://", "").replace("http://", "");
+   const pluginId = props.url.replace(REGEX_PROTO, "");
 
    const isInstalled = () => {
       return plugins.installedPlugins().hasOwnProperty(pluginId);
@@ -114,7 +116,7 @@ function handleDispatch(payload) {
          } catch (e) {
             console.error(e);
          }
-      },
+      }
    );
 
    // just in case
@@ -126,6 +128,14 @@ const TRIGGERS = [
    "MESSAGE_UPDATE",
    "UPDATE_CHANNEL_DIMENSIONS",
 ];
+
+async function updateTrustedUrls() {
+   const repos = await fetch("https://shindex.uwu.network/data").then((res) =>
+      res.json()
+   );
+
+   trustedUrls = repos.map((repo) => repo.url);
+}
 
 export function onLoad() {
    for (const t of TRIGGERS) dispatcher.subscribe(t, handleDispatch);
