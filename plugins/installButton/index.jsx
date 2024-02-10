@@ -116,7 +116,7 @@ function handleDispatch(payload) {
          } catch (e) {
             console.error(e);
          }
-      }
+      },
    );
 
    // just in case
@@ -131,7 +131,7 @@ const TRIGGERS = [
 
 async function updateTrustedUrls() {
    const repos = await fetch("https://shindex.uwu.network/data").then((res) =>
-      res.json()
+      res.json(),
    );
 
    trustedUrls = repos.map((repo) => repo.url);
@@ -140,6 +140,8 @@ async function updateTrustedUrls() {
 export function onLoad() {
    for (const t of TRIGGERS) dispatcher.subscribe(t, handleDispatch);
    unpatchList.push(injectCss(css));
+
+   updateTrustedUrls();
 }
 
 export function onUnload() {
