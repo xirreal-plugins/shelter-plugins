@@ -37,16 +37,6 @@ Installation URL -> `https://shelter.xirreal.dev/vcTimer/`
 
 [Source](https://github.com/xirreal-plugins/xirreal-plugins.github.io/tree/master/plugins/vcTimer)
 
-# Acrylic Settings
-
-Manage your Acrylic settings easily, with a button to open the built in CSS editor.
-
-![Acrylic settings example](assets/acrylicSettings.png)
-
-Installation URL -> `https://shelter.xirreal.dev/acrylicSettings/`
-
-[Source](https://github.com/xirreal-plugins/xirreal-plugins.github.io/tree/master/plugins/acrylicSettings)
-
 # Template repo
 
 Based on [Yellowsink's plugins repo](https://github.com/yellowsink/shelter-plugins/) and my old CC repo.
