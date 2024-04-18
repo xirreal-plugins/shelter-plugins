@@ -2,7 +2,7 @@ const {
    ui: { renderSolidInReact, openModal, ModalBody, ModalRoot, ModalHeader },
 } = shelter;
 
-import { classes } from "./style.scss";
+import classes from "./style.scss";
 
 const ChannelTopic = (props) => {
    return props.channel.topic ? (

@@ -47,4 +47,5 @@ export function onLoad() {
 
 export function onUnload() {
    dispatcher.unsubscribe("RTC_CONNECTION_STATE", onVoiceJoin);
+   document.getElementById("vcTimer")?.remove();
 }

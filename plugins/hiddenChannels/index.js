@@ -3,10 +3,15 @@ const {
    observeDom,
    flux: {
       intercept,
+   },
+} = shelter.plugin.scoped;
+
+const {
+   flux: {
       dispatcher,
       stores: { PermissionStore, ChannelStore, GuildStore, ReadStateStore },
    },
-   ui: { injectCss, renderSolidInReact },
+   ui: { renderSolidInReact },
    util: { getFiber, reactFiberWalker },
 } = shelter;
 
@@ -27,6 +32,7 @@ const ChannelTypes = {
    GUILD_STAGE_VOICE: 13,
    GUILD_DIRECTORY: 14,
    GUILD_FORUM: 15,
+   GUILD_MEDIA: 16, // Beta channel type, check if it works sometime:tm:
 };
 
 const getChannel = ChannelStore.getChannel;
@@ -34,10 +40,9 @@ const getGuild = GuildStore.getGuild;
 
 const originalCan = PermissionStore.can.bind({});
 
-import { css, classes } from "./assets/style.scss";
+import classes from "./assets/style.scss";
 import { default as Notice } from "./assets/Notice.jsx";
 
-const unpatchList = {};
 let headerBar = null;
 
 function canBeSeen(channel) {
@@ -74,9 +79,7 @@ const isVisibile = (channel) => {
 };
 
 export function onLoad() {
-   unpatchList.css = injectCss(css);
-
-   unpatchList.can = patcher.instead(
+   patcher.instead(
       "can",
       PermissionStore.__proto__,
       (originalArgs, originalFunction) => {
@@ -90,7 +93,8 @@ export function onLoad() {
       },
    );
 
-   unpatchList.stopObservingChannelItem = observeDom(
+   let patchedChannelItem = false;
+   const stopObservingChannelItem = observeDom(
       '[data-list-item-id^="channels___"',
       (element) => {
          queueMicrotask(() => {
@@ -106,13 +110,14 @@ export function onLoad() {
 
             if (!component || typeof component.render !== "function") return;
 
-            unpatchList.stopObservingChannelItem();
+            stopObservingChannelItem();
 
-            if (unpatchList.channelItem) {
+            if (patchedChannelItem) {
                return;
             }
+            patchedChannelItem = true;
 
-            unpatchList.channelItem = patcher.before(
+            patcher.before(
                "render",
                component,
                (originalArgs) => {
@@ -130,7 +135,7 @@ export function onLoad() {
             );
 
             const channelReadState = ReadStateStore.getForDebugging(channelId);
-            unpatchList.unreadStateManager = patcher.after(
+            patcher.after(
                "canTrackUnreads",
                channelReadState.__proto__,
                function (_, previousReturn) {
@@ -141,7 +146,7 @@ export function onLoad() {
       },
    );
 
-   unpatchList.stopObservingHeaderBar = observeDom(
+   const stopObservingHeaderBar = observeDom(
       "[class^=title_]",
       (element) => {
          queueMicrotask(() => {
@@ -153,13 +158,14 @@ export function onLoad() {
             )?.type;
             if (!component || typeof component.Icon !== "function" || headerBar)
                return;
-            unpatchList.stopObservingHeaderBar();
+            stopObservingHeaderBar();
             headerBar = component;
          });
       },
    );
 
-   unpatchList.stopObservingRoute = observeDom(
+   let routePatched = false;
+   const stopObservingRoute = observeDom(
       '[class^="chat_"]',
       (element) => {
          queueMicrotask(() => {
@@ -172,11 +178,12 @@ export function onLoad() {
             if (!component || typeof component.prototype.render !== "function")
                return;
 
-            unpatchList.stopObservingRoute();
+            stopObservingRoute();
 
-            if (unpatchList.Route) return;
+            if (routePatched) return;
+            routePatched = true;
 
-            unpatchList.Route = patcher.before(
+            patcher.before(
                "render",
                component.prototype,
                function (originalArgs) {
@@ -190,7 +197,6 @@ export function onLoad() {
                      !isVisibile(channelId) &&
                      guildId &&
                      headerBar !== null
-                     // && (isInVoice() ? channelId != getVoiceID(guildId) : true) TODO: Actually fix!!!
                   ) {
                      this.props.render = () => {
                         return renderSolidInReact(Notice, {
@@ -212,7 +218,7 @@ export function onLoad() {
 
    let shouldIgnoreNextMessageFetch = false;
    let _channelId = "";
-   unpatchList.intercept = intercept((event) => {
+   intercept((event) => {
       if (event.type === "CHANNEL_SELECT" && !isVisibile(event?.channelId)) {
          shouldIgnoreNextMessageFetch = true;
          _channelId = event.channelId;
@@ -228,8 +234,4 @@ export function onLoad() {
          return [event, true];
       }
    });
-}
-
-export function onUnload() {
-   for (let unpatch of Object.values(unpatchList)) unpatch();
 }

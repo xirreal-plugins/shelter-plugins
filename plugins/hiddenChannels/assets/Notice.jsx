@@ -2,7 +2,7 @@ const {
    ui: { ReactInSolidBridge, Header, HeaderTags },
 } = shelter;
 
-import { classes } from "./style.scss";
+import classes from "./style.scss";
 
 import LockedChannelIcon from "./LockedChannelIcon.jsx";
 import ChannelTopic from "./ChannelTopic.jsx";

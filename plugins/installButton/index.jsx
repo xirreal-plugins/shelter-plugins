@@ -1,26 +1,48 @@
+const { observeDom } = shelter.plugin.scoped;
+
 const {
    flux: {
       dispatcher,
       stores: { SelectedChannelStore },
    },
-   observeDom,
    plugins,
-   ui: { injectCss, showToast },
+   ui: { showToast, Button, ButtonColors, ButtonSizes },
+   solid: { createSignal, onCleanup },
 } = shelter;
 
-import { css, classes } from "./index.jsx.scss";
+import classes from "./index.jsx.scss";
 
-let unpatchList = [];
+import { CopyIcon, ContentIcon } from "./icons.jsx";
 
-const trustedUrls = [
-   "https://yellowsink.github.io/shelter-plugins/",
-   "https://shelter.xirreal.dev",
-   "https://xirreal-plugins.github.io/shelter-plugins/",
-   "https://ioj4.github.io/shelter-plugins/",
-   "https://shelter.ioj4.net/",
-   "https://redstonekasi.github.io/shelter-plugins/",
-   "https://maisymoe.github.io/furniture/",
-];
+let trustedUrls = [];
+
+function copyToClipboard(text) {
+   if (window.DiscordNative) {
+      DiscordNative.clipboard.copy(text);
+      return;
+   }
+
+   navigator.clipboard.writeText(text).catch(() => {
+      const copyArea = document.createElement("textarea");
+
+      copyArea.style.visibility = "hidden";
+      copyArea.style.position = "fixed";
+      copyArea.style.top = "0";
+      copyArea.style.left = "0";
+
+      document.body.appendChild(copyArea);
+      copyArea.focus();
+      copyArea.select();
+
+      try {
+         document.execCommand("copy");
+      } catch (err) {
+         console.error(err);
+      }
+
+      document.body.removeChild(copyArea);
+   });
+}
 
 function Card(props) {
    const pluginId = props.url.replace("https://", "").replace("http://", "");
@@ -29,32 +51,66 @@ function Card(props) {
       return plugins.installedPlugins().hasOwnProperty(pluginId);
    };
 
+   const [copied, update] = createSignal(0);
+
+   let timer = null;
+   const doCopy = () => {
+      if (copied()) {
+         clearTimeout(timer);
+      }
+
+      copyToClipboard(props.url);
+      update(true);
+      timer = setTimeout(() => {
+         update(false);
+      }, 2000);
+   };
+
+   const copyText = () => {
+      return copied() ? "Link copied!" : "Copy link";
+   };
+
+   const copiedClass = () => {
+      return copied() ? classes.copied : "";
+   };
+
    return (
       <div class={classes.card}>
-         <div class={classes.title}>{props.json.name}</div>
-         <div class={classes.description}>{props.json.description}</div>
-         <div class={classes.author}>
-            By <b>{props.json.author}</b>
+         <div class={classes.header}>
+            <div class={classes.author}>{props.json.author}</div>
+            <div
+               onMouseDown={doCopy}
+               class={`${classes.copyLink} ${copiedClass()}`}
+            >
+               <CopyIcon class={classes.icon} />
+               <div>{copyText()}</div>
+            </div>
          </div>
-         <div class={classes.buttons}>
-            <button
-               class={isInstalled() ? classes.buttonInstalled : classes.button}
+         <div class={classes.content}>
+            <ContentIcon />
+            <div>
+               <div class={classes.title}>{props.json.name}</div>
+               <div class={classes.description}>{props.json.description}</div>
+            </div>
+            <Button
+               color={
+                  isInstalled() ? ButtonColors.SECONDARY : ButtonColors.GREEN
+               }
+               disabled={isInstalled()}
+               size={ButtonSizes.MEDIUM}
                onClick={async () => {
                   if (!isInstalled()) {
                      await plugins.addRemotePlugin(pluginId, props.url);
                      plugins.startPlugin(pluginId);
                      showToast({
                         title: props.json.name,
-                        content: `has been installed and started.`,
+                        content: `has been installed.`,
                      });
                   }
                }}
             >
                {isInstalled() ? "Installed" : "Install"}
-            </button>
-            <a href={props.url} target="_blank">
-               <button class={classes.button}>View</button>
-            </a>
+            </Button>
          </div>
       </div>
    );
@@ -75,6 +131,10 @@ function handleDispatch(payload) {
          element.dataset.instbtn = 1;
          unobs();
 
+         if (element.textContent != element.href) {
+            return;
+         }
+
          let url = element.href.endsWith("/")
             ? element.href
             : element.href + "/";
@@ -88,6 +148,10 @@ function handleDispatch(payload) {
          if (!trustedUrls.some((trustedUrl) => url.startsWith(trustedUrl))) {
             return;
          }
+
+         element.onclick = (e) => {
+            e.preventDefault();
+         };
 
          try {
             let response = await fetch(url + "plugin.json");
@@ -128,13 +192,24 @@ const TRIGGERS = [
 ];
 
 export function onLoad() {
+   fetch("https://shindex.uwu.network/data").then((body) =>
+      body
+         .json()
+         .then((repos) => repos.forEach((repo) => trustedUrls.push(repo.url))),
+   );
+
    for (const t of TRIGGERS) dispatcher.subscribe(t, handleDispatch);
-   unpatchList.push(injectCss(css));
 }
 
 export function onUnload() {
-   for (const t of TRIGGERS) dispatcher.unsubscribe(t, handleDispatch);
-
-   for (let unpatch of Object.values(unpatchList)) unpatch();
-   unpatchList = [];
+   trustedUrls.length = 0;
+   // select all elements with the class name of anchor_ and remove the data-instbtn attribute
+   document
+      .querySelectorAll(
+         "[class*=messageContent_] [class^=anchor_][data-instbtn]",
+      )
+      .forEach((element) => {
+         element.removeAttribute("data-instbtn");
+         element.onclick = null;
+      });
 }
