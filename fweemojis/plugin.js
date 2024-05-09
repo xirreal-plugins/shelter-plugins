@@ -26,7 +26,9 @@
 
   // plugins/fweemojis/slate.js
   var {
-    flux: { stores: { UserStore, SelectedGuildStore, EmojiStore } }
+    flux: {
+      stores: { UserStore, SelectedGuildStore, EmojiStore }
+    }
   } = shelter;
   var isInDms = () => !!document.querySelector(
     '[data-list-item-id="guildsnav___home"][class*="selected"]'
@@ -35,6 +37,7 @@
     const user = UserStore.getCurrentUser();
     return user && user.premiumType > 0;
   };
+  var extension = (animated) => animated ? "gif" : "webp";
   var slate_default = (slateTree) => {
     return slateTree.map((line) => {
       return {
@@ -46,7 +49,7 @@
               return item;
             }
             return {
-              text: `[\uFFF4](https://cdn.discordapp.com/emojis/${emojiId}.webp?size=48&quality=lossless)`
+              text: `[\uFFF4](https://cdn.discordapp.com/emojis/${emojiId}.${extension(item.emoji.animated)}?size=48&quality=lossless)`
             };
           }
           return item;
