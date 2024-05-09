@@ -62,4 +62,3 @@ export function ContentIcon(props) {
       </svg>
    );
 }
-

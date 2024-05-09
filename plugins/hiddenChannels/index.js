@@ -1,9 +1,7 @@
 const {
    patcher,
    observeDom,
-   flux: {
-      intercept,
-   },
+   flux: { intercept },
 } = shelter.plugin.scoped;
 
 const {
@@ -117,22 +115,18 @@ export function onLoad() {
             }
             patchedChannelItem = true;
 
-            patcher.before(
-               "render",
-               component,
-               (originalArgs) => {
-                  if(!originalArgs[0]["data-list-item-id"]) return originalArgs;
+            patcher.before("render", component, (originalArgs) => {
+               if (!originalArgs[0]["data-list-item-id"]) return originalArgs;
 
-                  const channelId =
-                     originalArgs[0]["data-list-item-id"].split("___")[1];
+               const channelId =
+                  originalArgs[0]["data-list-item-id"].split("___")[1];
 
-                  if (!isVisibile(channelId)) {
-                     originalArgs[0].className += ` ${classes.hiddenChannel}`;
-                  }
+               if (!isVisibile(channelId)) {
+                  originalArgs[0].className += ` ${classes.hiddenChannel}`;
+               }
 
-                  return originalArgs;
-               },
-            );
+               return originalArgs;
+            });
 
             const channelReadState = ReadStateStore.getForDebugging(channelId);
             patcher.after(
@@ -146,75 +140,60 @@ export function onLoad() {
       },
    );
 
-   const stopObservingHeaderBar = observeDom(
-      "[class^=title_]",
-      (element) => {
-         queueMicrotask(() => {
-            const component = reactFiberWalker(
-               getFiber(element),
-               "toolbar",
-               true,
-               true,
-            )?.type;
-            if (!component || typeof component.Icon !== "function" || headerBar)
-               return;
-            stopObservingHeaderBar();
-            headerBar = component;
-         });
-      },
-   );
+   const stopObservingHeaderBar = observeDom("[class^=title_]", (element) => {
+      queueMicrotask(() => {
+         const component = reactFiberWalker(
+            getFiber(element),
+            "toolbar",
+            true,
+            true,
+         )?.type;
+         if (!component || typeof component.Icon !== "function" || headerBar)
+            return;
+         stopObservingHeaderBar();
+         headerBar = component;
+      });
+   });
 
    let routePatched = false;
-   const stopObservingRoute = observeDom(
-      '[class^="chat_"]',
-      (element) => {
-         queueMicrotask(() => {
-            const component = reactFiberWalker(
-               getFiber(element),
-               "computedMatch",
-               true,
-               true,
-            )?.type;
-            if (!component || typeof component.prototype.render !== "function")
-               return;
+   const stopObservingRoute = observeDom('[class^="chat_"]', (element) => {
+      queueMicrotask(() => {
+         const component = reactFiberWalker(
+            getFiber(element),
+            "computedMatch",
+            true,
+            true,
+         )?.type;
+         if (!component || typeof component.prototype.render !== "function")
+            return;
 
-            stopObservingRoute();
+         stopObservingRoute();
 
-            if (routePatched) return;
-            routePatched = true;
+         if (routePatched) return;
+         routePatched = true;
 
-            patcher.before(
-               "render",
-               component.prototype,
-               function (originalArgs) {
-                  if (this.props?.path?.length !== 3) return originalArgs;
+         patcher.before("render", component.prototype, function (originalArgs) {
+            if (this.props?.path?.length !== 3) return originalArgs;
 
-                  const channelId =
-                     this.props?.computedMatch?.params?.channelId;
-                  const guildId = this.props?.computedMatch?.params?.guildId;
+            const channelId = this.props?.computedMatch?.params?.channelId;
+            const guildId = this.props?.computedMatch?.params?.guildId;
 
-                  if (
-                     !isVisibile(channelId) &&
-                     guildId &&
-                     headerBar !== null
-                  ) {
-                     this.props.render = () => {
-                        return renderSolidInReact(Notice, {
-                           channel: getChannel(channelId),
-                           guild: getGuild(guildId),
-                           components: {
-                              headerBar,
-                           },
-                        });
-                     };
-                  }
+            if (!isVisibile(channelId) && guildId && headerBar !== null) {
+               this.props.render = () => {
+                  return renderSolidInReact(Notice, {
+                     channel: getChannel(channelId),
+                     guild: getGuild(guildId),
+                     components: {
+                        headerBar,
+                     },
+                  });
+               };
+            }
 
-                  return originalArgs;
-               },
-            );
+            return originalArgs;
          });
-      },
-   );
+      });
+   });
 
    let shouldIgnoreNextMessageFetch = false;
    let _channelId = "";

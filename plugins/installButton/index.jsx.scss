@@ -84,6 +84,11 @@
    color: var(--text-normal);
 }
 
+.alignRight {
+   margin-left: auto;
+   margin-right: 12px;
+}
+
 .description {
    white-space: wrap;
    margin-top: 4px;

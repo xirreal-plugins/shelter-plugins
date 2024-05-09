@@ -7,7 +7,7 @@ const {
    },
    plugins,
    ui: { showToast, Button, ButtonColors, ButtonSizes },
-   solid: { createSignal, onCleanup },
+   solid: { createSignal },
 } = shelter;
 
 import classes from "./index.jsx.scss";
@@ -97,6 +97,7 @@ function Card(props) {
                   isInstalled() ? ButtonColors.SECONDARY : ButtonColors.GREEN
                }
                disabled={isInstalled()}
+               class={classes.alignRight}
                size={ButtonSizes.MEDIUM}
                onClick={async () => {
                   if (!isInstalled()) {

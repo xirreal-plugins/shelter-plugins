@@ -1,7 +1,9 @@
 import processTree from "./slate";
 
 const {
-   flux: { stores: { UserStore, StickersStore } },
+   flux: {
+      stores: { UserStore, StickersStore },
+   },
    util: { getFiber },
 } = shelter;
 
@@ -16,7 +18,7 @@ let originalPremiumType = null;
 function patchNiterState() {
    const user = UserStore.getCurrentUser();
    const premiumType = user.premiumType || 0;
-   if(originalPremiumType === null) {
+   if (originalPremiumType === null) {
       originalPremiumType = premiumType;
    }
    user.premiumType = 2;
@@ -24,7 +26,7 @@ function patchNiterState() {
 
 function restoreNiterState() {
    const user = UserStore.getCurrentUser();
-   if(originalPremiumType === null) {
+   if (originalPremiumType === null) {
       return;
    }
    user.premiumType = originalPremiumType;
@@ -36,7 +38,7 @@ const extensions = ["lottie", "webp", "png"];
 
 export function onLoad() {
    // I have no clue why this fires when you click off the autocomplete.
-   subscribe("UPDATE_CHANNEL_DIMENSIONS", e => {
+   subscribe("UPDATE_CHANNEL_DIMENSIONS", (e) => {
       restoreNiterState();
    });
 
@@ -45,7 +47,7 @@ export function onLoad() {
    // - channel_autocomplete_open is when the channel autocomplete is opened
    // - expression_picker_opened is when the picker is opened (both moji and stickers)
    // - expression_picker_tab_clicked is when the picker is switched between moji and stickers
-   subscribe("TRACK", e => {
+   subscribe("TRACK", (e) => {
       switch (e.event) {
          case "channel_autocomplete_selected":
             restoreNiterState();
@@ -56,11 +58,12 @@ export function onLoad() {
             patchNiterState();
             return;
       }
-   })
+   });
 
    // Hotspot hide, probably clicked off picker
-   subscribe("HOTSPOT_HIDE", e => {
-      queueMicrotask(() => { // Waits for the click to finish registering
+   subscribe("HOTSPOT_HIDE", (e) => {
+      queueMicrotask(() => {
+         // Waits for the click to finish registering
          restoreNiterState();
       });
    });
@@ -73,14 +76,16 @@ export function onLoad() {
       const editor = fiber.child.pendingProps.editor;
 
       elem.onkeydown = (k) => {
-         if(uninjected) {
+         if (uninjected) {
             elem.onkeydown = null;
             return;
          }
 
          if (
             k.key !== "Enter" ||
-            document.querySelector("[class*=autocomplete],[class*=attachedBars]")
+            document.querySelector(
+               "[class*=autocomplete],[class*=attachedBars]",
+            )
          ) {
             return;
          }
@@ -95,19 +100,19 @@ export function onLoad() {
    });
 
    intercept("post", /\/channels\/\d+\/messages/, (req, send) => {
-      if(req.body.sticker_ids) {
+      if (req.body.sticker_ids) {
          const id = req.body.sticker_ids.pop();
          const ext = extensions[StickersStore.getStickerById(id)?.format_type];
 
-         if(ext == undefined || ext == "lottie") {
+         if (ext == undefined || ext == "lottie") {
             return send(req);
          }
 
          delete req.body.sticker_ids;
-         req.body.content = `https://media.discordapp.net/stickers/${id}.${ext}?size=160`
+         req.body.content = `https://media.discordapp.net/stickers/${id}.${ext}?size=160`;
       }
       return send(req);
-   })
+   });
 }
 
 export function onUnload() {
