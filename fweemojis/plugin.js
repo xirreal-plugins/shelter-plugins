@@ -60,7 +60,9 @@
 
   // plugins/fweemojis/index.js
   var {
-    flux: { stores: { UserStore: UserStore2, StickersStore } },
+    flux: {
+      stores: { UserStore: UserStore2, StickersStore }
+    },
     util: { getFiber }
   } = shelter;
   var {
@@ -119,7 +121,9 @@
           elem.onkeydown = null;
           return;
         }
-        if (k.key !== "Enter" || document.querySelector("[class*=autocomplete],[class*=attachedBars]")) {
+        if (k.key !== "Enter" || document.querySelector(
+          "[class*=autocomplete],[class*=attachedBars]"
+        )) {
           return;
         }
         editor.children = slate_default(editor.children);

@@ -203,9 +203,7 @@
   var {
     patcher,
     observeDom,
-    flux: {
-      intercept
-    }
+    flux: { intercept }
   } = shelter.plugin.scoped;
   var {
     flux: {
@@ -293,19 +291,15 @@
             return;
           }
           patchedChannelItem = true;
-          patcher.before(
-            "render",
-            component,
-            (originalArgs) => {
-              if (!originalArgs[0]["data-list-item-id"])
-                return originalArgs;
-              const channelId2 = originalArgs[0]["data-list-item-id"].split("___")[1];
-              if (!isVisibile(channelId2)) {
-                originalArgs[0].className += ` ${style_default.hiddenChannel}`;
-              }
+          patcher.before("render", component, (originalArgs) => {
+            if (!originalArgs[0]["data-list-item-id"])
               return originalArgs;
+            const channelId2 = originalArgs[0]["data-list-item-id"].split("___")[1];
+            if (!isVisibile(channelId2)) {
+              originalArgs[0].className += ` ${style_default.hiddenChannel}`;
             }
-          );
+            return originalArgs;
+          });
           const channelReadState = ReadStateStore.getForDebugging(channelId);
           patcher.after(
             "canTrackUnreads",
@@ -317,65 +311,55 @@
         });
       }
     );
-    const stopObservingHeaderBar = observeDom(
-      "[class^=title_]",
-      (element) => {
-        queueMicrotask(() => {
-          const component = reactFiberWalker(
-            getFiber(element),
-            "toolbar",
-            true,
-            true
-          )?.type;
-          if (!component || typeof component.Icon !== "function" || headerBar)
-            return;
-          stopObservingHeaderBar();
-          headerBar = component;
-        });
-      }
-    );
+    const stopObservingHeaderBar = observeDom("[class^=title_]", (element) => {
+      queueMicrotask(() => {
+        const component = reactFiberWalker(
+          getFiber(element),
+          "toolbar",
+          true,
+          true
+        )?.type;
+        if (!component || typeof component.Icon !== "function" || headerBar)
+          return;
+        stopObservingHeaderBar();
+        headerBar = component;
+      });
+    });
     let routePatched = false;
-    const stopObservingRoute = observeDom(
-      '[class^="chat_"]',
-      (element) => {
-        queueMicrotask(() => {
-          const component = reactFiberWalker(
-            getFiber(element),
-            "computedMatch",
-            true,
-            true
-          )?.type;
-          if (!component || typeof component.prototype.render !== "function")
-            return;
-          stopObservingRoute();
-          if (routePatched)
-            return;
-          routePatched = true;
-          patcher.before(
-            "render",
-            component.prototype,
-            function(originalArgs) {
-              if (this.props?.path?.length !== 3)
-                return originalArgs;
-              const channelId = this.props?.computedMatch?.params?.channelId;
-              const guildId = this.props?.computedMatch?.params?.guildId;
-              if (!isVisibile(channelId) && guildId && headerBar !== null) {
-                this.props.render = () => {
-                  return renderSolidInReact3(Notice_default, {
-                    channel: getChannel(channelId),
-                    guild: getGuild(guildId),
-                    components: {
-                      headerBar
-                    }
-                  });
-                };
-              }
-              return originalArgs;
-            }
-          );
+    const stopObservingRoute = observeDom('[class^="chat_"]', (element) => {
+      queueMicrotask(() => {
+        const component = reactFiberWalker(
+          getFiber(element),
+          "computedMatch",
+          true,
+          true
+        )?.type;
+        if (!component || typeof component.prototype.render !== "function")
+          return;
+        stopObservingRoute();
+        if (routePatched)
+          return;
+        routePatched = true;
+        patcher.before("render", component.prototype, function(originalArgs) {
+          if (this.props?.path?.length !== 3)
+            return originalArgs;
+          const channelId = this.props?.computedMatch?.params?.channelId;
+          const guildId = this.props?.computedMatch?.params?.guildId;
+          if (!isVisibile(channelId) && guildId && headerBar !== null) {
+            this.props.render = () => {
+              return renderSolidInReact3(Notice_default, {
+                channel: getChannel(channelId),
+                guild: getGuild(guildId),
+                components: {
+                  headerBar
+                }
+              });
+            };
+          }
+          return originalArgs;
         });
-      }
-    );
+      });
+    });
     let shouldIgnoreNextMessageFetch = false;
     let _channelId = "";
     intercept((event) => {
