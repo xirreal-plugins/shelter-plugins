@@ -14,7 +14,7 @@ Paste the URL below into the add plugins modal in shelter. As shrimple as that.
 
 Installation URL -> `https://shelter.xirreal.dev/installButton/`
 
-[Source](https://github.com/xirreal-plugins/xirreal-plugins.github.io/tree/master/plugins/installButton)
+[Source](https://github.com/xirreal-plugins/shelter-plugins/tree/master/plugins/installButton)
 
 # Hidden Channels
 
@@ -25,7 +25,15 @@ _Updated: now using 100% ethically sourced SolidJS-React bridges!_
 
 Installation URL -> `https://shelter.xirreal.dev/hiddenChannels/`
 
-[Source](https://github.com/xirreal-plugins/xirreal-plugins.github.io/tree/master/plugins/hiddenChannels)
+[Source](https://github.com/xirreal-plugins/shelter-plugins/tree/master/plugins/hiddenChannels)
+
+# Fweemojis
+
+All the mojis!!! For free!!!
+
+Installation URL -> `https://shelter.xirreal.dev/fweemojis/`
+
+[Source](https://github.com/xirreal-plugins/shelter-plugins/tree/master/plugins/fweemojis)
 
 # VC Timer
 
@@ -35,7 +43,7 @@ Nifty little clock to show you how much time you wasted playing games this after
 
 Installation URL -> `https://shelter.xirreal.dev/vcTimer/`
 
-[Source](https://github.com/xirreal-plugins/xirreal-plugins.github.io/tree/master/plugins/vcTimer)
+[Source](https://github.com/xirreal-plugins/shelter-plugins/tree/master/plugins/vcTimer)
 
 # Template repo
 
