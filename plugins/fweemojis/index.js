@@ -29,7 +29,7 @@ function restoreNiterState() {
    if (originalPremiumType === null) {
       return;
    }
-   user.premiumType = originalPremiumType;
+   user.premiumType = originalPremiumType === 0 ? null : originalPremiumType;
    originalPremiumType = null;
 }
 
