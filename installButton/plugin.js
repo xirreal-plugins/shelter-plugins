@@ -85,6 +85,8 @@
 
   // plugins/installButton/index.jsx
   var _tmpl$3 = /* @__PURE__ */ (0, import_web4.template)(`<div><div><div></div><div><div></div></div></div><div><div><div></div><div></div></div></div></div>`, 18);
+  var _tmpl$22 = /* @__PURE__ */ (0, import_web4.template)(`<p>Are you sure you want to install <strong></strong> by <strong></strong>?</p>`, 6);
+  var _tmpl$32 = /* @__PURE__ */ (0, import_web4.template)(`<p><i></i></p>`, 4);
   var {
     observeDom
   } = shelter.plugin.scoped;
@@ -100,7 +102,12 @@
       showToast,
       Button,
       ButtonColors,
-      ButtonSizes
+      ButtonSizes,
+      openModal,
+      ModalRoot,
+      ModalHeader,
+      ModalBody,
+      ModalConfirmFooter
     },
     solid: {
       createSignal
@@ -258,11 +265,87 @@
     });
     setTimeout(unobs, 200);
   }
+  function InstallationModal(props) {
+    const {
+      closeModal,
+      json,
+      url,
+      pluginId
+    } = props;
+    return (0, import_web9.createComponent)(ModalRoot, {
+      get children() {
+        return [(0, import_web9.createComponent)(ModalHeader, {
+          children: "Install Plugin"
+        }), (0, import_web9.createComponent)(ModalBody, {
+          get children() {
+            return [(() => {
+              const _el$10 = _tmpl$22.cloneNode(true), _el$11 = _el$10.firstChild, _el$12 = _el$11.nextSibling, _el$13 = _el$12.nextSibling, _el$14 = _el$13.nextSibling;
+              (0, import_web10.insert)(_el$12, () => json.name);
+              (0, import_web10.insert)(_el$14, () => json.author);
+              return _el$10;
+            })(), (() => {
+              const _el$15 = _tmpl$32.cloneNode(true), _el$16 = _el$15.firstChild;
+              (0, import_web10.insert)(_el$16, () => json.description);
+              return _el$15;
+            })()];
+          }
+        }), (0, import_web9.createComponent)(ModalConfirmFooter, {
+          close: closeModal,
+          type: "danger",
+          confirmText: "Install",
+          onConfirm: async () => {
+            await plugins.addRemotePlugin(pluginId, url);
+            plugins.startPlugin(pluginId);
+            showToast({
+              title: json.name,
+              content: `has been installed.`
+            });
+          }
+        })];
+      }
+    });
+  }
+  async function handleInstall(_, url) {
+    if (window.InstallButtonEnabled === false)
+      return;
+    url = url.substring(1);
+    url = url.endsWith("/") ? url : url + "/";
+    if (!trustedUrls.find((trustedUrl) => url.startsWith(trustedUrl))) {
+      showToast({
+        title: "Plugin Installation",
+        content: "This plugin is not trusted."
+      });
+      return;
+    }
+    const response = await fetch(url + "plugin.json");
+    if (!response.ok)
+      return;
+    const json = await response.json();
+    const pluginId = url.replace("https://", "").replace("http://", "");
+    if (plugins.installedPlugins().hasOwnProperty(pluginId)) {
+      showToast({
+        title: json.name,
+        content: `is already installed.`
+      });
+      return;
+    }
+    openModal((modal) => InstallationModal({
+      closeModal: modal.close,
+      json,
+      url,
+      pluginId
+    }));
+  }
   var TRIGGERS = ["MESSAGE_CREATE", "MESSAGE_UPDATE", "UPDATE_CHANNEL_DIMENSIONS"];
   function onLoad() {
     fetch("https://shindex.uwu.network/data").then((body) => body.json().then((repos) => repos.forEach((repo) => trustedUrls.push(repo.url))));
     for (const t of TRIGGERS)
       dispatcher.subscribe(t, handleDispatch);
+    window.InstallButtonEnabled = true;
+    if (window.DiscordNative && !window.InstallButtonInjected) {
+      window.DiscordNative.ipc.on("DISCORD_MAIN_WINDOW_PATH", handleInstall);
+      window.InstallButtonInjected = true;
+    }
   }
   function onUnload() {
     trustedUrls.length = 0;
@@ -270,6 +353,7 @@
       element.removeAttribute("data-instbtn");
       element.onclick = null;
     });
+    window.InstallButtonEnabled = false;
   }
   (0, import_web5.delegateEvents)(["mousedown"]);
   return __toCommonJS(installButton_exports);
