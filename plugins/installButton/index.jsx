@@ -214,6 +214,8 @@ function InstallationModal(props) {
 async function handleInstall(_, url) {
    if(window.InstallButtonEnabled === false) return;
 
+   DiscordNative.window.focus()
+
    url = url.substring(1);
    url = url.endsWith("/") ? url : url + "/";
 
