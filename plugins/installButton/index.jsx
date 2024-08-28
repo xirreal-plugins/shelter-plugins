@@ -6,7 +6,7 @@ const {
       stores: { SelectedChannelStore },
    },
    plugins,
-   ui: { showToast, Button, ButtonColors, ButtonSizes },
+   ui: { showToast, Button, ButtonColors, ButtonSizes, openModal, ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter },
    solid: { createSignal },
 } = shelter;
 
@@ -186,6 +186,63 @@ function handleDispatch(payload) {
    setTimeout(unobs, 200);
 }
 
+function InstallationModal(props) {
+   const { closeModal, json, url, pluginId } = props;
+
+   return <ModalRoot>
+      <ModalHeader>Install Plugin</ModalHeader>
+      <ModalBody>
+         <p>Are you sure you want to install <strong>{json.name}</strong> by <strong>{json.author}</strong>?</p>
+         <p><i>{json.description}</i></p>
+      </ModalBody>
+      <ModalConfirmFooter
+         close={closeModal}
+         type="danger"
+         confirmText="Install"
+         onConfirm={async () => {
+            await plugins.addRemotePlugin(pluginId, url);
+            plugins.startPlugin(pluginId);
+            showToast({
+               title: json.name,
+               content: `has been installed.`,
+            });
+         }}
+      />
+   </ModalRoot>;
+}
+
+async function handleInstall(_, url) {
+   if(window.InstallButtonEnabled === false) return;
+
+   url = url.substring(1);
+   url = url.endsWith("/") ? url : url + "/";
+
+   if (!trustedUrls.find((trustedUrl) => url.startsWith(trustedUrl))) {
+      showToast({
+         title: "Plugin Installation",
+         content: "This plugin is not trusted.",
+      });
+      return;
+   }
+
+   const response = await fetch(url + "plugin.json");
+   if (!response.ok) return;
+
+   const json = await response.json();
+
+   const pluginId = url.replace("https://", "").replace("http://", "");
+
+   if (plugins.installedPlugins().hasOwnProperty(pluginId)) {
+      showToast({
+         title: json.name,
+         content: `is already installed.`,
+      });
+      return;
+   }
+
+   openModal((modal) => InstallationModal({ closeModal:modal.close, json, url, pluginId }));
+}
+
 const TRIGGERS = [
    "MESSAGE_CREATE",
    "MESSAGE_UPDATE",
@@ -200,6 +257,12 @@ export function onLoad() {
    );
 
    for (const t of TRIGGERS) dispatcher.subscribe(t, handleDispatch);
+
+   window.InstallButtonEnabled = true;
+   if(window.DiscordNative && !window.InstallButtonInjected) {
+      window.DiscordNative.ipc.on("DISCORD_MAIN_WINDOW_PATH", handleInstall);
+      window.InstallButtonInjected = true;
+   }
 }
 
 export function onUnload() {
@@ -213,4 +276,6 @@ export function onUnload() {
          element.removeAttribute("data-instbtn");
          element.onclick = null;
       });
+
+   window.InstallButtonEnabled = false;
 }
