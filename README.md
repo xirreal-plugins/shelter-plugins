@@ -13,8 +13,7 @@ If you wanna get even fancier, use the one click installers. (ok technically _tw
 
 ![Install button example](assets/installButton.png)
 
-> [!IMPORTANT]
-> This plugin is required for the one click installers to work.
+> **IMPORTANT**: _This plugin is required for the one click installers to work._
 
 Manual installation URL: `https://shelter.xirreal.dev/installButton/`
 
