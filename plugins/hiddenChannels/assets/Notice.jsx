@@ -4,8 +4,8 @@ const {
 
 import classes from "./style.scss";
 
-import LockedChannelIcon from "./LockedChannelIcon.jsx";
 import ChannelTopic from "./ChannelTopic.jsx";
+import LockedChannelIcon from "./LockedChannelIcon.jsx";
 
 export default (props) => {
    return (
@@ -25,11 +25,20 @@ export default (props) => {
             </ReactInSolidBridge>
             <div class={classes.mainBody}>
                <div class={classes.chat}>
-                  <Header tag={HeaderTags.H2}>This is a hidden channel.</Header>
-                  <Header tag={HeaderTags.H5}>
-                     You cannot see the contents of this channel. However, you
-                     may see its name and topic.
-                  </Header>
+                  <img
+                     src="https://discord.com/assets/9b1b9ee4868c262e7351.svg"
+                     alt="Hidden channel"
+                     class={classes.hiddenChannelImage}
+                  />
+                  <div class={classes.hiddenChannelTextContainer}>
+                     <p class={classes.hiddenChannelText}>
+                        This is a hidden channel.
+                     </p>
+                     <p class={classes.hiddenChannelSubText}>
+                        You cannot see the contents of this channel. However, you
+                        may see its name and topic.
+                     </p>
+                  </div>
                </div>
             </div>
          </div>
