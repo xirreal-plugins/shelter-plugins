@@ -27,7 +27,7 @@ Be extra annoying. Play sounds by pressing a button. Supports key combinations a
 
 ![Hotkey example](assets/soundboard.png)
 
-<a href="discord:///https://shelter.xirreal.dev/soundboardHotkeys/"><img src="assets/send.svg" alt="One click installer for Soundboard Hotkeys" width="128"/></a>
+<a href="discord:///https://shelter.xirreal.dev/soundboardHotkeys/"><img src="/assets/send.svg" alt="One click installer for Soundboard Hotkeys" width="128"/></a>
 
 Manual installation URL: `https://shelter.xirreal.dev/soundboardHotkeys/`
 
@@ -40,7 +40,7 @@ _Updated: now using 100% ethically sourced SolidJS-React bridges!_
 
 ![Hidden channels example](assets/hiddenChannels.png)
 
-<a href="discord:///https://shelter.xirreal.dev/hiddenChannels/"><img src="assets/send.svg" alt="One click installer for Hidden Channels" width="128"/></a>
+<a href="discord:///https://shelter.xirreal.dev/hiddenChannels/"><img src="/assets/send.svg" alt="One click installer for Hidden Channels" width="128"/></a>
 
 Manual installation URL: `https://shelter.xirreal.dev/hiddenChannels/`
 
@@ -50,7 +50,7 @@ Manual installation URL: `https://shelter.xirreal.dev/hiddenChannels/`
 
 All the mojis!!! For free!!!
 
-<a href="discord:///https://shelter.xirreal.dev/fweemojis/"><img src="assets/send.svg" alt="One click installer for Fweemojis" width="128"/></a>
+<a href="discord:///https://shelter.xirreal.dev/fweemojis/"><img src="/assets/send.svg" alt="One click installer for Fweemojis" width="128"/></a>
 
 Manual installation URL: `https://shelter.xirreal.dev/fweemojis/`
 
@@ -62,7 +62,7 @@ Nifty little clock to show you how much time you wasted playing games today.
 
 ![VC Timer example](assets/vcTimer.png)
 
-<a href="discord:///https://shelter.xirreal.dev/vcTimer/"><img src="assets/send.svg" alt="One click installer for VC Timer" width="128"/></a>
+<a href="discord:///https://shelter.xirreal.dev/vcTimer/"><img src="/assets/send.svg" alt="One click installer for VC Timer" width="128"/></a>
 
 Manual installation URL: `https://shelter.xirreal.dev/vcTimer/`
 
