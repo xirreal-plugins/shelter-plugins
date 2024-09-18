@@ -336,6 +336,7 @@
       url,
       pluginId
     }));
+    return true;
   }
   var TRIGGERS = ["MESSAGE_CREATE", "MESSAGE_UPDATE", "UPDATE_CHANNEL_DIMENSIONS"];
   function onLoad() {
