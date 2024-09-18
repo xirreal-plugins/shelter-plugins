@@ -243,6 +243,8 @@ async function handleInstall(_, url) {
    }
 
    openModal((modal) => InstallationModal({ closeModal:modal.close, json, url, pluginId }));
+
+   return true;
 }
 
 const TRIGGERS = [

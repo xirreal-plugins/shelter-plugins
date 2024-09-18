@@ -19,6 +19,18 @@ Manual installation URL: `https://shelter.xirreal.dev/installButton/`
 
 [Source](https://github.com/xirreal-plugins/shelter-plugins/tree/master/plugins/installButton)
 
+# Soundboard Hotkeys
+
+### NEW!!!
+
+Be extra annoying. Play sounds by pressing a button. Supports key combinations and works in the background.
+
+![Hotkey example](assets/soundboard.png)
+
+Manual installation URL: `https://shelter.xirreal.dev/soundboardHotkeys/`
+
+[Source](https://github.com/xirreal-plugins/shelter-plugins/tree/master/plugins/soundboardHotkeys)
+
 # Hidden Channels
 
 Shows hidden channels with a cute little red lock on them.\

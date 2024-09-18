@@ -1,0 +1,109 @@
+.spaced {
+   margin-top: 8px;
+   margin-bottom: 12px;
+   display: block;
+}
+
+.margin {
+   margin-top: 16px;
+   margin-bottom: 16px;
+   display: block;
+}
+
+.marginTop {
+   margin-top: 16px;
+}
+
+.flexSpaceBetween {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.card {
+   box-sizing: border-box;
+   border-radius: 4px;
+   padding: 16px;
+   width: 100%;
+   min-width: 160px;
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+   text-indent: 0;
+   background-color: var(--background-secondary);
+   margin-top: 16px;
+}
+
+.content {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;
+   gap: 16px;
+   overflow: hidden;
+}
+
+.preview {
+   background: var(--brand-500);
+   border: 0px solid transparent;
+   border-radius: 4px;
+   cursor: pointer;
+   display: inline;
+   margin-right: 8px;
+   transition: all 0.2s ease-in-out;
+}
+
+.preview:hover {
+   background: var(--brand-540);
+}
+
+.emoji {
+   image-rendering: crisp-edges;
+   margin-right: 8px;
+}
+
+.inline {
+   display: inline;
+}
+
+.flexRow {
+   display: flex;
+   justify-content: start;
+   align-items: center;
+   padding: 4px 8px 4px 4px;
+   background: var(--background-tertiary);
+   border: 1px solid var(--background-secondary);
+   border-radius: 4px;
+}
+
+.keybindButton {
+   display: flex;
+   padding: 8px;
+   justify-content: start;
+   align-items: center;
+   background: var(--background-tertiary);
+   border: 1px solid var(--background-secondary);
+   min-width: 50%;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: all 0.2s ease-in-out;
+}
+
+.noMarginUnselectable {
+   margin: 0;
+   user-select: none;
+}
+
+.sound {
+   cursor: pointer;
+}
+
+.selected {
+   background-color: var(--button-positive-background);
+}
+
+.center {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
