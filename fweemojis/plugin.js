@@ -30,9 +30,7 @@
       stores: { UserStore, SelectedGuildStore, EmojiStore }
     }
   } = shelter;
-  var isInDms = () => !!document.querySelector(
-    '[data-list-item-id="guildsnav___home"][class*="selected"]'
-  );
+  var isInDms = () => !!document.querySelector('[data-list-item-id="guildsnav___home"][class*="selected"]');
   var hasNitro = () => {
     const user = UserStore.getCurrentUser();
     return user && user.premiumType > 0;
@@ -43,7 +41,7 @@
       return {
         ...line,
         children: line.children.map((item) => {
-          if (item?.type == "customEmoji") {
+          if (item?.type === "customEmoji") {
             const emojiId = item.emoji.emojiId;
             if (hasNitro() || EmojiStore.getCustomEmojiById(emojiId).guildId === SelectedGuildStore.getLastSelectedGuildId() && !item.emoji.animated && !isInDms()) {
               return item;
@@ -121,9 +119,7 @@
           elem.onkeydown = null;
           return;
         }
-        if (k.key !== "Enter" || document.querySelector(
-          "[class*=autocomplete],[class*=attachedBars]"
-        )) {
+        if (k.key !== "Enter" || document.querySelector("[class*=autocomplete],[class*=attachedBars]")) {
           return;
         }
         editor.children = slate_default(editor.children);
@@ -136,10 +132,10 @@
       if (req.body.sticker_ids) {
         const id = req.body.sticker_ids.pop();
         const ext = extensions[StickersStore.getStickerById(id)?.format_type];
-        if (ext == void 0 || ext == "lottie") {
+        if (ext === void 0 || ext === "lottie") {
           return send(req);
         }
-        delete req.body.sticker_ids;
+        req.body.sticker_ids = void 0;
         req.body.content = `https://media.discordapp.net/stickers/${id}.${ext}?size=160`;
       }
       return send(req);

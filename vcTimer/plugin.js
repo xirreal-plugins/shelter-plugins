@@ -60,7 +60,7 @@
     const hours = Math.floor(milliseconds / 36e5);
     const minutes = Math.floor(milliseconds % 36e5 / 6e4);
     const seconds = Math.floor(milliseconds % 6e4 / 1e3);
-    return `${hours > 0 ? hours.toString().padStart(2, "0") + ":" : ""}${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    return `${hours > 0 ? `${hours.toString().padStart(2, "0")}:` : ""}${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   }
   function Timer() {
     const startTime = Date.now();
@@ -76,7 +76,7 @@
     })();
   }
   function onVoiceJoin(e) {
-    if (e.state != "RTC_CONNECTED")
+    if (e.state !== "RTC_CONNECTED")
       return;
     if (document.getElementById("vcTimer"))
       return;
