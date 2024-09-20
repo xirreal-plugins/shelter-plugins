@@ -122,24 +122,24 @@
   var import_web30 = __toESM(require_web(), 1);
 
   // plugins/soundboardHotkeys/components/style.scss
-  shelter.plugin.scoped.ui.injectCss(`._spaced_5ys43_1{margin-top:8px;margin-bottom:12px;display:block}._margin_5ys43_1{margin-top:16px;margin-bottom:16px;display:block}._marginTop_5ys43_1{margin-top:16px}._flexSpaceBetween_5ys43_1{display:flex;justify-content:space-between;align-items:center}._card_5ys43_1{box-sizing:border-box;border-radius:4px;padding:16px;width:100%;min-width:160px;display:flex;flex-direction:column;gap:16px;text-indent:0;background-color:var(--background-secondary);margin-top:16px}._content_5ys43_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;overflow:hidden}._preview_5ys43_1{background:var(--brand-500);border:0px solid rgba(0,0,0,0);border-radius:4px;cursor:pointer;display:inline;margin-right:8px;transition:all .2s ease-in-out}._preview_5ys43_1:hover{background:var(--brand-540)}._emoji_5ys43_1{image-rendering:crisp-edges;margin-right:8px}._inline_5ys43_1{display:inline}._flexRow_5ys43_1{display:flex;justify-content:start;align-items:center;padding:8px 10px 8px 8px;background:var(--background-tertiary);border:1px solid var(--background-secondary);border-radius:4px;width:fit-content}._keybindButton_5ys43_1{display:flex;padding:8px;justify-content:start;align-items:center;background:var(--background-tertiary);border:1px solid var(--background-secondary);min-width:160px;width:fit-content;border-radius:4px;transition:all .2s ease-in-out}._noMarginUnselectable_5ys43_1{margin:0;user-select:none}._sound_5ys43_1{cursor:pointer}._selected_5ys43_1{background-color:var(--button-positive-background)}._column_5ys43_1{display:flex;flex-direction:column;justify-content:space-around;align-items:center}._fullWidth_5ys43_1{width:100%}`);
+  shelter.plugin.scoped.ui.injectCss(`._spaced_7qodn_1{margin-top:8px;margin-bottom:12px;display:block}._margin_7qodn_1{margin-top:16px;margin-bottom:16px;display:block}._marginTop_7qodn_1{margin-top:16px}._flexSpaceBetween_7qodn_1{display:flex;justify-content:space-between;align-items:center}._card_7qodn_1{box-sizing:border-box;border-radius:4px;padding:16px;width:100%;min-width:160px;display:flex;flex-direction:column;gap:16px;text-indent:0;background-color:var(--background-secondary);margin-top:16px}._content_7qodn_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;overflow:hidden}._preview_7qodn_1{background:var(--brand-500);border:0px solid rgba(0,0,0,0);border-radius:4px;cursor:pointer;display:inline;margin-right:8px;transition:all .2s ease-in-out}._preview_7qodn_1:hover{background:var(--brand-540)}._emoji_7qodn_1{image-rendering:crisp-edges;margin-right:8px}._inline_7qodn_1{display:inline}._flexRow_7qodn_1{display:flex;justify-content:start;align-items:center;padding:8px 10px 8px 8px;background:var(--background-tertiary);border:1px solid var(--background-secondary);border-radius:4px;width:fit-content}._keybindButton_7qodn_1{display:flex;padding:8px;justify-content:start;align-items:center;background:var(--background-tertiary);border:1px solid var(--background-secondary);min-width:160px;width:fit-content;border-radius:4px;transition:all .2s ease-in-out}._noMarginUnselectable_7qodn_1{margin:0;user-select:none}._sound_7qodn_1{cursor:pointer}._selected_7qodn_1{background-color:var(--button-positive-background)}._column_7qodn_1{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}._fullWidth_7qodn_1{width:100%}`);
   var style_default = {
-    "spaced": "_spaced_5ys43_1",
-    "margin": "_margin_5ys43_1",
-    "marginTop": "_marginTop_5ys43_1",
-    "flexSpaceBetween": "_flexSpaceBetween_5ys43_1",
-    "card": "_card_5ys43_1",
-    "content": "_content_5ys43_1",
-    "preview": "_preview_5ys43_1",
-    "emoji": "_emoji_5ys43_1",
-    "inline": "_inline_5ys43_1",
-    "flexRow": "_flexRow_5ys43_1",
-    "keybindButton": "_keybindButton_5ys43_1",
-    "noMarginUnselectable": "_noMarginUnselectable_5ys43_1",
-    "sound": "_sound_5ys43_1",
-    "selected": "_selected_5ys43_1",
-    "column": "_column_5ys43_1",
-    "fullWidth": "_fullWidth_5ys43_1"
+    "spaced": "_spaced_7qodn_1",
+    "margin": "_margin_7qodn_1",
+    "marginTop": "_marginTop_7qodn_1",
+    "flexSpaceBetween": "_flexSpaceBetween_7qodn_1",
+    "card": "_card_7qodn_1",
+    "content": "_content_7qodn_1",
+    "preview": "_preview_7qodn_1",
+    "emoji": "_emoji_7qodn_1",
+    "inline": "_inline_7qodn_1",
+    "flexRow": "_flexRow_7qodn_1",
+    "keybindButton": "_keybindButton_7qodn_1",
+    "noMarginUnselectable": "_noMarginUnselectable_7qodn_1",
+    "sound": "_sound_7qodn_1",
+    "selected": "_selected_7qodn_1",
+    "column": "_column_7qodn_1",
+    "fullWidth": "_fullWidth_7qodn_1"
   };
 
   // plugins/soundboardHotkeys/components/addModal.jsx
@@ -583,9 +583,6 @@
         children: "Edit"
       }), null);
       (0, import_web29.insert)(_el$4, (0, import_web30.createComponent)(Button, {
-        get ["class"]() {
-          return style_default.margin;
-        },
         get color() {
           return ButtonColors.RED;
         },
