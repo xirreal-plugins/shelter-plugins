@@ -4,10 +4,7 @@ const {
    },
 } = shelter;
 
-const isInDms = () =>
-   !!document.querySelector(
-      '[data-list-item-id="guildsnav___home"][class*="selected"]',
-   );
+const isInDms = () => !!document.querySelector('[data-list-item-id="guildsnav___home"][class*="selected"]');
 
 const hasNitro = () => {
    const user = UserStore.getCurrentUser();
@@ -21,13 +18,12 @@ export default (slateTree) => {
       return {
          ...line,
          children: line.children.map((item) => {
-            if (item?.type == "customEmoji") {
+            if (item?.type === "customEmoji") {
                const emojiId = item.emoji.emojiId;
 
                if (
                   hasNitro() ||
-                  (EmojiStore.getCustomEmojiById(emojiId).guildId ===
-                     SelectedGuildStore.getLastSelectedGuildId() &&
+                  (EmojiStore.getCustomEmojiById(emojiId).guildId === SelectedGuildStore.getLastSelectedGuildId() &&
                      !item.emoji.animated &&
                      !isInDms())
                ) {

@@ -8,7 +8,7 @@ function format(milliseconds) {
    const minutes = Math.floor((milliseconds % 3600000) / 60000);
    const seconds = Math.floor((milliseconds % 60000) / 1000);
 
-   return `${hours > 0 ? hours.toString().padStart(2, "0") + ":" : ""}${minutes
+   return `${hours > 0 ? `${hours.toString().padStart(2, "0")}:` : ""}${minutes
       .toString()
       .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 }
@@ -32,13 +32,11 @@ function Timer() {
 }
 
 function onVoiceJoin(e) {
-   if (e.state != "RTC_CONNECTED") return;
+   if (e.state !== "RTC_CONNECTED") return;
 
    if (document.getElementById("vcTimer")) return;
 
-   document
-      .querySelector('[class^="rtcConnectionStatus_"] + a > div')
-      .prepend(<Timer />);
+   document.querySelector('[class^="rtcConnectionStatus_"] + a > div').prepend(<Timer />);
 }
 
 export function onLoad() {

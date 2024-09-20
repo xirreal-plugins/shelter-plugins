@@ -1,11 +1,11 @@
 {
    "devDependencies": {
+      "@biomejs/biome": "1.9.2",
       "@uwu/lune": "^1.4.2",
-      "@uwu/shelter-defs": "^1.4.1",
-      "prettier": "^3.3.3"
+      "@uwu/shelter-defs": "^1.4.1"
    },
    "type": "module",
    "scripts": {
-      "format": "prettier --write ."
+      "format": "biome format --write ."
    }
 }

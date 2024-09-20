@@ -38,8 +38,8 @@ const getGuild = GuildStore.getGuild;
 
 const originalCan = PermissionStore.can.bind({});
 
-import classes from "./assets/style.scss";
 import { default as Notice } from "./assets/Notice.jsx";
+import classes from "./assets/style.scss";
 
 let headerBar = null;
 
@@ -51,7 +51,8 @@ const isRestrictedChannel = (channel) => {
    return channel?.permissionOverwrites?.length > 0;
 };
 
-const isVisibile = (channel) => {
+const isVisibile = (originalChannel) => {
+   let channel = originalChannel;
    if (typeof channel !== "object" && !channel?.id) {
       try {
          channel = getChannel(channel);
@@ -77,79 +78,52 @@ const isVisibile = (channel) => {
 };
 
 export function onLoad() {
-   patcher.instead(
-      "can",
-      PermissionStore.__proto__,
-      (originalArgs, originalFunction) => {
-         if (
-            originalArgs[0] == Permissions.VIEW_CHANNEL &&
-            !isRestrictedChannel(originalArgs[1])
-         )
-            return true;
+   patcher.instead("can", PermissionStore.__proto__, (originalArgs, originalFunction) => {
+      if (originalArgs[0] === Permissions.VIEW_CHANNEL && !isRestrictedChannel(originalArgs[1])) return true;
 
-         return originalFunction(...originalArgs);
-      },
-   );
+      return originalFunction(...originalArgs);
+   });
 
    let patchedChannelItem = false;
-   const stopObservingChannelItem = observeDom(
-      '[data-list-item-id^="channels___"',
-      (element) => {
-         queueMicrotask(() => {
-            const channelId = element.dataset.listItemId.split("___")[1];
-            if (isNaN(parseInt(channelId))) return;
+   const stopObservingChannelItem = observeDom('[data-list-item-id^="channels___"', (element) => {
+      queueMicrotask(() => {
+         const channelId = element.dataset.listItemId.split("___")[1];
+         if (Number.isNaN(Number.parseInt(channelId))) return;
 
-            const component = reactFiberWalker(
-               getFiber(element),
-               "aria-label",
-               true,
-               true,
-            )?.type;
+         const component = reactFiberWalker(getFiber(element), "aria-label", true, true)?.type;
 
-            if (!component || typeof component.render !== "function") return;
+         if (!component || typeof component.render !== "function") return;
 
-            stopObservingChannelItem();
+         stopObservingChannelItem();
 
-            if (patchedChannelItem) {
-               return;
+         if (patchedChannelItem) {
+            return;
+         }
+         patchedChannelItem = true;
+
+         patcher.before("render", component, (originalArgs) => {
+            if (!originalArgs[0]["data-list-item-id"]) return originalArgs;
+
+            const channelId = originalArgs[0]["data-list-item-id"].split("___")[1];
+
+            if (!isVisibile(channelId)) {
+               originalArgs[0].className += ` ${classes.hiddenChannel}`;
             }
-            patchedChannelItem = true;
 
-            patcher.before("render", component, (originalArgs) => {
-               if (!originalArgs[0]["data-list-item-id"]) return originalArgs;
-
-               const channelId =
-                  originalArgs[0]["data-list-item-id"].split("___")[1];
-
-               if (!isVisibile(channelId)) {
-                  originalArgs[0].className += ` ${classes.hiddenChannel}`;
-               }
-
-               return originalArgs;
-            });
-
-            const channelReadState = ReadStateStore.getForDebugging(channelId);
-            patcher.after(
-               "canTrackUnreads",
-               channelReadState.__proto__,
-               function (_, previousReturn) {
-                  return previousReturn && isVisibile(this.channelId);
-               },
-            );
+            return originalArgs;
          });
-      },
-   );
+
+         const channelReadState = ReadStateStore.getForDebugging(channelId);
+         patcher.after("canTrackUnreads", channelReadState.__proto__, function (_, previousReturn) {
+            return previousReturn && isVisibile(this.channelId);
+         });
+      });
+   });
 
    const stopObservingHeaderBar = observeDom("[class^=title_]", (element) => {
       queueMicrotask(() => {
-         const component = reactFiberWalker(
-            getFiber(element),
-            "toolbar",
-            true,
-            true,
-         )?.type;
-         if (!component || typeof component.Icon !== "function" || headerBar)
-            return;
+         const component = reactFiberWalker(getFiber(element), "toolbar", true, true)?.type;
+         if (!component || typeof component.Icon !== "function" || headerBar) return;
          stopObservingHeaderBar();
          headerBar = component;
       });
@@ -158,14 +132,8 @@ export function onLoad() {
    let routePatched = false;
    const stopObservingRoute = observeDom('[class^="chat_"]', (element) => {
       queueMicrotask(() => {
-         const component = reactFiberWalker(
-            getFiber(element),
-            "computedMatch",
-            true,
-            true,
-         )?.type;
-         if (!component || typeof component.prototype.render !== "function")
-            return;
+         const component = reactFiberWalker(getFiber(element), "computedMatch", true, true)?.type;
+         if (!component || typeof component.prototype.render !== "function") return;
 
          stopObservingRoute();
 
@@ -201,10 +169,7 @@ export function onLoad() {
       if (event.type === "CHANNEL_SELECT" && !isVisibile(event?.channelId)) {
          shouldIgnoreNextMessageFetch = true;
          _channelId = event.channelId;
-      } else if (
-         event.type !== "MESSAGE_FETCH" &&
-         shouldIgnoreNextMessageFetch
-      ) {
+      } else if (event.type !== "MESSAGE_FETCH" && shouldIgnoreNextMessageFetch) {
          shouldIgnoreNextMessageFetch = false;
          dispatcher.dispatch({
             type: "LOAD_MESSAGES_FAILURE",

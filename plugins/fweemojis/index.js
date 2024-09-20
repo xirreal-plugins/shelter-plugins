@@ -81,12 +81,7 @@ export function onLoad() {
             return;
          }
 
-         if (
-            k.key !== "Enter" ||
-            document.querySelector(
-               "[class*=autocomplete],[class*=attachedBars]",
-            )
-         ) {
+         if (k.key !== "Enter" || document.querySelector("[class*=autocomplete],[class*=attachedBars]")) {
             return;
          }
 
@@ -104,11 +99,11 @@ export function onLoad() {
          const id = req.body.sticker_ids.pop();
          const ext = extensions[StickersStore.getStickerById(id)?.format_type];
 
-         if (ext == undefined || ext == "lottie") {
+         if (ext === undefined || ext === "lottie") {
             return send(req);
          }
 
-         delete req.body.sticker_ids;
+         req.body.sticker_ids = undefined;
          req.body.content = `https://media.discordapp.net/stickers/${id}.${ext}?size=160`;
       }
       return send(req);
