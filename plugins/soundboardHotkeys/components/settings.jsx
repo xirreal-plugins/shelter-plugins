@@ -28,7 +28,6 @@ export function KeybindCard({ keybind }) {
                   Edit
                </Button>
                <Button
-                  class={classes.margin}
                   color={ButtonColors.RED}
                   size={ButtonSizes.MEDIUM}
                   onClick={() => {
