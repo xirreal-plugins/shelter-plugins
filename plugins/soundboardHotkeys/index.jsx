@@ -20,7 +20,6 @@ export function onLoad() {
 
    loadNativeModule();
 
-   registerSection("divider");
    registerSection("section", "sbhk", "Soundboard Hotkeys", Settings);
 
    store.keybinds ??= [];
