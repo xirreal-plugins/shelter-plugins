@@ -32,8 +32,8 @@ export function KeybindCard({ keybind }) {
                   size={ButtonSizes.MEDIUM}
                   class={classes.marginTop}
                   onClick={() => {
-                     store.keybinds = store.keybinds.filter((k) => k.id !== initialState.id);
-                     unregisterKeybind(initialState.id);
+                     store.keybinds = store.keybinds.filter((k) => k.id !== keybind.id);
+                     unregisterKeybind(keybind.id);
                      closeModal();
                   }}
                >
