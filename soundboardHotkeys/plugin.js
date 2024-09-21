@@ -115,36 +115,38 @@
   }
 
   // plugins/soundboardHotkeys/components/settings.jsx
-  var import_web26 = __toESM(require_web(), 1);
-  var import_web27 = __toESM(require_web(), 1);
   var import_web28 = __toESM(require_web(), 1);
   var import_web29 = __toESM(require_web(), 1);
   var import_web30 = __toESM(require_web(), 1);
+  var import_web31 = __toESM(require_web(), 1);
+  var import_web32 = __toESM(require_web(), 1);
+  var import_web33 = __toESM(require_web(), 1);
 
   // plugins/soundboardHotkeys/components/style.scss
-  shelter.plugin.scoped.ui.injectCss(`._spaced_7qodn_1{margin-top:8px;margin-bottom:12px;display:block}._margin_7qodn_1{margin-top:16px;margin-bottom:16px;display:block}._marginTop_7qodn_1{margin-top:16px}._flexSpaceBetween_7qodn_1{display:flex;justify-content:space-between;align-items:center}._card_7qodn_1{box-sizing:border-box;border-radius:4px;padding:16px;width:100%;min-width:160px;display:flex;flex-direction:column;gap:16px;text-indent:0;background-color:var(--background-secondary);margin-top:16px}._content_7qodn_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;overflow:hidden}._preview_7qodn_1{background:var(--brand-500);border:0px solid rgba(0,0,0,0);border-radius:4px;cursor:pointer;display:inline;margin-right:8px;transition:all .2s ease-in-out}._preview_7qodn_1:hover{background:var(--brand-540)}._emoji_7qodn_1{image-rendering:crisp-edges;margin-right:8px}._inline_7qodn_1{display:inline}._flexRow_7qodn_1{display:flex;justify-content:start;align-items:center;padding:8px 10px 8px 8px;background:var(--background-tertiary);border:1px solid var(--background-secondary);border-radius:4px;width:fit-content}._keybindButton_7qodn_1{display:flex;padding:8px;justify-content:start;align-items:center;background:var(--background-tertiary);border:1px solid var(--background-secondary);min-width:160px;width:fit-content;border-radius:4px;transition:all .2s ease-in-out}._noMarginUnselectable_7qodn_1{margin:0;user-select:none}._sound_7qodn_1{cursor:pointer}._selected_7qodn_1{background-color:var(--button-positive-background)}._column_7qodn_1{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}._fullWidth_7qodn_1{width:100%}`);
+  shelter.plugin.scoped.ui.injectCss(`._spaced_1rh4v_1{margin-top:8px;margin-bottom:12px;display:block}._margin_1rh4v_1{margin-top:16px;margin-bottom:16px;display:block}._marginTop_1rh4v_1{margin-top:16px}._flexSpaceBetween_1rh4v_1{display:flex;justify-content:space-between;align-items:center}._card_1rh4v_1{box-sizing:border-box;border-radius:4px;padding:16px;width:100%;min-width:160px;display:flex;flex-direction:column;gap:16px;text-indent:0;background-color:var(--background-secondary);margin-top:16px}._content_1rh4v_1{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;overflow:hidden}._preview_1rh4v_1{background-color:var(--brand-500);border:0px solid rgba(0,0,0,0);border-radius:4px;cursor:pointer;display:inline;margin-right:8px;transition:all .2s ease-in-out}._preview_1rh4v_1:hover{background-color:var(--brand-560)}._emoji_1rh4v_1{image-rendering:crisp-edges;margin-right:8px}._inline_1rh4v_1{display:inline}._soundPicker_1rh4v_1{margin-top:8px}._flexRow_1rh4v_1{display:flex;justify-content:start;align-items:center;padding:8px 10px 8px 8px;background:var(--background-tertiary);border:1px solid var(--background-secondary);border-radius:4px;width:fit-content}._keybindButton_1rh4v_1{display:flex;padding:8px;justify-content:start;align-items:center;background:var(--background-tertiary);border:1px solid var(--background-secondary);min-width:160px;width:fit-content;border-radius:4px;transition:all .2s ease-in-out}._noMarginUnselectable_1rh4v_1{margin:0;user-select:none}._sound_1rh4v_1{cursor:pointer;background-color:var(--background-transparent);border:none;padding:0;margin:2px}._selected_1rh4v_1{background-color:var(--button-positive-background)}._column_1rh4v_1{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}._tallerModal_1rh4v_1{min-height:680px;max-height:680px;height:680px}`);
   var style_default = {
-    "spaced": "_spaced_7qodn_1",
-    "margin": "_margin_7qodn_1",
-    "marginTop": "_marginTop_7qodn_1",
-    "flexSpaceBetween": "_flexSpaceBetween_7qodn_1",
-    "card": "_card_7qodn_1",
-    "content": "_content_7qodn_1",
-    "preview": "_preview_7qodn_1",
-    "emoji": "_emoji_7qodn_1",
-    "inline": "_inline_7qodn_1",
-    "flexRow": "_flexRow_7qodn_1",
-    "keybindButton": "_keybindButton_7qodn_1",
-    "noMarginUnselectable": "_noMarginUnselectable_7qodn_1",
-    "sound": "_sound_7qodn_1",
-    "selected": "_selected_7qodn_1",
-    "column": "_column_7qodn_1",
-    "fullWidth": "_fullWidth_7qodn_1"
+    "spaced": "_spaced_1rh4v_1",
+    "margin": "_margin_1rh4v_1",
+    "marginTop": "_marginTop_1rh4v_1",
+    "flexSpaceBetween": "_flexSpaceBetween_1rh4v_1",
+    "card": "_card_1rh4v_1",
+    "content": "_content_1rh4v_1",
+    "preview": "_preview_1rh4v_1",
+    "emoji": "_emoji_1rh4v_1",
+    "inline": "_inline_1rh4v_1",
+    "soundPicker": "_soundPicker_1rh4v_1",
+    "flexRow": "_flexRow_1rh4v_1",
+    "keybindButton": "_keybindButton_1rh4v_1",
+    "noMarginUnselectable": "_noMarginUnselectable_1rh4v_1",
+    "sound": "_sound_1rh4v_1",
+    "selected": "_selected_1rh4v_1",
+    "column": "_column_1rh4v_1",
+    "tallerModal": "_tallerModal_1rh4v_1"
   };
 
   // plugins/soundboardHotkeys/components/addModal.jsx
-  var import_web24 = __toESM(require_web(), 1);
-  var import_web25 = __toESM(require_web(), 1);
+  var import_web26 = __toESM(require_web(), 1);
+  var import_web27 = __toESM(require_web(), 1);
 
   // plugins/soundboardHotkeys/components/keybinds.jsx
   var import_web = __toESM(require_web(), 1);
@@ -160,7 +162,8 @@
   var {
     ui: {
       Header,
-      HeaderTags
+      HeaderTags,
+      focusring
     },
     solid: {
       createSignal,
@@ -199,6 +202,10 @@
         modifiersCode.push(91);
       }
       setValid(false);
+      if (modifiers.length === 0 && (e.key === "Escape" || e.key === "Enter")) {
+        setIsCapturing(false);
+        return;
+      }
       const key = e.key.toUpperCase();
       if (!modifiers.includes(key) && key !== "CONTROL" && key !== "ALT" && key !== "SHIFT" && key !== "META") {
         modifiers.push(key);
@@ -230,6 +237,8 @@
           return isCapturing() ? "Click again to stop" : "Click to capture keybind";
         }
       }), _el$2);
+      (0, import_web8.use)(focusring, _el$2, () => true);
+      _el$2.addEventListener("keypress", (e) => e.key === "Enter" && setIsCapturing(!isCapturing()));
       _el$2.$$mousedown = () => setIsCapturing(!isCapturing());
       (0, import_web5.insert)(_el$2, (0, import_web6.createComponent)(Header, {
         get tag() {
@@ -273,6 +282,8 @@
   var import_web21 = __toESM(require_web(), 1);
   var import_web22 = __toESM(require_web(), 1);
   var import_web23 = __toESM(require_web(), 1);
+  var import_web24 = __toESM(require_web(), 1);
+  var import_web25 = __toESM(require_web(), 1);
 
   // plugins/soundboardHotkeys/components/soundPreview.jsx
   var import_web9 = __toESM(require_web(), 1);
@@ -284,12 +295,13 @@
   var import_web15 = __toESM(require_web(), 1);
   var import_web16 = __toESM(require_web(), 1);
   var import_web17 = __toESM(require_web(), 1);
-  var _tmpl$3 = /* @__PURE__ */ (0, import_web9.template)(`<div><audio></audio><button>\u{1F50A}</button></div>`, 6);
+  var _tmpl$3 = /* @__PURE__ */ (0, import_web9.template)(`<div><audio></audio><button name="preview">\u{1F50A}</button></div>`, 6);
   var _tmpl$22 = /* @__PURE__ */ (0, import_web9.template)(`<div><img alt=":3"></div>`, 3);
   var _tmpl$32 = /* @__PURE__ */ (0, import_web9.template)(`<div></div>`, 2);
   var {
     ui: {
-      Text
+      Text,
+      focusring: focusring2
     },
     flux: {
       stores: {
@@ -312,6 +324,7 @@
         audio.load();
         audio.play();
       };
+      (0, import_web16.use)(focusring2, _el$3, () => true);
       (0, import_web15.effect)((_p$) => {
         const _v$ = style_default.inline, _v$2 = style_default.preview;
         _v$ !== _p$._v$ && (0, import_web14.className)(_el$, _p$._v$ = _v$);
@@ -384,12 +397,14 @@
 
   // plugins/soundboardHotkeys/components/soundPicker.jsx
   var _tmpl$4 = /* @__PURE__ */ (0, import_web18.template)(`<div><div></div></div>`, 4);
-  var _tmpl$23 = /* @__PURE__ */ (0, import_web18.template)(`<div></div>`, 2);
+  var _tmpl$23 = /* @__PURE__ */ (0, import_web18.template)(`<button></button>`, 2);
   var {
     ui: {
       Header: Header2,
       HeaderTags: HeaderTags2,
-      Text: Text2
+      TextBox,
+      Text: Text2,
+      focusring: focusring3
     },
     flux: {
       stores: {
@@ -397,16 +412,24 @@
       }
     },
     solid: {
-      For
+      For,
+      createSignal: createSignal2
     }
   } = shelter;
+  function search(sounds, query) {
+    if (!query)
+      return sounds;
+    return sounds.filter((sound) => sound.name.toLowerCase().includes(query.toLowerCase()));
+  }
   function SoundPicker(props) {
     const sounds = () => {
       return [...SoundboardStore3.getSounds()].map((x) => x[1]).flat().sort((a, b) => SoundboardStore3.isFavoriteSound(b.soundId) - SoundboardStore3.isFavoriteSound(a.soundId));
     };
+    const [query, setQuery] = createSignal2("");
+    const filteredSounds = () => search(sounds(), query());
     return (() => {
       const _el$ = _tmpl$4.cloneNode(true), _el$2 = _el$.firstChild;
-      (0, import_web22.insert)(_el$, (0, import_web23.createComponent)(Header2, {
+      (0, import_web23.insert)(_el$, (0, import_web25.createComponent)(Header2, {
         get tag() {
           return HeaderTags2.EYEBROW;
         },
@@ -415,31 +438,44 @@
         },
         children: "Sound"
       }), _el$2);
-      (0, import_web22.insert)(_el$2, (0, import_web23.createComponent)(For, {
+      (0, import_web23.insert)(_el$, (0, import_web25.createComponent)(TextBox, {
+        value: "",
+        placeholder: "Search sounds...",
+        onInput: (e) => setQuery(e)
+      }), _el$2);
+      (0, import_web23.insert)(_el$2, (0, import_web25.createComponent)(import_web24.Show, {
+        get when() {
+          return filteredSounds().length === 0;
+        },
+        get children() {
+          return (0, import_web25.createComponent)(Text2, {
+            get ["class"]() {
+              return style_default.margin;
+            },
+            children: "\u274C No sounds found"
+          });
+        }
+      }), null);
+      (0, import_web23.insert)(_el$2, (0, import_web25.createComponent)(For, {
         get each() {
-          return sounds();
+          return filteredSounds();
         },
         children: (sound) => (() => {
           const _el$3 = _tmpl$23.cloneNode(true);
-          _el$3.$$click = () => props.setSoundId(sound.soundId);
-          _el$3.addEventListener("keypress", (e) => e.key === "Enter" && props.setSoundId(sound.soundId));
-          (0, import_web22.insert)(_el$3, (0, import_web23.createComponent)(SoundWithEmoji, {
+          (0, import_web20.use)(focusring3, _el$3, () => true);
+          _el$3.$$click = (e) => e.target.name !== "preview" && props.setSoundId(sound.soundId);
+          _el$3.addEventListener("keypress", (e) => e.key === "Enter" && e.target.name !== "preview" && props.setSoundId(sound.soundId));
+          (0, import_web23.insert)(_el$3, (0, import_web25.createComponent)(SoundWithEmoji, {
             get soundId() {
               return sound.soundId;
             },
             selected: () => sound.soundId === props.soundId()
           }));
-          (0, import_web21.effect)(() => (0, import_web20.className)(_el$3, style_default.sound));
+          (0, import_web22.effect)(() => (0, import_web21.className)(_el$3, style_default.sound));
           return _el$3;
         })()
-      }));
-      (0, import_web22.insert)(_el$, (0, import_web23.createComponent)(Text2, {
-        get ["class"]() {
-          return style_default.margin;
-        },
-        children: "Can't find the sound you want? Open the soundboard manually to sort favorites before others."
       }), null);
-      (0, import_web21.effect)(() => (0, import_web20.className)(_el$2, style_default.soundPicker));
+      (0, import_web22.effect)(() => (0, import_web21.className)(_el$2, style_default.soundPicker));
       return _el$;
     })();
   }
@@ -455,43 +491,46 @@
       ModalSizes
     },
     solid: {
-      createSignal: createSignal2
+      createSignal: createSignal3
     },
     plugin: {
       store
     }
   } = shelter;
   function AddKeybindModal(closeModal2, initialState2) {
-    const [keybindValid, setKeybindValid] = createSignal2(false);
-    const [keybind, setKeybind] = createSignal2("");
-    const [soundId, setSoundId] = createSignal2("");
-    const [scancodes, setScancodes] = createSignal2([]);
+    const [keybindValid, setKeybindValid] = createSignal3(false);
+    const [keybind, setKeybind] = createSignal3("");
+    const [soundId, setSoundId] = createSignal3("");
+    const [scancodes, setScancodes] = createSignal3([]);
     if (initialState2) {
       setKeybind(initialState2.text);
       setSoundId(initialState2.sound);
       setScancodes(initialState2.scancodes);
     }
-    return (0, import_web25.createComponent)(ModalRoot, {
+    return (0, import_web27.createComponent)(ModalRoot, {
       get size() {
-        return ModalSizes.SMALL;
+        return ModalSizes.MEDIUM;
+      },
+      get ["class"]() {
+        return style_default.tallerModal;
       },
       get children() {
-        return [(0, import_web25.createComponent)(ModalHeader, {
+        return [(0, import_web27.createComponent)(ModalHeader, {
           close: closeModal2,
           children: "Adding keybind"
-        }), (0, import_web25.createComponent)(ModalBody, {
+        }), (0, import_web27.createComponent)(ModalBody, {
           get children() {
-            return [(0, import_web25.createComponent)(KeybindCapture, {
+            return [(0, import_web27.createComponent)(KeybindCapture, {
               keybind,
               setValid: setKeybindValid,
               setKeybind,
               setScancodes
-            }), (0, import_web25.createComponent)(SoundPicker, {
+            }), (0, import_web27.createComponent)(SoundPicker, {
               soundId,
               setSoundId
             })];
           }
-        }), (0, import_web25.createComponent)(ModalConfirmFooter, {
+        }), (0, import_web27.createComponent)(ModalConfirmFooter, {
           close: closeModal2,
           confirmText: "Save",
           get disabled() {
@@ -522,8 +561,8 @@
   }
 
   // plugins/soundboardHotkeys/components/settings.jsx
-  var _tmpl$5 = /* @__PURE__ */ (0, import_web26.template)(`<div><div><div></div><div></div></div></div>`, 8);
-  var _tmpl$24 = /* @__PURE__ */ (0, import_web26.template)(`<div></div>`, 2);
+  var _tmpl$5 = /* @__PURE__ */ (0, import_web28.template)(`<div><div><div></div><div></div></div></div>`, 8);
+  var _tmpl$24 = /* @__PURE__ */ (0, import_web28.template)(`<div></div>`, 2);
   var {
     ui: {
       Header: Header3,
@@ -539,7 +578,7 @@
     solid: {
       For: For2,
       Show,
-      createSignal: createSignal3
+      createSignal: createSignal4
     },
     plugin: {
       store: store2
@@ -550,18 +589,18 @@
   }) {
     return (() => {
       const _el$ = _tmpl$5.cloneNode(true), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling;
-      (0, import_web29.insert)(_el$3, (0, import_web30.createComponent)(Header3, {
+      (0, import_web32.insert)(_el$3, (0, import_web33.createComponent)(Header3, {
         get tag() {
           return HeaderTags3.EYEBROW;
         },
         children: "Keybind"
       }), null);
-      (0, import_web29.insert)(_el$3, (0, import_web30.createComponent)(KeybindDisplayOnly, {
+      (0, import_web32.insert)(_el$3, (0, import_web33.createComponent)(KeybindDisplayOnly, {
         get keybind() {
           return keybind.text;
         }
       }), null);
-      (0, import_web29.insert)(_el$3, (0, import_web30.createComponent)(Header3, {
+      (0, import_web32.insert)(_el$3, (0, import_web33.createComponent)(Header3, {
         get tag() {
           return HeaderTags3.EYEBROW;
         },
@@ -570,24 +609,27 @@
         },
         children: "Sound"
       }), null);
-      (0, import_web29.insert)(_el$3, (0, import_web30.createComponent)(SoundWithEmoji, {
+      (0, import_web32.insert)(_el$3, (0, import_web33.createComponent)(SoundWithEmoji, {
         get soundId() {
           return keybind.sound;
         }
       }), null);
-      (0, import_web29.insert)(_el$4, (0, import_web30.createComponent)(Button, {
+      (0, import_web32.insert)(_el$4, (0, import_web33.createComponent)(Button, {
         get size() {
           return ButtonSizes.MEDIUM;
         },
         onclick: () => openModal((p) => AddKeybindModal(p.close, keybind)),
         children: "Edit"
       }), null);
-      (0, import_web29.insert)(_el$4, (0, import_web30.createComponent)(Button, {
+      (0, import_web32.insert)(_el$4, (0, import_web33.createComponent)(Button, {
         get color() {
           return ButtonColors.RED;
         },
         get size() {
           return ButtonSizes.MEDIUM;
+        },
+        get ["class"]() {
+          return style_default.marginTop;
         },
         onClick: () => {
           store2.keybinds = store2.keybinds.filter((k) => k.id !== initialState.id);
@@ -596,12 +638,12 @@
         },
         children: "Delete"
       }), null);
-      (0, import_web28.effect)((_p$) => {
+      (0, import_web31.effect)((_p$) => {
         const _v$ = style_default.card, _v$2 = style_default.content, _v$3 = style_default.fullWidth, _v$4 = style_default.column;
-        _v$ !== _p$._v$ && (0, import_web27.className)(_el$, _p$._v$ = _v$);
-        _v$2 !== _p$._v$2 && (0, import_web27.className)(_el$2, _p$._v$2 = _v$2);
-        _v$3 !== _p$._v$3 && (0, import_web27.className)(_el$3, _p$._v$3 = _v$3);
-        _v$4 !== _p$._v$4 && (0, import_web27.className)(_el$4, _p$._v$4 = _v$4);
+        _v$ !== _p$._v$ && (0, import_web30.className)(_el$, _p$._v$ = _v$);
+        _v$2 !== _p$._v$2 && (0, import_web30.className)(_el$2, _p$._v$2 = _v$2);
+        _v$3 !== _p$._v$3 && (0, import_web30.className)(_el$3, _p$._v$3 = _v$3);
+        _v$4 !== _p$._v$4 && (0, import_web30.className)(_el$4, _p$._v$4 = _v$4);
         return _p$;
       }, {
         _v$: void 0,
@@ -613,71 +655,62 @@
     })();
   }
   function Settings() {
-    const [done, setDone] = createSignal3(false);
+    const [done, setDone] = createSignal4(false);
     loadSounds().then(() => setDone(true));
-    return (0, import_web30.createComponent)(ReactiveRoot, {
+    return (0, import_web33.createComponent)(ReactiveRoot, {
       get children() {
-        return [(0, import_web30.createComponent)(Header3, {
+        return [(0, import_web33.createComponent)(Header3, {
           get tag() {
             return HeaderTags3.H1;
           },
           children: "Soundboard Hotkeys"
-        }), (0, import_web30.createComponent)(Text3, {
+        }), (0, import_web33.createComponent)(Text3, {
           get ["class"]() {
             return style_default.spaced;
           },
           children: "Customize your soundboard hotkeys."
-        }), (0, import_web30.createComponent)(Divider, {}), (0, import_web30.createComponent)(Show, {
-          get when() {
-            return !done();
-          },
-          get children() {
-            return (0, import_web30.createComponent)(Text3, {
-              get ["class"]() {
-                return style_default.spaced;
-              },
-              children: "Loading sounds..."
-            });
-          }
-        }), (0, import_web30.createComponent)(Show, {
+        }), (0, import_web33.createComponent)(Divider, {}), (() => {
+          const _el$5 = _tmpl$24.cloneNode(true);
+          (0, import_web32.insert)(_el$5, (0, import_web33.createComponent)(Header3, {
+            get tag() {
+              return HeaderTags3.H3;
+            },
+            get children() {
+              return done() ? "Keybinds" : "Loading sounds...";
+            }
+          }), null);
+          (0, import_web32.insert)(_el$5, (0, import_web33.createComponent)(Button, {
+            get ["class"]() {
+              return style_default.margin;
+            },
+            get size() {
+              return ButtonSizes.LARGE;
+            },
+            get disabled() {
+              return !done();
+            },
+            onclick: () => {
+              openModal((p) => AddKeybindModal(p.close));
+            },
+            children: "Add keybind"
+          }), null);
+          (0, import_web31.effect)(() => (0, import_web30.className)(_el$5, style_default.flexSpaceBetween));
+          return _el$5;
+        })(), (0, import_web33.createComponent)(Show, {
           get when() {
             return done();
           },
           get children() {
-            return [(() => {
-              const _el$5 = _tmpl$24.cloneNode(true);
-              (0, import_web29.insert)(_el$5, (0, import_web30.createComponent)(Header3, {
-                get tag() {
-                  return HeaderTags3.H3;
-                },
-                children: "Keybinds"
-              }), null);
-              (0, import_web29.insert)(_el$5, (0, import_web30.createComponent)(Button, {
-                get ["class"]() {
-                  return style_default.margin;
-                },
-                get size() {
-                  return ButtonSizes.LARGE;
-                },
-                onclick: () => {
-                  openModal((p) => AddKeybindModal(p.close));
-                },
-                children: "Add keybind"
-              }), null);
-              (0, import_web28.effect)(() => (0, import_web27.className)(_el$5, style_default.flexSpaceBetween));
-              return _el$5;
-            })(), (() => {
-              const _el$6 = _tmpl$24.cloneNode(true);
-              (0, import_web29.insert)(_el$6, (0, import_web30.createComponent)(For2, {
-                get each() {
-                  return store2.keybinds;
-                },
-                children: (keybind) => (0, import_web30.createComponent)(KeybindCard, {
-                  keybind
-                })
-              }));
-              return _el$6;
-            })()];
+            const _el$6 = _tmpl$24.cloneNode(true);
+            (0, import_web32.insert)(_el$6, (0, import_web33.createComponent)(For2, {
+              get each() {
+                return store2.keybinds;
+              },
+              children: (keybind) => (0, import_web33.createComponent)(KeybindCard, {
+                keybind
+              })
+            }));
+            return _el$6;
           }
         })];
       }
@@ -705,7 +738,6 @@
       return;
     }
     loadNativeModule();
-    registerSection("divider");
     registerSection("section", "sbhk", "Soundboard Hotkeys", Settings);
     store3.keybinds ??= [];
     for (const keybind of store3.keybinds) {
