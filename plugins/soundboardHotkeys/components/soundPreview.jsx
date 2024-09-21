@@ -1,5 +1,5 @@
 const {
-   ui: { Text },
+   ui: { Text, focusring },
    flux: {
       stores: { SoundboardStore, EmojiStore },
    },
@@ -15,11 +15,13 @@ export function Preview({ soundId }) {
       <div class={classes.inline}>
          <audio src={`${baseUrl}${soundId}`} ref={audio} />
          <button
+            use:focusring
             class={classes.preview}
             onclick={() => {
                audio.load();
                audio.play();
             }}
+            name="preview"
          >
             🔊
          </button>

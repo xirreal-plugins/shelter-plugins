@@ -1,5 +1,5 @@
 const {
-   ui: { Header, HeaderTags },
+   ui: { Header, HeaderTags, focusring },
    solid: { createSignal, createEffect, onCleanup },
 } = shelter;
 
@@ -39,6 +39,11 @@ export function KeybindCapture({ keybind, setValid, setKeybind, setScancodes }) 
 
       setValid(false);
 
+      if (modifiers.length === 0 && (e.key === "Escape" || e.key === "Enter")) {
+         setIsCapturing(false);
+         return;
+      }
+
       const key = e.key.toUpperCase();
       if (!modifiers.includes(key) && key !== "CONTROL" && key !== "ALT" && key !== "SHIFT" && key !== "META") {
          modifiers.push(key);
@@ -65,7 +70,12 @@ export function KeybindCapture({ keybind, setValid, setKeybind, setScancodes }) 
    return (
       <div ref={element}>
          <Header tag={HeaderTags.EYEBROW}>{isCapturing() ? "Click again to stop" : "Click to capture keybind"}</Header>
-         <button class={classes.keybindButton} onMouseDown={() => setIsCapturing(!isCapturing())}>
+         <button
+            class={classes.keybindButton}
+            onMouseDown={() => setIsCapturing(!isCapturing())}
+            onKeyPress={(e) => e.key === "Enter" && setIsCapturing(!isCapturing())}
+            use:focusring
+         >
             <Header tag={HeaderTags.H2} class={classes.noMarginUnselectable}>
                {keybind() || "None"}
             </Header>

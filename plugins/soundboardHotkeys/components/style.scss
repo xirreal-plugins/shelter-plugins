@@ -44,7 +44,7 @@
 }
 
 .preview {
-   background: var(--brand-500);
+   background-color: var(--brand-500);
    border: 0px solid transparent;
    border-radius: 4px;
    cursor: pointer;
@@ -54,7 +54,7 @@
 }
 
 .preview:hover {
-   background: var(--brand-540);
+   background-color: var(--brand-560);
 }
 
 .emoji {
@@ -64,6 +64,10 @@
 
 .inline {
    display: inline;
+}
+
+.soundPicker {
+   margin-top: 8px;
 }
 
 .flexRow {
@@ -97,6 +101,10 @@
 
 .sound {
    cursor: pointer;
+   background-color: var(--background-transparent);
+   border: none;
+   padding: 0;
+   margin: 2px;
 }
 
 .selected {
@@ -110,6 +118,8 @@
    align-items: center;
 }
 
-.fullWidth {
-   width: 100%;
+.tallerModal {
+   min-height: 680px;
+   max-height: 680px;
+   height: 680px;
 }

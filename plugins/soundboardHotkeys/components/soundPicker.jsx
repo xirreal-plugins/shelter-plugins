@@ -1,13 +1,18 @@
 const {
-   ui: { Header, HeaderTags, Text },
+   ui: { Header, HeaderTags, TextBox, Text, focusring },
    flux: {
       stores: { SoundboardStore },
    },
-   solid: { For },
+   solid: { For, createSignal },
 } = shelter;
 
 import { SoundWithEmoji } from "./soundPreview";
 import classes from "./style.scss";
+
+export function search(sounds, query) {
+   if (!query) return sounds;
+   return sounds.filter((sound) => sound.name.toLowerCase().includes(query.toLowerCase()));
+}
 
 export function SoundPicker(props) {
    const sounds = () => {
@@ -17,27 +22,35 @@ export function SoundPicker(props) {
          .sort((a, b) => SoundboardStore.isFavoriteSound(b.soundId) - SoundboardStore.isFavoriteSound(a.soundId));
    };
 
+   const [query, setQuery] = createSignal("");
+
+   const filteredSounds = () => search(sounds(), query());
+
    return (
       <div>
          <Header tag={HeaderTags.EYEBROW} class={classes.marginTop}>
             Sound
          </Header>
+         <TextBox value={""} placeholder={"Search sounds..."} onInput={(e) => setQuery(e)} />
          <div class={classes.soundPicker}>
-            <For each={sounds()}>
+            <Show when={filteredSounds().length === 0}>
+               <Text class={classes.margin}>❌ No sounds found</Text>
+            </Show>
+            <For each={filteredSounds()}>
                {(sound) => (
-                  <div
+                  <button
                      class={classes.sound}
-                     onKeyPress={(e) => e.key === "Enter" && props.setSoundId(sound.soundId)}
-                     onClick={() => props.setSoundId(sound.soundId)}
+                     onKeyPress={(e) =>
+                        e.key === "Enter" && e.target.name !== "preview" && props.setSoundId(sound.soundId)
+                     }
+                     onClick={(e) => e.target.name !== "preview" && props.setSoundId(sound.soundId)}
+                     use:focusring
                   >
                      <SoundWithEmoji soundId={sound.soundId} selected={() => sound.soundId === props.soundId()} />
-                  </div>
+                  </button>
                )}
             </For>
          </div>
-         <Text class={classes.margin}>
-            Can't find the sound you want? Open the soundboard manually to sort favorites before others.
-         </Text>
       </div>
    );
 }

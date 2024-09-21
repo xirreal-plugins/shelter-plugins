@@ -4,9 +4,10 @@ const {
    plugin: { store },
 } = shelter;
 
-import { registerKeybind, unregisterKeybind } from "../utils";
+import { registerKeybind } from "../utils";
 import { KeybindCapture } from "./keybinds";
 import { SoundPicker } from "./soundPicker";
+
 import classes from "./style.scss";
 
 export function AddKeybindModal(closeModal, initialState) {
@@ -22,7 +23,7 @@ export function AddKeybindModal(closeModal, initialState) {
    }
 
    return (
-      <ModalRoot size={ModalSizes.SMALL}>
+      <ModalRoot size={ModalSizes.MEDIUM} class={classes.tallerModal}>
          <ModalHeader close={closeModal}>Adding keybind</ModalHeader>
          <ModalBody>
             <KeybindCapture

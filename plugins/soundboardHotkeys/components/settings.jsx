@@ -30,6 +30,7 @@ export function KeybindCard({ keybind }) {
                <Button
                   color={ButtonColors.RED}
                   size={ButtonSizes.MEDIUM}
+                  class={classes.marginTop}
                   onClick={() => {
                      store.keybinds = store.keybinds.filter((k) => k.id !== initialState.id);
                      unregisterKeybind(initialState.id);
@@ -54,24 +55,21 @@ export function Settings() {
          <Text class={classes.spaced}>Customize your soundboard hotkeys.</Text>
          <Divider />
 
-         <Show when={!done()}>
-            <Text class={classes.spaced}>Loading sounds...</Text>
-         </Show>
+         <div class={classes.flexSpaceBetween}>
+            <Header tag={HeaderTags.H3}>{done() ? "Keybinds" : "Loading sounds..."}</Header>
+            <Button
+               class={classes.margin}
+               size={ButtonSizes.LARGE}
+               disabled={!done()}
+               onclick={() => {
+                  openModal((p) => AddKeybindModal(p.close));
+               }}
+            >
+               Add keybind
+            </Button>
+         </div>
 
          <Show when={done()}>
-            <div class={classes.flexSpaceBetween}>
-               <Header tag={HeaderTags.H3}>Keybinds</Header>
-               <Button
-                  class={classes.margin}
-                  size={ButtonSizes.LARGE}
-                  onclick={() => {
-                     openModal((p) => AddKeybindModal(p.close));
-                  }}
-               >
-                  Add keybind
-               </Button>
-            </div>
-
             <div>
                <For each={store.keybinds}>{(keybind) => <KeybindCard keybind={keybind} />}</For>
             </div>
