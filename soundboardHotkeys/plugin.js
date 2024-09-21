@@ -497,15 +497,15 @@
       store
     }
   } = shelter;
-  function AddKeybindModal(closeModal2, initialState2) {
+  function AddKeybindModal(closeModal2, initialState) {
     const [keybindValid, setKeybindValid] = createSignal3(false);
     const [keybind, setKeybind] = createSignal3("");
     const [soundId, setSoundId] = createSignal3("");
     const [scancodes, setScancodes] = createSignal3([]);
-    if (initialState2) {
-      setKeybind(initialState2.text);
-      setSoundId(initialState2.sound);
-      setScancodes(initialState2.scancodes);
+    if (initialState) {
+      setKeybind(initialState.text);
+      setSoundId(initialState.sound);
+      setScancodes(initialState.scancodes);
     }
     return (0, import_web27.createComponent)(ModalRoot, {
       get size() {
@@ -537,10 +537,10 @@
             return !keybindValid() || soundId() === "";
           },
           onConfirm: async () => {
-            const nextId = initialState2?.id || store.keybinds[store.keybinds.length - 1]?.id - 1 || -1;
-            if (initialState2?.id && store.keybinds.find((k) => k.id === initialState2.id)) {
-              store.keybinds = store.keybinds.map((k) => k.id === initialState2.id ? {
-                id: initialState2.id,
+            const nextId = initialState?.id || store.keybinds[store.keybinds.length - 1]?.id - 1 || -1;
+            if (initialState?.id && store.keybinds.find((k) => k.id === initialState.id)) {
+              store.keybinds = store.keybinds.map((k) => k.id === initialState.id ? {
+                id: initialState.id,
                 scancodes: scancodes(),
                 text: keybind(),
                 sound: soundId()
@@ -632,8 +632,8 @@
           return style_default.marginTop;
         },
         onClick: () => {
-          store2.keybinds = store2.keybinds.filter((k) => k.id !== initialState.id);
-          unregisterKeybind(initialState.id);
+          store2.keybinds = store2.keybinds.filter((k) => k.id !== keybind.id);
+          unregisterKeybind(keybind.id);
           closeModal();
         },
         children: "Delete"
