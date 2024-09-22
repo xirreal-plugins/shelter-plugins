@@ -171,6 +171,22 @@
       onCleanup
     }
   } = shelter;
+  var specialCodes = {
+    win32: {
+      CTRL: 162,
+      RCTRL: 163,
+      ALT: 164,
+      SHIFT: 160,
+      RSHIFT: 161
+    },
+    linux: {
+      CTRL: 37,
+      RCTRL: 105,
+      ALT: 64,
+      SHIFT: 50,
+      RSHIFT: 62
+    }
+  };
   function KeybindCapture({
     keybind,
     setValid,
@@ -186,20 +202,29 @@
       const modifiers = [];
       const modifiersCode = [];
       if (e.ctrlKey) {
-        modifiers.push("CTRL");
-        modifiersCode.push(17);
+        if (e.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+          modifiers.push("RIGHT CTRL");
+          modifiersCode.push(specialCodes[DiscordNative.process.platform].RCTRL);
+        } else {
+          modifiers.push("CTRL");
+          modifiersCode.push(specialCodes[DiscordNative.process.platform].CTRL);
+        }
       }
       if (e.altKey) {
         modifiers.push("ALT");
-        modifiersCode.push(18);
+        modifiersCode.push(specialCodes[DiscordNative.process.platform].ALT);
       }
       if (e.shiftKey) {
-        modifiers.push("SHIFT");
-        modifiersCode.push(16);
+        if (e.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+          modifiers.push("RIGHT SHIFT");
+          modifiersCode.push(specialCodes[DiscordNative.process.platform].RSHIFT);
+        } else {
+          modifiers.push("SHIFT");
+          modifiersCode.push(specialCodes[DiscordNative.process.platform].SHIFT);
+        }
       }
       if (e.metaKey) {
-        modifiers.push("META");
-        modifiersCode.push(91);
+        return;
       }
       setValid(false);
       if (modifiers.length === 0 && (e.key === "Escape" || e.key === "Enter")) {
@@ -296,8 +321,8 @@
   var import_web16 = __toESM(require_web(), 1);
   var import_web17 = __toESM(require_web(), 1);
   var _tmpl$3 = /* @__PURE__ */ (0, import_web9.template)(`<div><audio></audio><button name="preview">\u{1F50A}</button></div>`, 6);
-  var _tmpl$22 = /* @__PURE__ */ (0, import_web9.template)(`<div><img alt=":3"></div>`, 3);
-  var _tmpl$32 = /* @__PURE__ */ (0, import_web9.template)(`<div></div>`, 2);
+  var _tmpl$22 = /* @__PURE__ */ (0, import_web9.template)(`<div></div>`, 2);
+  var _tmpl$32 = /* @__PURE__ */ (0, import_web9.template)(`<div><img alt=":3"></div>`, 3);
   var {
     ui: {
       Text,
@@ -349,14 +374,32 @@
     }
     if (!sound.emojiName && sound.emojiId) {
       const emoji = EmojiStore.getCustomEmojiById(sound.emojiId);
+      if (!emoji) {
+        return (() => {
+          const _el$4 = _tmpl$22.cloneNode(true);
+          (0, import_web12.insert)(_el$4, (0, import_web13.createComponent)(Preview, {
+            soundId
+          }), null);
+          (0, import_web12.insert)(_el$4, (0, import_web13.createComponent)(Text, {
+            get children() {
+              return `${sound.emojiName || ""} ${sound.name}`.trim();
+            }
+          }), null);
+          (0, import_web15.effect)((_$p) => (0, import_web11.classList)(_el$4, {
+            [style_default.flexRow]: true,
+            [style_default.selected]: selected?.()
+          }, _$p));
+          return _el$4;
+        })();
+      }
       const emojiUrl = `https://cdn.discordapp.com/emojis/${sound.emojiId}.${emoji.animated ? "gif" : "png"}?size=16&quality=lossless`;
       return (() => {
-        const _el$4 = _tmpl$22.cloneNode(true), _el$5 = _el$4.firstChild;
-        (0, import_web12.insert)(_el$4, (0, import_web13.createComponent)(Preview, {
+        const _el$5 = _tmpl$32.cloneNode(true), _el$6 = _el$5.firstChild;
+        (0, import_web12.insert)(_el$5, (0, import_web13.createComponent)(Preview, {
           soundId
-        }), _el$5);
-        (0, import_web17.setAttribute)(_el$5, "src", emojiUrl);
-        (0, import_web12.insert)(_el$4, (0, import_web13.createComponent)(Text, {
+        }), _el$6);
+        (0, import_web17.setAttribute)(_el$6, "src", emojiUrl);
+        (0, import_web12.insert)(_el$5, (0, import_web13.createComponent)(Text, {
           get children() {
             return sound.name;
           }
@@ -366,31 +409,31 @@
             [style_default.flexRow]: true,
             [style_default.selected]: selected?.()
           }, _v$4 = style_default.emoji;
-          _p$._v$3 = (0, import_web11.classList)(_el$4, _v$3, _p$._v$3);
-          _v$4 !== _p$._v$4 && (0, import_web14.className)(_el$5, _p$._v$4 = _v$4);
+          _p$._v$3 = (0, import_web11.classList)(_el$5, _v$3, _p$._v$3);
+          _v$4 !== _p$._v$4 && (0, import_web14.className)(_el$6, _p$._v$4 = _v$4);
           return _p$;
         }, {
           _v$3: void 0,
           _v$4: void 0
         });
-        return _el$4;
+        return _el$5;
       })();
     }
     return (() => {
-      const _el$6 = _tmpl$32.cloneNode(true);
-      (0, import_web12.insert)(_el$6, (0, import_web13.createComponent)(Preview, {
+      const _el$7 = _tmpl$22.cloneNode(true);
+      (0, import_web12.insert)(_el$7, (0, import_web13.createComponent)(Preview, {
         soundId
       }), null);
-      (0, import_web12.insert)(_el$6, (0, import_web13.createComponent)(Text, {
+      (0, import_web12.insert)(_el$7, (0, import_web13.createComponent)(Text, {
         get children() {
           return `${sound.emojiName || ""} ${sound.name}`.trim();
         }
       }), null);
-      (0, import_web15.effect)((_$p) => (0, import_web11.classList)(_el$6, {
+      (0, import_web15.effect)((_$p) => (0, import_web11.classList)(_el$7, {
         [style_default.flexRow]: true,
         [style_default.selected]: selected?.()
       }, _$p));
-      return _el$6;
+      return _el$7;
     })();
   }
   (0, import_web10.delegateEvents)(["click"]);
