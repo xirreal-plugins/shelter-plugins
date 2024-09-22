@@ -5,6 +5,23 @@ const {
 
 import classes from "./style.scss";
 
+const specialCodes = {
+   win32: {
+      CTRL: 162,
+      RCTRL: 163,
+      ALT: 164,
+      SHIFT: 160,
+      RSHIFT: 161,
+   },
+   linux: {
+      CTRL: 37,
+      RCTRL: 105,
+      ALT: 64,
+      SHIFT: 50,
+      RSHIFT: 62,
+   },
+};
+
 export function KeybindCapture({ keybind, setValid, setKeybind, setScancodes }) {
    const [isCapturing, setIsCapturing] = createSignal(false);
 
@@ -18,23 +35,32 @@ export function KeybindCapture({ keybind, setValid, setKeybind, setScancodes }) 
       const modifiersCode = [];
 
       if (e.ctrlKey) {
-         modifiers.push("CTRL");
-         modifiersCode.push(17);
+         if (e.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+            modifiers.push("RIGHT CTRL");
+            modifiersCode.push(specialCodes[DiscordNative.process.platform].RCTRL);
+         } else {
+            modifiers.push("CTRL");
+            modifiersCode.push(specialCodes[DiscordNative.process.platform].CTRL);
+         }
       }
 
       if (e.altKey) {
          modifiers.push("ALT");
-         modifiersCode.push(18);
+         modifiersCode.push(specialCodes[DiscordNative.process.platform].ALT);
       }
 
       if (e.shiftKey) {
-         modifiers.push("SHIFT");
-         modifiersCode.push(16);
+         if (e.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
+            modifiers.push("RIGHT SHIFT");
+            modifiersCode.push(specialCodes[DiscordNative.process.platform].RSHIFT);
+         } else {
+            modifiers.push("SHIFT");
+            modifiersCode.push(specialCodes[DiscordNative.process.platform].SHIFT);
+         }
       }
 
       if (e.metaKey) {
-         modifiers.push("META");
-         modifiersCode.push(91);
+         return; // TODO: Implement meta key
       }
 
       setValid(false);

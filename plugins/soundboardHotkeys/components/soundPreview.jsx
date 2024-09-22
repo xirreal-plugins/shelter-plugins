@@ -37,6 +37,19 @@ export function SoundWithEmoji({ soundId, selected }) {
 
    if (!sound.emojiName && sound.emojiId) {
       const emoji = EmojiStore.getCustomEmojiById(sound.emojiId);
+      if (!emoji) {
+         return (
+            <div
+               classList={{
+                  [classes.flexRow]: true,
+                  [classes.selected]: selected?.(),
+               }}
+            >
+               <Preview soundId={soundId} />
+               <Text>{`${sound.emojiName || ""} ${sound.name}`.trim()}</Text>
+            </div>
+         );
+      }
       const emojiUrl = `https://cdn.discordapp.com/emojis/${sound.emojiId}.${emoji.animated ? "gif" : "png"}?size=16&quality=lossless`;
 
       return (
