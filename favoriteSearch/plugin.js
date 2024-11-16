@@ -68,7 +68,7 @@
   } = shelter;
   function AddTagModal(closeModal, gifData) {
     const [tags, setTags] = createSignal("");
-    let tagsArray = store.gifs[gifData.url] || [];
+    let tagsArray = store[gifData.url] || [];
     setTags(tagsArray.join(", "));
     return (0, import_web4.createComponent)(ModalRoot, {
       get size() {
@@ -105,7 +105,7 @@
           confirmText: "Save",
           onConfirm: () => {
             tagsArray = tags().split(",").map((tag) => tag.trim());
-            store.gifs[gifData.url] = tagsArray;
+            store[gifData.url] = tagsArray;
             closeModal();
           }
         })];
@@ -181,7 +181,7 @@
       fiber.props.__favorites = fiber.props.favorites;
     }
     fiber.props.favorites = fiber.props.__favorites.filter((gif) => {
-      for (const tag of store2.gifs[gif.url] ?? []) {
+      for (const tag of store2[gif.url] ?? []) {
         if (tag.toLowerCase().includes(text.toLowerCase())) {
           return true;
         }
@@ -202,7 +202,6 @@
     subscribe("GIF_PICKER_QUERY", (e) => {
       handleBack();
     });
-    store2.gifs ??= {};
   }
   return __toCommonJS(favoriteSearch_exports);
 })();
