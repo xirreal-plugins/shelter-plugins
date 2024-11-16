@@ -35,17 +35,15 @@ export function AddTagModal(closeModal, gifData) {
                   }}
                />
             </div>
-            <TextArea
-               placeholder="Enter tags separated by commas"
-               value = {tags()}
-               onInput={(text) => setTags(text)}
-            />
+            <TextArea placeholder="Enter tags separated by commas" value={tags()} onInput={(text) => setTags(text)} />
          </ModalBody>
          <ModalConfirmFooter
             close={closeModal}
             confirmText="Save"
             onConfirm={() => {
-               tagsArray = tags().split(",").map((tag) => tag.trim());
+               tagsArray = tags()
+                  .split(",")
+                  .map((tag) => tag.trim());
                store.gifs[gifData.url] = tagsArray;
                closeModal();
             }}
@@ -53,4 +51,3 @@ export function AddTagModal(closeModal, gifData) {
       </ModalRoot>
    );
 }
-
