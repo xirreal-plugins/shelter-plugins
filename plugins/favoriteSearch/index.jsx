@@ -66,7 +66,7 @@ function handleSearch(text) {
    }
 
    fiber.props.favorites = fiber.props.__favorites.filter((gif) => {
-      for (const tag of store.gifs[gif.url] ?? []) {
+      for (const tag of store[gif.url] ?? []) {
          if (tag.toLowerCase().includes(text.toLowerCase())) {
             return true;
          }
@@ -94,6 +94,4 @@ export function onLoad() {
    subscribe("GIF_PICKER_QUERY", (e) => {
       handleBack();
    });
-
-   store.gifs ??= {};
 }
