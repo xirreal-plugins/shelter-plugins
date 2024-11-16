@@ -1,6 +1,6 @@
 {
    "devDependencies": {
-      "@biomejs/biome": "1.9.2",
+      "@biomejs/biome": "1.9.4",
       "@uwu/lune": "^1.4.2",
       "@uwu/shelter-defs": "^1.4.1"
    },
