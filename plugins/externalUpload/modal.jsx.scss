@@ -1,0 +1,128 @@
+.uploadArea {
+  border: 2px dashed var(--interactive-normal);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.uploadArea:hover,
+.uploadArea.dragOver,
+.previewItem:hover {
+  border-color: white;
+  background-color: var(--brand-15a);
+}
+
+.uploadArea.uploading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.progressBar {
+  width: 100%;
+  height: 20px;
+  background-color: var(--status-offline);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--status-positive);
+  transition: width 0.3s ease-in-out;
+}
+
+.previewArea {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.previewItem {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--interactive-normal);
+  border-radius: 8px;
+  padding: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.previewImage,
+.previewVideo {
+  max-width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.previewIcon {
+  font-size: 48px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewItemInfo {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.removeButton {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  padding: 4px 5px 1px 5px;
+  font-size: 12px;
+  color: var(--status-danger);
+  background-color: color-mix(in srgb, var(--background-tertiary) 90%, transparent);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.removeButton:hover {
+  transform: scale(1.1);
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(-5deg) scale(1.1);
+  }
+
+  75% {
+    transform: rotate(5deg) scale(1.1);
+  }
+
+  100% {
+    transform: rotate(0deg) scale(1.1);
+  }
+}
+
+.uploadModal {
+  width: 645px;
+  user-select: none;
+}
