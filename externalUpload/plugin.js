@@ -17716,7 +17716,8 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       Show
     },
     util: {
-      log
+      log,
+      getFiber
     },
     plugin: {
       store
@@ -18005,14 +18006,12 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
     updateS3Client(plugin.store.region, plugin.store.endpoint, plugin.store.accessKeyId, plugin.store.secretAccessKey, plugin.store.bucket);
   }
   function onLoad() {
-    plugin.store ??= {
-      region: "",
-      endpoint: "",
-      accessKeyId: "",
-      secretAccessKey: "",
-      bucket: "",
-      publicUrl: ""
-    };
+    plugin.store.region ??= "";
+    plugin.store.endpoint ??= "";
+    plugin.store.accessKeyId ??= "";
+    plugin.store.secretAccessKey ??= "";
+    plugin.store.bucket ??= "";
+    plugin.store.publicUrl ??= "";
     updateConfig();
     observeDom('[class^="giftIconContainer"]', (element) => {
       if (element.dataset.externalUpload)
