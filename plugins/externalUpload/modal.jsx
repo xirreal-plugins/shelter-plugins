@@ -5,7 +5,7 @@ import { formatFileSize, getFilePreview, uploadFiles } from './utils';
 const {
   ui: { ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter, ModalSizes, showToast },
   solid: { createSignal, createEffect, Show },
-  util: { log },
+  util: { log, getFiber },
   plugin: { store }
 } = shelter;
 

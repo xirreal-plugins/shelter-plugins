@@ -21,14 +21,12 @@ function updateConfig() {
 }
 
 export function onLoad() {
-   plugin.store ??= {
-      region: "",
-      endpoint: "",
-      accessKeyId: "",
-      secretAccessKey: "",
-      bucket: "",
-      publicUrl: "",
-   };
+   plugin.store.region ??= "";
+   plugin.store.endpoint ??= "";
+   plugin.store.accessKeyId ??= "";
+   plugin.store.secretAccessKey ??= "";
+   plugin.store.bucket ??= "";
+   plugin.store.publicUrl ??= "";
 
    updateConfig();
 
