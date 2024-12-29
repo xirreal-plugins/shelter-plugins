@@ -7,6 +7,6 @@
    "type": "module",
    "scripts": {
       "format": "biome format --write .",
-      "build": "pnpm exec lune ci && cd site && pnpm exec astro build --outDir ../dist"
+      "build": "pnpm exec lune ci && cd site && pnpm exec astro build && cp -r ./dist ../dist"
    }
 }
