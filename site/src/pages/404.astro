@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from "astro:content";
+import RichHead from "../components/RichHead.astro";
+import GitHub from "../components/GitHub.astro";
+
+const username = "xirreal";
+const profilePicUrl = `https://github.com/${username}.png`;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<RichHead/>
+	</head>
+	<body class="bg-[#1b1026] text-gray-200 h-screen">
+      <div class="m-4 p-4 bg-[#291c36] rounded-2 flex flex-col items-center justify-start shadow-md">
+         <img src={profilePicUrl} alt={`${username}'s profile picture`} class="profile-image w-24 h-24 rounded-full mb-4 border-2 border-[#51425e]">
+         <h1 class="text-xl font-bold mb-2 text-center">404 - Page not found</h1>
+         <p class="text-gray-400 text-center">
+            The page you're looking for doesn't exist. <br>
+            You probably tried accessing a shelter plugin URL directly, which won't work. <br><br>
+
+            Remember, you <b class="text-gray-200">need to copy the URL into shelter, not open it in a browser!</b> <br><br>
+            Please go back to the <a href="/" class="text-[#9171ad] underline hover:text-[#bf96e3]">homepage</a> and try again. <br><br>
+         </p>
+         <GitHub/>
+		</div>
+	</body>
+</html>
+
+
