@@ -18,7 +18,7 @@ jobs:
          - run: npm install --global pnpm
 
          - name: Install deps
-           run: pnpm m i
+           run: pnpm i
 
          - name: Build plugins and website
            run: pnpm build
