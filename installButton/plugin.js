@@ -152,7 +152,7 @@
   line-height: 20px;
 }
 `);
-  var index_jsx_default = { "author": "eeurUa_author", "alignRight": "eeurUa_alignRight", "content": "eeurUa_content", "copyLink": "eeurUa_copyLink", "icon": "eeurUa_icon", "card": "eeurUa_card", "title": "eeurUa_title", "description": "eeurUa_description", "copied": "eeurUa_copied", "header": "eeurUa_header" };
+  var index_jsx_default = { "content": "eeurUa_content", "alignRight": "eeurUa_alignRight", "header": "eeurUa_header", "copyLink": "eeurUa_copyLink", "title": "eeurUa_title", "card": "eeurUa_card", "icon": "eeurUa_icon", "copied": "eeurUa_copied", "author": "eeurUa_author", "description": "eeurUa_description" };
 
   // plugins/installButton/icons.jsx
   var import_web = __toESM(require_web(), 1);
