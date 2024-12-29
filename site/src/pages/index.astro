@@ -1,0 +1,116 @@
+---
+import { getCollection, render } from "astro:content";
+import RichHead from "../components/RichHead.astro";
+import SearchBar from "../components/SearchBar.astro";
+import GitHub from "../components/GitHub.astro";
+import CopyIcon from "../components/CopyIcon.astro";
+
+const plugins = await getCollection("plugins");
+
+plugins.sort((a: any, b: any) => {
+   if (a.data.pinned && !b.data.pinned) return -1;
+   if (!a.data.pinned && b.data.pinned) return 1;
+   return 0;
+});
+
+const username = "xirreal";
+const profilePicUrl = `https://github.com/${username}.png`;
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<RichHead/>
+	</head>
+	<body class="bg-[#1b1026] text-gray-200">
+		<div class="grid grid-cols-1 md:grid-cols-[30%_70%] gap-4 p-4 box-border md:h-screen">
+			<div class="p-4 bg-[#291c36] rounded-2 flex flex-col items-center justify-start shadow-md md:h-full">
+				<img src={profilePicUrl} alt={`${username}'s profile picture`} class="profile-image w-24 h-24 rounded-full mb-4 border-2 border-[#51425e]">
+				<h1 class="text-xl font-bold mb-2 text-center">{username}'s shelter plugins</h1>
+				<p class="text-gray-400 text-center">
+					Welcome! <br>This is a collection of the plugins I've made for the <a href="https://shelter.uwu.network" class="text-[#9171ad] underline hover:text-[#bf96e3]">shelter</a> client mod.
+				</p>
+				<br/>
+				<h2 class="text-center">
+					How to use this page:
+				</h2>
+				<p class="text-gray-400 text-center">
+					Search for plugins using the search bar on the right. Once you've found a plugin you like, copy the URL into the <kbd class="text-gray-200">Add plugin</kbd> modal in the shelter settings page.
+					Preferrably, you can use the <b class="text-gray-200">OneClick™</b> install button by installing the, appropriately named, <kbd class="text-gray-200">Install Button</kbd> plugin which you can find on this page.
+				</p>
+				<GitHub/>
+			</div>
+			<div class="p-4 pt-0 bg-[#291c36] rounded-2 shadow-md md:mr-4
+				md:h-full
+				md:overflow-y-auto
+				[&::-webkit-scrollbar]:w-3.5
+				[&::-webkit-scrollbar-track]:rounded-full
+				[&::-webkit-scrollbar-track]:bg-transparent
+				[&::-webkit-scrollbar-thumb]:rounded-full
+				[&::-webkit-scrollbar-thumb]:bg-[#1b102680]"
+			>
+				<div class="sticky pt-4 top-0 bg-[#291c36] z-10 pb-2 border-b border-[#51425e]">
+					<h2 class="text-2xl font-bold">Plugins</h2>
+					<div class="mt-4 mb-2">
+						<SearchBar />
+					</div>
+				</div>
+
+				<!-- Plugin Items -->
+				<div class="mt-4 space-y-4">
+					{plugins.map(async (plugin: any) => {
+						const { Content } = await render(plugin);
+						return (
+							<div class="plugin-item mb-4 p-4 bg-[#372747] rounded-2 shadow-sm hover:shadow-md transition-shadow border border-[#51425e] flex flex-col md:flex-row gap-4 items-start">
+								<div class="flex-1">
+									<h3 class="text-lg font-semibold text-gray-100">{plugin.data.title}</h3>
+									<p class="text-gray-400 mt-2">{plugin.data.description}</p>
+									<Content/>
+									<p class="mt-2">OneClick™ install:</p>
+									<a href={`discord:///${plugin.data.url}`} class="inline-block mt-2">
+										<img src="/send.svg" alt={`One click installer for ${plugin.data.title}`} class="w-32 h-auto" />
+									</a>
+									<div class="mt-2 relative">
+										Manual installation:
+										<kbd onclick="document.copyToClipboard(this)" class="text-[#9171ad] underline hover:text-[#bf96e3] break-all cursor-pointer" data-url={plugin.data.url}>
+											{plugin.data.url}
+											<CopyIcon />
+										</kbd>
+										<div class="absolute -bottom-10 bg-[#291c36] border-[#51425e] border-1 border-solid px-2 py-1 rounded-2 opacity-0 transition-opacity duration-300">Copied!</div>
+									</div>
+								</div>
+								{plugin.data.demoImage && (
+									<div class="flex-shrink-0 w-full md:w-48 lg:w-64">
+										<img
+											src={plugin.data.demoImage}
+											alt={`${plugin.data.title} example`}
+											class="w-full h-auto rounded-2 object-cover"
+										/>
+									</div>
+								)}
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		</div>
+
+		<script>
+			// @ts-ignore
+			document.copyToClipboard = (target: HTMLElement) => {
+				const url = target.dataset.url!;
+				navigator.clipboard.writeText(url).then(() => {
+					target.nextElementSibling?.classList.remove("opacity-0");
+					// @ts-ignore
+					if(target.dataset.timeoutId !== undefined) {
+						// @ts-ignore
+						clearTimeout(target.dataset.timeoutId)
+					}
+					// @ts-ignore
+					target.dataset.timeoutId = setTimeout(() => {
+						target.nextElementSibling?.classList.add('opacity-0');
+					}, 2000);
+				});
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<div id="container" class="!hidden">
+	<input
+		type="text"
+		placeholder="🔍 Search plugins..."
+		id="plugin-search"
+		class="w-full p-3 rounded-2 border border-[#51425e] bg-[#1b1026] text-gray-200 focus:outline-none focus:ring-2 focus:ring-[#9171ad] focus:border-[#9171ad] transition-shadow"
+	/>
+</div>
+
+<script>
+	const searchInput = document.getElementById('plugin-search') as HTMLInputElement;
+	const pluginItems = document.querySelectorAll('.plugin-item');
+
+   document.getElementById("container")!.classList.remove('!hidden');
+
+	searchInput.addEventListener('input', (e) => {
+		const searchTerm = (e.target as HTMLInputElement).value.toLowerCase();
+
+		pluginItems.forEach((item) => {
+			console.log(item);
+			const title = item.querySelector('h3')?.textContent?.toLowerCase() || '';
+			const description = item.querySelector('p')?.textContent?.toLowerCase() || '';
+
+			if (title.includes(searchTerm) || description.includes(searchTerm)) {
+				(item as HTMLElement).classList.remove('!hidden');
+			} else {
+				(item as HTMLElement).classList.add('!hidden');
+			}
+		});
+	});
+</script>
+

@@ -4,7 +4,6 @@ const {
    plugin: { store },
 } = shelter;
 
-
 export function AddTagModal(closeModal, gifData) {
    const [tags, setTags] = createSignal("");
 
