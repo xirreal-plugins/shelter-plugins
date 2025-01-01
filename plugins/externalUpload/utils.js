@@ -1,4 +1,4 @@
-import { S3Client } from "@aws-sdk/client-s3";
+import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
 import xxhash from "xxhash-wasm";
 
@@ -107,7 +107,7 @@ export async function uploadFiles(files, onProgress) {
       });
 
       const uploadPromise = upload.done();
-      uploadPromise.catch((error) => {
+      uploadPromise.catch(() => {
          uploadedSizes[name] = file.size;
          onProgress(getTotalUploadedSize(uploadedSizes) / totalSize);
       });
@@ -116,4 +116,26 @@ export async function uploadFiles(files, onProgress) {
    });
 
    return Promise.allSettled(uploadPromises);
+}
+
+export async function getAllFiles() {
+   const response = await s3Client.send(
+      new ListObjectsV2Command({
+         Bucket: BUCKET_NAME,
+      }),
+   );
+
+   return response.Contents;
+}
+
+export function formatDate(date) {
+   return new Date(date).toLocaleString();
+}
+
+export function getUrl(file, publicUrl) {
+   if (publicUrl) {
+      return `${publicUrl}/${file.Key}`;
+   } else {
+      return file.Location;
+   }
 }
