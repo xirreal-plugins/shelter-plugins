@@ -7332,8 +7332,8 @@
     onLoad: () => onLoad,
     settings: () => settings
   });
+  var import_web10 = __toESM(require_web());
   var import_web11 = __toESM(require_web());
-  var import_web12 = __toESM(require_web());
 
   // plugins/externalUpload/modal.jsx
   var import_web = __toESM(require_web());
@@ -7345,7 +7345,6 @@
   var import_web7 = __toESM(require_web());
   var import_web8 = __toESM(require_web());
   var import_web9 = __toESM(require_web());
-  var import_web10 = __toESM(require_web());
 
   // plugins/externalUpload/modal.jsx.scss
   shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
@@ -7473,8 +7472,64 @@
   user-select: none;
   width: 645px;
 }
+
+.-bMcgq_footer {
+  justify-content: flex-end;
+  gap: .5rem;
+  display: flex;
+}
+
+.-bMcgq_dashboardButton {
+  margin-right: auto;
+}
+
+.-bMcgq_dashboardTable {
+  border-collapse: collapse;
+  background-color: var(--background-primary);
+  border-radius: 8px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 4px 6px #0000001a;
+}
+
+.-bMcgq_dashboardTable thead {
+  background-color: var(--background-tertiary);
+  color: var(--text-normal);
+}
+
+.-bMcgq_dashboardTable th {
+  text-align: left;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--background-modifier-border);
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.-bMcgq_dashboardTable tbody tr {
+  transition: background-color .3s;
+}
+
+.-bMcgq_dashboardTable tbody tr:nth-child(2n) {
+  background-color: var(--background-secondary);
+}
+
+.-bMcgq_dashboardTable tbody tr:hover {
+  background-color: var(--brand-15a);
+  color: var(--text-bright);
+}
+
+.-bMcgq_dashboardTable td {
+  border-bottom: 1px solid var(--background-modifier-border);
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.-bMcgq_dashboardTable td:last-child {
+  text-align: center;
+}
 `);
-  var modal_jsx_default = { "previewVideo": "-bMcgq_previewVideo", "uploadArea": "-bMcgq_uploadArea", "previewImage": "-bMcgq_previewImage", "dragOver": "-bMcgq_dragOver", "progressFill": "-bMcgq_progressFill", "previewItemInfo": "-bMcgq_previewItemInfo", "removeButton": "-bMcgq_removeButton", "previewItem": "-bMcgq_previewItem", "progressBar": "-bMcgq_progressBar", "previewIcon": "-bMcgq_previewIcon", "shake": "-bMcgq_shake", "previewArea": "-bMcgq_previewArea", "uploadModal": "-bMcgq_uploadModal", "uploading": "-bMcgq_uploading" };
+  var modal_jsx_default = { "previewIcon": "-bMcgq_previewIcon", "uploading": "-bMcgq_uploading", "previewVideo": "-bMcgq_previewVideo", "previewArea": "-bMcgq_previewArea", "progressBar": "-bMcgq_progressBar", "previewImage": "-bMcgq_previewImage", "shake": "-bMcgq_shake", "dashboardButton": "-bMcgq_dashboardButton", "uploadModal": "-bMcgq_uploadModal", "removeButton": "-bMcgq_removeButton", "previewItem": "-bMcgq_previewItem", "uploadArea": "-bMcgq_uploadArea", "dragOver": "-bMcgq_dragOver", "dashboardTable": "-bMcgq_dashboardTable", "previewItemInfo": "-bMcgq_previewItemInfo", "footer": "-bMcgq_footer", "progressFill": "-bMcgq_progressFill" };
 
   // node_modules/.pnpm/@smithy+protocol-http@4.1.8/node_modules/@smithy/protocol-http/dist-es/extensions/httpExtensionConfiguration.js
   var getHttpHandlerExtensionConfiguration = (runtimeConfig) => {
@@ -9813,6 +9868,7 @@ ${toHex(hashedRequest)}`;
     }
     throw new TypeError(`Expected integer, got ${typeof value}: ${value}`);
   };
+  var expectInt32 = (value) => expectSizedInt(value, 32);
   var expectShort = (value) => expectSizedInt(value, 16);
   var expectByte = (value) => expectSizedInt(value, 8);
   var expectSizedInt = (value, size) => {
@@ -9883,6 +9939,12 @@ ${toHex(hashedRequest)}`;
       return expectLong(parseNumber(value));
     }
     return expectLong(value);
+  };
+  var strictParseInt32 = (value) => {
+    if (typeof value === "string") {
+      return expectInt32(parseNumber(value));
+    }
+    return expectInt32(value);
   };
   var strictParseShort = (value) => {
     if (typeof value === "string") {
@@ -10189,6 +10251,9 @@ ${toHex(hashedRequest)}`;
     };
   };
 
+  // node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/get-array-if-single-item.js
+  var getArrayIfSingleItem = (mayBeArray) => Array.isArray(mayBeArray) ? mayBeArray : [mayBeArray];
+
   // node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/get-value-from-text-node.js
   var getValueFromTextNode = (obj) => {
     const textNodeName = "#text";
@@ -10319,6 +10384,14 @@ ${toHex(hashedRequest)}`;
   };
   var nonNullish = (_) => _ != null;
   var pass = (_) => _;
+
+  // node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/quote-header.js
+  function quoteHeader(part) {
+    if (part.includes(",") || part.includes('"')) {
+      part = `"${part.replace(/"/g, '\\"')}"`;
+    }
+    return part;
+  }
 
   // node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/ser-utils.js
   var serializeDateTime = (date) => date.toISOString().replace(".000Z", "Z");
@@ -14717,6 +14790,29 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
     b2.m("GET").h(headers).q(query).b(body);
     return b2.build();
   };
+  var se_ListObjectsV2Command = async (input, context) => {
+    const b2 = requestBuilder(input, context);
+    const headers = map({}, isSerializableHeaderValue, {
+      [_xarp]: input[_RP],
+      [_xaebo]: input[_EBO],
+      [_xaooa]: [() => isSerializableHeaderValue(input[_OOA]), () => (input[_OOA] || []).map(quoteHeader).join(", ")]
+    });
+    b2.bp("/");
+    b2.p("Bucket", () => input.Bucket, "{Bucket}", false);
+    const query = map({
+      [_lt]: [, "2"],
+      [_de]: [, input[_D]],
+      [_et]: [, input[_ET]],
+      [_mk]: [() => input.MaxKeys !== void 0, () => input[_MK].toString()],
+      [_pr]: [, input[_P]],
+      [_ct_]: [, input[_CTo]],
+      [_fo]: [() => input.FetchOwner !== void 0, () => input[_FO].toString()],
+      [_sa]: [, input[_SA]]
+    });
+    let body;
+    b2.m("GET").h(headers).q(query).b(body);
+    return b2.build();
+  };
   var se_PutObjectCommand = async (input, context) => {
     const b2 = requestBuilder(input, context);
     const headers = map({}, isSerializableHeaderValue, {
@@ -14934,6 +15030,57 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
     const data = expectNonNull(expectObject(await parseXmlBody(output.body, context)), "body");
     if (data[_C] != null) {
       contents[_C] = de_SessionCredentials(data[_C], context);
+    }
+    return contents;
+  };
+  var de_ListObjectsV2Command = async (output, context) => {
+    if (output.statusCode !== 200 && output.statusCode >= 300) {
+      return de_CommandError(output, context);
+    }
+    const contents = map({
+      $metadata: deserializeMetadata2(output),
+      [_RC]: [, output.headers[_xarc]]
+    });
+    const data = expectNonNull(expectObject(await parseXmlBody(output.body, context)), "body");
+    if (data.CommonPrefixes === "") {
+      contents[_CP] = [];
+    } else if (data[_CP] != null) {
+      contents[_CP] = de_CommonPrefixList(getArrayIfSingleItem(data[_CP]), context);
+    }
+    if (data.Contents === "") {
+      contents[_Co] = [];
+    } else if (data[_Co] != null) {
+      contents[_Co] = de_ObjectList(getArrayIfSingleItem(data[_Co]), context);
+    }
+    if (data[_CTo] != null) {
+      contents[_CTo] = expectString(data[_CTo]);
+    }
+    if (data[_D] != null) {
+      contents[_D] = expectString(data[_D]);
+    }
+    if (data[_ET] != null) {
+      contents[_ET] = expectString(data[_ET]);
+    }
+    if (data[_IT] != null) {
+      contents[_IT] = parseBoolean(data[_IT]);
+    }
+    if (data[_KC] != null) {
+      contents[_KC] = strictParseInt32(data[_KC]);
+    }
+    if (data[_MK] != null) {
+      contents[_MK] = strictParseInt32(data[_MK]);
+    }
+    if (data[_N] != null) {
+      contents[_N] = expectString(data[_N]);
+    }
+    if (data[_NCT] != null) {
+      contents[_NCT] = expectString(data[_NCT]);
+    }
+    if (data[_P] != null) {
+      contents[_P] = expectString(data[_P]);
+    }
+    if (data[_SA] != null) {
+      contents[_SA] = expectString(data[_SA]);
     }
     return contents;
   };
@@ -15215,6 +15362,78 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       return n2.n(_Ta);
     });
   };
+  var de_ChecksumAlgorithmList = (output, context) => {
+    return (output || []).filter((e3) => e3 != null).map((entry) => {
+      return expectString(entry);
+    });
+  };
+  var de_CommonPrefix = (output, context) => {
+    const contents = {};
+    if (output[_P] != null) {
+      contents[_P] = expectString(output[_P]);
+    }
+    return contents;
+  };
+  var de_CommonPrefixList = (output, context) => {
+    return (output || []).filter((e3) => e3 != null).map((entry) => {
+      return de_CommonPrefix(entry, context);
+    });
+  };
+  var de__Object = (output, context) => {
+    const contents = {};
+    if (output[_K] != null) {
+      contents[_K] = expectString(output[_K]);
+    }
+    if (output[_LM] != null) {
+      contents[_LM] = expectNonNull(parseRfc3339DateTimeWithOffset(output[_LM]));
+    }
+    if (output[_ETa] != null) {
+      contents[_ETa] = expectString(output[_ETa]);
+    }
+    if (output.ChecksumAlgorithm === "") {
+      contents[_CA] = [];
+    } else if (output[_CA] != null) {
+      contents[_CA] = de_ChecksumAlgorithmList(getArrayIfSingleItem(output[_CA]), context);
+    }
+    if (output[_Si] != null) {
+      contents[_Si] = strictParseLong(output[_Si]);
+    }
+    if (output[_SC] != null) {
+      contents[_SC] = expectString(output[_SC]);
+    }
+    if (output[_O] != null) {
+      contents[_O] = de_Owner(output[_O], context);
+    }
+    if (output[_RSe] != null) {
+      contents[_RSe] = de_RestoreStatus(output[_RSe], context);
+    }
+    return contents;
+  };
+  var de_ObjectList = (output, context) => {
+    return (output || []).filter((e3) => e3 != null).map((entry) => {
+      return de__Object(entry, context);
+    });
+  };
+  var de_Owner = (output, context) => {
+    const contents = {};
+    if (output[_DN] != null) {
+      contents[_DN] = expectString(output[_DN]);
+    }
+    if (output[_ID_] != null) {
+      contents[_ID_] = expectString(output[_ID_]);
+    }
+    return contents;
+  };
+  var de_RestoreStatus = (output, context) => {
+    const contents = {};
+    if (output[_IRIP] != null) {
+      contents[_IRIP] = parseBoolean(output[_IRIP]);
+    }
+    if (output[_RED] != null) {
+      contents[_RED] = expectNonNull(parseRfc3339DateTimeWithOffset(output[_RED]));
+    }
+    return contents;
+  };
   var de_SessionCredentials = (output, context) => {
     const contents = {};
     if (output[_AKI] != null) {
@@ -15255,31 +15474,52 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   var _CLo = "ContentLength";
   var _CMD = "ContentMD5";
   var _CMU = "CompletedMultipartUpload";
+  var _CP = "CommonPrefixes";
   var _CPo = "CompletedPart";
   var _CSHA = "ChecksumSHA1";
   var _CSHAh = "ChecksumSHA256";
   var _CT = "ContentType";
+  var _CTo = "ContinuationToken";
+  var _Co = "Contents";
+  var _D = "Delimiter";
+  var _DN = "DisplayName";
   var _E = "Expires";
   var _EBO = "ExpectedBucketOwner";
+  var _ET = "EncodingType";
   var _ETa = "ETag";
   var _Exp = "Expiration";
+  var _FO = "FetchOwner";
   var _GFC = "GrantFullControl";
   var _GR = "GrantRead";
   var _GRACP = "GrantReadACP";
   var _GWACP = "GrantWriteACP";
+  var _ID_ = "ID";
   var _IM = "IfMatch";
   var _IMIT = "IfMatchInitiatedTime";
   var _INM = "IfNoneMatch";
+  var _IRIP = "IsRestoreInProgress";
+  var _IT = "IsTruncated";
   var _K = "Key";
+  var _KC = "KeyCount";
   var _L = "Location";
+  var _LM = "LastModified";
+  var _MK = "MaxKeys";
+  var _N = "Name";
+  var _NCT = "NextContinuationToken";
+  var _O = "Owner";
   var _OK = "ObjectKey";
   var _OLLHS = "ObjectLockLegalHoldStatus";
   var _OLM = "ObjectLockMode";
   var _OLRUD = "ObjectLockRetainUntilDate";
+  var _OOA = "OptionalObjectAttributes";
+  var _P = "Prefix";
   var _PN = "PartNumber";
   var _Part = "Parts";
   var _RC = "RequestCharged";
+  var _RED = "RestoreExpiryDate";
   var _RP = "RequestPayer";
+  var _RSe = "RestoreStatus";
+  var _SA = "StartAfter";
   var _SAK = "SecretAccessKey";
   var _SC = "StorageClass";
   var _SM = "SessionMode";
@@ -15306,13 +15546,21 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   var _cl_ = "content-length";
   var _cm = "content-md5";
   var _ct = "content-type";
+  var _ct_ = "continuation-token";
+  var _de = "delimiter";
   var _e = "expires";
+  var _et = "encoding-type";
   var _eta = "etag";
+  var _fo = "fetch-owner";
   var _im = "if-match";
   var _inm = "if-none-match";
+  var _lt = "list-type";
   var _me = "member";
+  var _mk = "max-keys";
   var _pN = "partNumber";
+  var _pr = "prefix";
   var _s = "session";
+  var _sa = "start-after";
   var _t = "tagging";
   var _u = "uploads";
   var _uI = "uploadId";
@@ -15337,6 +15585,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   var _xaollh = "x-amz-object-lock-legal-hold";
   var _xaolm = "x-amz-object-lock-mode";
   var _xaolrud = "x-amz-object-lock-retain-until-date";
+  var _xaooa = "x-amz-optional-object-attributes";
   var _xaos = "x-amz-object-size";
   var _xarc = "x-amz-request-charged";
   var _xarp = "x-amz-request-payer";
@@ -17146,6 +17395,20 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   }).s("AmazonS3", "CreateMultipartUpload", {}).n("S3Client", "CreateMultipartUploadCommand").f(CreateMultipartUploadRequestFilterSensitiveLog, CreateMultipartUploadOutputFilterSensitiveLog).ser(se_CreateMultipartUploadCommand).de(de_CreateMultipartUploadCommand).build() {
   };
 
+  // node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/ListObjectsV2Command.js
+  var ListObjectsV2Command = class extends Command.classBuilder().ep({
+    ...commonParams,
+    Bucket: { type: "contextParams", name: "Bucket" },
+    Prefix: { type: "contextParams", name: "Prefix" }
+  }).m(function(Command2, cs2, config, o2) {
+    return [
+      getSerdePlugin(config, this.serialize, this.deserialize),
+      getEndpointPlugin(config, Command2.getEndpointParameterInstructions()),
+      getThrow200ExceptionsPlugin(config)
+    ];
+  }).s("AmazonS3", "ListObjectsV2", {}).n("S3Client", "ListObjectsV2Command").f(void 0, void 0).ser(se_ListObjectsV2Command).de(de_ListObjectsV2Command).build() {
+  };
+
   // node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/PutObjectCommand.js
   var PutObjectCommand = class extends Command.classBuilder().ep({
     ...commonParams,
@@ -17792,13 +18055,31 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
         onProgress(getTotalUploadedSize(uploadedSizes) / totalSize);
       });
       const uploadPromise = upload.done();
-      uploadPromise.catch((error) => {
+      uploadPromise.catch(() => {
         uploadedSizes[name] = file.size;
         onProgress(getTotalUploadedSize(uploadedSizes) / totalSize);
       });
       return uploadPromise;
     });
     return Promise.allSettled(uploadPromises);
+  }
+  async function getAllFiles() {
+    const response = await s3Client.send(
+      new ListObjectsV2Command({
+        Bucket: BUCKET_NAME
+      })
+    );
+    return response.Contents;
+  }
+  function formatDate2(date) {
+    return new Date(date).toLocaleString();
+  }
+  function getUrl(file, publicUrl) {
+    if (publicUrl) {
+      return `${publicUrl}/${file.Key}`;
+    } else {
+      return file.Location;
+    }
   }
 
   // plugins/externalUpload/modal.jsx
@@ -17807,23 +18088,31 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   var _tmpl$3 = /* @__PURE__ */ (0, import_web.template)(`<div><div></div></div>`, 4);
   var _tmpl$4 = /* @__PURE__ */ (0, import_web.template)(`<p>Uploading: <!>%</p>`, 3);
   var _tmpl$5 = /* @__PURE__ */ (0, import_web.template)(`<div></div>`, 2);
-  var _tmpl$6 = /* @__PURE__ */ (0, import_web.template)(`<p>Uploading... Please wait</p>`, 2);
-  var _tmpl$7 = /* @__PURE__ */ (0, import_web.template)(`<div><div><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 16);
-  var _tmpl$8 = /* @__PURE__ */ (0, import_web.template)(`<img>`, 1);
-  var _tmpl$9 = /* @__PURE__ */ (0, import_web.template)(`<div>\u{1F4C4}</div>`, 2);
+  var _tmpl$6 = /* @__PURE__ */ (0, import_web.template)(`<p>Total bucket usage: </p>`, 2);
+  var _tmpl$7 = /* @__PURE__ */ (0, import_web.template)(`<table><thead><tr><th>File Name</th><th>Size</th><th>Uploaded</th><th>Actions</th></tr></thead><tbody></tbody></table>`, 16);
+  var _tmpl$8 = /* @__PURE__ */ (0, import_web.template)(`<p>Uploading... Please wait</p>`, 2);
+  var _tmpl$9 = /* @__PURE__ */ (0, import_web.template)(`<div><div><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 16);
+  var _tmpl$10 = /* @__PURE__ */ (0, import_web.template)(`<img>`, 1);
+  var _tmpl$11 = /* @__PURE__ */ (0, import_web.template)(`<div>\u{1F4C4}</div>`, 2);
+  var _tmpl$12 = /* @__PURE__ */ (0, import_web.template)(`<tr><td></td><td></td><td></td><td></td></tr>`, 10);
   var {
     ui: {
       ModalRoot,
       ModalHeader,
       ModalBody,
-      ModalConfirmFooter,
+      ModalFooter,
       ModalSizes,
-      showToast
+      showToast,
+      Button,
+      ButtonColors,
+      ButtonSizes,
+      LinkButton
     },
     solid: {
       createSignal,
       createEffect,
-      Show
+      Show,
+      For
     },
     util: {
       log,
@@ -17839,6 +18128,8 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
     const [previews, setPreviews] = createSignal([]);
     const [isUploading, setIsUploading] = createSignal(false);
     const [uploadProgress, setUploadProgress] = createSignal(0);
+    const [dashOpen, setDashOpen] = createSignal(false);
+    const [dashboardFiles, setDashboardFiles] = createSignal([]);
     let fileInputRef;
     const handleDragOver = (e3) => {
       e3.preventDefault();
@@ -17906,11 +18197,8 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
         const editor = fiber.child.pendingProps.editor;
         for (let i2 = 0; i2 < uploadedUrls.length; i2++) {
           const result = uploadedUrls[i2];
-          if (store.publicUrl) {
-            editor.insertText(`${store.publicUrl}/${result.Key}`);
-          } else {
-            editor.insertText(result.Location);
-          }
+          const url = getUrl(result, store.publicUrl);
+          editor.insertText(url);
           if (i2 < uploadedUrls.length - 1) {
             editor.insertText(" ");
           }
@@ -17919,13 +18207,26 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       closeModal();
       setIsUploading(false);
     };
+    const fetchDashboardFiles = async () => {
+      const files2 = await getAllFiles();
+      setDashboardFiles(files2);
+    };
+    const handleDeleteFile = async (file) => {
+      console.log("Deleting file:", file);
+      await fetchDashboardFiles();
+    };
     createEffect(() => {
       const newFiles = files();
       Promise.all(newFiles.map((file) => getFilePreview(file))).then((newPreviews) => {
         setPreviews(newPreviews);
       });
     });
-    return (0, import_web10.createComponent)(ModalRoot, {
+    createEffect(() => {
+      if (dashOpen()) {
+        fetchDashboardFiles();
+      }
+    });
+    return (0, import_web8.createComponent)(ModalRoot, {
       get size() {
         return ModalSizes.MEDIUM;
       },
@@ -17933,152 +18234,253 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
         return modal_jsx_default.uploadModal;
       },
       get children() {
-        return [(0, import_web10.createComponent)(ModalHeader, {
+        return [(0, import_web8.createComponent)(ModalHeader, {
           close: closeModal,
-          children: "Upload Files"
-        }), (0, import_web10.createComponent)(ModalBody, {
           get children() {
-            return [(() => {
-              const _el$ = _tmpl$2.cloneNode(true), _el$3 = _el$.firstChild;
-              _el$.$$click = handleUploadClick;
-              _el$.addEventListener("drop", handleDrop);
-              _el$.addEventListener("dragleave", handleDragLeave);
-              _el$.addEventListener("dragover", handleDragOver);
-              (0, import_web8.insert)(_el$, (0, import_web10.createComponent)(Show, {
-                get when() {
-                  return !isUploading();
-                },
-                get fallback() {
-                  return _tmpl$6.cloneNode(true);
-                },
-                get children() {
-                  return _tmpl$.cloneNode(true);
-                }
-              }), _el$3);
-              _el$3.addEventListener("change", handleFileChange);
-              const _ref$ = fileInputRef;
-              typeof _ref$ === "function" ? (0, import_web9.use)(_ref$, _el$3) : fileInputRef = _el$3;
-              (0, import_web7.effect)((_p$) => {
-                const _v$ = `${modal_jsx_default.uploadArea} ${isDragOver() ? modal_jsx_default.dragOver : ""} ${isUploading() ? modal_jsx_default.uploading : ""}`, _v$2 = isUploading();
-                _v$ !== _p$._v$ && (0, import_web6.className)(_el$, _p$._v$ = _v$);
-                _v$2 !== _p$._v$2 && (_el$3.disabled = _p$._v$2 = _v$2);
-                return _p$;
-              }, {
-                _v$: void 0,
-                _v$2: void 0
-              });
-              return _el$;
-            })(), (0, import_web10.createComponent)(Show, {
-              get when() {
-                return isUploading();
-              },
+            return dashOpen() ? "File Dashboard" : "Upload Files";
+          }
+        }), (0, import_web8.createComponent)(Show, {
+          get when() {
+            return !dashOpen();
+          },
+          get children() {
+            return (0, import_web8.createComponent)(ModalBody, {
               get children() {
                 return [(() => {
-                  const _el$4 = _tmpl$3.cloneNode(true), _el$5 = _el$4.firstChild;
-                  (0, import_web7.effect)((_p$) => {
-                    const _v$3 = modal_jsx_default.progressBar, _v$4 = modal_jsx_default.progressFill, _v$5 = `${uploadProgress()}%`;
-                    _v$3 !== _p$._v$3 && (0, import_web6.className)(_el$4, _p$._v$3 = _v$3);
-                    _v$4 !== _p$._v$4 && (0, import_web6.className)(_el$5, _p$._v$4 = _v$4);
-                    _v$5 !== _p$._v$5 && _el$5.style.setProperty("width", _p$._v$5 = _v$5);
+                  const _el$ = _tmpl$2.cloneNode(true), _el$3 = _el$.firstChild;
+                  _el$.$$click = handleUploadClick;
+                  _el$.addEventListener("drop", handleDrop);
+                  _el$.addEventListener("dragleave", handleDragLeave);
+                  _el$.addEventListener("dragover", handleDragOver);
+                  (0, import_web6.insert)(_el$, (0, import_web8.createComponent)(Show, {
+                    get when() {
+                      return !isUploading();
+                    },
+                    get fallback() {
+                      return _tmpl$8.cloneNode(true);
+                    },
+                    get children() {
+                      return _tmpl$.cloneNode(true);
+                    }
+                  }), _el$3);
+                  _el$3.addEventListener("change", handleFileChange);
+                  const _ref$ = fileInputRef;
+                  typeof _ref$ === "function" ? (0, import_web7.use)(_ref$, _el$3) : fileInputRef = _el$3;
+                  (0, import_web5.effect)((_p$) => {
+                    const _v$ = `${modal_jsx_default.uploadArea} ${isDragOver() ? modal_jsx_default.dragOver : ""} ${isUploading() ? modal_jsx_default.uploading : ""}`, _v$2 = isUploading();
+                    _v$ !== _p$._v$ && (0, import_web4.className)(_el$, _p$._v$ = _v$);
+                    _v$2 !== _p$._v$2 && (_el$3.disabled = _p$._v$2 = _v$2);
                     return _p$;
                   }, {
-                    _v$3: void 0,
-                    _v$4: void 0,
-                    _v$5: void 0
+                    _v$: void 0,
+                    _v$2: void 0
                   });
-                  return _el$4;
-                })(), (() => {
-                  const _el$6 = _tmpl$4.cloneNode(true), _el$7 = _el$6.firstChild, _el$9 = _el$7.nextSibling, _el$8 = _el$9.nextSibling;
-                  (0, import_web8.insert)(_el$6, () => uploadProgress().toFixed(2), _el$9);
-                  return _el$6;
-                })()];
-              }
-            }), (() => {
-              const _el$10 = _tmpl$5.cloneNode(true);
-              (0, import_web8.insert)(_el$10, (0, import_web10.createComponent)(import_web5.For, {
-                get each() {
-                  return files();
-                },
-                children: (file, index) => (() => {
-                  const _el$12 = _tmpl$7.cloneNode(true), _el$13 = _el$12.firstChild, _el$14 = _el$13.firstChild, _el$15 = _el$14.nextSibling, _el$16 = _el$13.nextSibling;
-                  (0, import_web8.insert)(_el$12, (() => {
-                    const _c$ = (0, import_web4.memo)(() => !!file.type.startsWith("image/"));
-                    return () => _c$() && (() => {
-                      const _el$17 = _tmpl$8.cloneNode(true);
-                      (0, import_web7.effect)((_p$) => {
-                        const _v$10 = previews()[index()], _v$11 = file.name, _v$12 = modal_jsx_default.previewImage;
-                        _v$10 !== _p$._v$10 && (0, import_web3.setAttribute)(_el$17, "src", _p$._v$10 = _v$10);
-                        _v$11 !== _p$._v$11 && (0, import_web3.setAttribute)(_el$17, "alt", _p$._v$11 = _v$11);
-                        _v$12 !== _p$._v$12 && (0, import_web6.className)(_el$17, _p$._v$12 = _v$12);
+                  return _el$;
+                })(), (0, import_web8.createComponent)(Show, {
+                  get when() {
+                    return isUploading();
+                  },
+                  get children() {
+                    return [(() => {
+                      const _el$4 = _tmpl$3.cloneNode(true), _el$5 = _el$4.firstChild;
+                      (0, import_web5.effect)((_p$) => {
+                        const _v$3 = modal_jsx_default.progressBar, _v$4 = modal_jsx_default.progressFill, _v$5 = `${uploadProgress()}%`;
+                        _v$3 !== _p$._v$3 && (0, import_web4.className)(_el$4, _p$._v$3 = _v$3);
+                        _v$4 !== _p$._v$4 && (0, import_web4.className)(_el$5, _p$._v$4 = _v$4);
+                        _v$5 !== _p$._v$5 && _el$5.style.setProperty("width", _p$._v$5 = _v$5);
                         return _p$;
                       }, {
-                        _v$10: void 0,
-                        _v$11: void 0,
-                        _v$12: void 0
+                        _v$3: void 0,
+                        _v$4: void 0,
+                        _v$5: void 0
                       });
-                      return _el$17;
-                    })();
-                  })(), _el$13);
-                  (0, import_web8.insert)(_el$12, (() => {
-                    const _c$2 = (0, import_web4.memo)(() => !!file.type.startsWith("video/"));
-                    return () => _c$2() && (() => {
-                      const _el$18 = _tmpl$8.cloneNode(true);
-                      (0, import_web7.effect)((_p$) => {
-                        const _v$13 = previews()[index()], _v$14 = file.name, _v$15 = modal_jsx_default.previewVideo;
-                        _v$13 !== _p$._v$13 && (0, import_web3.setAttribute)(_el$18, "src", _p$._v$13 = _v$13);
-                        _v$14 !== _p$._v$14 && (0, import_web3.setAttribute)(_el$18, "alt", _p$._v$14 = _v$14);
-                        _v$15 !== _p$._v$15 && (0, import_web6.className)(_el$18, _p$._v$15 = _v$15);
+                      return _el$4;
+                    })(), (() => {
+                      const _el$6 = _tmpl$4.cloneNode(true), _el$7 = _el$6.firstChild, _el$9 = _el$7.nextSibling, _el$8 = _el$9.nextSibling;
+                      (0, import_web6.insert)(_el$6, () => uploadProgress().toFixed(2), _el$9);
+                      return _el$6;
+                    })()];
+                  }
+                }), (() => {
+                  const _el$10 = _tmpl$5.cloneNode(true);
+                  (0, import_web6.insert)(_el$10, (0, import_web8.createComponent)(For, {
+                    get each() {
+                      return files();
+                    },
+                    children: (file, index) => (() => {
+                      const _el$18 = _tmpl$9.cloneNode(true), _el$19 = _el$18.firstChild, _el$20 = _el$19.firstChild, _el$21 = _el$20.nextSibling, _el$22 = _el$19.nextSibling;
+                      (0, import_web6.insert)(_el$18, (() => {
+                        const _c$ = (0, import_web9.memo)(() => !!file.type.startsWith("image/"));
+                        return () => _c$() && (() => {
+                          const _el$23 = _tmpl$10.cloneNode(true);
+                          (0, import_web5.effect)((_p$) => {
+                            const _v$10 = previews()[index()], _v$11 = file.name, _v$12 = modal_jsx_default.previewImage;
+                            _v$10 !== _p$._v$10 && (0, import_web3.setAttribute)(_el$23, "src", _p$._v$10 = _v$10);
+                            _v$11 !== _p$._v$11 && (0, import_web3.setAttribute)(_el$23, "alt", _p$._v$11 = _v$11);
+                            _v$12 !== _p$._v$12 && (0, import_web4.className)(_el$23, _p$._v$12 = _v$12);
+                            return _p$;
+                          }, {
+                            _v$10: void 0,
+                            _v$11: void 0,
+                            _v$12: void 0
+                          });
+                          return _el$23;
+                        })();
+                      })(), _el$19);
+                      (0, import_web6.insert)(_el$18, (() => {
+                        const _c$2 = (0, import_web9.memo)(() => !!file.type.startsWith("video/"));
+                        return () => _c$2() && (() => {
+                          const _el$24 = _tmpl$10.cloneNode(true);
+                          (0, import_web5.effect)((_p$) => {
+                            const _v$13 = previews()[index()], _v$14 = file.name, _v$15 = modal_jsx_default.previewVideo;
+                            _v$13 !== _p$._v$13 && (0, import_web3.setAttribute)(_el$24, "src", _p$._v$13 = _v$13);
+                            _v$14 !== _p$._v$14 && (0, import_web3.setAttribute)(_el$24, "alt", _p$._v$14 = _v$14);
+                            _v$15 !== _p$._v$15 && (0, import_web4.className)(_el$24, _p$._v$15 = _v$15);
+                            return _p$;
+                          }, {
+                            _v$13: void 0,
+                            _v$14: void 0,
+                            _v$15: void 0
+                          });
+                          return _el$24;
+                        })();
+                      })(), _el$19);
+                      (0, import_web6.insert)(_el$18, (() => {
+                        const _c$3 = (0, import_web9.memo)(() => !!(!file.type.startsWith("image/") && !file.type.startsWith("video/")));
+                        return () => _c$3() && (() => {
+                          const _el$25 = _tmpl$11.cloneNode(true);
+                          (0, import_web5.effect)(() => (0, import_web4.className)(_el$25, modal_jsx_default.previewIcon));
+                          return _el$25;
+                        })();
+                      })(), _el$19);
+                      (0, import_web6.insert)(_el$20, () => file.name);
+                      (0, import_web6.insert)(_el$21, () => formatFileSize(file.size));
+                      _el$22.$$click = () => handleRemoveFile(index());
+                      (0, import_web5.effect)((_p$) => {
+                        const _v$6 = modal_jsx_default.previewItem, _v$7 = modal_jsx_default.previewItemInfo, _v$8 = modal_jsx_default.removeButton, _v$9 = isUploading();
+                        _v$6 !== _p$._v$6 && (0, import_web4.className)(_el$18, _p$._v$6 = _v$6);
+                        _v$7 !== _p$._v$7 && (0, import_web4.className)(_el$19, _p$._v$7 = _v$7);
+                        _v$8 !== _p$._v$8 && (0, import_web4.className)(_el$22, _p$._v$8 = _v$8);
+                        _v$9 !== _p$._v$9 && (_el$22.disabled = _p$._v$9 = _v$9);
                         return _p$;
                       }, {
-                        _v$13: void 0,
-                        _v$14: void 0,
-                        _v$15: void 0
+                        _v$6: void 0,
+                        _v$7: void 0,
+                        _v$8: void 0,
+                        _v$9: void 0
                       });
                       return _el$18;
-                    })();
-                  })(), _el$13);
-                  (0, import_web8.insert)(_el$12, (() => {
-                    const _c$3 = (0, import_web4.memo)(() => !!(!file.type.startsWith("image/") && !file.type.startsWith("video/")));
-                    return () => _c$3() && (() => {
-                      const _el$19 = _tmpl$9.cloneNode(true);
-                      (0, import_web7.effect)(() => (0, import_web6.className)(_el$19, modal_jsx_default.previewIcon));
-                      return _el$19;
-                    })();
-                  })(), _el$13);
-                  (0, import_web8.insert)(_el$14, () => file.name);
-                  (0, import_web8.insert)(_el$15, () => formatFileSize(file.size));
-                  _el$16.$$click = () => handleRemoveFile(index());
-                  (0, import_web7.effect)((_p$) => {
-                    const _v$6 = modal_jsx_default.previewItem, _v$7 = modal_jsx_default.previewItemInfo, _v$8 = modal_jsx_default.removeButton, _v$9 = isUploading();
-                    _v$6 !== _p$._v$6 && (0, import_web6.className)(_el$12, _p$._v$6 = _v$6);
-                    _v$7 !== _p$._v$7 && (0, import_web6.className)(_el$13, _p$._v$7 = _v$7);
-                    _v$8 !== _p$._v$8 && (0, import_web6.className)(_el$16, _p$._v$8 = _v$8);
-                    _v$9 !== _p$._v$9 && (_el$16.disabled = _p$._v$9 = _v$9);
-                    return _p$;
-                  }, {
-                    _v$6: void 0,
-                    _v$7: void 0,
-                    _v$8: void 0,
-                    _v$9: void 0
-                  });
-                  return _el$12;
-                })()
-              }));
-              (0, import_web7.effect)(() => (0, import_web6.className)(_el$10, modal_jsx_default.previewArea));
-              return _el$10;
-            })()];
+                    })()
+                  }));
+                  (0, import_web5.effect)(() => (0, import_web4.className)(_el$10, modal_jsx_default.previewArea));
+                  return _el$10;
+                })()];
+              }
+            });
           }
-        }), (0, import_web10.createComponent)(ModalConfirmFooter, {
-          close: () => isUploading() ? null : closeModal(),
-          get confirmText() {
-            return isUploading() ? "Uploading..." : "Upload";
+        }), (0, import_web8.createComponent)(Show, {
+          get when() {
+            return dashOpen();
           },
-          onConfirm: handleConfirm,
-          get disabled() {
-            return isUploading() || files().length === 0;
-          },
-          get cancelDisabled() {
-            return isUploading();
+          get children() {
+            return (0, import_web8.createComponent)(ModalBody, {
+              get children() {
+                return [(() => {
+                  const _el$11 = _tmpl$6.cloneNode(true), _el$12 = _el$11.firstChild;
+                  (0, import_web6.insert)(_el$11, () => formatFileSize(dashboardFiles().reduce((acc, file) => acc + file.Size, 0)), null);
+                  return _el$11;
+                })(), (() => {
+                  const _el$13 = _tmpl$7.cloneNode(true), _el$14 = _el$13.firstChild, _el$15 = _el$14.nextSibling;
+                  (0, import_web6.insert)(_el$15, (0, import_web8.createComponent)(For, {
+                    get each() {
+                      return dashboardFiles();
+                    },
+                    children: (file) => (() => {
+                      const _el$26 = _tmpl$12.cloneNode(true), _el$27 = _el$26.firstChild, _el$28 = _el$27.nextSibling, _el$29 = _el$28.nextSibling, _el$30 = _el$29.nextSibling;
+                      (0, import_web6.insert)(_el$27, (0, import_web8.createComponent)(LinkButton, {
+                        get href() {
+                          return getUrl(file, store.publicUrl);
+                        },
+                        get children() {
+                          return file.Key;
+                        }
+                      }));
+                      (0, import_web6.insert)(_el$28, () => formatFileSize(file.Size));
+                      (0, import_web6.insert)(_el$29, () => formatDate2(file.LastModified));
+                      (0, import_web6.insert)(_el$30, (0, import_web8.createComponent)(Button, {
+                        get size() {
+                          return ButtonSizes.SMALL;
+                        },
+                        get color() {
+                          return ButtonColors.RED;
+                        },
+                        onClick: () => handleDeleteFile(file),
+                        children: "Delete"
+                      }));
+                      return _el$26;
+                    })()
+                  }));
+                  (0, import_web5.effect)(() => (0, import_web4.className)(_el$13, modal_jsx_default.dashboardTable));
+                  return _el$13;
+                })()];
+              }
+            });
+          }
+        }), (0, import_web8.createComponent)(ModalFooter, {
+          get children() {
+            const _el$16 = _tmpl$5.cloneNode(true);
+            (0, import_web6.insert)(_el$16, (0, import_web8.createComponent)(Button, {
+              get ["class"]() {
+                return modal_jsx_default.dashboardButton;
+              },
+              get size() {
+                return ButtonSizes.MEDIUM;
+              },
+              get color() {
+                return ButtonColors.SECONDARY;
+              },
+              onClick: () => setDashOpen(!dashOpen()),
+              get children() {
+                return dashOpen() ? "Upload Files" : "Dashboard";
+              }
+            }), null);
+            (0, import_web6.insert)(_el$16, (0, import_web8.createComponent)(Button, {
+              get disabled() {
+                return isUploading();
+              },
+              get size() {
+                return ButtonSizes.MEDIUM;
+              },
+              get color() {
+                return ButtonColors.SECONDARY;
+              },
+              onClick: () => isUploading() ? null : closeModal(),
+              children: "Cancel"
+            }), null);
+            (0, import_web6.insert)(_el$16, (0, import_web8.createComponent)(Show, {
+              get when() {
+                return !dashOpen();
+              },
+              get children() {
+                return (0, import_web8.createComponent)(Button, {
+                  get disabled() {
+                    return isUploading() || files().length === 0;
+                  },
+                  get size() {
+                    return ButtonSizes.MEDIUM;
+                  },
+                  get color() {
+                    return ButtonColors.BRANDED;
+                  },
+                  onClick: handleConfirm,
+                  get children() {
+                    return isUploading() ? "Uploading..." : "Upload";
+                  }
+                });
+              }
+            }), null);
+            (0, import_web5.effect)(() => (0, import_web4.className)(_el$16, modal_jsx_default.footer));
+            return _el$16;
           }
         })];
       }
@@ -18087,8 +18489,8 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   (0, import_web2.delegateEvents)(["click"]);
 
   // plugins/externalUpload/index.jsx
-  var _tmpl$10 = /* @__PURE__ */ (0, import_web11.template)(`<br>`, 1);
-  var _tmpl$22 = /* @__PURE__ */ (0, import_web11.template)(`<pre style="background-color: var(--background-secondary); padding: 10px; border-radius: 8px;"><code>{
+  var _tmpl$13 = /* @__PURE__ */ (0, import_web10.template)(`<br>`, 1);
+  var _tmpl$22 = /* @__PURE__ */ (0, import_web10.template)(`<pre style="background-color: var(--background-secondary); padding: 10px; border-radius: 8px;"><code>{
   "CORSRules": [
     {
       "AllowedHeaders": ["*"],
@@ -18150,16 +18552,16 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       element.parentElement.appendChild(newElement);
     });
   }
-  var settings = () => [(0, import_web12.createComponent)(Text, {
+  var settings = () => [(0, import_web11.createComponent)(Text, {
     get children() {
-      return ["Configure the S3 compatible backend to use for external uploads.", _tmpl$10.cloneNode(true), _tmpl$10.cloneNode(true), "Remember to allow CORS for the endpoint!", _tmpl$10.cloneNode(true), _tmpl$10.cloneNode(true), "Example CORS configuration:", _tmpl$10.cloneNode(true), _tmpl$10.cloneNode(true), _tmpl$22.cloneNode(true)];
+      return ["Configure the S3 compatible backend to use for external uploads.", _tmpl$13.cloneNode(true), _tmpl$13.cloneNode(true), "Remember to allow CORS for the endpoint!", _tmpl$13.cloneNode(true), _tmpl$13.cloneNode(true), "Example CORS configuration:", _tmpl$13.cloneNode(true), _tmpl$13.cloneNode(true), _tmpl$22.cloneNode(true)];
     }
-  }), _tmpl$10.cloneNode(true), (0, import_web12.createComponent)(Header, {
+  }), _tmpl$13.cloneNode(true), (0, import_web11.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
     children: "S3 endpoint"
-  }), (0, import_web12.createComponent)(TextBox, {
+  }), (0, import_web11.createComponent)(TextBox, {
     placeholder: "https://your-user-id.r2.cloudflarestorage.com",
     get value() {
       return plugin.store.endpoint;
@@ -18168,12 +18570,12 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.endpoint = v2;
       updateConfig();
     }
-  }), (0, import_web12.createComponent)(Header, {
+  }), (0, import_web11.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
     children: "Region"
-  }), (0, import_web12.createComponent)(TextBox, {
+  }), (0, import_web11.createComponent)(TextBox, {
     placeholder: "us-east-1",
     get value() {
       return plugin.store.region;
@@ -18182,12 +18584,12 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.region = v2;
       updateConfig();
     }
-  }), (0, import_web12.createComponent)(Header, {
+  }), (0, import_web11.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
     children: "Access Key ID"
-  }), (0, import_web12.createComponent)(TextBox, {
+  }), (0, import_web11.createComponent)(TextBox, {
     placeholder: "b00b5de99be7b50bb9471a5db83aa7a9",
     get value() {
       return plugin.store.accessKeyId;
@@ -18196,12 +18598,12 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.accessKeyId = v2;
       updateConfig();
     }
-  }), (0, import_web12.createComponent)(Header, {
+  }), (0, import_web11.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
     children: "Secret Access Key"
-  }), (0, import_web12.createComponent)(TextBox, {
+  }), (0, import_web11.createComponent)(TextBox, {
     placeholder: "deadbeef1063cb36c699199b48cb26b9475197345c08230c66c1c6a6c54b00b5",
     get value() {
       return plugin.store.secretAccessKey;
@@ -18210,12 +18612,12 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.secretAccessKey = v2;
       updateConfig();
     }
-  }), (0, import_web12.createComponent)(Header, {
+  }), (0, import_web11.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
     children: "Bucket"
-  }), (0, import_web12.createComponent)(TextBox, {
+  }), (0, import_web11.createComponent)(TextBox, {
     placeholder: "discord-uploads",
     get value() {
       return plugin.store.bucket;
@@ -18224,12 +18626,12 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.bucket = v2;
       updateConfig();
     }
-  }), (0, import_web12.createComponent)(Header, {
+  }), (0, import_web11.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
     children: "Public URL"
-  }), (0, import_web12.createComponent)(TextBox, {
+  }), (0, import_web11.createComponent)(TextBox, {
     placeholder: "https://uploads.example.com",
     get value() {
       return plugin.store.publicUrl;

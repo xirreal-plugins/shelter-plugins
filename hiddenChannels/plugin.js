@@ -112,7 +112,7 @@
   display: flex;
 }
 `);
-  var style_default = { "chat": "ccAoOa_chat", "topic": "ccAoOa_topic", "topicWrapper": "ccAoOa_topicWrapper", "mainBody": "ccAoOa_mainBody", "hiddenChannel": "ccAoOa_hiddenChannel", "divider": "ccAoOa_divider" };
+  var style_default = { "hiddenChannel": "ccAoOa_hiddenChannel", "topic": "ccAoOa_topic", "topicWrapper": "ccAoOa_topicWrapper", "divider": "ccAoOa_divider", "chat": "ccAoOa_chat", "mainBody": "ccAoOa_mainBody" };
 
   // plugins/hiddenChannels/assets/ChannelTopic.jsx
   var import_web = __toESM(require_web(), 1);
