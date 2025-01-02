@@ -1,6 +1,6 @@
 {
    "name": "Soundboard Hotkeys",
-   "description": "Spam fnuuy sounds with a single key.",
+   "description": "Allows you to bind hotkeys to soundboard buttons. Works even while tabbed out!",
    "author": "xirreal",
    "hash": "<HASH_PLACEHOLDER>"
 }
