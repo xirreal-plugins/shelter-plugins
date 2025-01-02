@@ -1,18 +1,8 @@
-// Old icons
-.hiddenChannel > div > div > svg > path[d^="M21"][d$="5Z"], // Channel lock
-.hiddenChannel > div > div > svg > path[d^="M19"][d$="7Z"], // NSFW Icon
-.hiddenChannel > div > div > svg > path[d^="M17"][d$="11Z"], // Voice chat lock
-shltr-rroot > svg > path[d^="M21"][d$="5Z"], // Lock in header
-shltr-rroot > svg > path[d^="M19"][d$="7Z"]  // NSFW in header
-{
-   fill: #ed4245 !important;
-}
-
-// New icons
-.hiddenChannel > div > div > svg > path[d^="M16"][d$="0Z"], // Channel lock
-.hiddenChannel > div > div > svg > path[d^="M18"][d$="2Z"], // NSFW Icon
-.hiddenChannel > div > div > svg > path[d^="M6"][d$="14Z"] // Voice chat lock
-{
+.hiddenChannel>div>div>svg>path[d^="M16"][d$="0Z"],
+.hiddenChannel>div>div>svg>path[d^="M18"][d$="2Z"],
+.hiddenChannel>div>div>svg>path[d^="M6"][d$="14Z"],
+.headerBar>svg>path[d^="M16"][d$="0Z"],
+.headerBar>svg>path[d^="M18"][d$="2Z"] {
    fill: #ed4245 !important;
 }
 
@@ -46,31 +36,38 @@ shltr-rroot > svg > path[d^="M19"][d$="7Z"]  // NSFW in header
 
 .topicWrapper {
    display: flex;
-   flex-direction: row;
-   -webkit-box-flex: 1;
-   -ms-flex: 0 0 auto;
-   flex: 1 1 auto;
+   text-overflow: ellipsis;
+   overflow: hidden;
 }
 
 .mainBody {
-   &:before {
-      content: "";
-      transform: translate(0px, -1px);
-      height: 1px;
-      -webkit-box-shadow: var(--elevation-low);
-      box-shadow: var(--elevation-low);
-      z-index: 1;
-      pointer-events: none;
-   }
+   display: flex;
+   // position: relative;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
+   // translate a bit to the left
+   transform: translateX(-5vw);
 }
 
-.chat {
+.bold {
+   font-weight: 600;
+   color: var(--text-normal);
+   white-space: nowrap;
+}
+
+.headerBar {
+   height: var(--custom-channel-header-height);
+   max-height: var(--custom-channel-header-height);
+   width: 100%;
    display: flex;
-   -webkit-box-flex: 1;
-   -ms-flex: 0 0 auto;
-   flex: 1 1 auto;
-   flex-direction: column;
-   justify-content: center;
+   flex-direction: row;
    align-items: center;
-   height: 100vh;
+   padding: 0 8px;
+   box-shadow: var(--shadow-ledge);
+}
+
+.topicModal {
+   white-space: pre-wrap;
 }

@@ -1,12 +1,11 @@
 const {
    patcher,
    observeDom,
-   flux: { intercept },
+   http: { intercept },
 } = shelter.plugin.scoped;
 
 const {
    flux: {
-      dispatcher,
       stores: { PermissionStore, ChannelStore, GuildStore, ReadStateStore },
    },
    ui: { renderSolidInReact },
@@ -38,10 +37,8 @@ const getGuild = GuildStore.getGuild;
 
 const originalCan = PermissionStore.can.bind({});
 
-import { default as Notice } from "./assets/Notice.jsx";
+import Notice from "./assets/Notice.jsx";
 import classes from "./assets/style.scss";
-
-let headerBar = null;
 
 function canBeSeen(channel) {
    return originalCan(Permissions.VIEW_CHANNEL, channel);
@@ -120,15 +117,6 @@ export function onLoad() {
       });
    });
 
-   const stopObservingHeaderBar = observeDom("[class^=title_]", (element) => {
-      queueMicrotask(() => {
-         const component = reactFiberWalker(getFiber(element), "toolbar", true, true)?.type;
-         if (!component || typeof component.Icon !== "function" || headerBar) return;
-         stopObservingHeaderBar();
-         headerBar = component;
-      });
-   });
-
    let routePatched = false;
    const stopObservingRoute = observeDom('[class^="chat_"]', (element) => {
       queueMicrotask(() => {
@@ -146,14 +134,11 @@ export function onLoad() {
             const channelId = this.props?.computedMatch?.params?.channelId;
             const guildId = this.props?.computedMatch?.params?.guildId;
 
-            if (!isVisibile(channelId) && guildId && headerBar !== null) {
+            if (!isVisibile(channelId) && guildId) {
                this.props.render = () => {
                   return renderSolidInReact(Notice, {
                      channel: getChannel(channelId),
                      guild: getGuild(guildId),
-                     components: {
-                        headerBar,
-                     },
                   });
                };
             }
@@ -163,19 +148,17 @@ export function onLoad() {
       });
    });
 
-   let shouldIgnoreNextMessageFetch = false;
-   let _channelId = "";
-   intercept((event) => {
-      if (event.type === "CHANNEL_SELECT" && !isVisibile(event?.channelId)) {
-         shouldIgnoreNextMessageFetch = true;
-         _channelId = event.channelId;
-      } else if (event.type !== "MESSAGE_FETCH" && shouldIgnoreNextMessageFetch) {
-         shouldIgnoreNextMessageFetch = false;
-         dispatcher.dispatch({
-            type: "LOAD_MESSAGES_FAILURE",
-            channelId: _channelId,
+   intercept("GET", /\/channels\/\d+\/messages/, (req, send) => {
+      const channelId = req.url.split("/")[2];
+      if (!isVisibile(channelId)) {
+         return Promise.resolve({
+            status: 200,
+            body: JSON.stringify({
+               messages: [],
+               hasMore: false,
+            }),
          });
-         return [event, true];
       }
+      return send(req);
    });
 }

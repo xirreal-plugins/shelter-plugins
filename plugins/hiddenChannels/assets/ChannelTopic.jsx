@@ -1,5 +1,5 @@
 const {
-   ui: { renderSolidInReact, openModal, ModalBody, ModalRoot, ModalHeader },
+   ui: { openModal, ModalBody, ModalRoot, ModalHeader },
 } = shelter;
 
 import classes from "./style.scss";
@@ -7,13 +7,15 @@ import classes from "./style.scss";
 function openTopicModal(props) {
    openModal((mprops) => (
       <ModalRoot>
-         <ModalHeader close={mprops.close}>#{props.channel.name}</ModalHeader>
-         <ModalBody>{props.channel.topic}</ModalBody>
+         <ModalHeader close={mprops.close}>{props.channel.name}</ModalHeader>
+         <ModalBody>
+            <div class={classes.topicModal}>{props.channel.topic}</div>
+         </ModalBody>
       </ModalRoot>
    ));
 }
 
-const ChannelTopic = (props) => {
+export default function ChannelTopic(props) {
    return props.channel.topic ? (
       <div class={classes.topicWrapper}>
          <div class={classes.divider} />
@@ -30,10 +32,6 @@ const ChannelTopic = (props) => {
          </div>
       </div>
    ) : (
-      <div />
+      <></>
    );
-};
-
-export default (props) => {
-   return renderSolidInReact(ChannelTopic, props);
-};
+}

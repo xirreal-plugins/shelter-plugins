@@ -1,44 +1,38 @@
 const {
-   ui: { ReactInSolidBridge, Header, HeaderTags },
+   ui: { Header, HeaderTags },
 } = shelter;
 
 import classes from "./style.scss";
 
 import ChannelTopic from "./ChannelTopic.jsx";
 import LockedChannelIcon from "./LockedChannelIcon.jsx";
+import HeaderBar from "./HeaderBar.jsx";
+import ChestIcon from "./ChestIcon.jsx";
 
 export default (props) => {
    return (
       <div
          style={{
+            "min-width": "100%",
             width: "100%",
-            background: "var(--background-secondary)",
+            background: "var(--background-primary)",
          }}
       >
-         <div
-            style={{
-               width: "100%",
-               background: "var(--background-primary)",
-            }}
-         >
-            <ReactInSolidBridge
-               comp={props.components.headerBar}
-               props={{
-                  className: "hc-header-bar",
-               }}
-            >
-               <LockedChannelIcon channel={props.channel} />
-               <props.components.headerBar.Title>{props.channel.name}</props.components.headerBar.Title>
-               <ChannelTopic channel={props.channel} />
-            </ReactInSolidBridge>
-            <div class={classes.mainBody}>
-               <div class={classes.chat}>
-                  <Header tag={HeaderTags.H2}>This is a hidden channel.</Header>
-                  <Header tag={HeaderTags.H5}>
-                     You cannot see the contents of this channel. However, you may see its name and topic.
-                  </Header>
-               </div>
-            </div>
+         <HeaderBar>
+            <LockedChannelIcon channel={props.channel} />
+            <Header tag={HeaderTags.H3} class={classes.bold}>
+               {props.channel.name}
+            </Header>
+            <ChannelTopic channel={props.channel} />
+         </HeaderBar>
+         <div class={classes.mainBody}>
+            <Header tag={HeaderTags.H2} class={classes.bold}>
+               This is a hidden channel.
+            </Header>
+            <ChestIcon />
+            <Header tag={HeaderTags.H5}>
+               You cannot see the contents of this channel. However, you may see its name and topic.
+            </Header>
          </div>
       </div>
    );
