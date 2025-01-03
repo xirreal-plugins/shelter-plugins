@@ -7529,7 +7529,7 @@
   text-align: center;
 }
 `);
-  var modal_jsx_default = { "progressFill": "-bMcgq_progressFill", "uploading": "-bMcgq_uploading", "dashboardButton": "-bMcgq_dashboardButton", "previewItemInfo": "-bMcgq_previewItemInfo", "footer": "-bMcgq_footer", "dragOver": "-bMcgq_dragOver", "dashboardTable": "-bMcgq_dashboardTable", "previewArea": "-bMcgq_previewArea", "shake": "-bMcgq_shake", "removeButton": "-bMcgq_removeButton", "previewVideo": "-bMcgq_previewVideo", "progressBar": "-bMcgq_progressBar", "previewItem": "-bMcgq_previewItem", "previewIcon": "-bMcgq_previewIcon", "uploadArea": "-bMcgq_uploadArea", "uploadModal": "-bMcgq_uploadModal", "previewImage": "-bMcgq_previewImage" };
+  var modal_jsx_default = { "progressFill": "-bMcgq_progressFill", "uploadModal": "-bMcgq_uploadModal", "dragOver": "-bMcgq_dragOver", "removeButton": "-bMcgq_removeButton", "uploadArea": "-bMcgq_uploadArea", "previewImage": "-bMcgq_previewImage", "dashboardTable": "-bMcgq_dashboardTable", "previewVideo": "-bMcgq_previewVideo", "uploading": "-bMcgq_uploading", "previewItemInfo": "-bMcgq_previewItemInfo", "previewArea": "-bMcgq_previewArea", "previewItem": "-bMcgq_previewItem", "progressBar": "-bMcgq_progressBar", "dashboardButton": "-bMcgq_dashboardButton", "shake": "-bMcgq_shake", "footer": "-bMcgq_footer", "previewIcon": "-bMcgq_previewIcon" };
 
   // node_modules/.pnpm/@smithy+protocol-http@4.1.8/node_modules/@smithy/protocol-http/dist-es/extensions/httpExtensionConfiguration.js
   var getHttpHandlerExtensionConfiguration = (runtimeConfig) => {
@@ -14790,6 +14790,28 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
     b2.m("GET").h(headers).q(query).b(body);
     return b2.build();
   };
+  var se_DeleteObjectCommand = async (input, context) => {
+    const b2 = requestBuilder(input, context);
+    const headers = map({}, isSerializableHeaderValue, {
+      [_xam]: input[_MFA],
+      [_xarp]: input[_RP],
+      [_xabgr]: [() => isSerializableHeaderValue(input[_BGR]), () => input[_BGR].toString()],
+      [_xaebo]: input[_EBO],
+      [_im]: input[_IM],
+      [_xaimlmt]: [() => isSerializableHeaderValue(input[_IMLMT]), () => dateToUtcString(input[_IMLMT]).toString()],
+      [_xaims]: [() => isSerializableHeaderValue(input[_IMS]), () => input[_IMS].toString()]
+    });
+    b2.bp("/{Key+}");
+    b2.p("Bucket", () => input.Bucket, "{Bucket}", false);
+    b2.p("Key", () => input.Key, "{Key+}", true);
+    const query = map({
+      [_xi]: [, "DeleteObject"],
+      [_vI]: [, input[_VI]]
+    });
+    let body;
+    b2.m("DELETE").h(headers).q(query).b(body);
+    return b2.build();
+  };
   var se_ListObjectsV2Command = async (input, context) => {
     const b2 = requestBuilder(input, context);
     const headers = map({}, isSerializableHeaderValue, {
@@ -15031,6 +15053,19 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
     if (data[_C] != null) {
       contents[_C] = de_SessionCredentials(data[_C], context);
     }
+    return contents;
+  };
+  var de_DeleteObjectCommand = async (output, context) => {
+    if (output.statusCode !== 204 && output.statusCode >= 300) {
+      return de_CommandError(output, context);
+    }
+    const contents = map({
+      $metadata: deserializeMetadata2(output),
+      [_DM]: [() => void 0 !== output.headers[_xadm], () => parseBoolean(output.headers[_xadm])],
+      [_VI]: [, output.headers[_xavi]],
+      [_RC]: [, output.headers[_xarc]]
+    });
+    await collectBody(output.body, context);
     return contents;
   };
   var de_ListObjectsV2Command = async (output, context) => {
@@ -15462,6 +15497,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   var _ARI = "AbortRuleId";
   var _AT = "AccessTier";
   var _B = "Bucket";
+  var _BGR = "BypassGovernanceRetention";
   var _BKE = "BucketKeyEnabled";
   var _C = "Credentials";
   var _CA = "ChecksumAlgorithm";
@@ -15482,6 +15518,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   var _CTo = "ContinuationToken";
   var _Co = "Contents";
   var _D = "Delimiter";
+  var _DM = "DeleteMarker";
   var _DN = "DisplayName";
   var _E = "Expires";
   var _EBO = "ExpectedBucketOwner";
@@ -15496,6 +15533,8 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   var _ID_ = "ID";
   var _IM = "IfMatch";
   var _IMIT = "IfMatchInitiatedTime";
+  var _IMLMT = "IfMatchLastModifiedTime";
+  var _IMS = "IfMatchSize";
   var _INM = "IfNoneMatch";
   var _IRIP = "IsRestoreInProgress";
   var _IT = "IsTruncated";
@@ -15503,6 +15542,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   var _KC = "KeyCount";
   var _L = "Location";
   var _LM = "LastModified";
+  var _MFA = "MFA";
   var _MK = "MaxKeys";
   var _N = "Name";
   var _NCT = "NextContinuationToken";
@@ -15569,12 +15609,14 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   var _xaa = "x-amz-acl";
   var _xaad = "x-amz-abort-date";
   var _xaari = "x-amz-abort-rule-id";
+  var _xabgr = "x-amz-bypass-governance-retention";
   var _xaca = "x-amz-checksum-algorithm";
   var _xacc = "x-amz-checksum-crc32";
   var _xacc_ = "x-amz-checksum-crc32c";
   var _xacs = "x-amz-checksum-sha1";
   var _xacs_ = "x-amz-checksum-sha256";
   var _xacsm = "x-amz-create-session-mode";
+  var _xadm = "x-amz-delete-marker";
   var _xae = "x-amz-expiration";
   var _xaebo = "x-amz-expected-bucket-owner";
   var _xagfc = "x-amz-grant-full-control";
@@ -15582,6 +15624,9 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   var _xagra = "x-amz-grant-read-acp";
   var _xagwa = "x-amz-grant-write-acp";
   var _xaimit = "x-amz-if-match-initiated-time";
+  var _xaimlmt = "x-amz-if-match-last-modified-time";
+  var _xaims = "x-amz-if-match-size";
+  var _xam = "x-amz-mfa";
   var _xaollh = "x-amz-object-lock-legal-hold";
   var _xaolm = "x-amz-object-lock-mode";
   var _xaolrud = "x-amz-object-lock-retain-until-date";
@@ -17395,6 +17440,20 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   }).s("AmazonS3", "CreateMultipartUpload", {}).n("S3Client", "CreateMultipartUploadCommand").f(CreateMultipartUploadRequestFilterSensitiveLog, CreateMultipartUploadOutputFilterSensitiveLog).ser(se_CreateMultipartUploadCommand).de(de_CreateMultipartUploadCommand).build() {
   };
 
+  // node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/DeleteObjectCommand.js
+  var DeleteObjectCommand = class extends Command.classBuilder().ep({
+    ...commonParams,
+    Bucket: { type: "contextParams", name: "Bucket" },
+    Key: { type: "contextParams", name: "Key" }
+  }).m(function(Command2, cs2, config, o2) {
+    return [
+      getSerdePlugin(config, this.serialize, this.deserialize),
+      getEndpointPlugin(config, Command2.getEndpointParameterInstructions()),
+      getThrow200ExceptionsPlugin(config)
+    ];
+  }).s("AmazonS3", "DeleteObject", {}).n("S3Client", "DeleteObjectCommand").f(void 0, void 0).ser(se_DeleteObjectCommand).de(de_DeleteObjectCommand).build() {
+  };
+
   // node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/ListObjectsV2Command.js
   var ListObjectsV2Command = class extends Command.classBuilder().ep({
     ...commonParams,
@@ -18069,7 +18128,15 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
         Bucket: BUCKET_NAME
       })
     );
-    return response.Contents;
+    return response.Contents.sort((a2, b2) => b2.LastModified - a2.LastModified);
+  }
+  async function deleteFile(key) {
+    await s3Client.send(
+      new DeleteObjectCommand({
+        Bucket: BUCKET_NAME,
+        Key: key
+      })
+    );
   }
   function formatDate2(date) {
     return new Date(date).toLocaleString();
@@ -18212,7 +18279,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       setDashboardFiles(files2);
     };
     const handleDeleteFile = async (file) => {
-      console.log("Deleting file:", file);
+      await deleteFile(file.Key);
       await fetchDashboardFiles();
     };
     createEffect(() => {
@@ -18470,7 +18537,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
                     return ButtonSizes.MEDIUM;
                   },
                   get color() {
-                    return ButtonColors.BRANDED;
+                    return ButtonColors.BRAND;
                   },
                   onClick: handleConfirm,
                   get children() {
@@ -18494,7 +18561,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   "CORSRules": [
     {
       "AllowedHeaders": ["*"],
-      "AllowedMethods": ["GET", "PUT"],
+      "AllowedMethods": ["GET", "PUT", "DELETE"],
       "AllowedOrigins": ["*"],
       "ExposeHeaders": ["ETag"]
     }

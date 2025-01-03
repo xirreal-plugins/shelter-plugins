@@ -249,7 +249,7 @@
   max-height: 680px;
 }
 `);
-  var style_default = { "inline": "_6PhcGW_inline", "tallerModal": "_6PhcGW_tallerModal", "noMarginUnselectable": "_6PhcGW_noMarginUnselectable", "marginTop": "_6PhcGW_marginTop", "content": "_6PhcGW_content", "column": "_6PhcGW_column", "card": "_6PhcGW_card", "margin": "_6PhcGW_margin", "preview": "_6PhcGW_preview", "keybindButton": "_6PhcGW_keybindButton", "sound": "_6PhcGW_sound", "soundPicker": "_6PhcGW_soundPicker", "flexSpaceBetween": "_6PhcGW_flexSpaceBetween", "flexRow": "_6PhcGW_flexRow", "emoji": "_6PhcGW_emoji", "spaced": "_6PhcGW_spaced", "selected": "_6PhcGW_selected" };
+  var style_default = { "tallerModal": "_6PhcGW_tallerModal", "column": "_6PhcGW_column", "flexRow": "_6PhcGW_flexRow", "inline": "_6PhcGW_inline", "sound": "_6PhcGW_sound", "content": "_6PhcGW_content", "spaced": "_6PhcGW_spaced", "card": "_6PhcGW_card", "emoji": "_6PhcGW_emoji", "preview": "_6PhcGW_preview", "marginTop": "_6PhcGW_marginTop", "noMarginUnselectable": "_6PhcGW_noMarginUnselectable", "flexSpaceBetween": "_6PhcGW_flexSpaceBetween", "margin": "_6PhcGW_margin", "soundPicker": "_6PhcGW_soundPicker", "selected": "_6PhcGW_selected", "keybindButton": "_6PhcGW_keybindButton" };
 
   // plugins/soundboardHotkeys/components/addModal.jsx
   var import_web26 = __toESM(require_web(), 1);
