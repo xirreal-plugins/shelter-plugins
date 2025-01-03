@@ -1,5 +1,5 @@
 import styles from "./modal.jsx.scss";
-import { formatFileSize, getAllFiles, getFilePreview, uploadFiles, formatDate, getUrl } from "./utils";
+import { formatFileSize, getAllFiles, getFilePreview, uploadFiles, formatDate, getUrl, deleteFile } from "./utils";
 
 const {
    ui: {
@@ -132,7 +132,7 @@ export function UploadModal(closeModal) {
    };
 
    const handleDeleteFile = async (file) => {
-      console.log("Deleting file:", file);
+      await deleteFile(file.Key);
       await fetchDashboardFiles();
    };
 
@@ -289,7 +289,7 @@ export function UploadModal(closeModal) {
                   <Button
                      disabled={isUploading() || files().length === 0}
                      size={ButtonSizes.MEDIUM}
-                     color={ButtonColors.BRANDED}
+                     color={ButtonColors.BRAND}
                      onClick={handleConfirm}
                   >
                      {isUploading() ? "Uploading..." : "Upload"}

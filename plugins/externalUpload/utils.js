@@ -1,4 +1,4 @@
-import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
+import { S3Client, ListObjectsV2Command, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
 import xxhash from "xxhash-wasm";
 
@@ -125,7 +125,16 @@ export async function getAllFiles() {
       }),
    );
 
-   return response.Contents;
+   return response.Contents.sort((a, b) => b.LastModified - a.LastModified);
+}
+
+export async function deleteFile(key) {
+   await s3Client.send(
+      new DeleteObjectCommand({
+         Bucket: BUCKET_NAME,
+         Key: key,
+      }),
+   );
 }
 
 export function formatDate(date) {
