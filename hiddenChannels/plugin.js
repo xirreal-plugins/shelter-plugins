@@ -119,7 +119,7 @@
   white-space: pre-wrap;
 }
 `);
-  var style_default = { "divider": "ccAoOa_divider", "hiddenChannel": "ccAoOa_hiddenChannel", "bold": "ccAoOa_bold", "mainBody": "ccAoOa_mainBody", "topicWrapper": "ccAoOa_topicWrapper", "topicModal": "ccAoOa_topicModal", "topic": "ccAoOa_topic", "headerBar": "ccAoOa_headerBar" };
+  var style_default = { "mainBody": "ccAoOa_mainBody", "topic": "ccAoOa_topic", "bold": "ccAoOa_bold", "divider": "ccAoOa_divider", "headerBar": "ccAoOa_headerBar", "topicModal": "ccAoOa_topicModal", "hiddenChannel": "ccAoOa_hiddenChannel", "topicWrapper": "ccAoOa_topicWrapper" };
 
   // plugins/hiddenChannels/assets/ChannelTopic.jsx
   var import_web = __toESM(require_web(), 1);
