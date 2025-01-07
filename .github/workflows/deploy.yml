@@ -20,7 +20,7 @@ jobs:
          - name: Install deps
            run: pnpm i
 
-         - name: Build plugins and website
+         - name: Build plugins and website (lune and astro)
            run: pnpm build
 
          - name: Deploy to GitHub Pages
