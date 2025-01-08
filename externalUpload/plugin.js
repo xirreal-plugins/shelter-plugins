@@ -7332,8 +7332,13 @@
     onLoad: () => onLoad,
     settings: () => settings
   });
-  var import_web10 = __toESM(require_web());
   var import_web11 = __toESM(require_web());
+  var import_web12 = __toESM(require_web());
+  var import_web13 = __toESM(require_web());
+  var import_web14 = __toESM(require_web());
+  var import_web15 = __toESM(require_web());
+  var import_web16 = __toESM(require_web());
+  var import_web17 = __toESM(require_web());
 
   // plugins/externalUpload/modal.jsx
   var import_web = __toESM(require_web());
@@ -7500,7 +7505,6 @@
 .-bMcgq_dashboardTable th {
   text-align: left;
   text-transform: uppercase;
-  border-bottom: 2px solid var(--background-modifier-border);
   padding: 12px 16px;
   font-size: 14px;
   font-weight: 600;
@@ -7520,7 +7524,6 @@
 }
 
 .-bMcgq_dashboardTable td {
-  border-bottom: 1px solid var(--background-modifier-border);
   padding: 12px 16px;
   font-size: 14px;
 }
@@ -7528,8 +7531,48 @@
 .-bMcgq_dashboardTable td:last-child {
   text-align: center;
 }
+
+[class^="buttons"] > [aria-haspopup="dialog"] {
+  display: none;
+}
+
+.-bMcgq_replacedButton {
+  color: var(--interactive-normal);
+  transform-origin: bottom;
+  background: none;
+  align-items: center;
+  transition: all .3s;
+  display: flex;
+}
+
+.-bMcgq_replacedButton > svg:hover {
+  color: var(--icon-primary);
+  animation: .3s ease-out -bMcgq_sway;
+}
+
+@keyframes -bMcgq_sway {
+  0% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(0);
+  }
+
+  75% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}
 `);
-  var modal_jsx_default = { "previewVideo": "-bMcgq_previewVideo", "previewItem": "-bMcgq_previewItem", "progressFill": "-bMcgq_progressFill", "uploadArea": "-bMcgq_uploadArea", "shake": "-bMcgq_shake", "progressBar": "-bMcgq_progressBar", "footer": "-bMcgq_footer", "dashboardTable": "-bMcgq_dashboardTable", "uploadModal": "-bMcgq_uploadModal", "previewImage": "-bMcgq_previewImage", "dragOver": "-bMcgq_dragOver", "dashboardButton": "-bMcgq_dashboardButton", "previewArea": "-bMcgq_previewArea", "removeButton": "-bMcgq_removeButton", "previewItemInfo": "-bMcgq_previewItemInfo", "previewIcon": "-bMcgq_previewIcon", "uploading": "-bMcgq_uploading" };
+  var modal_jsx_default = { "shake": "-bMcgq_shake", "uploadArea": "-bMcgq_uploadArea", "previewItem": "-bMcgq_previewItem", "uploadModal": "-bMcgq_uploadModal", "previewArea": "-bMcgq_previewArea", "dashboardButton": "-bMcgq_dashboardButton", "footer": "-bMcgq_footer", "replacedButton": "-bMcgq_replacedButton", "previewIcon": "-bMcgq_previewIcon", "dashboardTable": "-bMcgq_dashboardTable", "progressFill": "-bMcgq_progressFill", "previewImage": "-bMcgq_previewImage", "sway": "-bMcgq_sway", "uploading": "-bMcgq_uploading", "progressBar": "-bMcgq_progressBar", "previewItemInfo": "-bMcgq_previewItemInfo", "removeButton": "-bMcgq_removeButton", "dragOver": "-bMcgq_dragOver", "previewVideo": "-bMcgq_previewVideo" };
 
   // node_modules/.pnpm/@smithy+protocol-http@4.1.8/node_modules/@smithy/protocol-http/dist-es/extensions/httpExtensionConfiguration.js
   var getHttpHandlerExtensionConfiguration = (runtimeConfig) => {
@@ -18555,9 +18598,17 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   }
   (0, import_web2.delegateEvents)(["click"]);
 
+  // plugins/externalUpload/uploadIcon.jsx
+  var import_web10 = __toESM(require_web());
+  var _tmpl$13 = /* @__PURE__ */ (0, import_web10.template)(`<svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M13.82 21.7c.17.05.14.3-.04.3H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4h7.5c.28 0 .5.22.5.5V5a5 5 0 0 0 5 5h2.5c.28 0 .5.22.5.5v2.3a.4.4 0 0 1-.68.27l-.2-.2a3 3 0 0 0-4.24 0l-4 4a3 3 0 0 0 0 4.25c.3.3.6.46.94.58Z"></path><path fill="currentColor" d="M21.66 8c.03 0 .05-.03.04-.06a3 3 0 0 0-.58-.82l-4.24-4.24a3 3 0 0 0-.82-.58.04.04 0 0 0-.06.04V5a3 3 0 0 0 3 3h2.66ZM18.3 14.3a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1-1.4 1.4L20 17.42V23a1 1 0 1 1-2 0v-5.59l-2.3 2.3a1 1 0 0 1-1.4-1.42l4-4Z"></path></svg>`, 6);
+  function uploadIcon() {
+    return _tmpl$13.cloneNode(true);
+  }
+
   // plugins/externalUpload/index.jsx
-  var _tmpl$13 = /* @__PURE__ */ (0, import_web10.template)(`<br>`, 1);
-  var _tmpl$22 = /* @__PURE__ */ (0, import_web10.template)(`<pre style="background-color: var(--background-secondary); padding: 10px; border-radius: 8px;"><code>{
+  var _tmpl$14 = /* @__PURE__ */ (0, import_web11.template)(`<button></button>`, 2);
+  var _tmpl$22 = /* @__PURE__ */ (0, import_web11.template)(`<br>`, 1);
+  var _tmpl$32 = /* @__PURE__ */ (0, import_web11.template)(`<pre style="background-color: var(--background-secondary); padding: 10px; border-radius: 8px;"><code>{
   "CORSRules": [
     {
       "AllowedHeaders": ["*"],
@@ -18577,28 +18628,21 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       Header,
       HeaderTags,
       Text,
-      TextBox
+      TextBox,
+      focusring
     },
     plugin
   } = shelter;
+  var {
+    subscribe
+  } = shelter.plugin.scoped.flux;
   function updateConfig() {
     updateS3Client(plugin.store.region, plugin.store.endpoint, plugin.store.accessKeyId, plugin.store.secretAccessKey, plugin.store.bucket);
   }
-  function onLoad() {
-    plugin.store.region ??= "";
-    plugin.store.endpoint ??= "";
-    plugin.store.accessKeyId ??= "";
-    plugin.store.secretAccessKey ??= "";
-    plugin.store.bucket ??= "";
-    plugin.store.publicUrl ??= "";
-    updateConfig();
-    observeDom('[class^="giftIconContainer"]', (element) => {
-      if (element.dataset.externalUpload)
-        return;
-      element.dataset.externalUpload = true;
-      element.parentElement.parentElement.parentElement.onclick = (e3) => {
-        e3.stopImmediatePropagation();
-        e3.preventDefault();
+  function uploadButton() {
+    return (() => {
+      const _el$ = _tmpl$14.cloneNode(true);
+      _el$.$$click = () => {
         if (plugin.store.endpoint === "" || plugin.store.accessKeyId === "" || plugin.store.secretAccessKey === "" || plugin.store.bucket === "") {
           showToast2({
             title: "External Upload",
@@ -18609,26 +18653,41 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
           openModal((p2) => UploadModal(p2.close));
         }
       };
-      element.style.display = "none";
-      const newElement = document.createElement("div");
-      newElement.style.display = "inline-block";
-      newElement.style.marginLeft = "5px";
-      newElement.style.marginTop = "-2px";
-      newElement.style.cursor = "pointer";
-      newElement.innerHTML = "sex button";
-      element.parentElement.appendChild(newElement);
+      (0, import_web17.use)(focusring, _el$, () => true);
+      (0, import_web16.insert)(_el$, uploadIcon);
+      (0, import_web15.effect)(() => (0, import_web14.className)(_el$, modal_jsx_default.replacedButton));
+      return _el$;
+    })();
+  }
+  function onLoad() {
+    plugin.store.region ??= "";
+    plugin.store.endpoint ??= "";
+    plugin.store.accessKeyId ??= "";
+    plugin.store.secretAccessKey ??= "";
+    plugin.store.bucket ??= "";
+    plugin.store.publicUrl ??= "";
+    updateConfig();
+    subscribe("CHANNEL_SELECT", () => {
+      let unobserve = observeDom('[class^="inner"] > [class^="buttons"]', (element) => {
+        if (element.dataset.externalUpload)
+          return;
+        unobserve();
+        element.dataset.externalUpload = true;
+        element.prepend(uploadButton());
+      });
+      setTimeout(() => unobserve(), 2e3);
     });
   }
-  var settings = () => [(0, import_web11.createComponent)(Text, {
+  var settings = () => [(0, import_web13.createComponent)(Text, {
     get children() {
-      return ["Configure the S3 compatible backend to use for external uploads.", _tmpl$13.cloneNode(true), _tmpl$13.cloneNode(true), "Remember to allow CORS for the endpoint!", _tmpl$13.cloneNode(true), _tmpl$13.cloneNode(true), "Example CORS configuration:", _tmpl$13.cloneNode(true), _tmpl$13.cloneNode(true), _tmpl$22.cloneNode(true)];
+      return ["Configure the S3 compatible backend to use for external uploads.", _tmpl$22.cloneNode(true), _tmpl$22.cloneNode(true), "Remember to allow CORS for the endpoint!", _tmpl$22.cloneNode(true), _tmpl$22.cloneNode(true), "Example CORS configuration:", _tmpl$22.cloneNode(true), _tmpl$22.cloneNode(true), _tmpl$32.cloneNode(true)];
     }
-  }), _tmpl$13.cloneNode(true), (0, import_web11.createComponent)(Header, {
+  }), _tmpl$22.cloneNode(true), (0, import_web13.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
     children: "S3 endpoint"
-  }), (0, import_web11.createComponent)(TextBox, {
+  }), (0, import_web13.createComponent)(TextBox, {
     placeholder: "https://your-user-id.r2.cloudflarestorage.com",
     get value() {
       return plugin.store.endpoint;
@@ -18637,12 +18696,12 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.endpoint = v2;
       updateConfig();
     }
-  }), (0, import_web11.createComponent)(Header, {
+  }), (0, import_web13.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
     children: "Region"
-  }), (0, import_web11.createComponent)(TextBox, {
+  }), (0, import_web13.createComponent)(TextBox, {
     placeholder: "us-east-1",
     get value() {
       return plugin.store.region;
@@ -18651,12 +18710,12 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.region = v2;
       updateConfig();
     }
-  }), (0, import_web11.createComponent)(Header, {
+  }), (0, import_web13.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
     children: "Access Key ID"
-  }), (0, import_web11.createComponent)(TextBox, {
+  }), (0, import_web13.createComponent)(TextBox, {
     placeholder: "b00b5de99be7b50bb9471a5db83aa7a9",
     get value() {
       return plugin.store.accessKeyId;
@@ -18665,12 +18724,12 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.accessKeyId = v2;
       updateConfig();
     }
-  }), (0, import_web11.createComponent)(Header, {
+  }), (0, import_web13.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
     children: "Secret Access Key"
-  }), (0, import_web11.createComponent)(TextBox, {
+  }), (0, import_web13.createComponent)(TextBox, {
     placeholder: "deadbeef1063cb36c699199b48cb26b9475197345c08230c66c1c6a6c54b00b5",
     get value() {
       return plugin.store.secretAccessKey;
@@ -18679,12 +18738,12 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.secretAccessKey = v2;
       updateConfig();
     }
-  }), (0, import_web11.createComponent)(Header, {
+  }), (0, import_web13.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
     children: "Bucket"
-  }), (0, import_web11.createComponent)(TextBox, {
+  }), (0, import_web13.createComponent)(TextBox, {
     placeholder: "discord-uploads",
     get value() {
       return plugin.store.bucket;
@@ -18693,12 +18752,12 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.bucket = v2;
       updateConfig();
     }
-  }), (0, import_web11.createComponent)(Header, {
+  }), (0, import_web13.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
     children: "Public URL"
-  }), (0, import_web11.createComponent)(TextBox, {
+  }), (0, import_web13.createComponent)(TextBox, {
     placeholder: "https://uploads.example.com",
     get value() {
       return plugin.store.publicUrl;
@@ -18707,6 +18766,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.publicUrl = v2;
     }
   })];
+  (0, import_web12.delegateEvents)(["click"]);
   return __toCommonJS(externalUpload_exports);
 })();
 /*! Bundled license information:
