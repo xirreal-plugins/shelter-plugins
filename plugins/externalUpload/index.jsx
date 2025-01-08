@@ -1,12 +1,17 @@
 const { observeDom } = shelter.plugin.scoped;
 
 const {
-   ui: { openModal, showToast, Header, HeaderTags, Text, TextBox },
+   ui: { openModal, showToast, Header, HeaderTags, Text, TextBox, focusring },
    plugin,
 } = shelter;
 
+const { subscribe } = shelter.plugin.scoped.flux;
+
 import { UploadModal } from "./modal";
 import { updateS3Client } from "./utils";
+import uploadIcon from "./uploadIcon";
+
+import classes from "./modal.jsx.scss";
 
 function updateConfig() {
    updateS3Client(
@@ -15,6 +20,33 @@ function updateConfig() {
       plugin.store.accessKeyId,
       plugin.store.secretAccessKey,
       plugin.store.bucket,
+   );
+}
+
+function uploadButton() {
+   return (
+      <button
+         use:focusring
+         class={classes.replacedButton}
+         onClick={() => {
+            if (
+               plugin.store.endpoint === "" ||
+               plugin.store.accessKeyId === "" ||
+               plugin.store.secretAccessKey === "" ||
+               plugin.store.bucket === ""
+            ) {
+               showToast({
+                  title: "External Upload",
+                  content: "Please go to settings to configure the backend.",
+               });
+               return;
+            } else {
+               openModal((p) => UploadModal(p.close));
+            }
+         }}
+      >
+         {uploadIcon}
+      </button>
    );
 }
 
@@ -28,38 +60,14 @@ export function onLoad() {
 
    updateConfig();
 
-   observeDom('[class^="giftIconContainer"]', (element) => {
-      if (element.dataset.externalUpload) return;
-      element.dataset.externalUpload = true;
-      element.parentElement.parentElement.parentElement.onclick = (e) => {
-         e.stopImmediatePropagation();
-         e.preventDefault();
-
-         if (
-            plugin.store.endpoint === "" ||
-            plugin.store.accessKeyId === "" ||
-            plugin.store.secretAccessKey === "" ||
-            plugin.store.bucket === ""
-         ) {
-            showToast({
-               title: "External Upload",
-               content: "Please go to settings to configure the backend.",
-            });
-            return;
-         } else {
-            openModal((p) => UploadModal(p.close));
-         }
-      };
-      element.style.display = "none";
-
-      const newElement = document.createElement("div");
-      newElement.style.display = "inline-block";
-      newElement.style.marginLeft = "5px";
-      newElement.style.marginTop = "-2px";
-      newElement.style.cursor = "pointer";
-      newElement.innerHTML = "sex button";
-
-      element.parentElement.appendChild(newElement);
+   subscribe("CHANNEL_SELECT", () => {
+      let unobserve = observeDom('[class^="inner"] > [class^="buttons"]', (element) => {
+         if (element.dataset.externalUpload) return;
+         unobserve();
+         element.dataset.externalUpload = true;
+         element.prepend(uploadButton());
+      });
+      setTimeout(() => unobserve(), 2000);
    });
 }
 
