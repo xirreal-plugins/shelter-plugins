@@ -89,7 +89,7 @@ export const settings = () => (
   "CORSRules": [
     {
       "AllowedHeaders": ["*"],
-      "AllowedMethods": ["GET", "PUT", "DELETE"],
+      "AllowedMethods": ["GET", "PUT", "DELETE", "POST", "HEAD"],
       "AllowedOrigins": ["*"],
       "ExposeHeaders": ["ETag"]
     }
