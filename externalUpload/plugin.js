@@ -7572,7 +7572,7 @@
   }
 }
 `);
-  var modal_jsx_default = { "shake": "-bMcgq_shake", "uploadArea": "-bMcgq_uploadArea", "previewItem": "-bMcgq_previewItem", "uploadModal": "-bMcgq_uploadModal", "previewArea": "-bMcgq_previewArea", "dashboardButton": "-bMcgq_dashboardButton", "footer": "-bMcgq_footer", "replacedButton": "-bMcgq_replacedButton", "previewIcon": "-bMcgq_previewIcon", "dashboardTable": "-bMcgq_dashboardTable", "progressFill": "-bMcgq_progressFill", "previewImage": "-bMcgq_previewImage", "sway": "-bMcgq_sway", "uploading": "-bMcgq_uploading", "progressBar": "-bMcgq_progressBar", "previewItemInfo": "-bMcgq_previewItemInfo", "removeButton": "-bMcgq_removeButton", "dragOver": "-bMcgq_dragOver", "previewVideo": "-bMcgq_previewVideo" };
+  var modal_jsx_default = { "progressFill": "-bMcgq_progressFill", "previewImage": "-bMcgq_previewImage", "uploadModal": "-bMcgq_uploadModal", "dashboardButton": "-bMcgq_dashboardButton", "dashboardTable": "-bMcgq_dashboardTable", "uploadArea": "-bMcgq_uploadArea", "uploading": "-bMcgq_uploading", "previewVideo": "-bMcgq_previewVideo", "previewIcon": "-bMcgq_previewIcon", "replacedButton": "-bMcgq_replacedButton", "dragOver": "-bMcgq_dragOver", "previewArea": "-bMcgq_previewArea", "removeButton": "-bMcgq_removeButton", "previewItem": "-bMcgq_previewItem", "footer": "-bMcgq_footer", "previewItemInfo": "-bMcgq_previewItemInfo", "progressBar": "-bMcgq_progressBar", "shake": "-bMcgq_shake", "sway": "-bMcgq_sway" };
 
   // node_modules/.pnpm/@smithy+protocol-http@4.1.8/node_modules/@smithy/protocol-http/dist-es/extensions/httpExtensionConfiguration.js
   var getHttpHandlerExtensionConfiguration = (runtimeConfig) => {
@@ -18612,7 +18612,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   "CORSRules": [
     {
       "AllowedHeaders": ["*"],
-      "AllowedMethods": ["GET", "PUT", "DELETE"],
+      "AllowedMethods": ["GET", "PUT", "DELETE", "POST", "HEAD"],
       "AllowedOrigins": ["*"],
       "ExposeHeaders": ["ETag"]
     }
