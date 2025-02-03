@@ -7361,9 +7361,14 @@
   transition: all .3s;
 }
 
-.-bMcgq_uploadArea:hover, .-bMcgq_uploadArea.-bMcgq_dragOver, .-bMcgq_previewItem:hover {
+.-bMcgq_uploadArea:hover, .-bMcgq_uploadArea.-bMcgq_dragOver {
   background-color: var(--brand-15a);
   border-color: #fff;
+}
+
+.-bMcgq_previewItem:hover, .-bMcgq_dashboardItem:hover {
+  border-color: var(--background-secondary);
+  background-color: var(--brand-15a);
 }
 
 .-bMcgq_uploadArea.-bMcgq_uploading {
@@ -7389,12 +7394,14 @@
 .-bMcgq_previewArea {
   flex-wrap: wrap;
   gap: 10px;
+  width: 110%;
   margin-top: 20px;
   display: flex;
 }
 
-.-bMcgq_previewItem {
-  border: 1px solid var(--interactive-normal);
+.-bMcgq_previewItem, .-bMcgq_dashboardItem {
+  border: 1px solid var(--background-tertiary);
+  background-color: var(--background-secondary);
   border-radius: 8px;
   flex-direction: column;
   justify-content: space-between;
@@ -7406,6 +7413,10 @@
   display: flex;
   position: relative;
   overflow: hidden;
+}
+
+.-bMcgq_dashboardItem {
+  cursor: pointer;
 }
 
 .-bMcgq_previewImage, .-bMcgq_previewVideo {
@@ -7434,7 +7445,7 @@
 
 .-bMcgq_removeButton {
   color: var(--status-danger);
-  background-color: color-mix(in srgb, var(--background-tertiary) 90%, transparent);
+  background-color: color-mix(in srgb, var(--background-tertiary) 80%, transparent);
   backdrop-filter: blur(4px);
   cursor: pointer;
   border-radius: 8px;
@@ -7488,50 +7499,6 @@
   margin-right: auto;
 }
 
-.-bMcgq_dashboardTable {
-  border-collapse: collapse;
-  background-color: var(--background-primary);
-  border-radius: 8px;
-  width: 100%;
-  overflow: hidden;
-  box-shadow: 0 4px 6px #0000001a;
-}
-
-.-bMcgq_dashboardTable thead {
-  background-color: var(--background-tertiary);
-  color: var(--text-normal);
-}
-
-.-bMcgq_dashboardTable th {
-  text-align: left;
-  text-transform: uppercase;
-  padding: 12px 16px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.-bMcgq_dashboardTable tbody tr {
-  transition: background-color .3s;
-}
-
-.-bMcgq_dashboardTable tbody tr:nth-child(2n) {
-  background-color: var(--background-secondary);
-}
-
-.-bMcgq_dashboardTable tbody tr:hover {
-  background-color: var(--brand-15a);
-  color: var(--text-bright);
-}
-
-.-bMcgq_dashboardTable td {
-  padding: 12px 16px;
-  font-size: 14px;
-}
-
-.-bMcgq_dashboardTable td:last-child {
-  text-align: center;
-}
-
 [class^="buttons"] > [aria-haspopup="dialog"] {
   display: none;
 }
@@ -7572,7 +7539,7 @@
   }
 }
 `);
-  var modal_jsx_default = { "progressFill": "-bMcgq_progressFill", "previewImage": "-bMcgq_previewImage", "uploadModal": "-bMcgq_uploadModal", "dashboardButton": "-bMcgq_dashboardButton", "dashboardTable": "-bMcgq_dashboardTable", "uploadArea": "-bMcgq_uploadArea", "uploading": "-bMcgq_uploading", "previewVideo": "-bMcgq_previewVideo", "previewIcon": "-bMcgq_previewIcon", "replacedButton": "-bMcgq_replacedButton", "dragOver": "-bMcgq_dragOver", "previewArea": "-bMcgq_previewArea", "removeButton": "-bMcgq_removeButton", "previewItem": "-bMcgq_previewItem", "footer": "-bMcgq_footer", "previewItemInfo": "-bMcgq_previewItemInfo", "progressBar": "-bMcgq_progressBar", "shake": "-bMcgq_shake", "sway": "-bMcgq_sway" };
+  var modal_jsx_default = { "uploadArea": "-bMcgq_uploadArea", "previewItem": "-bMcgq_previewItem", "progressBar": "-bMcgq_progressBar", "progressFill": "-bMcgq_progressFill", "footer": "-bMcgq_footer", "previewArea": "-bMcgq_previewArea", "replacedButton": "-bMcgq_replacedButton", "dashboardItem": "-bMcgq_dashboardItem", "previewImage": "-bMcgq_previewImage", "uploadModal": "-bMcgq_uploadModal", "sway": "-bMcgq_sway", "previewVideo": "-bMcgq_previewVideo", "dragOver": "-bMcgq_dragOver", "uploading": "-bMcgq_uploading", "shake": "-bMcgq_shake", "removeButton": "-bMcgq_removeButton", "dashboardButton": "-bMcgq_dashboardButton", "previewIcon": "-bMcgq_previewIcon", "previewItemInfo": "-bMcgq_previewItemInfo" };
 
   // node_modules/.pnpm/@smithy+protocol-http@4.1.8/node_modules/@smithy/protocol-http/dist-es/extensions/httpExtensionConfiguration.js
   var getHttpHandlerExtensionConfiguration = (runtimeConfig) => {
@@ -18065,26 +18032,27 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   }
 
   // plugins/externalUpload/utils.js
-  function getFilePreview(file) {
-    if (file.type.startsWith("image/")) {
-      return URL.createObjectURL(file);
-    } else if (file.type.startsWith("video/")) {
+  async function getFilePreview(file, isImage, isVideo, publicUrl) {
+    if (isImage || file?.type?.startsWith("image/")) {
+      return URL.createObjectURL(file.Key ? await fetch(getUrl(file, publicUrl)).then((body) => body.blob()) : file);
+    } else if (isVideo || file?.type?.startsWith("video/")) {
       return new Promise((resolve) => {
         let video = document.createElement("video");
         video.preload = "metadata";
+        video.crossOrigin = "anonymous";
         video.onloadedmetadata = function() {
           video.currentTime = 1;
           video.onseeked = function() {
             const canvas = document.createElement("canvas");
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
+            canvas.width = video.videoWidth / 2;
+            canvas.height = video.videoHeight / 2;
             canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
             URL.revokeObjectURL(video.src);
             video = null;
-            resolve(canvas.toDataURL());
+            resolve(canvas.toDataURL("image/webp"));
           };
         };
-        video.src = URL.createObjectURL(file);
+        video.src = file.Key ? getUrl(file, publicUrl) : URL.createObjectURL(file);
       });
     } else {
       return null;
@@ -18143,10 +18111,11 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   function getTotalUploadedSize(uploadedSizes) {
     return Object.values(uploadedSizes).reduce((acc, size) => acc + size, 0);
   }
-  async function uploadFiles(files, onProgress) {
+  async function uploadFiles(files, _previews, onProgress) {
     const totalSize = files.reduce((acc, file) => acc + file.size, 0);
     let uploadedSizes = {};
-    const uploadPromises = files.map(async (file) => {
+    const previews = {};
+    const uploadPromises = files.map(async (file, index) => {
       const name = await getUUID(file);
       const upload = new Upload({
         client: s3Client,
@@ -18161,9 +18130,10 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
         uploadedSizes[name] = file.size;
         onProgress(getTotalUploadedSize(uploadedSizes) / totalSize);
       });
+      previews[name] = _previews[index];
       return uploadPromise;
     });
-    return Promise.allSettled(uploadPromises);
+    return { uploadedFiles: Promise.allSettled(uploadPromises), previewsToSave: previews };
   }
   async function getAllFiles() {
     const response = await s3Client.send(
@@ -18199,12 +18169,11 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   var _tmpl$4 = /* @__PURE__ */ (0, import_web.template)(`<p>Uploading: <!>%</p>`, 3);
   var _tmpl$5 = /* @__PURE__ */ (0, import_web.template)(`<div></div>`, 2);
   var _tmpl$6 = /* @__PURE__ */ (0, import_web.template)(`<p>Total bucket usage: </p>`, 2);
-  var _tmpl$7 = /* @__PURE__ */ (0, import_web.template)(`<table><thead><tr><th>File Name</th><th>Size</th><th>Uploaded</th><th>Actions</th></tr></thead><tbody></tbody></table>`, 16);
-  var _tmpl$8 = /* @__PURE__ */ (0, import_web.template)(`<p>Uploading... Please wait</p>`, 2);
-  var _tmpl$9 = /* @__PURE__ */ (0, import_web.template)(`<div><div><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 16);
-  var _tmpl$10 = /* @__PURE__ */ (0, import_web.template)(`<img>`, 1);
-  var _tmpl$11 = /* @__PURE__ */ (0, import_web.template)(`<div>\u{1F4C4}</div>`, 2);
-  var _tmpl$12 = /* @__PURE__ */ (0, import_web.template)(`<tr><td></td><td></td><td></td><td></td></tr>`, 10);
+  var _tmpl$7 = /* @__PURE__ */ (0, import_web.template)(`<p>Uploading... Please wait</p>`, 2);
+  var _tmpl$8 = /* @__PURE__ */ (0, import_web.template)(`<div><div><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 16);
+  var _tmpl$9 = /* @__PURE__ */ (0, import_web.template)(`<img>`, 1);
+  var _tmpl$10 = /* @__PURE__ */ (0, import_web.template)(`<div>\u{1F4C4}</div>`, 2);
+  var _tmpl$11 = /* @__PURE__ */ (0, import_web.template)(`<div><div><p></p><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 18);
   var {
     ui: {
       ModalRoot,
@@ -18216,7 +18185,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       Button,
       ButtonColors,
       ButtonSizes,
-      LinkButton
+      focusring
     },
     solid: {
       createSignal,
@@ -18240,6 +18209,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
     const [uploadProgress, setUploadProgress] = createSignal(0);
     const [dashOpen, setDashOpen] = createSignal(false);
     const [dashboardFiles, setDashboardFiles] = createSignal([]);
+    const [fetchingFiles, setFetchingFiles] = createSignal(false);
     let fileInputRef;
     const handleDragOver = (e3) => {
       e3.preventDefault();
@@ -18277,11 +18247,14 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
     const handleConfirm = async () => {
       setIsUploading(true);
       setUploadProgress(0);
-      const uploadedFiles = await uploadFiles(files(), (progress) => {
+      const {
+        uploadedFiles,
+        previewsToSave
+      } = await uploadFiles(files(), previews(), (progress) => {
         setUploadProgress(progress * 100);
       });
-      const uploadedUrls = uploadedFiles.filter((result) => result.status === "fulfilled").map((result) => result.value);
-      const failedUploads = uploadedFiles.filter((result) => result.status === "rejected").map((result) => result.reason);
+      const uploadedUrls = (await uploadedFiles).filter((result) => result.status === "fulfilled").map((result) => result.value);
+      const failedUploads = (await uploadedFiles).filter((result) => result.status === "rejected").map((result) => result.reason);
       if (failedUploads.length == files().length) {
         showToast({
           title: "Upload failed!",
@@ -18303,6 +18276,10 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
           title: "Upload successful!",
           content: "All files uploaded successfully"
         });
+        store.previews = {
+          ...store.previews,
+          ...previewsToSave
+        };
         const fiber = getFiber(document.querySelector('[class*="slateContainer"]'));
         const editor = fiber.child.pendingProps.editor;
         for (let i2 = 0; i2 < uploadedUrls.length; i2++) {
@@ -18318,8 +18295,10 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       setIsUploading(false);
     };
     const fetchDashboardFiles = async () => {
+      setFetchingFiles(true);
       const files2 = await getAllFiles();
       setDashboardFiles(files2);
+      setFetchingFiles(false);
     };
     const handleDeleteFile = async (file) => {
       await deleteFile(file.Key);
@@ -18367,7 +18346,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
                       return !isUploading();
                     },
                     get fallback() {
-                      return _tmpl$8.cloneNode(true);
+                      return _tmpl$7.cloneNode(true);
                     },
                     get children() {
                       return _tmpl$.cloneNode(true);
@@ -18418,60 +18397,60 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
                       return files();
                     },
                     children: (file, index) => (() => {
-                      const _el$18 = _tmpl$9.cloneNode(true), _el$19 = _el$18.firstChild, _el$20 = _el$19.firstChild, _el$21 = _el$20.nextSibling, _el$22 = _el$19.nextSibling;
-                      (0, import_web6.insert)(_el$18, (() => {
+                      const _el$16 = _tmpl$8.cloneNode(true), _el$17 = _el$16.firstChild, _el$18 = _el$17.firstChild, _el$19 = _el$18.nextSibling, _el$20 = _el$17.nextSibling;
+                      (0, import_web6.insert)(_el$16, (() => {
                         const _c$ = (0, import_web9.memo)(() => !!file.type.startsWith("image/"));
                         return () => _c$() && (() => {
-                          const _el$23 = _tmpl$10.cloneNode(true);
+                          const _el$21 = _tmpl$9.cloneNode(true);
                           (0, import_web5.effect)((_p$) => {
                             const _v$10 = previews()[index()], _v$11 = file.name, _v$12 = modal_jsx_default.previewImage;
-                            _v$10 !== _p$._v$10 && (0, import_web3.setAttribute)(_el$23, "src", _p$._v$10 = _v$10);
-                            _v$11 !== _p$._v$11 && (0, import_web3.setAttribute)(_el$23, "alt", _p$._v$11 = _v$11);
-                            _v$12 !== _p$._v$12 && (0, import_web4.className)(_el$23, _p$._v$12 = _v$12);
+                            _v$10 !== _p$._v$10 && (0, import_web3.setAttribute)(_el$21, "src", _p$._v$10 = _v$10);
+                            _v$11 !== _p$._v$11 && (0, import_web3.setAttribute)(_el$21, "alt", _p$._v$11 = _v$11);
+                            _v$12 !== _p$._v$12 && (0, import_web4.className)(_el$21, _p$._v$12 = _v$12);
                             return _p$;
                           }, {
                             _v$10: void 0,
                             _v$11: void 0,
                             _v$12: void 0
                           });
-                          return _el$23;
+                          return _el$21;
                         })();
-                      })(), _el$19);
-                      (0, import_web6.insert)(_el$18, (() => {
+                      })(), _el$17);
+                      (0, import_web6.insert)(_el$16, (() => {
                         const _c$2 = (0, import_web9.memo)(() => !!file.type.startsWith("video/"));
                         return () => _c$2() && (() => {
-                          const _el$24 = _tmpl$10.cloneNode(true);
+                          const _el$22 = _tmpl$9.cloneNode(true);
                           (0, import_web5.effect)((_p$) => {
                             const _v$13 = previews()[index()], _v$14 = file.name, _v$15 = modal_jsx_default.previewVideo;
-                            _v$13 !== _p$._v$13 && (0, import_web3.setAttribute)(_el$24, "src", _p$._v$13 = _v$13);
-                            _v$14 !== _p$._v$14 && (0, import_web3.setAttribute)(_el$24, "alt", _p$._v$14 = _v$14);
-                            _v$15 !== _p$._v$15 && (0, import_web4.className)(_el$24, _p$._v$15 = _v$15);
+                            _v$13 !== _p$._v$13 && (0, import_web3.setAttribute)(_el$22, "src", _p$._v$13 = _v$13);
+                            _v$14 !== _p$._v$14 && (0, import_web3.setAttribute)(_el$22, "alt", _p$._v$14 = _v$14);
+                            _v$15 !== _p$._v$15 && (0, import_web4.className)(_el$22, _p$._v$15 = _v$15);
                             return _p$;
                           }, {
                             _v$13: void 0,
                             _v$14: void 0,
                             _v$15: void 0
                           });
-                          return _el$24;
+                          return _el$22;
                         })();
-                      })(), _el$19);
-                      (0, import_web6.insert)(_el$18, (() => {
+                      })(), _el$17);
+                      (0, import_web6.insert)(_el$16, (() => {
                         const _c$3 = (0, import_web9.memo)(() => !!(!file.type.startsWith("image/") && !file.type.startsWith("video/")));
                         return () => _c$3() && (() => {
-                          const _el$25 = _tmpl$11.cloneNode(true);
-                          (0, import_web5.effect)(() => (0, import_web4.className)(_el$25, modal_jsx_default.previewIcon));
-                          return _el$25;
+                          const _el$23 = _tmpl$10.cloneNode(true);
+                          (0, import_web5.effect)(() => (0, import_web4.className)(_el$23, modal_jsx_default.previewIcon));
+                          return _el$23;
                         })();
-                      })(), _el$19);
-                      (0, import_web6.insert)(_el$20, () => file.name);
-                      (0, import_web6.insert)(_el$21, () => formatFileSize(file.size));
-                      _el$22.$$click = () => handleRemoveFile(index());
+                      })(), _el$17);
+                      (0, import_web6.insert)(_el$18, () => file.name);
+                      (0, import_web6.insert)(_el$19, () => formatFileSize(file.size));
+                      _el$20.$$click = () => handleRemoveFile(index());
                       (0, import_web5.effect)((_p$) => {
                         const _v$6 = modal_jsx_default.previewItem, _v$7 = modal_jsx_default.previewItemInfo, _v$8 = modal_jsx_default.removeButton, _v$9 = isUploading();
-                        _v$6 !== _p$._v$6 && (0, import_web4.className)(_el$18, _p$._v$6 = _v$6);
-                        _v$7 !== _p$._v$7 && (0, import_web4.className)(_el$19, _p$._v$7 = _v$7);
-                        _v$8 !== _p$._v$8 && (0, import_web4.className)(_el$22, _p$._v$8 = _v$8);
-                        _v$9 !== _p$._v$9 && (_el$22.disabled = _p$._v$9 = _v$9);
+                        _v$6 !== _p$._v$6 && (0, import_web4.className)(_el$16, _p$._v$6 = _v$6);
+                        _v$7 !== _p$._v$7 && (0, import_web4.className)(_el$17, _p$._v$7 = _v$7);
+                        _v$8 !== _p$._v$8 && (0, import_web4.className)(_el$20, _p$._v$8 = _v$8);
+                        _v$9 !== _p$._v$9 && (_el$20.disabled = _p$._v$9 = _v$9);
                         return _p$;
                       }, {
                         _v$6: void 0,
@@ -18479,7 +18458,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
                         _v$8: void 0,
                         _v$9: void 0
                       });
-                      return _el$18;
+                      return _el$16;
                     })()
                   }));
                   (0, import_web5.effect)(() => (0, import_web4.className)(_el$10, modal_jsx_default.previewArea));
@@ -18500,37 +18479,98 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
                   (0, import_web6.insert)(_el$11, () => formatFileSize(dashboardFiles().reduce((acc, file) => acc + file.Size, 0)), null);
                   return _el$11;
                 })(), (() => {
-                  const _el$13 = _tmpl$7.cloneNode(true), _el$14 = _el$13.firstChild, _el$15 = _el$14.nextSibling;
-                  (0, import_web6.insert)(_el$15, (0, import_web8.createComponent)(For, {
+                  const _el$13 = _tmpl$5.cloneNode(true);
+                  (0, import_web6.insert)(_el$13, (0, import_web8.createComponent)(For, {
                     get each() {
                       return dashboardFiles();
                     },
-                    children: (file) => (() => {
-                      const _el$26 = _tmpl$12.cloneNode(true), _el$27 = _el$26.firstChild, _el$28 = _el$27.nextSibling, _el$29 = _el$28.nextSibling, _el$30 = _el$29.nextSibling;
-                      (0, import_web6.insert)(_el$27, (0, import_web8.createComponent)(LinkButton, {
-                        get href() {
-                          return getUrl(file, store.publicUrl);
-                        },
-                        get children() {
-                          return file.Key;
-                        }
-                      }));
-                      (0, import_web6.insert)(_el$28, () => formatFileSize(file.Size));
-                      (0, import_web6.insert)(_el$29, () => formatDate2(file.LastModified));
-                      (0, import_web6.insert)(_el$30, (0, import_web8.createComponent)(Button, {
-                        get size() {
-                          return ButtonSizes.SMALL;
-                        },
-                        get color() {
-                          return ButtonColors.RED;
-                        },
-                        onClick: () => handleDeleteFile(file),
-                        children: "Delete"
-                      }));
-                      return _el$26;
-                    })()
+                    children: (file) => {
+                      const extension = file.Key.split(".").pop();
+                      const isImage = ["jpg", "jpeg", "png", "gif", "webp", "svg"].includes(extension);
+                      const isVideo = ["mp4", "webm"].includes(extension);
+                      const [preview, setPreview] = createSignal(store.previews[file.Key]);
+                      if (!preview() && (isImage || isVideo)) {
+                        getFilePreview(file, isImage, isVideo, store.publicUrl).then((url) => {
+                          store.previews = {
+                            ...store.previews,
+                            [file.Key]: url
+                          };
+                          setPreview(url);
+                        });
+                      }
+                      return (() => {
+                        const _el$24 = _tmpl$11.cloneNode(true), _el$25 = _el$24.firstChild, _el$26 = _el$25.firstChild, _el$27 = _el$26.nextSibling, _el$28 = _el$27.nextSibling, _el$29 = _el$25.nextSibling;
+                        _el$24.$$click = () => {
+                          const fiber = getFiber(document.querySelector('[class*="slateContainer"]'));
+                          const editor = fiber.child.pendingProps.editor;
+                          const url = getUrl(file, store.publicUrl);
+                          editor.insertText(url + " ");
+                        };
+                        (0, import_web7.use)(focusring, _el$24, () => true);
+                        (0, import_web6.insert)(_el$24, (() => {
+                          const _c$4 = (0, import_web9.memo)(() => !!(preview() && isImage));
+                          return () => _c$4() && (() => {
+                            const _el$30 = _tmpl$9.cloneNode(true);
+                            (0, import_web5.effect)((_p$) => {
+                              const _v$19 = preview(), _v$20 = file.Key, _v$21 = modal_jsx_default.previewImage;
+                              _v$19 !== _p$._v$19 && (0, import_web3.setAttribute)(_el$30, "src", _p$._v$19 = _v$19);
+                              _v$20 !== _p$._v$20 && (0, import_web3.setAttribute)(_el$30, "alt", _p$._v$20 = _v$20);
+                              _v$21 !== _p$._v$21 && (0, import_web4.className)(_el$30, _p$._v$21 = _v$21);
+                              return _p$;
+                            }, {
+                              _v$19: void 0,
+                              _v$20: void 0,
+                              _v$21: void 0
+                            });
+                            return _el$30;
+                          })();
+                        })(), _el$25);
+                        (0, import_web6.insert)(_el$24, (() => {
+                          const _c$5 = (0, import_web9.memo)(() => !!(preview() && isVideo));
+                          return () => _c$5() && (() => {
+                            const _el$31 = _tmpl$9.cloneNode(true);
+                            (0, import_web5.effect)((_p$) => {
+                              const _v$22 = preview(), _v$23 = file.Key, _v$24 = modal_jsx_default.previewVideo;
+                              _v$22 !== _p$._v$22 && (0, import_web3.setAttribute)(_el$31, "src", _p$._v$22 = _v$22);
+                              _v$23 !== _p$._v$23 && (0, import_web3.setAttribute)(_el$31, "alt", _p$._v$23 = _v$23);
+                              _v$24 !== _p$._v$24 && (0, import_web4.className)(_el$31, _p$._v$24 = _v$24);
+                              return _p$;
+                            }, {
+                              _v$22: void 0,
+                              _v$23: void 0,
+                              _v$24: void 0
+                            });
+                            return _el$31;
+                          })();
+                        })(), _el$25);
+                        (0, import_web6.insert)(_el$24, (() => {
+                          const _c$6 = (0, import_web9.memo)(() => !!(!preview() || !isImage && !isVideo));
+                          return () => _c$6() && (() => {
+                            const _el$32 = _tmpl$10.cloneNode(true);
+                            (0, import_web5.effect)(() => (0, import_web4.className)(_el$32, modal_jsx_default.previewIcon));
+                            return _el$32;
+                          })();
+                        })(), _el$25);
+                        (0, import_web6.insert)(_el$26, () => file.Key);
+                        (0, import_web6.insert)(_el$27, () => formatFileSize(file.Size));
+                        (0, import_web6.insert)(_el$28, () => formatDate2(file.LastModified));
+                        _el$29.$$click = () => handleDeleteFile(file);
+                        (0, import_web5.effect)((_p$) => {
+                          const _v$16 = modal_jsx_default.dashboardItem, _v$17 = modal_jsx_default.previewItemInfo, _v$18 = modal_jsx_default.removeButton;
+                          _v$16 !== _p$._v$16 && (0, import_web4.className)(_el$24, _p$._v$16 = _v$16);
+                          _v$17 !== _p$._v$17 && (0, import_web4.className)(_el$25, _p$._v$17 = _v$17);
+                          _v$18 !== _p$._v$18 && (0, import_web4.className)(_el$29, _p$._v$18 = _v$18);
+                          return _p$;
+                        }, {
+                          _v$16: void 0,
+                          _v$17: void 0,
+                          _v$18: void 0
+                        });
+                        return _el$24;
+                      })();
+                    }
                   }));
-                  (0, import_web5.effect)(() => (0, import_web4.className)(_el$13, modal_jsx_default.dashboardTable));
+                  (0, import_web5.effect)(() => (0, import_web4.className)(_el$13, modal_jsx_default.previewArea));
                   return _el$13;
                 })()];
               }
@@ -18538,8 +18578,8 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
           }
         }), (0, import_web8.createComponent)(ModalFooter, {
           get children() {
-            const _el$16 = _tmpl$5.cloneNode(true);
-            (0, import_web6.insert)(_el$16, (0, import_web8.createComponent)(Button, {
+            const _el$14 = _tmpl$5.cloneNode(true);
+            (0, import_web6.insert)(_el$14, (0, import_web8.createComponent)(Button, {
               get ["class"]() {
                 return modal_jsx_default.dashboardButton;
               },
@@ -18554,7 +18594,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
                 return dashOpen() ? "Upload Files" : "Dashboard";
               }
             }), null);
-            (0, import_web6.insert)(_el$16, (0, import_web8.createComponent)(Button, {
+            (0, import_web6.insert)(_el$14, (0, import_web8.createComponent)(Button, {
               get disabled() {
                 return isUploading();
               },
@@ -18567,7 +18607,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
               onClick: () => isUploading() ? null : closeModal(),
               children: "Cancel"
             }), null);
-            (0, import_web6.insert)(_el$16, (0, import_web8.createComponent)(Show, {
+            (0, import_web6.insert)(_el$14, (0, import_web8.createComponent)(Show, {
               get when() {
                 return !dashOpen();
               },
@@ -18589,8 +18629,8 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
                 });
               }
             }), null);
-            (0, import_web5.effect)(() => (0, import_web4.className)(_el$16, modal_jsx_default.footer));
-            return _el$16;
+            (0, import_web5.effect)(() => (0, import_web4.className)(_el$14, modal_jsx_default.footer));
+            return _el$14;
           }
         })];
       }
@@ -18600,13 +18640,13 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
 
   // plugins/externalUpload/uploadIcon.jsx
   var import_web10 = __toESM(require_web());
-  var _tmpl$13 = /* @__PURE__ */ (0, import_web10.template)(`<svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M13.82 21.7c.17.05.14.3-.04.3H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4h7.5c.28 0 .5.22.5.5V5a5 5 0 0 0 5 5h2.5c.28 0 .5.22.5.5v2.3a.4.4 0 0 1-.68.27l-.2-.2a3 3 0 0 0-4.24 0l-4 4a3 3 0 0 0 0 4.25c.3.3.6.46.94.58Z"></path><path fill="currentColor" d="M21.66 8c.03 0 .05-.03.04-.06a3 3 0 0 0-.58-.82l-4.24-4.24a3 3 0 0 0-.82-.58.04.04 0 0 0-.06.04V5a3 3 0 0 0 3 3h2.66ZM18.3 14.3a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1-1.4 1.4L20 17.42V23a1 1 0 1 1-2 0v-5.59l-2.3 2.3a1 1 0 0 1-1.4-1.42l4-4Z"></path></svg>`, 6);
+  var _tmpl$12 = /* @__PURE__ */ (0, import_web10.template)(`<svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M13.82 21.7c.17.05.14.3-.04.3H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4h7.5c.28 0 .5.22.5.5V5a5 5 0 0 0 5 5h2.5c.28 0 .5.22.5.5v2.3a.4.4 0 0 1-.68.27l-.2-.2a3 3 0 0 0-4.24 0l-4 4a3 3 0 0 0 0 4.25c.3.3.6.46.94.58Z"></path><path fill="currentColor" d="M21.66 8c.03 0 .05-.03.04-.06a3 3 0 0 0-.58-.82l-4.24-4.24a3 3 0 0 0-.82-.58.04.04 0 0 0-.06.04V5a3 3 0 0 0 3 3h2.66ZM18.3 14.3a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1-1.4 1.4L20 17.42V23a1 1 0 1 1-2 0v-5.59l-2.3 2.3a1 1 0 0 1-1.4-1.42l4-4Z"></path></svg>`, 6);
   function uploadIcon() {
-    return _tmpl$13.cloneNode(true);
+    return _tmpl$12.cloneNode(true);
   }
 
   // plugins/externalUpload/index.jsx
-  var _tmpl$14 = /* @__PURE__ */ (0, import_web11.template)(`<button></button>`, 2);
+  var _tmpl$13 = /* @__PURE__ */ (0, import_web11.template)(`<button></button>`, 2);
   var _tmpl$22 = /* @__PURE__ */ (0, import_web11.template)(`<br>`, 1);
   var _tmpl$32 = /* @__PURE__ */ (0, import_web11.template)(`<pre style="background-color: var(--background-secondary); padding: 10px; border-radius: 8px;"><code>{
   "CORSRules": [
@@ -18629,7 +18669,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       HeaderTags,
       Text,
       TextBox,
-      focusring
+      focusring: focusring2
     },
     plugin
   } = shelter;
@@ -18641,7 +18681,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   }
   function uploadButton() {
     return (() => {
-      const _el$ = _tmpl$14.cloneNode(true);
+      const _el$ = _tmpl$13.cloneNode(true);
       _el$.$$click = () => {
         if (plugin.store.endpoint === "" || plugin.store.accessKeyId === "" || plugin.store.secretAccessKey === "" || plugin.store.bucket === "") {
           showToast2({
@@ -18653,7 +18693,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
           openModal((p2) => UploadModal(p2.close));
         }
       };
-      (0, import_web17.use)(focusring, _el$, () => true);
+      (0, import_web17.use)(focusring2, _el$, () => true);
       (0, import_web16.insert)(_el$, uploadIcon);
       (0, import_web15.effect)(() => (0, import_web14.className)(_el$, modal_jsx_default.replacedButton));
       return _el$;
@@ -18666,6 +18706,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
     plugin.store.secretAccessKey ??= "";
     plugin.store.bucket ??= "";
     plugin.store.publicUrl ??= "";
+    plugin.store.previews ??= "";
     updateConfig();
     subscribe("CHANNEL_SELECT", () => {
       let unobserve = observeDom('[class^="inner"] > [class^="buttons"]', (element) => {
