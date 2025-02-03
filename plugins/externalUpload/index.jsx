@@ -57,6 +57,7 @@ export function onLoad() {
    plugin.store.secretAccessKey ??= "";
    plugin.store.bucket ??= "";
    plugin.store.publicUrl ??= "";
+   plugin.store.previews ??= "";
 
    updateConfig();
 

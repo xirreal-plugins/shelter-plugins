@@ -12,7 +12,7 @@ const {
       Button,
       ButtonColors,
       ButtonSizes,
-      LinkButton,
+      focusring,
    },
    solid: { createSignal, createEffect, Show, For },
    util: { log, getFiber },
@@ -27,6 +27,7 @@ export function UploadModal(closeModal) {
    const [uploadProgress, setUploadProgress] = createSignal(0);
    const [dashOpen, setDashOpen] = createSignal(false);
    const [dashboardFiles, setDashboardFiles] = createSignal([]);
+   const [fetchingFiles, setFetchingFiles] = createSignal(false);
 
    let fileInputRef;
 
@@ -73,15 +74,15 @@ export function UploadModal(closeModal) {
       setIsUploading(true);
       setUploadProgress(0);
 
-      const uploadedFiles = await uploadFiles(files(), (progress) => {
+      const { uploadedFiles, previewsToSave } = await uploadFiles(files(), previews(), (progress) => {
          setUploadProgress(progress * 100);
       });
 
-      const uploadedUrls = uploadedFiles
+      const uploadedUrls = (await uploadedFiles)
          .filter((result) => result.status === "fulfilled")
          .map((result) => result.value);
 
-      const failedUploads = uploadedFiles
+      const failedUploads = (await uploadedFiles)
          .filter((result) => result.status === "rejected")
          .map((result) => result.reason);
 
@@ -109,6 +110,8 @@ export function UploadModal(closeModal) {
             content: "All files uploaded successfully",
          });
 
+         store.previews = { ...store.previews, ...previewsToSave };
+
          const fiber = getFiber(document.querySelector('[class*="slateContainer"]'));
          const editor = fiber.child.pendingProps.editor;
 
@@ -127,8 +130,10 @@ export function UploadModal(closeModal) {
    };
 
    const fetchDashboardFiles = async () => {
+      setFetchingFiles(true);
       const files = await getAllFiles();
       setDashboardFiles(files);
+      setFetchingFiles(false);
    };
 
    const handleDeleteFile = async (file) => {
@@ -233,38 +238,75 @@ export function UploadModal(closeModal) {
          <Show when={dashOpen()}>
             <ModalBody>
                <p>Total bucket usage: {formatFileSize(dashboardFiles().reduce((acc, file) => acc + file.Size, 0))}</p>
-               <table class={styles.dashboardTable}>
-                  <thead>
-                     <tr>
-                        <th>File Name</th>
-                        <th>Size</th>
-                        <th>Uploaded</th>
-                        <th>Actions</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <For each={dashboardFiles()}>
-                        {(file) => (
-                           <tr>
-                              <td>
-                                 <LinkButton href={getUrl(file, store.publicUrl)}>{file.Key}</LinkButton>
-                              </td>
-                              <td>{formatFileSize(file.Size)}</td>
-                              <td>{formatDate(file.LastModified)}</td>
-                              <td>
-                                 <Button
-                                    size={ButtonSizes.SMALL}
-                                    color={ButtonColors.RED}
-                                    onClick={() => handleDeleteFile(file)}
+               <div class={styles.previewArea}>
+                  <For each={dashboardFiles()}>
+                     {(file) => {
+                        const extension = file.Key.split(".").pop();
+                        const isImage = ["jpg", "jpeg", "png", "gif", "webp", "svg"].includes(extension);
+                        const isVideo = ["mp4", "webm"].includes(extension);
+
+                        const [preview, setPreview] = createSignal(store.previews[file.Key]);
+
+                        if (!preview() && (isImage || isVideo)) {
+                           getFilePreview(file, isImage, isVideo, store.publicUrl).then((url) => {
+                              store.previews = { ...store.previews, [file.Key]: url };
+                              setPreview(url);
+                           });
+                        }
+
+                        return (
+                           <div
+                              class={styles.dashboardItem}
+                              use:focusring
+                              onclick={() => {
+                                 const fiber = getFiber(document.querySelector('[class*="slateContainer"]'));
+                                 const editor = fiber.child.pendingProps.editor;
+
+                                 const url = getUrl(file, store.publicUrl);
+                                 editor.insertText(url + " ");
+                              }}
+                           >
+                              {preview() && isImage && (
+                                 <img src={preview()} alt={file.Key} class={styles.previewImage} />
+                              )}
+                              {preview() && isVideo && (
+                                 <img src={preview()} alt={file.Key} class={styles.previewVideo} />
+                              )}
+                              {(!preview() || (!isImage && !isVideo)) && <div class={styles.previewIcon}>📄</div>}
+                              <div class={styles.previewItemInfo}>
+                                 <p>{file.Key}</p>
+                                 <p>{formatFileSize(file.Size)}</p>
+                                 <p>{formatDate(file.LastModified)}</p>
+                              </div>
+                              <button class={styles.removeButton} onClick={() => handleDeleteFile(file)}>
+                                 <svg
+                                    aria-hidden="true"
+                                    role="img"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
                                  >
-                                    Delete
-                                 </Button>
-                              </td>
-                           </tr>
-                        )}
-                     </For>
-                  </tbody>
-               </table>
+                                    <path
+                                       fill="currentColor"
+                                       d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z"
+                                       class=""
+                                    ></path>
+                                    <path
+                                       fill="currentColor"
+                                       fill-rule="evenodd"
+                                       d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z"
+                                       clip-rule="evenodd"
+                                       class=""
+                                    ></path>
+                                 </svg>
+                              </button>
+                           </div>
+                        );
+                     }}
+                  </For>
+               </div>
             </ModalBody>
          </Show>
          <ModalFooter>

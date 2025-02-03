@@ -2,26 +2,27 @@ import { S3Client, ListObjectsV2Command, DeleteObjectCommand } from "@aws-sdk/cl
 import { Upload } from "@aws-sdk/lib-storage";
 import xxhash from "xxhash-wasm";
 
-export function getFilePreview(file) {
-   if (file.type.startsWith("image/")) {
-      return URL.createObjectURL(file);
-   } else if (file.type.startsWith("video/")) {
+export async function getFilePreview(file, isImage, isVideo, publicUrl) {
+   if (isImage || file?.type?.startsWith("image/")) {
+      return URL.createObjectURL(file.Key ? await fetch(getUrl(file, publicUrl)).then((body) => body.blob()) : file);
+   } else if (isVideo || file?.type?.startsWith("video/")) {
       return new Promise((resolve) => {
          let video = document.createElement("video");
          video.preload = "metadata";
+         video.crossOrigin = "anonymous";
          video.onloadedmetadata = function () {
             video.currentTime = 1;
             video.onseeked = function () {
                const canvas = document.createElement("canvas");
-               canvas.width = video.videoWidth;
-               canvas.height = video.videoHeight;
+               canvas.width = video.videoWidth / 2;
+               canvas.height = video.videoHeight / 2;
                canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
                URL.revokeObjectURL(video.src);
                video = null;
-               resolve(canvas.toDataURL());
+               resolve(canvas.toDataURL("image/webp"));
             };
          };
-         video.src = URL.createObjectURL(file);
+         video.src = file.Key ? getUrl(file, publicUrl) : URL.createObjectURL(file);
       });
    } else {
       return null;
@@ -90,11 +91,12 @@ function getTotalUploadedSize(uploadedSizes) {
    return Object.values(uploadedSizes).reduce((acc, size) => acc + size, 0);
 }
 
-export async function uploadFiles(files, onProgress) {
+export async function uploadFiles(files, _previews, onProgress) {
    const totalSize = files.reduce((acc, file) => acc + file.size, 0);
    let uploadedSizes = {};
+   const previews = {};
 
-   const uploadPromises = files.map(async (file) => {
+   const uploadPromises = files.map(async (file, index) => {
       const name = await getUUID(file);
       const upload = new Upload({
          client: s3Client,
@@ -112,10 +114,12 @@ export async function uploadFiles(files, onProgress) {
          onProgress(getTotalUploadedSize(uploadedSizes) / totalSize);
       });
 
+      previews[name] = _previews[index];
+
       return uploadPromise;
    });
 
-   return Promise.allSettled(uploadPromises);
+   return { uploadedFiles: Promise.allSettled(uploadPromises), previewsToSave: previews };
 }
 
 export async function getAllFiles() {

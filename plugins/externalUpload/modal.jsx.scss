@@ -8,9 +8,14 @@
 }
 
 .uploadArea:hover,
-.uploadArea.dragOver,
-.previewItem:hover {
+.uploadArea.dragOver {
   border-color: white;
+  background-color: var(--brand-15a);
+}
+
+.previewItem:hover,
+.dashboardItem:hover {
+  border-color: var(--background-secondary);
   background-color: var(--brand-15a);
 }
 
@@ -39,9 +44,11 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 20px;
+  width: 110%;
 }
 
-.previewItem {
+.previewItem,
+.dashboardItem {
   position: relative;
   width: 180px;
   height: 180px;
@@ -49,11 +56,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid var(--interactive-normal);
+  border: 1px solid var(--background-tertiary);
+  background-color: var(--background-secondary);
   border-radius: 8px;
   padding: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
+}
+
+.dashboardItem {
+  cursor: pointer;
 }
 
 .previewImage,
@@ -88,7 +100,7 @@
   padding: 4px 5px 1px 5px;
   font-size: 12px;
   color: var(--status-danger);
-  background-color: color-mix(in srgb, var(--background-tertiary) 90%, transparent);
+  background-color: color-mix(in srgb, var(--background-tertiary) 80%, transparent);
   backdrop-filter: blur(4px);
   border-radius: 8px;
   cursor: pointer;
@@ -137,49 +149,7 @@
   margin-right: auto;
 }
 
-.dashboardTable {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: var(--background-primary);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-.dashboardTable thead {
-  background-color: var(--background-tertiary);
-  color: var(--text-normal);
-}
-
-.dashboardTable th {
-  padding: 12px 16px;
-  text-align: left;
-  font-weight: 600;
-  font-size: 14px;
-  text-transform: uppercase;
-}
-
-.dashboardTable tbody tr {
-  transition: background-color 0.3s ease;
-}
-
-.dashboardTable tbody tr:nth-child(even) {
-  background-color: var(--background-secondary);
-}
-
-.dashboardTable tbody tr:hover {
-  background-color: var(--brand-15a);
-  color: var(--text-bright);
-}
-
-.dashboardTable td {
-  padding: 12px 16px;
-  font-size: 14px;
-}
-
-.dashboardTable td:last-child {
-  text-align: center;
-}
 
 [class^="buttons"]>[aria-haspopup="dialog"] {
   display: none;
