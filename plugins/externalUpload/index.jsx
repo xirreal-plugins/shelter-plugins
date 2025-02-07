@@ -62,7 +62,7 @@ export function onLoad() {
    updateConfig();
 
    subscribe("CHANNEL_SELECT", () => {
-      let unobserve = observeDom('[class^="inner"] > [class^="buttons"]', (element) => {
+      let unobserve = observeDom('[class^="inner"] > [class^="buttons"], [class^="accessoryBarRight"]', (element) => {
          if (element.dataset.externalUpload) return;
          unobserve();
          element.dataset.externalUpload = true;
