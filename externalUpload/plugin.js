@@ -7539,7 +7539,7 @@
   }
 }
 `);
-  var modal_jsx_default = { "uploadArea": "-bMcgq_uploadArea", "previewItem": "-bMcgq_previewItem", "progressBar": "-bMcgq_progressBar", "progressFill": "-bMcgq_progressFill", "footer": "-bMcgq_footer", "previewArea": "-bMcgq_previewArea", "replacedButton": "-bMcgq_replacedButton", "dashboardItem": "-bMcgq_dashboardItem", "previewImage": "-bMcgq_previewImage", "uploadModal": "-bMcgq_uploadModal", "sway": "-bMcgq_sway", "previewVideo": "-bMcgq_previewVideo", "dragOver": "-bMcgq_dragOver", "uploading": "-bMcgq_uploading", "shake": "-bMcgq_shake", "removeButton": "-bMcgq_removeButton", "dashboardButton": "-bMcgq_dashboardButton", "previewIcon": "-bMcgq_previewIcon", "previewItemInfo": "-bMcgq_previewItemInfo" };
+  var modal_jsx_default = { "previewArea": "-bMcgq_previewArea", "uploadModal": "-bMcgq_uploadModal", "dashboardItem": "-bMcgq_dashboardItem", "previewIcon": "-bMcgq_previewIcon", "sway": "-bMcgq_sway", "dragOver": "-bMcgq_dragOver", "previewItem": "-bMcgq_previewItem", "removeButton": "-bMcgq_removeButton", "progressFill": "-bMcgq_progressFill", "progressBar": "-bMcgq_progressBar", "previewVideo": "-bMcgq_previewVideo", "uploading": "-bMcgq_uploading", "footer": "-bMcgq_footer", "uploadArea": "-bMcgq_uploadArea", "replacedButton": "-bMcgq_replacedButton", "shake": "-bMcgq_shake", "previewImage": "-bMcgq_previewImage", "previewItemInfo": "-bMcgq_previewItemInfo", "dashboardButton": "-bMcgq_dashboardButton" };
 
   // node_modules/.pnpm/@smithy+protocol-http@4.1.8/node_modules/@smithy/protocol-http/dist-es/extensions/httpExtensionConfiguration.js
   var getHttpHandlerExtensionConfiguration = (runtimeConfig) => {
@@ -18709,7 +18709,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
     plugin.store.previews ??= "";
     updateConfig();
     subscribe("CHANNEL_SELECT", () => {
-      let unobserve = observeDom('[class^="inner"] > [class^="buttons"]', (element) => {
+      let unobserve = observeDom('[class^="inner"] > [class^="buttons"], [class^="accessoryBarRight"]', (element) => {
         if (element.dataset.externalUpload)
           return;
         unobserve();
