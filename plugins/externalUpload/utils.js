@@ -2,31 +2,63 @@ import { S3Client, ListObjectsV2Command, DeleteObjectCommand } from "@aws-sdk/cl
 import { Upload } from "@aws-sdk/lib-storage";
 import xxhash from "xxhash-wasm";
 
+const previewSize = 256;
+
 export async function getFilePreview(file, isImage, isVideo, publicUrl) {
+   const url = file.Key ? getUrl(file, publicUrl) : URL.createObjectURL(file);
+
    if (isImage || file?.type?.startsWith("image/")) {
-      return URL.createObjectURL(file.Key ? await fetch(getUrl(file, publicUrl)).then((body) => body.blob()) : file);
-   } else if (isVideo || file?.type?.startsWith("video/")) {
       return new Promise((resolve) => {
-         let video = document.createElement("video");
-         video.preload = "metadata";
-         video.crossOrigin = "anonymous";
-         video.onloadedmetadata = function () {
-            video.currentTime = 1;
-            video.onseeked = function () {
-               const canvas = document.createElement("canvas");
-               canvas.width = video.videoWidth / 2;
-               canvas.height = video.videoHeight / 2;
-               canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
-               URL.revokeObjectURL(video.src);
-               video = null;
-               resolve(canvas.toDataURL("image/webp"));
-            };
+         const img = document.createElement("img");
+         img.crossOrigin = "anonymous";
+         img.src = url;
+
+         img.onload = () => {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+
+            let scale = Math.min(previewSize / img.width, previewSize / img.height, 1);
+            canvas.width = img.width * scale;
+            canvas.height = img.height * scale;
+
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            URL.revokeObjectURL(img.src);
+            resolve(canvas.toDataURL("image/webp"));
          };
-         video.src = file.Key ? getUrl(file, publicUrl) : URL.createObjectURL(file);
+
+         img.onerror = () => resolve(null);
       });
-   } else {
-      return null;
    }
+
+   if (isVideo || file?.type?.startsWith("video/")) {
+      return new Promise((resolve) => {
+         const video = document.createElement("video");
+         video.crossOrigin = "anonymous";
+         video.preload = "metadata";
+         video.src = url;
+
+         video.onloadedmetadata = () => {
+            video.currentTime = 1;
+         };
+
+         video.onseeked = () => {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+
+            let scale = Math.min(previewSize / video.videoWidth, previewSize / video.videoHeight, 1);
+            canvas.width = video.videoWidth * scale;
+            canvas.height = video.videoHeight * scale;
+
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            URL.revokeObjectURL(video.src);
+            resolve(canvas.toDataURL("image/webp"));
+         };
+
+         video.onerror = () => resolve(null);
+      });
+   }
+
+   return null;
 }
 
 export function formatFileSize(bytes) {

@@ -1,7 +1,7 @@
 const { observeDom } = shelter.plugin.scoped;
 
 const {
-   ui: { openModal, showToast, Header, HeaderTags, Text, TextBox, focusring },
+   ui: { openModal, showToast, Header, HeaderTags, Text, TextBox, Button, ButtonSizes, ButtonColors, focusring },
    plugin,
 } = shelter;
 
@@ -57,7 +57,7 @@ export function onLoad() {
    plugin.store.secretAccessKey ??= "";
    plugin.store.bucket ??= "";
    plugin.store.publicUrl ??= "";
-   plugin.store.previews ??= "";
+   plugin.store.previews ??= {};
 
    updateConfig();
 
@@ -74,6 +74,13 @@ export function onLoad() {
 
 export const settings = () => (
    <>
+      <style>
+         {`
+         [class^="_modal"] {
+            width: auto;
+         }
+         `}
+      </style>
       <Text>
          Configure the S3 compatible backend to use for external uploads.
          <br />
@@ -109,6 +116,8 @@ export const settings = () => (
             updateConfig();
          }}
       />
+      <br />
+      <br />
       <Header tag={HeaderTags.H3}>Region</Header>
       <TextBox
          placeholder="us-east-1"
@@ -118,6 +127,8 @@ export const settings = () => (
             updateConfig();
          }}
       />
+      <br />
+      <br />
       <Header tag={HeaderTags.H3}>Access Key ID</Header>
       <TextBox
          placeholder="b00b5de99be7b50bb9471a5db83aa7a9"
@@ -127,6 +138,8 @@ export const settings = () => (
             updateConfig();
          }}
       />
+      <br />
+      <br />
       <Header tag={HeaderTags.H3}>Secret Access Key</Header>
       <TextBox
          placeholder="deadbeef1063cb36c699199b48cb26b9475197345c08230c66c1c6a6c54b00b5"
@@ -136,6 +149,8 @@ export const settings = () => (
             updateConfig();
          }}
       />
+      <br />
+      <br />
       <Header tag={HeaderTags.H3}>Bucket</Header>
       <TextBox
          placeholder="discord-uploads"
@@ -145,6 +160,8 @@ export const settings = () => (
             updateConfig();
          }}
       />
+      <br />
+      <br />
       <Header tag={HeaderTags.H3}>Public URL</Header>
       <TextBox
          placeholder="https://uploads.example.com"
@@ -153,5 +170,23 @@ export const settings = () => (
             plugin.store.publicUrl = v;
          }}
       />
+      <br />
+      <br />
+      <Header tag={HeaderTags.H3}>Previews</Header>
+      <br />
+      <Button
+         style={{ width: "auto" }}
+         size={ButtonSizes.LARGE}
+         color={ButtonColors.RED}
+         onClick={() => {
+            plugin.store.previews = {};
+            showToast({
+               title: "External Upload",
+               content: "Cleared cached previews.",
+            });
+         }}
+      >
+         Clear cached previews
+      </Button>
    </>
 );
