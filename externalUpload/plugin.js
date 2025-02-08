@@ -7539,7 +7539,7 @@
   }
 }
 `);
-  var modal_jsx_default = { "previewArea": "-bMcgq_previewArea", "uploadModal": "-bMcgq_uploadModal", "dashboardItem": "-bMcgq_dashboardItem", "previewIcon": "-bMcgq_previewIcon", "sway": "-bMcgq_sway", "dragOver": "-bMcgq_dragOver", "previewItem": "-bMcgq_previewItem", "removeButton": "-bMcgq_removeButton", "progressFill": "-bMcgq_progressFill", "progressBar": "-bMcgq_progressBar", "previewVideo": "-bMcgq_previewVideo", "uploading": "-bMcgq_uploading", "footer": "-bMcgq_footer", "uploadArea": "-bMcgq_uploadArea", "replacedButton": "-bMcgq_replacedButton", "shake": "-bMcgq_shake", "previewImage": "-bMcgq_previewImage", "previewItemInfo": "-bMcgq_previewItemInfo", "dashboardButton": "-bMcgq_dashboardButton" };
+  var modal_jsx_default = { "dashboardButton": "-bMcgq_dashboardButton", "previewItem": "-bMcgq_previewItem", "previewIcon": "-bMcgq_previewIcon", "previewVideo": "-bMcgq_previewVideo", "dragOver": "-bMcgq_dragOver", "progressBar": "-bMcgq_progressBar", "removeButton": "-bMcgq_removeButton", "sway": "-bMcgq_sway", "previewArea": "-bMcgq_previewArea", "previewImage": "-bMcgq_previewImage", "progressFill": "-bMcgq_progressFill", "dashboardItem": "-bMcgq_dashboardItem", "footer": "-bMcgq_footer", "uploading": "-bMcgq_uploading", "replacedButton": "-bMcgq_replacedButton", "previewItemInfo": "-bMcgq_previewItemInfo", "uploadArea": "-bMcgq_uploadArea", "shake": "-bMcgq_shake", "uploadModal": "-bMcgq_uploadModal" };
 
   // node_modules/.pnpm/@smithy+protocol-http@4.1.8/node_modules/@smithy/protocol-http/dist-es/extensions/httpExtensionConfiguration.js
   var getHttpHandlerExtensionConfiguration = (runtimeConfig) => {
@@ -18032,31 +18032,50 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
   }
 
   // plugins/externalUpload/utils.js
+  var previewSize = 256;
   async function getFilePreview(file, isImage, isVideo, publicUrl) {
+    const url = file.Key ? getUrl(file, publicUrl) : URL.createObjectURL(file);
     if (isImage || file?.type?.startsWith("image/")) {
-      return URL.createObjectURL(file.Key ? await fetch(getUrl(file, publicUrl)).then((body) => body.blob()) : file);
-    } else if (isVideo || file?.type?.startsWith("video/")) {
       return new Promise((resolve) => {
-        let video = document.createElement("video");
-        video.preload = "metadata";
-        video.crossOrigin = "anonymous";
-        video.onloadedmetadata = function() {
-          video.currentTime = 1;
-          video.onseeked = function() {
-            const canvas = document.createElement("canvas");
-            canvas.width = video.videoWidth / 2;
-            canvas.height = video.videoHeight / 2;
-            canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
-            URL.revokeObjectURL(video.src);
-            video = null;
-            resolve(canvas.toDataURL("image/webp"));
-          };
+        const img = document.createElement("img");
+        img.crossOrigin = "anonymous";
+        img.src = url;
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+          let scale = Math.min(previewSize / img.width, previewSize / img.height, 1);
+          canvas.width = img.width * scale;
+          canvas.height = img.height * scale;
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          URL.revokeObjectURL(img.src);
+          resolve(canvas.toDataURL("image/webp"));
         };
-        video.src = file.Key ? getUrl(file, publicUrl) : URL.createObjectURL(file);
+        img.onerror = () => resolve(null);
       });
-    } else {
-      return null;
     }
+    if (isVideo || file?.type?.startsWith("video/")) {
+      return new Promise((resolve) => {
+        const video = document.createElement("video");
+        video.crossOrigin = "anonymous";
+        video.preload = "metadata";
+        video.src = url;
+        video.onloadedmetadata = () => {
+          video.currentTime = 1;
+        };
+        video.onseeked = () => {
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+          let scale = Math.min(previewSize / video.videoWidth, previewSize / video.videoHeight, 1);
+          canvas.width = video.videoWidth * scale;
+          canvas.height = video.videoHeight * scale;
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          URL.revokeObjectURL(video.src);
+          resolve(canvas.toDataURL("image/webp"));
+        };
+        video.onerror = () => resolve(null);
+      });
+    }
+    return null;
   }
   function formatFileSize(bytes) {
     if (bytes < 1024)
@@ -18647,8 +18666,13 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
 
   // plugins/externalUpload/index.jsx
   var _tmpl$13 = /* @__PURE__ */ (0, import_web11.template)(`<button></button>`, 2);
-  var _tmpl$22 = /* @__PURE__ */ (0, import_web11.template)(`<br>`, 1);
-  var _tmpl$32 = /* @__PURE__ */ (0, import_web11.template)(`<pre style="background-color: var(--background-secondary); padding: 10px; border-radius: 8px;"><code>{
+  var _tmpl$22 = /* @__PURE__ */ (0, import_web11.template)(`<style>
+         [class^="_modal"] {
+            width: auto;
+         }
+         </style>`, 2);
+  var _tmpl$32 = /* @__PURE__ */ (0, import_web11.template)(`<br>`, 1);
+  var _tmpl$42 = /* @__PURE__ */ (0, import_web11.template)(`<pre style="background-color: var(--background-secondary); padding: 10px; border-radius: 8px;"><code>{
   "CORSRules": [
     {
       "AllowedHeaders": ["*"],
@@ -18669,6 +18693,9 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       HeaderTags,
       Text,
       TextBox,
+      Button: Button2,
+      ButtonSizes: ButtonSizes2,
+      ButtonColors: ButtonColors2,
       focusring: focusring2
     },
     plugin
@@ -18706,7 +18733,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
     plugin.store.secretAccessKey ??= "";
     plugin.store.bucket ??= "";
     plugin.store.publicUrl ??= "";
-    plugin.store.previews ??= "";
+    plugin.store.previews ??= {};
     updateConfig();
     subscribe("CHANNEL_SELECT", () => {
       let unobserve = observeDom('[class^="inner"] > [class^="buttons"], [class^="accessoryBarRight"]', (element) => {
@@ -18719,11 +18746,11 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       setTimeout(() => unobserve(), 2e3);
     });
   }
-  var settings = () => [(0, import_web13.createComponent)(Text, {
+  var settings = () => [_tmpl$22.cloneNode(true), (0, import_web13.createComponent)(Text, {
     get children() {
-      return ["Configure the S3 compatible backend to use for external uploads.", _tmpl$22.cloneNode(true), _tmpl$22.cloneNode(true), "Remember to allow CORS for the endpoint!", _tmpl$22.cloneNode(true), _tmpl$22.cloneNode(true), "Example CORS configuration:", _tmpl$22.cloneNode(true), _tmpl$22.cloneNode(true), _tmpl$32.cloneNode(true)];
+      return ["Configure the S3 compatible backend to use for external uploads.", _tmpl$32.cloneNode(true), _tmpl$32.cloneNode(true), "Remember to allow CORS for the endpoint!", _tmpl$32.cloneNode(true), _tmpl$32.cloneNode(true), "Example CORS configuration:", _tmpl$32.cloneNode(true), _tmpl$32.cloneNode(true), _tmpl$42.cloneNode(true)];
     }
-  }), _tmpl$22.cloneNode(true), (0, import_web13.createComponent)(Header, {
+  }), _tmpl$32.cloneNode(true), (0, import_web13.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
@@ -18737,7 +18764,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.endpoint = v2;
       updateConfig();
     }
-  }), (0, import_web13.createComponent)(Header, {
+  }), _tmpl$32.cloneNode(true), _tmpl$32.cloneNode(true), (0, import_web13.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
@@ -18751,7 +18778,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.region = v2;
       updateConfig();
     }
-  }), (0, import_web13.createComponent)(Header, {
+  }), _tmpl$32.cloneNode(true), _tmpl$32.cloneNode(true), (0, import_web13.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
@@ -18765,7 +18792,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.accessKeyId = v2;
       updateConfig();
     }
-  }), (0, import_web13.createComponent)(Header, {
+  }), _tmpl$32.cloneNode(true), _tmpl$32.cloneNode(true), (0, import_web13.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
@@ -18779,7 +18806,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.secretAccessKey = v2;
       updateConfig();
     }
-  }), (0, import_web13.createComponent)(Header, {
+  }), _tmpl$32.cloneNode(true), _tmpl$32.cloneNode(true), (0, import_web13.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
@@ -18793,7 +18820,7 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
       plugin.store.bucket = v2;
       updateConfig();
     }
-  }), (0, import_web13.createComponent)(Header, {
+  }), _tmpl$32.cloneNode(true), _tmpl$32.cloneNode(true), (0, import_web13.createComponent)(Header, {
     get tag() {
       return HeaderTags.H3;
     },
@@ -18806,6 +18833,29 @@ For more information please go to https://github.com/aws/aws-sdk-js-v3#functiona
     onInput: (v2) => {
       plugin.store.publicUrl = v2;
     }
+  }), _tmpl$32.cloneNode(true), _tmpl$32.cloneNode(true), (0, import_web13.createComponent)(Header, {
+    get tag() {
+      return HeaderTags.H3;
+    },
+    children: "Previews"
+  }), _tmpl$32.cloneNode(true), (0, import_web13.createComponent)(Button2, {
+    style: {
+      width: "auto"
+    },
+    get size() {
+      return ButtonSizes2.LARGE;
+    },
+    get color() {
+      return ButtonColors2.RED;
+    },
+    onClick: () => {
+      plugin.store.previews = {};
+      showToast2({
+        title: "External Upload",
+        content: "Cleared cached previews."
+      });
+    },
+    children: "Clear cached previews"
   })];
   (0, import_web12.delegateEvents)(["click"]);
   return __toCommonJS(externalUpload_exports);
