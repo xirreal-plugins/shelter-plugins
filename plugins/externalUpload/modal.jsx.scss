@@ -149,8 +149,6 @@
   margin-right: auto;
 }
 
-
-
 [class^="buttons"]>[aria-haspopup="dialog"] {
   display: none;
 }
@@ -160,13 +158,12 @@
   align-items: center;
   background: transparent;
   color: var(--interactive-normal);
-  transition: 0.3s ease;
   transform-origin: center bottom;
 }
 
-.replacedButton>svg:hover {
+.replacedButton:hover {
   color: var(--icon-primary);
-  animation: sway 0.3s ease-out;
+  animation: sway 1.2s ease-in-out;
 }
 
 @keyframes sway {
@@ -174,19 +171,19 @@
     transform: rotate(0deg);
   }
 
-  25% {
-    transform: rotate(5deg);
-  }
-
-  50% {
+  4% {
     transform: rotate(0deg);
   }
 
-  75% {
+  14% {
+    transform: rotate(5deg);
+  }
+
+  39% {
     transform: rotate(-5deg);
   }
 
-  100% {
+  41% {
     transform: rotate(0deg);
   }
 }
