@@ -1,10 +1,10 @@
 export default function LockedChannelIcon(props) {
    return props.channel.nsfw ? (
       <svg
-         width="24"
-         height="24"
+         width="20"
+         height="20"
          viewBox="0 0 24 24"
-         style="margin: 0 8px; color: var(--channel-icon); min-width: 24px;"
+         style="margin: 0 8px 0 6px; color: var(--channel-icon); min-width: 20px;"
       >
          <title>NSFW Lock</title>
          <path
@@ -21,10 +21,10 @@ export default function LockedChannelIcon(props) {
    ) : (
       <svg
          title="Lock"
-         width="24"
-         height="24"
+         width="20"
+         height="20"
          viewBox="0 0 24 24"
-         style="margin: 0 8px; color: var(--channel-icon); min-width: 24px;"
+         style="margin: 0 8px 0 6px; color: var(--channel-icon); min-width: 20px;"
       >
          <title>Lock</title>
          <path

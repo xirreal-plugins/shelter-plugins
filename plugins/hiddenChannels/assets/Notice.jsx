@@ -15,7 +15,9 @@ export default (props) => {
          style={{
             "min-width": "100%",
             width: "100%",
-            background: "var(--background-primary)",
+            overflow: "hidden",
+            "border-top": "1px solid var(--app-border-frame)",
+            background: "var(--bg-overlay-chat, var(--background-base-lower))",
          }}
       >
          <HeaderBar>

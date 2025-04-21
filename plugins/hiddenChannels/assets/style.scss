@@ -7,30 +7,25 @@
 }
 
 .divider {
-   width: 1px;
-   height: 24px;
-   margin: 0 8px;
-   -webkit-box-flex: 0;
-   -ms-flex: 0 0 auto;
-   flex: 0 0 auto;
-   background: var(--background-modifier-accent);
+   align-items: center;
+   color: var(--background-mod-strong);
+   height: 4px;
+   margin: 0 12px;
+   width: 4px;
 }
 
 .topic {
-   -webkit-box-flex: 1;
-   -ms-flex: 1 1 auto;
+   font: var(--font-primary);
    flex: 1 1 auto;
-   position: relative;
-   min-width: 0;
-   margin: 0 0 0 8px;
-   font-weight: 500;
-   white-space: nowrap;
-   text-overflow: ellipsis;
-   overflow: hidden;
    font-size: 14px;
+   font-weight: 500;
    line-height: 18px;
-   color: var(--header-secondary);
-   padding-top: 4px; // Horrible. I know.
+   min-width: 0;
+   overflow: hidden;
+   position: relative;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   color: var(--text-tertiary);
    cursor: pointer;
 }
 
@@ -38,6 +33,9 @@
    display: flex;
    text-overflow: ellipsis;
    overflow: hidden;
+   // center vertically
+   align-items: center;
+   justify-content: center;
 }
 
 .mainBody {
@@ -47,25 +45,25 @@
    align-items: center;
    justify-content: center;
    height: 100%;
-   // translate a bit to the left
-   transform: translateX(-5vw);
 }
 
 .bold {
-   font-weight: 600;
+   font-weight: 500;
    color: var(--text-normal);
    white-space: nowrap;
 }
 
 .headerBar {
-   height: var(--custom-channel-header-height);
+   border-bottom: 1px solid var(--border-subtle);
+   height: calc(var(--custom-channel-header-height) - 1px);
    max-height: var(--custom-channel-header-height);
+   background: var(--bg-overlay-2, var(--background-base-lower));
    width: 100%;
    display: flex;
    flex-direction: row;
    align-items: center;
-   padding: 0 8px;
-   box-shadow: var(--shadow-ledge);
+   padding-left: calc(var(--custom-message-margin-horizontal) - var(--space-4) + var(--custom-chat-aligned-icon-offset) - 1px);
+   padding-right: var(--space-xs);
 }
 
 .topicModal {

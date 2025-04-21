@@ -2,12 +2,17 @@ const {
    ui: { openModal, ModalBody, ModalRoot, ModalHeader },
 } = shelter;
 
+import LockedChannelIcon from "./LockedChannelIcon.jsx";
+
 import classes from "./style.scss";
 
 function openTopicModal(props) {
    openModal((mprops) => (
       <ModalRoot>
-         <ModalHeader close={mprops.close}>{props.channel.name}</ModalHeader>
+         <ModalHeader close={mprops.close}>
+            <LockedChannelIcon channel={props.channel} />
+            {props.channel.name}
+         </ModalHeader>
          <ModalBody>
             <div class={classes.topicModal}>{props.channel.topic}</div>
          </ModalBody>
@@ -18,7 +23,9 @@ function openTopicModal(props) {
 export default function ChannelTopic(props) {
    return props.channel.topic ? (
       <div class={classes.topicWrapper}>
-         <div class={classes.divider} />
+         <svg class={classes.divider} aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 4 4">
+            <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
+         </svg>
          <div
             class={classes.topic}
             onKeyPress={(e) => {
