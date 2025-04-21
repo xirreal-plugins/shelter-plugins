@@ -86,17 +86,20 @@ function Card(props) {
 
    return (
       <div class={classes.card}>
-         <div class={classes.header}>
-            <div class={classes.author}>{props.json.author}</div>
-            <div onMouseDown={doCopy} class={`${classes.copyLink} ${copiedClass()}`}>
-               <CopyIcon class={classes.icon} />
-               <div>{copyText()}</div>
-            </div>
-         </div>
          <div class={classes.content}>
             <ContentIcon />
             <div>
                <div class={classes.title}>{props.json.name}</div>
+               <div class={classes.header}>
+                  <div class={classes.author}>{props.json.author}</div>
+                  <svg class={classes.divider} aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 4 4">
+                     <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
+                  </svg>
+                  <div onMouseDown={doCopy} class={`${classes.copyLink} ${copiedClass()}`}>
+                     <CopyIcon class={classes.icon} />
+                     <div>{copyText()}</div>
+                  </div>
+               </div>
                <div class={classes.description}>{props.json.description}</div>
             </div>
             <Button
@@ -109,8 +112,8 @@ function Card(props) {
                      await plugins.addRemotePlugin(pluginId, props.url);
                      plugins.startPlugin(pluginId);
                      showToast({
-                        title: props.json.name,
-                        content: "has been installed.",
+                        title: "New plugin installed",
+                        content: props.json.name,
                      });
                   }
                }}

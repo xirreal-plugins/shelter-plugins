@@ -2,29 +2,32 @@
    box-sizing: border-box;
    border-radius: 4px;
    padding: 16px;
-   max-width: 432px;
+   max-width: 800px;
    min-width: 160px;
    display: flex;
    flex-direction: column;
    gap: 16px;
    text-indent: 0;
-   background-color: var(--background-secondary);
+   background: var(--background-surface-high);
+   border: 1px solid var(--border-subtle);
 }
 
 .header {
    display: flex;
    justify-content: flex-start;
    align-items: center;
-   text-transform: uppercase;
 
    font-family: var(--text-normal);
    font-size: 12px;
    line-height: 1.3;
    font-weight: 400;
+
+   padding: 8px 0;
 }
 
 .author {
    font-weight: 700;
+   padding-right: 2px;
 }
 
 .icon {
@@ -38,21 +41,12 @@
    color: var(--text-positive);
 }
 
-.copyLink:hover {
-   color: white;
+.copied:hover {
+   color: var(--notice-text-positive) !important;
 }
 
-.copyLink::before {
-   content: "";
-   position: absolute;
-   top: 2px;
-   left: -8px;
-   display: block;
-   height: 12px;
-   width: 1px;
-   margin-right: 8px;
-   pointer-events: none;
-   background-color: var(--primary-560);
+.copyLink:hover {
+   color: white;
 }
 
 .copyLink {
@@ -62,8 +56,15 @@
    align-items: center;
    font-weight: 600;
    padding-right: 8px;
-   margin-left: 16px;
    cursor: pointer;
+}
+
+.divider {
+   align-items: center;
+   color: var(--background-mod-strong);
+   height: 4px;
+   margin: 0 8px;
+   width: 4px;
 }
 
 .content {
@@ -78,9 +79,9 @@
    white-space: wrap;
    text-overflow: ellipsis;
    font-family: var(--font-primary);
-   font-size: 14px;
+   font-size: 16px;
    line-height: 1.28;
-   font-weight: 500;
+   font-weight: 600;
    color: var(--text-normal);
 }
 
@@ -93,8 +94,8 @@
    white-space: wrap;
    margin-top: 4px;
    text-overflow: ellipsis;
-   font-weight: 500;
-   font-size: 16px;
+   font-weight: 400;
+   font-size: 14px;
    line-height: 20px;
    color: var(--text-primary);
 }
