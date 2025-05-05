@@ -1,0 +1,17 @@
+.warning {
+    background: var(--yellow-new-45) !important;
+}
+
+.warning:hover {
+    background: var(--yellow-new-50) !important;
+}
+
+button.fuck.you.warning:active {
+    background: var(--yellow-new-60) !important;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
+}
