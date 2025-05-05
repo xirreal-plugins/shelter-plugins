@@ -39,7 +39,7 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
   text-indent: 0;
   background: var(--background-surface-high);
   border: 1px solid var(--border-subtle);
-  border-radius: 4px;
+  border-radius: 8px;
   flex-direction: column;
   gap: 16px;
   min-width: 160px;
@@ -135,17 +135,17 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
 }
 `);
 var index_jsx_default = {
-	"card": "eeurUa_card",
-	"copyLink": "eeurUa_copyLink",
-	"divider": "eeurUa_divider",
-	"author": "eeurUa_author",
-	"alignRight": "eeurUa_alignRight",
-	"description": "eeurUa_description",
-	"content": "eeurUa_content",
 	"header": "eeurUa_header",
+	"author": "eeurUa_author",
+	"copyLink": "eeurUa_copyLink",
+	"card": "eeurUa_card",
+	"content": "eeurUa_content",
+	"icon": "eeurUa_icon",
 	"title": "eeurUa_title",
+	"alignRight": "eeurUa_alignRight",
 	"copied": "eeurUa_copied",
-	"icon": "eeurUa_icon"
+	"description": "eeurUa_description",
+	"divider": "eeurUa_divider"
 };
 
 //#endregion

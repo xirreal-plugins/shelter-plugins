@@ -103,12 +103,12 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
 var style_default = {
 	"mainBody": "ccAoOa_mainBody",
 	"divider": "ccAoOa_divider",
+	"topicWrapper": "ccAoOa_topicWrapper",
+	"bold": "ccAoOa_bold",
 	"topicModal": "ccAoOa_topicModal",
 	"topic": "ccAoOa_topic",
-	"hiddenChannel": "ccAoOa_hiddenChannel",
 	"headerBar": "ccAoOa_headerBar",
-	"bold": "ccAoOa_bold",
-	"topicWrapper": "ccAoOa_topicWrapper"
+	"hiddenChannel": "ccAoOa_hiddenChannel"
 };
 
 //#endregion
