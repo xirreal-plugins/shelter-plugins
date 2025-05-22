@@ -53,9 +53,9 @@ button.uIWjSa_fuck.uIWjSa_you.uIWjSa_warning:active {
 }
 `);
 var index_jsx_default = {
-	"warning": "uIWjSa_warning",
 	"fuck": "uIWjSa_fuck",
 	"you": "uIWjSa_you",
+	"warning": "uIWjSa_warning",
 	"footer": "uIWjSa_footer"
 };
 

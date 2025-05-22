@@ -224,23 +224,23 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 }
 `);
 var style_default = {
-	"content": "_6PhcGW_content",
-	"marginTop": "_6PhcGW_marginTop",
+	"soundPicker": "_6PhcGW_soundPicker",
+	"card": "_6PhcGW_card",
 	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable",
+	"flexRow": "_6PhcGW_flexRow",
+	"spaced": "_6PhcGW_spaced",
+	"emoji": "_6PhcGW_emoji",
+	"inline": "_6PhcGW_inline",
+	"content": "_6PhcGW_content",
 	"sound": "_6PhcGW_sound",
 	"preview": "_6PhcGW_preview",
 	"selected": "_6PhcGW_selected",
-	"column": "_6PhcGW_column",
 	"tallerModal": "_6PhcGW_tallerModal",
-	"flexRow": "_6PhcGW_flexRow",
-	"margin": "_6PhcGW_margin",
-	"emoji": "_6PhcGW_emoji",
-	"soundPicker": "_6PhcGW_soundPicker",
-	"inline": "_6PhcGW_inline",
-	"keybindButton": "_6PhcGW_keybindButton",
-	"spaced": "_6PhcGW_spaced",
 	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
-	"card": "_6PhcGW_card"
+	"keybindButton": "_6PhcGW_keybindButton",
+	"column": "_6PhcGW_column",
+	"marginTop": "_6PhcGW_marginTop",
+	"margin": "_6PhcGW_margin"
 };
 
 //#endregion
