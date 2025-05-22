@@ -225,22 +225,22 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 `);
 var style_default = {
 	"content": "_6PhcGW_content",
-	"spaced": "_6PhcGW_spaced",
-	"margin": "_6PhcGW_margin",
-	"inline": "_6PhcGW_inline",
-	"tallerModal": "_6PhcGW_tallerModal",
-	"column": "_6PhcGW_column",
-	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
-	"flexRow": "_6PhcGW_flexRow",
-	"selected": "_6PhcGW_selected",
-	"sound": "_6PhcGW_sound",
-	"soundPicker": "_6PhcGW_soundPicker",
-	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable",
 	"marginTop": "_6PhcGW_marginTop",
-	"keybindButton": "_6PhcGW_keybindButton",
-	"card": "_6PhcGW_card",
+	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable",
+	"sound": "_6PhcGW_sound",
+	"preview": "_6PhcGW_preview",
+	"selected": "_6PhcGW_selected",
+	"column": "_6PhcGW_column",
+	"tallerModal": "_6PhcGW_tallerModal",
+	"flexRow": "_6PhcGW_flexRow",
+	"margin": "_6PhcGW_margin",
 	"emoji": "_6PhcGW_emoji",
-	"preview": "_6PhcGW_preview"
+	"soundPicker": "_6PhcGW_soundPicker",
+	"inline": "_6PhcGW_inline",
+	"keybindButton": "_6PhcGW_keybindButton",
+	"spaced": "_6PhcGW_spaced",
+	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
+	"card": "_6PhcGW_card"
 };
 
 //#endregion

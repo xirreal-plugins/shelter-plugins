@@ -221,25 +221,25 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
 }
 `);
 var modal_jsx_default = {
-	"dashboardItem": "-bMcgq_dashboardItem",
-	"footer": "-bMcgq_footer",
-	"replacedButton": "-bMcgq_replacedButton",
-	"previewItem": "-bMcgq_previewItem",
+	"previewVideo": "-bMcgq_previewVideo",
 	"uploadModal": "-bMcgq_uploadModal",
-	"progressBar": "-bMcgq_progressBar",
-	"previewItemInfo": "-bMcgq_previewItemInfo",
-	"removeButton": "-bMcgq_removeButton",
-	"dragOver": "-bMcgq_dragOver",
-	"dashboardButton": "-bMcgq_dashboardButton",
-	"uploading": "-bMcgq_uploading",
-	"uploadArea": "-bMcgq_uploadArea",
-	"previewArea": "-bMcgq_previewArea",
 	"shake": "-bMcgq_shake",
+	"uploading": "-bMcgq_uploading",
+	"dashboardItem": "-bMcgq_dashboardItem",
+	"progressFill": "-bMcgq_progressFill",
+	"progressBar": "-bMcgq_progressBar",
+	"previewArea": "-bMcgq_previewArea",
+	"dragOver": "-bMcgq_dragOver",
 	"sway": "-bMcgq_sway",
 	"previewImage": "-bMcgq_previewImage",
-	"previewVideo": "-bMcgq_previewVideo",
-	"progressFill": "-bMcgq_progressFill",
-	"previewIcon": "-bMcgq_previewIcon"
+	"previewIcon": "-bMcgq_previewIcon",
+	"previewItemInfo": "-bMcgq_previewItemInfo",
+	"uploadArea": "-bMcgq_uploadArea",
+	"removeButton": "-bMcgq_removeButton",
+	"previewItem": "-bMcgq_previewItem",
+	"replacedButton": "-bMcgq_replacedButton",
+	"footer": "-bMcgq_footer",
+	"dashboardButton": "-bMcgq_dashboardButton"
 };
 
 //#endregion

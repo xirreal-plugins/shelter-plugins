@@ -39,36 +39,48 @@ var import_web$2 = __toESM(require_web(), 1);
 var import_web$3 = __toESM(require_web(), 1);
 var import_web$4 = __toESM(require_web(), 1);
 var import_web$5 = __toESM(require_web(), 1);
-const _tmpl$ = /*#__PURE__*/ (0, import_web$1.template)(`<div><video autoplay loop muted></video></div>`, 4);
+var import_web$6 = __toESM(require_web(), 1);
+const _tmpl$ = /*#__PURE__*/ (0, import_web$1.template)(`<div></div>`, 2), _tmpl$2 = /*#__PURE__*/ (0, import_web$1.template)(`<video autoplay loop muted></video>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web$1.template)(`<img>`, 1);
 const { ui: { ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter, ModalSizes, TextArea }, solid: { createSignal }, plugin: { store: store$1 } } = shelter;
 function AddTagModal(closeModal, gifData) {
 	const [tags, setTags] = createSignal("");
 	let tagsArray = store$1[gifData.url] || [];
 	setTags(tagsArray.join(", "));
-	return (0, import_web$5.createComponent)(ModalRoot, {
+	const isMP4 = gifData.src.endsWith(".mp4");
+	return (0, import_web$6.createComponent)(ModalRoot, {
 		get size() {
 			return ModalSizes.MEDIUM;
 		},
 		get children() {
 			return [
-				(0, import_web$5.createComponent)(ModalHeader, {
+				(0, import_web$6.createComponent)(ModalHeader, {
 					close: closeModal,
 					children: "Adding tags to GIF"
 				}),
-				(0, import_web$5.createComponent)(ModalBody, { get children() {
+				(0, import_web$6.createComponent)(ModalBody, { get children() {
 					return [(() => {
-						const _el$ = (0, import_web$4.getNextElement)(_tmpl$), _el$2 = _el$.firstChild;
+						const _el$ = (0, import_web$4.getNextElement)(_tmpl$);
 						_el$.style.setProperty("display", "flex");
 						_el$.style.setProperty("justify-content", "center");
 						_el$.style.setProperty("align-items", "center");
 						_el$.style.setProperty("margin-bottom", "16px");
-						_el$2.style.setProperty("width", "300px");
-						_el$2.style.setProperty("height", "300px");
-						_el$2.style.setProperty("object-fit", "stretch");
-						_el$2.style.setProperty("border-radius", "8px");
-						(0, import_web$3.effect)(() => (0, import_web$2.setAttribute)(_el$2, "src", gifData.src));
+						(0, import_web$5.insert)(_el$, isMP4 ? (() => {
+							const _el$2 = (0, import_web$4.getNextElement)(_tmpl$2);
+							_el$2.style.setProperty("max-width", "100%");
+							_el$2.style.setProperty("max-height", "300px");
+							_el$2.style.setProperty("border-radius", "8px");
+							(0, import_web$3.effect)(() => (0, import_web$2.setAttribute)(_el$2, "src", gifData.src));
+							return _el$2;
+						})() : (() => {
+							const _el$3 = (0, import_web$4.getNextElement)(_tmpl$3);
+							_el$3.style.setProperty("max-width", "100%");
+							_el$3.style.setProperty("max-height", "300px");
+							_el$3.style.setProperty("border-radius", "8px");
+							(0, import_web$3.effect)(() => (0, import_web$2.setAttribute)(_el$3, "src", gifData.src));
+							return _el$3;
+						})());
 						return _el$;
-					})(), (0, import_web$5.createComponent)(TextArea, {
+					})(), (0, import_web$6.createComponent)(TextArea, {
 						placeholder: "Enter tags separated by commas",
 						get value() {
 							return tags();
@@ -76,7 +88,7 @@ function AddTagModal(closeModal, gifData) {
 						onInput: (text) => setTags(text)
 					})];
 				} }),
-				(0, import_web$5.createComponent)(ModalConfirmFooter, {
+				(0, import_web$6.createComponent)(ModalConfirmFooter, {
 					close: closeModal,
 					confirmText: "Save",
 					onConfirm: () => {
@@ -96,18 +108,19 @@ var import_web = __toESM(require_web(), 1);
 const { flux: { subscribe }, observeDom } = shelter.plugin.scoped;
 const { ui: { TextBox, openModal }, util: { getFiberOwner, getFiber, reactFiberWalker }, plugin: { store } } = shelter;
 function addClickHandlerToFavoritesGifPicker() {
-	const stopObserving = observeDom("#gif-picker-tab-panel > div:last-child > div:first-child > div > div > div:first-child", (container) => {
+	const stopObserving = observeDom("[class^='result'] > [class^='categoryFadeBlurple']", (container) => {
 		stopObserving();
-		if (container.dataset.clickHandlerAdded) return;
-		container.dataset.clickHandler = "true";
-		container.addEventListener("click", handleClick);
+		if (container.parentElement.dataset.clickHandlerAdded) return;
+		container.parentElement.dataset.clickHandler = "true";
+		container.parentElement.addEventListener("click", handleClick);
 	});
 	setTimeout(stopObserving, 500);
 }
 let stopObservingResults = null;
 function handleClick() {
-	const stopObserving = observeDom("#gif-picker-tab-panel > div:first-child", (header) => {
-		stopObserving();
+	requestAnimationFrame(() => {
+		const header = document.querySelector("#gif-picker-tab-panel > div:first-child");
+		if (!header) return;
 		const searchBox = (0, import_web.createComponent)(TextBox, {
 			id: "gif-searchbox",
 			style: { "margin-top": "8px" },
@@ -115,13 +128,12 @@ function handleClick() {
 			onInput: (text) => handleSearch(text)
 		});
 		header.appendChild(searchBox);
-		stopObservingResults = observeDom("[class^='content'] > div > [class^='result']", (card) => {
+		stopObservingResults = observeDom("[class^='content'] > div > [class^='result_']", (card) => {
 			if (card.dataset.addedRightClick) return;
 			card.dataset.addedRightClick = "true";
 			addRightClickHandler(card);
 		});
 	});
-	setTimeout(stopObserving, 500);
 }
 function handleBack() {
 	document.getElementById("gif-searchbox")?.remove();
@@ -143,6 +155,7 @@ function handleSearch(text) {
 }
 function addRightClickHandler(container) {
 	container.addEventListener("contextmenu", (e) => {
+		console.log(reactFiberWalker(getFiber(e.target.parentNode), "item", true).memoizedProps);
 		openModal((p) => AddTagModal(p.close, reactFiberWalker(getFiber(e.target.parentNode), "item", true).memoizedProps.item));
 	});
 }
