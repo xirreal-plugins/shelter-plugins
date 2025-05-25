@@ -224,23 +224,23 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 }
 `);
 var style_default = {
-	"soundPicker": "_6PhcGW_soundPicker",
-	"card": "_6PhcGW_card",
-	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable",
-	"flexRow": "_6PhcGW_flexRow",
-	"spaced": "_6PhcGW_spaced",
-	"emoji": "_6PhcGW_emoji",
+	"preview": "_6PhcGW_preview",
 	"inline": "_6PhcGW_inline",
+	"card": "_6PhcGW_card",
+	"soundPicker": "_6PhcGW_soundPicker",
 	"content": "_6PhcGW_content",
 	"sound": "_6PhcGW_sound",
-	"preview": "_6PhcGW_preview",
-	"selected": "_6PhcGW_selected",
+	"flexRow": "_6PhcGW_flexRow",
+	"marginTop": "_6PhcGW_marginTop",
 	"tallerModal": "_6PhcGW_tallerModal",
+	"margin": "_6PhcGW_margin",
 	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
 	"keybindButton": "_6PhcGW_keybindButton",
+	"emoji": "_6PhcGW_emoji",
 	"column": "_6PhcGW_column",
-	"marginTop": "_6PhcGW_marginTop",
-	"margin": "_6PhcGW_margin"
+	"selected": "_6PhcGW_selected",
+	"spaced": "_6PhcGW_spaced",
+	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable"
 };
 
 //#endregion

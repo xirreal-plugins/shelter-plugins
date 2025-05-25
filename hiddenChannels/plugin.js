@@ -98,17 +98,18 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
 
 .ccAoOa_topicModal {
   white-space: pre-wrap;
+  margin-bottom: 20px;
 }
 `);
 var style_default = {
-	"topic": "ccAoOa_topic",
-	"mainBody": "ccAoOa_mainBody",
-	"divider": "ccAoOa_divider",
 	"hiddenChannel": "ccAoOa_hiddenChannel",
-	"bold": "ccAoOa_bold",
+	"topic": "ccAoOa_topic",
 	"headerBar": "ccAoOa_headerBar",
+	"mainBody": "ccAoOa_mainBody",
+	"topicWrapper": "ccAoOa_topicWrapper",
+	"bold": "ccAoOa_bold",
 	"topicModal": "ccAoOa_topicModal",
-	"topicWrapper": "ccAoOa_topicWrapper"
+	"divider": "ccAoOa_divider"
 };
 
 //#endregion
@@ -133,25 +134,30 @@ var import_web$21 = __toESM(require_web(), 1);
 var import_web$22 = __toESM(require_web(), 1);
 var import_web$23 = __toESM(require_web(), 1);
 const _tmpl$$3 = /*#__PURE__*/ (0, import_web$14.template)(`<div></div>`, 2), _tmpl$2 = /*#__PURE__*/ (0, import_web$14.template)(`<div><svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 4 4"><circle cx="2" cy="2" r="2" fill="currentColor"></circle></svg><div></div></div>`, 8);
-const { ui: { openModal, ModalBody, ModalRoot, ModalHeader } } = shelter;
+const { ui: { openModal, ModalBody, ModalRoot, ModalHeader, ModalSizes } } = shelter;
 function openTopicModal(props) {
-	openModal((mprops) => (0, import_web$23.createComponent)(ModalRoot, { get children() {
-		return [(0, import_web$23.createComponent)(ModalHeader, {
-			get close() {
-				return mprops.close;
-			},
-			get children() {
-				return [(0, import_web$23.createComponent)(LockedChannelIcon, { get channel() {
-					return props.channel;
-				} }), (0, import_web$22.memo)(() => props.channel.name)];
-			}
-		}), (0, import_web$23.createComponent)(ModalBody, { get children() {
-			const _el$ = (0, import_web$20.getNextElement)(_tmpl$$3);
-			(0, import_web$21.insert)(_el$, () => props.channel.topic);
-			(0, import_web$19.effect)(() => (0, import_web$18.className)(_el$, style_default.topicModal));
-			return _el$;
-		} })];
-	} }));
+	openModal((mprops) => (0, import_web$23.createComponent)(ModalRoot, {
+		get size() {
+			return ModalSizes.DYNAMIC;
+		},
+		get children() {
+			return [(0, import_web$23.createComponent)(ModalHeader, {
+				get close() {
+					return mprops.close;
+				},
+				get children() {
+					return [(0, import_web$23.createComponent)(LockedChannelIcon, { get channel() {
+						return props.channel;
+					} }), (0, import_web$22.memo)(() => props.channel.name)];
+				}
+			}), (0, import_web$23.createComponent)(ModalBody, { get children() {
+				const _el$ = (0, import_web$20.getNextElement)(_tmpl$$3);
+				(0, import_web$21.insert)(_el$, () => props.channel.topic);
+				(0, import_web$19.effect)(() => (0, import_web$18.className)(_el$, style_default.topicModal));
+				return _el$;
+			} })];
+		}
+	}));
 }
 function ChannelTopic(props) {
 	return props.channel.topic ? (() => {
@@ -214,7 +220,7 @@ var import_web$4 = __toESM(require_web(), 1);
 var import_web$5 = __toESM(require_web(), 1);
 var import_web$6 = __toESM(require_web(), 1);
 const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><div><!#><!/><!#><!/><!#><!/></div></div>`, 12);
-const { ui: { Header, HeaderTags } } = shelter;
+const { ui: { Header, HeaderTags, Text, TextTags } } = shelter;
 var Notice_default = (props) => {
 	return (() => {
 		const _el$ = (0, import_web$3.getNextElement)(_tmpl$), _el$9 = _el$.firstChild, [_el$10, _co$4] = (0, import_web$4.getNextMarker)(_el$9.nextSibling), _el$2 = _el$10.nextSibling, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$4.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$4.getNextMarker)(_el$5.nextSibling), _el$7 = _el$6.nextSibling, [_el$8, _co$3] = (0, import_web$4.getNextMarker)(_el$7.nextSibling);
@@ -228,9 +234,9 @@ var Notice_default = (props) => {
 				(0, import_web$6.createComponent)(LockedChannelIcon, { get channel() {
 					return props.channel;
 				} }),
-				(0, import_web$6.createComponent)(Header, {
+				(0, import_web$6.createComponent)(Text, {
 					get tag() {
-						return HeaderTags.H3;
+						return TextTags.channelTitle;
 					},
 					get ["class"]() {
 						return style_default.bold;
@@ -257,6 +263,10 @@ var Notice_default = (props) => {
 		(0, import_web$5.insert)(_el$2, (0, import_web$6.createComponent)(Header, {
 			get tag() {
 				return HeaderTags.H5;
+			},
+			style: {
+				"color": "var(--text-secondary)",
+				"margin-top": "12px"
 			},
 			children: "You cannot see the contents of this channel. However, you may see its name and topic."
 		}), _el$8, _co$3);
