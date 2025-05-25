@@ -1,5 +1,5 @@
 const {
-   ui: { Header, HeaderTags },
+   ui: { Header, HeaderTags, Text, TextTags },
 } = shelter;
 
 import classes from "./style.scss";
@@ -22,9 +22,9 @@ export default (props) => {
       >
          <HeaderBar>
             <LockedChannelIcon channel={props.channel} />
-            <Header tag={HeaderTags.H3} class={classes.bold}>
+            <Text tag={TextTags.channelTitle} class={classes.bold}>
                {props.channel.name}
-            </Header>
+            </Text>
             <ChannelTopic channel={props.channel} />
          </HeaderBar>
          <div class={classes.mainBody}>
@@ -32,7 +32,10 @@ export default (props) => {
                This is a hidden channel.
             </Header>
             <ChestIcon />
-            <Header tag={HeaderTags.H5}>
+            <Header tag={HeaderTags.H5} style={{
+               "color": "var(--text-secondary)",
+               "margin-top": "12px",
+            }}>
                You cannot see the contents of this channel. However, you may see its name and topic.
             </Header>
          </div>

@@ -1,5 +1,5 @@
 const {
-   ui: { openModal, ModalBody, ModalRoot, ModalHeader },
+   ui: { openModal, ModalBody, ModalRoot, ModalHeader, ModalSizes },
 } = shelter;
 
 import LockedChannelIcon from "./LockedChannelIcon.jsx";
@@ -8,7 +8,7 @@ import classes from "./style.scss";
 
 function openTopicModal(props) {
    openModal((mprops) => (
-      <ModalRoot>
+      <ModalRoot size={ModalSizes.DYNAMIC}>
          <ModalHeader close={mprops.close}>
             <LockedChannelIcon channel={props.channel} />
             {props.channel.name}
