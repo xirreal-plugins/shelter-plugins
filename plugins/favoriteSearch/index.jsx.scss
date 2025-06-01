@@ -1,0 +1,25 @@
+#searchBar {
+    margin-top: 8px;
+}
+
+.barContainer {
+    margin-bottom: 10px;
+}
+
+.align {
+    margin-left: 1px;
+}
+
+.counter {
+    position: absolute;
+    top: 38%;
+    right: 24px;
+    border-radius: 8px;
+    height: 100%;
+    padding: 4px 8px;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-family: var(--font-code);
+    pointer-events: none;
+    direction: rtl;
+}

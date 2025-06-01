@@ -55,7 +55,8 @@ export function AddTagModal(closeModal, gifData) {
             onConfirm={() => {
                tagsArray = tags()
                   .split(",")
-                  .map((tag) => tag.trim());
+                  .map((tag) => tag.trim())
+                  .filter((tag) => tag.length > 0);
                store[gifData.url] = tagsArray;
                closeModal();
             }}
