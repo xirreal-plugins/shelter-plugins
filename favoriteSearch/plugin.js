@@ -34,53 +34,53 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 
 //#endregion
 //#region plugins/favoriteSearch/modal.jsx
-var import_web$1 = __toESM(require_web(), 1);
-var import_web$2 = __toESM(require_web(), 1);
-var import_web$3 = __toESM(require_web(), 1);
-var import_web$4 = __toESM(require_web(), 1);
-var import_web$5 = __toESM(require_web(), 1);
-var import_web$6 = __toESM(require_web(), 1);
-const _tmpl$ = /*#__PURE__*/ (0, import_web$1.template)(`<div></div>`, 2), _tmpl$2 = /*#__PURE__*/ (0, import_web$1.template)(`<video autoplay loop muted></video>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web$1.template)(`<img>`, 1);
-const { ui: { ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter, ModalSizes, TextArea }, solid: { createSignal }, plugin: { store: store$1 } } = shelter;
+var import_web$8 = __toESM(require_web(), 1);
+var import_web$9 = __toESM(require_web(), 1);
+var import_web$10 = __toESM(require_web(), 1);
+var import_web$11 = __toESM(require_web(), 1);
+var import_web$12 = __toESM(require_web(), 1);
+var import_web$13 = __toESM(require_web(), 1);
+const _tmpl$$1 = /*#__PURE__*/ (0, import_web$8.template)(`<div></div>`, 2), _tmpl$2 = /*#__PURE__*/ (0, import_web$8.template)(`<video autoplay loop muted></video>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web$8.template)(`<img>`, 1);
+const { ui: { ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter, ModalSizes, TextArea }, solid: { createSignal: createSignal$1 }, plugin: { store: store$1 } } = shelter;
 function AddTagModal(closeModal, gifData) {
-	const [tags, setTags] = createSignal("");
+	const [tags, setTags] = createSignal$1("");
 	let tagsArray = store$1[gifData.url] || [];
 	setTags(tagsArray.join(", "));
 	const isMP4 = gifData.src.endsWith(".mp4");
-	return (0, import_web$6.createComponent)(ModalRoot, {
+	return (0, import_web$13.createComponent)(ModalRoot, {
 		get size() {
 			return ModalSizes.MEDIUM;
 		},
 		get children() {
 			return [
-				(0, import_web$6.createComponent)(ModalHeader, {
+				(0, import_web$13.createComponent)(ModalHeader, {
 					close: closeModal,
 					children: "Adding tags to GIF"
 				}),
-				(0, import_web$6.createComponent)(ModalBody, { get children() {
+				(0, import_web$13.createComponent)(ModalBody, { get children() {
 					return [(() => {
-						const _el$ = (0, import_web$4.getNextElement)(_tmpl$);
+						const _el$ = (0, import_web$11.getNextElement)(_tmpl$$1);
 						_el$.style.setProperty("display", "flex");
 						_el$.style.setProperty("justify-content", "center");
 						_el$.style.setProperty("align-items", "center");
 						_el$.style.setProperty("margin-bottom", "16px");
-						(0, import_web$5.insert)(_el$, isMP4 ? (() => {
-							const _el$2 = (0, import_web$4.getNextElement)(_tmpl$2);
+						(0, import_web$12.insert)(_el$, isMP4 ? (() => {
+							const _el$2 = (0, import_web$11.getNextElement)(_tmpl$2);
 							_el$2.style.setProperty("max-width", "100%");
 							_el$2.style.setProperty("max-height", "300px");
 							_el$2.style.setProperty("border-radius", "8px");
-							(0, import_web$3.effect)(() => (0, import_web$2.setAttribute)(_el$2, "src", gifData.src));
+							(0, import_web$10.effect)(() => (0, import_web$9.setAttribute)(_el$2, "src", gifData.src));
 							return _el$2;
 						})() : (() => {
-							const _el$3 = (0, import_web$4.getNextElement)(_tmpl$3);
+							const _el$3 = (0, import_web$11.getNextElement)(_tmpl$3);
 							_el$3.style.setProperty("max-width", "100%");
 							_el$3.style.setProperty("max-height", "300px");
 							_el$3.style.setProperty("border-radius", "8px");
-							(0, import_web$3.effect)(() => (0, import_web$2.setAttribute)(_el$3, "src", gifData.src));
+							(0, import_web$10.effect)(() => (0, import_web$9.setAttribute)(_el$3, "src", gifData.src));
 							return _el$3;
 						})());
 						return _el$;
-					})(), (0, import_web$6.createComponent)(TextArea, {
+					})(), (0, import_web$13.createComponent)(TextArea, {
 						placeholder: "Enter tags separated by commas",
 						get value() {
 							return tags();
@@ -88,11 +88,11 @@ function AddTagModal(closeModal, gifData) {
 						onInput: (text) => setTags(text)
 					})];
 				} }),
-				(0, import_web$6.createComponent)(ModalConfirmFooter, {
+				(0, import_web$13.createComponent)(ModalConfirmFooter, {
 					close: closeModal,
 					confirmText: "Save",
 					onConfirm: () => {
-						tagsArray = tags().split(",").map((tag) => tag.trim());
+						tagsArray = tags().split(",").map((tag) => tag.trim()).filter((tag) => tag.length > 0);
 						store$1[gifData.url] = tagsArray;
 						closeModal();
 					}
@@ -103,10 +103,53 @@ function AddTagModal(closeModal, gifData) {
 }
 
 //#endregion
+//#region plugins/favoriteSearch/index.jsx.scss
+shelter.plugin.scoped.ui.injectCss(`#AgMsVW_searchBar {
+  margin-top: 8px;
+}
+
+.AgMsVW_barContainer {
+  margin-bottom: 10px;
+}
+
+.AgMsVW_align {
+  margin-left: 1px;
+}
+
+.AgMsVW_counter {
+  height: 100%;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-family: var(--font-code);
+  pointer-events: none;
+  direction: rtl;
+  border-radius: 8px;
+  padding: 4px 8px;
+  position: absolute;
+  top: 38%;
+  right: 24px;
+}
+`);
+var index_jsx_default = {
+	"searchBar": "AgMsVW_searchBar",
+	"barContainer": "AgMsVW_barContainer",
+	"align": "AgMsVW_align",
+	"counter": "AgMsVW_counter"
+};
+
+//#endregion
 //#region plugins/favoriteSearch/index.jsx
 var import_web = __toESM(require_web(), 1);
+var import_web$1 = __toESM(require_web(), 1);
+var import_web$2 = __toESM(require_web(), 1);
+var import_web$3 = __toESM(require_web(), 1);
+var import_web$4 = __toESM(require_web(), 1);
+var import_web$5 = __toESM(require_web(), 1);
+var import_web$6 = __toESM(require_web(), 1);
+var import_web$7 = __toESM(require_web(), 1);
+const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><div><!#><!/><div aria-hidden="true"><!#><!/>/<!#><!/></div></div><div></div></div>`, 14);
 const { flux: { subscribe }, observeDom } = shelter.plugin.scoped;
-const { ui: { TextBox, openModal }, util: { getFiberOwner, getFiber, reactFiberWalker }, plugin: { store } } = shelter;
+const { ui: { TextBox, openModal, CheckboxItem, ReactiveRoot }, solid: { createSignal, createEffect }, util: { getFiberOwner, getFiber, reactFiberWalker }, plugin: { store } } = shelter;
 function addClickHandlerToFavoritesGifPicker() {
 	const stopObserving = observeDom("[class^='result'] > [class^='categoryFadeBlurple']", (container) => {
 		stopObserving();
@@ -116,18 +159,67 @@ function addClickHandlerToFavoritesGifPicker() {
 	});
 	setTimeout(stopObserving, 500);
 }
+function SearchBar() {
+	const [text, setText] = createSignal("");
+	const [showUntagged, setShowUntagged] = createSignal(false);
+	const container = document.querySelector("#gif-picker-tab-panel");
+	const fiber = getFiberOwner(container);
+	const [counter, setCounter] = createSignal(fiber.props.favorites.length.toString());
+	const total = fiber.props.favorites.length;
+	createEffect(() => {
+		if (!fiber.props.__favorites) fiber.props.__favorites = fiber.props.favorites;
+		fiber.props.favorites = fiber.props.__favorites.filter((gif) => {
+			const tags = store[gif.url] || [];
+			if (showUntagged() && tags.length > 0) return false;
+			if (text().length === 0) return true;
+			if (gif.url.toLowerCase().includes(text().toLowerCase())) return true;
+			return tags.some((tag) => tag?.toLowerCase().includes(text().toLowerCase()));
+		});
+		setCounter(fiber.props.favorites.length.toString());
+		fiber.forceUpdate();
+	});
+	return (() => {
+		const _el$ = (0, import_web$4.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, _el$9 = _el$2.firstChild, [_el$10, _co$3] = (0, import_web$5.getNextMarker)(_el$9.nextSibling), _el$3 = _el$10.nextSibling, _el$5 = _el$3.firstChild, [_el$6, _co$] = (0, import_web$5.getNextMarker)(_el$5.nextSibling), _el$4 = _el$6.nextSibling, _el$7 = _el$4.nextSibling, [_el$8, _co$2] = (0, import_web$5.getNextMarker)(_el$7.nextSibling), _el$11 = _el$2.nextSibling;
+		(0, import_web$6.insert)(_el$2, (0, import_web$7.createComponent)(TextBox, {
+			placeholder: "Search favorite GIFs...",
+			get value() {
+				return text();
+			},
+			onInput: (value) => {
+				setText(value);
+			}
+		}), _el$10, _co$3);
+		(0, import_web$6.insert)(_el$3, counter, _el$6, _co$);
+		(0, import_web$6.insert)(_el$3, total, _el$8, _co$2);
+		(0, import_web$6.insert)(_el$11, (0, import_web$7.createComponent)(CheckboxItem, {
+			get checked() {
+				return showUntagged();
+			},
+			onchange: () => setShowUntagged(!showUntagged()),
+			children: "Show only untagged GIFs"
+		}));
+		(0, import_web$3.effect)((_p$) => {
+			const _v$ = index_jsx_default.searchBar, _v$2 = index_jsx_default.barContainer, _v$3 = index_jsx_default.counter, _v$4 = index_jsx_default.align;
+			_v$ !== _p$._v$ && (0, import_web$2.setAttribute)(_el$, "id", _p$._v$ = _v$);
+			_v$2 !== _p$._v$2 && (0, import_web$1.className)(_el$2, _p$._v$2 = _v$2);
+			_v$3 !== _p$._v$3 && (0, import_web$1.className)(_el$3, _p$._v$3 = _v$3);
+			_v$4 !== _p$._v$4 && (0, import_web$1.className)(_el$11, _p$._v$4 = _v$4);
+			return _p$;
+		}, {
+			_v$: undefined,
+			_v$2: undefined,
+			_v$3: undefined,
+			_v$4: undefined
+		});
+		return _el$;
+	})();
+}
 let stopObservingResults = null;
 function handleClick() {
 	requestAnimationFrame(() => {
 		const header = document.querySelector("#gif-picker-tab-panel > div:first-child");
 		if (!header) return;
-		const searchBox = (0, import_web.createComponent)(TextBox, {
-			id: "gif-searchbox",
-			style: { "margin-top": "8px" },
-			placeholder: "Search favorite GIFs...",
-			onInput: (text) => handleSearch(text)
-		});
-		header.appendChild(searchBox);
+		header.appendChild((0, import_web$7.createComponent)(SearchBar, {}));
 		stopObservingResults = observeDom("[class^='content'] > div > [class^='result_']", (card) => {
 			if (card.dataset.addedRightClick) return;
 			card.dataset.addedRightClick = "true";
@@ -136,26 +228,15 @@ function handleClick() {
 	});
 }
 function handleBack() {
-	document.getElementById("gif-searchbox")?.remove();
+	document.getElementById(index_jsx_default.searchBar)?.remove();
 	if (stopObservingResults) {
 		stopObservingResults();
 		stopObservingResults = null;
 	}
 	addClickHandlerToFavoritesGifPicker();
 }
-function handleSearch(text) {
-	const container = document.querySelector("#gif-picker-tab-panel");
-	const fiber = getFiberOwner(container);
-	if (!fiber.props.__favorites) fiber.props.__favorites = fiber.props.favorites;
-	fiber.props.favorites = fiber.props.__favorites.filter((gif) => {
-		for (const tag of store[gif.url] ?? []) if (tag.toLowerCase().includes(text.toLowerCase())) return true;
-		return gif.url.toLowerCase().includes(text.toLowerCase());
-	});
-	fiber.forceUpdate();
-}
 function addRightClickHandler(container) {
 	container.addEventListener("contextmenu", (e) => {
-		console.log(reactFiberWalker(getFiber(e.target.parentNode), "item", true).memoizedProps);
 		openModal((p) => AddTagModal(p.close, reactFiberWalker(getFiber(e.target.parentNode), "item", true).memoizedProps.item));
 	});
 }

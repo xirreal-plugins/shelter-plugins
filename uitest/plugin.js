@@ -53,10 +53,10 @@ button.uIWjSa_fuck.uIWjSa_you.uIWjSa_warning:active {
 }
 `);
 var index_jsx_default = {
-	"warning": "uIWjSa_warning",
 	"footer": "uIWjSa_footer",
-	"you": "uIWjSa_you",
-	"fuck": "uIWjSa_fuck"
+	"fuck": "uIWjSa_fuck",
+	"warning": "uIWjSa_warning",
+	"you": "uIWjSa_you"
 };
 
 //#endregion
