@@ -5,7 +5,7 @@ const {
 
 const {
    ui: { TextBox, openModal, CheckboxItem, ReactiveRoot },
-   solid: { createSignal, createEffect },
+   solid: { createSignal, createEffect, onCleanup },
    util: { getFiberOwner, getFiber, reactFiberWalker },
    plugin: { store },
 } = shelter;
@@ -32,7 +32,20 @@ function SearchBar() {
    const [counter, setCounter] = createSignal(fiber.props.favorites.length.toString());
    const total = fiber.props.favorites.length;
 
-   createEffect(() => {
+   if (!fiber.props.__favorites) {
+      Object.defineProperty(fiber.props, "__favorites", {
+         get: () => fiber.props.favorites,
+         set: (value) => {
+            console.log("Favorites updated:", value);
+            fiber.props.favorites = value;
+         },
+      });
+      fiber.props.__favorites = fiber.props.favorites;
+      console.log("Initialized __favorites with current favorites.");
+   }
+
+   function update() {
+      console.log(fiber.props.__favorites);
       if (!fiber.props.__favorites) {
          fiber.props.__favorites = fiber.props.favorites;
       }
@@ -57,6 +70,16 @@ function SearchBar() {
       setCounter(fiber.props.favorites.length.toString());
 
       fiber.forceUpdate();
+   }
+
+   createEffect(update);
+
+   const stopObserving = observeDom("#gif-picker-tab-panel", () => {
+      setTimeout(update, 100);
+   });
+
+   onCleanup(() => {
+      stopObserving();
    });
 
    return (
@@ -87,7 +110,13 @@ function handleClick() {
    requestAnimationFrame(() => {
       const header = document.querySelector("#gif-picker-tab-panel > div:first-child");
       if (!header) return;
-      header.appendChild(<SearchBar />);
+      header.appendChild(
+         <div id="shltr-gifsearch-container">
+            <ReactiveRoot>
+               <SearchBar />
+            </ReactiveRoot>
+         </div>,
+      );
 
       stopObservingResults = observeDom("[class^='content'] > div > [class^='result_']", (card) => {
          if (card.dataset.addedRightClick) return;
@@ -99,7 +128,7 @@ function handleClick() {
 }
 
 function handleBack() {
-   document.getElementById(classes.searchBar)?.remove();
+   document.getElementById("shltr-gifsearch-container")?.remove();
    if (stopObservingResults) {
       stopObservingResults();
       stopObservingResults = null;

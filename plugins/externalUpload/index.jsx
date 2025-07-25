@@ -91,7 +91,7 @@ export const settings = () => (
          Example CORS configuration:
          <br />
          <br />
-         <pre style="background-color: var(--background-secondary); padding: 10px; border-radius: 8px;">
+         <pre style="background: var(--background-code); border: 1px solid var(--border-normal); padding: 10px; border-radius: 4px;">
             <code>
                {`{
   "CORSRules": [
@@ -188,5 +188,7 @@ export const settings = () => (
       >
          Clear cached previews
       </Button>
+      <br />
+      <br />
    </>
 );

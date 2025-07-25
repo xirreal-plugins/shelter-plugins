@@ -56,12 +56,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid var(--background-tertiary);
-  background-color: var(--background-secondary);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--background-surface-highest);
   border-radius: 8px;
   padding: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
+  margin-left: -3px;
 }
 
 .dashboardItem {
@@ -100,7 +101,8 @@
   padding: 4px 5px 1px 5px;
   font-size: 12px;
   color: var(--status-danger);
-  background-color: color-mix(in srgb, var(--background-tertiary) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border-subtle) 30%, transparent);
+  background-color: color-mix(in srgb, color-mix(in srgb, var(--status-danger) 40%, var(--background-surface-high)) 40%, transparent);
   backdrop-filter: blur(4px);
   border-radius: 8px;
   cursor: pointer;
