@@ -40,7 +40,7 @@ var import_web$10 = __toESM(require_web(), 1);
 var import_web$11 = __toESM(require_web(), 1);
 var import_web$12 = __toESM(require_web(), 1);
 var import_web$13 = __toESM(require_web(), 1);
-const _tmpl$$1 = /*#__PURE__*/ (0, import_web$8.template)(`<div></div>`, 2), _tmpl$2 = /*#__PURE__*/ (0, import_web$8.template)(`<video autoplay loop muted></video>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web$8.template)(`<img>`, 1);
+const _tmpl$$1 = /*#__PURE__*/ (0, import_web$8.template)(`<div></div>`, 2), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$8.template)(`<video autoplay loop muted></video>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web$8.template)(`<img>`, 1);
 const { ui: { ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter, ModalSizes, TextArea }, solid: { createSignal: createSignal$1 }, plugin: { store: store$1 } } = shelter;
 function AddTagModal(closeModal, gifData) {
 	const [tags, setTags] = createSignal$1("");
@@ -65,7 +65,7 @@ function AddTagModal(closeModal, gifData) {
 						_el$.style.setProperty("align-items", "center");
 						_el$.style.setProperty("margin-bottom", "16px");
 						(0, import_web$12.insert)(_el$, isMP4 ? (() => {
-							const _el$2 = (0, import_web$11.getNextElement)(_tmpl$2);
+							const _el$2 = (0, import_web$11.getNextElement)(_tmpl$2$1);
 							_el$2.style.setProperty("max-width", "100%");
 							_el$2.style.setProperty("max-height", "300px");
 							_el$2.style.setProperty("border-radius", "8px");
@@ -131,9 +131,9 @@ shelter.plugin.scoped.ui.injectCss(`#AgMsVW_searchBar {
 }
 `);
 var index_jsx_default = {
-	"searchBar": "AgMsVW_searchBar",
-	"barContainer": "AgMsVW_barContainer",
 	"align": "AgMsVW_align",
+	"barContainer": "AgMsVW_barContainer",
+	"searchBar": "AgMsVW_searchBar",
 	"counter": "AgMsVW_counter"
 };
 
@@ -147,9 +147,9 @@ var import_web$4 = __toESM(require_web(), 1);
 var import_web$5 = __toESM(require_web(), 1);
 var import_web$6 = __toESM(require_web(), 1);
 var import_web$7 = __toESM(require_web(), 1);
-const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><div><!#><!/><div aria-hidden="true"><!#><!/>/<!#><!/></div></div><div></div></div>`, 14);
+const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><div><!#><!/><div aria-hidden="true"><!#><!/>/<!#><!/></div></div><div></div></div>`, 14), _tmpl$2 = /*#__PURE__*/ (0, import_web.template)(`<div id="shltr-gifsearch-container"></div>`, 2);
 const { flux: { subscribe }, observeDom } = shelter.plugin.scoped;
-const { ui: { TextBox, openModal, CheckboxItem, ReactiveRoot }, solid: { createSignal, createEffect }, util: { getFiberOwner, getFiber, reactFiberWalker }, plugin: { store } } = shelter;
+const { ui: { TextBox, openModal, CheckboxItem, ReactiveRoot }, solid: { createSignal, createEffect, onCleanup }, util: { getFiberOwner, getFiber, reactFiberWalker }, plugin: { store } } = shelter;
 function addClickHandlerToFavoritesGifPicker() {
 	const stopObserving = observeDom("[class^='result'] > [class^='categoryFadeBlurple']", (container) => {
 		stopObserving();
@@ -166,7 +166,19 @@ function SearchBar() {
 	const fiber = getFiberOwner(container);
 	const [counter, setCounter] = createSignal(fiber.props.favorites.length.toString());
 	const total = fiber.props.favorites.length;
-	createEffect(() => {
+	if (!fiber.props.__favorites) {
+		Object.defineProperty(fiber.props, "__favorites", {
+			get: () => fiber.props.favorites,
+			set: (value) => {
+				console.log("Favorites updated:", value);
+				fiber.props.favorites = value;
+			}
+		});
+		fiber.props.__favorites = fiber.props.favorites;
+		console.log("Initialized __favorites with current favorites.");
+	}
+	function update() {
+		console.log(fiber.props.__favorites);
 		if (!fiber.props.__favorites) fiber.props.__favorites = fiber.props.favorites;
 		fiber.props.favorites = fiber.props.__favorites.filter((gif) => {
 			const tags = store[gif.url] || [];
@@ -177,6 +189,13 @@ function SearchBar() {
 		});
 		setCounter(fiber.props.favorites.length.toString());
 		fiber.forceUpdate();
+	}
+	createEffect(update);
+	const stopObserving = observeDom("#gif-picker-tab-panel", () => {
+		setTimeout(update, 100);
+	});
+	onCleanup(() => {
+		stopObserving();
 	});
 	return (() => {
 		const _el$ = (0, import_web$4.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, _el$9 = _el$2.firstChild, [_el$10, _co$3] = (0, import_web$5.getNextMarker)(_el$9.nextSibling), _el$3 = _el$10.nextSibling, _el$5 = _el$3.firstChild, [_el$6, _co$] = (0, import_web$5.getNextMarker)(_el$5.nextSibling), _el$4 = _el$6.nextSibling, _el$7 = _el$4.nextSibling, [_el$8, _co$2] = (0, import_web$5.getNextMarker)(_el$7.nextSibling), _el$11 = _el$2.nextSibling;
@@ -219,7 +238,13 @@ function handleClick() {
 	requestAnimationFrame(() => {
 		const header = document.querySelector("#gif-picker-tab-panel > div:first-child");
 		if (!header) return;
-		header.appendChild((0, import_web$7.createComponent)(SearchBar, {}));
+		header.appendChild((() => {
+			const _el$12 = (0, import_web$4.getNextElement)(_tmpl$2);
+			(0, import_web$6.insert)(_el$12, (0, import_web$7.createComponent)(ReactiveRoot, { get children() {
+				return (0, import_web$7.createComponent)(SearchBar, {});
+			} }));
+			return _el$12;
+		})());
 		stopObservingResults = observeDom("[class^='content'] > div > [class^='result_']", (card) => {
 			if (card.dataset.addedRightClick) return;
 			card.dataset.addedRightClick = "true";
@@ -228,7 +253,7 @@ function handleClick() {
 	});
 }
 function handleBack() {
-	document.getElementById(index_jsx_default.searchBar)?.remove();
+	document.getElementById("shltr-gifsearch-container")?.remove();
 	if (stopObservingResults) {
 		stopObservingResults();
 		stopObservingResults = null;

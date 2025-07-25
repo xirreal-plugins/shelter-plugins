@@ -82,14 +82,15 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
 }
 
 .-bMcgq_previewItem, .-bMcgq_dashboardItem {
-  border: 1px solid var(--background-tertiary);
-  background-color: var(--background-secondary);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--background-surface-highest);
   border-radius: 8px;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 180px;
   height: 180px;
+  margin-left: -3px;
   padding: 8px;
   transition: all .3s;
   display: flex;
@@ -127,7 +128,8 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
 
 .-bMcgq_removeButton {
   color: var(--status-danger);
-  background-color: color-mix(in srgb, var(--background-tertiary) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border-subtle) 30%, transparent);
+  background-color: color-mix(in srgb, color-mix(in srgb, var(--status-danger) 40%, var(--background-surface-high)) 40%, transparent);
   backdrop-filter: blur(4px);
   cursor: pointer;
   border-radius: 8px;
@@ -221,25 +223,25 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
 }
 `);
 var modal_jsx_default = {
-	"previewItem": "-bMcgq_previewItem",
-	"dashboardItem": "-bMcgq_dashboardItem",
-	"sway": "-bMcgq_sway",
 	"previewVideo": "-bMcgq_previewVideo",
 	"previewItemInfo": "-bMcgq_previewItemInfo",
-	"uploadArea": "-bMcgq_uploadArea",
-	"previewImage": "-bMcgq_previewImage",
-	"shake": "-bMcgq_shake",
-	"replacedButton": "-bMcgq_replacedButton",
-	"removeButton": "-bMcgq_removeButton",
-	"previewIcon": "-bMcgq_previewIcon",
-	"dragOver": "-bMcgq_dragOver",
+	"dashboardButton": "-bMcgq_dashboardButton",
 	"progressBar": "-bMcgq_progressBar",
+	"previewImage": "-bMcgq_previewImage",
 	"progressFill": "-bMcgq_progressFill",
-	"uploading": "-bMcgq_uploading",
+	"replacedButton": "-bMcgq_replacedButton",
+	"dashboardItem": "-bMcgq_dashboardItem",
 	"previewArea": "-bMcgq_previewArea",
-	"uploadModal": "-bMcgq_uploadModal",
+	"dragOver": "-bMcgq_dragOver",
+	"previewIcon": "-bMcgq_previewIcon",
+	"shake": "-bMcgq_shake",
 	"footer": "-bMcgq_footer",
-	"dashboardButton": "-bMcgq_dashboardButton"
+	"previewItem": "-bMcgq_previewItem",
+	"sway": "-bMcgq_sway",
+	"removeButton": "-bMcgq_removeButton",
+	"uploadArea": "-bMcgq_uploadArea",
+	"uploading": "-bMcgq_uploading",
+	"uploadModal": "-bMcgq_uploadModal"
 };
 
 //#endregion
@@ -21907,7 +21909,7 @@ var import_web$19 = __toESM(require_web());
 var import_web$20 = __toESM(require_web());
 var import_web$21 = __toESM(require_web());
 var import_web$22 = __toESM(require_web());
-const _tmpl$$2 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Drag & drop files here or click to select</p>`, 2), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><input type="file" multiple hidden></div>`, 5), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div></div></div>`, 4), _tmpl$4$1 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Uploading: <!#><!/>%</p>`, 4), _tmpl$5 = /*#__PURE__*/ (0, import_web$11.template)(`<div></div>`, 2), _tmpl$6 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Total bucket usage: <!#><!/></p>`, 4), _tmpl$7 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/></div>`, 8), _tmpl$8 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Uploading... Please wait</p>`, 2), _tmpl$9 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/><div><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 22), _tmpl$10 = /*#__PURE__*/ (0, import_web$11.template)(`<img>`, 1), _tmpl$11 = /*#__PURE__*/ (0, import_web$11.template)(`<div>📄</div>`, 2), _tmpl$12 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/><div><p></p><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 24);
+const _tmpl$$2 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Drag & drop files here or click to select</p>`, 2), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><input type="file" multiple hidden></div>`, 5), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div></div></div>`, 4), _tmpl$4$1 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Uploading: <!#><!/>%</p>`, 4), _tmpl$5 = /*#__PURE__*/ (0, import_web$11.template)(`<div></div>`, 2), _tmpl$6 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Loading files...</p>`, 2), _tmpl$7 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Total bucket usage: <!#><!/></p>`, 4), _tmpl$8 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/></div>`, 8), _tmpl$9 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Uploading... Please wait</p>`, 2), _tmpl$10 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/><div><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 22), _tmpl$11 = /*#__PURE__*/ (0, import_web$11.template)(`<img>`, 1), _tmpl$12 = /*#__PURE__*/ (0, import_web$11.template)(`<div>📄</div>`, 2), _tmpl$13 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/><div><p></p><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 24);
 const { ui: { ModalRoot, ModalHeader, ModalBody, ModalFooter, ModalSizes, showToast: showToast$1, Button: Button$1, ButtonColors: ButtonColors$1, ButtonSizes: ButtonSizes$1, focusring: focusring$1 }, solid: { createSignal, createEffect, Show, For }, util: { log, getFiber }, plugin: { store } } = shelter;
 function UploadModal(closeModal) {
 	const [files$1, setFiles] = createSignal([]);
@@ -21997,7 +21999,8 @@ function UploadModal(closeModal) {
 		setDashboardFiles(files$2);
 		setFetchingFiles(false);
 	};
-	const handleDeleteFile = async (file) => {
+	const handleDeleteFile = async (e$2, file) => {
+		e$2.stopPropagation();
 		await deleteFile(file.Key);
 		await fetchDashboardFiles();
 	};
@@ -22043,7 +22046,7 @@ function UploadModal(closeModal) {
 											return !isUploading();
 										},
 										get fallback() {
-											return (0, import_web$20.getNextElement)(_tmpl$8);
+											return (0, import_web$20.getNextElement)(_tmpl$9);
 										},
 										get children() {
 											return (0, import_web$20.getNextElement)(_tmpl$$2);
@@ -22097,60 +22100,60 @@ function UploadModal(closeModal) {
 											return files$1();
 										},
 										children: (file, index) => (() => {
-											const _el$27 = (0, import_web$20.getNextElement)(_tmpl$9), _el$32 = _el$27.firstChild, [_el$33, _co$7] = (0, import_web$17.getNextMarker)(_el$32.nextSibling), _el$34 = _el$33.nextSibling, [_el$35, _co$8] = (0, import_web$17.getNextMarker)(_el$34.nextSibling), _el$36 = _el$35.nextSibling, [_el$37, _co$9] = (0, import_web$17.getNextMarker)(_el$36.nextSibling), _el$28 = _el$37.nextSibling, _el$29 = _el$28.firstChild, _el$30 = _el$29.nextSibling, _el$31 = _el$28.nextSibling;
-											(0, import_web$18.insert)(_el$27, (() => {
+											const _el$28 = (0, import_web$20.getNextElement)(_tmpl$10), _el$33 = _el$28.firstChild, [_el$34, _co$7] = (0, import_web$17.getNextMarker)(_el$33.nextSibling), _el$35 = _el$34.nextSibling, [_el$36, _co$8] = (0, import_web$17.getNextMarker)(_el$35.nextSibling), _el$37 = _el$36.nextSibling, [_el$38, _co$9] = (0, import_web$17.getNextMarker)(_el$37.nextSibling), _el$29 = _el$38.nextSibling, _el$30 = _el$29.firstChild, _el$31 = _el$30.nextSibling, _el$32 = _el$29.nextSibling;
+											(0, import_web$18.insert)(_el$28, (() => {
 												const _c$ = (0, import_web$22.memo)(() => !!file.type.startsWith("image/"));
 												return () => _c$() && (() => {
-													const _el$38 = (0, import_web$20.getNextElement)(_tmpl$10);
+													const _el$39 = (0, import_web$20.getNextElement)(_tmpl$11);
 													(0, import_web$15.effect)((_p$) => {
 														const _v$10 = previews()[index()], _v$11 = file.name, _v$12 = modal_jsx_default.previewImage;
-														_v$10 !== _p$._v$10 && (0, import_web$13.setAttribute)(_el$38, "src", _p$._v$10 = _v$10);
-														_v$11 !== _p$._v$11 && (0, import_web$13.setAttribute)(_el$38, "alt", _p$._v$11 = _v$11);
-														_v$12 !== _p$._v$12 && (0, import_web$14.className)(_el$38, _p$._v$12 = _v$12);
+														_v$10 !== _p$._v$10 && (0, import_web$13.setAttribute)(_el$39, "src", _p$._v$10 = _v$10);
+														_v$11 !== _p$._v$11 && (0, import_web$13.setAttribute)(_el$39, "alt", _p$._v$11 = _v$11);
+														_v$12 !== _p$._v$12 && (0, import_web$14.className)(_el$39, _p$._v$12 = _v$12);
 														return _p$;
 													}, {
 														_v$10: undefined,
 														_v$11: undefined,
 														_v$12: undefined
 													});
-													return _el$38;
+													return _el$39;
 												})();
-											})(), _el$33, _co$7);
-											(0, import_web$18.insert)(_el$27, (() => {
+											})(), _el$34, _co$7);
+											(0, import_web$18.insert)(_el$28, (() => {
 												const _c$2 = (0, import_web$22.memo)(() => !!file.type.startsWith("video/"));
 												return () => _c$2() && (() => {
-													const _el$39 = (0, import_web$20.getNextElement)(_tmpl$10);
+													const _el$40 = (0, import_web$20.getNextElement)(_tmpl$11);
 													(0, import_web$15.effect)((_p$) => {
 														const _v$13 = previews()[index()], _v$14 = file.name, _v$15 = modal_jsx_default.previewVideo;
-														_v$13 !== _p$._v$13 && (0, import_web$13.setAttribute)(_el$39, "src", _p$._v$13 = _v$13);
-														_v$14 !== _p$._v$14 && (0, import_web$13.setAttribute)(_el$39, "alt", _p$._v$14 = _v$14);
-														_v$15 !== _p$._v$15 && (0, import_web$14.className)(_el$39, _p$._v$15 = _v$15);
+														_v$13 !== _p$._v$13 && (0, import_web$13.setAttribute)(_el$40, "src", _p$._v$13 = _v$13);
+														_v$14 !== _p$._v$14 && (0, import_web$13.setAttribute)(_el$40, "alt", _p$._v$14 = _v$14);
+														_v$15 !== _p$._v$15 && (0, import_web$14.className)(_el$40, _p$._v$15 = _v$15);
 														return _p$;
 													}, {
 														_v$13: undefined,
 														_v$14: undefined,
 														_v$15: undefined
 													});
-													return _el$39;
-												})();
-											})(), _el$35, _co$8);
-											(0, import_web$18.insert)(_el$27, (() => {
-												const _c$3 = (0, import_web$22.memo)(() => !!(!file.type.startsWith("image/") && !file.type.startsWith("video/")));
-												return () => _c$3() && (() => {
-													const _el$40 = (0, import_web$20.getNextElement)(_tmpl$11);
-													(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$40, modal_jsx_default.previewIcon));
 													return _el$40;
 												})();
-											})(), _el$37, _co$9);
-											(0, import_web$18.insert)(_el$29, () => file.name);
-											(0, import_web$18.insert)(_el$30, () => formatFileSize(file.size));
-											_el$31.$$click = () => handleRemoveFile(index());
+											})(), _el$36, _co$8);
+											(0, import_web$18.insert)(_el$28, (() => {
+												const _c$3 = (0, import_web$22.memo)(() => !!(!file.type.startsWith("image/") && !file.type.startsWith("video/")));
+												return () => _c$3() && (() => {
+													const _el$41 = (0, import_web$20.getNextElement)(_tmpl$12);
+													(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$41, modal_jsx_default.previewIcon));
+													return _el$41;
+												})();
+											})(), _el$38, _co$9);
+											(0, import_web$18.insert)(_el$30, () => file.name);
+											(0, import_web$18.insert)(_el$31, () => formatFileSize(file.size));
+											_el$32.$$click = () => handleRemoveFile(index());
 											(0, import_web$15.effect)((_p$) => {
 												const _v$6 = modal_jsx_default.previewItem, _v$7 = modal_jsx_default.previewItemInfo, _v$8 = modal_jsx_default.removeButton, _v$9 = isUploading();
-												_v$6 !== _p$._v$6 && (0, import_web$14.className)(_el$27, _p$._v$6 = _v$6);
-												_v$7 !== _p$._v$7 && (0, import_web$14.className)(_el$28, _p$._v$7 = _v$7);
-												_v$8 !== _p$._v$8 && (0, import_web$14.className)(_el$31, _p$._v$8 = _v$8);
-												_v$9 !== _p$._v$9 && (_el$31.disabled = _p$._v$9 = _v$9);
+												_v$6 !== _p$._v$6 && (0, import_web$14.className)(_el$28, _p$._v$6 = _v$6);
+												_v$7 !== _p$._v$7 && (0, import_web$14.className)(_el$29, _p$._v$7 = _v$7);
+												_v$8 !== _p$._v$8 && (0, import_web$14.className)(_el$32, _p$._v$8 = _v$8);
+												_v$9 !== _p$._v$9 && (_el$32.disabled = _p$._v$9 = _v$9);
 												return _p$;
 											}, {
 												_v$6: undefined,
@@ -22159,7 +22162,7 @@ function UploadModal(closeModal) {
 												_v$9: undefined
 											});
 											(0, import_web$16.runHydrationEvents)();
-											return _el$27;
+											return _el$28;
 										})()
 									}));
 									(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$13, modal_jsx_default.previewArea));
@@ -22175,117 +22178,132 @@ function UploadModal(closeModal) {
 					},
 					get children() {
 						return (0, import_web$21.createComponent)(ModalBody, { get children() {
-							return [(() => {
-								const _el$14 = (0, import_web$20.getNextElement)(_tmpl$6), _el$15 = _el$14.firstChild, _el$16 = _el$15.nextSibling, [_el$17, _co$3] = (0, import_web$17.getNextMarker)(_el$16.nextSibling);
-								(0, import_web$18.insert)(_el$14, () => formatFileSize(dashboardFiles().reduce((acc, file) => acc + file.Size, 0)), _el$17, _co$3);
-								return _el$14;
-							})(), (() => {
-								const _el$18 = (0, import_web$20.getNextElement)(_tmpl$5);
-								(0, import_web$18.insert)(_el$18, (0, import_web$21.createComponent)(For, {
-									get each() {
-										return dashboardFiles();
-									},
-									children: (file) => {
-										const extension = file.Key.split(".").pop();
-										const isImage = [
-											"jpg",
-											"jpeg",
-											"png",
-											"gif",
-											"webp",
-											"svg"
-										].includes(extension);
-										const isVideo = ["mp4", "webm"].includes(extension);
-										const [preview, setPreview] = createSignal(store.previews[file.Key]);
-										if (!preview() && (isImage || isVideo)) getFilePreview(file, isImage, isVideo, store.publicUrl).then((url) => {
-											store.previews = {
-												...store.previews,
-												[file.Key]: url
-											};
-											setPreview(url);
-										});
-										return (() => {
-											const _el$41 = (0, import_web$20.getNextElement)(_tmpl$12), _el$47 = _el$41.firstChild, [_el$48, _co$10] = (0, import_web$17.getNextMarker)(_el$47.nextSibling), _el$49 = _el$48.nextSibling, [_el$50, _co$11] = (0, import_web$17.getNextMarker)(_el$49.nextSibling), _el$51 = _el$50.nextSibling, [_el$52, _co$12] = (0, import_web$17.getNextMarker)(_el$51.nextSibling), _el$42 = _el$52.nextSibling, _el$43 = _el$42.firstChild, _el$44 = _el$43.nextSibling, _el$45 = _el$44.nextSibling, _el$46 = _el$42.nextSibling;
-											_el$41.$$click = () => {
-												const fiber = getFiber(document.querySelector("[class*=\"slateContainer\"]"));
-												const editor = fiber.child.pendingProps.editor;
-												const url = getUrl(file, store.publicUrl);
-												editor.insertText(url + " ");
-											};
-											(0, import_web$19.use)(focusring$1, _el$41, () => true);
-											(0, import_web$18.insert)(_el$41, (() => {
-												const _c$4 = (0, import_web$22.memo)(() => !!(preview() && isImage));
-												return () => _c$4() && (() => {
-													const _el$53 = (0, import_web$20.getNextElement)(_tmpl$10);
+							return [(0, import_web$21.createComponent)(Show, {
+								get when() {
+									return fetchingFiles();
+								},
+								get children() {
+									return (0, import_web$20.getNextElement)(_tmpl$6);
+								}
+							}), (0, import_web$21.createComponent)(Show, {
+								get when() {
+									return !fetchingFiles();
+								},
+								get children() {
+									return [(() => {
+										const _el$15 = (0, import_web$20.getNextElement)(_tmpl$7), _el$16 = _el$15.firstChild, _el$17 = _el$16.nextSibling, [_el$18, _co$3] = (0, import_web$17.getNextMarker)(_el$17.nextSibling);
+										(0, import_web$18.insert)(_el$15, () => formatFileSize(dashboardFiles().reduce((acc, file) => acc + file.Size, 0)), _el$18, _co$3);
+										return _el$15;
+									})(), (() => {
+										const _el$19 = (0, import_web$20.getNextElement)(_tmpl$5);
+										(0, import_web$18.insert)(_el$19, (0, import_web$21.createComponent)(For, {
+											get each() {
+												return dashboardFiles();
+											},
+											children: (file) => {
+												const extension = file.Key.split(".").pop();
+												const isImage = [
+													"jpg",
+													"jpeg",
+													"png",
+													"gif",
+													"webp",
+													"svg"
+												].includes(extension);
+												const isVideo = ["mp4", "webm"].includes(extension);
+												const [preview, setPreview] = createSignal(store.previews[file.Key]);
+												if (!preview() && (isImage || isVideo)) getFilePreview(file, isImage, isVideo, store.publicUrl).then((url) => {
+													store.previews = {
+														...store.previews,
+														[file.Key]: url
+													};
+													setPreview(url);
+												});
+												return (() => {
+													const _el$42 = (0, import_web$20.getNextElement)(_tmpl$13), _el$48 = _el$42.firstChild, [_el$49, _co$10] = (0, import_web$17.getNextMarker)(_el$48.nextSibling), _el$50 = _el$49.nextSibling, [_el$51, _co$11] = (0, import_web$17.getNextMarker)(_el$50.nextSibling), _el$52 = _el$51.nextSibling, [_el$53, _co$12] = (0, import_web$17.getNextMarker)(_el$52.nextSibling), _el$43 = _el$53.nextSibling, _el$44 = _el$43.firstChild, _el$45 = _el$44.nextSibling, _el$46 = _el$45.nextSibling, _el$47 = _el$43.nextSibling;
+													_el$42.$$click = (e$2) => {
+														e$2.stopPropagation();
+														const fiber = getFiber(document.querySelector("[class*=\"slateContainer\"]"));
+														const editor = fiber.child.pendingProps.editor;
+														const url = getUrl(file, store.publicUrl);
+														editor.insertText(url + " ");
+													};
+													(0, import_web$19.use)(focusring$1, _el$42, () => true);
+													(0, import_web$18.insert)(_el$42, (() => {
+														const _c$4 = (0, import_web$22.memo)(() => !!(preview() && isImage));
+														return () => _c$4() && (() => {
+															const _el$54 = (0, import_web$20.getNextElement)(_tmpl$11);
+															(0, import_web$15.effect)((_p$) => {
+																const _v$19 = preview(), _v$20 = file.Key, _v$21 = modal_jsx_default.previewImage;
+																_v$19 !== _p$._v$19 && (0, import_web$13.setAttribute)(_el$54, "src", _p$._v$19 = _v$19);
+																_v$20 !== _p$._v$20 && (0, import_web$13.setAttribute)(_el$54, "alt", _p$._v$20 = _v$20);
+																_v$21 !== _p$._v$21 && (0, import_web$14.className)(_el$54, _p$._v$21 = _v$21);
+																return _p$;
+															}, {
+																_v$19: undefined,
+																_v$20: undefined,
+																_v$21: undefined
+															});
+															return _el$54;
+														})();
+													})(), _el$49, _co$10);
+													(0, import_web$18.insert)(_el$42, (() => {
+														const _c$5 = (0, import_web$22.memo)(() => !!(preview() && isVideo));
+														return () => _c$5() && (() => {
+															const _el$55 = (0, import_web$20.getNextElement)(_tmpl$11);
+															(0, import_web$15.effect)((_p$) => {
+																const _v$22 = preview(), _v$23 = file.Key, _v$24 = modal_jsx_default.previewVideo;
+																_v$22 !== _p$._v$22 && (0, import_web$13.setAttribute)(_el$55, "src", _p$._v$22 = _v$22);
+																_v$23 !== _p$._v$23 && (0, import_web$13.setAttribute)(_el$55, "alt", _p$._v$23 = _v$23);
+																_v$24 !== _p$._v$24 && (0, import_web$14.className)(_el$55, _p$._v$24 = _v$24);
+																return _p$;
+															}, {
+																_v$22: undefined,
+																_v$23: undefined,
+																_v$24: undefined
+															});
+															return _el$55;
+														})();
+													})(), _el$51, _co$11);
+													(0, import_web$18.insert)(_el$42, (() => {
+														const _c$6 = (0, import_web$22.memo)(() => !!(!preview() || !isImage && !isVideo));
+														return () => _c$6() && (() => {
+															const _el$56 = (0, import_web$20.getNextElement)(_tmpl$12);
+															(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$56, modal_jsx_default.previewIcon));
+															return _el$56;
+														})();
+													})(), _el$53, _co$12);
+													(0, import_web$18.insert)(_el$44, () => file.Key);
+													(0, import_web$18.insert)(_el$45, () => formatFileSize(file.Size));
+													(0, import_web$18.insert)(_el$46, () => formatDate(file.LastModified));
+													_el$47.$$click = (e$2) => handleDeleteFile(e$2, file);
 													(0, import_web$15.effect)((_p$) => {
-														const _v$19 = preview(), _v$20 = file.Key, _v$21 = modal_jsx_default.previewImage;
-														_v$19 !== _p$._v$19 && (0, import_web$13.setAttribute)(_el$53, "src", _p$._v$19 = _v$19);
-														_v$20 !== _p$._v$20 && (0, import_web$13.setAttribute)(_el$53, "alt", _p$._v$20 = _v$20);
-														_v$21 !== _p$._v$21 && (0, import_web$14.className)(_el$53, _p$._v$21 = _v$21);
+														const _v$16 = modal_jsx_default.dashboardItem, _v$17 = modal_jsx_default.previewItemInfo, _v$18 = modal_jsx_default.removeButton;
+														_v$16 !== _p$._v$16 && (0, import_web$14.className)(_el$42, _p$._v$16 = _v$16);
+														_v$17 !== _p$._v$17 && (0, import_web$14.className)(_el$43, _p$._v$17 = _v$17);
+														_v$18 !== _p$._v$18 && (0, import_web$14.className)(_el$47, _p$._v$18 = _v$18);
 														return _p$;
 													}, {
-														_v$19: undefined,
-														_v$20: undefined,
-														_v$21: undefined
+														_v$16: undefined,
+														_v$17: undefined,
+														_v$18: undefined
 													});
-													return _el$53;
+													(0, import_web$16.runHydrationEvents)();
+													return _el$42;
 												})();
-											})(), _el$48, _co$10);
-											(0, import_web$18.insert)(_el$41, (() => {
-												const _c$5 = (0, import_web$22.memo)(() => !!(preview() && isVideo));
-												return () => _c$5() && (() => {
-													const _el$54 = (0, import_web$20.getNextElement)(_tmpl$10);
-													(0, import_web$15.effect)((_p$) => {
-														const _v$22 = preview(), _v$23 = file.Key, _v$24 = modal_jsx_default.previewVideo;
-														_v$22 !== _p$._v$22 && (0, import_web$13.setAttribute)(_el$54, "src", _p$._v$22 = _v$22);
-														_v$23 !== _p$._v$23 && (0, import_web$13.setAttribute)(_el$54, "alt", _p$._v$23 = _v$23);
-														_v$24 !== _p$._v$24 && (0, import_web$14.className)(_el$54, _p$._v$24 = _v$24);
-														return _p$;
-													}, {
-														_v$22: undefined,
-														_v$23: undefined,
-														_v$24: undefined
-													});
-													return _el$54;
-												})();
-											})(), _el$50, _co$11);
-											(0, import_web$18.insert)(_el$41, (() => {
-												const _c$6 = (0, import_web$22.memo)(() => !!(!preview() || !isImage && !isVideo));
-												return () => _c$6() && (() => {
-													const _el$55 = (0, import_web$20.getNextElement)(_tmpl$11);
-													(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$55, modal_jsx_default.previewIcon));
-													return _el$55;
-												})();
-											})(), _el$52, _co$12);
-											(0, import_web$18.insert)(_el$43, () => file.Key);
-											(0, import_web$18.insert)(_el$44, () => formatFileSize(file.Size));
-											(0, import_web$18.insert)(_el$45, () => formatDate(file.LastModified));
-											_el$46.$$click = () => handleDeleteFile(file);
-											(0, import_web$15.effect)((_p$) => {
-												const _v$16 = modal_jsx_default.dashboardItem, _v$17 = modal_jsx_default.previewItemInfo, _v$18 = modal_jsx_default.removeButton;
-												_v$16 !== _p$._v$16 && (0, import_web$14.className)(_el$41, _p$._v$16 = _v$16);
-												_v$17 !== _p$._v$17 && (0, import_web$14.className)(_el$42, _p$._v$17 = _v$17);
-												_v$18 !== _p$._v$18 && (0, import_web$14.className)(_el$46, _p$._v$18 = _v$18);
-												return _p$;
-											}, {
-												_v$16: undefined,
-												_v$17: undefined,
-												_v$18: undefined
-											});
-											(0, import_web$16.runHydrationEvents)();
-											return _el$41;
-										})();
-									}
-								}));
-								(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$18, modal_jsx_default.previewArea));
-								return _el$18;
-							})()];
+											}
+										}));
+										(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$19, modal_jsx_default.previewArea));
+										return _el$19;
+									})()];
+								}
+							})];
 						} });
 					}
 				}),
 				(0, import_web$21.createComponent)(ModalFooter, { get children() {
-					const _el$19 = (0, import_web$20.getNextElement)(_tmpl$7), _el$20 = _el$19.firstChild, [_el$21, _co$4] = (0, import_web$17.getNextMarker)(_el$20.nextSibling), _el$22 = _el$21.nextSibling, [_el$23, _co$5] = (0, import_web$17.getNextMarker)(_el$22.nextSibling), _el$24 = _el$23.nextSibling, [_el$25, _co$6] = (0, import_web$17.getNextMarker)(_el$24.nextSibling);
-					(0, import_web$18.insert)(_el$19, (0, import_web$21.createComponent)(Button$1, {
+					const _el$20 = (0, import_web$20.getNextElement)(_tmpl$8), _el$21 = _el$20.firstChild, [_el$22, _co$4] = (0, import_web$17.getNextMarker)(_el$21.nextSibling), _el$23 = _el$22.nextSibling, [_el$24, _co$5] = (0, import_web$17.getNextMarker)(_el$23.nextSibling), _el$25 = _el$24.nextSibling, [_el$26, _co$6] = (0, import_web$17.getNextMarker)(_el$25.nextSibling);
+					(0, import_web$18.insert)(_el$20, (0, import_web$21.createComponent)(Button$1, {
 						get ["class"]() {
 							return modal_jsx_default.dashboardButton;
 						},
@@ -22299,8 +22317,8 @@ function UploadModal(closeModal) {
 						get children() {
 							return dashOpen() ? "Upload Files" : "Dashboard";
 						}
-					}), _el$21, _co$4);
-					(0, import_web$18.insert)(_el$19, (0, import_web$21.createComponent)(Button$1, {
+					}), _el$22, _co$4);
+					(0, import_web$18.insert)(_el$20, (0, import_web$21.createComponent)(Button$1, {
 						get disabled() {
 							return isUploading();
 						},
@@ -22312,8 +22330,8 @@ function UploadModal(closeModal) {
 						},
 						onClick: () => isUploading() ? null : closeModal(),
 						children: "Cancel"
-					}), _el$23, _co$5);
-					(0, import_web$18.insert)(_el$19, (0, import_web$21.createComponent)(Show, {
+					}), _el$24, _co$5);
+					(0, import_web$18.insert)(_el$20, (0, import_web$21.createComponent)(Show, {
 						get when() {
 							return !dashOpen();
 						},
@@ -22334,9 +22352,9 @@ function UploadModal(closeModal) {
 								}
 							});
 						}
-					}), _el$25, _co$6);
-					(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$19, modal_jsx_default.footer));
-					return _el$19;
+					}), _el$26, _co$6);
+					(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$20, modal_jsx_default.footer));
+					return _el$20;
 				} })
 			];
 		}
@@ -22368,7 +22386,7 @@ const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<button></button>`, 2), _
          [class^="_modal"] {
             width: auto;
          }
-         </style>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web.template)(`<br>`, 1), _tmpl$4 = /*#__PURE__*/ (0, import_web.template)(`<pre style="background-color: var(--background-secondary); padding: 10px; border-radius: 8px;"><code>{
+         </style>`, 2), _tmpl$3 = /*#__PURE__*/ (0, import_web.template)(`<br>`, 1), _tmpl$4 = /*#__PURE__*/ (0, import_web.template)(`<pre style="background: var(--background-code); border: 1px solid var(--border-normal); padding: 10px; border-radius: 4px;"><code>{
   "CORSRules": [
     {
       "AllowedHeaders": ["*"],
@@ -22569,7 +22587,9 @@ const settings = () => [
 			});
 		},
 		children: "Clear cached previews"
-	})
+	}),
+	(0, import_web$5.getNextElement)(_tmpl$3),
+	(0, import_web$5.getNextElement)(_tmpl$3)
 ];
 (0, import_web$1.delegateEvents)(["click"]);
 
