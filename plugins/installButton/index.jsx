@@ -153,10 +153,6 @@ function handleDispatch(payload) {
          return;
       }
 
-      element.onclick = (e) => {
-         e.preventDefault();
-      };
-
       try {
          const response = await fetch(`${url}plugin.json`);
          if (!response.ok) return;
@@ -174,11 +170,10 @@ function handleDispatch(payload) {
          );
 
          // removing the element entirely causes react to blow up
-         // and react fails to remove us if we insert at the same level
          element.className = "";
          element.style.all = "unset";
-         element.style.display = "contents";
-         element.replaceChildren(card);
+         element.style.display = "none";
+         element.insertAdjacentElement("afterend", card);
       } catch (e) {
          console.error(e);
       }

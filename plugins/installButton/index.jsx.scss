@@ -17,7 +17,6 @@
    justify-content: flex-start;
    align-items: center;
 
-   font-family: var(--text-normal);
    font-size: 12px;
    line-height: 1.3;
    font-weight: 400;
@@ -28,6 +27,7 @@
 .author {
    font-weight: 700;
    padding-right: 2px;
+   padding-top: 1px;
 }
 
 .icon {
@@ -82,7 +82,6 @@
    font-size: 16px;
    line-height: 1.28;
    font-weight: 600;
-   color: var(--text-normal);
 }
 
 .alignRight {
@@ -92,7 +91,6 @@
 
 .description {
    white-space: wrap;
-   margin-top: 4px;
    text-overflow: ellipsis;
    font-weight: 400;
    font-size: 14px;

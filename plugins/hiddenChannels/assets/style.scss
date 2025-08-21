@@ -14,6 +14,13 @@
    width: 4px;
 }
 
+.channelTitle {
+   margin-top: 1px;
+   font-weight: 500;
+   color: var(--text-default);
+   white-space: nowrap;
+}
+
 .topic {
    font: var(--font-primary);
    flex: 1 1 auto;
@@ -49,7 +56,7 @@
 
 .bold {
    font-weight: 500;
-   color: var(--text-normal);
+   color: var(--text-default);
    white-space: nowrap;
 }
 
@@ -62,7 +69,7 @@
    display: flex;
    flex-direction: row;
    align-items: center;
-   padding-left: calc(var(--custom-message-margin-horizontal) - var(--space-4) + var(--custom-chat-aligned-icon-offset) - 1px);
+   padding-left: 9px;
    padding-right: var(--space-xs);
 }
 
