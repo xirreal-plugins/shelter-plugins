@@ -46,6 +46,13 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
   margin: 0 12px;
 }
 
+.ccAoOa_channelTitle {
+  color: var(--text-default);
+  white-space: nowrap;
+  margin-top: 1px;
+  font-weight: 500;
+}
+
 .ccAoOa_topic {
   font: var(--font-primary);
   text-overflow: ellipsis;
@@ -78,7 +85,7 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
 }
 
 .ccAoOa_bold {
-  color: var(--text-normal);
+  color: var(--text-default);
   white-space: nowrap;
   font-weight: 500;
 }
@@ -89,7 +96,7 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
   max-height: var(--custom-channel-header-height);
   background: var(--bg-overlay-2, var(--background-base-lower));
   width: 100%;
-  padding-left: calc(var(--custom-message-margin-horizontal)  - var(--space-4)  + var(--custom-chat-aligned-icon-offset)  - 1px);
+  padding-left: 9px;
   padding-right: var(--space-xs);
   flex-direction: row;
   align-items: center;
@@ -102,14 +109,15 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
 }
 `);
 var style_default = {
-	"headerBar": "ccAoOa_headerBar",
+	"hiddenChannel": "ccAoOa_hiddenChannel",
+	"bold": "ccAoOa_bold",
+	"divider": "ccAoOa_divider",
 	"topicWrapper": "ccAoOa_topicWrapper",
 	"mainBody": "ccAoOa_mainBody",
-	"topicModal": "ccAoOa_topicModal",
-	"divider": "ccAoOa_divider",
 	"topic": "ccAoOa_topic",
-	"bold": "ccAoOa_bold",
-	"hiddenChannel": "ccAoOa_hiddenChannel"
+	"channelTitle": "ccAoOa_channelTitle",
+	"topicModal": "ccAoOa_topicModal",
+	"headerBar": "ccAoOa_headerBar"
 };
 
 //#endregion
@@ -239,7 +247,7 @@ var Notice_default = (props) => {
 						return TextTags.channelTitle;
 					},
 					get ["class"]() {
-						return style_default.bold;
+						return style_default.channelTitle;
 					},
 					get children() {
 						return props.channel.name;
@@ -265,7 +273,7 @@ var Notice_default = (props) => {
 				return HeaderTags.H5;
 			},
 			style: {
-				"color": "var(--text-secondary)",
+				color: "var(--text-secondary)",
 				"margin-top": "12px"
 			},
 			children: "You cannot see the contents of this channel. However, you may see its name and topic."

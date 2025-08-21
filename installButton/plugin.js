@@ -49,7 +49,6 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
 }
 
 .eeurUa_header {
-  font-family: var(--text-normal);
   justify-content: flex-start;
   align-items: center;
   padding: 8px 0;
@@ -60,6 +59,7 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
 }
 
 .eeurUa_author {
+  padding-top: 1px;
   padding-right: 2px;
   font-weight: 700;
 }
@@ -113,7 +113,6 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
   white-space: wrap;
   text-overflow: ellipsis;
   font-family: var(--font-primary);
-  color: var(--text-normal);
   font-size: 16px;
   font-weight: 600;
   line-height: 1.28;
@@ -128,23 +127,22 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
   white-space: wrap;
   text-overflow: ellipsis;
   color: var(--text-primary);
-  margin-top: 4px;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
 }
 `);
 var index_jsx_default = {
-	"author": "eeurUa_author",
 	"copied": "eeurUa_copied",
-	"content": "eeurUa_content",
-	"description": "eeurUa_description",
 	"icon": "eeurUa_icon",
-	"card": "eeurUa_card",
-	"copyLink": "eeurUa_copyLink",
-	"title": "eeurUa_title",
+	"content": "eeurUa_content",
 	"header": "eeurUa_header",
 	"alignRight": "eeurUa_alignRight",
+	"description": "eeurUa_description",
+	"copyLink": "eeurUa_copyLink",
+	"author": "eeurUa_author",
+	"title": "eeurUa_title",
+	"card": "eeurUa_card",
 	"divider": "eeurUa_divider"
 };
 
@@ -298,9 +296,6 @@ function handleDispatch(payload) {
 		let url = element.href.endsWith("/") ? element.href : `${element.href}/`;
 		if (url.endsWith("plugin.json/")) url = url.slice(0, -12);
 		if (!trustedUrls.some((trustedUrl) => url.startsWith(trustedUrl))) return;
-		element.onclick = (e) => {
-			e.preventDefault();
-		};
 		try {
 			const response = await fetch(`${url}plugin.json`);
 			if (!response.ok) return;
@@ -317,8 +312,8 @@ function handleDispatch(payload) {
 			});
 			element.className = "";
 			element.style.all = "unset";
-			element.style.display = "contents";
-			element.replaceChildren(card);
+			element.style.display = "none";
+			element.insertAdjacentElement("afterend", card);
 		} catch (e) {
 			console.error(e);
 		}
