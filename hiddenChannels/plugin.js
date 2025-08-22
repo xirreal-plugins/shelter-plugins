@@ -110,13 +110,13 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
 `);
 var style_default = {
 	"hiddenChannel": "ccAoOa_hiddenChannel",
-	"bold": "ccAoOa_bold",
-	"divider": "ccAoOa_divider",
-	"topicWrapper": "ccAoOa_topicWrapper",
-	"mainBody": "ccAoOa_mainBody",
-	"topic": "ccAoOa_topic",
 	"channelTitle": "ccAoOa_channelTitle",
+	"bold": "ccAoOa_bold",
+	"topicWrapper": "ccAoOa_topicWrapper",
 	"topicModal": "ccAoOa_topicModal",
+	"mainBody": "ccAoOa_mainBody",
+	"divider": "ccAoOa_divider",
+	"topic": "ccAoOa_topic",
 	"headerBar": "ccAoOa_headerBar"
 };
 
