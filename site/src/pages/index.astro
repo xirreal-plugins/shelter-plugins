@@ -70,11 +70,11 @@ const profilePicUrl = `https://github.com/${username}.png`;
 										<img src="/send.svg" alt={`One click installer for ${plugin.data.title}`} class="w-32 h-auto" />
 									</a>
 									<div class="mt-2 relative">
-										Manual installation:
-										<kbd onclick="document.copyToClipboard(this)" class="text-[#9171ad] underline hover:text-[#bf96e3] break-all cursor-pointer" data-url={plugin.data.url}>
+										<span>Manual installation:</span>
+										<a onclick="document.copyToClipboard(this); return false;" class="text-[#9171ad] underline hover:text-[#bf96e3] break-all cursor-pointer" href={plugin.data.url}>
 											{plugin.data.url}
 											<CopyIcon />
-										</kbd>
+										</a>
 										<div class="absolute -bottom-10 bg-[#291c36] border-[#51425e] border-1 border-solid px-2 py-1 rounded-2 opacity-0 transition-opacity duration-300">Copied!</div>
 									</div>
 								</div>
@@ -97,8 +97,9 @@ const profilePicUrl = `https://github.com/${username}.png`;
 		<script>
 			// @ts-ignore
 			document.copyToClipboard = (target: HTMLElement) => {
-				const url = target.dataset.url!;
+				const url = target.href!;
 				navigator.clipboard.writeText(url).then(() => {
+					target.nextElementSibling!.style.left = `${target.previousElementSibling.getBoundingClientRect().width + target.getBoundingClientRect().width / 2 - target.nextElementSibling.getBoundingClientRect().width / 2}px`;
 					target.nextElementSibling?.classList.remove("opacity-0");
 					// @ts-ignore
 					if(target.dataset.timeoutId !== undefined) {
