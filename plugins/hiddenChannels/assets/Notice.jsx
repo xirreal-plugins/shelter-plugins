@@ -1,5 +1,6 @@
 const {
     ui: {Header, HeaderTags, Text, TextTags},
+    plugin: {store}
 } = shelter;
 
 import classes from "./style.scss";
@@ -71,58 +72,60 @@ export default (props) => {
                 >
                     You cannot see the contents of this channel. However, you may see its name and topic. <br/>
                 </Header>
-                <div
-                    style={{
-                        display: "flex",
-                        "margin-top": "20px",
-                        gap: "20px",
-                    }}
-                >
-                    <div style={{flex: 1}}>
-                        <Header tag={HeaderTags.H5} class={classes.bold}>
-                            Roles with access
-                        </Header>
-                        {rolesWithAccess.length > 0 ? (
-                            rolesWithAccess.map((role) => (
-                                <>
-                                    <Text key={role.id} style={{color: role.colorString || "var(--header-secondary)"}}>
-                                        @{role.name}
-                                    </Text>
-                                    <br/>
-                                </>
-                            ))
-                        ) : (
-                            <Text>No roles have explicit access.</Text>
-                        )}
-                    </div>
-                    <div style={{flex: 1}}>
-                        <Header tag={HeaderTags.H5} class={classes.bold}>
-                            Users with access
-                        </Header>
-                        {usersWithAccess.length > 0 ? (
-                            usersWithAccess.map((user) => (
-                                <div style={{"align-items": "center", "display": "flex"}}>
-                                    <img
-                                        style={{
-                                            width: "25px",
-                                            height: "25px",
-                                            margin: "2px",
-                                            "border-radius": "100%"
+                <Show when={store.ShowPeopleWhoHaveAccess}>
+                    <div
+                        style={{
+                            display: "flex",
+                            "margin-top": "20px",
+                            gap: "20px",
+                        }}
+                    >
+                        <div style={{flex: 1}}>
+                            <Header tag={HeaderTags.H5} class={classes.bold}>
+                                Roles with access
+                            </Header>
+                            {rolesWithAccess.length > 0 ? (
+                                rolesWithAccess.map((role) => (
+                                    <>
+                                        <Text key={role.id} style={{color: role.colorString || "var(--header-secondary)"}}>
+                                            @{role.name}
+                                        </Text>
+                                        <br/>
+                                    </>
+                                ))
+                            ) : (
+                                <Text>No roles have explicit access.</Text>
+                            )}
+                        </div>
+                        <div style={{flex: 1}}>
+                            <Header tag={HeaderTags.H5} class={classes.bold}>
+                                Users with access
+                            </Header>
+                            {usersWithAccess.length > 0 ? (
+                                usersWithAccess.map((user) => (
+                                    <div style={{"align-items": "center", "display": "flex"}}>
+                                        <img
+                                            style={{
+                                                width: "25px",
+                                                height: "25px",
+                                                margin: "2px",
+                                                "border-radius": "100%"
 
-                                        }}
-                                        alt={user.username}
+                                            }}
+                                            alt={user.username}
 
-                                        src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`}
-                                    />
-                                    <Text style={{}} key={user.id}>{user.username}</Text>
-                                    <br/>
-                                </div>
-                            ))
-                        ) : (
-                            <Text>No users have explicit access.</Text>
-                        )}
+                                            src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`}
+                                        />
+                                        <Text style={{}} key={user.id}>{user.username}</Text>
+                                        <br/>
+                                    </div>
+                                ))
+                            ) : (
+                                <Text>No users have explicit access.</Text>
+                            )}
+                        </div>
                     </div>
-                </div>
+                </Show>
             </div>
         </div>
     );

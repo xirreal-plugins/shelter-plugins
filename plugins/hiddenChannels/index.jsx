@@ -8,8 +8,9 @@ const {
    flux: {
       stores: { PermissionStore, ChannelStore, GuildStore, ReadStateStore },
    },
-   ui: { renderSolidInReact },
+   ui: { renderSolidInReact, SwitchItem },
    util: { getFiber, reactFiberWalker },
+   plugin: { store }
 } = shelter;
 
 const Permissions = {
@@ -31,7 +32,7 @@ const ChannelTypes = {
    GUILD_FORUM: 15,
    GUILD_MEDIA: 16, // Beta channel type, check if it works sometime:tm:
 };
-
+store.ShowPeopleWhoHaveAccess ??= false
 const getChannel = ChannelStore.getChannel;
 const getGuild = GuildStore.getGuild;
 
@@ -73,6 +74,12 @@ const isVisibile = (originalChannel) => {
 
    return canBeSeen(channel);
 };
+
+export const settings = () => (
+    <SwitchItem value={store.ShowPeopleWhoHaveAccess} onChange={(v) => {store.ShowPeopleWhoHaveAccess = v}}>
+        show users/roles with access to hidden channels
+    </SwitchItem>
+)
 
 export function onLoad() {
    patcher.instead("can", PermissionStore.__proto__, (originalArgs, originalFunction) => {
