@@ -35,12 +35,7 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/vcTimer/index.jsx
 var import_web = __toESM(require_web(), 1);
-var import_web$1 = __toESM(require_web(), 1);
-var import_web$2 = __toESM(require_web(), 1);
-var import_web$3 = __toESM(require_web(), 1);
-var import_web$4 = __toESM(require_web(), 1);
-const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div id="vcTimer" style="font-weight: bold"><!#><!/><br></div>`, 5);
-const { flux: { dispatcher }, solid: { createSignal, onCleanup } } = shelter;
+const { flux: { dispatcher }, solid: { createSignal, onCleanup }, ui: { Text, TextTags, TextWeights } } = shelter;
 function format(milliseconds) {
 	const hours = Math.floor(milliseconds / 36e5);
 	const minutes = Math.floor(milliseconds % 36e5 / 6e4);
@@ -54,16 +49,26 @@ function Timer() {
 		update(Date.now() - startTime);
 	}, 1e3);
 	onCleanup(() => clearInterval(timer));
-	return (() => {
-		const _el$ = (0, import_web$2.getNextElement)(_tmpl$), _el$3 = _el$.firstChild, [_el$4, _co$] = (0, import_web$3.getNextMarker)(_el$3.nextSibling), _el$2 = _el$4.nextSibling;
-		(0, import_web$4.insert)(_el$, () => format(elapsed()), _el$4, _co$);
-		return _el$;
-	})();
+	return (0, import_web.createComponent)(Text, {
+		get tag() {
+			return TextTags.textXS;
+		},
+		get weight() {
+			return TextWeights.bold;
+		},
+		get children() {
+			return format(elapsed());
+		}
+	});
 }
 function onVoiceJoin(e) {
 	if (e.state !== "RTC_CONNECTED") return;
 	if (document.getElementById("vcTimer")) return;
-	document.querySelector("[class^=\"rtcConnectionStatus_\"] + a > div").prepend((0, import_web$1.createComponent)(Timer, {}));
+	const container = document.querySelector("[class^=\"labelWrapper_\"]");
+	container.parentElement.style.height = "unset";
+	container.parentElement.parentElement.parentElement.style.height = "unset";
+	container.parentElement.parentElement.parentElement.parentElement.style.height = "unset";
+	container.insertBefore((0, import_web.createComponent)(Timer, {}), container.lastChild);
 }
 function onLoad() {
 	dispatcher.subscribe("RTC_CONNECTION_STATE", onVoiceJoin);
