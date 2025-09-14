@@ -1,6 +1,7 @@
 const {
    flux: { dispatcher },
    solid: { createSignal, onCleanup },
+   ui: { Text, TextTags, TextWeights },
 } = shelter;
 
 function format(milliseconds) {
@@ -24,10 +25,9 @@ function Timer() {
    onCleanup(() => clearInterval(timer));
 
    return (
-      <div id="vcTimer" style={"font-weight: bold"}>
+      <Text tag={TextTags.textXS} weight={TextWeights.bold}>
          {format(elapsed())}
-         <br />
-      </div>
+      </Text>
    );
 }
 
@@ -36,7 +36,11 @@ function onVoiceJoin(e) {
 
    if (document.getElementById("vcTimer")) return;
 
-   document.querySelector('[class^="rtcConnectionStatus_"] + a > div').prepend(<Timer />);
+   const container = document.querySelector('[class^="labelWrapper_"]');
+   container.parentElement.style.height = "unset";
+   container.parentElement.parentElement.parentElement.style.height = "unset";
+   container.parentElement.parentElement.parentElement.parentElement.style.height = "unset";
+   container.insertBefore(<Timer />, container.lastChild);
 }
 
 export function onLoad() {
