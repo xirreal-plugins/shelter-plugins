@@ -1,191 +1,196 @@
 .uploadArea {
-  border: 2px dashed var(--interactive-normal);
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    border: 2px dashed var(--interactive-text-default);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .uploadArea:hover,
 .uploadArea.dragOver {
-  border-color: white;
-  background-color: var(--brand-15a);
+    border-color: white;
+    background-color: var(--brand-15a);
 }
 
 .previewItem:hover,
 .dashboardItem:hover {
-  border-color: var(--background-secondary);
-  background-color: var(--brand-15a);
+    border-color: var(--border-subtle);
+    background-color: var(--brand-15a);
 }
 
 .uploadArea.uploading {
-  pointer-events: none;
-  opacity: 0.7;
+    pointer-events: none;
+    opacity: 0.7;
 }
 
 .progressBar {
-  width: 100%;
-  height: 20px;
-  background-color: var(--status-offline);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-top: 10px;
+    width: 100%;
+    height: 20px;
+    background-color: var(--background-base-low);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
 }
 
 .progressFill {
-  height: 100%;
-  background-color: var(--status-positive);
-  transition: width 0.3s ease-in-out;
+    height: 100%;
+    background-color: var(--status-positive);
+    transition: width 0.3s ease-in-out;
 }
 
 .previewArea {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
-  width: 110%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    width: 110%;
 }
 
 .previewItem,
 .dashboardItem {
-  position: relative;
-  width: 180px;
-  height: 180px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid var(--border-subtle);
-  background-color: var(--background-surface-highest);
-  border-radius: 8px;
-  padding: 8px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  margin-left: -3px;
+    position: relative;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--border-subtle);
+    background-color: var(--background-surface-highest);
+    border-radius: 8px;
+    padding: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-left: -3px;
 }
 
 .dashboardItem {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .previewImage,
 .previewVideo {
-  max-width: 100%;
-  max-height: 100px;
-  object-fit: contain;
-  border-radius: 8px;
+    max-width: 100%;
+    max-height: 100px;
+    object-fit: contain;
+    border-radius: 8px;
 }
 
 .previewIcon {
-  font-size: 48px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    font-size: 48px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .previewItemInfo {
-  width: 100%;
-  text-align: center;
-  font-size: 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .removeButton {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  padding: 4px 5px 1px 5px;
-  font-size: 12px;
-  color: var(--status-danger);
-  border: 1px solid color-mix(in srgb, var(--border-subtle) 30%, transparent);
-  background-color: color-mix(in srgb, color-mix(in srgb, var(--status-danger) 40%, var(--background-surface-high)) 40%, transparent);
-  backdrop-filter: blur(4px);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    padding: 4px 5px 1px 5px;
+    font-size: 12px;
+    color: var(--status-danger);
+    border: 1px solid color-mix(in srgb, var(--border-subtle) 30%, transparent);
+    background-color: color-mix(
+        in srgb,
+        color-mix(
+                in srgb,
+                var(--status-danger) 40%,
+                var(--background-surface-high)
+            )
+            40%,
+        transparent
+    );
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .removeButton:hover {
-  transform: scale(1.1);
-  animation: shake 0.3s ease;
+    transform: scale(1.1);
+    animation: shake 0.3s ease;
 }
 
 @keyframes shake {
-  0% {
-    transform: rotate(0deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
 
-  25% {
-    transform: rotate(5deg);
-  }
+    25% {
+        transform: rotate(5deg);
+    }
 
-  50% {
-    transform: rotate(-5deg) scale(1.1);
-  }
+    50% {
+        transform: rotate(-5deg) scale(1.1);
+    }
 
-  75% {
-    transform: rotate(5deg) scale(1.1);
-  }
+    75% {
+        transform: rotate(5deg) scale(1.1);
+    }
 
-  100% {
-    transform: rotate(0deg) scale(1.1);
-  }
+    100% {
+        transform: rotate(0deg) scale(1.1);
+    }
 }
 
 .uploadModal {
-  width: 645px;
-  user-select: none;
+    width: 645px;
+    user-select: none;
 }
 
 .footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: .5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
 }
 
 .dashboardButton {
-  margin-right: auto;
-}
-
-[class^="buttons"]>[aria-haspopup="dialog"] {
-  display: none;
+    margin-right: auto;
 }
 
 .replacedButton {
-  display: flex;
-  align-items: center;
-  background: transparent;
-  color: var(--interactive-normal);
-  transform-origin: center bottom;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: var(--interactive-text-default);
+    transform-origin: center bottom;
 }
 
 .replacedButton:hover {
-  color: var(--icon-primary);
-  animation: sway 1.2s ease-in-out;
+    color: var(--icon-primary);
+    animation: sway 1.2s ease-in-out;
 }
 
 @keyframes sway {
-  0% {
-    transform: rotate(0deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
 
-  4% {
-    transform: rotate(0deg);
-  }
+    4% {
+        transform: rotate(0deg);
+    }
 
-  14% {
-    transform: rotate(5deg);
-  }
+    14% {
+        transform: rotate(5deg);
+    }
 
-  39% {
-    transform: rotate(-5deg);
-  }
+    39% {
+        transform: rotate(-5deg);
+    }
 
-  41% {
-    transform: rotate(0deg);
-  }
+    41% {
+        transform: rotate(0deg);
+    }
 }

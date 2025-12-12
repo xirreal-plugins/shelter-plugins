@@ -1,79 +1,79 @@
-.hiddenChannel>div>div>svg>path[d^="M16"][d$="0Z"],
-.hiddenChannel>div>div>svg>path[d^="M18"][d$="2Z"],
-.hiddenChannel>div>div>svg>path[d^="M6"][d$="14Z"],
-.headerBar>svg>path[d^="M16"][d$="0Z"],
-.headerBar>svg>path[d^="M18"][d$="2Z"] {
-   fill: #ed4245 !important;
+.hiddenChannel > div > div > svg > path[d^="M16"][d$="0Z"],
+.hiddenChannel > div > div > svg > path[d^="M18"][d$="2Z"],
+.hiddenChannel > div > div > svg > path[d^="M6"][d$="14Z"],
+.headerBar > svg > path[d^="M16"][d$="0Z"],
+.headerBar > svg > path[d^="M18"][d$="2Z"] {
+    fill: #ed4245 !important;
 }
 
 .divider {
-   align-items: center;
-   color: var(--background-mod-strong);
-   height: 4px;
-   margin: 0 12px;
-   width: 4px;
+    align-items: center;
+    color: var(--background-mod-strong);
+    height: 4px;
+    margin: 0 12px;
+    width: 4px;
 }
 
 .channelTitle {
-   margin-top: 1px;
-   font-weight: 500;
-   color: var(--text-default);
-   white-space: nowrap;
+    margin-top: 1px;
+    font-weight: 500;
+    color: var(--text-default);
+    white-space: nowrap;
 }
 
 .topic {
-   font: var(--font-primary);
-   flex: 1 1 auto;
-   font-size: 14px;
-   font-weight: 500;
-   line-height: 18px;
-   min-width: 0;
-   overflow: hidden;
-   position: relative;
-   text-overflow: ellipsis;
-   white-space: nowrap;
-   color: var(--text-tertiary);
-   cursor: pointer;
+    font: var(--font-primary);
+    flex: 1 1 auto;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    min-width: 0;
+    overflow: hidden;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text-muted);
+    cursor: pointer;
 }
 
 .topicWrapper {
-   display: flex;
-   text-overflow: ellipsis;
-   overflow: hidden;
-   // center vertically
-   align-items: center;
-   justify-content: center;
+    display: flex;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    // center vertically
+    align-items: center;
+    justify-content: center;
 }
 
 .mainBody {
-   display: flex;
-   // position: relative;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   height: 100%;
+    display: flex;
+    // position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 .bold {
-   font-weight: 500;
-   color: var(--text-default);
-   white-space: nowrap;
+    font-weight: 500;
+    color: var(--text-default);
+    white-space: nowrap;
 }
 
 .headerBar {
-   border-bottom: 1px solid var(--border-subtle);
-   height: calc(var(--custom-channel-header-height) - 1px);
-   max-height: var(--custom-channel-header-height);
-   background: var(--bg-overlay-2, var(--background-base-lower));
-   width: 100%;
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   padding-left: 9px;
-   padding-right: var(--space-xs);
+    border-bottom: 1px solid var(--border-subtle);
+    height: calc(var(--custom-channel-header-height) - 1px);
+    max-height: var(--custom-channel-header-height);
+    background: var(--background-gradient-lower, var(--background-base-lower));
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 9px;
+    padding-right: var(--space-xs);
 }
 
 .topicModal {
-   white-space: pre-wrap;
-   margin-bottom: 20px;
+    white-space: pre-wrap;
+    margin-bottom: 20px;
 }

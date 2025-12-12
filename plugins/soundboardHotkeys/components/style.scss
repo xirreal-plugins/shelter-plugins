@@ -1,125 +1,125 @@
 .spaced {
-   margin-top: 8px;
-   margin-bottom: 12px;
-   display: block;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    display: block;
 }
 
 .margin {
-   margin-top: 16px;
-   margin-bottom: 16px;
-   display: block;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    display: block;
 }
 
 .marginTop {
-   margin-top: 16px;
+    margin-top: 16px;
 }
 
 .flexSpaceBetween {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .card {
-   box-sizing: border-box;
-   border-radius: 4px;
-   padding: 16px;
-   width: 100%;
-   min-width: 160px;
-   display: flex;
-   flex-direction: column;
-   gap: 16px;
-   text-indent: 0;
-   background-color: var(--background-secondary);
-   margin-top: 16px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 16px;
+    width: 100%;
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-indent: 0;
+    background-color: var(--background-base-low);
+    margin-top: 16px;
 }
 
 .content {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: space-between;
-   gap: 16px;
-   overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    overflow: hidden;
 }
 
 .preview {
-   background-color: var(--brand-500);
-   border: 0px solid transparent;
-   border-radius: 4px;
-   cursor: pointer;
-   display: inline;
-   margin-right: 8px;
-   transition: all 0.2s ease-in-out;
+    background-color: var(--brand-500);
+    border: 0px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline;
+    margin-right: 8px;
+    transition: all 0.2s ease-in-out;
 }
 
 .preview:hover {
-   background-color: var(--brand-560);
+    background-color: var(--brand-560);
 }
 
 .emoji {
-   image-rendering: crisp-edges;
-   margin-right: 8px;
+    image-rendering: crisp-edges;
+    margin-right: 8px;
 }
 
 .inline {
-   display: inline;
+    display: inline;
 }
 
 .soundPicker {
-   margin-top: 8px;
+    margin-top: 8px;
 }
 
 .flexRow {
-   display: flex;
-   justify-content: start;
-   align-items: center;
-   padding: 8px 10px 8px 8px;
-   background: var(--background-tertiary);
-   border: 1px solid var(--background-secondary);
-   border-radius: 4px;
-   width: fit-content;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 10px 8px 8px;
+    background: var(--background-base-lowest);
+    border: 1px solid var(--background-base-low);
+    border-radius: 4px;
+    width: fit-content;
 }
 
 .keybindButton {
-   display: flex;
-   padding: 8px;
-   justify-content: start;
-   align-items: center;
-   background: var(--background-tertiary);
-   border: 1px solid var(--background-secondary);
-   min-width: 160px;
-   width: fit-content;
-   border-radius: 4px;
-   transition: all 0.2s ease-in-out;
+    display: flex;
+    padding: 8px;
+    justify-content: start;
+    align-items: center;
+    background: var(--background-base-lowest);
+    border: 1px solid var(--background-base-low);
+    min-width: 160px;
+    width: fit-content;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
 }
 
 .noMarginUnselectable {
-   margin: 0;
-   user-select: none;
+    margin: 0;
+    user-select: none;
 }
 
 .sound {
-   cursor: pointer;
-   background-color: var(--background-transparent);
-   border: none;
-   padding: 0;
-   margin: 2px;
+    cursor: pointer;
+    background-color: var(--background-surface-highest);
+    border: none;
+    padding: 0;
+    margin: 2px;
 }
 
 .selected {
-   background-color: var(--button-positive-background);
+    background-color: var(--control-connect-background-default));
 }
 
 .column {
-   display: flex;
-   flex-direction: column;
-   justify-content: space-evenly;
-   align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .tallerModal {
-   min-height: 680px;
-   max-height: 680px;
-   height: 680px;
+    min-height: 680px;
+    max-height: 680px;
+    height: 680px;
 }
