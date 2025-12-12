@@ -35,7 +35,7 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 //#endregion
 //#region plugins/externalUpload/modal.jsx.scss
 shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
-  border: 2px dashed var(--interactive-normal);
+  border: 2px dashed var(--interactive-text-default);
   text-align: center;
   cursor: pointer;
   border-radius: 8px;
@@ -49,7 +49,7 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
 }
 
 .-bMcgq_previewItem:hover, .-bMcgq_dashboardItem:hover {
-  border-color: var(--background-secondary);
+  border-color: var(--border-subtle);
   background-color: var(--brand-15a);
 }
 
@@ -59,7 +59,7 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
 }
 
 .-bMcgq_progressBar {
-  background-color: var(--status-offline);
+  background-color: var(--background-base-low);
   border-radius: 10px;
   width: 100%;
   height: 20px;
@@ -183,12 +183,8 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
   margin-right: auto;
 }
 
-[class^="buttons"] > [aria-haspopup="dialog"] {
-  display: none;
-}
-
 .-bMcgq_replacedButton {
-  color: var(--interactive-normal);
+  color: var(--interactive-text-default);
   transform-origin: bottom;
   background: none;
   align-items: center;
@@ -223,25 +219,25 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
 }
 `);
 var modal_jsx_default = {
-	"dashboardItem": "-bMcgq_dashboardItem",
-	"dragOver": "-bMcgq_dragOver",
-	"previewItem": "-bMcgq_previewItem",
-	"footer": "-bMcgq_footer",
-	"previewArea": "-bMcgq_previewArea",
+	"progressFill": "-bMcgq_progressFill",
 	"previewVideo": "-bMcgq_previewVideo",
-	"dashboardButton": "-bMcgq_dashboardButton",
-	"previewItemInfo": "-bMcgq_previewItemInfo",
-	"sway": "-bMcgq_sway",
-	"replacedButton": "-bMcgq_replacedButton",
-	"uploadArea": "-bMcgq_uploadArea",
-	"progressBar": "-bMcgq_progressBar",
-	"previewIcon": "-bMcgq_previewIcon",
+	"previewItem": "-bMcgq_previewItem",
+	"dragOver": "-bMcgq_dragOver",
+	"previewArea": "-bMcgq_previewArea",
 	"previewImage": "-bMcgq_previewImage",
-	"uploadModal": "-bMcgq_uploadModal",
+	"previewIcon": "-bMcgq_previewIcon",
 	"removeButton": "-bMcgq_removeButton",
-	"uploading": "-bMcgq_uploading",
 	"shake": "-bMcgq_shake",
-	"progressFill": "-bMcgq_progressFill"
+	"dashboardButton": "-bMcgq_dashboardButton",
+	"uploading": "-bMcgq_uploading",
+	"replacedButton": "-bMcgq_replacedButton",
+	"dashboardItem": "-bMcgq_dashboardItem",
+	"progressBar": "-bMcgq_progressBar",
+	"uploadArea": "-bMcgq_uploadArea",
+	"footer": "-bMcgq_footer",
+	"sway": "-bMcgq_sway",
+	"uploadModal": "-bMcgq_uploadModal",
+	"previewItemInfo": "-bMcgq_previewItemInfo"
 };
 
 //#endregion
@@ -22431,7 +22427,7 @@ function onLoad() {
 	plugin.store.previews ??= {};
 	updateConfig();
 	subscribe("CHANNEL_SELECT", () => {
-		let unobserve = observeDom("[class^=\"inner\"] > [class^=\"buttons\"], [class^=\"accessoryBarRight\"]", (element) => {
+		let unobserve = observeDom("[class*=\"inner\"] > [class*=\"buttons\"], [class*=\"accessoryBarRight\"]", (element) => {
 			if (element.dataset.externalUpload) return;
 			unobserve();
 			element.dataset.externalUpload = true;

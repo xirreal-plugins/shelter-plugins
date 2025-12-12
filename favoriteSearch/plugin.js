@@ -131,10 +131,10 @@ shelter.plugin.scoped.ui.injectCss(`#AgMsVW_searchBar {
 }
 `);
 var index_jsx_default = {
-	"counter": "AgMsVW_counter",
+	"searchBar": "AgMsVW_searchBar",
 	"align": "AgMsVW_align",
-	"barContainer": "AgMsVW_barContainer",
-	"searchBar": "AgMsVW_searchBar"
+	"counter": "AgMsVW_counter",
+	"barContainer": "AgMsVW_barContainer"
 };
 
 //#endregion
@@ -151,7 +151,7 @@ const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><div><!#><!/><div ar
 const { flux: { subscribe }, observeDom } = shelter.plugin.scoped;
 const { ui: { TextBox, openModal, CheckboxItem, ReactiveRoot }, solid: { createSignal, createEffect, onCleanup }, util: { getFiberOwner, getFiber, reactFiberWalker }, plugin: { store } } = shelter;
 function addClickHandlerToFavoritesGifPicker() {
-	const stopObserving = observeDom("[class^='result'] > [class^='categoryFadeBlurple']", (container) => {
+	const stopObserving = observeDom("[class*='result'] > [class*='categoryFadeBlurple']", (container) => {
 		stopObserving();
 		if (container.parentElement.dataset.clickHandlerAdded) return;
 		container.parentElement.dataset.clickHandler = "true";
@@ -245,7 +245,7 @@ function handleClick() {
 			} }));
 			return _el$12;
 		})());
-		stopObservingResults = observeDom("[class^='content'] > div > [class^='result_']", (card) => {
+		stopObservingResults = observeDom("[class*='results'] > [class*='content'] > div > [class*='result']", (card) => {
 			if (card.dataset.addedRightClick) return;
 			card.dataset.addedRightClick = "true";
 			addRightClickHandler(card);

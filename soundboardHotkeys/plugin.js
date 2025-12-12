@@ -54,14 +54,14 @@ async function loadSounds() {
 	});
 }
 function playSound(sound) {
-	const soundboardButton = document.querySelector("[class^=\"actionButtons\"] > :last-child > :first-child");
-	const soundboardPanel = document.querySelector("[class^=\"picker\"]");
+	const soundboardButton = document.querySelector("[class*=\"actionButtons\"] > span > div > button");
+	const soundboardPanel = document.querySelector("[id*=\"popout\"] > div > [class*=\"picker\"]");
 	if (soundboardPanel) {
 		soundboardPanel.querySelector(`[id^="sound-${sound}"]`).click();
 		return;
 	}
 	soundboardButton.click();
-	const stopObserving = observeDom("[class^=\"picker\"]", (element) => {
+	const stopObserving = observeDom("[id*=\"popout\"] > div > [class*=\"picker\"]", (element) => {
 		stopObserving();
 		const stopObserving2 = observeDom(`[id^="sound-${sound}"]`, (element$1) => {
 			stopObserving2();
@@ -122,7 +122,7 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 ._6PhcGW_card {
   box-sizing: border-box;
   text-indent: 0;
-  background-color: var(--background-secondary);
+  background-color: var(--background-base-low);
   border-radius: 4px;
   flex-direction: column;
   gap: 16px;
@@ -170,8 +170,8 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 }
 
 ._6PhcGW_flexRow {
-  background: var(--background-tertiary);
-  border: 1px solid var(--background-secondary);
+  background: var(--background-base-lowest);
+  border: 1px solid var(--background-base-low);
   border-radius: 4px;
   justify-content: start;
   align-items: center;
@@ -181,8 +181,8 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 }
 
 ._6PhcGW_keybindButton {
-  background: var(--background-tertiary);
-  border: 1px solid var(--background-secondary);
+  background: var(--background-base-lowest);
+  border: 1px solid var(--background-base-low);
   border-radius: 4px;
   justify-content: start;
   align-items: center;
@@ -200,14 +200,14 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 
 ._6PhcGW_sound {
   cursor: pointer;
-  background-color: var(--background-transparent);
+  background-color: var(--background-surface-highest);
   border: none;
   margin: 2px;
   padding: 0;
 }
 
 ._6PhcGW_selected {
-  background-color: var(--button-positive-background);
+  background-color: var(--control-connect-background-default);
 }
 
 ._6PhcGW_column {
@@ -224,23 +224,23 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 }
 `);
 var style_default = {
-	"sound": "_6PhcGW_sound",
-	"spaced": "_6PhcGW_spaced",
-	"marginTop": "_6PhcGW_marginTop",
-	"margin": "_6PhcGW_margin",
-	"content": "_6PhcGW_content",
-	"preview": "_6PhcGW_preview",
 	"flexRow": "_6PhcGW_flexRow",
-	"inline": "_6PhcGW_inline",
-	"soundPicker": "_6PhcGW_soundPicker",
-	"keybindButton": "_6PhcGW_keybindButton",
-	"card": "_6PhcGW_card",
-	"column": "_6PhcGW_column",
-	"emoji": "_6PhcGW_emoji",
-	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
 	"selected": "_6PhcGW_selected",
+	"content": "_6PhcGW_content",
+	"margin": "_6PhcGW_margin",
+	"marginTop": "_6PhcGW_marginTop",
+	"preview": "_6PhcGW_preview",
+	"emoji": "_6PhcGW_emoji",
+	"card": "_6PhcGW_card",
+	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
+	"soundPicker": "_6PhcGW_soundPicker",
+	"sound": "_6PhcGW_sound",
 	"tallerModal": "_6PhcGW_tallerModal",
-	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable"
+	"spaced": "_6PhcGW_spaced",
+	"inline": "_6PhcGW_inline",
+	"column": "_6PhcGW_column",
+	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable",
+	"keybindButton": "_6PhcGW_keybindButton"
 };
 
 //#endregion

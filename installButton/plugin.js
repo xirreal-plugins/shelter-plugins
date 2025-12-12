@@ -72,7 +72,7 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
 }
 
 .eeurUa_copied {
-  color: var(--text-positive);
+  color: var(--icon-feedback-positive);
 }
 
 .eeurUa_copied:hover {
@@ -126,23 +126,23 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
 .eeurUa_description {
   white-space: wrap;
   text-overflow: ellipsis;
-  color: var(--text-primary);
+  color: var(--text-default);
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
 }
 `);
 var index_jsx_default = {
+	"copied": "eeurUa_copied",
+	"content": "eeurUa_content",
 	"divider": "eeurUa_divider",
 	"alignRight": "eeurUa_alignRight",
-	"content": "eeurUa_content",
-	"author": "eeurUa_author",
-	"card": "eeurUa_card",
-	"icon": "eeurUa_icon",
 	"copyLink": "eeurUa_copyLink",
 	"title": "eeurUa_title",
 	"description": "eeurUa_description",
-	"copied": "eeurUa_copied",
+	"icon": "eeurUa_icon",
+	"card": "eeurUa_card",
+	"author": "eeurUa_author",
 	"header": "eeurUa_header"
 };
 
@@ -289,7 +289,7 @@ function Card(props) {
 }
 function handleDispatch(payload) {
 	if ((payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") && payload.message.channel_id !== SelectedChannelStore.getChannelId()) return;
-	const unobs = observeDom("[class*=messageContent_] [class^=anchor_]:not([data-instbtn])", async (element) => {
+	const unobs = observeDom("[class*=messageContent_] [class*=anchor_]:not([data-instbtn])", async (element) => {
 		element.dataset.instbtn = 1;
 		unobs();
 		if (element.textContent !== element.href) return;
@@ -327,14 +327,14 @@ function InstallationModal(props) {
 			(0, import_web$10.createComponent)(ModalHeader, { children: "Install Plugin" }),
 			(0, import_web$10.createComponent)(ModalBody, { get children() {
 				return [(() => {
-					const _el$17 = (0, import_web$5.getNextElement)(_tmpl$2), _el$18 = _el$17.firstChild, _el$19 = _el$18.nextSibling, _el$20 = _el$19.nextSibling, _el$21 = _el$20.nextSibling;
+					const _el$17 = (0, import_web$5.getNextElement)(_tmpl$2), _el$18 = _el$17.firstChild, _el$19 = _el$18.nextSibling, _el$20 = _el$19.nextSibling, _el$22 = _el$20.nextSibling;
 					(0, import_web$9.insert)(_el$19, () => json.name);
-					(0, import_web$9.insert)(_el$21, () => json.author);
+					(0, import_web$9.insert)(_el$22, () => json.author);
 					return _el$17;
 				})(), (() => {
-					const _el$22 = (0, import_web$5.getNextElement)(_tmpl$3), _el$23 = _el$22.firstChild;
-					(0, import_web$9.insert)(_el$23, () => json.description);
-					return _el$22;
+					const _el$23 = (0, import_web$5.getNextElement)(_tmpl$3), _el$24 = _el$23.firstChild;
+					(0, import_web$9.insert)(_el$24, () => json.description);
+					return _el$23;
 				})()];
 			} }),
 			(0, import_web$10.createComponent)(ModalConfirmFooter, {
@@ -400,7 +400,7 @@ function onLoad() {
 }
 function onUnload() {
 	trustedUrls.length = 0;
-	for (const element of document.querySelectorAll("[class*=messageContent_] [class^=anchor_][data-instbtn]")) {
+	for (const element of document.querySelectorAll("[class*=messageContent] [class*=anchor][data-instbtn]")) {
 		element.removeAttribute("data-instbtn");
 		element.onclick = null;
 	}

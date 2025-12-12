@@ -58,7 +58,7 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
   text-overflow: ellipsis;
   white-space: nowrap;
   min-width: 0;
-  color: var(--text-tertiary);
+  color: var(--text-muted);
   cursor: pointer;
   flex: auto;
   font-size: 14px;
@@ -94,7 +94,7 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
   border-bottom: 1px solid var(--border-subtle);
   height: calc(var(--custom-channel-header-height)  - 1px);
   max-height: var(--custom-channel-header-height);
-  background: var(--bg-overlay-2, var(--background-base-lower));
+  background: var(--background-gradient-lower, var(--background-base-lower));
   width: 100%;
   padding-left: 9px;
   padding-right: var(--space-xs);
@@ -109,15 +109,15 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
 }
 `);
 var style_default = {
-	"headerBar": "ccAoOa_headerBar",
 	"topicWrapper": "ccAoOa_topicWrapper",
-	"hiddenChannel": "ccAoOa_hiddenChannel",
-	"divider": "ccAoOa_divider",
-	"bold": "ccAoOa_bold",
-	"channelTitle": "ccAoOa_channelTitle",
+	"topic": "ccAoOa_topic",
 	"mainBody": "ccAoOa_mainBody",
+	"hiddenChannel": "ccAoOa_hiddenChannel",
+	"bold": "ccAoOa_bold",
 	"topicModal": "ccAoOa_topicModal",
-	"topic": "ccAoOa_topic"
+	"channelTitle": "ccAoOa_channelTitle",
+	"divider": "ccAoOa_divider",
+	"headerBar": "ccAoOa_headerBar"
 };
 
 //#endregion
@@ -236,7 +236,7 @@ var Notice_default = (props) => {
 		_el$.style.setProperty("width", "100%");
 		_el$.style.setProperty("overflow", "hidden");
 		_el$.style.setProperty("border-top", "1px solid var(--app-border-frame)");
-		_el$.style.setProperty("background", "var(--bg-overlay-chat, var(--background-base-lower))");
+		_el$.style.setProperty("background", "var(--background-base-lower)");
 		(0, import_web$5.insert)(_el$, (0, import_web$6.createComponent)(HeaderBar, { get children() {
 			return [
 				(0, import_web$6.createComponent)(LockedChannelIcon, { get channel() {
@@ -356,7 +356,7 @@ function onLoad() {
 		});
 	});
 	let routePatched = false;
-	const stopObservingRoute = observeDom("[class^=\"chat_\"]", (element) => {
+	const stopObservingRoute = observeDom("[class*=\"page\"] > div > [class*=\"chat\"]", (element) => {
 		queueMicrotask(() => {
 			const component = reactFiberWalker(getFiber(element), "computedMatch", true, true)?.type;
 			if (!component || typeof component.prototype.render !== "function") return;

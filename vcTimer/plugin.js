@@ -63,7 +63,7 @@ function Timer() {
 }
 function onVoiceJoin(e) {
 	if (e.state !== "RTC_CONNECTED") return;
-	const container = document.querySelector("[class^=\"labelWrapper_\"]");
+	const container = document.querySelector("[class*=\"labelWrapper\"]");
 	if (container.dataset.timerAdded) return;
 	container.dataset.timerAdded = true;
 	container.parentElement.style.height = "unset";

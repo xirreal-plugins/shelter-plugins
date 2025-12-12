@@ -66,7 +66,7 @@ function CleanupListener() {
 function onLoad() {
 	subscribe("TRACK", (e) => {
 		if (e.event === "impression_go_live_modal" || e.event == "open_modal" && e.properties.type == "Go Live Modal" || e.event === "impression_call_tile_context_menu") {
-			const searchQuery = e.event == "impression_call_tile_context_menu" ? "#stream-context" : "[class^='focusLock'] > div";
+			const searchQuery = e.event == "impression_call_tile_context_menu" ? "#stream-context" : "[class*='focusLock'] > div";
 			patchNiterState();
 			const stopObserving = observeDom(searchQuery, (node) => {
 				stopObserving();
