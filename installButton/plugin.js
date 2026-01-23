@@ -133,17 +133,17 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
 }
 `);
 var index_jsx_default = {
-	"card": "eeurUa_card",
+	"icon": "eeurUa_icon",
 	"divider": "eeurUa_divider",
-	"author": "eeurUa_author",
 	"header": "eeurUa_header",
 	"content": "eeurUa_content",
-	"description": "eeurUa_description",
-	"alignRight": "eeurUa_alignRight",
-	"copyLink": "eeurUa_copyLink",
 	"copied": "eeurUa_copied",
+	"author": "eeurUa_author",
+	"copyLink": "eeurUa_copyLink",
 	"title": "eeurUa_title",
-	"icon": "eeurUa_icon"
+	"card": "eeurUa_card",
+	"alignRight": "eeurUa_alignRight",
+	"description": "eeurUa_description"
 };
 
 //#endregion
@@ -289,7 +289,7 @@ function Card(props) {
 }
 function handleDispatch(payload) {
 	if ((payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") && payload.message.channel_id !== SelectedChannelStore.getChannelId()) return;
-	const unobs = observeDom("[class*=messageContent_] [class*=anchor_]:not([data-instbtn])", async (element) => {
+	const unobs = observeDom("[class*=messageContent] [class*=anchor]:not([data-instbtn])", async (element) => {
 		element.dataset.instbtn = 1;
 		unobs();
 		if (element.textContent !== element.href) return;
@@ -327,14 +327,14 @@ function InstallationModal(props) {
 			(0, import_web$10.createComponent)(ModalHeader, { children: "Install Plugin" }),
 			(0, import_web$10.createComponent)(ModalBody, { get children() {
 				return [(() => {
-					const _el$17 = (0, import_web$5.getNextElement)(_tmpl$2), _el$18 = _el$17.firstChild, _el$19 = _el$18.nextSibling, _el$20 = _el$19.nextSibling, _el$22 = _el$20.nextSibling;
+					const _el$17 = (0, import_web$5.getNextElement)(_tmpl$2), _el$18 = _el$17.firstChild, _el$19 = _el$18.nextSibling, _el$20 = _el$19.nextSibling, _el$21 = _el$20.nextSibling;
 					(0, import_web$9.insert)(_el$19, () => json.name);
-					(0, import_web$9.insert)(_el$22, () => json.author);
+					(0, import_web$9.insert)(_el$21, () => json.author);
 					return _el$17;
 				})(), (() => {
-					const _el$23 = (0, import_web$5.getNextElement)(_tmpl$3), _el$24 = _el$23.firstChild;
-					(0, import_web$9.insert)(_el$24, () => json.description);
-					return _el$23;
+					const _el$22 = (0, import_web$5.getNextElement)(_tmpl$3), _el$23 = _el$22.firstChild;
+					(0, import_web$9.insert)(_el$23, () => json.description);
+					return _el$22;
 				})()];
 			} }),
 			(0, import_web$10.createComponent)(ModalConfirmFooter, {

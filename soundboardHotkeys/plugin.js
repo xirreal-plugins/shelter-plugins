@@ -224,23 +224,23 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 }
 `);
 var style_default = {
-	"preview": "_6PhcGW_preview",
-	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
 	"column": "_6PhcGW_column",
-	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable",
-	"marginTop": "_6PhcGW_marginTop",
-	"emoji": "_6PhcGW_emoji",
-	"selected": "_6PhcGW_selected",
-	"card": "_6PhcGW_card",
-	"margin": "_6PhcGW_margin",
-	"spaced": "_6PhcGW_spaced",
-	"tallerModal": "_6PhcGW_tallerModal",
-	"flexRow": "_6PhcGW_flexRow",
-	"soundPicker": "_6PhcGW_soundPicker",
 	"sound": "_6PhcGW_sound",
+	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable",
+	"spaced": "_6PhcGW_spaced",
+	"card": "_6PhcGW_card",
 	"keybindButton": "_6PhcGW_keybindButton",
+	"soundPicker": "_6PhcGW_soundPicker",
+	"margin": "_6PhcGW_margin",
+	"emoji": "_6PhcGW_emoji",
+	"tallerModal": "_6PhcGW_tallerModal",
+	"content": "_6PhcGW_content",
+	"flexRow": "_6PhcGW_flexRow",
 	"inline": "_6PhcGW_inline",
-	"content": "_6PhcGW_content"
+	"selected": "_6PhcGW_selected",
+	"marginTop": "_6PhcGW_marginTop",
+	"preview": "_6PhcGW_preview",
+	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween"
 };
 
 //#endregion
