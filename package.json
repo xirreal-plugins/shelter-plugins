@@ -1,8 +1,8 @@
 {
    "devDependencies": {
-      "@biomejs/biome": "1.9.4",
+      "@biomejs/biome": "2.3.11",
       "@uwu/lune": "^1.5.1",
-      "@uwu/shelter-defs": "^1.4.1"
+      "@uwu/shelter-defs": "^1.5.1"
    },
    "type": "module",
    "scripts": {
