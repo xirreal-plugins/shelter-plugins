@@ -228,25 +228,25 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
 }
 `);
 var modal_jsx_default = {
-	"previewArea": "-bMcgq_previewArea",
-	"previewItemInfo": "-bMcgq_previewItemInfo",
-	"previewImage": "-bMcgq_previewImage",
-	"removeButton": "-bMcgq_removeButton",
-	"previewItem": "-bMcgq_previewItem",
-	"uploading": "-bMcgq_uploading",
-	"previewVideo": "-bMcgq_previewVideo",
-	"uploadModal": "-bMcgq_uploadModal",
-	"footer": "-bMcgq_footer",
-	"shake": "-bMcgq_shake",
-	"sway": "-bMcgq_sway",
-	"progressFill": "-bMcgq_progressFill",
-	"dragOver": "-bMcgq_dragOver",
-	"progressBar": "-bMcgq_progressBar",
-	"dashboardItem": "-bMcgq_dashboardItem",
 	"uploadArea": "-bMcgq_uploadArea",
 	"dashboardButton": "-bMcgq_dashboardButton",
+	"sway": "-bMcgq_sway",
+	"previewImage": "-bMcgq_previewImage",
+	"previewItem": "-bMcgq_previewItem",
+	"removeButton": "-bMcgq_removeButton",
+	"previewIcon": "-bMcgq_previewIcon",
+	"progressBar": "-bMcgq_progressBar",
+	"previewArea": "-bMcgq_previewArea",
+	"progressFill": "-bMcgq_progressFill",
+	"uploadModal": "-bMcgq_uploadModal",
+	"previewVideo": "-bMcgq_previewVideo",
+	"shake": "-bMcgq_shake",
+	"footer": "-bMcgq_footer",
+	"dragOver": "-bMcgq_dragOver",
+	"uploading": "-bMcgq_uploading",
+	"dashboardItem": "-bMcgq_dashboardItem",
 	"replacedButton": "-bMcgq_replacedButton",
-	"previewIcon": "-bMcgq_previewIcon"
+	"previewItemInfo": "-bMcgq_previewItemInfo"
 };
 
 //#endregion
@@ -29840,14 +29840,6 @@ const settings = () => [
 (0, import_web$1.delegateEvents)(["click"]);
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js
-var event_streams_exports = {};
-__export(event_streams_exports, { EventStreamSerde: () => EventStreamSerde });
-var init_event_streams = __esm({ "node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js"() {
-	init_EventStreamSerde();
-} });
-
-//#endregion
 //#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/EventStreamSerde.js
 var EventStreamSerde;
 var init_EventStreamSerde = __esm({ "node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/EventStreamSerde.js"() {
@@ -30042,6 +30034,14 @@ else if (payloadSchema.isStringSchema()) explicitPayloadContentType = "text/plai
 			};
 		}
 	};
+} });
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js
+var event_streams_exports = {};
+__export(event_streams_exports, { EventStreamSerde: () => EventStreamSerde });
+var init_event_streams = __esm({ "node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js"() {
+	init_EventStreamSerde();
 } });
 
 //#endregion

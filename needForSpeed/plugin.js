@@ -98,10 +98,10 @@ shelter.plugin.scoped.ui.injectCss(`._4OA9Bq_icon {
 `);
 var index_jsx_default = {
 	"active": "_4OA9Bq_active",
-	"item": "_4OA9Bq_item",
+	"icon": "_4OA9Bq_icon",
 	"selectorWrapper": "_4OA9Bq_selectorWrapper",
 	"selector": "_4OA9Bq_selector",
-	"icon": "_4OA9Bq_icon"
+	"item": "_4OA9Bq_item"
 };
 
 //#endregion
@@ -114,7 +114,7 @@ var import_web$4 = __toESM(require_web(), 1);
 var import_web$5 = __toESM(require_web(), 1);
 var import_web$6 = __toESM(require_web(), 1);
 const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><div></div></div>`, 4), _tmpl$2 = /*#__PURE__*/ (0, import_web.template)(`<div class="nfs-speed-control"><button></button><!#><!/></div>`, 6), _tmpl$3 = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/>x</div>`, 4);
-const { plugin: { scoped: { observeDom } }, solid: { createSignal, Show, onCleanup } } = shelter;
+const { plugin: { scoped: { observeDom } }, solid: { createSignal, Show } } = shelter;
 const CONTROLS_QUERY = `[class*=videoControls]:not([data-nfs])`;
 const CONTROLS_QUERY_UNLOAD = `[class*=videoControls][data-nfs]`;
 function SpeedControlComponent({ videoRef }) {

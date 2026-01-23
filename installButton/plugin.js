@@ -133,17 +133,17 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
 }
 `);
 var index_jsx_default = {
-	"header": "eeurUa_header",
 	"title": "eeurUa_title",
-	"description": "eeurUa_description",
-	"divider": "eeurUa_divider",
 	"icon": "eeurUa_icon",
-	"author": "eeurUa_author",
+	"copyLink": "eeurUa_copyLink",
 	"content": "eeurUa_content",
+	"description": "eeurUa_description",
+	"card": "eeurUa_card",
 	"alignRight": "eeurUa_alignRight",
 	"copied": "eeurUa_copied",
-	"copyLink": "eeurUa_copyLink",
-	"card": "eeurUa_card"
+	"divider": "eeurUa_divider",
+	"header": "eeurUa_header",
+	"author": "eeurUa_author"
 };
 
 //#endregion
