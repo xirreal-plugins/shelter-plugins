@@ -1,23 +1,13 @@
 const { observeDom } = shelter.plugin.scoped;
 
 const {
-  flux: {
-    dispatcher,
-    stores: { SelectedChannelStore },
-  },
-  plugins,
-  ui: {
-    showToast,
-    Button,
-    ButtonColors,
-    ButtonSizes,
-    openModal,
-    ModalRoot,
-    ModalHeader,
-    ModalBody,
-    ModalConfirmFooter,
-  },
-  solid: { createSignal },
+   flux: {
+      dispatcher,
+      stores: { SelectedChannelStore },
+   },
+   plugins,
+   ui: { showToast, Button, ButtonColors, ButtonSizes, openModal, ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter },
+   solid: { createSignal },
 } = shelter;
 
 import classes from "./index.jsx.scss";
@@ -27,281 +17,253 @@ import { ContentIcon, CopyIcon } from "./icons.jsx";
 const trustedUrls = [];
 
 function copyToClipboard(text) {
-  if (window.DiscordNative) {
-    DiscordNative.clipboard.copy(text);
-    return;
-  }
+   if (window.DiscordNative) {
+      DiscordNative.clipboard.copy(text);
+      return;
+   }
 
-  navigator.clipboard.writeText(text).catch(() => {
-    const copyArea = document.createElement("textarea");
+   navigator.clipboard.writeText(text).catch(() => {
+      const copyArea = document.createElement("textarea");
 
-    copyArea.style.visibility = "hidden";
-    copyArea.style.position = "fixed";
-    copyArea.style.top = "0";
-    copyArea.style.left = "0";
+      copyArea.style.visibility = "hidden";
+      copyArea.style.position = "fixed";
+      copyArea.style.top = "0";
+      copyArea.style.left = "0";
 
-    document.body.appendChild(copyArea);
-    copyArea.focus();
-    copyArea.select();
+      document.body.appendChild(copyArea);
+      copyArea.focus();
+      copyArea.select();
 
-    try {
-      document.execCommand("copy");
-    } catch (err) {
-      console.error(err);
-    }
+      try {
+         document.execCommand("copy");
+      } catch (err) {
+         console.error(err);
+      }
 
-    document.body.removeChild(copyArea);
-  });
+      document.body.removeChild(copyArea);
+   });
 }
 
 function Card(props) {
-  const pluginId = props.url.replace("https://", "").replace("http://", "");
+   const pluginId = props.url.replace("https://", "").replace("http://", "");
 
-  const isInstalled = () => {
-    return pluginId in plugins.installedPlugins();
-  };
+   const isInstalled = () => {
+      return pluginId in plugins.installedPlugins();
+   };
 
-  const [copied, update] = createSignal(0);
+   const [copied, update] = createSignal(0);
 
-  let timer = null;
-  const doCopy = () => {
-    if (copied()) {
-      clearTimeout(timer);
-    }
+   let timer = null;
+   const doCopy = () => {
+      if (copied()) {
+         clearTimeout(timer);
+      }
 
-    copyToClipboard(props.url);
-    update(true);
-    timer = setTimeout(() => {
-      update(false);
-    }, 2000);
-  };
+      copyToClipboard(props.url);
+      update(true);
+      timer = setTimeout(() => {
+         update(false);
+      }, 2000);
+   };
 
-  const copyText = () => {
-    return copied() ? "Link copied!" : "Copy link";
-  };
+   const copyText = () => {
+      return copied() ? "Link copied!" : "Copy link";
+   };
 
-  const copiedClass = () => {
-    return copied() ? classes.copied : "";
-  };
+   const copiedClass = () => {
+      return copied() ? classes.copied : "";
+   };
 
-  return (
-    <div class={classes.card}>
-      <div class={classes.content}>
-        <ContentIcon />
-        <div>
-          <div class={classes.title}>{props.json.name}</div>
-          <div class={classes.header}>
-            <div class={classes.author}>{props.json.author}</div>
-            <svg
-              class={classes.divider}
-              aria-hidden="true"
-              role="img"
-              width="24"
-              height="24"
-              viewBox="0 0 4 4"
-            >
-              <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
-            </svg>
-            <div
-              onMouseDown={doCopy}
-              class={`${classes.copyLink} ${copiedClass()}`}
-            >
-              <CopyIcon class={classes.icon} />
-              <div>{copyText()}</div>
+   return (
+      <div class={classes.card}>
+         <div class={classes.content}>
+            <ContentIcon />
+            <div>
+               <div class={classes.title}>{props.json.name}</div>
+               <div class={classes.header}>
+                  <div class={classes.author}>{props.json.author}</div>
+                  <svg class={classes.divider} aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 4 4">
+                     <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
+                  </svg>
+                  <div onMouseDown={doCopy} class={`${classes.copyLink} ${copiedClass()}`}>
+                     <CopyIcon class={classes.icon} />
+                     <div>{copyText()}</div>
+                  </div>
+               </div>
+               <div class={classes.description}>{props.json.description}</div>
             </div>
-          </div>
-          <div class={classes.description}>{props.json.description}</div>
-        </div>
-        <Button
-          color={isInstalled() ? ButtonColors.SECONDARY : ButtonColors.GREEN}
-          disabled={isInstalled()}
-          class={classes.alignRight}
-          size={ButtonSizes.MEDIUM}
-          onClick={async () => {
-            if (!isInstalled()) {
-              await plugins.addRemotePlugin(pluginId, props.url);
-              plugins.startPlugin(pluginId);
-              showToast({
-                title: "New plugin installed",
-                content: props.json.name,
-              });
-            }
-          }}
-        >
-          {isInstalled() ? "Installed" : "Install"}
-        </Button>
+            <Button
+               color={isInstalled() ? ButtonColors.SECONDARY : ButtonColors.GREEN}
+               disabled={isInstalled()}
+               class={classes.alignRight}
+               size={ButtonSizes.MEDIUM}
+               onClick={async () => {
+                  if (!isInstalled()) {
+                     await plugins.addRemotePlugin(pluginId, props.url);
+                     plugins.startPlugin(pluginId);
+                     showToast({
+                        title: "New plugin installed",
+                        content: props.json.name,
+                     });
+                  }
+               }}
+            >
+               {isInstalled() ? "Installed" : "Install"}
+            </Button>
+         </div>
       </div>
-    </div>
-  );
+   );
 }
 
 function handleDispatch(payload) {
-  if (
-    (payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") &&
-    payload.message.channel_id !== SelectedChannelStore.getChannelId()
-  )
-    return;
+   if ((payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") && payload.message.channel_id !== SelectedChannelStore.getChannelId()) return;
 
-  const unobs = observeDom(
-    "[class*=messageContent_] [class*=anchor_]:not([data-instbtn])",
-    async (element) => {
+   const unobs = observeDom("[class*=messageContent] [class*=anchor]:not([data-instbtn])", async (element) => {
       // don't find element we've already replaced
       element.dataset.instbtn = 1;
       unobs();
 
       if (element.textContent !== element.href) {
-        return;
+         return;
       }
 
       let url = element.href.endsWith("/") ? element.href : `${element.href}/`;
 
       // If the URL ends with plugin.json/ remove it
       if (url.endsWith("plugin.json/")) {
-        url = url.slice(0, -12);
+         url = url.slice(0, -12);
       }
 
       // Check if the URL is trusted
       if (!trustedUrls.some((trustedUrl) => url.startsWith(trustedUrl))) {
-        return;
+         return;
       }
 
       try {
-        const response = await fetch(`${url}plugin.json`);
-        if (!response.ok) return;
+         const response = await fetch(`${url}plugin.json`);
+         if (!response.ok) return;
 
-        const json = await response.json();
-        const card = (
-          <Card
-            json={{
-              name: json.name,
-              description: json.description,
-              author: json.author,
-            }}
-            url={url}
-          />
-        );
+         const json = await response.json();
+         const card = (
+            <Card
+               json={{
+                  name: json.name,
+                  description: json.description,
+                  author: json.author,
+               }}
+               url={url}
+            />
+         );
 
-        // removing the element entirely causes react to blow up
-        element.className = "";
-        element.style.all = "unset";
-        element.style.display = "none";
-        element.insertAdjacentElement("afterend", card);
+         // removing the element entirely causes react to blow up
+         element.className = "";
+         element.style.all = "unset";
+         element.style.display = "none";
+         element.insertAdjacentElement("afterend", card);
       } catch (e) {
-        console.error(e);
+         console.error(e);
       }
-    },
-  );
+   });
 
-  // just in case
-  setTimeout(unobs, 200);
+   // just in case
+   setTimeout(unobs, 200);
 }
 
 function InstallationModal(props) {
-  const { closeModal, json, url, pluginId } = props;
+   const { closeModal, json, url, pluginId } = props;
 
-  return (
-    <ModalRoot>
-      <ModalHeader>Install Plugin</ModalHeader>
-      <ModalBody>
-        <p>
-          Are you sure you want to install <strong>{json.name}</strong> by{" "}
-          <strong>{json.author}</strong>?
-        </p>
-        <p>
-          <i>{json.description}</i>
-        </p>
-      </ModalBody>
-      <ModalConfirmFooter
-        close={closeModal}
-        type="danger"
-        confirmText="Install"
-        onConfirm={async () => {
-          await plugins.addRemotePlugin(pluginId, url);
-          plugins.startPlugin(pluginId);
-          showToast({
-            title: json.name,
-            content: "has been installed.",
-          });
-        }}
-      />
-    </ModalRoot>
-  );
+   return (
+      <ModalRoot>
+         <ModalHeader>Install Plugin</ModalHeader>
+         <ModalBody>
+            <p>
+               Are you sure you want to install <strong>{json.name}</strong> by <strong>{json.author}</strong>?
+            </p>
+            <p>
+               <i>{json.description}</i>
+            </p>
+         </ModalBody>
+         <ModalConfirmFooter
+            close={closeModal}
+            type="danger"
+            confirmText="Install"
+            onConfirm={async () => {
+               await plugins.addRemotePlugin(pluginId, url);
+               plugins.startPlugin(pluginId);
+               showToast({
+                  title: json.name,
+                  content: "has been installed.",
+               });
+            }}
+         />
+      </ModalRoot>
+   );
 }
 
 async function handleInstall(_, originalUrl) {
-  if (window.InstallButtonEnabled === false) return;
+   if (window.InstallButtonEnabled === false) return;
 
-  DiscordNative.window.focus();
+   DiscordNative.window.focus();
 
-  let url = originalUrl.substring(1);
-  url = url.endsWith("/") ? url : `${url}/`;
+   let url = originalUrl.substring(1);
+   url = url.endsWith("/") ? url : `${url}/`;
 
-  if (!trustedUrls.find((trustedUrl) => url.startsWith(trustedUrl))) {
-    showToast({
-      title: "Plugin Installation",
-      content: "This plugin is not trusted.",
-    });
-    return;
-  }
+   if (!trustedUrls.find((trustedUrl) => url.startsWith(trustedUrl))) {
+      showToast({
+         title: "Plugin Installation",
+         content: "This plugin is not trusted.",
+      });
+      return;
+   }
 
-  const response = await fetch(`${url}plugin.json`);
-  if (!response.ok) return;
+   const response = await fetch(`${url}plugin.json`);
+   if (!response.ok) return;
 
-  const json = await response.json();
+   const json = await response.json();
 
-  const pluginId = url.replace("https://", "").replace("http://", "");
+   const pluginId = url.replace("https://", "").replace("http://", "");
 
-  if (pluginId in plugins.installedPlugins()) {
-    showToast({
-      title: json.name,
-      content: "is already installed.",
-    });
-    return;
-  }
+   if (pluginId in plugins.installedPlugins()) {
+      showToast({
+         title: json.name,
+         content: "is already installed.",
+      });
+      return;
+   }
 
-  openModal((modal) =>
-    InstallationModal({
-      closeModal: modal.close,
-      json,
-      url,
-      pluginId,
-    }),
-  );
+   openModal((modal) =>
+      InstallationModal({
+         closeModal: modal.close,
+         json,
+         url,
+         pluginId,
+      }),
+   );
 
-  return true;
+   return true;
 }
 
-const TRIGGERS = [
-  "MESSAGE_CREATE",
-  "MESSAGE_UPDATE",
-  "UPDATE_CHANNEL_DIMENSIONS",
-];
+const TRIGGERS = ["MESSAGE_CREATE", "MESSAGE_UPDATE", "UPDATE_CHANNEL_DIMENSIONS"];
 
 export function onLoad() {
-  fetch("https://shindex.uwu.network/data").then((body) =>
-    body
-      .json()
-      .then((repos) => repos.forEach((repo) => trustedUrls.push(repo.url))),
-  );
+   fetch("https://shindex.uwu.network/data").then((body) => body.json().then((repos) => repos.forEach((repo) => trustedUrls.push(repo.url))));
 
-  for (const t of TRIGGERS) dispatcher.subscribe(t, handleDispatch);
+   for (const t of TRIGGERS) dispatcher.subscribe(t, handleDispatch);
 
-  window.InstallButtonEnabled = true;
-  if (window.DiscordNative && !window.InstallButtonInjected) {
-    window.DiscordNative.ipc.on("DISCORD_MAIN_WINDOW_PATH", handleInstall);
-    window.InstallButtonInjected = true;
-  }
+   window.InstallButtonEnabled = true;
+   if (window.DiscordNative && !window.InstallButtonInjected) {
+      window.DiscordNative.ipc.on("DISCORD_MAIN_WINDOW_PATH", handleInstall);
+      window.InstallButtonInjected = true;
+   }
 }
 
 export function onUnload() {
-  trustedUrls.length = 0;
-  // select all elements with the class name of anchor_ and remove the data-instbtn attribute
-  for (const element of document.querySelectorAll(
-    "[class*=messageContent] [class*=anchor][data-instbtn]",
-  )) {
-    element.removeAttribute("data-instbtn");
-    element.onclick = null;
-  }
+   trustedUrls.length = 0;
+   // select all elements with the class name of anchor_ and remove the data-instbtn attribute
+   for (const element of document.querySelectorAll("[class*=messageContent] [class*=anchor][data-instbtn]")) {
+      element.removeAttribute("data-instbtn");
+      element.onclick = null;
+   }
 
-  window.InstallButtonEnabled = false;
+   window.InstallButtonEnabled = false;
 }
