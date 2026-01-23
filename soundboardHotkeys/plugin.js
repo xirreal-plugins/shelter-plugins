@@ -224,23 +224,23 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 }
 `);
 var style_default = {
-	"column": "_6PhcGW_column",
-	"sound": "_6PhcGW_sound",
-	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable",
-	"spaced": "_6PhcGW_spaced",
-	"card": "_6PhcGW_card",
-	"keybindButton": "_6PhcGW_keybindButton",
-	"soundPicker": "_6PhcGW_soundPicker",
-	"margin": "_6PhcGW_margin",
-	"emoji": "_6PhcGW_emoji",
-	"tallerModal": "_6PhcGW_tallerModal",
 	"content": "_6PhcGW_content",
-	"flexRow": "_6PhcGW_flexRow",
-	"inline": "_6PhcGW_inline",
-	"selected": "_6PhcGW_selected",
 	"marginTop": "_6PhcGW_marginTop",
+	"spaced": "_6PhcGW_spaced",
+	"emoji": "_6PhcGW_emoji",
+	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable",
 	"preview": "_6PhcGW_preview",
-	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween"
+	"column": "_6PhcGW_column",
+	"margin": "_6PhcGW_margin",
+	"flexRow": "_6PhcGW_flexRow",
+	"sound": "_6PhcGW_sound",
+	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
+	"keybindButton": "_6PhcGW_keybindButton",
+	"inline": "_6PhcGW_inline",
+	"soundPicker": "_6PhcGW_soundPicker",
+	"selected": "_6PhcGW_selected",
+	"card": "_6PhcGW_card",
+	"tallerModal": "_6PhcGW_tallerModal"
 };
 
 //#endregion
@@ -432,19 +432,19 @@ function SoundWithEmoji({ soundId, selected }) {
 		})();
 		const emojiUrl = `https://cdn.discordapp.com/emojis/${sound.emojiId}.${emoji.animated ? "gif" : "png"}?size=16&quality=lossless`;
 		return (() => {
-			const _el$9 = (0, import_web$29.getNextElement)(_tmpl$3$1), _el$11 = _el$9.firstChild, [_el$12, _co$3] = (0, import_web$24.getNextMarker)(_el$11.nextSibling), _el$10 = _el$12.nextSibling, _el$13 = _el$10.nextSibling, [_el$14, _co$4] = (0, import_web$24.getNextMarker)(_el$13.nextSibling);
-			(0, import_web$25.insert)(_el$9, (0, import_web$26.createComponent)(Preview, { soundId }), _el$12, _co$3);
-			(0, import_web$32.setAttribute)(_el$10, "src", emojiUrl);
+			const _el$9 = (0, import_web$29.getNextElement)(_tmpl$3$1), _el$1 = _el$9.firstChild, [_el$10, _co$3] = (0, import_web$24.getNextMarker)(_el$1.nextSibling), _el$0 = _el$10.nextSibling, _el$11 = _el$0.nextSibling, [_el$12, _co$4] = (0, import_web$24.getNextMarker)(_el$11.nextSibling);
+			(0, import_web$25.insert)(_el$9, (0, import_web$26.createComponent)(Preview, { soundId }), _el$10, _co$3);
+			(0, import_web$32.setAttribute)(_el$0, "src", emojiUrl);
 			(0, import_web$25.insert)(_el$9, (0, import_web$26.createComponent)(Text$2, { get children() {
 				return sound.name;
-			} }), _el$14, _co$4);
+			} }), _el$12, _co$4);
 			(0, import_web$28.effect)((_p$) => {
 				const _v$3 = {
 					[style_default.flexRow]: true,
 					[style_default.selected]: selected?.()
 				}, _v$4 = style_default.emoji;
 				_p$._v$3 = (0, import_web$23.classList)(_el$9, _v$3, _p$._v$3);
-				_v$4 !== _p$._v$4 && (0, import_web$27.className)(_el$10, _p$._v$4 = _v$4);
+				_v$4 !== _p$._v$4 && (0, import_web$27.className)(_el$0, _p$._v$4 = _v$4);
 				return _p$;
 			}, {
 				_v$3: undefined,
@@ -454,16 +454,16 @@ function SoundWithEmoji({ soundId, selected }) {
 		})();
 	}
 	return (() => {
-		const _el$15 = (0, import_web$29.getNextElement)(_tmpl$2$2), _el$16 = _el$15.firstChild, [_el$17, _co$5] = (0, import_web$24.getNextMarker)(_el$16.nextSibling), _el$18 = _el$17.nextSibling, [_el$19, _co$6] = (0, import_web$24.getNextMarker)(_el$18.nextSibling);
-		(0, import_web$25.insert)(_el$15, (0, import_web$26.createComponent)(Preview, { soundId }), _el$17, _co$5);
-		(0, import_web$25.insert)(_el$15, (0, import_web$26.createComponent)(Text$2, { get children() {
+		const _el$13 = (0, import_web$29.getNextElement)(_tmpl$2$2), _el$14 = _el$13.firstChild, [_el$15, _co$5] = (0, import_web$24.getNextMarker)(_el$14.nextSibling), _el$16 = _el$15.nextSibling, [_el$17, _co$6] = (0, import_web$24.getNextMarker)(_el$16.nextSibling);
+		(0, import_web$25.insert)(_el$13, (0, import_web$26.createComponent)(Preview, { soundId }), _el$15, _co$5);
+		(0, import_web$25.insert)(_el$13, (0, import_web$26.createComponent)(Text$2, { get children() {
 			return `${sound.emojiName || ""} ${sound.name}`.trim();
-		} }), _el$19, _co$6);
-		(0, import_web$28.effect)((_$p) => (0, import_web$23.classList)(_el$15, {
+		} }), _el$17, _co$6);
+		(0, import_web$28.effect)((_$p) => (0, import_web$23.classList)(_el$13, {
 			[style_default.flexRow]: true,
 			[style_default.selected]: selected?.()
 		}, _$p));
-		return _el$15;
+		return _el$13;
 	})();
 }
 (0, import_web$22.delegateEvents)(["click"]);
@@ -494,7 +494,7 @@ function SoundPicker(props) {
 	const [query, setQuery] = createSignal$2("");
 	const filteredSounds = () => search(sounds(), query());
 	return (() => {
-		const _el$ = (0, import_web$16.getNextElement)(_tmpl$$1), _el$7 = _el$.firstChild, [_el$8, _co$3] = (0, import_web$17.getNextMarker)(_el$7.nextSibling), _el$9 = _el$8.nextSibling, [_el$10, _co$4] = (0, import_web$17.getNextMarker)(_el$9.nextSibling), _el$2 = _el$10.nextSibling, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$17.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$17.getNextMarker)(_el$5.nextSibling);
+		const _el$ = (0, import_web$16.getNextElement)(_tmpl$$1), _el$7 = _el$.firstChild, [_el$8, _co$3] = (0, import_web$17.getNextMarker)(_el$7.nextSibling), _el$9 = _el$8.nextSibling, [_el$0, _co$4] = (0, import_web$17.getNextMarker)(_el$9.nextSibling), _el$2 = _el$0.nextSibling, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$17.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$17.getNextMarker)(_el$5.nextSibling);
 		(0, import_web$18.insert)(_el$, (0, import_web$20.createComponent)(Header$1, {
 			get tag() {
 				return HeaderTags$1.EYEBROW;
@@ -508,7 +508,7 @@ function SoundPicker(props) {
 			value: "",
 			placeholder: "Search sounds...",
 			onInput: (e) => setQuery(e)
-		}), _el$10, _co$4);
+		}), _el$0, _co$4);
 		(0, import_web$18.insert)(_el$2, (0, import_web$20.createComponent)(import_web$19.Show, {
 			get when() {
 				return filteredSounds().length === 0;
@@ -527,19 +527,19 @@ function SoundPicker(props) {
 				return filteredSounds();
 			},
 			children: (sound) => (() => {
-				const _el$11 = (0, import_web$16.getNextElement)(_tmpl$2$1);
-				(0, import_web$13.use)(focusring, _el$11, () => true);
-				_el$11.$$click = (e) => e.target.name !== "preview" && props.setSoundId(sound.soundId);
-				_el$11.addEventListener("keypress", (e) => e.key === "Enter" && e.target.name !== "preview" && props.setSoundId(sound.soundId));
-				(0, import_web$18.insert)(_el$11, (0, import_web$20.createComponent)(SoundWithEmoji, {
+				const _el$1 = (0, import_web$16.getNextElement)(_tmpl$2$1);
+				(0, import_web$13.use)(focusring, _el$1, () => true);
+				_el$1.$$click = (e) => e.target.name !== "preview" && props.setSoundId(sound.soundId);
+				_el$1.addEventListener("keypress", (e) => e.key === "Enter" && e.target.name !== "preview" && props.setSoundId(sound.soundId));
+				(0, import_web$18.insert)(_el$1, (0, import_web$20.createComponent)(SoundWithEmoji, {
 					get soundId() {
 						return sound.soundId;
 					},
 					selected: () => sound.soundId === props.soundId()
 				}));
-				(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$11, style_default.sound));
+				(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$1, style_default.sound));
 				(0, import_web$12.runHydrationEvents)();
-				return _el$11;
+				return _el$1;
 			})()
 		}), _el$6, _co$2);
 		(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$2, style_default.soundPicker));
@@ -629,7 +629,7 @@ const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><div><div><!#><!/><!
 const { ui: { Header, HeaderTags, Text, Divider, Button, openModal, ReactiveRoot, ButtonColors, ButtonSizes }, solid: { For, Show, createSignal }, plugin: { store: store$1 } } = shelter;
 function KeybindCard({ keybind }) {
 	return (() => {
-		const _el$ = (0, import_web$4.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.firstChild, [_el$5, _co$] = (0, import_web$5.getNextMarker)(_el$4.nextSibling), _el$6 = _el$5.nextSibling, [_el$7, _co$2] = (0, import_web$5.getNextMarker)(_el$6.nextSibling), _el$8 = _el$7.nextSibling, [_el$9, _co$3] = (0, import_web$5.getNextMarker)(_el$8.nextSibling), _el$10 = _el$9.nextSibling, [_el$11, _co$4] = (0, import_web$5.getNextMarker)(_el$10.nextSibling), _el$12 = _el$3.nextSibling, _el$13 = _el$12.firstChild, [_el$14, _co$5] = (0, import_web$5.getNextMarker)(_el$13.nextSibling), _el$15 = _el$14.nextSibling, [_el$16, _co$6] = (0, import_web$5.getNextMarker)(_el$15.nextSibling);
+		const _el$ = (0, import_web$4.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.firstChild, [_el$5, _co$] = (0, import_web$5.getNextMarker)(_el$4.nextSibling), _el$6 = _el$5.nextSibling, [_el$7, _co$2] = (0, import_web$5.getNextMarker)(_el$6.nextSibling), _el$8 = _el$7.nextSibling, [_el$9, _co$3] = (0, import_web$5.getNextMarker)(_el$8.nextSibling), _el$0 = _el$9.nextSibling, [_el$1, _co$4] = (0, import_web$5.getNextMarker)(_el$0.nextSibling), _el$10 = _el$3.nextSibling, _el$11 = _el$10.firstChild, [_el$12, _co$5] = (0, import_web$5.getNextMarker)(_el$11.nextSibling), _el$13 = _el$12.nextSibling, [_el$14, _co$6] = (0, import_web$5.getNextMarker)(_el$13.nextSibling);
 		(0, import_web$6.insert)(_el$3, (0, import_web$7.createComponent)(Header, {
 			get tag() {
 				return HeaderTags.EYEBROW;
@@ -650,15 +650,15 @@ function KeybindCard({ keybind }) {
 		}), _el$9, _co$3);
 		(0, import_web$6.insert)(_el$3, (0, import_web$7.createComponent)(SoundWithEmoji, { get soundId() {
 			return keybind.sound;
-		} }), _el$11, _co$4);
-		(0, import_web$6.insert)(_el$12, (0, import_web$7.createComponent)(Button, {
+		} }), _el$1, _co$4);
+		(0, import_web$6.insert)(_el$10, (0, import_web$7.createComponent)(Button, {
 			get size() {
 				return ButtonSizes.MEDIUM;
 			},
 			onclick: () => openModal((p) => AddKeybindModal(p.close, keybind)),
 			children: "Edit"
-		}), _el$14, _co$5);
-		(0, import_web$6.insert)(_el$12, (0, import_web$7.createComponent)(Button, {
+		}), _el$12, _co$5);
+		(0, import_web$6.insert)(_el$10, (0, import_web$7.createComponent)(Button, {
 			get color() {
 				return ButtonColors.RED;
 			},
@@ -674,13 +674,13 @@ function KeybindCard({ keybind }) {
 				closeModal();
 			},
 			children: "Delete"
-		}), _el$16, _co$6);
+		}), _el$14, _co$6);
 		(0, import_web$3.effect)((_p$) => {
 			const _v$ = style_default.card, _v$2 = style_default.content, _v$3 = style_default.fullWidth, _v$4 = style_default.column;
 			_v$ !== _p$._v$ && (0, import_web$2.className)(_el$, _p$._v$ = _v$);
 			_v$2 !== _p$._v$2 && (0, import_web$2.className)(_el$2, _p$._v$2 = _v$2);
 			_v$3 !== _p$._v$3 && (0, import_web$2.className)(_el$3, _p$._v$3 = _v$3);
-			_v$4 !== _p$._v$4 && (0, import_web$2.className)(_el$12, _p$._v$4 = _v$4);
+			_v$4 !== _p$._v$4 && (0, import_web$2.className)(_el$10, _p$._v$4 = _v$4);
 			return _p$;
 		}, {
 			_v$: undefined,
@@ -710,16 +710,16 @@ function Settings() {
 			}),
 			(0, import_web$7.createComponent)(Divider, {}),
 			(() => {
-				const _el$17 = (0, import_web$4.getNextElement)(_tmpl$2), _el$18 = _el$17.firstChild, [_el$19, _co$7] = (0, import_web$5.getNextMarker)(_el$18.nextSibling), _el$20 = _el$19.nextSibling, [_el$21, _co$8] = (0, import_web$5.getNextMarker)(_el$20.nextSibling);
-				(0, import_web$6.insert)(_el$17, (0, import_web$7.createComponent)(Header, {
+				const _el$15 = (0, import_web$4.getNextElement)(_tmpl$2), _el$16 = _el$15.firstChild, [_el$17, _co$7] = (0, import_web$5.getNextMarker)(_el$16.nextSibling), _el$18 = _el$17.nextSibling, [_el$19, _co$8] = (0, import_web$5.getNextMarker)(_el$18.nextSibling);
+				(0, import_web$6.insert)(_el$15, (0, import_web$7.createComponent)(Header, {
 					get tag() {
 						return HeaderTags.H3;
 					},
 					get children() {
 						return done() ? "Keybinds" : "Loading sounds...";
 					}
-				}), _el$19, _co$7);
-				(0, import_web$6.insert)(_el$17, (0, import_web$7.createComponent)(Button, {
+				}), _el$17, _co$7);
+				(0, import_web$6.insert)(_el$15, (0, import_web$7.createComponent)(Button, {
 					get ["class"]() {
 						return style_default.margin;
 					},
@@ -733,23 +733,23 @@ function Settings() {
 						openModal((p) => AddKeybindModal(p.close));
 					},
 					children: "Add keybind"
-				}), _el$21, _co$8);
-				(0, import_web$3.effect)(() => (0, import_web$2.className)(_el$17, style_default.flexSpaceBetween));
-				return _el$17;
+				}), _el$19, _co$8);
+				(0, import_web$3.effect)(() => (0, import_web$2.className)(_el$15, style_default.flexSpaceBetween));
+				return _el$15;
 			})(),
 			(0, import_web$7.createComponent)(Show, {
 				get when() {
 					return done();
 				},
 				get children() {
-					const _el$22 = (0, import_web$4.getNextElement)(_tmpl$3);
-					(0, import_web$6.insert)(_el$22, (0, import_web$7.createComponent)(For, {
+					const _el$20 = (0, import_web$4.getNextElement)(_tmpl$3);
+					(0, import_web$6.insert)(_el$20, (0, import_web$7.createComponent)(For, {
 						get each() {
 							return store$1.keybinds;
 						},
 						children: (keybind) => (0, import_web$7.createComponent)(KeybindCard, { keybind })
 					}));
-					return _el$22;
+					return _el$20;
 				}
 			})
 		];

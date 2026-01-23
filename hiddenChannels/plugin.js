@@ -92,7 +92,7 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
 
 .ccAoOa_headerBar {
   border-bottom: 1px solid var(--border-subtle);
-  height: calc(var(--custom-channel-header-height)  - 1px);
+  height: calc(var(--custom-channel-header-height) - 1px);
   max-height: var(--custom-channel-header-height);
   background: var(--background-gradient-lower, var(--background-base-lower));
   width: 100%;
@@ -109,15 +109,15 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
 }
 `);
 var style_default = {
-	"hiddenChannel": "ccAoOa_hiddenChannel",
 	"topicWrapper": "ccAoOa_topicWrapper",
+	"mainBody": "ccAoOa_mainBody",
+	"topic": "ccAoOa_topic",
 	"bold": "ccAoOa_bold",
 	"channelTitle": "ccAoOa_channelTitle",
-	"headerBar": "ccAoOa_headerBar",
-	"topic": "ccAoOa_topic",
-	"topicModal": "ccAoOa_topicModal",
+	"hiddenChannel": "ccAoOa_hiddenChannel",
 	"divider": "ccAoOa_divider",
-	"mainBody": "ccAoOa_mainBody"
+	"headerBar": "ccAoOa_headerBar",
+	"topicModal": "ccAoOa_topicModal"
 };
 
 //#endregion
@@ -231,7 +231,7 @@ const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><div><!#><!/
 const { ui: { Header, HeaderTags, Text, TextTags } } = shelter;
 var Notice_default = (props) => {
 	return (() => {
-		const _el$ = (0, import_web$3.getNextElement)(_tmpl$), _el$9 = _el$.firstChild, [_el$10, _co$4] = (0, import_web$4.getNextMarker)(_el$9.nextSibling), _el$2 = _el$10.nextSibling, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$4.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$4.getNextMarker)(_el$5.nextSibling), _el$7 = _el$6.nextSibling, [_el$8, _co$3] = (0, import_web$4.getNextMarker)(_el$7.nextSibling);
+		const _el$ = (0, import_web$3.getNextElement)(_tmpl$), _el$9 = _el$.firstChild, [_el$0, _co$4] = (0, import_web$4.getNextMarker)(_el$9.nextSibling), _el$2 = _el$0.nextSibling, _el$3 = _el$2.firstChild, [_el$4, _co$] = (0, import_web$4.getNextMarker)(_el$3.nextSibling), _el$5 = _el$4.nextSibling, [_el$6, _co$2] = (0, import_web$4.getNextMarker)(_el$5.nextSibling), _el$7 = _el$6.nextSibling, [_el$8, _co$3] = (0, import_web$4.getNextMarker)(_el$7.nextSibling);
 		_el$.style.setProperty("min-width", "100%");
 		_el$.style.setProperty("width", "100%");
 		_el$.style.setProperty("overflow", "hidden");
@@ -257,7 +257,7 @@ var Notice_default = (props) => {
 					return props.channel;
 				} })
 			];
-		} }), _el$10, _co$4);
+		} }), _el$0, _co$4);
 		(0, import_web$5.insert)(_el$2, (0, import_web$6.createComponent)(Header, {
 			get tag() {
 				return HeaderTags.H2;

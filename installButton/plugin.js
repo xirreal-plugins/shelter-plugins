@@ -133,17 +133,17 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
 }
 `);
 var index_jsx_default = {
-	"icon": "eeurUa_icon",
-	"divider": "eeurUa_divider",
+	"author": "eeurUa_author",
+	"title": "eeurUa_title",
 	"header": "eeurUa_header",
 	"content": "eeurUa_content",
-	"copied": "eeurUa_copied",
-	"author": "eeurUa_author",
 	"copyLink": "eeurUa_copyLink",
-	"title": "eeurUa_title",
 	"card": "eeurUa_card",
+	"description": "eeurUa_description",
+	"copied": "eeurUa_copied",
 	"alignRight": "eeurUa_alignRight",
-	"description": "eeurUa_description"
+	"icon": "eeurUa_icon",
+	"divider": "eeurUa_divider"
 };
 
 //#endregion
@@ -225,16 +225,16 @@ function Card(props) {
 		return copied() ? index_jsx_default.copied : "";
 	};
 	return (() => {
-		const _el$ = (0, import_web$5.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, _el$13 = _el$2.firstChild, [_el$14, _co$2] = (0, import_web$8.getNextMarker)(_el$13.nextSibling), _el$3 = _el$14.nextSibling, _el$4 = _el$3.firstChild, _el$5 = _el$4.nextSibling, _el$6 = _el$5.firstChild, _el$7 = _el$6.nextSibling, _el$8 = _el$7.nextSibling, _el$10 = _el$8.firstChild, [_el$11, _co$] = (0, import_web$8.getNextMarker)(_el$10.nextSibling), _el$9 = _el$11.nextSibling, _el$12 = _el$5.nextSibling, _el$15 = _el$3.nextSibling, [_el$16, _co$3] = (0, import_web$8.getNextMarker)(_el$15.nextSibling);
-		(0, import_web$9.insert)(_el$2, (0, import_web$10.createComponent)(ContentIcon, {}), _el$14, _co$2);
+		const _el$ = (0, import_web$5.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, _el$11 = _el$2.firstChild, [_el$12, _co$2] = (0, import_web$8.getNextMarker)(_el$11.nextSibling), _el$3 = _el$12.nextSibling, _el$4 = _el$3.firstChild, _el$5 = _el$4.nextSibling, _el$6 = _el$5.firstChild, _el$7 = _el$6.nextSibling, _el$8 = _el$7.nextSibling, _el$0 = _el$8.firstChild, [_el$1, _co$] = (0, import_web$8.getNextMarker)(_el$0.nextSibling), _el$9 = _el$1.nextSibling, _el$10 = _el$5.nextSibling, _el$13 = _el$3.nextSibling, [_el$14, _co$3] = (0, import_web$8.getNextMarker)(_el$13.nextSibling);
+		(0, import_web$9.insert)(_el$2, (0, import_web$10.createComponent)(ContentIcon, {}), _el$12, _co$2);
 		(0, import_web$9.insert)(_el$4, () => props.json.name);
 		(0, import_web$9.insert)(_el$6, () => props.json.author);
 		_el$8.$$mousedown = doCopy;
 		(0, import_web$9.insert)(_el$8, (0, import_web$10.createComponent)(CopyIcon, { get ["class"]() {
 			return index_jsx_default.icon;
-		} }), _el$11, _co$);
+		} }), _el$1, _co$);
 		(0, import_web$9.insert)(_el$9, copyText);
-		(0, import_web$9.insert)(_el$12, () => props.json.description);
+		(0, import_web$9.insert)(_el$10, () => props.json.description);
 		(0, import_web$9.insert)(_el$2, (0, import_web$10.createComponent)(Button, {
 			get color() {
 				return isInstalled() ? ButtonColors.SECONDARY : ButtonColors.GREEN;
@@ -261,7 +261,7 @@ function Card(props) {
 			get children() {
 				return isInstalled() ? "Installed" : "Install";
 			}
-		}), _el$16, _co$3);
+		}), _el$14, _co$3);
 		(0, import_web$4.effect)((_p$) => {
 			const _v$ = index_jsx_default.card, _v$2 = index_jsx_default.content, _v$3 = index_jsx_default.title, _v$4 = index_jsx_default.header, _v$5 = index_jsx_default.author, _v$6 = index_jsx_default.divider, _v$7 = `${index_jsx_default.copyLink} ${copiedClass()}`, _v$8 = index_jsx_default.description;
 			_v$ !== _p$._v$ && (0, import_web$3.className)(_el$, _p$._v$ = _v$);
@@ -271,7 +271,7 @@ function Card(props) {
 			_v$5 !== _p$._v$5 && (0, import_web$3.className)(_el$6, _p$._v$5 = _v$5);
 			_v$6 !== _p$._v$6 && (0, import_web$2.setAttribute)(_el$7, "class", _p$._v$6 = _v$6);
 			_v$7 !== _p$._v$7 && (0, import_web$3.className)(_el$8, _p$._v$7 = _v$7);
-			_v$8 !== _p$._v$8 && (0, import_web$3.className)(_el$12, _p$._v$8 = _v$8);
+			_v$8 !== _p$._v$8 && (0, import_web$3.className)(_el$10, _p$._v$8 = _v$8);
 			return _p$;
 		}, {
 			_v$: undefined,
@@ -327,14 +327,14 @@ function InstallationModal(props) {
 			(0, import_web$10.createComponent)(ModalHeader, { children: "Install Plugin" }),
 			(0, import_web$10.createComponent)(ModalBody, { get children() {
 				return [(() => {
-					const _el$17 = (0, import_web$5.getNextElement)(_tmpl$2), _el$18 = _el$17.firstChild, _el$19 = _el$18.nextSibling, _el$20 = _el$19.nextSibling, _el$21 = _el$20.nextSibling;
-					(0, import_web$9.insert)(_el$19, () => json.name);
-					(0, import_web$9.insert)(_el$21, () => json.author);
-					return _el$17;
+					const _el$15 = (0, import_web$5.getNextElement)(_tmpl$2), _el$16 = _el$15.firstChild, _el$17 = _el$16.nextSibling, _el$18 = _el$17.nextSibling, _el$19 = _el$18.nextSibling;
+					(0, import_web$9.insert)(_el$17, () => json.name);
+					(0, import_web$9.insert)(_el$19, () => json.author);
+					return _el$15;
 				})(), (() => {
-					const _el$22 = (0, import_web$5.getNextElement)(_tmpl$3), _el$23 = _el$22.firstChild;
-					(0, import_web$9.insert)(_el$23, () => json.description);
-					return _el$22;
+					const _el$20 = (0, import_web$5.getNextElement)(_tmpl$3), _el$21 = _el$20.firstChild;
+					(0, import_web$9.insert)(_el$21, () => json.description);
+					return _el$20;
 				})()];
 			} }),
 			(0, import_web$10.createComponent)(ModalConfirmFooter, {

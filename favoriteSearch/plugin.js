@@ -131,9 +131,9 @@ shelter.plugin.scoped.ui.injectCss(`#AgMsVW_searchBar {
 }
 `);
 var index_jsx_default = {
+	"counter": "AgMsVW_counter",
 	"align": "AgMsVW_align",
 	"barContainer": "AgMsVW_barContainer",
-	"counter": "AgMsVW_counter",
 	"searchBar": "AgMsVW_searchBar"
 };
 
@@ -198,7 +198,7 @@ function SearchBar() {
 		stopObserving();
 	});
 	return (() => {
-		const _el$ = (0, import_web$4.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, _el$9 = _el$2.firstChild, [_el$10, _co$3] = (0, import_web$5.getNextMarker)(_el$9.nextSibling), _el$3 = _el$10.nextSibling, _el$5 = _el$3.firstChild, [_el$6, _co$] = (0, import_web$5.getNextMarker)(_el$5.nextSibling), _el$4 = _el$6.nextSibling, _el$7 = _el$4.nextSibling, [_el$8, _co$2] = (0, import_web$5.getNextMarker)(_el$7.nextSibling), _el$11 = _el$2.nextSibling;
+		const _el$ = (0, import_web$4.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, _el$9 = _el$2.firstChild, [_el$0, _co$3] = (0, import_web$5.getNextMarker)(_el$9.nextSibling), _el$3 = _el$0.nextSibling, _el$5 = _el$3.firstChild, [_el$6, _co$] = (0, import_web$5.getNextMarker)(_el$5.nextSibling), _el$4 = _el$6.nextSibling, _el$7 = _el$4.nextSibling, [_el$8, _co$2] = (0, import_web$5.getNextMarker)(_el$7.nextSibling), _el$1 = _el$2.nextSibling;
 		(0, import_web$6.insert)(_el$2, (0, import_web$7.createComponent)(TextBox, {
 			placeholder: "Search favorite GIFs...",
 			get value() {
@@ -207,10 +207,10 @@ function SearchBar() {
 			onInput: (value) => {
 				setText(value);
 			}
-		}), _el$10, _co$3);
+		}), _el$0, _co$3);
 		(0, import_web$6.insert)(_el$3, counter, _el$6, _co$);
 		(0, import_web$6.insert)(_el$3, total, _el$8, _co$2);
-		(0, import_web$6.insert)(_el$11, (0, import_web$7.createComponent)(CheckboxItem, {
+		(0, import_web$6.insert)(_el$1, (0, import_web$7.createComponent)(CheckboxItem, {
 			get checked() {
 				return showUntagged();
 			},
@@ -222,7 +222,7 @@ function SearchBar() {
 			_v$ !== _p$._v$ && (0, import_web$2.setAttribute)(_el$, "id", _p$._v$ = _v$);
 			_v$2 !== _p$._v$2 && (0, import_web$1.className)(_el$2, _p$._v$2 = _v$2);
 			_v$3 !== _p$._v$3 && (0, import_web$1.className)(_el$3, _p$._v$3 = _v$3);
-			_v$4 !== _p$._v$4 && (0, import_web$1.className)(_el$11, _p$._v$4 = _v$4);
+			_v$4 !== _p$._v$4 && (0, import_web$1.className)(_el$1, _p$._v$4 = _v$4);
 			return _p$;
 		}, {
 			_v$: undefined,
@@ -239,11 +239,11 @@ function handleClick() {
 		const header = document.querySelector("#gif-picker-tab-panel > div:first-child");
 		if (!header) return;
 		header.appendChild((() => {
-			const _el$12 = (0, import_web$4.getNextElement)(_tmpl$2);
-			(0, import_web$6.insert)(_el$12, (0, import_web$7.createComponent)(ReactiveRoot, { get children() {
+			const _el$10 = (0, import_web$4.getNextElement)(_tmpl$2);
+			(0, import_web$6.insert)(_el$10, (0, import_web$7.createComponent)(ReactiveRoot, { get children() {
 				return (0, import_web$7.createComponent)(SearchBar, {});
 			} }));
-			return _el$12;
+			return _el$10;
 		})());
 		stopObservingResults = observeDom("[class*='results'] > [class*='content'] > div > [class*='result']", (card) => {
 			if (card.dataset.addedRightClick) return;

@@ -7,8 +7,17 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __esm = (fn, res) => function() {
+	return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+};
 var __commonJS = (cb$1, mod) => function() {
 	return mod || (0, cb$1[__getOwnPropNames(cb$1)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var __export = (target, all) => {
+	for (var name$1 in all) __defProp(target, name$1, {
+		get: all[name$1],
+		enumerable: true
+	});
 };
 var __copyProps = (to, from$2, except, desc) => {
 	if (from$2 && typeof from$2 === "object" || typeof from$2 === "function") for (var keys$1 = __getOwnPropNames(from$2), i$2 = 0, n$1 = keys$1.length, key; i$2 < n$1; i$2++) {
@@ -219,43 +228,42 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
 }
 `);
 var modal_jsx_default = {
-	"previewItemInfo": "-bMcgq_previewItemInfo",
-	"uploadModal": "-bMcgq_uploadModal",
-	"dragOver": "-bMcgq_dragOver",
-	"previewItem": "-bMcgq_previewItem",
-	"removeButton": "-bMcgq_removeButton",
-	"progressBar": "-bMcgq_progressBar",
-	"dashboardItem": "-bMcgq_dashboardItem",
-	"uploading": "-bMcgq_uploading",
-	"previewArea": "-bMcgq_previewArea",
-	"previewIcon": "-bMcgq_previewIcon",
 	"progressFill": "-bMcgq_progressFill",
-	"footer": "-bMcgq_footer",
+	"uploading": "-bMcgq_uploading",
 	"dashboardButton": "-bMcgq_dashboardButton",
+	"dashboardItem": "-bMcgq_dashboardItem",
+	"previewIcon": "-bMcgq_previewIcon",
+	"previewItem": "-bMcgq_previewItem",
+	"uploadModal": "-bMcgq_uploadModal",
 	"uploadArea": "-bMcgq_uploadArea",
-	"previewImage": "-bMcgq_previewImage",
-	"replacedButton": "-bMcgq_replacedButton",
+	"previewItemInfo": "-bMcgq_previewItemInfo",
+	"progressBar": "-bMcgq_progressBar",
+	"footer": "-bMcgq_footer",
+	"previewArea": "-bMcgq_previewArea",
 	"sway": "-bMcgq_sway",
+	"replacedButton": "-bMcgq_replacedButton",
 	"shake": "-bMcgq_shake",
-	"previewVideo": "-bMcgq_previewVideo"
+	"removeButton": "-bMcgq_removeButton",
+	"previewVideo": "-bMcgq_previewVideo",
+	"dragOver": "-bMcgq_dragOver",
+	"previewImage": "-bMcgq_previewImage"
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+protocol-http@4.1.8/node_modules/@smithy/protocol-http/dist-es/extensions/httpExtensionConfiguration.js
-const getHttpHandlerExtensionConfiguration = (runtimeConfig) => {
-	let httpHandler = runtimeConfig.httpHandler;
+//#region node_modules/.pnpm/@smithy+protocol-http@5.3.8/node_modules/@smithy/protocol-http/dist-es/extensions/httpExtensionConfiguration.js
+const getHttpHandlerExtensionConfiguration = (runtimeConfig$1) => {
 	return {
 		setHttpHandler(handler) {
-			httpHandler = handler;
+			runtimeConfig$1.httpHandler = handler;
 		},
 		httpHandler() {
-			return httpHandler;
+			return runtimeConfig$1.httpHandler;
 		},
 		updateHttpClientConfig(key, value) {
-			httpHandler.updateHttpClientConfig(key, value);
+			runtimeConfig$1.httpHandler?.updateHttpClientConfig(key, value);
 		},
 		httpHandlerConfigs() {
-			return httpHandler.httpHandlerConfigs();
+			return runtimeConfig$1.httpHandler.httpHandlerConfigs();
 		}
 	};
 };
@@ -264,23 +272,7 @@ const resolveHttpHandlerRuntimeConfig = (httpHandlerExtensionConfiguration) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+types@3.7.2/node_modules/@smithy/types/dist-es/auth/auth.js
-var HttpAuthLocation;
-(function(HttpAuthLocation$1) {
-	HttpAuthLocation$1["HEADER"] = "header";
-	HttpAuthLocation$1["QUERY"] = "query";
-})(HttpAuthLocation || (HttpAuthLocation = {}));
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+types@3.7.2/node_modules/@smithy/types/dist-es/auth/HttpApiKeyAuth.js
-var HttpApiKeyAuthLocation;
-(function(HttpApiKeyAuthLocation$1) {
-	HttpApiKeyAuthLocation$1["HEADER"] = "header";
-	HttpApiKeyAuthLocation$1["QUERY"] = "query";
-})(HttpApiKeyAuthLocation || (HttpApiKeyAuthLocation = {}));
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+types@3.7.2/node_modules/@smithy/types/dist-es/endpoint.js
+//#region node_modules/.pnpm/@smithy+types@4.12.0/node_modules/@smithy/types/dist-es/endpoint.js
 var EndpointURLScheme;
 (function(EndpointURLScheme$1) {
 	EndpointURLScheme$1["HTTP"] = "http";
@@ -288,7 +280,7 @@ var EndpointURLScheme;
 })(EndpointURLScheme || (EndpointURLScheme = {}));
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+types@3.7.2/node_modules/@smithy/types/dist-es/extensions/checksum.js
+//#region node_modules/.pnpm/@smithy+types@4.12.0/node_modules/@smithy/types/dist-es/extensions/checksum.js
 var AlgorithmId;
 (function(AlgorithmId$1) {
 	AlgorithmId$1["MD5"] = "md5";
@@ -299,38 +291,23 @@ var AlgorithmId;
 })(AlgorithmId || (AlgorithmId = {}));
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+types@3.7.2/node_modules/@smithy/types/dist-es/http.js
-var FieldPosition;
-(function(FieldPosition$1) {
-	FieldPosition$1[FieldPosition$1["HEADER"] = 0] = "HEADER";
-	FieldPosition$1[FieldPosition$1["TRAILER"] = 1] = "TRAILER";
-})(FieldPosition || (FieldPosition = {}));
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+types@3.7.2/node_modules/@smithy/types/dist-es/middleware.js
+//#region node_modules/.pnpm/@smithy+types@4.12.0/node_modules/@smithy/types/dist-es/middleware.js
 const SMITHY_CONTEXT_KEY = "__smithy_context";
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+types@3.7.2/node_modules/@smithy/types/dist-es/profile.js
-var IniSectionType;
-(function(IniSectionType$1) {
-	IniSectionType$1["PROFILE"] = "profile";
-	IniSectionType$1["SSO_SESSION"] = "sso-session";
-	IniSectionType$1["SERVICES"] = "services";
-})(IniSectionType || (IniSectionType = {}));
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+types@3.7.2/node_modules/@smithy/types/dist-es/transfer.js
-var RequestHandlerProtocol;
-(function(RequestHandlerProtocol$1) {
-	RequestHandlerProtocol$1["HTTP_0_9"] = "http/0.9";
-	RequestHandlerProtocol$1["HTTP_1_0"] = "http/1.0";
-	RequestHandlerProtocol$1["TDS_8_0"] = "tds/8.0";
-})(RequestHandlerProtocol || (RequestHandlerProtocol = {}));
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+protocol-http@4.1.8/node_modules/@smithy/protocol-http/dist-es/httpRequest.js
+//#region node_modules/.pnpm/@smithy+protocol-http@5.3.8/node_modules/@smithy/protocol-http/dist-es/httpRequest.js
 var HttpRequest = class HttpRequest {
+	method;
+	protocol;
+	hostname;
+	port;
+	path;
+	query;
+	headers;
+	username;
+	password;
+	fragment;
+	body;
 	constructor(options) {
 		this.method = options.method || "GET";
 		this.hostname = options.hostname || "localhost";
@@ -372,8 +349,12 @@ function cloneQuery(query) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+protocol-http@4.1.8/node_modules/@smithy/protocol-http/dist-es/httpResponse.js
+//#region node_modules/.pnpm/@smithy+protocol-http@5.3.8/node_modules/@smithy/protocol-http/dist-es/httpResponse.js
 var HttpResponse = class {
+	statusCode;
+	reason;
+	headers;
+	body;
 	constructor(options) {
 		this.statusCode = options.statusCode;
 		this.reason = options.reason;
@@ -388,15 +369,18 @@ var HttpResponse = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-expect-continue@3.714.0/node_modules/@aws-sdk/middleware-expect-continue/dist-es/index.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-expect-continue@3.972.1/node_modules/@aws-sdk/middleware-expect-continue/dist-es/index.js
 function addExpectContinueMiddleware(options) {
 	return (next) => async (args) => {
 		const { request } = args;
-		if (HttpRequest.isInstance(request) && request.body && options.runtime === "node") {
-			if (options.requestHandler?.constructor?.name !== "FetchHttpHandler") request.headers = {
-				...request.headers,
-				Expect: "100-continue"
-			};
+		if (options.expectContinueHeader !== false && HttpRequest.isInstance(request) && request.body && options.runtime === "node" && options.requestHandler?.constructor?.name !== "FetchHttpHandler") {
+			let sendHeader = true;
+			if (typeof options.expectContinueHeader === "number") try {
+				const bodyLength = Number(request.headers?.["content-length"]) ?? options.bodyLengthChecker?.(request.body) ?? Infinity;
+				sendHeader = bodyLength >= options.expectContinueHeader;
+			} catch (e$2) {}
+else sendHeader = !!options.expectContinueHeader;
+			if (sendHeader) request.headers.Expect = "100-continue";
 		}
 		return next({
 			...args,
@@ -415,39 +399,35 @@ const getAddExpectContinuePlugin = (options) => ({ applyToStack: (clientStack) =
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/constants.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/constants.js
 const RequestChecksumCalculation = {
 	WHEN_SUPPORTED: "WHEN_SUPPORTED",
 	WHEN_REQUIRED: "WHEN_REQUIRED"
 };
 const DEFAULT_REQUEST_CHECKSUM_CALCULATION = RequestChecksumCalculation.WHEN_SUPPORTED;
+const ResponseChecksumValidation = {
+	WHEN_SUPPORTED: "WHEN_SUPPORTED",
+	WHEN_REQUIRED: "WHEN_REQUIRED"
+};
 const DEFAULT_RESPONSE_CHECKSUM_VALIDATION = RequestChecksumCalculation.WHEN_SUPPORTED;
-var ChecksumAlgorithm;
-(function(ChecksumAlgorithm$1) {
-	ChecksumAlgorithm$1["MD5"] = "MD5";
-	ChecksumAlgorithm$1["CRC32"] = "CRC32";
-	ChecksumAlgorithm$1["CRC32C"] = "CRC32C";
-	ChecksumAlgorithm$1["SHA1"] = "SHA1";
-	ChecksumAlgorithm$1["SHA256"] = "SHA256";
-})(ChecksumAlgorithm || (ChecksumAlgorithm = {}));
+var ChecksumAlgorithm$1;
+(function(ChecksumAlgorithm$2) {
+	ChecksumAlgorithm$2["MD5"] = "MD5";
+	ChecksumAlgorithm$2["CRC32"] = "CRC32";
+	ChecksumAlgorithm$2["CRC32C"] = "CRC32C";
+	ChecksumAlgorithm$2["CRC64NVME"] = "CRC64NVME";
+	ChecksumAlgorithm$2["SHA1"] = "SHA1";
+	ChecksumAlgorithm$2["SHA256"] = "SHA256";
+})(ChecksumAlgorithm$1 || (ChecksumAlgorithm$1 = {}));
 var ChecksumLocation;
 (function(ChecksumLocation$1) {
 	ChecksumLocation$1["HEADER"] = "header";
 	ChecksumLocation$1["TRAILER"] = "trailer";
 })(ChecksumLocation || (ChecksumLocation = {}));
-const DEFAULT_CHECKSUM_ALGORITHM = ChecksumAlgorithm.MD5;
-const S3_EXPRESS_DEFAULT_CHECKSUM_ALGORITHM = ChecksumAlgorithm.CRC32;
+const DEFAULT_CHECKSUM_ALGORITHM = ChecksumAlgorithm$1.CRC32;
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/stringUnionSelector.js
-var SelectorType$1;
-(function(SelectorType$2) {
-	SelectorType$2["ENV"] = "env";
-	SelectorType$2["CONFIG"] = "shared config entry";
-})(SelectorType$1 || (SelectorType$1 = {}));
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+core@3.716.0/node_modules/@aws-sdk/core/dist-es/submodules/client/setCredentialFeature.js
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/client/setCredentialFeature.js
 function setCredentialFeature(credentials, feature, value) {
 	if (!credentials.$source) credentials.$source = {};
 	credentials.$source[feature] = value;
@@ -455,7 +435,7 @@ function setCredentialFeature(credentials, feature, value) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+core@3.716.0/node_modules/@aws-sdk/core/dist-es/submodules/client/setFeature.js
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/client/setFeature.js
 function setFeature$1(context, feature, value) {
 	if (!context.__aws_sdk_context) context.__aws_sdk_context = { features: {} };
 else if (!context.__aws_sdk_context.features) context.__aws_sdk_context.features = {};
@@ -463,19 +443,19 @@ else if (!context.__aws_sdk_context.features) context.__aws_sdk_context.features
 }
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+core@3.716.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/utils/getDateHeader.js
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/utils/getDateHeader.js
 const getDateHeader = (response) => HttpResponse.isInstance(response) ? response.headers?.date ?? response.headers?.Date : undefined;
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+core@3.716.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/utils/getSkewCorrectedDate.js
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/utils/getSkewCorrectedDate.js
 const getSkewCorrectedDate = (systemClockOffset) => new Date(Date.now() + systemClockOffset);
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+core@3.716.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/utils/isClockSkewed.js
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/utils/isClockSkewed.js
 const isClockSkewed = (clockTime, systemClockOffset) => Math.abs(getSkewCorrectedDate(systemClockOffset).getTime() - clockTime) >= 3e5;
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+core@3.716.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/utils/getUpdatedSystemClockOffset.js
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/utils/getUpdatedSystemClockOffset.js
 const getUpdatedSystemClockOffset = (clockTime, currentSystemClockOffset) => {
 	const clockTimeInMs = Date.parse(clockTime);
 	if (isClockSkewed(clockTimeInMs, currentSystemClockOffset)) return clockTimeInMs - Date.now();
@@ -483,7 +463,7 @@ const getUpdatedSystemClockOffset = (clockTime, currentSystemClockOffset) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+core@3.716.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/aws_sdk/AwsSdkSigV4Signer.js
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/aws_sdk/AwsSdkSigV4Signer.js
 const throwSigningPropertyError = (name$1, property) => {
 	if (!property) throw new Error(`Property \`${name$1}\` is not resolved for AWS SDK SigV4Auth`);
 	return property;
@@ -549,7 +529,7 @@ var AwsSdkSigV4Signer = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+core@3.716.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/aws_sdk/AwsSdkSigV4ASigner.js
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/aws_sdk/AwsSdkSigV4ASigner.js
 var AwsSdkSigV4ASigner = class extends AwsSdkSigV4Signer {
 	async sign(httpRequest, identity, signingProperties) {
 		if (!HttpRequest.isInstance(httpRequest)) throw new Error("The request is not an instance of `HttpRequest` and cannot be signed");
@@ -566,11 +546,11 @@ var AwsSdkSigV4ASigner = class extends AwsSdkSigV4Signer {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-middleware@3.0.11/node_modules/@smithy/util-middleware/dist-es/getSmithyContext.js
+//#region node_modules/.pnpm/@smithy+util-middleware@4.2.8/node_modules/@smithy/util-middleware/dist-es/getSmithyContext.js
 const getSmithyContext = (context) => context[SMITHY_CONTEXT_KEY] || (context[SMITHY_CONTEXT_KEY] = {});
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-middleware@3.0.11/node_modules/@smithy/util-middleware/dist-es/normalizeProvider.js
+//#region node_modules/.pnpm/@smithy+util-middleware@4.2.8/node_modules/@smithy/util-middleware/dist-es/normalizeProvider.js
 const normalizeProvider$1 = (input) => {
 	if (typeof input === "function") return input;
 	const promisified = Promise.resolve(input);
@@ -578,18 +558,33 @@ const normalizeProvider$1 = (input) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/middleware-http-auth-scheme/httpAuthSchemeMiddleware.js
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/middleware-http-auth-scheme/resolveAuthOptions.js
+const resolveAuthOptions = (candidateAuthOptions, authSchemePreference) => {
+	if (!authSchemePreference || authSchemePreference.length === 0) return candidateAuthOptions;
+	const preferredAuthOptions = [];
+	for (const preferredSchemeName of authSchemePreference) for (const candidateAuthOption of candidateAuthOptions) {
+		const candidateAuthSchemeName = candidateAuthOption.schemeId.split("#")[1];
+		if (candidateAuthSchemeName === preferredSchemeName) preferredAuthOptions.push(candidateAuthOption);
+	}
+	for (const candidateAuthOption of candidateAuthOptions) if (!preferredAuthOptions.find(({ schemeId }) => schemeId === candidateAuthOption.schemeId)) preferredAuthOptions.push(candidateAuthOption);
+	return preferredAuthOptions;
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/middleware-http-auth-scheme/httpAuthSchemeMiddleware.js
 function convertHttpAuthSchemesToMap(httpAuthSchemes) {
-	const map$1 = new Map();
-	for (const scheme of httpAuthSchemes) map$1.set(scheme.schemeId, scheme);
-	return map$1;
+	const map = new Map();
+	for (const scheme of httpAuthSchemes) map.set(scheme.schemeId, scheme);
+	return map;
 }
 const httpAuthSchemeMiddleware = (config$1, mwOptions) => (next, context) => async (args) => {
 	const options = config$1.httpAuthSchemeProvider(await mwOptions.httpAuthSchemeParametersProvider(config$1, context, args.input));
+	const authSchemePreference = config$1.authSchemePreference ? await config$1.authSchemePreference() : [];
+	const resolvedOptions = resolveAuthOptions(options, authSchemePreference);
 	const authSchemes = convertHttpAuthSchemesToMap(config$1.httpAuthSchemes);
 	const smithyContext = getSmithyContext(context);
 	const failureReasons = [];
-	for (const option of options) {
+	for (const option of resolvedOptions) {
 		const scheme = authSchemes.get(option.schemeId);
 		if (!scheme) {
 			failureReasons.push(`HttpAuthScheme \`${option.schemeId}\` was not enabled for this service.`);
@@ -615,7 +610,7 @@ const httpAuthSchemeMiddleware = (config$1, mwOptions) => (next, context) => asy
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/middleware-http-auth-scheme/getHttpAuthSchemeEndpointRuleSetPlugin.js
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/middleware-http-auth-scheme/getHttpAuthSchemeEndpointRuleSetPlugin.js
 const httpAuthSchemeEndpointRuleSetMiddlewareOptions = {
 	step: "serialize",
 	tags: ["HTTP_AUTH_SCHEME"],
@@ -632,77 +627,16 @@ const getHttpAuthSchemeEndpointRuleSetPlugin = (config$1, { httpAuthSchemeParame
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-serde@3.0.11/node_modules/@smithy/middleware-serde/dist-es/deserializerMiddleware.js
-const deserializerMiddleware = (options, deserializer) => (next) => async (args) => {
-	const { response } = await next(args);
-	try {
-		const parsed = await deserializer(response, options);
-		return {
-			response,
-			output: parsed
-		};
-	} catch (error) {
-		Object.defineProperty(error, "$response", { value: response });
-		if (!("$metadata" in error)) {
-			const hint = `Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.`;
-			error.message += "\n  " + hint;
-			if (typeof error.$responseBodyText !== "undefined") {
-				if (error.$response) error.$response.body = error.$responseBodyText;
-			}
-		}
-		throw error;
-	}
-};
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+middleware-serde@3.0.11/node_modules/@smithy/middleware-serde/dist-es/serializerMiddleware.js
-const serializerMiddleware = (options, serializer) => (next, context) => async (args) => {
-	const endpoint = context.endpointV2?.url && options.urlParser ? async () => options.urlParser(context.endpointV2.url) : options.endpoint;
-	if (!endpoint) throw new Error("No valid endpoint provider available.");
-	const request = await serializer(args.input, {
-		...options,
-		endpoint
-	});
-	return next({
-		...args,
-		request
-	});
-};
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+middleware-serde@3.0.11/node_modules/@smithy/middleware-serde/dist-es/serdePlugin.js
-const deserializerMiddlewareOption = {
-	name: "deserializerMiddleware",
-	step: "deserialize",
-	tags: ["DESERIALIZER"],
-	override: true
-};
-const serializerMiddlewareOption = {
+//#region node_modules/.pnpm/@smithy+middleware-serde@4.2.9/node_modules/@smithy/middleware-serde/dist-es/serdePlugin.js
+const serializerMiddlewareOption$1 = {
 	name: "serializerMiddleware",
 	step: "serialize",
 	tags: ["SERIALIZER"],
 	override: true
 };
-function getSerdePlugin(config$1, serializer, deserializer) {
-	return { applyToStack: (commandStack) => {
-		commandStack.add(deserializerMiddleware(config$1, deserializer), deserializerMiddlewareOption);
-		commandStack.add(serializerMiddleware(config$1, serializer), serializerMiddlewareOption);
-	} };
-}
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/middleware-http-auth-scheme/getHttpAuthSchemePlugin.js
-const httpAuthSchemeMiddlewareOptions = {
-	step: "serialize",
-	tags: ["HTTP_AUTH_SCHEME"],
-	name: "httpAuthSchemeMiddleware",
-	override: true,
-	relation: "before",
-	toMiddleware: serializerMiddlewareOption.name
-};
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/middleware-http-signing/httpSigningMiddleware.js
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/middleware-http-signing/httpSigningMiddleware.js
 const defaultErrorHandler$1 = (signingProperties) => (error) => {
 	throw error;
 };
@@ -722,7 +656,7 @@ const httpSigningMiddleware = (config$1) => (next, context) => async (args) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/middleware-http-signing/getHttpSigningMiddleware.js
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/middleware-http-signing/getHttpSigningMiddleware.js
 const httpSigningMiddlewareOptions = {
 	step: "finalizeRequest",
 	tags: ["HTTP_SIGNING"],
@@ -741,7 +675,7 @@ const getHttpSigningPlugin = (config$1) => ({ applyToStack: (clientStack) => {
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/normalizeProvider.js
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/normalizeProvider.js
 const normalizeProvider = (input) => {
 	if (typeof input === "function") return input;
 	const promisified = Promise.resolve(input);
@@ -749,37 +683,19 @@ const normalizeProvider = (input) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-base64@3.0.0/node_modules/@smithy/util-base64/dist-es/constants.browser.js
-const alphabetByEncoding = {};
-const alphabetByValue = new Array(64);
-for (let i$2 = 0, start = "A".charCodeAt(0), limit = "Z".charCodeAt(0); i$2 + start <= limit; i$2++) {
-	const char = String.fromCharCode(i$2 + start);
-	alphabetByEncoding[char] = i$2;
-	alphabetByValue[i$2] = char;
-}
-for (let i$2 = 0, start = "a".charCodeAt(0), limit = "z".charCodeAt(0); i$2 + start <= limit; i$2++) {
-	const char = String.fromCharCode(i$2 + start);
-	const index = i$2 + 26;
-	alphabetByEncoding[char] = index;
-	alphabetByValue[index] = char;
-}
-for (let i$2 = 0; i$2 < 10; i$2++) {
-	alphabetByEncoding[i$2.toString(10)] = i$2 + 52;
-	const char = i$2.toString(10);
-	const index = i$2 + 52;
-	alphabetByEncoding[char] = index;
-	alphabetByValue[index] = char;
-}
-alphabetByEncoding["+"] = 62;
-alphabetByValue[62] = "+";
-alphabetByEncoding["/"] = 63;
-alphabetByValue[63] = "/";
+//#region node_modules/.pnpm/@smithy+util-base64@4.3.0/node_modules/@smithy/util-base64/dist-es/constants.browser.js
+const chars = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`;
+const alphabetByEncoding = Object.entries(chars).reduce((acc, [i$2, c$1]) => {
+	acc[c$1] = Number(i$2);
+	return acc;
+}, {});
+const alphabetByValue = chars.split("");
 const bitsPerLetter = 6;
 const bitsPerByte = 8;
 const maxLetterValue = 63;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-base64@3.0.0/node_modules/@smithy/util-base64/dist-es/fromBase64.browser.js
+//#region node_modules/.pnpm/@smithy+util-base64@4.3.0/node_modules/@smithy/util-base64/dist-es/fromBase64.browser.js
 const fromBase64 = (input) => {
 	let totalByteLength = input.length / 4 * 3;
 	if (input.slice(-2) === "==") totalByteLength -= 2;
@@ -806,30 +722,49 @@ else if (input.slice(-1) === "=") totalByteLength--;
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-utf8@3.0.0/node_modules/@smithy/util-utf8/dist-es/fromUtf8.browser.js
-const fromUtf8$2 = (input) => new TextEncoder().encode(input);
+//#region node_modules/.pnpm/@smithy+util-utf8@4.2.0/node_modules/@smithy/util-utf8/dist-es/fromUtf8.browser.js
+var fromUtf8;
+var init_fromUtf8_browser = __esm({ "node_modules/.pnpm/@smithy+util-utf8@4.2.0/node_modules/@smithy/util-utf8/dist-es/fromUtf8.browser.js"() {
+	fromUtf8 = (input) => new TextEncoder().encode(input);
+} });
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-utf8@3.0.0/node_modules/@smithy/util-utf8/dist-es/toUint8Array.js
-const toUint8Array = (data) => {
-	if (typeof data === "string") return fromUtf8$2(data);
-	if (ArrayBuffer.isView(data)) return new Uint8Array(data.buffer, data.byteOffset, data.byteLength / Uint8Array.BYTES_PER_ELEMENT);
-	return new Uint8Array(data);
-};
+//#region node_modules/.pnpm/@smithy+util-utf8@4.2.0/node_modules/@smithy/util-utf8/dist-es/toUint8Array.js
+var toUint8Array;
+var init_toUint8Array = __esm({ "node_modules/.pnpm/@smithy+util-utf8@4.2.0/node_modules/@smithy/util-utf8/dist-es/toUint8Array.js"() {
+	init_fromUtf8_browser();
+	toUint8Array = (data) => {
+		if (typeof data === "string") return fromUtf8(data);
+		if (ArrayBuffer.isView(data)) return new Uint8Array(data.buffer, data.byteOffset, data.byteLength / Uint8Array.BYTES_PER_ELEMENT);
+		return new Uint8Array(data);
+	};
+} });
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-utf8@3.0.0/node_modules/@smithy/util-utf8/dist-es/toUtf8.browser.js
-const toUtf8 = (input) => {
-	if (typeof input === "string") return input;
-	if (typeof input !== "object" || typeof input.byteOffset !== "number" || typeof input.byteLength !== "number") throw new Error("@smithy/util-utf8: toUtf8 encoder function only accepts string | Uint8Array.");
-	return new TextDecoder("utf-8").decode(input);
-};
+//#region node_modules/.pnpm/@smithy+util-utf8@4.2.0/node_modules/@smithy/util-utf8/dist-es/toUtf8.browser.js
+var toUtf8;
+var init_toUtf8_browser = __esm({ "node_modules/.pnpm/@smithy+util-utf8@4.2.0/node_modules/@smithy/util-utf8/dist-es/toUtf8.browser.js"() {
+	toUtf8 = (input) => {
+		if (typeof input === "string") return input;
+		if (typeof input !== "object" || typeof input.byteOffset !== "number" || typeof input.byteLength !== "number") throw new Error("@smithy/util-utf8: toUtf8 encoder function only accepts string | Uint8Array.");
+		return new TextDecoder("utf-8").decode(input);
+	};
+} });
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-base64@3.0.0/node_modules/@smithy/util-base64/dist-es/toBase64.browser.js
+//#region node_modules/.pnpm/@smithy+util-utf8@4.2.0/node_modules/@smithy/util-utf8/dist-es/index.js
+var init_dist_es = __esm({ "node_modules/.pnpm/@smithy+util-utf8@4.2.0/node_modules/@smithy/util-utf8/dist-es/index.js"() {
+	init_fromUtf8_browser();
+	init_toUint8Array();
+	init_toUtf8_browser();
+} });
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+util-base64@4.3.0/node_modules/@smithy/util-base64/dist-es/toBase64.browser.js
+init_dist_es();
 function toBase64(_input) {
 	let input;
-	if (typeof _input === "string") input = fromUtf8$2(_input);
+	if (typeof _input === "string") input = fromUtf8(_input);
 else input = _input;
 	const isArrayLike = typeof input === "object" && typeof input.length === "number";
 	const isUint8Array = typeof input === "object" && typeof input.byteOffset === "number" && typeof input.byteLength === "number";
@@ -854,36 +789,176 @@ else input = _input;
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-stream@3.3.3/node_modules/@smithy/util-stream/dist-es/blob/transforms.js
-function transformToString(payload, encoding = "utf-8") {
-	if (encoding === "base64") return toBase64(payload);
-	return toUtf8(payload);
-}
-function transformFromString(str, encoding) {
-	if (encoding === "base64") return Uint8ArrayBlobAdapter.mutate(fromBase64(str));
-	return Uint8ArrayBlobAdapter.mutate(fromUtf8$2(str));
-}
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+util-stream@3.3.3/node_modules/@smithy/util-stream/dist-es/blob/Uint8ArrayBlobAdapter.js
+//#region node_modules/.pnpm/@smithy+util-stream@4.5.10/node_modules/@smithy/util-stream/dist-es/blob/Uint8ArrayBlobAdapter.js
+init_dist_es();
 var Uint8ArrayBlobAdapter = class Uint8ArrayBlobAdapter extends Uint8Array {
 	static fromString(source, encoding = "utf-8") {
-		switch (typeof source) {
-			case "string": return transformFromString(source, encoding);
-			default: throw new Error(`Unsupported conversion from ${typeof source} to Uint8ArrayBlobAdapter.`);
+		if (typeof source === "string") {
+			if (encoding === "base64") return Uint8ArrayBlobAdapter.mutate(fromBase64(source));
+			return Uint8ArrayBlobAdapter.mutate(fromUtf8(source));
 		}
+		throw new Error(`Unsupported conversion from ${typeof source} to Uint8ArrayBlobAdapter.`);
 	}
 	static mutate(source) {
 		Object.setPrototypeOf(source, Uint8ArrayBlobAdapter.prototype);
 		return source;
 	}
 	transformToString(encoding = "utf-8") {
-		return transformToString(this, encoding);
+		if (encoding === "base64") return toBase64(this);
+		return toUtf8(this);
 	}
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-stream@3.3.3/node_modules/@smithy/util-stream/dist-es/getAwsChunkedEncodingStream.browser.js
+//#region node_modules/.pnpm/@smithy+util-stream@4.5.10/node_modules/@smithy/util-stream/dist-es/checksum/ChecksumStream.browser.js
+const ReadableStreamRef = typeof ReadableStream === "function" ? ReadableStream : function() {};
+var ChecksumStream = class extends ReadableStreamRef {};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+util-stream@4.5.10/node_modules/@smithy/util-stream/dist-es/stream-type-check.js
+const isReadableStream$1 = (stream) => typeof ReadableStream === "function" && (stream?.constructor?.name === ReadableStream.name || stream instanceof ReadableStream);
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+util-stream@4.5.10/node_modules/@smithy/util-stream/dist-es/checksum/createChecksumStream.browser.js
+const createChecksumStream = ({ expectedChecksum, checksum, source, checksumSourceLocation, base64Encoder }) => {
+	if (!isReadableStream$1(source)) throw new Error(`@smithy/util-stream: unsupported source type ${source?.constructor?.name ?? source} in ChecksumStream.`);
+	const encoder = base64Encoder ?? toBase64;
+	if (typeof TransformStream !== "function") throw new Error("@smithy/util-stream: unable to instantiate ChecksumStream because API unavailable: ReadableStream/TransformStream.");
+	const transform = new TransformStream({
+		start() {},
+		async transform(chunk, controller) {
+			checksum.update(chunk);
+			controller.enqueue(chunk);
+		},
+		async flush(controller) {
+			const digest = await checksum.digest();
+			const received = encoder(digest);
+			if (expectedChecksum !== received) {
+				const error = new Error(`Checksum mismatch: expected "${expectedChecksum}" but received "${received}"` + ` in response header "${checksumSourceLocation}".`);
+				controller.error(error);
+			} else controller.terminate();
+		}
+	});
+	source.pipeThrough(transform);
+	const readable = transform.readable;
+	Object.setPrototypeOf(readable, ChecksumStream.prototype);
+	return readable;
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+util-stream@4.5.10/node_modules/@smithy/util-stream/dist-es/ByteArrayCollector.js
+var ByteArrayCollector = class {
+	allocByteArray;
+	byteLength = 0;
+	byteArrays = [];
+	constructor(allocByteArray) {
+		this.allocByteArray = allocByteArray;
+	}
+	push(byteArray) {
+		this.byteArrays.push(byteArray);
+		this.byteLength += byteArray.byteLength;
+	}
+	flush() {
+		if (this.byteArrays.length === 1) {
+			const bytes = this.byteArrays[0];
+			this.reset();
+			return bytes;
+		}
+		const aggregation = this.allocByteArray(this.byteLength);
+		let cursor = 0;
+		for (let i$2 = 0; i$2 < this.byteArrays.length; ++i$2) {
+			const bytes = this.byteArrays[i$2];
+			aggregation.set(bytes, cursor);
+			cursor += bytes.byteLength;
+		}
+		this.reset();
+		return aggregation;
+	}
+	reset() {
+		this.byteArrays = [];
+		this.byteLength = 0;
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+util-stream@4.5.10/node_modules/@smithy/util-stream/dist-es/createBufferedReadableStream.js
+function createBufferedReadableStream(upstream, size, logger) {
+	const reader = upstream.getReader();
+	let streamBufferingLoggedWarning = false;
+	let bytesSeen = 0;
+	const buffers = ["", new ByteArrayCollector((size$1) => new Uint8Array(size$1))];
+	let mode = -1;
+	const pull = async (controller) => {
+		const { value, done: done$1 } = await reader.read();
+		const chunk = value;
+		if (done$1) {
+			if (mode !== -1) {
+				const remainder = flush(buffers, mode);
+				if (sizeOf(remainder) > 0) controller.enqueue(remainder);
+			}
+			controller.close();
+		} else {
+			const chunkMode = modeOf(chunk, false);
+			if (mode !== chunkMode) {
+				if (mode >= 0) controller.enqueue(flush(buffers, mode));
+				mode = chunkMode;
+			}
+			if (mode === -1) {
+				controller.enqueue(chunk);
+				return;
+			}
+			const chunkSize = sizeOf(chunk);
+			bytesSeen += chunkSize;
+			const bufferSize = sizeOf(buffers[mode]);
+			if (chunkSize >= size && bufferSize === 0) controller.enqueue(chunk);
+else {
+				const newSize = merge(buffers, mode, chunk);
+				if (!streamBufferingLoggedWarning && bytesSeen > size * 2) {
+					streamBufferingLoggedWarning = true;
+					logger?.warn(`@smithy/util-stream - stream chunk size ${chunkSize} is below threshold of ${size}, automatically buffering.`);
+				}
+				if (newSize >= size) controller.enqueue(flush(buffers, mode));
+else await pull(controller);
+			}
+		}
+	};
+	return new ReadableStream({ pull });
+}
+const createBufferedReadable = createBufferedReadableStream;
+function merge(buffers, mode, chunk) {
+	switch (mode) {
+		case 0:
+			buffers[0] += chunk;
+			return sizeOf(buffers[0]);
+		case 1:
+		case 2:
+			buffers[mode].push(chunk);
+			return sizeOf(buffers[mode]);
+	}
+}
+function flush(buffers, mode) {
+	switch (mode) {
+		case 0:
+			const s$1 = buffers[0];
+			buffers[0] = "";
+			return s$1;
+		case 1:
+		case 2: return buffers[mode].flush();
+	}
+	throw new Error(`@smithy/util-stream - invalid index ${mode} given to flush()`);
+}
+function sizeOf(chunk) {
+	return chunk?.byteLength ?? chunk?.length ?? 0;
+}
+function modeOf(chunk, allowBuffer = true) {
+	if (allowBuffer && typeof Buffer !== "undefined" && chunk instanceof Buffer) return 2;
+	if (chunk instanceof Uint8Array) return 1;
+	if (typeof chunk === "string") return 0;
+	return -1;
+}
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+util-stream@4.5.10/node_modules/@smithy/util-stream/dist-es/getAwsChunkedEncodingStream.browser.js
 const getAwsChunkedEncodingStream = (readableStream, options) => {
 	const { base64Encoder, bodyLengthChecker, checksumAlgorithmFn, checksumLocationName, streamHasher } = options;
 	const checksumRequired = base64Encoder !== undefined && bodyLengthChecker !== undefined && checksumAlgorithmFn !== undefined && checksumLocationName !== undefined && streamHasher !== undefined;
@@ -904,12 +979,41 @@ const getAwsChunkedEncodingStream = (readableStream, options) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-uri-escape@3.0.0/node_modules/@smithy/util-uri-escape/dist-es/escape-uri.js
+//#region node_modules/.pnpm/@smithy+util-stream@4.5.10/node_modules/@smithy/util-stream/dist-es/headStream.browser.js
+async function headStream(stream, bytes) {
+	let byteLengthCounter = 0;
+	const chunks = [];
+	const reader = stream.getReader();
+	let isDone = false;
+	while (!isDone) {
+		const { done: done$1, value } = await reader.read();
+		if (value) {
+			chunks.push(value);
+			byteLengthCounter += value?.byteLength ?? 0;
+		}
+		if (byteLengthCounter >= bytes) break;
+		isDone = done$1;
+	}
+	reader.releaseLock();
+	const collected = new Uint8Array(Math.min(bytes, byteLengthCounter));
+	let offset = 0;
+	for (const chunk of chunks) {
+		if (chunk.byteLength > collected.byteLength - offset) {
+			collected.set(chunk.subarray(0, collected.byteLength - offset), offset);
+			break;
+		} else collected.set(chunk, offset);
+		offset += chunk.length;
+	}
+	return collected;
+}
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+util-uri-escape@4.2.0/node_modules/@smithy/util-uri-escape/dist-es/escape-uri.js
 const escapeUri = (uri) => encodeURIComponent(uri).replace(/[!'()*]/g, hexEncode);
 const hexEncode = (c$1) => `%${c$1.charCodeAt(0).toString(16).toUpperCase()}`;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+querystring-builder@3.0.11/node_modules/@smithy/querystring-builder/dist-es/index.js
+//#region node_modules/.pnpm/@smithy+querystring-builder@4.2.8/node_modules/@smithy/querystring-builder/dist-es/index.js
 function buildQueryString(query) {
 	const parts = [];
 	for (let key of Object.keys(query).sort()) {
@@ -926,13 +1030,13 @@ else {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+fetch-http-handler@4.1.2/node_modules/@smithy/fetch-http-handler/dist-es/create-request.js
+//#region node_modules/.pnpm/@smithy+fetch-http-handler@5.3.9/node_modules/@smithy/fetch-http-handler/dist-es/create-request.js
 function createRequest(url, requestOptions) {
 	return new Request(url, requestOptions);
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+fetch-http-handler@4.1.2/node_modules/@smithy/fetch-http-handler/dist-es/request-timeout.js
+//#region node_modules/.pnpm/@smithy+fetch-http-handler@5.3.9/node_modules/@smithy/fetch-http-handler/dist-es/request-timeout.js
 function requestTimeout(timeoutInMs = 0) {
 	return new Promise((resolve, reject) => {
 		if (timeoutInMs) setTimeout(() => {
@@ -944,9 +1048,11 @@ function requestTimeout(timeoutInMs = 0) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+fetch-http-handler@4.1.2/node_modules/@smithy/fetch-http-handler/dist-es/fetch-http-handler.js
+//#region node_modules/.pnpm/@smithy+fetch-http-handler@5.3.9/node_modules/@smithy/fetch-http-handler/dist-es/fetch-http-handler.js
 const keepAliveSupport = { supported: undefined };
 var FetchHttpHandler = class FetchHttpHandler {
+	config;
+	configProvider;
 	static create(instanceOrOptions) {
 		if (typeof instanceOrOptions?.handle === "function") return instanceOrOptions;
 		return new FetchHttpHandler(instanceOrOptions);
@@ -960,9 +1066,9 @@ else {
 		if (keepAliveSupport.supported === undefined) keepAliveSupport.supported = Boolean(typeof Request !== "undefined" && "keepalive" in createRequest("https://[::1]"));
 	}
 	destroy() {}
-	async handle(request, { abortSignal } = {}) {
+	async handle(request, { abortSignal, requestTimeout: requestTimeout$1 } = {}) {
 		if (!this.config) this.config = await this.configProvider;
-		const requestTimeoutInMs = this.config.requestTimeout;
+		const requestTimeoutInMs = requestTimeout$1 ?? this.config.requestTimeout;
 		const keepAlive = this.config.keepAlive === true;
 		const credentials = this.config.credentials;
 		if (abortSignal?.aborted) {
@@ -1041,11 +1147,19 @@ else {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+fetch-http-handler@4.1.2/node_modules/@smithy/fetch-http-handler/dist-es/stream-collector.js
+//#region node_modules/.pnpm/@smithy+fetch-http-handler@5.3.9/node_modules/@smithy/fetch-http-handler/dist-es/stream-collector.js
 const streamCollector = async (stream) => {
-	if (typeof Blob === "function" && stream instanceof Blob || stream.constructor?.name === "Blob") return new Uint8Array(await stream.arrayBuffer());
+	if (typeof Blob === "function" && stream instanceof Blob || stream.constructor?.name === "Blob") {
+		if (Blob.prototype.arrayBuffer !== undefined) return new Uint8Array(await stream.arrayBuffer());
+		return collectBlob(stream);
+	}
 	return collectStream(stream);
 };
+async function collectBlob(blob) {
+	const base64$1 = await readToBase64(blob);
+	const arrayBuffer = fromBase64(base64$1);
+	return new Uint8Array(arrayBuffer);
+}
 async function collectStream(stream) {
 	const chunks = [];
 	const reader = stream.getReader();
@@ -1067,9 +1181,24 @@ async function collectStream(stream) {
 	}
 	return collected;
 }
+function readToBase64(blob) {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader();
+		reader.onloadend = () => {
+			if (reader.readyState !== 2) return reject(new Error("Reader aborted too early"));
+			const result = reader.result ?? "";
+			const commaIndex = result.indexOf(",");
+			const dataOffset = commaIndex > -1 ? commaIndex + 1 : result.length;
+			resolve(result.substring(dataOffset));
+		};
+		reader.onabort = () => reject(new Error("Read aborted"));
+		reader.onerror = () => reject(reader.error);
+		reader.readAsDataURL(blob);
+	});
+}
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-hex-encoding@3.0.0/node_modules/@smithy/util-hex-encoding/dist-es/index.js
+//#region node_modules/.pnpm/@smithy+util-hex-encoding@4.2.0/node_modules/@smithy/util-hex-encoding/dist-es/index.js
 const SHORT_TO_HEX = {};
 const HEX_TO_SHORT = {};
 for (let i$2 = 0; i$2 < 256; i$2++) {
@@ -1095,11 +1224,8 @@ function toHex(bytes) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-stream@3.3.3/node_modules/@smithy/util-stream/dist-es/stream-type-check.js
-const isReadableStream$1 = (stream) => typeof ReadableStream === "function" && (stream?.constructor?.name === ReadableStream.name || stream instanceof ReadableStream);
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+util-stream@3.3.3/node_modules/@smithy/util-stream/dist-es/sdk-stream-mixin.browser.js
+//#region node_modules/.pnpm/@smithy+util-stream@4.5.10/node_modules/@smithy/util-stream/dist-es/sdk-stream-mixin.browser.js
+init_dist_es();
 const ERR_MSG_STREAM_HAS_BEEN_TRANSFORMED = "The stream has already been transformed.";
 const sdkStreamMixin = (stream) => {
 	if (!isBlobInstance(stream) && !isReadableStream$1(stream)) {
@@ -1138,7 +1264,7 @@ else throw new Error(`Cannot transform payload to web stream, got ${stream}`);
 const isBlobInstance = (stream) => typeof Blob === "function" && stream instanceof Blob;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-stream@3.3.3/node_modules/@smithy/util-stream/dist-es/splitStream.browser.js
+//#region node_modules/.pnpm/@smithy+util-stream@4.5.10/node_modules/@smithy/util-stream/dist-es/splitStream.browser.js
 async function splitStream(stream) {
 	if (typeof stream.stream === "function") stream = stream.stream();
 	const readableStream = stream;
@@ -1146,68 +1272,7 @@ async function splitStream(stream) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-stream@3.3.3/node_modules/@smithy/util-stream/dist-es/headStream.browser.js
-async function headStream(stream, bytes) {
-	let byteLengthCounter = 0;
-	const chunks = [];
-	const reader = stream.getReader();
-	let isDone = false;
-	while (!isDone) {
-		const { done: done$1, value } = await reader.read();
-		if (value) {
-			chunks.push(value);
-			byteLengthCounter += value?.byteLength ?? 0;
-		}
-		if (byteLengthCounter >= bytes) break;
-		isDone = done$1;
-	}
-	reader.releaseLock();
-	const collected = new Uint8Array(Math.min(bytes, byteLengthCounter));
-	let offset = 0;
-	for (const chunk of chunks) {
-		if (chunk.byteLength > collected.byteLength - offset) {
-			collected.set(chunk.subarray(0, collected.byteLength - offset), offset);
-			break;
-		} else collected.set(chunk, offset);
-		offset += chunk.length;
-	}
-	return collected;
-}
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+util-stream@3.3.3/node_modules/@smithy/util-stream/dist-es/checksum/ChecksumStream.browser.js
-const ReadableStreamRef = typeof ReadableStream === "function" ? ReadableStream : function() {};
-var ChecksumStream = class extends ReadableStreamRef {};
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+util-stream@3.3.3/node_modules/@smithy/util-stream/dist-es/checksum/createChecksumStream.browser.js
-const createChecksumStream = ({ expectedChecksum, checksum, source, checksumSourceLocation, base64Encoder }) => {
-	if (!isReadableStream$1(source)) throw new Error(`@smithy/util-stream: unsupported source type ${source?.constructor?.name ?? source} in ChecksumStream.`);
-	const encoder = base64Encoder ?? toBase64;
-	if (typeof TransformStream !== "function") throw new Error("@smithy/util-stream: unable to instantiate ChecksumStream because API unavailable: ReadableStream/TransformStream.");
-	const transform = new TransformStream({
-		start() {},
-		async transform(chunk, controller) {
-			checksum.update(chunk);
-			controller.enqueue(chunk);
-		},
-		async flush(controller) {
-			const digest = await checksum.digest();
-			const received = encoder(digest);
-			if (expectedChecksum !== received) {
-				const error = new Error(`Checksum mismatch: expected "${expectedChecksum}" but received "${received}"` + ` in response header "${checksumSourceLocation}".`);
-				controller.error(error);
-			} else controller.terminate();
-		}
-	});
-	source.pipeThrough(transform);
-	const readable = transform.readable;
-	Object.setPrototypeOf(readable, ChecksumStream.prototype);
-	return readable;
-};
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/submodules/protocols/collect-stream-body.js
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/protocols/collect-stream-body.js
 const collectBody$1 = async (streamBody = new Uint8Array(), context) => {
 	if (streamBody instanceof Uint8Array) return Uint8ArrayBlobAdapter.mutate(streamBody);
 	if (!streamBody) return Uint8ArrayBlobAdapter.mutate(new Uint8Array());
@@ -1216,7 +1281,7 @@ const collectBody$1 = async (streamBody = new Uint8Array(), context) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/submodules/protocols/extended-encode-uri-component.js
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/protocols/extended-encode-uri-component.js
 function extendedEncodeURIComponent(str) {
 	return encodeURIComponent(str).replace(/[!'()*]/g, function(c$1) {
 		return "%" + c$1.charCodeAt(0).toString(16).toUpperCase();
@@ -1224,84 +1289,1202 @@ function extendedEncodeURIComponent(str) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/submodules/protocols/resolve-path.js
-const resolvedPath = (resolvedPath$1, input, memberName, labelValueProvider, uriLabel, isGreedyLabel) => {
-	if (input != null && input[memberName] !== undefined) {
-		const labelValue = labelValueProvider();
-		if (labelValue.length <= 0) throw new Error("Empty value provided for input HTTP label: " + memberName + ".");
-		resolvedPath$1 = resolvedPath$1.replace(uriLabel, isGreedyLabel ? labelValue.split("/").map((segment) => extendedEncodeURIComponent(segment)).join("/") : extendedEncodeURIComponent(labelValue));
-	} else throw new Error("No value provided for input HTTP label: " + memberName + ".");
-	return resolvedPath$1;
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/schema/deref.js
+const deref = (schemaRef) => {
+	if (typeof schemaRef === "function") return schemaRef();
+	return schemaRef;
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/submodules/protocols/requestBuilder.js
-function requestBuilder(input, context) {
-	return new RequestBuilder(input, context);
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/schema/schemas/operation.js
+const operation = (namespace, name$1, traits, input, output) => ({
+	name: name$1,
+	namespace,
+	traits,
+	input,
+	output
+});
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/schema/middleware/schemaDeserializationMiddleware.js
+const schemaDeserializationMiddleware = (config$1) => (next, context) => async (args) => {
+	const { response } = await next(args);
+	const { operationSchema } = getSmithyContext(context);
+	const [, ns, n$1, t$2, i$2, o$1] = operationSchema ?? [];
+	try {
+		const parsed = await config$1.protocol.deserializeResponse(operation(ns, n$1, t$2, i$2, o$1), {
+			...config$1,
+			...context
+		}, response);
+		return {
+			response,
+			output: parsed
+		};
+	} catch (error) {
+		Object.defineProperty(error, "$response", {
+			value: response,
+			enumerable: false,
+			writable: false,
+			configurable: false
+		});
+		if (!("$metadata" in error)) {
+			const hint = `Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.`;
+			try {
+				error.message += "\n  " + hint;
+			} catch (e$2) {
+				if (!context.logger || context.logger?.constructor?.name === "NoOpLogger") console.warn(hint);
+else context.logger?.warn?.(hint);
+			}
+			if (typeof error.$responseBodyText !== "undefined") {
+				if (error.$response) error.$response.body = error.$responseBodyText;
+			}
+			try {
+				if (HttpResponse.isInstance(response)) {
+					const { headers = {} } = response;
+					const headerEntries = Object.entries(headers);
+					error.$metadata = {
+						httpStatusCode: response.statusCode,
+						requestId: findHeader(/^x-[\w-]+-request-?id$/, headerEntries),
+						extendedRequestId: findHeader(/^x-[\w-]+-id-2$/, headerEntries),
+						cfId: findHeader(/^x-[\w-]+-cf-id$/, headerEntries)
+					};
+				}
+			} catch (e$2) {}
+		}
+		throw error;
+	}
+};
+const findHeader = (pattern, headers) => {
+	return (headers.find(([k$1]) => {
+		return k$1.match(pattern);
+	}) || [void 0, void 0])[1];
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/schema/middleware/schemaSerializationMiddleware.js
+const schemaSerializationMiddleware = (config$1) => (next, context) => async (args) => {
+	const { operationSchema } = getSmithyContext(context);
+	const [, ns, n$1, t$2, i$2, o$1] = operationSchema ?? [];
+	const endpoint = context.endpointV2?.url && config$1.urlParser ? async () => config$1.urlParser(context.endpointV2.url) : config$1.endpoint;
+	const request = await config$1.protocol.serializeRequest(operation(ns, n$1, t$2, i$2, o$1), args.input, {
+		...config$1,
+		...context,
+		endpoint
+	});
+	return next({
+		...args,
+		request
+	});
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/schema/middleware/getSchemaSerdePlugin.js
+const deserializerMiddlewareOption = {
+	name: "deserializerMiddleware",
+	step: "deserialize",
+	tags: ["DESERIALIZER"],
+	override: true
+};
+const serializerMiddlewareOption = {
+	name: "serializerMiddleware",
+	step: "serialize",
+	tags: ["SERIALIZER"],
+	override: true
+};
+function getSchemaSerdePlugin(config$1) {
+	return { applyToStack: (commandStack) => {
+		commandStack.add(schemaSerializationMiddleware(config$1), serializerMiddlewareOption);
+		commandStack.add(schemaDeserializationMiddleware(config$1), deserializerMiddlewareOption);
+		config$1.protocol.setSerdeContext(config$1);
+	} };
 }
-var RequestBuilder = class {
-	constructor(input, context) {
-		this.input = input;
-		this.context = context;
-		this.query = {};
-		this.method = "";
-		this.headers = {};
-		this.path = "";
-		this.body = null;
-		this.hostname = "";
-		this.resolvePathStack = [];
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/schema/schemas/translateTraits.js
+function translateTraits(indicator) {
+	if (typeof indicator === "object") return indicator;
+	indicator = indicator | 0;
+	const traits = {};
+	let i$2 = 0;
+	for (const trait of [
+		"httpLabel",
+		"idempotent",
+		"idempotencyToken",
+		"sensitive",
+		"httpPayload",
+		"httpResponseCode",
+		"httpQueryParams"
+	]) if ((indicator >> i$2++ & 1) === 1) traits[trait] = 1;
+	return traits;
+}
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/schema/schemas/NormalizedSchema.js
+const anno = { it: Symbol.for("@smithy/nor-struct-it") };
+var NormalizedSchema = class NormalizedSchema {
+	ref;
+	memberName;
+	static symbol = Symbol.for("@smithy/nor");
+	symbol = NormalizedSchema.symbol;
+	name;
+	schema;
+	_isMemberSchema;
+	traits;
+	memberTraits;
+	normalizedTraits;
+	constructor(ref, memberName) {
+		this.ref = ref;
+		this.memberName = memberName;
+		const traitStack = [];
+		let _ref = ref;
+		let schema = ref;
+		this._isMemberSchema = false;
+		while (isMemberSchema(_ref)) {
+			traitStack.push(_ref[1]);
+			_ref = _ref[0];
+			schema = deref(_ref);
+			this._isMemberSchema = true;
+		}
+		if (traitStack.length > 0) {
+			this.memberTraits = {};
+			for (let i$2 = traitStack.length - 1; i$2 >= 0; --i$2) {
+				const traitSet = traitStack[i$2];
+				Object.assign(this.memberTraits, translateTraits(traitSet));
+			}
+		} else this.memberTraits = 0;
+		if (schema instanceof NormalizedSchema) {
+			const computedMemberTraits = this.memberTraits;
+			Object.assign(this, schema);
+			this.memberTraits = Object.assign({}, computedMemberTraits, schema.getMemberTraits(), this.getMemberTraits());
+			this.normalizedTraits = void 0;
+			this.memberName = memberName ?? schema.memberName;
+			return;
+		}
+		this.schema = deref(schema);
+		if (isStaticSchema(this.schema)) {
+			this.name = `${this.schema[1]}#${this.schema[2]}`;
+			this.traits = this.schema[3];
+		} else {
+			this.name = this.memberName ?? String(schema);
+			this.traits = 0;
+		}
+		if (this._isMemberSchema && !memberName) throw new Error(`@smithy/core/schema - NormalizedSchema member init ${this.getName(true)} missing member name.`);
 	}
-	async build() {
-		const { hostname, protocol = "https", port, path: basePath } = await this.context.endpoint();
-		this.path = basePath;
-		for (const resolvePath of this.resolvePathStack) resolvePath(this.path);
-		return new HttpRequest({
-			protocol,
-			hostname: this.hostname || hostname,
-			port,
-			method: this.method,
-			path: this.path,
-			query: this.query,
-			body: this.body,
-			headers: this.headers
+	static [Symbol.hasInstance](lhs) {
+		const isPrototype = this.prototype.isPrototypeOf(lhs);
+		if (!isPrototype && typeof lhs === "object" && lhs !== null) {
+			const ns = lhs;
+			return ns.symbol === this.symbol;
+		}
+		return isPrototype;
+	}
+	static of(ref) {
+		const sc = deref(ref);
+		if (sc instanceof NormalizedSchema) return sc;
+		if (isMemberSchema(sc)) {
+			const [ns, traits] = sc;
+			if (ns instanceof NormalizedSchema) {
+				Object.assign(ns.getMergedTraits(), translateTraits(traits));
+				return ns;
+			}
+			throw new Error(`@smithy/core/schema - may not init unwrapped member schema=${JSON.stringify(ref, null, 2)}.`);
+		}
+		return new NormalizedSchema(sc);
+	}
+	getSchema() {
+		const sc = this.schema;
+		if (sc[0] === 0) return sc[4];
+		return sc;
+	}
+	getName(withNamespace = false) {
+		const { name: name$1 } = this;
+		const short = !withNamespace && name$1 && name$1.includes("#");
+		return short ? name$1.split("#")[1] : name$1 || undefined;
+	}
+	getMemberName() {
+		return this.memberName;
+	}
+	isMemberSchema() {
+		return this._isMemberSchema;
+	}
+	isListSchema() {
+		const sc = this.getSchema();
+		return typeof sc === "number" ? sc >= 64 && sc < 128 : sc[0] === 1;
+	}
+	isMapSchema() {
+		const sc = this.getSchema();
+		return typeof sc === "number" ? sc >= 128 && sc <= 255 : sc[0] === 2;
+	}
+	isStructSchema() {
+		const sc = this.getSchema();
+		const id = sc[0];
+		return id === 3 || id === -3 || id === 4;
+	}
+	isUnionSchema() {
+		const sc = this.getSchema();
+		return sc[0] === 4;
+	}
+	isBlobSchema() {
+		const sc = this.getSchema();
+		return sc === 21 || sc === 42;
+	}
+	isTimestampSchema() {
+		const sc = this.getSchema();
+		return typeof sc === "number" && sc >= 4 && sc <= 7;
+	}
+	isUnitSchema() {
+		return this.getSchema() === "unit";
+	}
+	isDocumentSchema() {
+		return this.getSchema() === 15;
+	}
+	isStringSchema() {
+		return this.getSchema() === 0;
+	}
+	isBooleanSchema() {
+		return this.getSchema() === 2;
+	}
+	isNumericSchema() {
+		return this.getSchema() === 1;
+	}
+	isBigIntegerSchema() {
+		return this.getSchema() === 17;
+	}
+	isBigDecimalSchema() {
+		return this.getSchema() === 19;
+	}
+	isStreaming() {
+		const { streaming } = this.getMergedTraits();
+		return !!streaming || this.getSchema() === 42;
+	}
+	isIdempotencyToken() {
+		return !!this.getMergedTraits().idempotencyToken;
+	}
+	getMergedTraits() {
+		return this.normalizedTraits ?? (this.normalizedTraits = {
+			...this.getOwnTraits(),
+			...this.getMemberTraits()
 		});
 	}
-	hn(hostname) {
-		this.hostname = hostname;
-		return this;
+	getMemberTraits() {
+		return translateTraits(this.memberTraits);
 	}
-	bp(uriLabel) {
-		this.resolvePathStack.push((basePath) => {
-			this.path = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + uriLabel;
-		});
-		return this;
+	getOwnTraits() {
+		return translateTraits(this.traits);
 	}
-	p(memberName, labelValueProvider, uriLabel, isGreedyLabel) {
-		this.resolvePathStack.push((path) => {
-			this.path = resolvedPath(path, this.input, memberName, labelValueProvider, uriLabel, isGreedyLabel);
-		});
-		return this;
+	getKeySchema() {
+		const [isDoc, isMap] = [this.isDocumentSchema(), this.isMapSchema()];
+		if (!isDoc && !isMap) throw new Error(`@smithy/core/schema - cannot get key for non-map: ${this.getName(true)}`);
+		const schema = this.getSchema();
+		const memberSchema = isDoc ? 15 : schema[4] ?? 0;
+		return member([memberSchema, 0], "key");
 	}
-	h(headers) {
-		this.headers = headers;
-		return this;
+	getValueSchema() {
+		const sc = this.getSchema();
+		const [isDoc, isMap, isList] = [
+			this.isDocumentSchema(),
+			this.isMapSchema(),
+			this.isListSchema()
+		];
+		const memberSchema = typeof sc === "number" ? 63 & sc : sc && typeof sc === "object" && (isMap || isList) ? sc[3 + sc[0]] : isDoc ? 15 : void 0;
+		if (memberSchema != null) return member([memberSchema, 0], isMap ? "value" : "member");
+		throw new Error(`@smithy/core/schema - ${this.getName(true)} has no value member.`);
 	}
-	q(query) {
-		this.query = query;
-		return this;
+	getMemberSchema(memberName) {
+		const struct = this.getSchema();
+		if (this.isStructSchema() && struct[4].includes(memberName)) {
+			const i$2 = struct[4].indexOf(memberName);
+			const memberSchema = struct[5][i$2];
+			return member(isMemberSchema(memberSchema) ? memberSchema : [memberSchema, 0], memberName);
+		}
+		if (this.isDocumentSchema()) return member([15, 0], memberName);
+		throw new Error(`@smithy/core/schema - ${this.getName(true)} has no no member=${memberName}.`);
 	}
-	b(body) {
-		this.body = body;
-		return this;
+	getMemberSchemas() {
+		const buffer$1 = {};
+		try {
+			for (const [k$1, v$2] of this.structIterator()) buffer$1[k$1] = v$2;
+		} catch (ignored) {}
+		return buffer$1;
 	}
-	m(method$1) {
-		this.method = method$1;
-		return this;
+	getEventStreamMember() {
+		if (this.isStructSchema()) {
+			for (const [memberName, memberSchema] of this.structIterator()) if (memberSchema.isStreaming() && memberSchema.isStructSchema()) return memberName;
+		}
+		return "";
+	}
+	*structIterator() {
+		if (this.isUnitSchema()) return;
+		if (!this.isStructSchema()) throw new Error("@smithy/core/schema - cannot iterate non-struct schema.");
+		const struct = this.getSchema();
+		const z$1 = struct[4].length;
+		let it = struct[anno.it];
+		if (it && z$1 === it.length) {
+			yield* it;
+			return;
+		}
+		it = Array(z$1);
+		for (let i$2 = 0; i$2 < z$1; ++i$2) {
+			const k$1 = struct[4][i$2];
+			const v$2 = member([struct[5][i$2], 0], k$1);
+			yield it[i$2] = [k$1, v$2];
+		}
+		struct[anno.it] = it;
+	}
+};
+function member(memberSchema, memberName) {
+	if (memberSchema instanceof NormalizedSchema) return Object.assign(memberSchema, {
+		memberName,
+		_isMemberSchema: true
+	});
+	const internalCtorAccess = NormalizedSchema;
+	return new internalCtorAccess(memberSchema, memberName);
+}
+const isMemberSchema = (sc) => Array.isArray(sc) && sc.length === 2;
+const isStaticSchema = (sc) => Array.isArray(sc) && sc.length >= 5;
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/schema/TypeRegistry.js
+var TypeRegistry = class TypeRegistry {
+	namespace;
+	schemas;
+	exceptions;
+	static registries = new Map();
+	constructor(namespace, schemas = new Map(), exceptions = new Map()) {
+		this.namespace = namespace;
+		this.schemas = schemas;
+		this.exceptions = exceptions;
+	}
+	static for(namespace) {
+		if (!TypeRegistry.registries.has(namespace)) TypeRegistry.registries.set(namespace, new TypeRegistry(namespace));
+		return TypeRegistry.registries.get(namespace);
+	}
+	register(shapeId, schema) {
+		const qualifiedName = this.normalizeShapeId(shapeId);
+		const registry = TypeRegistry.for(qualifiedName.split("#")[0]);
+		registry.schemas.set(qualifiedName, schema);
+	}
+	getSchema(shapeId) {
+		const id = this.normalizeShapeId(shapeId);
+		if (!this.schemas.has(id)) throw new Error(`@smithy/core/schema - schema not found for ${id}`);
+		return this.schemas.get(id);
+	}
+	registerError(es, ctor) {
+		const $error = es;
+		const registry = TypeRegistry.for($error[1]);
+		registry.schemas.set($error[1] + "#" + $error[2], $error);
+		registry.exceptions.set($error, ctor);
+	}
+	getErrorCtor(es) {
+		const $error = es;
+		const registry = TypeRegistry.for($error[1]);
+		return registry.exceptions.get($error);
+	}
+	getBaseException() {
+		for (const exceptionKey of this.exceptions.keys()) if (Array.isArray(exceptionKey)) {
+			const [, ns, name$1] = exceptionKey;
+			const id = ns + "#" + name$1;
+			if (id.startsWith("smithy.ts.sdk.synthetic.") && id.endsWith("ServiceException")) return exceptionKey;
+		}
+		return undefined;
+	}
+	find(predicate) {
+		return [...this.schemas.values()].find(predicate);
+	}
+	clear() {
+		this.schemas.clear();
+		this.exceptions.clear();
+	}
+	normalizeShapeId(shapeId) {
+		if (shapeId.includes("#")) return shapeId;
+		return this.namespace + "#" + shapeId;
 	}
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/setFeature.js
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/serde/date-utils.js
+const DAYS = [
+	"Sun",
+	"Mon",
+	"Tue",
+	"Wed",
+	"Thu",
+	"Fri",
+	"Sat"
+];
+const MONTHS = [
+	"Jan",
+	"Feb",
+	"Mar",
+	"Apr",
+	"May",
+	"Jun",
+	"Jul",
+	"Aug",
+	"Sep",
+	"Oct",
+	"Nov",
+	"Dec"
+];
+function dateToUtcString(date$1) {
+	const year$1 = date$1.getUTCFullYear();
+	const month = date$1.getUTCMonth();
+	const dayOfWeek = date$1.getUTCDay();
+	const dayOfMonthInt = date$1.getUTCDate();
+	const hoursInt = date$1.getUTCHours();
+	const minutesInt = date$1.getUTCMinutes();
+	const secondsInt = date$1.getUTCSeconds();
+	const dayOfMonthString = dayOfMonthInt < 10 ? `0${dayOfMonthInt}` : `${dayOfMonthInt}`;
+	const hoursString = hoursInt < 10 ? `0${hoursInt}` : `${hoursInt}`;
+	const minutesString = minutesInt < 10 ? `0${minutesInt}` : `${minutesInt}`;
+	const secondsString = secondsInt < 10 ? `0${secondsInt}` : `${secondsInt}`;
+	return `${DAYS[dayOfWeek]}, ${dayOfMonthString} ${MONTHS[month]} ${year$1} ${hoursString}:${minutesString}:${secondsString} GMT`;
+}
+const RFC3339 = new RegExp(/^(\d{4})-(\d{2})-(\d{2})[tT](\d{2}):(\d{2}):(\d{2})(?:\.(\d+))?[zZ]$/);
+const RFC3339_WITH_OFFSET$1 = new RegExp(/^(\d{4})-(\d{2})-(\d{2})[tT](\d{2}):(\d{2}):(\d{2})(?:\.(\d+))?(([-+]\d{2}\:\d{2})|[zZ])$/);
+const IMF_FIXDATE$1 = new RegExp(/^(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun), (\d{2}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{4}) (\d{1,2}):(\d{2}):(\d{2})(?:\.(\d+))? GMT$/);
+const RFC_850_DATE$1 = new RegExp(/^(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), (\d{2})-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-(\d{2}) (\d{1,2}):(\d{2}):(\d{2})(?:\.(\d+))? GMT$/);
+const ASC_TIME$1 = new RegExp(/^(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) ( [1-9]|\d{2}) (\d{1,2}):(\d{2}):(\d{2})(?:\.(\d+))? (\d{4})$/);
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+uuid@1.1.0/node_modules/@smithy/uuid/dist-es/randomUUID.browser.js
+const randomUUID = typeof crypto !== "undefined" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+uuid@1.1.0/node_modules/@smithy/uuid/dist-es/v4.js
+const decimalToHex = Array.from({ length: 256 }, (_, i$2) => i$2.toString(16).padStart(2, "0"));
+const v4 = () => {
+	if (randomUUID) return randomUUID();
+	const rnds = new Uint8Array(16);
+	crypto.getRandomValues(rnds);
+	rnds[6] = rnds[6] & 15 | 64;
+	rnds[8] = rnds[8] & 63 | 128;
+	return decimalToHex[rnds[0]] + decimalToHex[rnds[1]] + decimalToHex[rnds[2]] + decimalToHex[rnds[3]] + "-" + decimalToHex[rnds[4]] + decimalToHex[rnds[5]] + "-" + decimalToHex[rnds[6]] + decimalToHex[rnds[7]] + "-" + decimalToHex[rnds[8]] + decimalToHex[rnds[9]] + "-" + decimalToHex[rnds[10]] + decimalToHex[rnds[11]] + decimalToHex[rnds[12]] + decimalToHex[rnds[13]] + decimalToHex[rnds[14]] + decimalToHex[rnds[15]];
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/serde/lazy-json.js
+const LazyJsonString = function LazyJsonString$1(val) {
+	const str = Object.assign(new String(val), {
+		deserializeJSON() {
+			return JSON.parse(String(val));
+		},
+		toString() {
+			return String(val);
+		},
+		toJSON() {
+			return String(val);
+		}
+	});
+	return str;
+};
+LazyJsonString.from = (object) => {
+	if (object && typeof object === "object" && (object instanceof LazyJsonString || "deserializeJSON" in object)) return object;
+else if (typeof object === "string" || Object.getPrototypeOf(object) === String.prototype) return LazyJsonString(String(object));
+	return LazyJsonString(JSON.stringify(object));
+};
+LazyJsonString.fromObject = LazyJsonString.from;
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/serde/quote-header.js
+function quoteHeader(part) {
+	if (part.includes(",") || part.includes("\"")) part = `"${part.replace(/"/g, "\\\"")}"`;
+	return part;
+}
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/serde/schema-serde-lib/schema-date-utils.js
+const ddd = `(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)(?:[ne|u?r]?s?day)?`;
+const mmm = `(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)`;
+const time = `(\\d?\\d):(\\d{2}):(\\d{2})(?:\\.(\\d+))?`;
+const date = `(\\d?\\d)`;
+const year = `(\\d{4})`;
+const RFC3339_WITH_OFFSET = new RegExp(/^(\d{4})-(\d\d)-(\d\d)[tT](\d\d):(\d\d):(\d\d)(\.(\d+))?(([-+]\d\d:\d\d)|[zZ])$/);
+const IMF_FIXDATE = new RegExp(`^${ddd}, ${date} ${mmm} ${year} ${time} GMT$`);
+const RFC_850_DATE = new RegExp(`^${ddd}, ${date}-${mmm}-(\\d\\d) ${time} GMT$`);
+const ASC_TIME = new RegExp(`^${ddd} ${mmm} ( [1-9]|\\d\\d) ${time} ${year}$`);
+const months = [
+	"Jan",
+	"Feb",
+	"Mar",
+	"Apr",
+	"May",
+	"Jun",
+	"Jul",
+	"Aug",
+	"Sep",
+	"Oct",
+	"Nov",
+	"Dec"
+];
+const _parseEpochTimestamp = (value) => {
+	if (value == null) return void 0;
+	let num = NaN;
+	if (typeof value === "number") num = value;
+else if (typeof value === "string") {
+		if (!/^-?\d*\.?\d+$/.test(value)) throw new TypeError(`parseEpochTimestamp - numeric string invalid.`);
+		num = Number.parseFloat(value);
+	} else if (typeof value === "object" && value.tag === 1) num = value.value;
+	if (isNaN(num) || Math.abs(num) === Infinity) throw new TypeError("Epoch timestamps must be valid finite numbers.");
+	return new Date(Math.round(num * 1e3));
+};
+const _parseRfc3339DateTimeWithOffset = (value) => {
+	if (value == null) return void 0;
+	if (typeof value !== "string") throw new TypeError("RFC3339 timestamps must be strings");
+	const matches = RFC3339_WITH_OFFSET.exec(value);
+	if (!matches) throw new TypeError(`Invalid RFC3339 timestamp format ${value}`);
+	const [, yearStr, monthStr, dayStr, hours, minutes, seconds, , ms, offsetStr] = matches;
+	range(monthStr, 1, 12);
+	range(dayStr, 1, 31);
+	range(hours, 0, 23);
+	range(minutes, 0, 59);
+	range(seconds, 0, 60);
+	const date$1 = new Date(Date.UTC(Number(yearStr), Number(monthStr) - 1, Number(dayStr), Number(hours), Number(minutes), Number(seconds), Number(ms) ? Math.round(parseFloat(`0.${ms}`) * 1e3) : 0));
+	date$1.setUTCFullYear(Number(yearStr));
+	if (offsetStr.toUpperCase() != "Z") {
+		const [, sign, offsetH, offsetM] = /([+-])(\d\d):(\d\d)/.exec(offsetStr) || [
+			void 0,
+			"+",
+			0,
+			0
+		];
+		const scalar = sign === "-" ? 1 : -1;
+		date$1.setTime(date$1.getTime() + scalar * (Number(offsetH) * 60 * 60 * 1e3 + Number(offsetM) * 60 * 1e3));
+	}
+	return date$1;
+};
+const _parseRfc7231DateTime = (value) => {
+	if (value == null) return void 0;
+	if (typeof value !== "string") throw new TypeError("RFC7231 timestamps must be strings.");
+	let day;
+	let month;
+	let year$1;
+	let hour;
+	let minute;
+	let second;
+	let fraction;
+	let matches;
+	if (matches = IMF_FIXDATE.exec(value)) [, day, month, year$1, hour, minute, second, fraction] = matches;
+else if (matches = RFC_850_DATE.exec(value)) {
+		[, day, month, year$1, hour, minute, second, fraction] = matches;
+		year$1 = (Number(year$1) + 1900).toString();
+	} else if (matches = ASC_TIME.exec(value)) [, month, day, hour, minute, second, fraction, year$1] = matches;
+	if (year$1 && second) {
+		const timestamp = Date.UTC(Number(year$1), months.indexOf(month), Number(day), Number(hour), Number(minute), Number(second), fraction ? Math.round(parseFloat(`0.${fraction}`) * 1e3) : 0);
+		range(day, 1, 31);
+		range(hour, 0, 23);
+		range(minute, 0, 59);
+		range(second, 0, 60);
+		const date$1 = new Date(timestamp);
+		date$1.setUTCFullYear(Number(year$1));
+		return date$1;
+	}
+	throw new TypeError(`Invalid RFC7231 date-time value ${value}.`);
+};
+function range(v$2, min, max) {
+	const _v = Number(v$2);
+	if (_v < min || _v > max) throw new Error(`Value ${_v} out of range [${min}, ${max}]`);
+}
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/serde/split-every.js
+function splitEvery(value, delimiter, numDelimiters) {
+	if (numDelimiters <= 0 || !Number.isInteger(numDelimiters)) throw new Error("Invalid number of delimiters (" + numDelimiters + ") for splitEvery.");
+	const segments = value.split(delimiter);
+	if (numDelimiters === 1) return segments;
+	const compoundSegments = [];
+	let currentSegment = "";
+	for (let i$2 = 0; i$2 < segments.length; i$2++) {
+		if (currentSegment === "") currentSegment = segments[i$2];
+else currentSegment += delimiter + segments[i$2];
+		if ((i$2 + 1) % numDelimiters === 0) {
+			compoundSegments.push(currentSegment);
+			currentSegment = "";
+		}
+	}
+	if (currentSegment !== "") compoundSegments.push(currentSegment);
+	return compoundSegments;
+}
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/serde/split-header.js
+const splitHeader = (value) => {
+	const z$1 = value.length;
+	const values = [];
+	let withinQuotes = false;
+	let prevChar = undefined;
+	let anchor = 0;
+	for (let i$2 = 0; i$2 < z$1; ++i$2) {
+		const char = value[i$2];
+		switch (char) {
+			case `"`:
+				if (prevChar !== "\\") withinQuotes = !withinQuotes;
+				break;
+			case ",":
+				if (!withinQuotes) {
+					values.push(value.slice(anchor, i$2));
+					anchor = i$2 + 1;
+				}
+				break;
+			default:
+		}
+		prevChar = char;
+	}
+	values.push(value.slice(anchor));
+	return values.map((v$2) => {
+		v$2 = v$2.trim();
+		const z$2 = v$2.length;
+		if (z$2 < 2) return v$2;
+		if (v$2[0] === `"` && v$2[z$2 - 1] === `"`) v$2 = v$2.slice(1, z$2 - 1);
+		return v$2.replace(/\\"/g, "\"");
+	});
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/serde/value/NumericValue.js
+const format = /^-?\d*(\.\d+)?$/;
+var NumericValue = class NumericValue {
+	string;
+	type;
+	constructor(string, type) {
+		this.string = string;
+		this.type = type;
+		if (!format.test(string)) throw new Error(`@smithy/core/serde - NumericValue must only contain [0-9], at most one decimal point ".", and an optional negation prefix "-".`);
+	}
+	toString() {
+		return this.string;
+	}
+	static [Symbol.hasInstance](object) {
+		if (!object || typeof object !== "object") return false;
+		const _nv = object;
+		return NumericValue.prototype.isPrototypeOf(object) || _nv.type === "bigDecimal" && format.test(_nv.string);
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/protocols/SerdeContext.js
+var SerdeContext = class {
+	serdeContext;
+	setSerdeContext(serdeContext) {
+		this.serdeContext = serdeContext;
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/protocols/HttpProtocol.js
+var HttpProtocol = class extends SerdeContext {
+	options;
+	constructor(options) {
+		super();
+		this.options = options;
+	}
+	getRequestType() {
+		return HttpRequest;
+	}
+	getResponseType() {
+		return HttpResponse;
+	}
+	setSerdeContext(serdeContext) {
+		this.serdeContext = serdeContext;
+		this.serializer.setSerdeContext(serdeContext);
+		this.deserializer.setSerdeContext(serdeContext);
+		if (this.getPayloadCodec()) this.getPayloadCodec().setSerdeContext(serdeContext);
+	}
+	updateServiceEndpoint(request, endpoint) {
+		if ("url" in endpoint) {
+			request.protocol = endpoint.url.protocol;
+			request.hostname = endpoint.url.hostname;
+			request.port = endpoint.url.port ? Number(endpoint.url.port) : undefined;
+			request.path = endpoint.url.pathname;
+			request.fragment = endpoint.url.hash || void 0;
+			request.username = endpoint.url.username || void 0;
+			request.password = endpoint.url.password || void 0;
+			if (!request.query) request.query = {};
+			for (const [k$1, v$2] of endpoint.url.searchParams.entries()) request.query[k$1] = v$2;
+			return request;
+		} else {
+			request.protocol = endpoint.protocol;
+			request.hostname = endpoint.hostname;
+			request.port = endpoint.port ? Number(endpoint.port) : undefined;
+			request.path = endpoint.path;
+			request.query = { ...endpoint.query };
+			return request;
+		}
+	}
+	setHostPrefix(request, operationSchema, input) {
+		if (this.serdeContext?.disableHostPrefix) return;
+		const inputNs = NormalizedSchema.of(operationSchema.input);
+		const opTraits = translateTraits(operationSchema.traits ?? {});
+		if (opTraits.endpoint) {
+			let hostPrefix = opTraits.endpoint?.[0];
+			if (typeof hostPrefix === "string") {
+				const hostLabelInputs = [...inputNs.structIterator()].filter(([, member$1]) => member$1.getMergedTraits().hostLabel);
+				for (const [name$1] of hostLabelInputs) {
+					const replacement = input[name$1];
+					if (typeof replacement !== "string") throw new Error(`@smithy/core/schema - ${name$1} in input must be a string as hostLabel.`);
+					hostPrefix = hostPrefix.replace(`{${name$1}}`, replacement);
+				}
+				request.hostname = hostPrefix + request.hostname;
+			}
+		}
+	}
+	deserializeMetadata(output) {
+		return {
+			httpStatusCode: output.statusCode,
+			requestId: output.headers["x-amzn-requestid"] ?? output.headers["x-amzn-request-id"] ?? output.headers["x-amz-request-id"],
+			extendedRequestId: output.headers["x-amz-id-2"],
+			cfId: output.headers["x-amz-cf-id"]
+		};
+	}
+	async serializeEventStream({ eventStream, requestSchema, initialRequest }) {
+		const eventStreamSerde = await this.loadEventStreamCapability();
+		return eventStreamSerde.serializeEventStream({
+			eventStream,
+			requestSchema,
+			initialRequest
+		});
+	}
+	async deserializeEventStream({ response, responseSchema, initialResponseContainer }) {
+		const eventStreamSerde = await this.loadEventStreamCapability();
+		return eventStreamSerde.deserializeEventStream({
+			response,
+			responseSchema,
+			initialResponseContainer
+		});
+	}
+	async loadEventStreamCapability() {
+		const { EventStreamSerde: EventStreamSerde$1 } = await Promise.resolve().then(function() {
+			return init_event_streams(), event_streams_exports;
+		});
+		return new EventStreamSerde$1({
+			marshaller: this.getEventStreamMarshaller(),
+			serializer: this.serializer,
+			deserializer: this.deserializer,
+			serdeContext: this.serdeContext,
+			defaultContentType: this.getDefaultContentType()
+		});
+	}
+	getDefaultContentType() {
+		throw new Error(`@smithy/core/protocols - ${this.constructor.name} getDefaultContentType() implementation missing.`);
+	}
+	async deserializeHttpMessage(schema, context, response, arg4, arg5) {
+		void schema;
+		void context;
+		void response;
+		void arg4;
+		void arg5;
+		return [];
+	}
+	getEventStreamMarshaller() {
+		const context = this.serdeContext;
+		if (!context.eventStreamMarshaller) throw new Error("@smithy/core - HttpProtocol: eventStreamMarshaller missing in serdeContext.");
+		return context.eventStreamMarshaller;
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/protocols/HttpBindingProtocol.js
+var HttpBindingProtocol = class extends HttpProtocol {
+	async serializeRequest(operationSchema, _input, context) {
+		const input = { ..._input ?? {} };
+		const serializer = this.serializer;
+		const query = {};
+		const headers = {};
+		const endpoint = await context.endpoint();
+		const ns = NormalizedSchema.of(operationSchema?.input);
+		const schema = ns.getSchema();
+		let hasNonHttpBindingMember = false;
+		let payload;
+		const request = new HttpRequest({
+			protocol: "",
+			hostname: "",
+			port: undefined,
+			path: "",
+			fragment: undefined,
+			query,
+			headers,
+			body: undefined
+		});
+		if (endpoint) {
+			this.updateServiceEndpoint(request, endpoint);
+			this.setHostPrefix(request, operationSchema, input);
+			const opTraits = translateTraits(operationSchema.traits);
+			if (opTraits.http) {
+				request.method = opTraits.http[0];
+				const [path, search] = opTraits.http[1].split("?");
+				if (request.path == "/") request.path = path;
+else request.path += path;
+				const traitSearchParams = new URLSearchParams(search ?? "");
+				Object.assign(query, Object.fromEntries(traitSearchParams));
+			}
+		}
+		for (const [memberName, memberNs] of ns.structIterator()) {
+			const memberTraits = memberNs.getMergedTraits() ?? {};
+			const inputMemberValue = input[memberName];
+			if (inputMemberValue == null && !memberNs.isIdempotencyToken()) {
+				if (memberTraits.httpLabel) {
+					if (request.path.includes(`{${memberName}+}`) || request.path.includes(`{${memberName}}`)) throw new Error(`No value provided for input HTTP label: ${memberName}.`);
+				}
+				continue;
+			}
+			if (memberTraits.httpPayload) {
+				const isStreaming$1 = memberNs.isStreaming();
+				if (isStreaming$1) {
+					const isEventStream = memberNs.isStructSchema();
+					if (isEventStream) {
+						if (input[memberName]) payload = await this.serializeEventStream({
+							eventStream: input[memberName],
+							requestSchema: ns
+						});
+					} else payload = inputMemberValue;
+				} else {
+					serializer.write(memberNs, inputMemberValue);
+					payload = serializer.flush();
+				}
+				delete input[memberName];
+			} else if (memberTraits.httpLabel) {
+				serializer.write(memberNs, inputMemberValue);
+				const replacement = serializer.flush();
+				if (request.path.includes(`{${memberName}+}`)) request.path = request.path.replace(`{${memberName}+}`, replacement.split("/").map(extendedEncodeURIComponent).join("/"));
+else if (request.path.includes(`{${memberName}}`)) request.path = request.path.replace(`{${memberName}}`, extendedEncodeURIComponent(replacement));
+				delete input[memberName];
+			} else if (memberTraits.httpHeader) {
+				serializer.write(memberNs, inputMemberValue);
+				headers[memberTraits.httpHeader.toLowerCase()] = String(serializer.flush());
+				delete input[memberName];
+			} else if (typeof memberTraits.httpPrefixHeaders === "string") {
+				for (const [key, val] of Object.entries(inputMemberValue)) {
+					const amalgam = memberTraits.httpPrefixHeaders + key;
+					serializer.write([memberNs.getValueSchema(), { httpHeader: amalgam }], val);
+					headers[amalgam.toLowerCase()] = serializer.flush();
+				}
+				delete input[memberName];
+			} else if (memberTraits.httpQuery || memberTraits.httpQueryParams) {
+				this.serializeQuery(memberNs, inputMemberValue, query);
+				delete input[memberName];
+			} else hasNonHttpBindingMember = true;
+		}
+		if (hasNonHttpBindingMember && input) {
+			serializer.write(schema, input);
+			payload = serializer.flush();
+		}
+		request.headers = headers;
+		request.query = query;
+		request.body = payload;
+		return request;
+	}
+	serializeQuery(ns, data, query) {
+		const serializer = this.serializer;
+		const traits = ns.getMergedTraits();
+		if (traits.httpQueryParams) {
+			for (const [key, val] of Object.entries(data)) if (!(key in query)) {
+				const valueSchema = ns.getValueSchema();
+				Object.assign(valueSchema.getMergedTraits(), {
+					...traits,
+					httpQuery: key,
+					httpQueryParams: undefined
+				});
+				this.serializeQuery(valueSchema, val, query);
+			}
+			return;
+		}
+		if (ns.isListSchema()) {
+			const sparse = !!ns.getMergedTraits().sparse;
+			const buffer$1 = [];
+			for (const item of data) {
+				serializer.write([ns.getValueSchema(), traits], item);
+				const serializable = serializer.flush();
+				if (sparse || serializable !== undefined) buffer$1.push(serializable);
+			}
+			query[traits.httpQuery] = buffer$1;
+		} else {
+			serializer.write([ns, traits], data);
+			query[traits.httpQuery] = serializer.flush();
+		}
+	}
+	async deserializeResponse(operationSchema, context, response) {
+		const deserializer = this.deserializer;
+		const ns = NormalizedSchema.of(operationSchema.output);
+		const dataObject = {};
+		if (response.statusCode >= 300) {
+			const bytes = await collectBody$1(response.body, context);
+			if (bytes.byteLength > 0) Object.assign(dataObject, await deserializer.read(15, bytes));
+			await this.handleError(operationSchema, context, response, dataObject, this.deserializeMetadata(response));
+			throw new Error("@smithy/core/protocols - HTTP Protocol error handler failed to throw.");
+		}
+		for (const header in response.headers) {
+			const value = response.headers[header];
+			delete response.headers[header];
+			response.headers[header.toLowerCase()] = value;
+		}
+		const nonHttpBindingMembers = await this.deserializeHttpMessage(ns, context, response, dataObject);
+		if (nonHttpBindingMembers.length) {
+			const bytes = await collectBody$1(response.body, context);
+			if (bytes.byteLength > 0) {
+				const dataFromBody = await deserializer.read(ns, bytes);
+				for (const member$1 of nonHttpBindingMembers) dataObject[member$1] = dataFromBody[member$1];
+			}
+		} else if (nonHttpBindingMembers.discardResponseBody) await collectBody$1(response.body, context);
+		dataObject.$metadata = this.deserializeMetadata(response);
+		return dataObject;
+	}
+	async deserializeHttpMessage(schema, context, response, arg4, arg5) {
+		let dataObject;
+		if (arg4 instanceof Set) dataObject = arg5;
+else dataObject = arg4;
+		let discardResponseBody = true;
+		const deserializer = this.deserializer;
+		const ns = NormalizedSchema.of(schema);
+		const nonHttpBindingMembers = [];
+		for (const [memberName, memberSchema] of ns.structIterator()) {
+			const memberTraits = memberSchema.getMemberTraits();
+			if (memberTraits.httpPayload) {
+				discardResponseBody = false;
+				const isStreaming$1 = memberSchema.isStreaming();
+				if (isStreaming$1) {
+					const isEventStream = memberSchema.isStructSchema();
+					if (isEventStream) dataObject[memberName] = await this.deserializeEventStream({
+						response,
+						responseSchema: ns
+					});
+else dataObject[memberName] = sdkStreamMixin(response.body);
+				} else if (response.body) {
+					const bytes = await collectBody$1(response.body, context);
+					if (bytes.byteLength > 0) dataObject[memberName] = await deserializer.read(memberSchema, bytes);
+				}
+			} else if (memberTraits.httpHeader) {
+				const key = String(memberTraits.httpHeader).toLowerCase();
+				const value = response.headers[key];
+				if (null != value) if (memberSchema.isListSchema()) {
+					const headerListValueSchema = memberSchema.getValueSchema();
+					headerListValueSchema.getMergedTraits().httpHeader = key;
+					let sections;
+					if (headerListValueSchema.isTimestampSchema() && headerListValueSchema.getSchema() === 4) sections = splitEvery(value, ",", 2);
+else sections = splitHeader(value);
+					const list = [];
+					for (const section of sections) list.push(await deserializer.read(headerListValueSchema, section.trim()));
+					dataObject[memberName] = list;
+				} else dataObject[memberName] = await deserializer.read(memberSchema, value);
+			} else if (memberTraits.httpPrefixHeaders !== undefined) {
+				dataObject[memberName] = {};
+				for (const [header, value] of Object.entries(response.headers)) if (header.startsWith(memberTraits.httpPrefixHeaders)) {
+					const valueSchema = memberSchema.getValueSchema();
+					valueSchema.getMergedTraits().httpHeader = header;
+					dataObject[memberName][header.slice(memberTraits.httpPrefixHeaders.length)] = await deserializer.read(valueSchema, value);
+				}
+			} else if (memberTraits.httpResponseCode) dataObject[memberName] = response.statusCode;
+else nonHttpBindingMembers.push(memberName);
+		}
+		nonHttpBindingMembers.discardResponseBody = discardResponseBody;
+		return nonHttpBindingMembers;
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/protocols/serde/determineTimestampFormat.js
+function determineTimestampFormat(ns, settings$1) {
+	if (settings$1.timestampFormat.useTrait) {
+		if (ns.isTimestampSchema() && (ns.getSchema() === 5 || ns.getSchema() === 6 || ns.getSchema() === 7)) return ns.getSchema();
+	}
+	const { httpLabel, httpPrefixHeaders, httpHeader, httpQuery } = ns.getMergedTraits();
+	const bindingFormat = settings$1.httpBindings ? typeof httpPrefixHeaders === "string" || Boolean(httpHeader) ? 6 : Boolean(httpQuery) || Boolean(httpLabel) ? 5 : undefined : undefined;
+	return bindingFormat ?? settings$1.timestampFormat.default;
+}
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/protocols/serde/FromStringShapeDeserializer.js
+init_dist_es();
+var FromStringShapeDeserializer = class extends SerdeContext {
+	settings;
+	constructor(settings$1) {
+		super();
+		this.settings = settings$1;
+	}
+	read(_schema, data) {
+		const ns = NormalizedSchema.of(_schema);
+		if (ns.isListSchema()) return splitHeader(data).map((item) => this.read(ns.getValueSchema(), item));
+		if (ns.isBlobSchema()) return (this.serdeContext?.base64Decoder ?? fromBase64)(data);
+		if (ns.isTimestampSchema()) {
+			const format$1 = determineTimestampFormat(ns, this.settings);
+			switch (format$1) {
+				case 5: return _parseRfc3339DateTimeWithOffset(data);
+				case 6: return _parseRfc7231DateTime(data);
+				case 7: return _parseEpochTimestamp(data);
+				default:
+					console.warn("Missing timestamp format, parsing value with Date constructor:", data);
+					return new Date(data);
+			}
+		}
+		if (ns.isStringSchema()) {
+			const mediaType = ns.getMergedTraits().mediaType;
+			let intermediateValue = data;
+			if (mediaType) {
+				if (ns.getMergedTraits().httpHeader) intermediateValue = this.base64ToUtf8(intermediateValue);
+				const isJson = mediaType === "application/json" || mediaType.endsWith("+json");
+				if (isJson) intermediateValue = LazyJsonString.from(intermediateValue);
+				return intermediateValue;
+			}
+		}
+		if (ns.isNumericSchema()) return Number(data);
+		if (ns.isBigIntegerSchema()) return BigInt(data);
+		if (ns.isBigDecimalSchema()) return new NumericValue(data, "bigDecimal");
+		if (ns.isBooleanSchema()) return String(data).toLowerCase() === "true";
+		return data;
+	}
+	base64ToUtf8(base64String) {
+		return (this.serdeContext?.utf8Encoder ?? toUtf8)((this.serdeContext?.base64Decoder ?? fromBase64)(base64String));
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/protocols/serde/HttpInterceptingShapeDeserializer.js
+init_dist_es();
+var HttpInterceptingShapeDeserializer = class extends SerdeContext {
+	codecDeserializer;
+	stringDeserializer;
+	constructor(codecDeserializer, codecSettings) {
+		super();
+		this.codecDeserializer = codecDeserializer;
+		this.stringDeserializer = new FromStringShapeDeserializer(codecSettings);
+	}
+	setSerdeContext(serdeContext) {
+		this.stringDeserializer.setSerdeContext(serdeContext);
+		this.codecDeserializer.setSerdeContext(serdeContext);
+		this.serdeContext = serdeContext;
+	}
+	read(schema, data) {
+		const ns = NormalizedSchema.of(schema);
+		const traits = ns.getMergedTraits();
+		const toString = this.serdeContext?.utf8Encoder ?? toUtf8;
+		if (traits.httpHeader || traits.httpResponseCode) return this.stringDeserializer.read(ns, toString(data));
+		if (traits.httpPayload) {
+			if (ns.isBlobSchema()) {
+				const toBytes = this.serdeContext?.utf8Decoder ?? fromUtf8;
+				if (typeof data === "string") return toBytes(data);
+				return data;
+			} else if (ns.isStringSchema()) {
+				if ("byteLength" in data) return toString(data);
+				return data;
+			}
+		}
+		return this.codecDeserializer.read(ns, data);
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/protocols/serde/ToStringShapeSerializer.js
+var ToStringShapeSerializer = class extends SerdeContext {
+	settings;
+	stringBuffer = "";
+	constructor(settings$1) {
+		super();
+		this.settings = settings$1;
+	}
+	write(schema, value) {
+		const ns = NormalizedSchema.of(schema);
+		switch (typeof value) {
+			case "object":
+				if (value === null) {
+					this.stringBuffer = "null";
+					return;
+				}
+				if (ns.isTimestampSchema()) {
+					if (!(value instanceof Date)) throw new Error(`@smithy/core/protocols - received non-Date value ${value} when schema expected Date in ${ns.getName(true)}`);
+					const format$1 = determineTimestampFormat(ns, this.settings);
+					switch (format$1) {
+						case 5:
+							this.stringBuffer = value.toISOString().replace(".000Z", "Z");
+							break;
+						case 6:
+							this.stringBuffer = dateToUtcString(value);
+							break;
+						case 7:
+							this.stringBuffer = String(value.getTime() / 1e3);
+							break;
+						default:
+							console.warn("Missing timestamp format, using epoch seconds", value);
+							this.stringBuffer = String(value.getTime() / 1e3);
+					}
+					return;
+				}
+				if (ns.isBlobSchema() && "byteLength" in value) {
+					this.stringBuffer = (this.serdeContext?.base64Encoder ?? toBase64)(value);
+					return;
+				}
+				if (ns.isListSchema() && Array.isArray(value)) {
+					let buffer$1 = "";
+					for (const item of value) {
+						this.write([ns.getValueSchema(), ns.getMergedTraits()], item);
+						const headerItem = this.flush();
+						const serialized = ns.getValueSchema().isTimestampSchema() ? headerItem : quoteHeader(headerItem);
+						if (buffer$1 !== "") buffer$1 += ", ";
+						buffer$1 += serialized;
+					}
+					this.stringBuffer = buffer$1;
+					return;
+				}
+				this.stringBuffer = JSON.stringify(value, null, 2);
+				break;
+			case "string":
+				const mediaType = ns.getMergedTraits().mediaType;
+				let intermediateValue = value;
+				if (mediaType) {
+					const isJson = mediaType === "application/json" || mediaType.endsWith("+json");
+					if (isJson) intermediateValue = LazyJsonString.from(intermediateValue);
+					if (ns.getMergedTraits().httpHeader) {
+						this.stringBuffer = (this.serdeContext?.base64Encoder ?? toBase64)(intermediateValue.toString());
+						return;
+					}
+				}
+				this.stringBuffer = value;
+				break;
+			default: if (ns.isIdempotencyToken()) this.stringBuffer = v4();
+else this.stringBuffer = String(value);
+		}
+	}
+	flush() {
+		const buffer$1 = this.stringBuffer;
+		this.stringBuffer = "";
+		return buffer$1;
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/protocols/serde/HttpInterceptingShapeSerializer.js
+var HttpInterceptingShapeSerializer = class {
+	codecSerializer;
+	stringSerializer;
+	buffer;
+	constructor(codecSerializer, codecSettings, stringSerializer = new ToStringShapeSerializer(codecSettings)) {
+		this.codecSerializer = codecSerializer;
+		this.stringSerializer = stringSerializer;
+	}
+	setSerdeContext(serdeContext) {
+		this.codecSerializer.setSerdeContext(serdeContext);
+		this.stringSerializer.setSerdeContext(serdeContext);
+	}
+	write(schema, value) {
+		const ns = NormalizedSchema.of(schema);
+		const traits = ns.getMergedTraits();
+		if (traits.httpHeader || traits.httpLabel || traits.httpQuery) {
+			this.stringSerializer.write(ns, value);
+			this.buffer = this.stringSerializer.flush();
+			return;
+		}
+		return this.codecSerializer.write(ns, value);
+	}
+	flush() {
+		if (this.buffer !== undefined) {
+			const buffer$1 = this.buffer;
+			this.buffer = undefined;
+			return buffer$1;
+		}
+		return this.codecSerializer.flush();
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/setFeature.js
 function setFeature(context, feature, value) {
 	if (!context.__smithy_context) context.__smithy_context = { features: {} };
 else if (!context.__smithy_context.features) context.__smithy_context.features = {};
@@ -1309,10 +2492,10 @@ else if (!context.__smithy_context.features) context.__smithy_context.features =
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/util-identity-and-auth/DefaultIdentityProviderConfig.js
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/util-identity-and-auth/DefaultIdentityProviderConfig.js
 var DefaultIdentityProviderConfig = class {
+	authSchemes = new Map();
 	constructor(config$1) {
-		this.authSchemes = new Map();
 		for (const [key, value] of Object.entries(config$1)) if (value !== undefined) this.authSchemes.set(key, value);
 	}
 	getIdentityProvider(schemeId) {
@@ -1321,8 +2504,10 @@ var DefaultIdentityProviderConfig = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@2.5.6/node_modules/@smithy/core/dist-es/util-identity-and-auth/memoizeIdentityProvider.js
-const createIsIdentityExpiredFunction = (expirationMs) => (identity) => doesIdentityRequireRefresh(identity) && identity.expiration.getTime() - Date.now() < expirationMs;
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/util-identity-and-auth/memoizeIdentityProvider.js
+const createIsIdentityExpiredFunction = (expirationMs) => function isIdentityExpired$1(identity) {
+	return doesIdentityRequireRefresh(identity) && identity.expiration.getTime() - Date.now() < expirationMs;
+};
 const EXPIRATION_MS = 3e5;
 const isIdentityExpired = createIsIdentityExpiredFunction(EXPIRATION_MS);
 const doesIdentityRequireRefresh = (identity) => identity.expiration !== undefined;
@@ -1364,7 +2549,7 @@ const memoizeIdentityProvider = (provider, isExpired, requiresRefresh) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+property-provider@3.1.11/node_modules/@smithy/property-provider/dist-es/memoize.js
+//#region node_modules/.pnpm/@smithy+property-provider@4.2.8/node_modules/@smithy/property-provider/dist-es/memoize.js
 const memoize = (provider, isExpired, requiresRefresh) => {
 	let resolved;
 	let pending;
@@ -1401,14 +2586,14 @@ const memoize = (provider, isExpired, requiresRefresh) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+core@3.716.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/aws_sdk/resolveAwsSdkSigV4AConfig.js
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/aws_sdk/resolveAwsSdkSigV4AConfig.js
 const resolveAwsSdkSigV4AConfig = (config$1) => {
 	config$1.sigv4aSigningRegionSet = normalizeProvider(config$1.sigv4aSigningRegionSet);
 	return config$1;
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+signature-v4@4.2.4/node_modules/@smithy/signature-v4/dist-es/constants.js
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/constants.js
 const ALGORITHM_QUERY_PARAM = "X-Amz-Algorithm";
 const CREDENTIAL_QUERY_PARAM = "X-Amz-Credential";
 const AMZ_DATE_QUERY_PARAM = "X-Amz-Date";
@@ -1454,7 +2639,8 @@ const KEY_TYPE_IDENTIFIER = "aws4_request";
 const MAX_PRESIGNED_TTL = 604800;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+signature-v4@4.2.4/node_modules/@smithy/signature-v4/dist-es/credentialDerivation.js
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/credentialDerivation.js
+init_dist_es();
 const signingKeyCache = {};
 const cacheQueue = [];
 const createScope = (shortDate, region, service) => `${shortDate}/${region}/${service}/${KEY_TYPE_IDENTIFIER}`;
@@ -1480,7 +2666,7 @@ const hmac = (ctor, secret, data) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+signature-v4@4.2.4/node_modules/@smithy/signature-v4/dist-es/getCanonicalHeaders.js
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/getCanonicalHeaders.js
 const getCanonicalHeaders = ({ headers }, unsignableHeaders, signableHeaders) => {
 	const canonical = {};
 	for (const headerName of Object.keys(headers).sort()) {
@@ -1495,27 +2681,12 @@ const getCanonicalHeaders = ({ headers }, unsignableHeaders, signableHeaders) =>
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+signature-v4@4.2.4/node_modules/@smithy/signature-v4/dist-es/getCanonicalQuery.js
-const getCanonicalQuery = ({ query = {} }) => {
-	const keys$1 = [];
-	const serialized = {};
-	for (const key of Object.keys(query)) {
-		if (key.toLowerCase() === SIGNATURE_HEADER) continue;
-		const encodedKey = escapeUri(key);
-		keys$1.push(encodedKey);
-		const value = query[key];
-		if (typeof value === "string") serialized[encodedKey] = `${encodedKey}=${escapeUri(value)}`;
-else if (Array.isArray(value)) serialized[encodedKey] = value.slice(0).reduce((encoded, value$1) => encoded.concat([`${encodedKey}=${escapeUri(value$1)}`]), []).sort().join("&");
-	}
-	return keys$1.sort().map((key) => serialized[key]).filter((serialized$1) => serialized$1).join("&");
-};
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+is-array-buffer@3.0.0/node_modules/@smithy/is-array-buffer/dist-es/index.js
+//#region node_modules/.pnpm/@smithy+is-array-buffer@4.2.0/node_modules/@smithy/is-array-buffer/dist-es/index.js
 const isArrayBuffer = (arg) => typeof ArrayBuffer === "function" && arg instanceof ArrayBuffer || Object.prototype.toString.call(arg) === "[object ArrayBuffer]";
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+signature-v4@4.2.4/node_modules/@smithy/signature-v4/dist-es/getPayloadHash.js
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/getPayloadHash.js
+init_dist_es();
 const getPayloadHash = async ({ headers, body }, hashConstructor) => {
 	for (const headerName of Object.keys(headers)) if (headerName.toLowerCase() === SHA256_HEADER) return headers[headerName];
 	if (body == undefined) return "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
@@ -1528,12 +2699,13 @@ else if (typeof body === "string" || ArrayBuffer.isView(body) || isArrayBuffer(b
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+signature-v4@4.2.4/node_modules/@smithy/signature-v4/dist-es/HeaderFormatter.js
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/HeaderFormatter.js
+init_dist_es();
 var HeaderFormatter = class {
 	format(headers) {
 		const chunks = [];
 		for (const headerName of Object.keys(headers)) {
-			const bytes = fromUtf8$2(headerName);
+			const bytes = fromUtf8(headerName);
 			chunks.push(Uint8Array.from([bytes.byteLength]), bytes, this.formatHeaderValue(headers[headerName]));
 		}
 		const out = new Uint8Array(chunks.reduce((carry, bytes) => carry + bytes.byteLength, 0));
@@ -1571,7 +2743,7 @@ var HeaderFormatter = class {
 				binBytes.set(header.value, 3);
 				return binBytes;
 			case "string":
-				const utf8Bytes = fromUtf8$2(header.value);
+				const utf8Bytes = fromUtf8(header.value);
 				const strView = new DataView(new ArrayBuffer(3 + utf8Bytes.byteLength));
 				strView.setUint8(0, 7);
 				strView.setUint16(1, utf8Bytes.byteLength, false);
@@ -1607,6 +2779,7 @@ var HEADER_VALUE_TYPE$1;
 })(HEADER_VALUE_TYPE$1 || (HEADER_VALUE_TYPE$1 = {}));
 const UUID_PATTERN$1 = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
 var Int64$1 = class Int64$1 {
+	bytes;
 	constructor(bytes) {
 		this.bytes = bytes;
 		if (bytes.byteLength !== 8) throw new Error("Int64 buffers must be exactly 8 bytes");
@@ -1637,7 +2810,7 @@ function negate$1(bytes) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+signature-v4@4.2.4/node_modules/@smithy/signature-v4/dist-es/headerUtil.js
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/headerUtil.js
 const hasHeader$1 = (soughtHeader, headers) => {
 	soughtHeader = soughtHeader.toLowerCase();
 	for (const headerName of Object.keys(headers)) if (soughtHeader === headerName.toLowerCase()) return true;
@@ -1645,7 +2818,7 @@ const hasHeader$1 = (soughtHeader, headers) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+signature-v4@4.2.4/node_modules/@smithy/signature-v4/dist-es/moveHeadersToQuery.js
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/moveHeadersToQuery.js
 const moveHeadersToQuery = (request, options = {}) => {
 	const { headers, query = {} } = HttpRequest.clone(request);
 	for (const name$1 of Object.keys(headers)) {
@@ -1663,7 +2836,7 @@ const moveHeadersToQuery = (request, options = {}) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+signature-v4@4.2.4/node_modules/@smithy/signature-v4/dist-es/prepareRequest.js
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/prepareRequest.js
 const prepareRequest = (request) => {
 	request = HttpRequest.clone(request);
 	for (const headerName of Object.keys(request.headers)) if (GENERATED_HEADERS.indexOf(headerName.toLowerCase()) > -1) delete request.headers[headerName];
@@ -1671,22 +2844,44 @@ const prepareRequest = (request) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+signature-v4@4.2.4/node_modules/@smithy/signature-v4/dist-es/utilDate.js
-const iso8601 = (time) => toDate(time).toISOString().replace(/\.\d{3}Z$/, "Z");
-const toDate = (time) => {
-	if (typeof time === "number") return new Date(time * 1e3);
-	if (typeof time === "string") {
-		if (Number(time)) return new Date(Number(time) * 1e3);
-		return new Date(time);
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/getCanonicalQuery.js
+const getCanonicalQuery = ({ query = {} }) => {
+	const keys$1 = [];
+	const serialized = {};
+	for (const key of Object.keys(query)) {
+		if (key.toLowerCase() === SIGNATURE_HEADER) continue;
+		const encodedKey = escapeUri(key);
+		keys$1.push(encodedKey);
+		const value = query[key];
+		if (typeof value === "string") serialized[encodedKey] = `${encodedKey}=${escapeUri(value)}`;
+else if (Array.isArray(value)) serialized[encodedKey] = value.slice(0).reduce((encoded, value$1) => encoded.concat([`${encodedKey}=${escapeUri(value$1)}`]), []).sort().join("&");
 	}
-	return time;
+	return keys$1.sort().map((key) => serialized[key]).filter((serialized$1) => serialized$1).join("&");
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+signature-v4@4.2.4/node_modules/@smithy/signature-v4/dist-es/SignatureV4.js
-var SignatureV4 = class {
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/utilDate.js
+const iso8601 = (time$1) => toDate(time$1).toISOString().replace(/\.\d{3}Z$/, "Z");
+const toDate = (time$1) => {
+	if (typeof time$1 === "number") return new Date(time$1 * 1e3);
+	if (typeof time$1 === "string") {
+		if (Number(time$1)) return new Date(Number(time$1) * 1e3);
+		return new Date(time$1);
+	}
+	return time$1;
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/SignatureV4Base.js
+init_dist_es();
+var SignatureV4Base = class {
+	service;
+	regionProvider;
+	credentialProvider;
+	sha256;
+	uriEscapePath;
+	applyChecksum;
 	constructor({ applyChecksum, credentials, region, service, sha256, uriEscapePath = true }) {
-		this.headerFormatter = new HeaderFormatter();
 		this.service = service;
 		this.sha256 = sha256;
 		this.uriEscapePath = uriEscapePath;
@@ -1694,12 +2889,76 @@ var SignatureV4 = class {
 		this.regionProvider = normalizeProvider$1(region);
 		this.credentialProvider = normalizeProvider$1(credentials);
 	}
+	createCanonicalRequest(request, canonicalHeaders, payloadHash) {
+		const sortedHeaders = Object.keys(canonicalHeaders).sort();
+		return `${request.method}
+${this.getCanonicalPath(request)}
+${getCanonicalQuery(request)}
+${sortedHeaders.map((name$1) => `${name$1}:${canonicalHeaders[name$1]}`).join("\n")}
+
+${sortedHeaders.join(";")}
+${payloadHash}`;
+	}
+	async createStringToSign(longDate, credentialScope, canonicalRequest, algorithmIdentifier) {
+		const hash = new this.sha256();
+		hash.update(toUint8Array(canonicalRequest));
+		const hashedRequest = await hash.digest();
+		return `${algorithmIdentifier}
+${longDate}
+${credentialScope}
+${toHex(hashedRequest)}`;
+	}
+	getCanonicalPath({ path }) {
+		if (this.uriEscapePath) {
+			const normalizedPathSegments = [];
+			for (const pathSegment of path.split("/")) {
+				if (pathSegment?.length === 0) continue;
+				if (pathSegment === ".") continue;
+				if (pathSegment === "..") normalizedPathSegments.pop();
+else normalizedPathSegments.push(pathSegment);
+			}
+			const normalizedPath = `${path?.startsWith("/") ? "/" : ""}${normalizedPathSegments.join("/")}${normalizedPathSegments.length > 0 && path?.endsWith("/") ? "/" : ""}`;
+			const doubleEncoded = escapeUri(normalizedPath);
+			return doubleEncoded.replace(/%2F/g, "/");
+		}
+		return path;
+	}
+	validateResolvedCredentials(credentials) {
+		if (typeof credentials !== "object" || typeof credentials.accessKeyId !== "string" || typeof credentials.secretAccessKey !== "string") throw new Error("Resolved credential object is not valid");
+	}
+	formatDate(now) {
+		const longDate = iso8601(now).replace(/[\-:]/g, "");
+		return {
+			longDate,
+			shortDate: longDate.slice(0, 8)
+		};
+	}
+	getCanonicalHeaderList(headers) {
+		return Object.keys(headers).sort().join(";");
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/SignatureV4.js
+init_dist_es();
+var SignatureV4 = class extends SignatureV4Base {
+	headerFormatter = new HeaderFormatter();
+	constructor({ applyChecksum, credentials, region, service, sha256, uriEscapePath = true }) {
+		super({
+			applyChecksum,
+			credentials,
+			region,
+			service,
+			sha256,
+			uriEscapePath
+		});
+	}
 	async presign(originalRequest, options = {}) {
 		const { signingDate = new Date(), expiresIn = 3600, unsignableHeaders, unhoistableHeaders, signableHeaders, hoistableHeaders, signingRegion, signingService } = options;
 		const credentials = await this.credentialProvider();
 		this.validateResolvedCredentials(credentials);
 		const region = signingRegion ?? await this.regionProvider();
-		const { longDate, shortDate } = formatDate$1(signingDate);
+		const { longDate, shortDate } = this.formatDate(signingDate);
 		if (expiresIn > MAX_PRESIGNED_TTL) return Promise.reject("Signature version 4 presigned URLs must have an expiration date less than one week in the future");
 		const scope = createScope(shortDate, region, signingService ?? this.service);
 		const request = moveHeadersToQuery(prepareRequest(originalRequest), {
@@ -1712,7 +2971,7 @@ var SignatureV4 = class {
 		request.query[AMZ_DATE_QUERY_PARAM] = longDate;
 		request.query[EXPIRES_QUERY_PARAM] = expiresIn.toString(10);
 		const canonicalHeaders = getCanonicalHeaders(request, unsignableHeaders, signableHeaders);
-		request.query[SIGNED_HEADERS_QUERY_PARAM] = getCanonicalHeaderList(canonicalHeaders);
+		request.query[SIGNED_HEADERS_QUERY_PARAM] = this.getCanonicalHeaderList(canonicalHeaders);
 		request.query[SIGNATURE_QUERY_PARAM] = await this.getSignature(longDate, scope, this.getSigningKey(credentials, region, shortDate, signingService), this.createCanonicalRequest(request, canonicalHeaders, await getPayloadHash(originalRequest, this.sha256)));
 		return request;
 	}
@@ -1724,7 +2983,7 @@ else return this.signRequest(toSign, options);
 	}
 	async signEvent({ headers, payload }, { signingDate = new Date(), priorSignature, signingRegion, signingService }) {
 		const region = signingRegion ?? await this.regionProvider();
-		const { shortDate, longDate } = formatDate$1(signingDate);
+		const { shortDate, longDate } = this.formatDate(signingDate);
 		const scope = createScope(shortDate, region, signingService ?? this.service);
 		const hashedPayload = await getPayloadHash({
 			headers: {},
@@ -1768,7 +3027,7 @@ else return this.signRequest(toSign, options);
 		const credentials = await this.credentialProvider();
 		this.validateResolvedCredentials(credentials);
 		const region = signingRegion ?? await this.regionProvider();
-		const { shortDate } = formatDate$1(signingDate);
+		const { shortDate } = this.formatDate(signingDate);
 		const hash = new this.sha256(await this.getSigningKey(credentials, region, shortDate, signingService));
 		hash.update(toUint8Array(stringToSign));
 		return toHex(await hash.digest());
@@ -1778,7 +3037,7 @@ else return this.signRequest(toSign, options);
 		this.validateResolvedCredentials(credentials);
 		const region = signingRegion ?? await this.regionProvider();
 		const request = prepareRequest(requestToSign);
-		const { longDate, shortDate } = formatDate$1(signingDate);
+		const { longDate, shortDate } = this.formatDate(signingDate);
 		const scope = createScope(shortDate, region, signingService ?? this.service);
 		request.headers[AMZ_DATE_HEADER] = longDate;
 		if (credentials.sessionToken) request.headers[TOKEN_HEADER] = credentials.sessionToken;
@@ -1786,45 +3045,11 @@ else return this.signRequest(toSign, options);
 		if (!hasHeader$1(SHA256_HEADER, request.headers) && this.applyChecksum) request.headers[SHA256_HEADER] = payloadHash;
 		const canonicalHeaders = getCanonicalHeaders(request, unsignableHeaders, signableHeaders);
 		const signature = await this.getSignature(longDate, scope, this.getSigningKey(credentials, region, shortDate, signingService), this.createCanonicalRequest(request, canonicalHeaders, payloadHash));
-		request.headers[AUTH_HEADER] = `${ALGORITHM_IDENTIFIER} ` + `Credential=${credentials.accessKeyId}/${scope}, ` + `SignedHeaders=${getCanonicalHeaderList(canonicalHeaders)}, ` + `Signature=${signature}`;
+		request.headers[AUTH_HEADER] = `${ALGORITHM_IDENTIFIER} ` + `Credential=${credentials.accessKeyId}/${scope}, ` + `SignedHeaders=${this.getCanonicalHeaderList(canonicalHeaders)}, ` + `Signature=${signature}`;
 		return request;
 	}
-	createCanonicalRequest(request, canonicalHeaders, payloadHash) {
-		const sortedHeaders = Object.keys(canonicalHeaders).sort();
-		return `${request.method}
-${this.getCanonicalPath(request)}
-${getCanonicalQuery(request)}
-${sortedHeaders.map((name$1) => `${name$1}:${canonicalHeaders[name$1]}`).join("\n")}
-
-${sortedHeaders.join(";")}
-${payloadHash}`;
-	}
-	async createStringToSign(longDate, credentialScope, canonicalRequest) {
-		const hash = new this.sha256();
-		hash.update(toUint8Array(canonicalRequest));
-		const hashedRequest = await hash.digest();
-		return `${ALGORITHM_IDENTIFIER}
-${longDate}
-${credentialScope}
-${toHex(hashedRequest)}`;
-	}
-	getCanonicalPath({ path }) {
-		if (this.uriEscapePath) {
-			const normalizedPathSegments = [];
-			for (const pathSegment of path.split("/")) {
-				if (pathSegment?.length === 0) continue;
-				if (pathSegment === ".") continue;
-				if (pathSegment === "..") normalizedPathSegments.pop();
-else normalizedPathSegments.push(pathSegment);
-			}
-			const normalizedPath = `${path?.startsWith("/") ? "/" : ""}${normalizedPathSegments.join("/")}${normalizedPathSegments.length > 0 && path?.endsWith("/") ? "/" : ""}`;
-			const doubleEncoded = escapeUri(normalizedPath);
-			return doubleEncoded.replace(/%2F/g, "/");
-		}
-		return path;
-	}
 	async getSignature(longDate, credentialScope, keyPromise, canonicalRequest) {
-		const stringToSign = await this.createStringToSign(longDate, credentialScope, canonicalRequest);
+		const stringToSign = await this.createStringToSign(longDate, credentialScope, canonicalRequest, ALGORITHM_IDENTIFIER);
 		const hash = new this.sha256(await keyPromise);
 		hash.update(toUint8Array(stringToSign));
 		return toHex(await hash.digest());
@@ -1832,33 +3057,47 @@ else normalizedPathSegments.push(pathSegment);
 	getSigningKey(credentials, region, shortDate, service) {
 		return getSigningKey(this.sha256, credentials, shortDate, region, service || this.service);
 	}
-	validateResolvedCredentials(credentials) {
-		if (typeof credentials !== "object" || typeof credentials.accessKeyId !== "string" || typeof credentials.secretAccessKey !== "string") throw new Error("Resolved credential object is not valid");
-	}
 };
-const formatDate$1 = (now) => {
-	const longDate = iso8601(now).replace(/[\-:]/g, "");
-	return {
-		longDate,
-		shortDate: longDate.slice(0, 8)
-	};
-};
-const getCanonicalHeaderList = (headers) => Object.keys(headers).sort().join(";");
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+core@3.716.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/aws_sdk/resolveAwsSdkSigV4Config.js
+//#region node_modules/.pnpm/@smithy+signature-v4@5.3.8/node_modules/@smithy/signature-v4/dist-es/signature-v4a-container.js
+const signatureV4aContainer = { SignatureV4a: null };
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/httpAuthSchemes/aws_sdk/resolveAwsSdkSigV4Config.js
 const resolveAwsSdkSigV4Config = (config$1) => {
-	let isUserSupplied = false;
-	let credentialsProvider;
-	if (config$1.credentials) {
-		isUserSupplied = true;
-		credentialsProvider = memoizeIdentityProvider(config$1.credentials, isIdentityExpired, doesIdentityRequireRefresh);
-	}
-	if (!credentialsProvider) if (config$1.credentialDefaultProvider) credentialsProvider = normalizeProvider(config$1.credentialDefaultProvider(Object.assign({}, config$1, { parentClientConfig: config$1 })));
-else credentialsProvider = async () => {
-		throw new Error("`credentials` is missing");
-	};
-	const boundCredentialsProvider = async () => credentialsProvider({ callerClientConfig: config$1 });
+	let inputCredentials = config$1.credentials;
+	let isUserSupplied = !!config$1.credentials;
+	let resolvedCredentials = undefined;
+	Object.defineProperty(config$1, "credentials", {
+		set(credentials) {
+			if (credentials && credentials !== inputCredentials && credentials !== resolvedCredentials) isUserSupplied = true;
+			inputCredentials = credentials;
+			const memoizedProvider = normalizeCredentialProvider(config$1, {
+				credentials: inputCredentials,
+				credentialDefaultProvider: config$1.credentialDefaultProvider
+			});
+			const boundProvider = bindCallerConfig(config$1, memoizedProvider);
+			if (isUserSupplied && !boundProvider.attributed) {
+				const isCredentialObject = typeof inputCredentials === "object" && inputCredentials !== null;
+				resolvedCredentials = async (options) => {
+					const creds = await boundProvider(options);
+					const attributedCreds = creds;
+					if (isCredentialObject && (!attributedCreds.$source || Object.keys(attributedCreds.$source).length === 0)) return setCredentialFeature(attributedCreds, "CREDENTIALS_CODE", "e");
+					return attributedCreds;
+				};
+				resolvedCredentials.memoized = boundProvider.memoized;
+				resolvedCredentials.configBound = boundProvider.configBound;
+				resolvedCredentials.attributed = true;
+			} else resolvedCredentials = boundProvider;
+		},
+		get() {
+			return resolvedCredentials;
+		},
+		enumerable: true,
+		configurable: true
+	});
+	config$1.credentials = inputCredentials;
 	const { signingEscapePath = true, systemClockOffset = config$1.systemClockOffset || 0, sha256 } = config$1;
 	let signer;
 	if (config$1.signer) signer = normalizeProvider(config$1.signer);
@@ -1871,7 +3110,7 @@ else if (config$1.regionInfoProvider) signer = () => normalizeProvider(config$1.
 		config$1.signingName = config$1.signingName || signingService || config$1.serviceId;
 		const params = {
 			...config$1,
-			credentials: boundCredentialsProvider,
+			credentials: config$1.credentials,
 			region: config$1.signingRegion,
 			service: config$1.signingName,
 			sha256,
@@ -1893,7 +3132,7 @@ else signer = async (authScheme) => {
 		config$1.signingName = config$1.signingName || signingService || config$1.serviceId;
 		const params = {
 			...config$1,
-			credentials: boundCredentialsProvider,
+			credentials: config$1.credentials,
 			region: config$1.signingRegion,
 			service: config$1.signingName,
 			sha256,
@@ -1902,17 +3141,56 @@ else signer = async (authScheme) => {
 		const SignerCtor = config$1.signerConstructor || SignatureV4;
 		return new SignerCtor(params);
 	};
-	return {
-		...config$1,
+	const resolvedConfig = Object.assign(config$1, {
 		systemClockOffset,
 		signingEscapePath,
-		credentials: isUserSupplied ? async () => boundCredentialsProvider().then((creds) => setCredentialFeature(creds, "CREDENTIALS_CODE", "e")) : boundCredentialsProvider,
 		signer
+	});
+	return resolvedConfig;
+};
+function normalizeCredentialProvider(config$1, { credentials, credentialDefaultProvider }) {
+	let credentialsProvider;
+	if (credentials) if (!credentials?.memoized) credentialsProvider = memoizeIdentityProvider(credentials, isIdentityExpired, doesIdentityRequireRefresh);
+else credentialsProvider = credentials;
+else if (credentialDefaultProvider) credentialsProvider = normalizeProvider(credentialDefaultProvider(Object.assign({}, config$1, { parentClientConfig: config$1 })));
+else credentialsProvider = async () => {
+		throw new Error("@aws-sdk/core::resolveAwsSdkSigV4Config - `credentials` not provided and no credentialDefaultProvider was configured.");
 	};
+	credentialsProvider.memoized = true;
+	return credentialsProvider;
+}
+function bindCallerConfig(config$1, credentialsProvider) {
+	if (credentialsProvider.configBound) return credentialsProvider;
+	const fn = async (options) => credentialsProvider({
+		...options,
+		callerClientConfig: config$1
+	});
+	fn.memoized = credentialsProvider.memoized;
+	fn.configBound = true;
+	return fn;
+}
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+util-body-length-browser@4.2.0/node_modules/@smithy/util-body-length-browser/dist-es/calculateBodyLength.js
+const TEXT_ENCODER = typeof TextEncoder == "function" ? new TextEncoder() : null;
+const calculateBodyLength = (body) => {
+	if (typeof body === "string") {
+		if (TEXT_ENCODER) return TEXT_ENCODER.encode(body).byteLength;
+		let len$1 = body.length;
+		for (let i$2 = len$1 - 1; i$2 >= 0; i$2--) {
+			const code$1 = body.charCodeAt(i$2);
+			if (code$1 > 127 && code$1 <= 2047) len$1++;
+else if (code$1 > 2047 && code$1 <= 65535) len$1 += 2;
+			if (code$1 >= 56320 && code$1 <= 57343) i$2--;
+		}
+		return len$1;
+	} else if (typeof body.byteLength === "number") return body.byteLength;
+else if (typeof body.size === "number") return body.size;
+	throw new Error(`Body Length computation failed for ${body}`);
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-stack@3.0.11/node_modules/@smithy/middleware-stack/dist-es/MiddlewareStack.js
+//#region node_modules/.pnpm/@smithy+middleware-stack@4.2.8/node_modules/@smithy/middleware-stack/dist-es/MiddlewareStack.js
 const getAllAliases = (name$1, aliases) => {
 	const _aliases = [];
 	if (name$1) _aliases.push(name$1);
@@ -2129,11 +3407,18 @@ const priorityWeights = {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/client.js
+//#region node_modules/.pnpm/@smithy+smithy-client@4.10.12/node_modules/@smithy/smithy-client/dist-es/client.js
 var Client = class {
+	config;
+	middlewareStack = constructStack();
+	initConfig;
+	handlers;
 	constructor(config$1) {
 		this.config = config$1;
-		this.middlewareStack = constructStack();
+		const { protocol, protocolSettings } = config$1;
+		if (protocolSettings) {
+			if (typeof protocol === "function") config$1.protocol = new protocol(protocolSettings);
+		}
 	}
 	send(command, optionsOrCb, cb$1) {
 		const options = typeof optionsOrCb !== "function" ? optionsOrCb : undefined;
@@ -2162,20 +3447,41 @@ else return handler(command).then((result) => result.output);
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/command.js
-var Command = class {
-	constructor() {
-		this.middlewareStack = constructStack();
+//#region node_modules/.pnpm/@smithy+smithy-client@4.10.12/node_modules/@smithy/smithy-client/dist-es/schemaLogFilter.js
+const SENSITIVE_STRING = "***SensitiveInformation***";
+function schemaLogFilter(schema, data) {
+	if (data == null) return data;
+	const ns = NormalizedSchema.of(schema);
+	if (ns.getMergedTraits().sensitive) return SENSITIVE_STRING;
+	if (ns.isListSchema()) {
+		const isSensitive = !!ns.getValueSchema().getMergedTraits().sensitive;
+		if (isSensitive) return SENSITIVE_STRING;
+	} else if (ns.isMapSchema()) {
+		const isSensitive = !!ns.getKeySchema().getMergedTraits().sensitive || !!ns.getValueSchema().getMergedTraits().sensitive;
+		if (isSensitive) return SENSITIVE_STRING;
+	} else if (ns.isStructSchema() && typeof data === "object") {
+		const object = data;
+		const newObject = {};
+		for (const [member$1, memberNs] of ns.structIterator()) if (object[member$1] != null) newObject[member$1] = schemaLogFilter(memberNs, object[member$1]);
+		return newObject;
 	}
+	return data;
+}
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+smithy-client@4.10.12/node_modules/@smithy/smithy-client/dist-es/command.js
+var Command = class {
+	middlewareStack = constructStack();
+	schema;
 	static classBuilder() {
 		return new ClassBuilder();
 	}
 	resolveMiddlewareWithContext(clientStack, configuration, options, { middlewareFn, clientName, commandName, inputFilterSensitiveLog, outputFilterSensitiveLog, smithyContext, additionalContext, CommandCtor }) {
 		for (const mw of middlewareFn.bind(this)(CommandCtor, clientStack, configuration, options)) this.middlewareStack.use(mw);
 		const stack = clientStack.concat(this.middlewareStack);
-		const { logger: logger$1 } = configuration;
+		const { logger } = configuration;
 		const handlerExecutionContext = {
-			logger: logger$1,
+			logger,
 			clientName,
 			commandName,
 			inputFilterSensitiveLog,
@@ -2191,19 +3497,18 @@ var Command = class {
 	}
 };
 var ClassBuilder = class {
-	constructor() {
-		this._init = () => {};
-		this._ep = {};
-		this._middlewareFn = () => [];
-		this._commandName = "";
-		this._clientName = "";
-		this._additionalContext = {};
-		this._smithyContext = {};
-		this._inputFilterSensitiveLog = (_) => _;
-		this._outputFilterSensitiveLog = (_) => _;
-		this._serializer = null;
-		this._deserializer = null;
-	}
+	_init = () => {};
+	_ep = {};
+	_middlewareFn = () => [];
+	_commandName = "";
+	_clientName = "";
+	_additionalContext = {};
+	_smithyContext = {};
+	_inputFilterSensitiveLog = undefined;
+	_outputFilterSensitiveLog = undefined;
+	_serializer = null;
+	_deserializer = null;
+	_operationSchema;
 	init(cb$1) {
 		this._init = cb$1;
 	}
@@ -2215,10 +3520,10 @@ var ClassBuilder = class {
 		this._middlewareFn = middlewareSupplier;
 		return this;
 	}
-	s(service, operation, smithyContext = {}) {
+	s(service, operation$1, smithyContext = {}) {
 		this._smithyContext = {
 			service,
-			operation,
+			operation: operation$1,
 			...smithyContext
 		};
 		return this;
@@ -2245,321 +3550,74 @@ var ClassBuilder = class {
 		this._deserializer = deserializer;
 		return this;
 	}
+	sc(operation$1) {
+		this._operationSchema = operation$1;
+		this._smithyContext.operationSchema = operation$1;
+		return this;
+	}
 	build() {
 		const closure = this;
 		let CommandRef;
 		return CommandRef = class extends Command {
+			input;
 			static getEndpointParameterInstructions() {
 				return closure._ep;
 			}
 			constructor(...[input]) {
 				super();
-				this.serialize = closure._serializer;
-				this.deserialize = closure._deserializer;
 				this.input = input ?? {};
 				closure._init(this);
+				this.schema = closure._operationSchema;
 			}
 			resolveMiddleware(stack, configuration, options) {
+				const op = closure._operationSchema;
+				const input = op?.[4] ?? op?.input;
+				const output = op?.[5] ?? op?.output;
 				return this.resolveMiddlewareWithContext(stack, configuration, options, {
 					CommandCtor: CommandRef,
 					middlewareFn: closure._middlewareFn,
 					clientName: closure._clientName,
 					commandName: closure._commandName,
-					inputFilterSensitiveLog: closure._inputFilterSensitiveLog,
-					outputFilterSensitiveLog: closure._outputFilterSensitiveLog,
+					inputFilterSensitiveLog: closure._inputFilterSensitiveLog ?? (op ? schemaLogFilter.bind(null, input) : (_) => _),
+					outputFilterSensitiveLog: closure._outputFilterSensitiveLog ?? (op ? schemaLogFilter.bind(null, output) : (_) => _),
 					smithyContext: closure._smithyContext,
 					additionalContext: closure._additionalContext
 				});
 			}
+			serialize = closure._serializer;
+			deserialize = closure._deserializer;
 		};
 	}
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/constants.js
-const SENSITIVE_STRING = "***SensitiveInformation***";
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/parse-utils.js
-const parseBoolean = (value) => {
-	switch (value) {
-		case "true": return true;
-		case "false": return false;
-		default: throw new Error(`Unable to parse boolean value "${value}"`);
-	}
-};
-const expectNumber = (value) => {
-	if (value === null || value === undefined) return undefined;
-	if (typeof value === "string") {
-		const parsed = parseFloat(value);
-		if (!Number.isNaN(parsed)) {
-			if (String(parsed) !== String(value)) logger.warn(stackTraceWarning(`Expected number but observed string: ${value}`));
-			return parsed;
-		}
-	}
-	if (typeof value === "number") return value;
-	throw new TypeError(`Expected number, got ${typeof value}: ${value}`);
-};
-const MAX_FLOAT = Math.ceil(34028234663852886e22);
-const expectFloat32 = (value) => {
-	const expected = expectNumber(value);
-	if (expected !== undefined && !Number.isNaN(expected) && expected !== Infinity && expected !== -Infinity) {
-		if (Math.abs(expected) > MAX_FLOAT) throw new TypeError(`Expected 32-bit float, got ${value}`);
-	}
-	return expected;
-};
-const expectLong = (value) => {
-	if (value === null || value === undefined) return undefined;
-	if (Number.isInteger(value) && !Number.isNaN(value)) return value;
-	throw new TypeError(`Expected integer, got ${typeof value}: ${value}`);
-};
-const expectInt32 = (value) => expectSizedInt(value, 32);
-const expectShort = (value) => expectSizedInt(value, 16);
-const expectByte = (value) => expectSizedInt(value, 8);
-const expectSizedInt = (value, size) => {
-	const expected = expectLong(value);
-	if (expected !== undefined && castInt(expected, size) !== expected) throw new TypeError(`Expected ${size}-bit integer, got ${value}`);
-	return expected;
-};
-const castInt = (value, size) => {
-	switch (size) {
-		case 32: return Int32Array.of(value)[0];
-		case 16: return Int16Array.of(value)[0];
-		case 8: return Int8Array.of(value)[0];
-	}
-};
-const expectNonNull = (value, location) => {
-	if (value === null || value === undefined) {
-		if (location) throw new TypeError(`Expected a non-null value for ${location}`);
-		throw new TypeError("Expected a non-null value");
-	}
-	return value;
-};
-const expectObject = (value) => {
-	if (value === null || value === undefined) return undefined;
-	if (typeof value === "object" && !Array.isArray(value)) return value;
-	const receivedType = Array.isArray(value) ? "array" : typeof value;
-	throw new TypeError(`Expected object, got ${receivedType}: ${value}`);
-};
-const expectString = (value) => {
-	if (value === null || value === undefined) return undefined;
-	if (typeof value === "string") return value;
-	if ([
-		"boolean",
-		"number",
-		"bigint"
-	].includes(typeof value)) {
-		logger.warn(stackTraceWarning(`Expected string, got ${typeof value}: ${value}`));
-		return String(value);
-	}
-	throw new TypeError(`Expected string, got ${typeof value}: ${value}`);
-};
-const strictParseFloat32 = (value) => {
-	if (typeof value == "string") return expectFloat32(parseNumber(value));
-	return expectFloat32(value);
-};
-const NUMBER_REGEX = /(-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?)|(-?Infinity)|(NaN)/g;
-const parseNumber = (value) => {
-	const matches = value.match(NUMBER_REGEX);
-	if (matches === null || matches[0].length !== value.length) throw new TypeError(`Expected real number, got implicit NaN`);
-	return parseFloat(value);
-};
-const strictParseLong = (value) => {
-	if (typeof value === "string") return expectLong(parseNumber(value));
-	return expectLong(value);
-};
-const strictParseInt32 = (value) => {
-	if (typeof value === "string") return expectInt32(parseNumber(value));
-	return expectInt32(value);
-};
-const strictParseShort = (value) => {
-	if (typeof value === "string") return expectShort(parseNumber(value));
-	return expectShort(value);
-};
-const strictParseByte = (value) => {
-	if (typeof value === "string") return expectByte(parseNumber(value));
-	return expectByte(value);
-};
-const stackTraceWarning = (message) => {
-	return String(new TypeError(message).stack || message).split("\n").slice(0, 5).filter((s$1) => !s$1.includes("stackTraceWarning")).join("\n");
-};
-const logger = { warn: console.warn };
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/date-utils.js
-const DAYS = [
-	"Sun",
-	"Mon",
-	"Tue",
-	"Wed",
-	"Thu",
-	"Fri",
-	"Sat"
-];
-const MONTHS = [
-	"Jan",
-	"Feb",
-	"Mar",
-	"Apr",
-	"May",
-	"Jun",
-	"Jul",
-	"Aug",
-	"Sep",
-	"Oct",
-	"Nov",
-	"Dec"
-];
-function dateToUtcString(date) {
-	const year = date.getUTCFullYear();
-	const month = date.getUTCMonth();
-	const dayOfWeek = date.getUTCDay();
-	const dayOfMonthInt = date.getUTCDate();
-	const hoursInt = date.getUTCHours();
-	const minutesInt = date.getUTCMinutes();
-	const secondsInt = date.getUTCSeconds();
-	const dayOfMonthString = dayOfMonthInt < 10 ? `0${dayOfMonthInt}` : `${dayOfMonthInt}`;
-	const hoursString = hoursInt < 10 ? `0${hoursInt}` : `${hoursInt}`;
-	const minutesString = minutesInt < 10 ? `0${minutesInt}` : `${minutesInt}`;
-	const secondsString = secondsInt < 10 ? `0${secondsInt}` : `${secondsInt}`;
-	return `${DAYS[dayOfWeek]}, ${dayOfMonthString} ${MONTHS[month]} ${year} ${hoursString}:${minutesString}:${secondsString} GMT`;
-}
-const RFC3339 = new RegExp(/^(\d{4})-(\d{2})-(\d{2})[tT](\d{2}):(\d{2}):(\d{2})(?:\.(\d+))?[zZ]$/);
-const RFC3339_WITH_OFFSET = new RegExp(/^(\d{4})-(\d{2})-(\d{2})[tT](\d{2}):(\d{2}):(\d{2})(?:\.(\d+))?(([-+]\d{2}\:\d{2})|[zZ])$/);
-const parseRfc3339DateTimeWithOffset = (value) => {
-	if (value === null || value === undefined) return undefined;
-	if (typeof value !== "string") throw new TypeError("RFC-3339 date-times must be expressed as strings");
-	const match = RFC3339_WITH_OFFSET.exec(value);
-	if (!match) throw new TypeError("Invalid RFC-3339 date-time value");
-	const [_, yearStr, monthStr, dayStr, hours, minutes, seconds, fractionalMilliseconds, offsetStr] = match;
-	const year = strictParseShort(stripLeadingZeroes(yearStr));
-	const month = parseDateValue(monthStr, "month", 1, 12);
-	const day = parseDateValue(dayStr, "day", 1, 31);
-	const date = buildDate(year, month, day, {
-		hours,
-		minutes,
-		seconds,
-		fractionalMilliseconds
-	});
-	if (offsetStr.toUpperCase() != "Z") date.setTime(date.getTime() - parseOffsetToMilliseconds(offsetStr));
-	return date;
-};
-const IMF_FIXDATE = new RegExp(/^(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun), (\d{2}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{4}) (\d{1,2}):(\d{2}):(\d{2})(?:\.(\d+))? GMT$/);
-const RFC_850_DATE = new RegExp(/^(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), (\d{2})-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-(\d{2}) (\d{1,2}):(\d{2}):(\d{2})(?:\.(\d+))? GMT$/);
-const ASC_TIME = new RegExp(/^(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) ( [1-9]|\d{2}) (\d{1,2}):(\d{2}):(\d{2})(?:\.(\d+))? (\d{4})$/);
-const parseRfc7231DateTime = (value) => {
-	if (value === null || value === undefined) return undefined;
-	if (typeof value !== "string") throw new TypeError("RFC-7231 date-times must be expressed as strings");
-	let match = IMF_FIXDATE.exec(value);
-	if (match) {
-		const [_, dayStr, monthStr, yearStr, hours, minutes, seconds, fractionalMilliseconds] = match;
-		return buildDate(strictParseShort(stripLeadingZeroes(yearStr)), parseMonthByShortName(monthStr), parseDateValue(dayStr, "day", 1, 31), {
-			hours,
-			minutes,
-			seconds,
-			fractionalMilliseconds
-		});
-	}
-	match = RFC_850_DATE.exec(value);
-	if (match) {
-		const [_, dayStr, monthStr, yearStr, hours, minutes, seconds, fractionalMilliseconds] = match;
-		return adjustRfc850Year(buildDate(parseTwoDigitYear(yearStr), parseMonthByShortName(monthStr), parseDateValue(dayStr, "day", 1, 31), {
-			hours,
-			minutes,
-			seconds,
-			fractionalMilliseconds
-		}));
-	}
-	match = ASC_TIME.exec(value);
-	if (match) {
-		const [_, monthStr, dayStr, hours, minutes, seconds, fractionalMilliseconds, yearStr] = match;
-		return buildDate(strictParseShort(stripLeadingZeroes(yearStr)), parseMonthByShortName(monthStr), parseDateValue(dayStr.trimLeft(), "day", 1, 31), {
-			hours,
-			minutes,
-			seconds,
-			fractionalMilliseconds
-		});
-	}
-	throw new TypeError("Invalid RFC-7231 date-time value");
-};
-const buildDate = (year, month, day, time) => {
-	const adjustedMonth = month - 1;
-	validateDayOfMonth(year, adjustedMonth, day);
-	return new Date(Date.UTC(year, adjustedMonth, day, parseDateValue(time.hours, "hour", 0, 23), parseDateValue(time.minutes, "minute", 0, 59), parseDateValue(time.seconds, "seconds", 0, 60), parseMilliseconds(time.fractionalMilliseconds)));
-};
-const parseTwoDigitYear = (value) => {
-	const thisYear = new Date().getUTCFullYear();
-	const valueInThisCentury = Math.floor(thisYear / 100) * 100 + strictParseShort(stripLeadingZeroes(value));
-	if (valueInThisCentury < thisYear) return valueInThisCentury + 100;
-	return valueInThisCentury;
-};
-const FIFTY_YEARS_IN_MILLIS = 15768e8;
-const adjustRfc850Year = (input) => {
-	if (input.getTime() - new Date().getTime() > FIFTY_YEARS_IN_MILLIS) return new Date(Date.UTC(input.getUTCFullYear() - 100, input.getUTCMonth(), input.getUTCDate(), input.getUTCHours(), input.getUTCMinutes(), input.getUTCSeconds(), input.getUTCMilliseconds()));
-	return input;
-};
-const parseMonthByShortName = (value) => {
-	const monthIdx = MONTHS.indexOf(value);
-	if (monthIdx < 0) throw new TypeError(`Invalid month: ${value}`);
-	return monthIdx + 1;
-};
-const DAYS_IN_MONTH = [
-	31,
-	28,
-	31,
-	30,
-	31,
-	30,
-	31,
-	31,
-	30,
-	31,
-	30,
-	31
-];
-const validateDayOfMonth = (year, month, day) => {
-	let maxDays = DAYS_IN_MONTH[month];
-	if (month === 1 && isLeapYear(year)) maxDays = 29;
-	if (day > maxDays) throw new TypeError(`Invalid day for ${MONTHS[month]} in ${year}: ${day}`);
-};
-const isLeapYear = (year) => {
-	return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
-};
-const parseDateValue = (value, type, lower, upper) => {
-	const dateVal = strictParseByte(stripLeadingZeroes(value));
-	if (dateVal < lower || dateVal > upper) throw new TypeError(`${type} must be between ${lower} and ${upper}, inclusive`);
-	return dateVal;
-};
-const parseMilliseconds = (value) => {
-	if (value === null || value === undefined) return 0;
-	return strictParseFloat32("0." + value) * 1e3;
-};
-const parseOffsetToMilliseconds = (value) => {
-	const directionStr = value[0];
-	let direction = 1;
-	if (directionStr == "+") direction = 1;
-else if (directionStr == "-") direction = -1;
-else throw new TypeError(`Offset direction, ${directionStr}, must be "+" or "-"`);
-	const hour = Number(value.substring(1, 3));
-	const minute = Number(value.substring(4, 6));
-	return direction * (hour * 60 + minute) * 60 * 1e3;
-};
-const stripLeadingZeroes = (value) => {
-	let idx = 0;
-	while (idx < value.length - 1 && value.charAt(idx) === "0") idx++;
-	if (idx === 0) return value;
-	return value.slice(idx);
-};
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/exceptions.js
+//#region node_modules/.pnpm/@smithy+smithy-client@4.10.12/node_modules/@smithy/smithy-client/dist-es/exceptions.js
 var ServiceException = class ServiceException extends Error {
+	$fault;
+	$response;
+	$retryable;
+	$metadata;
 	constructor(options) {
 		super(options.message);
-		Object.setPrototypeOf(this, ServiceException.prototype);
+		Object.setPrototypeOf(this, Object.getPrototypeOf(this).constructor.prototype);
 		this.name = options.name;
 		this.$fault = options.$fault;
 		this.$metadata = options.$metadata;
+	}
+	static isInstance(value) {
+		if (!value) return false;
+		const candidate = value;
+		return ServiceException.prototype.isPrototypeOf(candidate) || Boolean(candidate.$fault) && Boolean(candidate.$metadata) && (candidate.$fault === "client" || candidate.$fault === "server");
+	}
+	static [Symbol.hasInstance](instance) {
+		if (!instance) return false;
+		const candidate = instance;
+		if (this === ServiceException) return ServiceException.isInstance(instance);
+		if (ServiceException.isInstance(instance)) {
+			if (candidate.name && this.name) return this.prototype.isPrototypeOf(instance) || candidate.name === this.name;
+			return this.prototype.isPrototypeOf(instance);
+		}
+		return false;
 	}
 };
 const decorateServiceException = (exception, additions = {}) => {
@@ -2573,36 +3631,7 @@ const decorateServiceException = (exception, additions = {}) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/default-error-handler.js
-const throwDefaultError$1 = ({ output, parsedBody, exceptionCtor, errorCode }) => {
-	const $metadata = deserializeMetadata$1(output);
-	const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
-	const response = new exceptionCtor({
-		name: parsedBody?.code || parsedBody?.Code || errorCode || statusCode || "UnknownError",
-		$fault: "client",
-		$metadata
-	});
-	throw decorateServiceException(response, parsedBody);
-};
-const withBaseException = (ExceptionCtor) => {
-	return ({ output, parsedBody, errorCode }) => {
-		throwDefaultError$1({
-			output,
-			parsedBody,
-			exceptionCtor: ExceptionCtor,
-			errorCode
-		});
-	};
-};
-const deserializeMetadata$1 = (output) => ({
-	httpStatusCode: output.statusCode,
-	requestId: output.headers["x-amzn-requestid"] ?? output.headers["x-amzn-request-id"] ?? output.headers["x-amz-request-id"],
-	extendedRequestId: output.headers["x-amz-id-2"],
-	cfId: output.headers["x-amz-cf-id"]
-});
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/defaults-mode.js
+//#region node_modules/.pnpm/@smithy+smithy-client@4.10.12/node_modules/@smithy/smithy-client/dist-es/defaults-mode.js
 const loadConfigsForDefaultMode = (mode) => {
 	switch (mode) {
 		case "standard": return {
@@ -2626,75 +3655,63 @@ const loadConfigsForDefaultMode = (mode) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/extensions/checksum.js
-const getChecksumConfiguration = (runtimeConfig) => {
+//#region node_modules/.pnpm/@smithy+smithy-client@4.10.12/node_modules/@smithy/smithy-client/dist-es/extensions/checksum.js
+const getChecksumConfiguration = (runtimeConfig$1) => {
 	const checksumAlgorithms = [];
 	for (const id in AlgorithmId) {
 		const algorithmId = AlgorithmId[id];
-		if (runtimeConfig[algorithmId] === undefined) continue;
+		if (runtimeConfig$1[algorithmId] === undefined) continue;
 		checksumAlgorithms.push({
 			algorithmId: () => algorithmId,
-			checksumConstructor: () => runtimeConfig[algorithmId]
+			checksumConstructor: () => runtimeConfig$1[algorithmId]
 		});
 	}
 	return {
-		_checksumAlgorithms: checksumAlgorithms,
 		addChecksumAlgorithm(algo) {
-			this._checksumAlgorithms.push(algo);
+			checksumAlgorithms.push(algo);
 		},
 		checksumAlgorithms() {
-			return this._checksumAlgorithms;
+			return checksumAlgorithms;
 		}
 	};
 };
 const resolveChecksumRuntimeConfig = (clientConfig) => {
-	const runtimeConfig = {};
+	const runtimeConfig$1 = {};
 	clientConfig.checksumAlgorithms().forEach((checksumAlgorithm) => {
-		runtimeConfig[checksumAlgorithm.algorithmId()] = checksumAlgorithm.checksumConstructor();
+		runtimeConfig$1[checksumAlgorithm.algorithmId()] = checksumAlgorithm.checksumConstructor();
 	});
-	return runtimeConfig;
+	return runtimeConfig$1;
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/extensions/retry.js
-const getRetryConfiguration = (runtimeConfig) => {
-	let _retryStrategy = runtimeConfig.retryStrategy;
+//#region node_modules/.pnpm/@smithy+smithy-client@4.10.12/node_modules/@smithy/smithy-client/dist-es/extensions/retry.js
+const getRetryConfiguration = (runtimeConfig$1) => {
 	return {
 		setRetryStrategy(retryStrategy) {
-			_retryStrategy = retryStrategy;
+			runtimeConfig$1.retryStrategy = retryStrategy;
 		},
 		retryStrategy() {
-			return _retryStrategy;
+			return runtimeConfig$1.retryStrategy;
 		}
 	};
 };
 const resolveRetryRuntimeConfig = (retryStrategyConfiguration) => {
-	const runtimeConfig = {};
-	runtimeConfig.retryStrategy = retryStrategyConfiguration.retryStrategy();
-	return runtimeConfig;
+	const runtimeConfig$1 = {};
+	runtimeConfig$1.retryStrategy = retryStrategyConfiguration.retryStrategy();
+	return runtimeConfig$1;
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/extensions/defaultExtensionConfiguration.js
-const getDefaultExtensionConfiguration = (runtimeConfig) => {
-	return {
-		...getChecksumConfiguration(runtimeConfig),
-		...getRetryConfiguration(runtimeConfig)
-	};
+//#region node_modules/.pnpm/@smithy+smithy-client@4.10.12/node_modules/@smithy/smithy-client/dist-es/extensions/defaultExtensionConfiguration.js
+const getDefaultExtensionConfiguration = (runtimeConfig$1) => {
+	return Object.assign(getChecksumConfiguration(runtimeConfig$1), getRetryConfiguration(runtimeConfig$1));
 };
 const resolveDefaultRuntimeConfig = (config$1) => {
-	return {
-		...resolveChecksumRuntimeConfig(config$1),
-		...resolveRetryRuntimeConfig(config$1)
-	};
+	return Object.assign(resolveChecksumRuntimeConfig(config$1), resolveRetryRuntimeConfig(config$1));
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/get-array-if-single-item.js
-const getArrayIfSingleItem = (mayBeArray) => Array.isArray(mayBeArray) ? mayBeArray : [mayBeArray];
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/get-value-from-text-node.js
+//#region node_modules/.pnpm/@smithy+smithy-client@4.10.12/node_modules/@smithy/smithy-client/dist-es/get-value-from-text-node.js
 const getValueFromTextNode = (obj) => {
 	const textNodeName = "#text";
 	for (const key in obj) if (obj.hasOwnProperty(key) && obj[key][textNodeName] !== undefined) obj[key] = obj[key][textNodeName];
@@ -2703,36 +3720,7 @@ else if (typeof obj[key] === "object" && obj[key] !== null) obj[key] = getValueF
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/is-serializable-header-value.js
-const isSerializableHeaderValue = (value) => {
-	return value != null;
-};
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/lazy-json.js
-const LazyJsonString = function LazyJsonString$1(val$1) {
-	const str = Object.assign(new String(val$1), {
-		deserializeJSON() {
-			return JSON.parse(String(val$1));
-		},
-		toString() {
-			return String(val$1);
-		},
-		toJSON() {
-			return String(val$1);
-		}
-	});
-	return str;
-};
-LazyJsonString.from = (object) => {
-	if (object && typeof object === "object" && (object instanceof LazyJsonString || "deserializeJSON" in object)) return object;
-else if (typeof object === "string" || Object.getPrototypeOf(object) === String.prototype) return LazyJsonString(String(object));
-	return LazyJsonString(JSON.stringify(object));
-};
-LazyJsonString.fromObject = LazyJsonString.from;
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/NoOpLogger.js
+//#region node_modules/.pnpm/@smithy+smithy-client@4.10.12/node_modules/@smithy/smithy-client/dist-es/NoOpLogger.js
 var NoOpLogger = class {
 	trace() {}
 	debug() {}
@@ -2742,1520 +3730,404 @@ var NoOpLogger = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/object-mapping.js
-function map(arg0, arg1, arg2) {
-	let target;
-	let filter;
-	let instructions;
-	if (typeof arg1 === "undefined" && typeof arg2 === "undefined") {
-		target = {};
-		instructions = arg0;
-	} else {
-		target = arg0;
-		if (typeof arg1 === "function") {
-			filter = arg1;
-			instructions = arg2;
-			return mapWithFilter(target, filter, instructions);
-		} else instructions = arg1;
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/protocols/ProtocolLib.js
+var ProtocolLib = class {
+	queryCompat;
+	constructor(queryCompat = false) {
+		this.queryCompat = queryCompat;
 	}
-	for (const key of Object.keys(instructions)) {
-		if (!Array.isArray(instructions[key])) {
-			target[key] = instructions[key];
-			continue;
-		}
-		applyInstruction(target, null, instructions, key);
-	}
-	return target;
-}
-const mapWithFilter = (target, filter, instructions) => {
-	return map(target, Object.entries(instructions).reduce((_instructions, [key, value]) => {
-		if (Array.isArray(value)) _instructions[key] = value;
-else if (typeof value === "function") _instructions[key] = [filter, value()];
-else _instructions[key] = [filter, value];
-		return _instructions;
-	}, {}));
-};
-const applyInstruction = (target, source, instructions, targetKey) => {
-	if (source !== null) {
-		let instruction = instructions[targetKey];
-		if (typeof instruction === "function") instruction = [, instruction];
-		const [filter$1 = nonNullish, valueFn = pass, sourceKey = targetKey] = instruction;
-		if (typeof filter$1 === "function" && filter$1(source[sourceKey]) || typeof filter$1 !== "function" && !!filter$1) target[targetKey] = valueFn(source[sourceKey]);
-		return;
-	}
-	let [filter, value] = instructions[targetKey];
-	if (typeof value === "function") {
-		let _value;
-		const defaultFilterPassed = filter === undefined && (_value = value()) != null;
-		const customFilterPassed = typeof filter === "function" && !!filter(void 0) || typeof filter !== "function" && !!filter;
-		if (defaultFilterPassed) target[targetKey] = _value;
-else if (customFilterPassed) target[targetKey] = value();
-	} else {
-		const defaultFilterPassed = filter === undefined && value != null;
-		const customFilterPassed = typeof filter === "function" && !!filter(value) || typeof filter !== "function" && !!filter;
-		if (defaultFilterPassed || customFilterPassed) target[targetKey] = value;
-	}
-};
-const nonNullish = (_) => _ != null;
-const pass = (_) => _;
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/quote-header.js
-function quoteHeader(part) {
-	if (part.includes(",") || part.includes("\"")) part = `"${part.replace(/"/g, "\\\"")}"`;
-	return part;
-}
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+smithy-client@3.5.2/node_modules/@smithy/smithy-client/dist-es/ser-utils.js
-const serializeDateTime = (date) => date.toISOString().replace(".000Z", "Z");
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+core@3.716.0/node_modules/@aws-sdk/core/dist-es/submodules/protocols/common.js
-const collectBodyString = (streamBody, context) => collectBody$1(streamBody, context).then((body) => context.utf8Encoder(body));
-
-//#endregion
-//#region node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/util.js
-var require_util = __commonJS({ "node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/util.js"(exports) {
-	const nameStartChar = ":A-Za-z_\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD";
-	const nameChar = nameStartChar + "\\-.\\d\\u00B7\\u0300-\\u036F\\u203F-\\u2040";
-	const nameRegexp = "[" + nameStartChar + "][" + nameChar + "]*";
-	const regexName = new RegExp("^" + nameRegexp + "$");
-	const getAllMatches = function(string, regex) {
-		const matches = [];
-		let match = regex.exec(string);
-		while (match) {
-			const allmatches = [];
-			allmatches.startIndex = regex.lastIndex - match[0].length;
-			const len$1 = match.length;
-			for (let index = 0; index < len$1; index++) allmatches.push(match[index]);
-			matches.push(allmatches);
-			match = regex.exec(string);
-		}
-		return matches;
-	};
-	const isName = function(string) {
-		const match = regexName.exec(string);
-		return !(match === null || typeof match === "undefined");
-	};
-	exports.isExist = function(v$2) {
-		return typeof v$2 !== "undefined";
-	};
-	exports.isEmptyObject = function(obj) {
-		return Object.keys(obj).length === 0;
-	};
-	/**
-	* Copy all the properties of a into b.
-	* @param {*} target
-	* @param {*} a
-	*/
-	exports.merge = function(target, a$1, arrayMode) {
-		if (a$1) {
-			const keys$1 = Object.keys(a$1);
-			const len$1 = keys$1.length;
-			for (let i$2 = 0; i$2 < len$1; i$2++) if (arrayMode === "strict") target[keys$1[i$2]] = [a$1[keys$1[i$2]]];
-else target[keys$1[i$2]] = a$1[keys$1[i$2]];
-		}
-	};
-	exports.getValue = function(v$2) {
-		if (exports.isExist(v$2)) return v$2;
-else return "";
-	};
-	exports.isName = isName;
-	exports.getAllMatches = getAllMatches;
-	exports.nameRegexp = nameRegexp;
-} });
-
-//#endregion
-//#region node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/validator.js
-var require_validator = __commonJS({ "node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/validator.js"(exports) {
-	const util$2 = require_util();
-	const defaultOptions$2 = {
-		allowBooleanAttributes: false,
-		unpairedTags: []
-	};
-	exports.validate = function(xmlData, options) {
-		options = Object.assign({}, defaultOptions$2, options);
-		const tags = [];
-		let tagFound = false;
-		let reachedRoot = false;
-		if (xmlData[0] === "﻿") xmlData = xmlData.substr(1);
-		for (let i$2 = 0; i$2 < xmlData.length; i$2++) if (xmlData[i$2] === "<" && xmlData[i$2 + 1] === "?") {
-			i$2 += 2;
-			i$2 = readPI(xmlData, i$2);
-			if (i$2.err) return i$2;
-		} else if (xmlData[i$2] === "<") {
-			let tagStartPos = i$2;
-			i$2++;
-			if (xmlData[i$2] === "!") {
-				i$2 = readCommentAndCDATA(xmlData, i$2);
-				continue;
-			} else {
-				let closingTag = false;
-				if (xmlData[i$2] === "/") {
-					closingTag = true;
-					i$2++;
-				}
-				let tagName = "";
-				for (; i$2 < xmlData.length && xmlData[i$2] !== ">" && xmlData[i$2] !== " " && xmlData[i$2] !== "	" && xmlData[i$2] !== "\n" && xmlData[i$2] !== "\r"; i$2++) tagName += xmlData[i$2];
-				tagName = tagName.trim();
-				if (tagName[tagName.length - 1] === "/") {
-					tagName = tagName.substring(0, tagName.length - 1);
-					i$2--;
-				}
-				if (!validateTagName(tagName)) {
-					let msg;
-					if (tagName.trim().length === 0) msg = "Invalid space after '<'.";
-else msg = "Tag '" + tagName + "' is an invalid name.";
-					return getErrorObject("InvalidTag", msg, getLineNumberForPosition(xmlData, i$2));
-				}
-				const result = readAttributeStr(xmlData, i$2);
-				if (result === false) return getErrorObject("InvalidAttr", "Attributes for '" + tagName + "' have open quote.", getLineNumberForPosition(xmlData, i$2));
-				let attrStr = result.value;
-				i$2 = result.index;
-				if (attrStr[attrStr.length - 1] === "/") {
-					const attrStrStart = i$2 - attrStr.length;
-					attrStr = attrStr.substring(0, attrStr.length - 1);
-					const isValid = validateAttributeString(attrStr, options);
-					if (isValid === true) tagFound = true;
-else return getErrorObject(isValid.err.code, isValid.err.msg, getLineNumberForPosition(xmlData, attrStrStart + isValid.err.line));
-				} else if (closingTag) if (!result.tagClosed) return getErrorObject("InvalidTag", "Closing tag '" + tagName + "' doesn't have proper closing.", getLineNumberForPosition(xmlData, i$2));
-else if (attrStr.trim().length > 0) return getErrorObject("InvalidTag", "Closing tag '" + tagName + "' can't have attributes or invalid starting.", getLineNumberForPosition(xmlData, tagStartPos));
-else if (tags.length === 0) return getErrorObject("InvalidTag", "Closing tag '" + tagName + "' has not been opened.", getLineNumberForPosition(xmlData, tagStartPos));
-else {
-					const otg = tags.pop();
-					if (tagName !== otg.tagName) {
-						let openPos = getLineNumberForPosition(xmlData, otg.tagStartPos);
-						return getErrorObject("InvalidTag", "Expected closing tag '" + otg.tagName + "' (opened in line " + openPos.line + ", col " + openPos.col + ") instead of closing tag '" + tagName + "'.", getLineNumberForPosition(xmlData, tagStartPos));
-					}
-					if (tags.length == 0) reachedRoot = true;
-				}
-else {
-					const isValid = validateAttributeString(attrStr, options);
-					if (isValid !== true) return getErrorObject(isValid.err.code, isValid.err.msg, getLineNumberForPosition(xmlData, i$2 - attrStr.length + isValid.err.line));
-					if (reachedRoot === true) return getErrorObject("InvalidXml", "Multiple possible root nodes found.", getLineNumberForPosition(xmlData, i$2));
-else if (options.unpairedTags.indexOf(tagName) !== -1) {} else tags.push({
-						tagName,
-						tagStartPos
-					});
-					tagFound = true;
-				}
-				for (i$2++; i$2 < xmlData.length; i$2++) if (xmlData[i$2] === "<") if (xmlData[i$2 + 1] === "!") {
-					i$2++;
-					i$2 = readCommentAndCDATA(xmlData, i$2);
-					continue;
-				} else if (xmlData[i$2 + 1] === "?") {
-					i$2 = readPI(xmlData, ++i$2);
-					if (i$2.err) return i$2;
-				} else break;
-else if (xmlData[i$2] === "&") {
-					const afterAmp = validateAmpersand(xmlData, i$2);
-					if (afterAmp == -1) return getErrorObject("InvalidChar", "char '&' is not expected.", getLineNumberForPosition(xmlData, i$2));
-					i$2 = afterAmp;
-				} else if (reachedRoot === true && !isWhiteSpace(xmlData[i$2])) return getErrorObject("InvalidXml", "Extra text at the end", getLineNumberForPosition(xmlData, i$2));
-				if (xmlData[i$2] === "<") i$2--;
-			}
-		} else {
-			if (isWhiteSpace(xmlData[i$2])) continue;
-			return getErrorObject("InvalidChar", "char '" + xmlData[i$2] + "' is not expected.", getLineNumberForPosition(xmlData, i$2));
-		}
-		if (!tagFound) return getErrorObject("InvalidXml", "Start tag expected.", 1);
-else if (tags.length == 1) return getErrorObject("InvalidTag", "Unclosed tag '" + tags[0].tagName + "'.", getLineNumberForPosition(xmlData, tags[0].tagStartPos));
-else if (tags.length > 0) return getErrorObject("InvalidXml", "Invalid '" + JSON.stringify(tags.map((t$2) => t$2.tagName), null, 4).replace(/\r?\n/g, "") + "' found.", {
-			line: 1,
-			col: 1
+	resolveRestContentType(defaultContentType, inputSchema) {
+		const members = inputSchema.getMemberSchemas();
+		const httpPayloadMember = Object.values(members).find((m$1) => {
+			return !!m$1.getMergedTraits().httpPayload;
 		});
-		return true;
-	};
-	function isWhiteSpace(char) {
-		return char === " " || char === "	" || char === "\n" || char === "\r";
-	}
-	/**
-	* Read Processing insstructions and skip
-	* @param {*} xmlData
-	* @param {*} i
-	*/
-	function readPI(xmlData, i$2) {
-		const start = i$2;
-		for (; i$2 < xmlData.length; i$2++) if (xmlData[i$2] == "?" || xmlData[i$2] == " ") {
-			const tagname = xmlData.substr(start, i$2 - start);
-			if (i$2 > 5 && tagname === "xml") return getErrorObject("InvalidXml", "XML declaration allowed only at the start of the document.", getLineNumberForPosition(xmlData, i$2));
-else if (xmlData[i$2] == "?" && xmlData[i$2 + 1] == ">") {
-				i$2++;
-				break;
-			} else continue;
-		}
-		return i$2;
-	}
-	function readCommentAndCDATA(xmlData, i$2) {
-		if (xmlData.length > i$2 + 5 && xmlData[i$2 + 1] === "-" && xmlData[i$2 + 2] === "-") {
-			for (i$2 += 3; i$2 < xmlData.length; i$2++) if (xmlData[i$2] === "-" && xmlData[i$2 + 1] === "-" && xmlData[i$2 + 2] === ">") {
-				i$2 += 2;
-				break;
-			}
-		} else if (xmlData.length > i$2 + 8 && xmlData[i$2 + 1] === "D" && xmlData[i$2 + 2] === "O" && xmlData[i$2 + 3] === "C" && xmlData[i$2 + 4] === "T" && xmlData[i$2 + 5] === "Y" && xmlData[i$2 + 6] === "P" && xmlData[i$2 + 7] === "E") {
-			let angleBracketsCount = 1;
-			for (i$2 += 8; i$2 < xmlData.length; i$2++) if (xmlData[i$2] === "<") angleBracketsCount++;
-else if (xmlData[i$2] === ">") {
-				angleBracketsCount--;
-				if (angleBracketsCount === 0) break;
-			}
-		} else if (xmlData.length > i$2 + 9 && xmlData[i$2 + 1] === "[" && xmlData[i$2 + 2] === "C" && xmlData[i$2 + 3] === "D" && xmlData[i$2 + 4] === "A" && xmlData[i$2 + 5] === "T" && xmlData[i$2 + 6] === "A" && xmlData[i$2 + 7] === "[") {
-			for (i$2 += 8; i$2 < xmlData.length; i$2++) if (xmlData[i$2] === "]" && xmlData[i$2 + 1] === "]" && xmlData[i$2 + 2] === ">") {
-				i$2 += 2;
-				break;
-			}
-		}
-		return i$2;
-	}
-	const doubleQuote = "\"";
-	const singleQuote = "'";
-	/**
-	* Keep reading xmlData until '<' is found outside the attribute value.
-	* @param {string} xmlData
-	* @param {number} i
-	*/
-	function readAttributeStr(xmlData, i$2) {
-		let attrStr = "";
-		let startChar = "";
-		let tagClosed = false;
-		for (; i$2 < xmlData.length; i$2++) {
-			if (xmlData[i$2] === doubleQuote || xmlData[i$2] === singleQuote) if (startChar === "") startChar = xmlData[i$2];
-else if (startChar !== xmlData[i$2]) {} else startChar = "";
-else if (xmlData[i$2] === ">") {
-				if (startChar === "") {
-					tagClosed = true;
-					break;
-				}
-			}
-			attrStr += xmlData[i$2];
-		}
-		if (startChar !== "") return false;
-		return {
-			value: attrStr,
-			index: i$2,
-			tagClosed
-		};
-	}
-	/**
-	* Select all the attributes whether valid or invalid.
-	*/
-	const validAttrStrRegxp = new RegExp("(\\s*)([^\\s=]+)(\\s*=)?(\\s*(['\"])(([\\s\\S])*?)\\5)?", "g");
-	function validateAttributeString(attrStr, options) {
-		const matches = util$2.getAllMatches(attrStr, validAttrStrRegxp);
-		const attrNames = {};
-		for (let i$2 = 0; i$2 < matches.length; i$2++) {
-			if (matches[i$2][1].length === 0) return getErrorObject("InvalidAttr", "Attribute '" + matches[i$2][2] + "' has no space in starting.", getPositionFromMatch(matches[i$2]));
-else if (matches[i$2][3] !== undefined && matches[i$2][4] === undefined) return getErrorObject("InvalidAttr", "Attribute '" + matches[i$2][2] + "' is without value.", getPositionFromMatch(matches[i$2]));
-else if (matches[i$2][3] === undefined && !options.allowBooleanAttributes) return getErrorObject("InvalidAttr", "boolean attribute '" + matches[i$2][2] + "' is not allowed.", getPositionFromMatch(matches[i$2]));
-			const attrName = matches[i$2][2];
-			if (!validateAttrName(attrName)) return getErrorObject("InvalidAttr", "Attribute '" + attrName + "' is an invalid name.", getPositionFromMatch(matches[i$2]));
-			if (!attrNames.hasOwnProperty(attrName)) attrNames[attrName] = 1;
-else return getErrorObject("InvalidAttr", "Attribute '" + attrName + "' is repeated.", getPositionFromMatch(matches[i$2]));
-		}
-		return true;
-	}
-	function validateNumberAmpersand(xmlData, i$2) {
-		let re = /\d/;
-		if (xmlData[i$2] === "x") {
-			i$2++;
-			re = /[\da-fA-F]/;
-		}
-		for (; i$2 < xmlData.length; i$2++) {
-			if (xmlData[i$2] === ";") return i$2;
-			if (!xmlData[i$2].match(re)) break;
-		}
-		return -1;
-	}
-	function validateAmpersand(xmlData, i$2) {
-		i$2++;
-		if (xmlData[i$2] === ";") return -1;
-		if (xmlData[i$2] === "#") {
-			i$2++;
-			return validateNumberAmpersand(xmlData, i$2);
-		}
-		let count = 0;
-		for (; i$2 < xmlData.length; i$2++, count++) {
-			if (xmlData[i$2].match(/\w/) && count < 20) continue;
-			if (xmlData[i$2] === ";") break;
-			return -1;
-		}
-		return i$2;
-	}
-	function getErrorObject(code$1, message, lineNumber) {
-		return { err: {
-			code: code$1,
-			msg: message,
-			line: lineNumber.line || lineNumber,
-			col: lineNumber.col
-		} };
-	}
-	function validateAttrName(attrName) {
-		return util$2.isName(attrName);
-	}
-	function validateTagName(tagname) {
-		return util$2.isName(tagname);
-	}
-	function getLineNumberForPosition(xmlData, index) {
-		const lines = xmlData.substring(0, index).split(/\r?\n/);
-		return {
-			line: lines.length,
-			col: lines[lines.length - 1].length + 1
-		};
-	}
-	function getPositionFromMatch(match) {
-		return match.startIndex + match[1].length;
-	}
-} });
-
-//#endregion
-//#region node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js
-var require_OptionsBuilder = __commonJS({ "node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlparser/OptionsBuilder.js"(exports) {
-	const defaultOptions$1 = {
-		preserveOrder: false,
-		attributeNamePrefix: "@_",
-		attributesGroupName: false,
-		textNodeName: "#text",
-		ignoreAttributes: true,
-		removeNSPrefix: false,
-		allowBooleanAttributes: false,
-		parseTagValue: true,
-		parseAttributeValue: false,
-		trimValues: true,
-		cdataPropName: false,
-		numberParseOptions: {
-			hex: true,
-			leadingZeros: true,
-			eNotation: true
-		},
-		tagValueProcessor: function(tagName, val$1) {
-			return val$1;
-		},
-		attributeValueProcessor: function(attrName, val$1) {
-			return val$1;
-		},
-		stopNodes: [],
-		alwaysCreateTextNode: false,
-		isArray: () => false,
-		commentPropName: false,
-		unpairedTags: [],
-		processEntities: true,
-		htmlEntities: false,
-		ignoreDeclaration: false,
-		ignorePiTags: false,
-		transformTagName: false,
-		transformAttributeName: false,
-		updateTag: function(tagName, jPath, attrs) {
-			return tagName;
-		}
-	};
-	const buildOptions$1 = function(options) {
-		return Object.assign({}, defaultOptions$1, options);
-	};
-	exports.buildOptions = buildOptions$1;
-	exports.defaultOptions = defaultOptions$1;
-} });
-
-//#endregion
-//#region node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js
-var require_xmlNode = __commonJS({ "node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlparser/xmlNode.js"(exports, module) {
-	var XmlNode$1 = class {
-		constructor(tagname) {
-			this.tagname = tagname;
-			this.child = [];
-			this[":@"] = {};
-		}
-		add(key, val$1) {
-			if (key === "__proto__") key = "#__proto__";
-			this.child.push({ [key]: val$1 });
-		}
-		addChild(node) {
-			if (node.tagname === "__proto__") node.tagname = "#__proto__";
-			if (node[":@"] && Object.keys(node[":@"]).length > 0) this.child.push({
-				[node.tagname]: node.child,
-				[":@"]: node[":@"]
+		if (httpPayloadMember) {
+			const mediaType = httpPayloadMember.getMergedTraits().mediaType;
+			if (mediaType) return mediaType;
+else if (httpPayloadMember.isStringSchema()) return "text/plain";
+else if (httpPayloadMember.isBlobSchema()) return "application/octet-stream";
+else return defaultContentType;
+		} else if (!inputSchema.isUnitSchema()) {
+			const hasBody = Object.values(members).find((m$1) => {
+				const { httpQuery, httpQueryParams, httpHeader, httpLabel, httpPrefixHeaders } = m$1.getMergedTraits();
+				const noPrefixHeaders = httpPrefixHeaders === void 0;
+				return !httpQuery && !httpQueryParams && !httpHeader && !httpLabel && noPrefixHeaders;
 			});
-else this.child.push({ [node.tagname]: node.child });
+			if (hasBody) return defaultContentType;
 		}
-	};
-	module.exports = XmlNode$1;
-} });
-
-//#endregion
-//#region node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js
-var require_DocTypeReader = __commonJS({ "node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlparser/DocTypeReader.js"(exports, module) {
-	const util$1 = require_util();
-	function readDocType$1(xmlData, i$2) {
-		const entities = {};
-		if (xmlData[i$2 + 3] === "O" && xmlData[i$2 + 4] === "C" && xmlData[i$2 + 5] === "T" && xmlData[i$2 + 6] === "Y" && xmlData[i$2 + 7] === "P" && xmlData[i$2 + 8] === "E") {
-			i$2 = i$2 + 9;
-			let angleBracketsCount = 1;
-			let hasBody = false, comment = false;
-			let exp = "";
-			for (; i$2 < xmlData.length; i$2++) if (xmlData[i$2] === "<" && !comment) {
-				if (hasBody && isEntity(xmlData, i$2)) {
-					i$2 += 7;
-					[entityName, val, i$2] = readEntityExp(xmlData, i$2 + 1);
-					if (val.indexOf("&") === -1) entities[validateEntityName(entityName)] = {
-						regx: RegExp(`&${entityName};`, "g"),
-						val
-					};
-				} else if (hasBody && isElement(xmlData, i$2)) i$2 += 8;
-else if (hasBody && isAttlist(xmlData, i$2)) i$2 += 8;
-else if (hasBody && isNotation(xmlData, i$2)) i$2 += 9;
-else if (isComment) comment = true;
-else throw new Error("Invalid DOCTYPE");
-				angleBracketsCount++;
-				exp = "";
-			} else if (xmlData[i$2] === ">") {
-				if (comment) {
-					if (xmlData[i$2 - 1] === "-" && xmlData[i$2 - 2] === "-") {
-						comment = false;
-						angleBracketsCount--;
-					}
-				} else angleBracketsCount--;
-				if (angleBracketsCount === 0) break;
-			} else if (xmlData[i$2] === "[") hasBody = true;
-else exp += xmlData[i$2];
-			if (angleBracketsCount !== 0) throw new Error(`Unclosed DOCTYPE`);
-		} else throw new Error(`Invalid Tag instead of DOCTYPE`);
-		return {
-			entities,
-			i: i$2
+	}
+	async getErrorSchemaOrThrowBaseException(errorIdentifier, defaultNamespace, response, dataObject, metadata, getErrorSchema) {
+		let namespace = defaultNamespace;
+		let errorName = errorIdentifier;
+		if (errorIdentifier.includes("#")) [namespace, errorName] = errorIdentifier.split("#");
+		const errorMetadata = {
+			$metadata: metadata,
+			$fault: response.statusCode < 500 ? "client" : "server"
 		};
-	}
-	function readEntityExp(xmlData, i$2) {
-		let entityName$1 = "";
-		for (; i$2 < xmlData.length && xmlData[i$2] !== "'" && xmlData[i$2] !== "\""; i$2++) entityName$1 += xmlData[i$2];
-		entityName$1 = entityName$1.trim();
-		if (entityName$1.indexOf(" ") !== -1) throw new Error("External entites are not supported");
-		const startChar = xmlData[i$2++];
-		let val$1 = "";
-		for (; i$2 < xmlData.length && xmlData[i$2] !== startChar; i$2++) val$1 += xmlData[i$2];
-		return [
-			entityName$1,
-			val$1,
-			i$2
-		];
-	}
-	function isComment(xmlData, i$2) {
-		if (xmlData[i$2 + 1] === "!" && xmlData[i$2 + 2] === "-" && xmlData[i$2 + 3] === "-") return true;
-		return false;
-	}
-	function isEntity(xmlData, i$2) {
-		if (xmlData[i$2 + 1] === "!" && xmlData[i$2 + 2] === "E" && xmlData[i$2 + 3] === "N" && xmlData[i$2 + 4] === "T" && xmlData[i$2 + 5] === "I" && xmlData[i$2 + 6] === "T" && xmlData[i$2 + 7] === "Y") return true;
-		return false;
-	}
-	function isElement(xmlData, i$2) {
-		if (xmlData[i$2 + 1] === "!" && xmlData[i$2 + 2] === "E" && xmlData[i$2 + 3] === "L" && xmlData[i$2 + 4] === "E" && xmlData[i$2 + 5] === "M" && xmlData[i$2 + 6] === "E" && xmlData[i$2 + 7] === "N" && xmlData[i$2 + 8] === "T") return true;
-		return false;
-	}
-	function isAttlist(xmlData, i$2) {
-		if (xmlData[i$2 + 1] === "!" && xmlData[i$2 + 2] === "A" && xmlData[i$2 + 3] === "T" && xmlData[i$2 + 4] === "T" && xmlData[i$2 + 5] === "L" && xmlData[i$2 + 6] === "I" && xmlData[i$2 + 7] === "S" && xmlData[i$2 + 8] === "T") return true;
-		return false;
-	}
-	function isNotation(xmlData, i$2) {
-		if (xmlData[i$2 + 1] === "!" && xmlData[i$2 + 2] === "N" && xmlData[i$2 + 3] === "O" && xmlData[i$2 + 4] === "T" && xmlData[i$2 + 5] === "A" && xmlData[i$2 + 6] === "T" && xmlData[i$2 + 7] === "I" && xmlData[i$2 + 8] === "O" && xmlData[i$2 + 9] === "N") return true;
-		return false;
-	}
-	function validateEntityName(name$1) {
-		if (util$1.isName(name$1)) return name$1;
-else throw new Error(`Invalid entity name ${name$1}`);
-	}
-	module.exports = readDocType$1;
-} });
-
-//#endregion
-//#region node_modules/.pnpm/strnum@1.0.5/node_modules/strnum/strnum.js
-var require_strnum = __commonJS({ "node_modules/.pnpm/strnum@1.0.5/node_modules/strnum/strnum.js"(exports, module) {
-	const hexRegex = /^[-+]?0x[a-fA-F0-9]+$/;
-	const numRegex = /^([\-\+])?(0*)(\.[0-9]+([eE]\-?[0-9]+)?|[0-9]+(\.[0-9]+([eE]\-?[0-9]+)?)?)$/;
-	if (!Number.parseInt && window.parseInt) Number.parseInt = window.parseInt;
-	if (!Number.parseFloat && window.parseFloat) Number.parseFloat = window.parseFloat;
-	const consider = {
-		hex: true,
-		leadingZeros: true,
-		decimalPoint: ".",
-		eNotation: true
-	};
-	function toNumber$1(str, options = {}) {
-		options = Object.assign({}, consider, options);
-		if (!str || typeof str !== "string") return str;
-		let trimmedStr = str.trim();
-		if (options.skipLike !== undefined && options.skipLike.test(trimmedStr)) return str;
-else if (options.hex && hexRegex.test(trimmedStr)) return Number.parseInt(trimmedStr, 16);
-else {
-			const match = numRegex.exec(trimmedStr);
-			if (match) {
-				const sign = match[1];
-				const leadingZeros = match[2];
-				let numTrimmedByZeros = trimZeros(match[3]);
-				const eNotation = match[4] || match[6];
-				if (!options.leadingZeros && leadingZeros.length > 0 && sign && trimmedStr[2] !== ".") return str;
-else if (!options.leadingZeros && leadingZeros.length > 0 && !sign && trimmedStr[1] !== ".") return str;
-else {
-					const num = Number(trimmedStr);
-					const numStr = "" + num;
-					if (numStr.search(/[eE]/) !== -1) if (options.eNotation) return num;
-else return str;
-else if (eNotation) if (options.eNotation) return num;
-else return str;
-else if (trimmedStr.indexOf(".") !== -1) if (numStr === "0" && numTrimmedByZeros === "") return num;
-else if (numStr === numTrimmedByZeros) return num;
-else if (sign && numStr === "-" + numTrimmedByZeros) return num;
-else return str;
-					if (leadingZeros) if (numTrimmedByZeros === numStr) return num;
-else if (sign + numTrimmedByZeros === numStr) return num;
-else return str;
-					if (trimmedStr === numStr) return num;
-else if (trimmedStr === sign + numStr) return num;
-					return str;
-				}
-			} else return str;
-		}
-	}
-	/**
-	* 
-	* @param {string} numStr without leading zeros
-	* @returns 
-	*/
-	function trimZeros(numStr) {
-		if (numStr && numStr.indexOf(".") !== -1) {
-			numStr = numStr.replace(/0+$/, "");
-			if (numStr === ".") numStr = "0";
-else if (numStr[0] === ".") numStr = "0" + numStr;
-else if (numStr[numStr.length - 1] === ".") numStr = numStr.substr(0, numStr.length - 1);
-			return numStr;
-		}
-		return numStr;
-	}
-	module.exports = toNumber$1;
-} });
-
-//#endregion
-//#region node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js
-var require_OrderedObjParser = __commonJS({ "node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlparser/OrderedObjParser.js"(exports, module) {
-	const util = require_util();
-	const xmlNode = require_xmlNode();
-	const readDocType = require_DocTypeReader();
-	const toNumber = require_strnum();
-	var OrderedObjParser$1 = class {
-		constructor(options) {
-			this.options = options;
-			this.currentNode = null;
-			this.tagsNodeStack = [];
-			this.docTypeEntities = {};
-			this.lastEntities = {
-				"apos": {
-					regex: /&(apos|#39|#x27);/g,
-					val: "'"
-				},
-				"gt": {
-					regex: /&(gt|#62|#x3E);/g,
-					val: ">"
-				},
-				"lt": {
-					regex: /&(lt|#60|#x3C);/g,
-					val: "<"
-				},
-				"quot": {
-					regex: /&(quot|#34|#x22);/g,
-					val: "\""
-				}
-			};
-			this.ampEntity = {
-				regex: /&(amp|#38|#x26);/g,
-				val: "&"
-			};
-			this.htmlEntities = {
-				"space": {
-					regex: /&(nbsp|#160);/g,
-					val: " "
-				},
-				"cent": {
-					regex: /&(cent|#162);/g,
-					val: "¢"
-				},
-				"pound": {
-					regex: /&(pound|#163);/g,
-					val: "£"
-				},
-				"yen": {
-					regex: /&(yen|#165);/g,
-					val: "¥"
-				},
-				"euro": {
-					regex: /&(euro|#8364);/g,
-					val: "€"
-				},
-				"copyright": {
-					regex: /&(copy|#169);/g,
-					val: "©"
-				},
-				"reg": {
-					regex: /&(reg|#174);/g,
-					val: "®"
-				},
-				"inr": {
-					regex: /&(inr|#8377);/g,
-					val: "₹"
-				},
-				"num_dec": {
-					regex: /&#([0-9]{1,7});/g,
-					val: (_, str) => String.fromCharCode(Number.parseInt(str, 10))
-				},
-				"num_hex": {
-					regex: /&#x([0-9a-fA-F]{1,6});/g,
-					val: (_, str) => String.fromCharCode(Number.parseInt(str, 16))
-				}
-			};
-			this.addExternalEntities = addExternalEntities;
-			this.parseXml = parseXml;
-			this.parseTextData = parseTextData;
-			this.resolveNameSpace = resolveNameSpace;
-			this.buildAttributesMap = buildAttributesMap;
-			this.isItStopNode = isItStopNode;
-			this.replaceEntitiesValue = replaceEntitiesValue$1;
-			this.readStopNodeData = readStopNodeData;
-			this.saveTextToParentTag = saveTextToParentTag;
-			this.addChild = addChild;
-		}
-	};
-	function addExternalEntities(externalEntities) {
-		const entKeys = Object.keys(externalEntities);
-		for (let i$2 = 0; i$2 < entKeys.length; i$2++) {
-			const ent = entKeys[i$2];
-			this.lastEntities[ent] = {
-				regex: new RegExp("&" + ent + ";", "g"),
-				val: externalEntities[ent]
-			};
-		}
-	}
-	/**
-	* @param {string} val
-	* @param {string} tagName
-	* @param {string} jPath
-	* @param {boolean} dontTrim
-	* @param {boolean} hasAttributes
-	* @param {boolean} isLeafNode
-	* @param {boolean} escapeEntities
-	*/
-	function parseTextData(val$1, tagName, jPath, dontTrim, hasAttributes, isLeafNode, escapeEntities) {
-		if (val$1 !== undefined) {
-			if (this.options.trimValues && !dontTrim) val$1 = val$1.trim();
-			if (val$1.length > 0) {
-				if (!escapeEntities) val$1 = this.replaceEntitiesValue(val$1);
-				const newval = this.options.tagValueProcessor(tagName, val$1, jPath, hasAttributes, isLeafNode);
-				if (newval === null || newval === undefined) return val$1;
-else if (typeof newval !== typeof val$1 || newval !== val$1) return newval;
-else if (this.options.trimValues) return parseValue(val$1, this.options.parseTagValue, this.options.numberParseOptions);
-else {
-					const trimmedVal = val$1.trim();
-					if (trimmedVal === val$1) return parseValue(val$1, this.options.parseTagValue, this.options.numberParseOptions);
-else return val$1;
-				}
-			}
-		}
-	}
-	function resolveNameSpace(tagname) {
-		if (this.options.removeNSPrefix) {
-			const tags = tagname.split(":");
-			const prefix = tagname.charAt(0) === "/" ? "/" : "";
-			if (tags[0] === "xmlns") return "";
-			if (tags.length === 2) tagname = prefix + tags[1];
-		}
-		return tagname;
-	}
-	const attrsRegx = new RegExp("([^\\s=]+)\\s*(=\\s*(['\"])([\\s\\S]*?)\\3)?", "gm");
-	function buildAttributesMap(attrStr, jPath, tagName) {
-		if (!this.options.ignoreAttributes && typeof attrStr === "string") {
-			const matches = util.getAllMatches(attrStr, attrsRegx);
-			const len$1 = matches.length;
-			const attrs = {};
-			for (let i$2 = 0; i$2 < len$1; i$2++) {
-				const attrName = this.resolveNameSpace(matches[i$2][1]);
-				let oldVal = matches[i$2][4];
-				let aName = this.options.attributeNamePrefix + attrName;
-				if (attrName.length) {
-					if (this.options.transformAttributeName) aName = this.options.transformAttributeName(aName);
-					if (aName === "__proto__") aName = "#__proto__";
-					if (oldVal !== undefined) {
-						if (this.options.trimValues) oldVal = oldVal.trim();
-						oldVal = this.replaceEntitiesValue(oldVal);
-						const newVal = this.options.attributeValueProcessor(attrName, oldVal, jPath);
-						if (newVal === null || newVal === undefined) attrs[aName] = oldVal;
-else if (typeof newVal !== typeof oldVal || newVal !== oldVal) attrs[aName] = newVal;
-else attrs[aName] = parseValue(oldVal, this.options.parseAttributeValue, this.options.numberParseOptions);
-					} else if (this.options.allowBooleanAttributes) attrs[aName] = true;
-				}
-			}
-			if (!Object.keys(attrs).length) return;
-			if (this.options.attributesGroupName) {
-				const attrCollection = {};
-				attrCollection[this.options.attributesGroupName] = attrs;
-				return attrCollection;
-			}
-			return attrs;
-		}
-	}
-	const parseXml = function(xmlData) {
-		xmlData = xmlData.replace(/\r\n?/g, "\n");
-		const xmlObj = new xmlNode("!xml");
-		let currentNode = xmlObj;
-		let textData = "";
-		let jPath = "";
-		for (let i$2 = 0; i$2 < xmlData.length; i$2++) {
-			const ch$1 = xmlData[i$2];
-			if (ch$1 === "<") if (xmlData[i$2 + 1] === "/") {
-				const closeIndex = findClosingIndex(xmlData, ">", i$2, "Closing Tag is not closed.");
-				let tagName = xmlData.substring(i$2 + 2, closeIndex).trim();
-				if (this.options.removeNSPrefix) {
-					const colonIndex = tagName.indexOf(":");
-					if (colonIndex !== -1) tagName = tagName.substr(colonIndex + 1);
-				}
-				if (this.options.transformTagName) tagName = this.options.transformTagName(tagName);
-				if (currentNode) textData = this.saveTextToParentTag(textData, currentNode, jPath);
-				const lastTagName = jPath.substring(jPath.lastIndexOf(".") + 1);
-				if (tagName && this.options.unpairedTags.indexOf(tagName) !== -1) throw new Error(`Unpaired tag can not be used as closing tag: </${tagName}>`);
-				let propIndex = 0;
-				if (lastTagName && this.options.unpairedTags.indexOf(lastTagName) !== -1) {
-					propIndex = jPath.lastIndexOf(".", jPath.lastIndexOf(".") - 1);
-					this.tagsNodeStack.pop();
-				} else propIndex = jPath.lastIndexOf(".");
-				jPath = jPath.substring(0, propIndex);
-				currentNode = this.tagsNodeStack.pop();
-				textData = "";
-				i$2 = closeIndex;
-			} else if (xmlData[i$2 + 1] === "?") {
-				let tagData = readTagExp(xmlData, i$2, false, "?>");
-				if (!tagData) throw new Error("Pi Tag is not closed.");
-				textData = this.saveTextToParentTag(textData, currentNode, jPath);
-				if (this.options.ignoreDeclaration && tagData.tagName === "?xml" || this.options.ignorePiTags) {} else {
-					const childNode = new xmlNode(tagData.tagName);
-					childNode.add(this.options.textNodeName, "");
-					if (tagData.tagName !== tagData.tagExp && tagData.attrExpPresent) childNode[":@"] = this.buildAttributesMap(tagData.tagExp, jPath, tagData.tagName);
-					this.addChild(currentNode, childNode, jPath);
-				}
-				i$2 = tagData.closeIndex + 1;
-			} else if (xmlData.substr(i$2 + 1, 3) === "!--") {
-				const endIndex = findClosingIndex(xmlData, "-->", i$2 + 4, "Comment is not closed.");
-				if (this.options.commentPropName) {
-					const comment = xmlData.substring(i$2 + 4, endIndex - 2);
-					textData = this.saveTextToParentTag(textData, currentNode, jPath);
-					currentNode.add(this.options.commentPropName, [{ [this.options.textNodeName]: comment }]);
-				}
-				i$2 = endIndex;
-			} else if (xmlData.substr(i$2 + 1, 2) === "!D") {
-				const result = readDocType(xmlData, i$2);
-				this.docTypeEntities = result.entities;
-				i$2 = result.i;
-			} else if (xmlData.substr(i$2 + 1, 2) === "![") {
-				const closeIndex = findClosingIndex(xmlData, "]]>", i$2, "CDATA is not closed.") - 2;
-				const tagExp = xmlData.substring(i$2 + 9, closeIndex);
-				textData = this.saveTextToParentTag(textData, currentNode, jPath);
-				let val$1 = this.parseTextData(tagExp, currentNode.tagname, jPath, true, false, true, true);
-				if (val$1 == undefined) val$1 = "";
-				if (this.options.cdataPropName) currentNode.add(this.options.cdataPropName, [{ [this.options.textNodeName]: tagExp }]);
-else currentNode.add(this.options.textNodeName, val$1);
-				i$2 = closeIndex + 2;
-			} else {
-				let result = readTagExp(xmlData, i$2, this.options.removeNSPrefix);
-				let tagName = result.tagName;
-				const rawTagName = result.rawTagName;
-				let tagExp = result.tagExp;
-				let attrExpPresent = result.attrExpPresent;
-				let closeIndex = result.closeIndex;
-				if (this.options.transformTagName) tagName = this.options.transformTagName(tagName);
-				if (currentNode && textData) {
-					if (currentNode.tagname !== "!xml") textData = this.saveTextToParentTag(textData, currentNode, jPath, false);
-				}
-				const lastTag = currentNode;
-				if (lastTag && this.options.unpairedTags.indexOf(lastTag.tagname) !== -1) {
-					currentNode = this.tagsNodeStack.pop();
-					jPath = jPath.substring(0, jPath.lastIndexOf("."));
-				}
-				if (tagName !== xmlObj.tagname) jPath += jPath ? "." + tagName : tagName;
-				if (this.isItStopNode(this.options.stopNodes, jPath, tagName)) {
-					let tagContent = "";
-					if (tagExp.length > 0 && tagExp.lastIndexOf("/") === tagExp.length - 1) {
-						if (tagName[tagName.length - 1] === "/") {
-							tagName = tagName.substr(0, tagName.length - 1);
-							jPath = jPath.substr(0, jPath.length - 1);
-							tagExp = tagName;
-						} else tagExp = tagExp.substr(0, tagExp.length - 1);
-						i$2 = result.closeIndex;
-					} else if (this.options.unpairedTags.indexOf(tagName) !== -1) i$2 = result.closeIndex;
-else {
-						const result$1 = this.readStopNodeData(xmlData, rawTagName, closeIndex + 1);
-						if (!result$1) throw new Error(`Unexpected end of ${rawTagName}`);
-						i$2 = result$1.i;
-						tagContent = result$1.tagContent;
-					}
-					const childNode = new xmlNode(tagName);
-					if (tagName !== tagExp && attrExpPresent) childNode[":@"] = this.buildAttributesMap(tagExp, jPath, tagName);
-					if (tagContent) tagContent = this.parseTextData(tagContent, tagName, jPath, true, attrExpPresent, true, true);
-					jPath = jPath.substr(0, jPath.lastIndexOf("."));
-					childNode.add(this.options.textNodeName, tagContent);
-					this.addChild(currentNode, childNode, jPath);
-				} else {
-					if (tagExp.length > 0 && tagExp.lastIndexOf("/") === tagExp.length - 1) {
-						if (tagName[tagName.length - 1] === "/") {
-							tagName = tagName.substr(0, tagName.length - 1);
-							jPath = jPath.substr(0, jPath.length - 1);
-							tagExp = tagName;
-						} else tagExp = tagExp.substr(0, tagExp.length - 1);
-						if (this.options.transformTagName) tagName = this.options.transformTagName(tagName);
-						const childNode = new xmlNode(tagName);
-						if (tagName !== tagExp && attrExpPresent) childNode[":@"] = this.buildAttributesMap(tagExp, jPath, tagName);
-						this.addChild(currentNode, childNode, jPath);
-						jPath = jPath.substr(0, jPath.lastIndexOf("."));
-					} else {
-						const childNode = new xmlNode(tagName);
-						this.tagsNodeStack.push(currentNode);
-						if (tagName !== tagExp && attrExpPresent) childNode[":@"] = this.buildAttributesMap(tagExp, jPath, tagName);
-						this.addChild(currentNode, childNode, jPath);
-						currentNode = childNode;
-					}
-					textData = "";
-					i$2 = closeIndex;
-				}
-			}
-else textData += xmlData[i$2];
-		}
-		return xmlObj.child;
-	};
-	function addChild(currentNode, childNode, jPath) {
-		const result = this.options.updateTag(childNode.tagname, jPath, childNode[":@"]);
-		if (result === false) {} else if (typeof result === "string") {
-			childNode.tagname = result;
-			currentNode.addChild(childNode);
-		} else currentNode.addChild(childNode);
-	}
-	const replaceEntitiesValue$1 = function(val$1) {
-		if (this.options.processEntities) {
-			for (let entityName$1 in this.docTypeEntities) {
-				const entity = this.docTypeEntities[entityName$1];
-				val$1 = val$1.replace(entity.regx, entity.val);
-			}
-			for (let entityName$1 in this.lastEntities) {
-				const entity = this.lastEntities[entityName$1];
-				val$1 = val$1.replace(entity.regex, entity.val);
-			}
-			if (this.options.htmlEntities) for (let entityName$1 in this.htmlEntities) {
-				const entity = this.htmlEntities[entityName$1];
-				val$1 = val$1.replace(entity.regex, entity.val);
-			}
-			val$1 = val$1.replace(this.ampEntity.regex, this.ampEntity.val);
-		}
-		return val$1;
-	};
-	function saveTextToParentTag(textData, currentNode, jPath, isLeafNode) {
-		if (textData) {
-			if (isLeafNode === undefined) isLeafNode = Object.keys(currentNode.child).length === 0;
-			textData = this.parseTextData(textData, currentNode.tagname, jPath, false, currentNode[":@"] ? Object.keys(currentNode[":@"]).length !== 0 : false, isLeafNode);
-			if (textData !== undefined && textData !== "") currentNode.add(this.options.textNodeName, textData);
-			textData = "";
-		}
-		return textData;
-	}
-	/**
-	* 
-	* @param {string[]} stopNodes 
-	* @param {string} jPath
-	* @param {string} currentTagName 
-	*/
-	function isItStopNode(stopNodes, jPath, currentTagName) {
-		const allNodesExp = "*." + currentTagName;
-		for (const stopNodePath in stopNodes) {
-			const stopNodeExp = stopNodes[stopNodePath];
-			if (allNodesExp === stopNodeExp || jPath === stopNodeExp) return true;
-		}
-		return false;
-	}
-	/**
-	* Returns the tag Expression and where it is ending handling single-double quotes situation
-	* @param {string} xmlData 
-	* @param {number} i starting index
-	* @returns 
-	*/
-	function tagExpWithClosingIndex(xmlData, i$2, closingChar = ">") {
-		let attrBoundary;
-		let tagExp = "";
-		for (let index = i$2; index < xmlData.length; index++) {
-			let ch$1 = xmlData[index];
-			if (attrBoundary) {
-				if (ch$1 === attrBoundary) attrBoundary = "";
-			} else if (ch$1 === "\"" || ch$1 === "'") attrBoundary = ch$1;
-else if (ch$1 === closingChar[0]) if (closingChar[1]) {
-				if (xmlData[index + 1] === closingChar[1]) return {
-					data: tagExp,
-					index
-				};
-			} else return {
-				data: tagExp,
-				index
-			};
-else if (ch$1 === "	") ch$1 = " ";
-			tagExp += ch$1;
-		}
-	}
-	function findClosingIndex(xmlData, str, i$2, errMsg) {
-		const closingIndex = xmlData.indexOf(str, i$2);
-		if (closingIndex === -1) throw new Error(errMsg);
-else return closingIndex + str.length - 1;
-	}
-	function readTagExp(xmlData, i$2, removeNSPrefix, closingChar = ">") {
-		const result = tagExpWithClosingIndex(xmlData, i$2 + 1, closingChar);
-		if (!result) return;
-		let tagExp = result.data;
-		const closeIndex = result.index;
-		const separatorIndex = tagExp.search(/\s/);
-		let tagName = tagExp;
-		let attrExpPresent = true;
-		if (separatorIndex !== -1) {
-			tagName = tagExp.substring(0, separatorIndex);
-			tagExp = tagExp.substring(separatorIndex + 1).trimStart();
-		}
-		const rawTagName = tagName;
-		if (removeNSPrefix) {
-			const colonIndex = tagName.indexOf(":");
-			if (colonIndex !== -1) {
-				tagName = tagName.substr(colonIndex + 1);
-				attrExpPresent = tagName !== result.data.substr(colonIndex + 1);
-			}
-		}
-		return {
-			tagName,
-			tagExp,
-			closeIndex,
-			attrExpPresent,
-			rawTagName
-		};
-	}
-	/**
-	* find paired tag for a stop node
-	* @param {string} xmlData 
-	* @param {string} tagName 
-	* @param {number} i 
-	*/
-	function readStopNodeData(xmlData, tagName, i$2) {
-		const startIndex = i$2;
-		let openTagCount = 1;
-		for (; i$2 < xmlData.length; i$2++) if (xmlData[i$2] === "<") if (xmlData[i$2 + 1] === "/") {
-			const closeIndex = findClosingIndex(xmlData, ">", i$2, `${tagName} is not closed`);
-			let closeTagName = xmlData.substring(i$2 + 2, closeIndex).trim();
-			if (closeTagName === tagName) {
-				openTagCount--;
-				if (openTagCount === 0) return {
-					tagContent: xmlData.substring(startIndex, i$2),
-					i: closeIndex
-				};
-			}
-			i$2 = closeIndex;
-		} else if (xmlData[i$2 + 1] === "?") {
-			const closeIndex = findClosingIndex(xmlData, "?>", i$2 + 1, "StopNode is not closed.");
-			i$2 = closeIndex;
-		} else if (xmlData.substr(i$2 + 1, 3) === "!--") {
-			const closeIndex = findClosingIndex(xmlData, "-->", i$2 + 3, "StopNode is not closed.");
-			i$2 = closeIndex;
-		} else if (xmlData.substr(i$2 + 1, 2) === "![") {
-			const closeIndex = findClosingIndex(xmlData, "]]>", i$2, "StopNode is not closed.") - 2;
-			i$2 = closeIndex;
-		} else {
-			const tagData = readTagExp(xmlData, i$2, ">");
-			if (tagData) {
-				const openTagName = tagData && tagData.tagName;
-				if (openTagName === tagName && tagData.tagExp[tagData.tagExp.length - 1] !== "/") openTagCount++;
-				i$2 = tagData.closeIndex;
-			}
-		}
-	}
-	function parseValue(val$1, shouldParse, options) {
-		if (shouldParse && typeof val$1 === "string") {
-			const newval = val$1.trim();
-			if (newval === "true") return true;
-else if (newval === "false") return false;
-else return toNumber(val$1, options);
-		} else if (util.isExist(val$1)) return val$1;
-else return "";
-	}
-	module.exports = OrderedObjParser$1;
-} });
-
-//#endregion
-//#region node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlparser/node2json.js
-var require_node2json = __commonJS({ "node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlparser/node2json.js"(exports) {
-	/**
-	* 
-	* @param {array} node 
-	* @param {any} options 
-	* @returns 
-	*/
-	function prettify$1(node, options) {
-		return compress(node, options);
-	}
-	/**
-	* 
-	* @param {array} arr 
-	* @param {object} options 
-	* @param {string} jPath 
-	* @returns object
-	*/
-	function compress(arr, options, jPath) {
-		let text;
-		const compressedObj = {};
-		for (let i$2 = 0; i$2 < arr.length; i$2++) {
-			const tagObj = arr[i$2];
-			const property = propName$1(tagObj);
-			let newJpath = "";
-			if (jPath === undefined) newJpath = property;
-else newJpath = jPath + "." + property;
-			if (property === options.textNodeName) if (text === undefined) text = tagObj[property];
-else text += "" + tagObj[property];
-else if (property === undefined) continue;
-else if (tagObj[property]) {
-				let val$1 = compress(tagObj[property], options, newJpath);
-				const isLeaf = isLeafTag(val$1, options);
-				if (tagObj[":@"]) assignAttributes(val$1, tagObj[":@"], newJpath, options);
-else if (Object.keys(val$1).length === 1 && val$1[options.textNodeName] !== undefined && !options.alwaysCreateTextNode) val$1 = val$1[options.textNodeName];
-else if (Object.keys(val$1).length === 0) if (options.alwaysCreateTextNode) val$1[options.textNodeName] = "";
-else val$1 = "";
-				if (compressedObj[property] !== undefined && compressedObj.hasOwnProperty(property)) {
-					if (!Array.isArray(compressedObj[property])) compressedObj[property] = [compressedObj[property]];
-					compressedObj[property].push(val$1);
-				} else if (options.isArray(property, newJpath, isLeaf)) compressedObj[property] = [val$1];
-else compressedObj[property] = val$1;
-			}
-		}
-		if (typeof text === "string") {
-			if (text.length > 0) compressedObj[options.textNodeName] = text;
-		} else if (text !== undefined) compressedObj[options.textNodeName] = text;
-		return compressedObj;
-	}
-	function propName$1(obj) {
-		const keys$1 = Object.keys(obj);
-		for (let i$2 = 0; i$2 < keys$1.length; i$2++) {
-			const key = keys$1[i$2];
-			if (key !== ":@") return key;
-		}
-	}
-	function assignAttributes(obj, attrMap, jpath, options) {
-		if (attrMap) {
-			const keys$1 = Object.keys(attrMap);
-			const len$1 = keys$1.length;
-			for (let i$2 = 0; i$2 < len$1; i$2++) {
-				const atrrName = keys$1[i$2];
-				if (options.isArray(atrrName, jpath + "." + atrrName, true, true)) obj[atrrName] = [attrMap[atrrName]];
-else obj[atrrName] = attrMap[atrrName];
-			}
-		}
-	}
-	function isLeafTag(obj, options) {
-		const { textNodeName } = options;
-		const propCount = Object.keys(obj).length;
-		if (propCount === 0) return true;
-		if (propCount === 1 && (obj[textNodeName] || typeof obj[textNodeName] === "boolean" || obj[textNodeName] === 0)) return true;
-		return false;
-	}
-	exports.prettify = prettify$1;
-} });
-
-//#endregion
-//#region node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js
-var require_XMLParser = __commonJS({ "node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlparser/XMLParser.js"(exports, module) {
-	const { buildOptions } = require_OptionsBuilder();
-	const OrderedObjParser = require_OrderedObjParser();
-	const { prettify } = require_node2json();
-	const validator$1 = require_validator();
-	var XMLParser$2 = class {
-		constructor(options) {
-			this.externalEntities = {};
-			this.options = buildOptions(options);
-		}
-		/**
-		* Parse XML dats to JS object 
-		* @param {string|Buffer} xmlData 
-		* @param {boolean|Object} validationOption 
-		*/
-		parse(xmlData, validationOption) {
-			if (typeof xmlData === "string") {} else if (xmlData.toString) xmlData = xmlData.toString();
-else throw new Error("XML data is accepted in String or Bytes[] form.");
-			if (validationOption) {
-				if (validationOption === true) validationOption = {};
-				const result = validator$1.validate(xmlData, validationOption);
-				if (result !== true) throw Error(`${result.err.msg}:${result.err.line}:${result.err.col}`);
-			}
-			const orderedObjParser = new OrderedObjParser(this.options);
-			orderedObjParser.addExternalEntities(this.externalEntities);
-			const orderedResult = orderedObjParser.parseXml(xmlData);
-			if (this.options.preserveOrder || orderedResult === undefined) return orderedResult;
-else return prettify(orderedResult, this.options);
-		}
-		/**
-		* Add Entity which is not by default supported by this library
-		* @param {string} key 
-		* @param {string} value 
-		*/
-		addEntity(key, value) {
-			if (value.indexOf("&") !== -1) throw new Error("Entity value can't have '&'");
-else if (key.indexOf("&") !== -1 || key.indexOf(";") !== -1) throw new Error("An entity must be set without '&' and ';'. Eg. use '#xD' for '&#xD;'");
-else if (value === "&") throw new Error("An entity with value '&' is not permitted");
-else this.externalEntities[key] = value;
-		}
-	};
-	module.exports = XMLParser$2;
-} });
-
-//#endregion
-//#region node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlbuilder/orderedJs2Xml.js
-var require_orderedJs2Xml = __commonJS({ "node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlbuilder/orderedJs2Xml.js"(exports, module) {
-	const EOL = "\n";
-	/**
-	* 
-	* @param {array} jArray 
-	* @param {any} options 
-	* @returns 
-	*/
-	function toXml(jArray, options) {
-		let indentation = "";
-		if (options.format && options.indentBy.length > 0) indentation = EOL;
-		return arrToStr(jArray, options, "", indentation);
-	}
-	function arrToStr(arr, options, jPath, indentation) {
-		let xmlStr = "";
-		let isPreviousElementTag = false;
-		for (let i$2 = 0; i$2 < arr.length; i$2++) {
-			const tagObj = arr[i$2];
-			const tagName = propName(tagObj);
-			if (tagName === undefined) continue;
-			let newJPath = "";
-			if (jPath.length === 0) newJPath = tagName;
-else newJPath = `${jPath}.${tagName}`;
-			if (tagName === options.textNodeName) {
-				let tagText = tagObj[tagName];
-				if (!isStopNode(newJPath, options)) {
-					tagText = options.tagValueProcessor(tagName, tagText);
-					tagText = replaceEntitiesValue(tagText, options);
-				}
-				if (isPreviousElementTag) xmlStr += indentation;
-				xmlStr += tagText;
-				isPreviousElementTag = false;
-				continue;
-			} else if (tagName === options.cdataPropName) {
-				if (isPreviousElementTag) xmlStr += indentation;
-				xmlStr += `<![CDATA[${tagObj[tagName][0][options.textNodeName]}]]>`;
-				isPreviousElementTag = false;
-				continue;
-			} else if (tagName === options.commentPropName) {
-				xmlStr += indentation + `<!--${tagObj[tagName][0][options.textNodeName]}-->`;
-				isPreviousElementTag = true;
-				continue;
-			} else if (tagName[0] === "?") {
-				const attStr$1 = attr_to_str(tagObj[":@"], options);
-				const tempInd = tagName === "?xml" ? "" : indentation;
-				let piTextNodeName = tagObj[tagName][0][options.textNodeName];
-				piTextNodeName = piTextNodeName.length !== 0 ? " " + piTextNodeName : "";
-				xmlStr += tempInd + `<${tagName}${piTextNodeName}${attStr$1}?>`;
-				isPreviousElementTag = true;
-				continue;
-			}
-			let newIdentation = indentation;
-			if (newIdentation !== "") newIdentation += options.indentBy;
-			const attStr = attr_to_str(tagObj[":@"], options);
-			const tagStart = indentation + `<${tagName}${attStr}`;
-			const tagValue = arrToStr(tagObj[tagName], options, newJPath, newIdentation);
-			if (options.unpairedTags.indexOf(tagName) !== -1) if (options.suppressUnpairedNode) xmlStr += tagStart + ">";
-else xmlStr += tagStart + "/>";
-else if ((!tagValue || tagValue.length === 0) && options.suppressEmptyNode) xmlStr += tagStart + "/>";
-else if (tagValue && tagValue.endsWith(">")) xmlStr += tagStart + `>${tagValue}${indentation}</${tagName}>`;
-else {
-				xmlStr += tagStart + ">";
-				if (tagValue && indentation !== "" && (tagValue.includes("/>") || tagValue.includes("</"))) xmlStr += indentation + options.indentBy + tagValue + indentation;
-else xmlStr += tagValue;
-				xmlStr += `</${tagName}>`;
-			}
-			isPreviousElementTag = true;
-		}
-		return xmlStr;
-	}
-	function propName(obj) {
-		const keys$1 = Object.keys(obj);
-		for (let i$2 = 0; i$2 < keys$1.length; i$2++) {
-			const key = keys$1[i$2];
-			if (!obj.hasOwnProperty(key)) continue;
-			if (key !== ":@") return key;
-		}
-	}
-	function attr_to_str(attrMap, options) {
-		let attrStr = "";
-		if (attrMap && !options.ignoreAttributes) for (let attr in attrMap) {
-			if (!attrMap.hasOwnProperty(attr)) continue;
-			let attrVal = options.attributeValueProcessor(attr, attrMap[attr]);
-			attrVal = replaceEntitiesValue(attrVal, options);
-			if (attrVal === true && options.suppressBooleanAttributes) attrStr += ` ${attr.substr(options.attributeNamePrefix.length)}`;
-else attrStr += ` ${attr.substr(options.attributeNamePrefix.length)}="${attrVal}"`;
-		}
-		return attrStr;
-	}
-	function isStopNode(jPath, options) {
-		jPath = jPath.substr(0, jPath.length - options.textNodeName.length - 1);
-		let tagName = jPath.substr(jPath.lastIndexOf(".") + 1);
-		for (let index in options.stopNodes) if (options.stopNodes[index] === jPath || options.stopNodes[index] === "*." + tagName) return true;
-		return false;
-	}
-	function replaceEntitiesValue(textValue, options) {
-		if (textValue && textValue.length > 0 && options.processEntities) for (let i$2 = 0; i$2 < options.entities.length; i$2++) {
-			const entity = options.entities[i$2];
-			textValue = textValue.replace(entity.regex, entity.val);
-		}
-		return textValue;
-	}
-	module.exports = toXml;
-} });
-
-//#endregion
-//#region node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js
-var require_json2xml = __commonJS({ "node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/xmlbuilder/json2xml.js"(exports, module) {
-	const buildFromOrderedJs = require_orderedJs2Xml();
-	const defaultOptions = {
-		attributeNamePrefix: "@_",
-		attributesGroupName: false,
-		textNodeName: "#text",
-		ignoreAttributes: true,
-		cdataPropName: false,
-		format: false,
-		indentBy: "  ",
-		suppressEmptyNode: false,
-		suppressUnpairedNode: true,
-		suppressBooleanAttributes: true,
-		tagValueProcessor: function(key, a$1) {
-			return a$1;
-		},
-		attributeValueProcessor: function(attrName, a$1) {
-			return a$1;
-		},
-		preserveOrder: false,
-		commentPropName: false,
-		unpairedTags: [],
-		entities: [
-			{
-				regex: new RegExp("&", "g"),
-				val: "&amp;"
-			},
-			{
-				regex: new RegExp(">", "g"),
-				val: "&gt;"
-			},
-			{
-				regex: new RegExp("<", "g"),
-				val: "&lt;"
-			},
-			{
-				regex: new RegExp("'", "g"),
-				val: "&apos;"
-			},
-			{
-				regex: new RegExp("\"", "g"),
-				val: "&quot;"
-			}
-		],
-		processEntities: true,
-		stopNodes: [],
-		oneListGroup: false
-	};
-	function Builder(options) {
-		this.options = Object.assign({}, defaultOptions, options);
-		if (this.options.ignoreAttributes || this.options.attributesGroupName) this.isAttribute = function() {
-			return false;
-		};
-else {
-			this.attrPrefixLen = this.options.attributeNamePrefix.length;
-			this.isAttribute = isAttribute;
-		}
-		this.processTextOrObjNode = processTextOrObjNode;
-		if (this.options.format) {
-			this.indentate = indentate;
-			this.tagEndChar = ">\n";
-			this.newLine = "\n";
-		} else {
-			this.indentate = function() {
-				return "";
-			};
-			this.tagEndChar = ">";
-			this.newLine = "";
-		}
-	}
-	Builder.prototype.build = function(jObj) {
-		if (this.options.preserveOrder) return buildFromOrderedJs(jObj, this.options);
-else {
-			if (Array.isArray(jObj) && this.options.arrayNodeName && this.options.arrayNodeName.length > 1) jObj = { [this.options.arrayNodeName]: jObj };
-			return this.j2x(jObj, 0).val;
-		}
-	};
-	Builder.prototype.j2x = function(jObj, level) {
-		let attrStr = "";
-		let val$1 = "";
-		for (let key in jObj) {
-			if (!Object.prototype.hasOwnProperty.call(jObj, key)) continue;
-			if (typeof jObj[key] === "undefined") {
-				if (this.isAttribute(key)) val$1 += "";
-			} else if (jObj[key] === null) if (this.isAttribute(key)) val$1 += "";
-else if (key[0] === "?") val$1 += this.indentate(level) + "<" + key + "?" + this.tagEndChar;
-else val$1 += this.indentate(level) + "<" + key + "/" + this.tagEndChar;
-else if (jObj[key] instanceof Date) val$1 += this.buildTextValNode(jObj[key], key, "", level);
-else if (typeof jObj[key] !== "object") {
-				const attr = this.isAttribute(key);
-				if (attr) attrStr += this.buildAttrPairStr(attr, "" + jObj[key]);
-else if (key === this.options.textNodeName) {
-					let newval = this.options.tagValueProcessor(key, "" + jObj[key]);
-					val$1 += this.replaceEntitiesValue(newval);
-				} else val$1 += this.buildTextValNode(jObj[key], key, "", level);
-			} else if (Array.isArray(jObj[key])) {
-				const arrLen = jObj[key].length;
-				let listTagVal = "";
-				let listTagAttr = "";
-				for (let j$1 = 0; j$1 < arrLen; j$1++) {
-					const item = jObj[key][j$1];
-					if (typeof item === "undefined") {} else if (item === null) if (key[0] === "?") val$1 += this.indentate(level) + "<" + key + "?" + this.tagEndChar;
-else val$1 += this.indentate(level) + "<" + key + "/" + this.tagEndChar;
-else if (typeof item === "object") if (this.options.oneListGroup) {
-						const result = this.j2x(item, level + 1);
-						listTagVal += result.val;
-						if (this.options.attributesGroupName && item.hasOwnProperty(this.options.attributesGroupName)) listTagAttr += result.attrStr;
-					} else listTagVal += this.processTextOrObjNode(item, key, level);
-else if (this.options.oneListGroup) {
-						let textValue = this.options.tagValueProcessor(key, item);
-						textValue = this.replaceEntitiesValue(textValue);
-						listTagVal += textValue;
-					} else listTagVal += this.buildTextValNode(item, key, "", level);
-				}
-				if (this.options.oneListGroup) listTagVal = this.buildObjectNode(listTagVal, key, listTagAttr, level);
-				val$1 += listTagVal;
-			} else if (this.options.attributesGroupName && key === this.options.attributesGroupName) {
-				const Ks = Object.keys(jObj[key]);
-				const L$1 = Ks.length;
-				for (let j$1 = 0; j$1 < L$1; j$1++) attrStr += this.buildAttrPairStr(Ks[j$1], "" + jObj[key][Ks[j$1]]);
-			} else val$1 += this.processTextOrObjNode(jObj[key], key, level);
-		}
-		return {
-			attrStr,
-			val: val$1
-		};
-	};
-	Builder.prototype.buildAttrPairStr = function(attrName, val$1) {
-		val$1 = this.options.attributeValueProcessor(attrName, "" + val$1);
-		val$1 = this.replaceEntitiesValue(val$1);
-		if (this.options.suppressBooleanAttributes && val$1 === "true") return " " + attrName;
-else return " " + attrName + "=\"" + val$1 + "\"";
-	};
-	function processTextOrObjNode(object, key, level) {
-		const result = this.j2x(object, level + 1);
-		if (object[this.options.textNodeName] !== undefined && Object.keys(object).length === 1) return this.buildTextValNode(object[this.options.textNodeName], key, result.attrStr, level);
-else return this.buildObjectNode(result.val, key, result.attrStr, level);
-	}
-	Builder.prototype.buildObjectNode = function(val$1, key, attrStr, level) {
-		if (val$1 === "") if (key[0] === "?") return this.indentate(level) + "<" + key + attrStr + "?" + this.tagEndChar;
-else return this.indentate(level) + "<" + key + attrStr + this.closeTag(key) + this.tagEndChar;
-else {
-			let tagEndExp = "</" + key + this.tagEndChar;
-			let piClosingChar = "";
-			if (key[0] === "?") {
-				piClosingChar = "?";
-				tagEndExp = "";
-			}
-			if ((attrStr || attrStr === "") && val$1.indexOf("<") === -1) return this.indentate(level) + "<" + key + attrStr + piClosingChar + ">" + val$1 + tagEndExp;
-else if (this.options.commentPropName !== false && key === this.options.commentPropName && piClosingChar.length === 0) return this.indentate(level) + `<!--${val$1}-->` + this.newLine;
-else return this.indentate(level) + "<" + key + attrStr + piClosingChar + this.tagEndChar + val$1 + this.indentate(level) + tagEndExp;
-		}
-	};
-	Builder.prototype.closeTag = function(key) {
-		let closeTag = "";
-		if (this.options.unpairedTags.indexOf(key) !== -1) {
-			if (!this.options.suppressUnpairedNode) closeTag = "/";
-		} else if (this.options.suppressEmptyNode) closeTag = "/";
-else closeTag = `></${key}`;
-		return closeTag;
-	};
-	Builder.prototype.buildTextValNode = function(val$1, key, attrStr, level) {
-		if (this.options.cdataPropName !== false && key === this.options.cdataPropName) return this.indentate(level) + `<![CDATA[${val$1}]]>` + this.newLine;
-else if (this.options.commentPropName !== false && key === this.options.commentPropName) return this.indentate(level) + `<!--${val$1}-->` + this.newLine;
-else if (key[0] === "?") return this.indentate(level) + "<" + key + attrStr + "?" + this.tagEndChar;
-else {
-			let textValue = this.options.tagValueProcessor(key, val$1);
-			textValue = this.replaceEntitiesValue(textValue);
-			if (textValue === "") return this.indentate(level) + "<" + key + attrStr + this.closeTag(key) + this.tagEndChar;
-else return this.indentate(level) + "<" + key + attrStr + ">" + textValue + "</" + key + this.tagEndChar;
-		}
-	};
-	Builder.prototype.replaceEntitiesValue = function(textValue) {
-		if (textValue && textValue.length > 0 && this.options.processEntities) for (let i$2 = 0; i$2 < this.options.entities.length; i$2++) {
-			const entity = this.options.entities[i$2];
-			textValue = textValue.replace(entity.regex, entity.val);
-		}
-		return textValue;
-	};
-	function indentate(level) {
-		return this.options.indentBy.repeat(level);
-	}
-	function isAttribute(name$1) {
-		if (name$1.startsWith(this.options.attributeNamePrefix) && name$1 !== this.options.textNodeName) return name$1.substr(this.attrPrefixLen);
-else return false;
-	}
-	module.exports = Builder;
-} });
-
-//#endregion
-//#region node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/fxp.js
-var require_fxp = __commonJS({ "node_modules/.pnpm/fast-xml-parser@4.4.1/node_modules/fast-xml-parser/src/fxp.js"(exports, module) {
-	const validator = require_validator();
-	const XMLParser$1 = require_XMLParser();
-	const XMLBuilder = require_json2xml();
-	module.exports = {
-		XMLParser: XMLParser$1,
-		XMLValidator: validator,
-		XMLBuilder
-	};
-} });
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+core@3.716.0/node_modules/@aws-sdk/core/dist-es/submodules/protocols/xml/parseXmlBody.js
-var import_fxp = __toESM(require_fxp());
-const parseXmlBody = (streamBody, context) => collectBodyString(streamBody, context).then((encoded) => {
-	if (encoded.length) {
-		const parser = new import_fxp.XMLParser({
-			attributeNamePrefix: "",
-			htmlEntities: true,
-			ignoreAttributes: false,
-			ignoreDeclaration: true,
-			parseTagValue: false,
-			trimValues: false,
-			tagValueProcessor: (_, val$1) => val$1.trim() === "" && val$1.includes("\n") ? "" : undefined
-		});
-		parser.addEntity("#xD", "\r");
-		parser.addEntity("#10", "\n");
-		let parsedObj;
+		const registry = TypeRegistry.for(namespace);
 		try {
-			parsedObj = parser.parse(encoded, true);
+			const errorSchema = getErrorSchema?.(registry, errorName) ?? registry.getSchema(errorIdentifier);
+			return {
+				errorSchema,
+				errorMetadata
+			};
 		} catch (e$2) {
-			if (e$2 && typeof e$2 === "object") Object.defineProperty(e$2, "$responseBodyText", { value: encoded });
-			throw e$2;
+			dataObject.message = dataObject.message ?? dataObject.Message ?? "UnknownError";
+			const synthetic = TypeRegistry.for("smithy.ts.sdk.synthetic." + namespace);
+			const baseExceptionSchema = synthetic.getBaseException();
+			if (baseExceptionSchema) {
+				const ErrorCtor = synthetic.getErrorCtor(baseExceptionSchema) ?? Error;
+				throw this.decorateServiceException(Object.assign(new ErrorCtor({ name: errorName }), errorMetadata), dataObject);
+			}
+			throw this.decorateServiceException(Object.assign(new Error(errorName), errorMetadata), dataObject);
 		}
-		const textNodeName = "#text";
-		const key = Object.keys(parsedObj)[0];
-		const parsedObjToReturn = parsedObj[key];
-		if (parsedObjToReturn[textNodeName]) {
-			parsedObjToReturn[key] = parsedObjToReturn[textNodeName];
-			delete parsedObjToReturn[textNodeName];
-		}
-		return getValueFromTextNode(parsedObjToReturn);
 	}
-	return {};
-});
-const parseXmlErrorBody = async (errorBody, context) => {
-	const value = await parseXmlBody(errorBody, context);
-	if (value.Error) value.Error.message = value.Error.message ?? value.Error.Message;
-	return value;
+	decorateServiceException(exception, additions = {}) {
+		if (this.queryCompat) {
+			const msg = exception.Message ?? additions.Message;
+			const error = decorateServiceException(exception, additions);
+			if (msg) error.message = msg;
+			error.Error = {
+				...error.Error,
+				Type: error.Error.Type,
+				Code: error.Error.Code,
+				Message: error.Error.message ?? error.Error.Message ?? msg
+			};
+			const reqId = error.$metadata.requestId;
+			if (reqId) error.RequestId = reqId;
+			return error;
+		}
+		return decorateServiceException(exception, additions);
+	}
+	setQueryCompatError(output, response) {
+		const queryErrorHeader = response.headers?.["x-amzn-query-error"];
+		if (output !== undefined && queryErrorHeader != null) {
+			const [Code, Type] = queryErrorHeader.split(";");
+			const entries = Object.entries(output);
+			const Error$1 = {
+				Code,
+				Type
+			};
+			Object.assign(output, Error$1);
+			for (const [k$1, v$2] of entries) Error$1[k$1 === "message" ? "Message" : k$1] = v$2;
+			delete Error$1.__type;
+			output.Error = Error$1;
+		}
+	}
+	queryCompatOutput(queryCompatErrorData, errorData) {
+		if (queryCompatErrorData.Error) errorData.Error = queryCompatErrorData.Error;
+		if (queryCompatErrorData.Type) errorData.Type = queryCompatErrorData.Type;
+		if (queryCompatErrorData.Code) errorData.Code = queryCompatErrorData.Code;
+	}
+	findQueryCompatibleError(registry, errorName) {
+		try {
+			return registry.getSchema(errorName);
+		} catch (e$2) {
+			return registry.find((schema) => NormalizedSchema.of(schema).getMergedTraits().awsQueryError?.[0] === errorName);
+		}
+	}
 };
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/protocols/ConfigurableSerdeContext.js
+var SerdeContextConfig = class {
+	serdeContext;
+	setSerdeContext(serdeContext) {
+		this.serdeContext = serdeContext;
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/protocols/structIterator.js
+function* serializingStructIterator(ns, sourceObject) {
+	if (ns.isUnitSchema()) return;
+	const struct = ns.getSchema();
+	for (let i$2 = 0; i$2 < struct[4].length; ++i$2) {
+		const key = struct[4][i$2];
+		const memberSchema = struct[5][i$2];
+		const memberNs = new NormalizedSchema([memberSchema, 0], key);
+		if (!(key in sourceObject) && !memberNs.isIdempotencyToken()) continue;
+		yield [key, memberNs];
+	}
+}
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/protocols/UnionSerde.js
+var UnionSerde = class {
+	from;
+	to;
+	keys;
+	constructor(from$2, to) {
+		this.from = from$2;
+		this.to = to;
+		this.keys = new Set(Object.keys(this.from).filter((k$1) => k$1 !== "__type"));
+	}
+	mark(key) {
+		this.keys.delete(key);
+	}
+	hasUnknown() {
+		return this.keys.size === 1 && Object.keys(this.to).length === 0;
+	}
+	writeUnknown() {
+		if (this.hasUnknown()) {
+			const k$1 = this.keys.values().next().value;
+			const v$2 = this.from[k$1];
+			this.to.$unknown = [k$1, v$2];
+		}
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+xml-builder@3.972.1/node_modules/@aws-sdk/xml-builder/dist-es/escape-attribute.js
+function escapeAttribute(value) {
+	return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+xml-builder@3.972.1/node_modules/@aws-sdk/xml-builder/dist-es/escape-element.js
+function escapeElement(value) {
+	return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/'/g, "&apos;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\r/g, "&#x0D;").replace(/\n/g, "&#x0A;").replace(/\u0085/g, "&#x85;").replace(/\u2028/, "&#x2028;");
+}
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+xml-builder@3.972.1/node_modules/@aws-sdk/xml-builder/dist-es/XmlText.js
+var XmlText = class {
+	value;
+	constructor(value) {
+		this.value = value;
+	}
+	toString() {
+		return escapeElement("" + this.value);
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+xml-builder@3.972.1/node_modules/@aws-sdk/xml-builder/dist-es/XmlNode.js
+var XmlNode = class XmlNode {
+	name;
+	children;
+	attributes = {};
+	static of(name$1, childText, withName) {
+		const node = new XmlNode(name$1);
+		if (childText !== undefined) node.addChildNode(new XmlText(childText));
+		if (withName !== undefined) node.withName(withName);
+		return node;
+	}
+	constructor(name$1, children = []) {
+		this.name = name$1;
+		this.children = children;
+	}
+	withName(name$1) {
+		this.name = name$1;
+		return this;
+	}
+	addAttribute(name$1, value) {
+		this.attributes[name$1] = value;
+		return this;
+	}
+	addChildNode(child) {
+		this.children.push(child);
+		return this;
+	}
+	removeAttribute(name$1) {
+		delete this.attributes[name$1];
+		return this;
+	}
+	n(name$1) {
+		this.name = name$1;
+		return this;
+	}
+	c(child) {
+		this.children.push(child);
+		return this;
+	}
+	a(name$1, value) {
+		if (value != null) this.attributes[name$1] = value;
+		return this;
+	}
+	cc(input, field, withName = field) {
+		if (input[field] != null) {
+			const node = XmlNode.of(field, input[field]).withName(withName);
+			this.c(node);
+		}
+	}
+	l(input, listName, memberName, valueProvider) {
+		if (input[listName] != null) {
+			const nodes = valueProvider();
+			nodes.map((node) => {
+				node.withName(memberName);
+				this.c(node);
+			});
+		}
+	}
+	lc(input, listName, memberName, valueProvider) {
+		if (input[listName] != null) {
+			const nodes = valueProvider();
+			const containerNode = new XmlNode(memberName);
+			nodes.map((node) => {
+				containerNode.c(node);
+			});
+			this.c(containerNode);
+		}
+	}
+	toString() {
+		const hasChildren = Boolean(this.children.length);
+		let xmlText = `<${this.name}`;
+		const attributes = this.attributes;
+		for (const attributeName of Object.keys(attributes)) {
+			const attribute = attributes[attributeName];
+			if (attribute != null) xmlText += ` ${attributeName}="${escapeAttribute("" + attribute)}"`;
+		}
+		return xmlText += !hasChildren ? "/>" : `>${this.children.map((c$1) => c$1.toString()).join("")}</${this.name}>`;
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+xml-builder@3.972.1/node_modules/@aws-sdk/xml-builder/dist-es/xml-parser.browser.js
+let parser;
+function parseXML(xmlString) {
+	if (!parser) parser = new DOMParser();
+	const xmlDocument = parser.parseFromString(xmlString, "application/xml");
+	if (xmlDocument.getElementsByTagName("parsererror").length > 0) throw new Error("DOMParser XML parsing error.");
+	const xmlToObj = (node) => {
+		if (node.nodeType === Node.TEXT_NODE) {
+			if (node.textContent?.trim()) return node.textContent;
+		}
+		if (node.nodeType === Node.ELEMENT_NODE) {
+			const element = node;
+			if (element.attributes.length === 0 && element.childNodes.length === 0) return "";
+			const obj = {};
+			const attributes = Array.from(element.attributes);
+			for (const attr of attributes) obj[`${attr.name}`] = attr.value;
+			const childNodes = Array.from(element.childNodes);
+			for (const child of childNodes) {
+				const childResult = xmlToObj(child);
+				if (childResult != null) {
+					const childName = child.nodeName;
+					if (childNodes.length === 1 && attributes.length === 0 && childName === "#text") return childResult;
+					if (obj[childName]) if (Array.isArray(obj[childName])) obj[childName].push(childResult);
+else obj[childName] = [obj[childName], childResult];
+else obj[childName] = childResult;
+				} else if (childNodes.length === 1 && attributes.length === 0) return element.textContent;
+			}
+			return obj;
+		}
+		return null;
+	};
+	return { [xmlDocument.documentElement.nodeName]: xmlToObj(xmlDocument.documentElement) };
+}
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/protocols/xml/XmlShapeDeserializer.js
+init_dist_es();
+var XmlShapeDeserializer = class extends SerdeContextConfig {
+	settings;
+	stringDeserializer;
+	constructor(settings$1) {
+		super();
+		this.settings = settings$1;
+		this.stringDeserializer = new FromStringShapeDeserializer(settings$1);
+	}
+	setSerdeContext(serdeContext) {
+		this.serdeContext = serdeContext;
+		this.stringDeserializer.setSerdeContext(serdeContext);
+	}
+	read(schema, bytes, key) {
+		const ns = NormalizedSchema.of(schema);
+		const memberSchemas = ns.getMemberSchemas();
+		const isEventPayload = ns.isStructSchema() && ns.isMemberSchema() && !!Object.values(memberSchemas).find((memberNs) => {
+			return !!memberNs.getMemberTraits().eventPayload;
+		});
+		if (isEventPayload) {
+			const output = {};
+			const memberName = Object.keys(memberSchemas)[0];
+			const eventMemberSchema = memberSchemas[memberName];
+			if (eventMemberSchema.isBlobSchema()) output[memberName] = bytes;
+else output[memberName] = this.read(memberSchemas[memberName], bytes);
+			return output;
+		}
+		const xmlString = (this.serdeContext?.utf8Encoder ?? toUtf8)(bytes);
+		const parsedObject = this.parseXml(xmlString);
+		return this.readSchema(schema, key ? parsedObject[key] : parsedObject);
+	}
+	readSchema(_schema, value) {
+		const ns = NormalizedSchema.of(_schema);
+		if (ns.isUnitSchema()) return;
+		const traits = ns.getMergedTraits();
+		if (ns.isListSchema() && !Array.isArray(value)) return this.readSchema(ns, [value]);
+		if (value == null) return value;
+		if (typeof value === "object") {
+			const sparse = !!traits.sparse;
+			const flat = !!traits.xmlFlattened;
+			if (ns.isListSchema()) {
+				const listValue = ns.getValueSchema();
+				const buffer$2 = [];
+				const sourceKey = listValue.getMergedTraits().xmlName ?? "member";
+				const source = flat ? value : (value[0] ?? value)[sourceKey];
+				const sourceArray = Array.isArray(source) ? source : [source];
+				for (const v$2 of sourceArray) if (v$2 != null || sparse) buffer$2.push(this.readSchema(listValue, v$2));
+				return buffer$2;
+			}
+			const buffer$1 = {};
+			if (ns.isMapSchema()) {
+				const keyNs = ns.getKeySchema();
+				const memberNs = ns.getValueSchema();
+				let entries;
+				if (flat) entries = Array.isArray(value) ? value : [value];
+else entries = Array.isArray(value.entry) ? value.entry : [value.entry];
+				const keyProperty = keyNs.getMergedTraits().xmlName ?? "key";
+				const valueProperty = memberNs.getMergedTraits().xmlName ?? "value";
+				for (const entry of entries) {
+					const key = entry[keyProperty];
+					const value$1 = entry[valueProperty];
+					if (value$1 != null || sparse) buffer$1[key] = this.readSchema(memberNs, value$1);
+				}
+				return buffer$1;
+			}
+			if (ns.isStructSchema()) {
+				const union = ns.isUnionSchema();
+				let unionSerde;
+				if (union) unionSerde = new UnionSerde(value, buffer$1);
+				for (const [memberName, memberSchema] of ns.structIterator()) {
+					const memberTraits = memberSchema.getMergedTraits();
+					const xmlObjectKey = !memberTraits.httpPayload ? memberSchema.getMemberTraits().xmlName ?? memberName : memberTraits.xmlName ?? memberSchema.getName();
+					if (union) unionSerde.mark(xmlObjectKey);
+					if (value[xmlObjectKey] != null) buffer$1[memberName] = this.readSchema(memberSchema, value[xmlObjectKey]);
+				}
+				if (union) unionSerde.writeUnknown();
+				return buffer$1;
+			}
+			if (ns.isDocumentSchema()) return value;
+			throw new Error(`@aws-sdk/core/protocols - xml deserializer unhandled schema type for ${ns.getName(true)}`);
+		}
+		if (ns.isListSchema()) return [];
+		if (ns.isMapSchema() || ns.isStructSchema()) return {};
+		return this.stringDeserializer.read(ns, value);
+	}
+	parseXml(xml) {
+		if (xml.length) {
+			let parsedObj;
+			try {
+				parsedObj = parseXML(xml);
+			} catch (e$2) {
+				if (e$2 && typeof e$2 === "object") Object.defineProperty(e$2, "$responseBodyText", { value: xml });
+				throw e$2;
+			}
+			const textNodeName = "#text";
+			const key = Object.keys(parsedObj)[0];
+			const parsedObjToReturn = parsedObj[key];
+			if (parsedObjToReturn[textNodeName]) {
+				parsedObjToReturn[key] = parsedObjToReturn[textNodeName];
+				delete parsedObjToReturn[textNodeName];
+			}
+			return getValueFromTextNode(parsedObjToReturn);
+		}
+		return {};
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/protocols/xml/parseXmlBody.js
 const loadRestXmlErrorCode = (output, data) => {
 	if (data?.Error?.Code !== undefined) return data.Error.Code;
 	if (data?.Code !== undefined) return data.Code;
@@ -4263,36 +4135,323 @@ const loadRestXmlErrorCode = (output, data) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/types.js
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/protocols/xml/XmlShapeSerializer.js
+var XmlShapeSerializer = class extends SerdeContextConfig {
+	settings;
+	stringBuffer;
+	byteBuffer;
+	buffer;
+	constructor(settings$1) {
+		super();
+		this.settings = settings$1;
+	}
+	write(schema, value) {
+		const ns = NormalizedSchema.of(schema);
+		if (ns.isStringSchema() && typeof value === "string") this.stringBuffer = value;
+else if (ns.isBlobSchema()) this.byteBuffer = "byteLength" in value ? value : (this.serdeContext?.base64Decoder ?? fromBase64)(value);
+else {
+			this.buffer = this.writeStruct(ns, value, undefined);
+			const traits = ns.getMergedTraits();
+			if (traits.httpPayload && !traits.xmlName) this.buffer.withName(ns.getName());
+		}
+	}
+	flush() {
+		if (this.byteBuffer !== undefined) {
+			const bytes = this.byteBuffer;
+			delete this.byteBuffer;
+			return bytes;
+		}
+		if (this.stringBuffer !== undefined) {
+			const str = this.stringBuffer;
+			delete this.stringBuffer;
+			return str;
+		}
+		const buffer$1 = this.buffer;
+		if (this.settings.xmlNamespace) {
+			if (!buffer$1?.attributes?.["xmlns"]) buffer$1.addAttribute("xmlns", this.settings.xmlNamespace);
+		}
+		delete this.buffer;
+		return buffer$1.toString();
+	}
+	writeStruct(ns, value, parentXmlns) {
+		const traits = ns.getMergedTraits();
+		const name$1 = ns.isMemberSchema() && !traits.httpPayload ? ns.getMemberTraits().xmlName ?? ns.getMemberName() : traits.xmlName ?? ns.getName();
+		if (!name$1 || !ns.isStructSchema()) throw new Error(`@aws-sdk/core/protocols - xml serializer, cannot write struct with empty name or non-struct, schema=${ns.getName(true)}.`);
+		const structXmlNode = XmlNode.of(name$1);
+		const [xmlnsAttr, xmlns] = this.getXmlnsAttribute(ns, parentXmlns);
+		for (const [memberName, memberSchema] of serializingStructIterator(ns, value)) {
+			const val = value[memberName];
+			if (val != null || memberSchema.isIdempotencyToken()) {
+				if (memberSchema.getMergedTraits().xmlAttribute) {
+					structXmlNode.addAttribute(memberSchema.getMergedTraits().xmlName ?? memberName, this.writeSimple(memberSchema, val));
+					continue;
+				}
+				if (memberSchema.isListSchema()) this.writeList(memberSchema, val, structXmlNode, xmlns);
+else if (memberSchema.isMapSchema()) this.writeMap(memberSchema, val, structXmlNode, xmlns);
+else if (memberSchema.isStructSchema()) structXmlNode.addChildNode(this.writeStruct(memberSchema, val, xmlns));
+else {
+					const memberNode = XmlNode.of(memberSchema.getMergedTraits().xmlName ?? memberSchema.getMemberName());
+					this.writeSimpleInto(memberSchema, val, memberNode, xmlns);
+					structXmlNode.addChildNode(memberNode);
+				}
+			}
+		}
+		const { $unknown } = value;
+		if ($unknown && ns.isUnionSchema() && Array.isArray($unknown) && Object.keys(value).length === 1) {
+			const [k$1, v$2] = $unknown;
+			const node = XmlNode.of(k$1);
+			if (typeof v$2 !== "string") if (value instanceof XmlNode || value instanceof XmlText) structXmlNode.addChildNode(value);
+else throw new Error(`@aws-sdk - $unknown union member in XML requires ` + `value of type string, @aws-sdk/xml-builder::XmlNode or XmlText.`);
+			this.writeSimpleInto(0, v$2, node, xmlns);
+			structXmlNode.addChildNode(node);
+		}
+		if (xmlns) structXmlNode.addAttribute(xmlnsAttr, xmlns);
+		return structXmlNode;
+	}
+	writeList(listMember, array, container, parentXmlns) {
+		if (!listMember.isMemberSchema()) throw new Error(`@aws-sdk/core/protocols - xml serializer, cannot write non-member list: ${listMember.getName(true)}`);
+		const listTraits = listMember.getMergedTraits();
+		const listValueSchema = listMember.getValueSchema();
+		const listValueTraits = listValueSchema.getMergedTraits();
+		const sparse = !!listValueTraits.sparse;
+		const flat = !!listTraits.xmlFlattened;
+		const [xmlnsAttr, xmlns] = this.getXmlnsAttribute(listMember, parentXmlns);
+		const writeItem = (container$1, value) => {
+			if (listValueSchema.isListSchema()) this.writeList(listValueSchema, Array.isArray(value) ? value : [value], container$1, xmlns);
+else if (listValueSchema.isMapSchema()) this.writeMap(listValueSchema, value, container$1, xmlns);
+else if (listValueSchema.isStructSchema()) {
+				const struct = this.writeStruct(listValueSchema, value, xmlns);
+				container$1.addChildNode(struct.withName(flat ? listTraits.xmlName ?? listMember.getMemberName() : listValueTraits.xmlName ?? "member"));
+			} else {
+				const listItemNode = XmlNode.of(flat ? listTraits.xmlName ?? listMember.getMemberName() : listValueTraits.xmlName ?? "member");
+				this.writeSimpleInto(listValueSchema, value, listItemNode, xmlns);
+				container$1.addChildNode(listItemNode);
+			}
+		};
+		if (flat) {
+			for (const value of array) if (sparse || value != null) writeItem(container, value);
+		} else {
+			const listNode = XmlNode.of(listTraits.xmlName ?? listMember.getMemberName());
+			if (xmlns) listNode.addAttribute(xmlnsAttr, xmlns);
+			for (const value of array) if (sparse || value != null) writeItem(listNode, value);
+			container.addChildNode(listNode);
+		}
+	}
+	writeMap(mapMember, map, container, parentXmlns, containerIsMap = false) {
+		if (!mapMember.isMemberSchema()) throw new Error(`@aws-sdk/core/protocols - xml serializer, cannot write non-member map: ${mapMember.getName(true)}`);
+		const mapTraits = mapMember.getMergedTraits();
+		const mapKeySchema = mapMember.getKeySchema();
+		const mapKeyTraits = mapKeySchema.getMergedTraits();
+		const keyTag = mapKeyTraits.xmlName ?? "key";
+		const mapValueSchema = mapMember.getValueSchema();
+		const mapValueTraits = mapValueSchema.getMergedTraits();
+		const valueTag = mapValueTraits.xmlName ?? "value";
+		const sparse = !!mapValueTraits.sparse;
+		const flat = !!mapTraits.xmlFlattened;
+		const [xmlnsAttr, xmlns] = this.getXmlnsAttribute(mapMember, parentXmlns);
+		const addKeyValue = (entry, key, val) => {
+			const keyNode = XmlNode.of(keyTag, key);
+			const [keyXmlnsAttr, keyXmlns] = this.getXmlnsAttribute(mapKeySchema, xmlns);
+			if (keyXmlns) keyNode.addAttribute(keyXmlnsAttr, keyXmlns);
+			entry.addChildNode(keyNode);
+			let valueNode = XmlNode.of(valueTag);
+			if (mapValueSchema.isListSchema()) this.writeList(mapValueSchema, val, valueNode, xmlns);
+else if (mapValueSchema.isMapSchema()) this.writeMap(mapValueSchema, val, valueNode, xmlns, true);
+else if (mapValueSchema.isStructSchema()) valueNode = this.writeStruct(mapValueSchema, val, xmlns);
+else this.writeSimpleInto(mapValueSchema, val, valueNode, xmlns);
+			entry.addChildNode(valueNode);
+		};
+		if (flat) {
+			for (const [key, val] of Object.entries(map)) if (sparse || val != null) {
+				const entry = XmlNode.of(mapTraits.xmlName ?? mapMember.getMemberName());
+				addKeyValue(entry, key, val);
+				container.addChildNode(entry);
+			}
+		} else {
+			let mapNode;
+			if (!containerIsMap) {
+				mapNode = XmlNode.of(mapTraits.xmlName ?? mapMember.getMemberName());
+				if (xmlns) mapNode.addAttribute(xmlnsAttr, xmlns);
+				container.addChildNode(mapNode);
+			}
+			for (const [key, val] of Object.entries(map)) if (sparse || val != null) {
+				const entry = XmlNode.of("entry");
+				addKeyValue(entry, key, val);
+				(containerIsMap ? container : mapNode).addChildNode(entry);
+			}
+		}
+	}
+	writeSimple(_schema, value) {
+		if (null === value) throw new Error("@aws-sdk/core/protocols - (XML serializer) cannot write null value.");
+		const ns = NormalizedSchema.of(_schema);
+		let nodeContents = null;
+		if (value && typeof value === "object") if (ns.isBlobSchema()) nodeContents = (this.serdeContext?.base64Encoder ?? toBase64)(value);
+else if (ns.isTimestampSchema() && value instanceof Date) {
+			const format$1 = determineTimestampFormat(ns, this.settings);
+			switch (format$1) {
+				case 5:
+					nodeContents = value.toISOString().replace(".000Z", "Z");
+					break;
+				case 6:
+					nodeContents = dateToUtcString(value);
+					break;
+				case 7:
+					nodeContents = String(value.getTime() / 1e3);
+					break;
+				default:
+					console.warn("Missing timestamp format, using http date", value);
+					nodeContents = dateToUtcString(value);
+					break;
+			}
+		} else if (ns.isBigDecimalSchema() && value) {
+			if (value instanceof NumericValue) return value.string;
+			return String(value);
+		} else if (ns.isMapSchema() || ns.isListSchema()) throw new Error("@aws-sdk/core/protocols - xml serializer, cannot call _write() on List/Map schema, call writeList or writeMap() instead.");
+else throw new Error(`@aws-sdk/core/protocols - xml serializer, unhandled schema type for object value and schema: ${ns.getName(true)}`);
+		if (ns.isBooleanSchema() || ns.isNumericSchema() || ns.isBigIntegerSchema() || ns.isBigDecimalSchema()) nodeContents = String(value);
+		if (ns.isStringSchema()) if (value === undefined && ns.isIdempotencyToken()) nodeContents = v4();
+else nodeContents = String(value);
+		if (nodeContents === null) throw new Error(`Unhandled schema-value pair ${ns.getName(true)}=${value}`);
+		return nodeContents;
+	}
+	writeSimpleInto(_schema, value, into, parentXmlns) {
+		const nodeContents = this.writeSimple(_schema, value);
+		const ns = NormalizedSchema.of(_schema);
+		const content = new XmlText(nodeContents);
+		const [xmlnsAttr, xmlns] = this.getXmlnsAttribute(ns, parentXmlns);
+		if (xmlns) into.addAttribute(xmlnsAttr, xmlns);
+		into.addChildNode(content);
+	}
+	getXmlnsAttribute(ns, parentXmlns) {
+		const traits = ns.getMergedTraits();
+		const [prefix, xmlns] = traits.xmlNamespace ?? [];
+		if (xmlns && xmlns !== parentXmlns) return [prefix ? `xmlns:${prefix}` : "xmlns", xmlns];
+		return [void 0, void 0];
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/protocols/xml/XmlCodec.js
+var XmlCodec = class extends SerdeContextConfig {
+	settings;
+	constructor(settings$1) {
+		super();
+		this.settings = settings$1;
+	}
+	createSerializer() {
+		const serializer = new XmlShapeSerializer(this.settings);
+		serializer.setSerdeContext(this.serdeContext);
+		return serializer;
+	}
+	createDeserializer() {
+		const deserializer = new XmlShapeDeserializer(this.settings);
+		deserializer.setSerdeContext(this.serdeContext);
+		return deserializer;
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+core@3.973.0/node_modules/@aws-sdk/core/dist-es/submodules/protocols/xml/AwsRestXmlProtocol.js
+var AwsRestXmlProtocol = class extends HttpBindingProtocol {
+	codec;
+	serializer;
+	deserializer;
+	mixin = new ProtocolLib();
+	constructor(options) {
+		super(options);
+		const settings$1 = {
+			timestampFormat: {
+				useTrait: true,
+				default: 5
+			},
+			httpBindings: true,
+			xmlNamespace: options.xmlNamespace,
+			serviceNamespace: options.defaultNamespace
+		};
+		this.codec = new XmlCodec(settings$1);
+		this.serializer = new HttpInterceptingShapeSerializer(this.codec.createSerializer(), settings$1);
+		this.deserializer = new HttpInterceptingShapeDeserializer(this.codec.createDeserializer(), settings$1);
+	}
+	getPayloadCodec() {
+		return this.codec;
+	}
+	getShapeId() {
+		return "aws.protocols#restXml";
+	}
+	async serializeRequest(operationSchema, input, context) {
+		const request = await super.serializeRequest(operationSchema, input, context);
+		const inputSchema = NormalizedSchema.of(operationSchema.input);
+		if (!request.headers["content-type"]) {
+			const contentType = this.mixin.resolveRestContentType(this.getDefaultContentType(), inputSchema);
+			if (contentType) request.headers["content-type"] = contentType;
+		}
+		if (typeof request.body === "string" && request.headers["content-type"] === this.getDefaultContentType() && !request.body.startsWith("<?xml ") && !this.hasUnstructuredPayloadBinding(inputSchema)) request.body = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + request.body;
+		return request;
+	}
+	async deserializeResponse(operationSchema, context, response) {
+		return super.deserializeResponse(operationSchema, context, response);
+	}
+	async handleError(operationSchema, context, response, dataObject, metadata) {
+		const errorIdentifier = loadRestXmlErrorCode(response, dataObject) ?? "Unknown";
+		const { errorSchema, errorMetadata } = await this.mixin.getErrorSchemaOrThrowBaseException(errorIdentifier, this.options.defaultNamespace, response, dataObject, metadata);
+		const ns = NormalizedSchema.of(errorSchema);
+		const message = dataObject.Error?.message ?? dataObject.Error?.Message ?? dataObject.message ?? dataObject.Message ?? "Unknown";
+		const ErrorCtor = TypeRegistry.for(errorSchema[1]).getErrorCtor(errorSchema) ?? Error;
+		const exception = new ErrorCtor(message);
+		await this.deserializeHttpMessage(errorSchema, context, response, dataObject);
+		const output = {};
+		for (const [name$1, member$1] of ns.structIterator()) {
+			const target = member$1.getMergedTraits().xmlName ?? name$1;
+			const value = dataObject.Error?.[target] ?? dataObject[target];
+			output[name$1] = this.codec.createDeserializer().readSchema(member$1, value);
+		}
+		throw this.mixin.decorateServiceException(Object.assign(exception, errorMetadata, {
+			$fault: ns.getMergedTraits().error,
+			message
+		}, output), dataObject);
+	}
+	getDefaultContentType() {
+		return "application/xml";
+	}
+	hasUnstructuredPayloadBinding(ns) {
+		for (const [, member$1] of ns.structIterator()) if (member$1.getMergedTraits().httpPayload) return !(member$1.isStructSchema() || member$1.isMapSchema() || member$1.isListSchema());
+		return false;
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/types.js
 const CLIENT_SUPPORTED_ALGORITHMS = [
-	ChecksumAlgorithm.CRC32,
-	ChecksumAlgorithm.CRC32C,
-	ChecksumAlgorithm.SHA1,
-	ChecksumAlgorithm.SHA256
+	ChecksumAlgorithm$1.CRC32,
+	ChecksumAlgorithm$1.CRC32C,
+	ChecksumAlgorithm$1.CRC64NVME,
+	ChecksumAlgorithm$1.SHA1,
+	ChecksumAlgorithm$1.SHA256
 ];
 const PRIORITY_ORDER_ALGORITHMS = [
-	ChecksumAlgorithm.SHA256,
-	ChecksumAlgorithm.SHA1,
-	ChecksumAlgorithm.CRC32,
-	ChecksumAlgorithm.CRC32C
+	ChecksumAlgorithm$1.SHA256,
+	ChecksumAlgorithm$1.SHA1,
+	ChecksumAlgorithm$1.CRC32,
+	ChecksumAlgorithm$1.CRC32C,
+	ChecksumAlgorithm$1.CRC64NVME
 ];
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/getChecksumAlgorithmForRequest.js
-const getChecksumAlgorithmForRequest = (input, { requestChecksumRequired, requestAlgorithmMember }, isS3Express) => {
-	const defaultAlgorithm = isS3Express ? S3_EXPRESS_DEFAULT_CHECKSUM_ALGORITHM : DEFAULT_CHECKSUM_ALGORITHM;
-	if (!requestAlgorithmMember || !input[requestAlgorithmMember]) return requestChecksumRequired ? defaultAlgorithm : undefined;
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/getChecksumAlgorithmForRequest.js
+const getChecksumAlgorithmForRequest = (input, { requestChecksumRequired, requestAlgorithmMember, requestChecksumCalculation }) => {
+	if (!requestAlgorithmMember) return requestChecksumCalculation === RequestChecksumCalculation.WHEN_SUPPORTED || requestChecksumRequired ? DEFAULT_CHECKSUM_ALGORITHM : undefined;
+	if (!input[requestAlgorithmMember]) return undefined;
 	const checksumAlgorithm = input[requestAlgorithmMember];
 	if (!CLIENT_SUPPORTED_ALGORITHMS.includes(checksumAlgorithm)) throw new Error(`The checksum algorithm "${checksumAlgorithm}" is not supported by the client.` + ` Select one of ${CLIENT_SUPPORTED_ALGORITHMS}.`);
 	return checksumAlgorithm;
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/getChecksumLocationName.js
-const getChecksumLocationName = (algorithm) => algorithm === ChecksumAlgorithm.MD5 ? "content-md5" : `x-amz-checksum-${algorithm.toLowerCase()}`;
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/getChecksumLocationName.js
+const getChecksumLocationName = (algorithm) => algorithm === ChecksumAlgorithm$1.MD5 ? "content-md5" : `x-amz-checksum-${algorithm.toLowerCase()}`;
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/hasHeader.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/hasHeader.js
 const hasHeader = (header, headers) => {
 	const soughtHeader = header.toLowerCase();
 	for (const headerName of Object.keys(headers)) if (soughtHeader === headerName.toLowerCase()) return true;
@@ -4300,7 +4459,7 @@ const hasHeader = (header, headers) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/hasHeaderWithPrefix.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/hasHeaderWithPrefix.js
 const hasHeaderWithPrefix = (headerPrefix, headers) => {
 	const soughtHeaderPrefix = headerPrefix.toLowerCase();
 	for (const headerName of Object.keys(headers)) if (headerName.toLowerCase().startsWith(soughtHeaderPrefix)) return true;
@@ -4308,7 +4467,7 @@ const hasHeaderWithPrefix = (headerPrefix, headers) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/isStreaming.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/isStreaming.js
 const isStreaming = (body) => body !== undefined && typeof body !== "string" && !ArrayBuffer.isView(body) && !isArrayBuffer(body);
 
 //#endregion
@@ -4435,16 +4594,16 @@ function __values(o$1) {
 
 //#endregion
 //#region node_modules/.pnpm/@smithy+util-utf8@2.3.0/node_modules/@smithy/util-utf8/dist-es/fromUtf8.browser.js
-const fromUtf8$1 = (input) => new TextEncoder().encode(input);
+const fromUtf8$2 = (input) => new TextEncoder().encode(input);
 
 //#endregion
 //#region node_modules/.pnpm/@aws-crypto+util@5.2.0/node_modules/@aws-crypto/util/build/module/convertToBuffer.js
-var fromUtf8 = typeof Buffer !== "undefined" && Buffer.from ? function(input) {
+var fromUtf8$1 = typeof Buffer !== "undefined" && Buffer.from ? function(input) {
 	return Buffer.from(input, "utf8");
-} : fromUtf8$1;
+} : fromUtf8$2;
 function convertToBuffer$2(data) {
 	if (data instanceof Uint8Array) return data;
-	if (typeof data === "string") return fromUtf8(data);
+	if (typeof data === "string") return fromUtf8$1(data);
 	if (ArrayBuffer.isView(data)) return new Uint8Array(data.buffer, data.byteOffset, data.byteLength / Uint8Array.BYTES_PER_ELEMENT);
 	return new Uint8Array(data);
 }
@@ -4795,6 +4954,91 @@ var a_lookupTable = [
 var lookupTable$1 = uint32ArrayFrom(a_lookupTable);
 
 //#endregion
+//#region node_modules/.pnpm/@aws-sdk+crc64-nvme@3.972.0/node_modules/@aws-sdk/crc64-nvme/dist-es/Crc64Nvme.js
+const generateCRC64NVMETable = () => {
+	const sliceLength = 8;
+	const tables = new Array(sliceLength);
+	for (let slice = 0; slice < sliceLength; slice++) {
+		const table = new Array(512);
+		for (let i$2 = 0; i$2 < 256; i$2++) {
+			let crc = BigInt(i$2);
+			for (let j$1 = 0; j$1 < 8 * (slice + 1); j$1++) if (crc & 1n) crc = crc >> 1n ^ 0x9a6c9329ac4bc9b5n;
+else crc = crc >> 1n;
+			table[i$2 * 2] = Number(crc >> 32n & 0xffffffffn);
+			table[i$2 * 2 + 1] = Number(crc & 0xffffffffn);
+		}
+		tables[slice] = new Uint32Array(table);
+	}
+	return tables;
+};
+let CRC64_NVME_REVERSED_TABLE;
+let t0, t1, t2, t3;
+let t4, t5, t6, t7;
+const ensureTablesInitialized = () => {
+	if (!CRC64_NVME_REVERSED_TABLE) {
+		CRC64_NVME_REVERSED_TABLE = generateCRC64NVMETable();
+		[t0, t1, t2, t3, t4, t5, t6, t7] = CRC64_NVME_REVERSED_TABLE;
+	}
+};
+var Crc64Nvme = class {
+	c1 = 0;
+	c2 = 0;
+	constructor() {
+		ensureTablesInitialized();
+		this.reset();
+	}
+	update(data) {
+		const len$1 = data.length;
+		let i$2 = 0;
+		let crc1 = this.c1;
+		let crc2 = this.c2;
+		while (i$2 + 8 <= len$1) {
+			const idx0 = ((crc2 ^ data[i$2++]) & 255) << 1;
+			const idx1 = ((crc2 >>> 8 ^ data[i$2++]) & 255) << 1;
+			const idx2 = ((crc2 >>> 16 ^ data[i$2++]) & 255) << 1;
+			const idx3 = ((crc2 >>> 24 ^ data[i$2++]) & 255) << 1;
+			const idx4 = ((crc1 ^ data[i$2++]) & 255) << 1;
+			const idx5 = ((crc1 >>> 8 ^ data[i$2++]) & 255) << 1;
+			const idx6 = ((crc1 >>> 16 ^ data[i$2++]) & 255) << 1;
+			const idx7 = ((crc1 >>> 24 ^ data[i$2++]) & 255) << 1;
+			crc1 = t7[idx0] ^ t6[idx1] ^ t5[idx2] ^ t4[idx3] ^ t3[idx4] ^ t2[idx5] ^ t1[idx6] ^ t0[idx7];
+			crc2 = t7[idx0 + 1] ^ t6[idx1 + 1] ^ t5[idx2 + 1] ^ t4[idx3 + 1] ^ t3[idx4 + 1] ^ t2[idx5 + 1] ^ t1[idx6 + 1] ^ t0[idx7 + 1];
+		}
+		while (i$2 < len$1) {
+			const idx = ((crc2 ^ data[i$2]) & 255) << 1;
+			crc2 = (crc2 >>> 8 | (crc1 & 255) << 24) >>> 0;
+			crc1 = crc1 >>> 8 ^ t0[idx];
+			crc2 ^= t0[idx + 1];
+			i$2++;
+		}
+		this.c1 = crc1;
+		this.c2 = crc2;
+	}
+	async digest() {
+		const c1 = this.c1 ^ 4294967295;
+		const c2 = this.c2 ^ 4294967295;
+		return new Uint8Array([
+			c1 >>> 24,
+			c1 >>> 16 & 255,
+			c1 >>> 8 & 255,
+			c1 & 255,
+			c2 >>> 24,
+			c2 >>> 16 & 255,
+			c2 >>> 8 & 255,
+			c2 & 255
+		]);
+	}
+	reset() {
+		this.c1 = 4294967295;
+		this.c2 = 4294967295;
+	}
+};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+crc64-nvme@3.972.0/node_modules/@aws-sdk/crc64-nvme/dist-es/crc64-nvme-crt-container.js
+const crc64NvmeCrtContainer = { CrtCrc64Nvme: null };
+
+//#endregion
 //#region node_modules/.pnpm/@aws-crypto+crc32@5.2.0/node_modules/@aws-crypto/crc32/build/module/aws_crc32.js
 var AwsCrc32 = function() {
 	function AwsCrc32$1() {
@@ -5107,24 +5351,28 @@ var a_lookUpTable = [
 var lookupTable = uint32ArrayFrom(a_lookUpTable);
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/getCrc32ChecksumAlgorithmFunction.browser.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/getCrc32ChecksumAlgorithmFunction.browser.js
 const getCrc32ChecksumAlgorithmFunction = () => AwsCrc32;
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/selectChecksumAlgorithmFunction.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/selectChecksumAlgorithmFunction.js
 const selectChecksumAlgorithmFunction = (checksumAlgorithm, config$1) => {
 	switch (checksumAlgorithm) {
-		case ChecksumAlgorithm.MD5: return config$1.md5;
-		case ChecksumAlgorithm.CRC32: return getCrc32ChecksumAlgorithmFunction();
-		case ChecksumAlgorithm.CRC32C: return AwsCrc32c;
-		case ChecksumAlgorithm.SHA1: return config$1.sha1;
-		case ChecksumAlgorithm.SHA256: return config$1.sha256;
+		case ChecksumAlgorithm$1.MD5: return config$1.md5;
+		case ChecksumAlgorithm$1.CRC32: return getCrc32ChecksumAlgorithmFunction();
+		case ChecksumAlgorithm$1.CRC32C: return AwsCrc32c;
+		case ChecksumAlgorithm$1.CRC64NVME:
+			if (typeof crc64NvmeCrtContainer.CrtCrc64Nvme !== "function") return Crc64Nvme;
+			return crc64NvmeCrtContainer.CrtCrc64Nvme;
+		case ChecksumAlgorithm$1.SHA1: return config$1.sha1;
+		case ChecksumAlgorithm$1.SHA256: return config$1.sha256;
 		default: throw new Error(`Unsupported checksum algorithm: ${checksumAlgorithm}`);
 	}
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/stringHasher.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/stringHasher.js
+init_dist_es();
 const stringHasher = (checksumAlgorithmFn, body) => {
 	const hash = new checksumAlgorithmFn();
 	hash.update(toUint8Array(body || ""));
@@ -5132,7 +5380,7 @@ const stringHasher = (checksumAlgorithmFn, body) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/flexibleChecksumsMiddleware.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/flexibleChecksumsMiddleware.js
 const flexibleChecksumsMiddlewareOptions = {
 	name: "flexibleChecksumsMiddleware",
 	step: "build",
@@ -5146,24 +5394,37 @@ const flexibleChecksumsMiddleware = (config$1, middlewareConfig) => (next, conte
 	const { body: requestBody, headers } = request;
 	const { base64Encoder, streamHasher } = config$1;
 	const { requestChecksumRequired, requestAlgorithmMember } = middlewareConfig;
+	const requestChecksumCalculation = await config$1.requestChecksumCalculation();
+	const requestAlgorithmMemberName = requestAlgorithmMember?.name;
+	const requestAlgorithmMemberHttpHeader = requestAlgorithmMember?.httpHeader;
+	if (requestAlgorithmMemberName && !input[requestAlgorithmMemberName]) {
+		if (requestChecksumCalculation === RequestChecksumCalculation.WHEN_SUPPORTED || requestChecksumRequired) {
+			input[requestAlgorithmMemberName] = DEFAULT_CHECKSUM_ALGORITHM;
+			if (requestAlgorithmMemberHttpHeader) headers[requestAlgorithmMemberHttpHeader] = DEFAULT_CHECKSUM_ALGORITHM;
+		}
+	}
 	const checksumAlgorithm = getChecksumAlgorithmForRequest(input, {
 		requestChecksumRequired,
-		requestAlgorithmMember: requestAlgorithmMember?.name
-	}, !!context.isS3ExpressBucket);
+		requestAlgorithmMember: requestAlgorithmMember?.name,
+		requestChecksumCalculation
+	});
 	let updatedBody = requestBody;
 	let updatedHeaders = headers;
 	if (checksumAlgorithm) {
 		switch (checksumAlgorithm) {
-			case ChecksumAlgorithm.CRC32:
+			case ChecksumAlgorithm$1.CRC32:
 				setFeature$1(context, "FLEXIBLE_CHECKSUMS_REQ_CRC32", "U");
 				break;
-			case ChecksumAlgorithm.CRC32C:
+			case ChecksumAlgorithm$1.CRC32C:
 				setFeature$1(context, "FLEXIBLE_CHECKSUMS_REQ_CRC32C", "V");
 				break;
-			case ChecksumAlgorithm.SHA1:
+			case ChecksumAlgorithm$1.CRC64NVME:
+				setFeature$1(context, "FLEXIBLE_CHECKSUMS_REQ_CRC64", "W");
+				break;
+			case ChecksumAlgorithm$1.SHA1:
 				setFeature$1(context, "FLEXIBLE_CHECKSUMS_REQ_SHA1", "X");
 				break;
-			case ChecksumAlgorithm.SHA256:
+			case ChecksumAlgorithm$1.SHA256:
 				setFeature$1(context, "FLEXIBLE_CHECKSUMS_REQ_SHA256", "Y");
 				break;
 		}
@@ -5171,7 +5432,7 @@ const flexibleChecksumsMiddleware = (config$1, middlewareConfig) => (next, conte
 		const checksumAlgorithmFn = selectChecksumAlgorithmFunction(checksumAlgorithm, config$1);
 		if (isStreaming(requestBody)) {
 			const { getAwsChunkedEncodingStream: getAwsChunkedEncodingStream$1, bodyLengthChecker } = config$1;
-			updatedBody = getAwsChunkedEncodingStream$1(requestBody, {
+			updatedBody = getAwsChunkedEncodingStream$1(typeof config$1.requestStreamBufferSize === "number" && config$1.requestStreamBufferSize >= 8192 ? createBufferedReadable(requestBody, config$1.requestStreamBufferSize, context.logger) : requestBody, {
 				base64Encoder,
 				bodyLengthChecker,
 				checksumLocationName,
@@ -5195,19 +5456,63 @@ const flexibleChecksumsMiddleware = (config$1, middlewareConfig) => (next, conte
 			};
 		}
 	}
-	const result = await next({
-		...args,
-		request: {
-			...request,
-			headers: updatedHeaders,
-			body: updatedBody
-		}
-	});
-	return result;
+	try {
+		const result = await next({
+			...args,
+			request: {
+				...request,
+				headers: updatedHeaders,
+				body: updatedBody
+			}
+		});
+		return result;
+	} catch (e$2) {
+		if (e$2 instanceof Error && e$2.name === "InvalidChunkSizeError") try {
+			if (!e$2.message.endsWith(".")) e$2.message += ".";
+			e$2.message += " Set [requestStreamBufferSize=number e.g. 65_536] in client constructor to instruct AWS SDK to buffer your input stream.";
+		} catch (ignored) {}
+		throw e$2;
+	}
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/getChecksumAlgorithmListForResponse.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/flexibleChecksumsInputMiddleware.js
+const flexibleChecksumsInputMiddlewareOptions = {
+	name: "flexibleChecksumsInputMiddleware",
+	toMiddleware: "serializerMiddleware",
+	relation: "before",
+	tags: ["BODY_CHECKSUM"],
+	override: true
+};
+const flexibleChecksumsInputMiddleware = (config$1, middlewareConfig) => (next, context) => async (args) => {
+	const input = args.input;
+	const { requestValidationModeMember } = middlewareConfig;
+	const requestChecksumCalculation = await config$1.requestChecksumCalculation();
+	const responseChecksumValidation = await config$1.responseChecksumValidation();
+	switch (requestChecksumCalculation) {
+		case RequestChecksumCalculation.WHEN_REQUIRED:
+			setFeature$1(context, "FLEXIBLE_CHECKSUMS_REQ_WHEN_REQUIRED", "a");
+			break;
+		case RequestChecksumCalculation.WHEN_SUPPORTED:
+			setFeature$1(context, "FLEXIBLE_CHECKSUMS_REQ_WHEN_SUPPORTED", "Z");
+			break;
+	}
+	switch (responseChecksumValidation) {
+		case ResponseChecksumValidation.WHEN_REQUIRED:
+			setFeature$1(context, "FLEXIBLE_CHECKSUMS_RES_WHEN_REQUIRED", "c");
+			break;
+		case ResponseChecksumValidation.WHEN_SUPPORTED:
+			setFeature$1(context, "FLEXIBLE_CHECKSUMS_RES_WHEN_SUPPORTED", "b");
+			break;
+	}
+	if (requestValidationModeMember && !input[requestValidationModeMember]) {
+		if (responseChecksumValidation === ResponseChecksumValidation.WHEN_SUPPORTED) input[requestValidationModeMember] = "ENABLED";
+	}
+	return next(args);
+};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/getChecksumAlgorithmListForResponse.js
 const getChecksumAlgorithmListForResponse = (responseAlgorithms = []) => {
 	const validChecksumAlgorithms = [];
 	for (const algorithm of PRIORITY_ORDER_ALGORITHMS) {
@@ -5218,7 +5523,7 @@ const getChecksumAlgorithmListForResponse = (responseAlgorithms = []) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/isChecksumWithPartNumber.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/isChecksumWithPartNumber.js
 const isChecksumWithPartNumber = (checksum) => {
 	const lastHyphenIndex = checksum.lastIndexOf("-");
 	if (lastHyphenIndex !== -1) {
@@ -5232,25 +5537,28 @@ const isChecksumWithPartNumber = (checksum) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/streams/create-read-stream-on-buffer.browser.js
-function createReadStreamOnBuffer(buffer$1) {
-	return new Blob([buffer$1]).stream();
-}
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/getChecksum.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/getChecksum.js
 const getChecksum = async (body, { checksumAlgorithmFn, base64Encoder }) => base64Encoder(await stringHasher(checksumAlgorithmFn, body));
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/validateChecksumFromResponse.js
-const validateChecksumFromResponse = async (response, { config: config$1, responseAlgorithms }) => {
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/validateChecksumFromResponse.js
+const validateChecksumFromResponse = async (response, { config: config$1, responseAlgorithms, logger }) => {
 	const checksumAlgorithms = getChecksumAlgorithmListForResponse(responseAlgorithms);
 	const { body: responseBody, headers: responseHeaders } = response;
 	for (const algorithm of checksumAlgorithms) {
 		const responseHeader = getChecksumLocationName(algorithm);
 		const checksumFromResponse = responseHeaders[responseHeader];
 		if (checksumFromResponse) {
-			const checksumAlgorithmFn = selectChecksumAlgorithmFunction(algorithm, config$1);
+			let checksumAlgorithmFn;
+			try {
+				checksumAlgorithmFn = selectChecksumAlgorithmFunction(algorithm, config$1);
+			} catch (error) {
+				if (algorithm === ChecksumAlgorithm$1.CRC64NVME) {
+					logger?.warn(`Skipping ${ChecksumAlgorithm$1.CRC64NVME} checksum validation: ${error.message}`);
+					continue;
+				}
+				throw error;
+			}
 			const { base64Encoder } = config$1;
 			if (isStreaming(responseBody)) {
 				response.body = createChecksumStream({
@@ -5273,7 +5581,7 @@ const validateChecksumFromResponse = async (response, { config: config$1, respon
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/flexibleChecksumsResponseMiddleware.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/flexibleChecksumsResponseMiddleware.js
 const flexibleChecksumsResponseMiddlewareOptions = {
 	name: "flexibleChecksumsResponseMiddleware",
 	toMiddleware: "deserializerMiddleware",
@@ -5286,7 +5594,6 @@ const flexibleChecksumsResponseMiddleware = (config$1, middlewareConfig) => (nex
 	const input = args.input;
 	const result = await next(args);
 	const response = result.response;
-	let collectedStream = undefined;
 	const { requestValidationModeMember, responseAlgorithms } = middlewareConfig;
 	if (requestValidationModeMember && input[requestValidationModeMember] === "ENABLED") {
 		const { clientName, commandName } = context;
@@ -5296,37 +5603,36 @@ const flexibleChecksumsResponseMiddleware = (config$1, middlewareConfig) => (nex
 			return !checksumFromResponse || isChecksumWithPartNumber(checksumFromResponse);
 		});
 		if (isS3WholeObjectMultipartGetResponseChecksum) return result;
-		const isStreamingBody = isStreaming(response.body);
-		if (isStreamingBody) {
-			collectedStream = await config$1.streamCollector(response.body);
-			response.body = createReadStreamOnBuffer(collectedStream);
-		}
-		await validateChecksumFromResponse(result.response, {
+		await validateChecksumFromResponse(response, {
 			config: config$1,
-			responseAlgorithms
+			responseAlgorithms,
+			logger: context.logger
 		});
-		if (isStreamingBody && collectedStream) response.body = createReadStreamOnBuffer(collectedStream);
 	}
 	return result;
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/getFlexibleChecksumsPlugin.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/getFlexibleChecksumsPlugin.js
 const getFlexibleChecksumsPlugin = (config$1, middlewareConfig) => ({ applyToStack: (clientStack) => {
 	clientStack.add(flexibleChecksumsMiddleware(config$1, middlewareConfig), flexibleChecksumsMiddlewareOptions);
+	clientStack.addRelativeTo(flexibleChecksumsInputMiddleware(config$1, middlewareConfig), flexibleChecksumsInputMiddlewareOptions);
 	clientStack.addRelativeTo(flexibleChecksumsResponseMiddleware(config$1, middlewareConfig), flexibleChecksumsResponseMiddlewareOptions);
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.717.0/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/resolveFlexibleChecksumsConfig.js
-const resolveFlexibleChecksumsConfig = (input) => ({
-	...input,
-	requestChecksumCalculation: normalizeProvider$1(input.requestChecksumCalculation ?? DEFAULT_REQUEST_CHECKSUM_CALCULATION),
-	responseChecksumValidation: normalizeProvider$1(input.responseChecksumValidation ?? DEFAULT_RESPONSE_CHECKSUM_VALIDATION)
-});
+//#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/resolveFlexibleChecksumsConfig.js
+const resolveFlexibleChecksumsConfig = (input) => {
+	const { requestChecksumCalculation, responseChecksumValidation, requestStreamBufferSize } = input;
+	return Object.assign(input, {
+		requestChecksumCalculation: normalizeProvider$1(requestChecksumCalculation ?? DEFAULT_REQUEST_CHECKSUM_CALCULATION),
+		responseChecksumValidation: normalizeProvider$1(responseChecksumValidation ?? DEFAULT_RESPONSE_CHECKSUM_VALIDATION),
+		requestStreamBufferSize: Number(requestStreamBufferSize ?? 0)
+	});
+};
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-host-header@3.714.0/node_modules/@aws-sdk/middleware-host-header/dist-es/index.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-host-header@3.972.1/node_modules/@aws-sdk/middleware-host-header/dist-es/index.js
 function resolveHostHeaderConfig(input) {
 	return input;
 }
@@ -5356,16 +5662,16 @@ const getHostHeaderPlugin = (options) => ({ applyToStack: (clientStack) => {
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-logger@3.714.0/node_modules/@aws-sdk/middleware-logger/dist-es/loggerMiddleware.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-logger@3.972.1/node_modules/@aws-sdk/middleware-logger/dist-es/loggerMiddleware.js
 const loggerMiddleware = () => (next, context) => async (args) => {
 	try {
 		const response = await next(args);
-		const { clientName, commandName, logger: logger$1, dynamoDbDocumentClientOptions = {} } = context;
+		const { clientName, commandName, logger, dynamoDbDocumentClientOptions = {} } = context;
 		const { overrideInputFilterSensitiveLog, overrideOutputFilterSensitiveLog } = dynamoDbDocumentClientOptions;
 		const inputFilterSensitiveLog = overrideInputFilterSensitiveLog ?? context.inputFilterSensitiveLog;
 		const outputFilterSensitiveLog = overrideOutputFilterSensitiveLog ?? context.outputFilterSensitiveLog;
 		const { $metadata,...outputWithoutMetadata } = response.output;
-		logger$1?.info?.({
+		logger?.info?.({
 			clientName,
 			commandName,
 			input: inputFilterSensitiveLog(args.input),
@@ -5374,10 +5680,10 @@ const loggerMiddleware = () => (next, context) => async (args) => {
 		});
 		return response;
 	} catch (error) {
-		const { clientName, commandName, logger: logger$1, dynamoDbDocumentClientOptions = {} } = context;
+		const { clientName, commandName, logger, dynamoDbDocumentClientOptions = {} } = context;
 		const { overrideInputFilterSensitiveLog } = dynamoDbDocumentClientOptions;
 		const inputFilterSensitiveLog = overrideInputFilterSensitiveLog ?? context.inputFilterSensitiveLog;
-		logger$1?.error?.({
+		logger?.error?.({
 			clientName,
 			commandName,
 			input: inputFilterSensitiveLog(args.input),
@@ -5398,41 +5704,34 @@ const getLoggerPlugin = (options) => ({ applyToStack: (clientStack) => {
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-recursion-detection@3.714.0/node_modules/@aws-sdk/middleware-recursion-detection/dist-es/index.js
-const TRACE_ID_HEADER_NAME = "X-Amzn-Trace-Id";
-const ENV_LAMBDA_FUNCTION_NAME = "AWS_LAMBDA_FUNCTION_NAME";
-const ENV_TRACE_ID = "_X_AMZN_TRACE_ID";
-const recursionDetectionMiddleware = (options) => (next) => async (args) => {
-	const { request } = args;
-	if (!HttpRequest.isInstance(request) || options.runtime !== "node" || request.headers.hasOwnProperty(TRACE_ID_HEADER_NAME)) return next(args);
-	const functionName = process.env[ENV_LAMBDA_FUNCTION_NAME];
-	const traceId = process.env[ENV_TRACE_ID];
-	const nonEmptyString = (str) => typeof str === "string" && str.length > 0;
-	if (nonEmptyString(functionName) && nonEmptyString(traceId)) request.headers[TRACE_ID_HEADER_NAME] = traceId;
-	return next({
-		...args,
-		request
-	});
-};
-const addRecursionDetectionMiddlewareOptions = {
+//#region node_modules/.pnpm/@aws-sdk+middleware-recursion-detection@3.972.1/node_modules/@aws-sdk/middleware-recursion-detection/dist-es/configuration.js
+const recursionDetectionMiddlewareOptions = {
 	step: "build",
 	tags: ["RECURSION_DETECTION"],
 	name: "recursionDetectionMiddleware",
 	override: true,
 	priority: "low"
 };
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+middleware-recursion-detection@3.972.1/node_modules/@aws-sdk/middleware-recursion-detection/dist-es/recursionDetectionMiddleware.browser.js
+const recursionDetectionMiddleware = () => (next) => async (args) => next(args);
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+middleware-recursion-detection@3.972.1/node_modules/@aws-sdk/middleware-recursion-detection/dist-es/getRecursionDetectionPlugin.js
 const getRecursionDetectionPlugin = (options) => ({ applyToStack: (clientStack) => {
-	clientStack.add(recursionDetectionMiddleware(options), addRecursionDetectionMiddlewareOptions);
+	clientStack.add(recursionDetectionMiddleware(), recursionDetectionMiddlewareOptions);
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/check-content-length-header.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/check-content-length-header.js
 const CONTENT_LENGTH_HEADER$1 = "content-length";
+const DECODED_CONTENT_LENGTH_HEADER = "x-amz-decoded-content-length";
 function checkContentLengthHeader() {
 	return (next, context) => async (args) => {
 		const { request } = args;
 		if (HttpRequest.isInstance(request)) {
-			if (!(CONTENT_LENGTH_HEADER$1 in request.headers)) {
+			if (!(CONTENT_LENGTH_HEADER$1 in request.headers) && !(DECODED_CONTENT_LENGTH_HEADER in request.headers)) {
 				const message = `Are you using a Stream of unknown length as the Body of a PutObject request? Consider using Upload instead from @aws-sdk/lib-storage.`;
 				if (typeof context?.logger?.warn === "function" && !(context.logger instanceof NoOpLogger)) context.logger.warn(message);
 else console.warn(message);
@@ -5452,7 +5751,7 @@ const getCheckContentLengthHeaderPlugin = (unused) => ({ applyToStack: (clientSt
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/region-redirect-endpoint-middleware.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/region-redirect-endpoint-middleware.js
 const regionRedirectEndpointMiddleware = (config$1) => {
 	return (next, context) => async (args) => {
 		const originalRegion = await config$1.region();
@@ -5493,22 +5792,27 @@ const regionRedirectEndpointMiddlewareOptions = {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/region-redirect-middleware.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/region-redirect-middleware.js
 function regionRedirectMiddleware(clientConfig) {
 	return (next, context) => async (args) => {
 		try {
 			return await next(args);
 		} catch (err) {
 			if (clientConfig.followRegionRedirects) {
-				if (err?.$metadata?.httpStatusCode === 301 || err?.$metadata?.httpStatusCode === 400 && err?.name === "IllegalLocationConstraintException") {
-					try {
-						const actualRegion = err.$response.headers["x-amz-bucket-region"];
-						context.logger?.debug(`Redirecting from ${await clientConfig.region()} to ${actualRegion}`);
-						context.__s3RegionRedirect = actualRegion;
-					} catch (e$2) {
-						throw new Error("Region redirect failed: " + e$2);
+				const statusCode = err?.$metadata?.httpStatusCode;
+				const isHeadBucket = context.commandName === "HeadBucketCommand";
+				const bucketRegionHeader = err?.$response?.headers?.["x-amz-bucket-region"];
+				if (bucketRegionHeader) {
+					if (statusCode === 301 || statusCode === 400 && (err?.name === "IllegalLocationConstraintException" || isHeadBucket)) {
+						try {
+							const actualRegion = bucketRegionHeader;
+							context.logger?.debug(`Redirecting from ${await clientConfig.region()} to ${actualRegion}`);
+							context.__s3RegionRedirect = actualRegion;
+						} catch (e$2) {
+							throw new Error("Region redirect failed: " + e$2);
+						}
+						return next(args);
 					}
-					return next(args);
 				}
 			}
 			throw err;
@@ -5527,11 +5831,13 @@ const getRegionRedirectMiddlewarePlugin = (clientConfig) => ({ applyToStack: (cl
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/classes/S3ExpressIdentityCache.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/classes/S3ExpressIdentityCache.js
 var S3ExpressIdentityCache = class S3ExpressIdentityCache {
+	data;
+	lastPurgeTime = Date.now();
+	static EXPIRED_CREDENTIAL_PURGE_INTERVAL_MS = 3e4;
 	constructor(data = {}) {
 		this.data = data;
-		this.lastPurgeTime = Date.now();
 	}
 	get(key) {
 		const entry = this.data[key];
@@ -5559,11 +5865,13 @@ var S3ExpressIdentityCache = class S3ExpressIdentityCache {
 		}
 	}
 };
-S3ExpressIdentityCache.EXPIRED_CREDENTIAL_PURGE_INTERVAL_MS = 3e4;
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/classes/S3ExpressIdentityCacheEntry.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/classes/S3ExpressIdentityCacheEntry.js
 var S3ExpressIdentityCacheEntry = class {
+	_identity;
+	isRefreshing;
+	accessed;
 	constructor(_identity, isRefreshing = false, accessed = Date.now()) {
 		this._identity = _identity;
 		this.isRefreshing = isRefreshing;
@@ -5576,8 +5884,11 @@ var S3ExpressIdentityCacheEntry = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/classes/S3ExpressIdentityProviderImpl.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/classes/S3ExpressIdentityProviderImpl.js
 var S3ExpressIdentityProviderImpl = class S3ExpressIdentityProviderImpl {
+	createSessionFn;
+	cache;
+	static REFRESH_WINDOW_MS = 6e4;
 	constructor(createSessionFn, cache$1 = new S3ExpressIdentityCache()) {
 		this.createSessionFn = createSessionFn;
 		this.cache = cache$1;
@@ -5615,68 +5926,17 @@ var S3ExpressIdentityProviderImpl = class S3ExpressIdentityProviderImpl {
 		return identity;
 	}
 };
-S3ExpressIdentityProviderImpl.REFRESH_WINDOW_MS = 6e4;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-config-provider@3.0.0/node_modules/@smithy/util-config-provider/dist-es/types.js
-var SelectorType;
-(function(SelectorType$2) {
-	SelectorType$2["ENV"] = "env";
-	SelectorType$2["CONFIG"] = "shared config entry";
-})(SelectorType || (SelectorType = {}));
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/constants.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/constants.js
 const S3_EXPRESS_BUCKET_TYPE = "Directory";
 const S3_EXPRESS_BACKEND = "S3Express";
 const S3_EXPRESS_AUTH_SCHEME = "sigv4-s3express";
-const SESSION_TOKEN_QUERY_PARAM = "X-Amz-S3session-Token";
-const SESSION_TOKEN_HEADER = SESSION_TOKEN_QUERY_PARAM.toLowerCase();
+const SESSION_TOKEN_QUERY_PARAM$1 = "X-Amz-S3session-Token";
+const SESSION_TOKEN_HEADER$1 = SESSION_TOKEN_QUERY_PARAM$1.toLowerCase();
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/classes/SignatureV4S3Express.js
-var SignatureV4S3Express = class extends SignatureV4 {
-	async signWithCredentials(requestToSign, credentials, options) {
-		const credentialsWithoutSessionToken = getCredentialsWithoutSessionToken(credentials);
-		requestToSign.headers[SESSION_TOKEN_HEADER] = credentials.sessionToken;
-		const privateAccess = this;
-		setSingleOverride(privateAccess, credentialsWithoutSessionToken);
-		return privateAccess.signRequest(requestToSign, options ?? {});
-	}
-	async presignWithCredentials(requestToSign, credentials, options) {
-		const credentialsWithoutSessionToken = getCredentialsWithoutSessionToken(credentials);
-		delete requestToSign.headers[SESSION_TOKEN_HEADER];
-		requestToSign.headers[SESSION_TOKEN_QUERY_PARAM] = credentials.sessionToken;
-		requestToSign.query = requestToSign.query ?? {};
-		requestToSign.query[SESSION_TOKEN_QUERY_PARAM] = credentials.sessionToken;
-		const privateAccess = this;
-		setSingleOverride(privateAccess, credentialsWithoutSessionToken);
-		return this.presign(requestToSign, options);
-	}
-};
-function getCredentialsWithoutSessionToken(credentials) {
-	const credentialsWithoutSessionToken = {
-		accessKeyId: credentials.accessKeyId,
-		secretAccessKey: credentials.secretAccessKey,
-		expiration: credentials.expiration
-	};
-	return credentialsWithoutSessionToken;
-}
-function setSingleOverride(privateAccess, credentialsWithoutSessionToken) {
-	const id = setTimeout(() => {
-		throw new Error("SignatureV4S3Express credential override was created but not called.");
-	}, 10);
-	const currentCredentialProvider = privateAccess.credentialProvider;
-	const overrideCredentialsProviderOnce = () => {
-		clearTimeout(id);
-		privateAccess.credentialProvider = currentCredentialProvider;
-		return Promise.resolve(credentialsWithoutSessionToken);
-	};
-	privateAccess.credentialProvider = overrideCredentialsProviderOnce;
-}
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/functions/s3ExpressMiddleware.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/functions/s3ExpressMiddleware.js
 const s3ExpressMiddleware = (options) => {
 	return (next, context) => async (args) => {
 		if (context.endpointV2) {
@@ -5692,7 +5952,7 @@ const s3ExpressMiddleware = (options) => {
 				if (requestBucket) {
 					const s3ExpressIdentity = await options.s3ExpressIdentityProvider.getS3ExpressIdentity(await options.credentials(), { Bucket: requestBucket });
 					context.s3ExpressIdentity = s3ExpressIdentity;
-					if (HttpRequest.isInstance(args.request) && s3ExpressIdentity.sessionToken) args.request.headers[SESSION_TOKEN_HEADER] = s3ExpressIdentity.sessionToken;
+					if (HttpRequest.isInstance(args.request) && s3ExpressIdentity.sessionToken) args.request.headers[SESSION_TOKEN_HEADER$1] = s3ExpressIdentity.sessionToken;
 				}
 			}
 		}
@@ -5710,7 +5970,7 @@ const getS3ExpressPlugin = (options) => ({ applyToStack: (clientStack) => {
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/functions/signS3Express.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/functions/signS3Express.js
 const signS3Express = async (s3ExpressIdentity, signingOptions, request, sigV4MultiRegionSigner) => {
 	const signedRequest = await sigV4MultiRegionSigner.signWithCredentials(request, s3ExpressIdentity, {});
 	if (signedRequest.headers["X-Amz-Security-Token"] || signedRequest.headers["x-amz-security-token"]) throw new Error("X-Amz-Security-Token must not be set for s3-express requests.");
@@ -5718,7 +5978,7 @@ const signS3Express = async (s3ExpressIdentity, signingOptions, request, sigV4Mu
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/functions/s3ExpressHttpSigningMiddleware.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/functions/s3ExpressHttpSigningMiddleware.js
 const defaultErrorHandler = (signingProperties) => (error) => {
 	throw error;
 };
@@ -5744,25 +6004,23 @@ const getS3ExpressHttpSigningPlugin = (config$1) => ({ applyToStack: (clientStac
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3Configuration.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3Configuration.js
 const resolveS3Config = (input, { session }) => {
 	const [s3ClientProvider, CreateSessionCommandCtor] = session;
-	return {
-		...input,
-		forcePathStyle: input.forcePathStyle ?? false,
-		useAccelerateEndpoint: input.useAccelerateEndpoint ?? false,
-		disableMultiregionAccessPoints: input.disableMultiregionAccessPoints ?? false,
-		followRegionRedirects: input.followRegionRedirects ?? false,
-		s3ExpressIdentityProvider: input.s3ExpressIdentityProvider ?? new S3ExpressIdentityProviderImpl(async (key) => s3ClientProvider().send(new CreateSessionCommandCtor({
-			Bucket: key,
-			SessionMode: "ReadWrite"
-		}))),
-		bucketEndpoint: input.bucketEndpoint ?? false
-	};
+	const { forcePathStyle, useAccelerateEndpoint, disableMultiregionAccessPoints, followRegionRedirects, s3ExpressIdentityProvider, bucketEndpoint, expectContinueHeader } = input;
+	return Object.assign(input, {
+		forcePathStyle: forcePathStyle ?? false,
+		useAccelerateEndpoint: useAccelerateEndpoint ?? false,
+		disableMultiregionAccessPoints: disableMultiregionAccessPoints ?? false,
+		followRegionRedirects: followRegionRedirects ?? false,
+		s3ExpressIdentityProvider: s3ExpressIdentityProvider ?? new S3ExpressIdentityProviderImpl(async (key) => s3ClientProvider().send(new CreateSessionCommandCtor({ Bucket: key }))),
+		bucketEndpoint: bucketEndpoint ?? false,
+		expectContinueHeader: expectContinueHeader ?? 2097152
+	});
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/throw-200-exceptions.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/throw-200-exceptions.js
 const THROW_IF_EMPTY_BODY = {
 	CopyObjectCommand: true,
 	UploadPartCopyCommand: true,
@@ -5810,11 +6068,11 @@ const getThrow200ExceptionsPlugin = (config$1) => ({ applyToStack: (clientStack)
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+util-arn-parser@3.693.0/node_modules/@aws-sdk/util-arn-parser/dist-es/index.js
+//#region node_modules/.pnpm/@aws-sdk+util-arn-parser@3.972.1/node_modules/@aws-sdk/util-arn-parser/dist-es/index.js
 const validate = (str) => typeof str === "string" && str.indexOf("arn:") === 0 && str.split(":").length >= 6;
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/bucket-endpoint-middleware.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/bucket-endpoint-middleware.js
 function bucketEndpointMiddleware(options) {
 	return (next, context) => async (args) => {
 		if (options.bucketEndpoint) {
@@ -5846,7 +6104,7 @@ const bucketEndpointMiddlewareOptions = {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.716.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/validate-bucket-name.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/validate-bucket-name.js
 function validateBucketNameMiddleware({ bucketEndpoint }) {
 	return (next) => async (args) => {
 		const { input: { Bucket } } = args;
@@ -5870,7 +6128,7 @@ const getValidateBucketNamePlugin = (options) => ({ applyToStack: (clientStack) 
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-user-agent@3.716.0/node_modules/@aws-sdk/middleware-user-agent/dist-es/configurations.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-user-agent@3.972.1/node_modules/@aws-sdk/middleware-user-agent/dist-es/configurations.js
 const DEFAULT_UA_APP_ID = undefined;
 function isValidUserAgentAppId(appId) {
 	if (appId === undefined) return true;
@@ -5878,27 +6136,28 @@ function isValidUserAgentAppId(appId) {
 }
 function resolveUserAgentConfig(input) {
 	const normalizedAppIdProvider = normalizeProvider(input.userAgentAppId ?? DEFAULT_UA_APP_ID);
-	return {
-		...input,
-		customUserAgent: typeof input.customUserAgent === "string" ? [[input.customUserAgent]] : input.customUserAgent,
+	const { customUserAgent } = input;
+	return Object.assign(input, {
+		customUserAgent: typeof customUserAgent === "string" ? [[customUserAgent]] : customUserAgent,
 		userAgentAppId: async () => {
 			const appId = await normalizedAppIdProvider();
 			if (!isValidUserAgentAppId(appId)) {
-				const logger$1 = input.logger?.constructor?.name === "NoOpLogger" || !input.logger ? console : input.logger;
-				if (typeof appId !== "string") logger$1?.warn("userAgentAppId must be a string or undefined.");
-else if (appId.length > 50) logger$1?.warn("The provided userAgentAppId exceeds the maximum length of 50 characters.");
+				const logger = input.logger?.constructor?.name === "NoOpLogger" || !input.logger ? console : input.logger;
+				if (typeof appId !== "string") logger?.warn("userAgentAppId must be a string or undefined.");
+else if (appId.length > 50) logger?.warn("The provided userAgentAppId exceeds the maximum length of 50 characters.");
 			}
 			return appId;
 		}
-	};
+	});
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/cache/EndpointCache.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/cache/EndpointCache.js
 var EndpointCache = class {
+	capacity;
+	data = new Map();
+	parameters = [];
 	constructor({ size, params }) {
-		this.data = new Map();
-		this.parameters = [];
 		this.capacity = size ?? 50;
 		if (params) this.parameters = params;
 	}
@@ -5927,21 +6186,21 @@ var EndpointCache = class {
 		const { parameters } = this;
 		if (parameters.length === 0) return false;
 		for (const param of parameters) {
-			const val$1 = String(endpointParams[param] ?? "");
-			if (val$1.includes("|;")) return false;
-			buffer$1 += val$1 + "|;";
+			const val = String(endpointParams[param] ?? "");
+			if (val.includes("|;")) return false;
+			buffer$1 += val + "|;";
 		}
 		return buffer$1;
 	}
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/lib/isIpAddress.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/lib/isIpAddress.js
 const IP_V4_REGEX = new RegExp(`^(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}$`);
 const isIpAddress = (value) => IP_V4_REGEX.test(value) || value.startsWith("[") && value.endsWith("]");
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/lib/isValidHostLabel.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/lib/isValidHostLabel.js
 const VALID_HOST_LABEL_REGEX = new RegExp(`^(?!.*-$)(?!-)[a-zA-Z0-9-]{1,63}$`);
 const isValidHostLabel = (value, allowSubDomains = false) => {
 	if (!allowSubDomains) return VALID_HOST_LABEL_REGEX.test(value);
@@ -5951,15 +6210,15 @@ const isValidHostLabel = (value, allowSubDomains = false) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/customEndpointFunctions.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/customEndpointFunctions.js
 const customEndpointFunctions = {};
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/debug/debugId.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/debug/debugId.js
 const debugId = "endpoints";
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/debug/toDebugString.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/debug/toDebugString.js
 function toDebugString(input) {
 	if (typeof input !== "object" || input == null) return input;
 	if ("ref" in input) return `$${toDebugString(input.ref)}`;
@@ -5968,7 +6227,7 @@ function toDebugString(input) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/types/EndpointError.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/types/EndpointError.js
 var EndpointError = class extends Error {
 	constructor(message) {
 		super(message);
@@ -5977,11 +6236,11 @@ var EndpointError = class extends Error {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/lib/booleanEquals.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/lib/booleanEquals.js
 const booleanEquals = (value1, value2) => value1 === value2;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/lib/getAttrPathList.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/lib/getAttrPathList.js
 const getAttrPathList = (path) => {
 	const parts = path.split(".");
 	const pathList = [];
@@ -5999,7 +6258,7 @@ const getAttrPathList = (path) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/lib/getAttr.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/lib/getAttr.js
 const getAttr = (value, path) => getAttrPathList(path).reduce((acc, index) => {
 	if (typeof acc !== "object") throw new EndpointError(`Index '${index}' in '${path}' not found in '${JSON.stringify(value)}'`);
 else if (Array.isArray(acc)) return acc[parseInt(index)];
@@ -6007,15 +6266,15 @@ else if (Array.isArray(acc)) return acc[parseInt(index)];
 }, value);
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/lib/isSet.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/lib/isSet.js
 const isSet = (value) => value != null;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/lib/not.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/lib/not.js
 const not = (value) => !value;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/lib/parseURL.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/lib/parseURL.js
 const DEFAULT_PORTS = {
 	[EndpointURLScheme.HTTP]: 80,
 	[EndpointURLScheme.HTTPS]: 443
@@ -6057,11 +6316,11 @@ const parseURL = (value) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/lib/stringEquals.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/lib/stringEquals.js
 const stringEquals = (value1, value2) => value1 === value2;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/lib/substring.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/lib/substring.js
 const substring = (input, start, stop, reverse) => {
 	if (start >= stop || input.length < stop) return null;
 	if (!reverse) return input.substring(start, stop);
@@ -6069,11 +6328,11 @@ const substring = (input, start, stop, reverse) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/lib/uriEncode.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/lib/uriEncode.js
 const uriEncode = (value) => encodeURIComponent(value).replace(/[!*'()]/g, (c$1) => `%${c$1.charCodeAt(0).toString(16).toUpperCase()}`);
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/endpointFunctions.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/endpointFunctions.js
 const endpointFunctions = {
 	booleanEquals,
 	getAttr,
@@ -6087,7 +6346,7 @@ const endpointFunctions = {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateTemplate.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateTemplate.js
 const evaluateTemplate = (template, options) => {
 	const evaluatedTemplateArr = [];
 	const templateContext = {
@@ -6122,7 +6381,7 @@ const evaluateTemplate = (template, options) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/getReferenceValue.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/getReferenceValue.js
 const getReferenceValue = ({ ref }, options) => {
 	const referenceRecord = {
 		...options.endpointParams,
@@ -6132,25 +6391,26 @@ const getReferenceValue = ({ ref }, options) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateExpression.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateExpression.js
 const evaluateExpression = (obj, keyName, options) => {
 	if (typeof obj === "string") return evaluateTemplate(obj, options);
-else if (obj["fn"]) return callFunction(obj, options);
+else if (obj["fn"]) return group$2.callFunction(obj, options);
 else if (obj["ref"]) return getReferenceValue(obj, options);
 	throw new EndpointError(`'${keyName}': ${String(obj)} is not a string, function or reference.`);
 };
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/callFunction.js
 const callFunction = ({ fn, argv }, options) => {
-	const evaluatedArgs = argv.map((arg) => ["boolean", "number"].includes(typeof arg) ? arg : evaluateExpression(arg, "arg", options));
+	const evaluatedArgs = argv.map((arg) => ["boolean", "number"].includes(typeof arg) ? arg : group$2.evaluateExpression(arg, "arg", options));
 	const fnSegments = fn.split(".");
 	if (fnSegments[0] in customEndpointFunctions && fnSegments[1] != null) return customEndpointFunctions[fnSegments[0]][fnSegments[1]](...evaluatedArgs);
 	return endpointFunctions[fn](...evaluatedArgs);
 };
+const group$2 = {
+	evaluateExpression,
+	callFunction
+};
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateCondition.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateCondition.js
 const evaluateCondition = ({ assign,...fnArgs }, options) => {
 	if (assign && assign in options.referenceRecord) throw new EndpointError(`'${assign}' is already defined in Reference Record.`);
 	const value = callFunction(fnArgs, options);
@@ -6165,7 +6425,7 @@ const evaluateCondition = ({ assign,...fnArgs }, options) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateConditions.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateConditions.js
 const evaluateConditions = (conditions = [], options) => {
 	const conditionsReferenceRecord = {};
 	for (const condition of conditions) {
@@ -6189,7 +6449,7 @@ const evaluateConditions = (conditions = [], options) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/getEndpointHeaders.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/getEndpointHeaders.js
 const getEndpointHeaders = (headers, options) => Object.entries(headers).reduce((acc, [headerKey, headerVal]) => ({
 	...acc,
 	[headerKey]: headerVal.map((headerValEntry) => {
@@ -6200,28 +6460,29 @@ const getEndpointHeaders = (headers, options) => Object.entries(headers).reduce(
 }), {});
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/getEndpointProperty.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/getEndpointProperties.js
+const getEndpointProperties = (properties, options) => Object.entries(properties).reduce((acc, [propertyKey, propertyVal]) => ({
+	...acc,
+	[propertyKey]: group$1.getEndpointProperty(propertyVal, options)
+}), {});
 const getEndpointProperty = (property, options) => {
 	if (Array.isArray(property)) return property.map((propertyEntry) => getEndpointProperty(propertyEntry, options));
 	switch (typeof property) {
 		case "string": return evaluateTemplate(property, options);
 		case "object":
 			if (property === null) throw new EndpointError(`Unexpected endpoint property: ${property}`);
-			return getEndpointProperties(property, options);
+			return group$1.getEndpointProperties(property, options);
 		case "boolean": return property;
 		default: throw new EndpointError(`Unexpected endpoint property type: ${typeof property}`);
 	}
 };
+const group$1 = {
+	getEndpointProperty,
+	getEndpointProperties
+};
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/getEndpointProperties.js
-const getEndpointProperties = (properties, options) => Object.entries(properties).reduce((acc, [propertyKey, propertyVal]) => ({
-	...acc,
-	[propertyKey]: getEndpointProperty(propertyVal, options)
-}), {});
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/getEndpointUrl.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/getEndpointUrl.js
 const getEndpointUrl = (endpointUrl, options) => {
 	const expression = evaluateExpression(endpointUrl, "Endpoint URL", options);
 	if (typeof expression === "string") try {
@@ -6234,7 +6495,7 @@ const getEndpointUrl = (endpointUrl, options) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateEndpointRule.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateEndpointRule.js
 const evaluateEndpointRule = (endpointRule, options) => {
 	const { conditions, endpoint } = endpointRule;
 	const { result, referenceRecord } = evaluateConditions(conditions, options);
@@ -6256,7 +6517,7 @@ const evaluateEndpointRule = (endpointRule, options) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateErrorRule.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateErrorRule.js
 const evaluateErrorRule = (errorRule, options) => {
 	const { conditions, error } = errorRule;
 	const { result, referenceRecord } = evaluateConditions(conditions, options);
@@ -6271,12 +6532,23 @@ const evaluateErrorRule = (errorRule, options) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateTreeRule.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateRules.js
+const evaluateRules = (rules, options) => {
+	for (const rule of rules) if (rule.type === "endpoint") {
+		const endpointOrUndefined = evaluateEndpointRule(rule, options);
+		if (endpointOrUndefined) return endpointOrUndefined;
+	} else if (rule.type === "error") evaluateErrorRule(rule, options);
+else if (rule.type === "tree") {
+		const endpointOrUndefined = group.evaluateTreeRule(rule, options);
+		if (endpointOrUndefined) return endpointOrUndefined;
+	} else throw new EndpointError(`Unknown endpoint rule: ${rule}`);
+	throw new EndpointError(`Rules evaluation failed`);
+};
 const evaluateTreeRule = (treeRule, options) => {
 	const { conditions, rules } = treeRule;
 	const { result, referenceRecord } = evaluateConditions(conditions, options);
 	if (!result) return;
-	return evaluateRules(rules, {
+	return group.evaluateRules(rules, {
 		...options,
 		referenceRecord: {
 			...options.referenceRecord,
@@ -6284,25 +6556,15 @@ const evaluateTreeRule = (treeRule, options) => {
 		}
 	});
 };
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/utils/evaluateRules.js
-const evaluateRules = (rules, options) => {
-	for (const rule of rules) if (rule.type === "endpoint") {
-		const endpointOrUndefined = evaluateEndpointRule(rule, options);
-		if (endpointOrUndefined) return endpointOrUndefined;
-	} else if (rule.type === "error") evaluateErrorRule(rule, options);
-else if (rule.type === "tree") {
-		const endpointOrUndefined = evaluateTreeRule(rule, options);
-		if (endpointOrUndefined) return endpointOrUndefined;
-	} else throw new EndpointError(`Unknown endpoint rule: ${rule}`);
-	throw new EndpointError(`Rules evaluation failed`);
+const group = {
+	evaluateRules,
+	evaluateTreeRule
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-endpoints@2.1.7/node_modules/@smithy/util-endpoints/dist-es/resolveEndpoint.js
+//#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/resolveEndpoint.js
 const resolveEndpoint = (ruleSetObject, options) => {
-	const { endpointParams, logger: logger$1 } = options;
+	const { endpointParams, logger } = options;
 	const { parameters, rules } = ruleSetObject;
 	options.logger?.debug?.(`${debugId} Initial EndpointParams: ${toDebugString(endpointParams)}`);
 	const paramsWithDefault = Object.entries(parameters).filter(([, v$2]) => v$2.default != null).map(([k$1, v$2]) => [k$1, v$2.default]);
@@ -6311,7 +6573,7 @@ const resolveEndpoint = (ruleSetObject, options) => {
 	for (const requiredParam of requiredParams) if (endpointParams[requiredParam] == null) throw new EndpointError(`Missing required parameter: '${requiredParam}'`);
 	const endpoint = evaluateRules(rules, {
 		endpointParams,
-		logger: logger$1,
+		logger,
 		referenceRecord: {}
 	});
 	options.logger?.debug?.(`${debugId} Resolved endpoint: ${toDebugString(endpoint)}`);
@@ -6319,7 +6581,7 @@ const resolveEndpoint = (ruleSetObject, options) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+util-endpoints@3.714.0/node_modules/@aws-sdk/util-endpoints/dist-es/lib/aws/isVirtualHostableS3Bucket.js
+//#region node_modules/.pnpm/@aws-sdk+util-endpoints@3.972.0/node_modules/@aws-sdk/util-endpoints/dist-es/lib/aws/isVirtualHostableS3Bucket.js
 const isVirtualHostableS3Bucket = (value, allowSubDomains = false) => {
 	if (allowSubDomains) {
 		for (const label of value.split(".")) if (!isVirtualHostableS3Bucket(label)) return false;
@@ -6333,7 +6595,7 @@ const isVirtualHostableS3Bucket = (value, allowSubDomains = false) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+util-endpoints@3.714.0/node_modules/@aws-sdk/util-endpoints/dist-es/lib/aws/parseArn.js
+//#region node_modules/.pnpm/@aws-sdk+util-endpoints@3.972.0/node_modules/@aws-sdk/util-endpoints/dist-es/lib/aws/parseArn.js
 const ARN_DELIMITER = ":";
 const RESOURCE_DELIMITER = "/";
 const parseArn = (value) => {
@@ -6352,7 +6614,7 @@ const parseArn = (value) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+util-endpoints@3.714.0/node_modules/@aws-sdk/util-endpoints/dist-es/lib/aws/partitions.json
+//#region node_modules/.pnpm/@aws-sdk+util-endpoints@3.972.0/node_modules/@aws-sdk/util-endpoints/dist-es/lib/aws/partitions.json
 var partitions = [
 	{
 		"id": "aws",
@@ -6368,6 +6630,7 @@ var partitions = [
 		"regions": {
 			"af-south-1": { "description": "Africa (Cape Town)" },
 			"ap-east-1": { "description": "Asia Pacific (Hong Kong)" },
+			"ap-east-2": { "description": "Asia Pacific (Taipei)" },
 			"ap-northeast-1": { "description": "Asia Pacific (Tokyo)" },
 			"ap-northeast-2": { "description": "Asia Pacific (Seoul)" },
 			"ap-northeast-3": { "description": "Asia Pacific (Osaka)" },
@@ -6378,7 +6641,9 @@ var partitions = [
 			"ap-southeast-3": { "description": "Asia Pacific (Jakarta)" },
 			"ap-southeast-4": { "description": "Asia Pacific (Melbourne)" },
 			"ap-southeast-5": { "description": "Asia Pacific (Malaysia)" },
-			"aws-global": { "description": "AWS Standard global region" },
+			"ap-southeast-6": { "description": "Asia Pacific (New Zealand)" },
+			"ap-southeast-7": { "description": "Asia Pacific (Thailand)" },
+			"aws-global": { "description": "aws global region" },
 			"ca-central-1": { "description": "Canada (Central)" },
 			"ca-west-1": { "description": "Canada West (Calgary)" },
 			"eu-central-1": { "description": "Europe (Frankfurt)" },
@@ -6392,6 +6657,7 @@ var partitions = [
 			"il-central-1": { "description": "Israel (Tel Aviv)" },
 			"me-central-1": { "description": "Middle East (UAE)" },
 			"me-south-1": { "description": "Middle East (Bahrain)" },
+			"mx-central-1": { "description": "Mexico (Central)" },
 			"sa-east-1": { "description": "South America (Sao Paulo)" },
 			"us-east-1": { "description": "US East (N. Virginia)" },
 			"us-east-2": { "description": "US East (Ohio)" },
@@ -6411,9 +6677,89 @@ var partitions = [
 		},
 		"regionRegex": "^cn\\-\\w+\\-\\d+$",
 		"regions": {
-			"aws-cn-global": { "description": "AWS China global region" },
+			"aws-cn-global": { "description": "aws-cn global region" },
 			"cn-north-1": { "description": "China (Beijing)" },
 			"cn-northwest-1": { "description": "China (Ningxia)" }
+		}
+	},
+	{
+		"id": "aws-eusc",
+		"outputs": {
+			"dnsSuffix": "amazonaws.eu",
+			"dualStackDnsSuffix": "api.amazonwebservices.eu",
+			"implicitGlobalRegion": "eusc-de-east-1",
+			"name": "aws-eusc",
+			"supportsDualStack": true,
+			"supportsFIPS": true
+		},
+		"regionRegex": "^eusc\\-(de)\\-\\w+\\-\\d+$",
+		"regions": { "eusc-de-east-1": { "description": "AWS European Sovereign Cloud (Germany)" } }
+	},
+	{
+		"id": "aws-iso",
+		"outputs": {
+			"dnsSuffix": "c2s.ic.gov",
+			"dualStackDnsSuffix": "api.aws.ic.gov",
+			"implicitGlobalRegion": "us-iso-east-1",
+			"name": "aws-iso",
+			"supportsDualStack": true,
+			"supportsFIPS": true
+		},
+		"regionRegex": "^us\\-iso\\-\\w+\\-\\d+$",
+		"regions": {
+			"aws-iso-global": { "description": "aws-iso global region" },
+			"us-iso-east-1": { "description": "US ISO East" },
+			"us-iso-west-1": { "description": "US ISO WEST" }
+		}
+	},
+	{
+		"id": "aws-iso-b",
+		"outputs": {
+			"dnsSuffix": "sc2s.sgov.gov",
+			"dualStackDnsSuffix": "api.aws.scloud",
+			"implicitGlobalRegion": "us-isob-east-1",
+			"name": "aws-iso-b",
+			"supportsDualStack": true,
+			"supportsFIPS": true
+		},
+		"regionRegex": "^us\\-isob\\-\\w+\\-\\d+$",
+		"regions": {
+			"aws-iso-b-global": { "description": "aws-iso-b global region" },
+			"us-isob-east-1": { "description": "US ISOB East (Ohio)" },
+			"us-isob-west-1": { "description": "US ISOB West" }
+		}
+	},
+	{
+		"id": "aws-iso-e",
+		"outputs": {
+			"dnsSuffix": "cloud.adc-e.uk",
+			"dualStackDnsSuffix": "api.cloud-aws.adc-e.uk",
+			"implicitGlobalRegion": "eu-isoe-west-1",
+			"name": "aws-iso-e",
+			"supportsDualStack": true,
+			"supportsFIPS": true
+		},
+		"regionRegex": "^eu\\-isoe\\-\\w+\\-\\d+$",
+		"regions": {
+			"aws-iso-e-global": { "description": "aws-iso-e global region" },
+			"eu-isoe-west-1": { "description": "EU ISOE West" }
+		}
+	},
+	{
+		"id": "aws-iso-f",
+		"outputs": {
+			"dnsSuffix": "csp.hci.ic.gov",
+			"dualStackDnsSuffix": "api.aws.hci.ic.gov",
+			"implicitGlobalRegion": "us-isof-south-1",
+			"name": "aws-iso-f",
+			"supportsDualStack": true,
+			"supportsFIPS": true
+		},
+		"regionRegex": "^us\\-isof\\-\\w+\\-\\d+$",
+		"regions": {
+			"aws-iso-f-global": { "description": "aws-iso-f global region" },
+			"us-isof-east-1": { "description": "US ISOF EAST" },
+			"us-isof-south-1": { "description": "US ISOF SOUTH" }
 		}
 	},
 	{
@@ -6428,69 +6774,10 @@ var partitions = [
 		},
 		"regionRegex": "^us\\-gov\\-\\w+\\-\\d+$",
 		"regions": {
-			"aws-us-gov-global": { "description": "AWS GovCloud (US) global region" },
+			"aws-us-gov-global": { "description": "aws-us-gov global region" },
 			"us-gov-east-1": { "description": "AWS GovCloud (US-East)" },
 			"us-gov-west-1": { "description": "AWS GovCloud (US-West)" }
 		}
-	},
-	{
-		"id": "aws-iso",
-		"outputs": {
-			"dnsSuffix": "c2s.ic.gov",
-			"dualStackDnsSuffix": "c2s.ic.gov",
-			"implicitGlobalRegion": "us-iso-east-1",
-			"name": "aws-iso",
-			"supportsDualStack": false,
-			"supportsFIPS": true
-		},
-		"regionRegex": "^us\\-iso\\-\\w+\\-\\d+$",
-		"regions": {
-			"aws-iso-global": { "description": "AWS ISO (US) global region" },
-			"us-iso-east-1": { "description": "US ISO East" },
-			"us-iso-west-1": { "description": "US ISO WEST" }
-		}
-	},
-	{
-		"id": "aws-iso-b",
-		"outputs": {
-			"dnsSuffix": "sc2s.sgov.gov",
-			"dualStackDnsSuffix": "sc2s.sgov.gov",
-			"implicitGlobalRegion": "us-isob-east-1",
-			"name": "aws-iso-b",
-			"supportsDualStack": false,
-			"supportsFIPS": true
-		},
-		"regionRegex": "^us\\-isob\\-\\w+\\-\\d+$",
-		"regions": {
-			"aws-iso-b-global": { "description": "AWS ISOB (US) global region" },
-			"us-isob-east-1": { "description": "US ISOB East (Ohio)" }
-		}
-	},
-	{
-		"id": "aws-iso-e",
-		"outputs": {
-			"dnsSuffix": "cloud.adc-e.uk",
-			"dualStackDnsSuffix": "cloud.adc-e.uk",
-			"implicitGlobalRegion": "eu-isoe-west-1",
-			"name": "aws-iso-e",
-			"supportsDualStack": false,
-			"supportsFIPS": true
-		},
-		"regionRegex": "^eu\\-isoe\\-\\w+\\-\\d+$",
-		"regions": { "eu-isoe-west-1": { "description": "EU ISOE West" } }
-	},
-	{
-		"id": "aws-iso-f",
-		"outputs": {
-			"dnsSuffix": "csp.hci.ic.gov",
-			"dualStackDnsSuffix": "csp.hci.ic.gov",
-			"implicitGlobalRegion": "us-isof-south-1",
-			"name": "aws-iso-f",
-			"supportsDualStack": false,
-			"supportsFIPS": true
-		},
-		"regionRegex": "^us\\-isof\\-\\w+\\-\\d+$",
-		"regions": {}
 	}
 ];
 var version$1 = "1.1";
@@ -6500,7 +6787,7 @@ var partitions_default = {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+util-endpoints@3.714.0/node_modules/@aws-sdk/util-endpoints/dist-es/lib/aws/partition.js
+//#region node_modules/.pnpm/@aws-sdk+util-endpoints@3.972.0/node_modules/@aws-sdk/util-endpoints/dist-es/lib/aws/partition.js
 let selectedPartitionsInfo = partitions_default;
 let selectedUserAgentPrefix = "";
 const partition = (value) => {
@@ -6523,7 +6810,7 @@ const partition = (value) => {
 const getUserAgentPrefix = () => selectedUserAgentPrefix;
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+util-endpoints@3.714.0/node_modules/@aws-sdk/util-endpoints/dist-es/aws.js
+//#region node_modules/.pnpm/@aws-sdk+util-endpoints@3.972.0/node_modules/@aws-sdk/util-endpoints/dist-es/aws.js
 const awsEndpointFunctions = {
 	isVirtualHostableS3Bucket,
 	parseArn,
@@ -6532,7 +6819,39 @@ const awsEndpointFunctions = {
 customEndpointFunctions.aws = awsEndpointFunctions;
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-user-agent@3.716.0/node_modules/@aws-sdk/middleware-user-agent/dist-es/check-features.js
+//#region node_modules/.pnpm/@smithy+querystring-parser@4.2.8/node_modules/@smithy/querystring-parser/dist-es/index.js
+function parseQueryString(querystring) {
+	const query = {};
+	querystring = querystring.replace(/^\?/, "");
+	if (querystring) for (const pair of querystring.split("&")) {
+		let [key, value = null] = pair.split("=");
+		key = decodeURIComponent(key);
+		if (value) value = decodeURIComponent(value);
+		if (!(key in query)) query[key] = value;
+else if (Array.isArray(query[key])) query[key].push(value);
+else query[key] = [query[key], value];
+	}
+	return query;
+}
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+url-parser@4.2.8/node_modules/@smithy/url-parser/dist-es/index.js
+const parseUrl = (url) => {
+	if (typeof url === "string") return parseUrl(new URL(url));
+	const { hostname, pathname, port, protocol, search } = url;
+	let query;
+	if (search) query = parseQueryString(search);
+	return {
+		hostname,
+		port: port ? parseInt(port) : undefined,
+		protocol,
+		path: pathname,
+		query
+	};
+};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+middleware-user-agent@3.972.1/node_modules/@aws-sdk/middleware-user-agent/dist-es/check-features.js
 const ACCOUNT_ID_ENDPOINT_REGEX = /\d{12}\.ddb/;
 async function checkFeatures(context, config$1, args) {
 	const request = args.request;
@@ -6567,25 +6886,25 @@ else setFeature$1(context, "RETRY_MODE_LEGACY", "D");
 }
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-user-agent@3.716.0/node_modules/@aws-sdk/middleware-user-agent/dist-es/constants.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-user-agent@3.972.1/node_modules/@aws-sdk/middleware-user-agent/dist-es/constants.js
 const USER_AGENT = "user-agent";
 const X_AMZ_USER_AGENT = "x-amz-user-agent";
 const SPACE = " ";
 const UA_NAME_SEPARATOR = "/";
-const UA_NAME_ESCAPE_REGEX = /[^\!\$\%\&\'\*\+\-\.\^\_\`\|\~\d\w]/g;
-const UA_VALUE_ESCAPE_REGEX = /[^\!\$\%\&\'\*\+\-\.\^\_\`\|\~\d\w\#]/g;
+const UA_NAME_ESCAPE_REGEX = /[^!$%&'*+\-.^_`|~\w]/g;
+const UA_VALUE_ESCAPE_REGEX = /[^!$%&'*+\-.^_`|~\w#]/g;
 const UA_ESCAPE_CHAR = "-";
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-user-agent@3.716.0/node_modules/@aws-sdk/middleware-user-agent/dist-es/encode-features.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-user-agent@3.972.1/node_modules/@aws-sdk/middleware-user-agent/dist-es/encode-features.js
 const BYTE_LIMIT = 1024;
 function encodeFeatures(features) {
 	let buffer$1 = "";
 	for (const key in features) {
-		const val$1 = features[key];
-		if (buffer$1.length + val$1.length + 1 <= BYTE_LIMIT) {
-			if (buffer$1.length) buffer$1 += "," + val$1;
-else buffer$1 += val$1;
+		const val = features[key];
+		if (buffer$1.length + val.length + 1 <= BYTE_LIMIT) {
+			if (buffer$1.length) buffer$1 += "," + val;
+else buffer$1 += val;
 			continue;
 		}
 		break;
@@ -6594,7 +6913,7 @@ else buffer$1 += val$1;
 }
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-user-agent@3.716.0/node_modules/@aws-sdk/middleware-user-agent/dist-es/user-agent-middleware.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-user-agent@3.972.1/node_modules/@aws-sdk/middleware-user-agent/dist-es/user-agent-middleware.js
 const userAgentMiddleware = (options) => (next, context) => async (args) => {
 	const { request } = args;
 	if (!HttpRequest.isInstance(request)) return next(args);
@@ -6606,7 +6925,7 @@ const userAgentMiddleware = (options) => (next, context) => async (args) => {
 	defaultUserAgent.push(`m/${encodeFeatures(Object.assign({}, context.__smithy_context?.features, awsContext.__aws_sdk_context?.features))}`);
 	const customUserAgent = options?.customUserAgent?.map(escapeUserAgent) || [];
 	const appId = await options.userAgentAppId();
-	if (appId) defaultUserAgent.push(escapeUserAgent([`app/${appId}`]));
+	if (appId) defaultUserAgent.push(escapeUserAgent([`app`, `${appId}`]));
 	const prefix = getUserAgentPrefix();
 	const sdkUserAgentValue = (prefix ? [prefix] : []).concat([
 		...defaultUserAgent,
@@ -6654,50 +6973,56 @@ const getUserAgentPlugin = (config$1) => ({ applyToStack: (clientStack) => {
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+config-resolver@3.0.13/node_modules/@smithy/config-resolver/dist-es/endpointsConfig/NodeUseDualstackEndpointConfigOptions.js
+//#region node_modules/.pnpm/@smithy+config-resolver@4.4.6/node_modules/@smithy/config-resolver/dist-es/endpointsConfig/NodeUseDualstackEndpointConfigOptions.js
 const DEFAULT_USE_DUALSTACK_ENDPOINT = false;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+config-resolver@3.0.13/node_modules/@smithy/config-resolver/dist-es/endpointsConfig/NodeUseFipsEndpointConfigOptions.js
+//#region node_modules/.pnpm/@smithy+config-resolver@4.4.6/node_modules/@smithy/config-resolver/dist-es/endpointsConfig/NodeUseFipsEndpointConfigOptions.js
 const DEFAULT_USE_FIPS_ENDPOINT = false;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+config-resolver@3.0.13/node_modules/@smithy/config-resolver/dist-es/regionConfig/isFipsRegion.js
+//#region node_modules/.pnpm/@smithy+config-resolver@4.4.6/node_modules/@smithy/config-resolver/dist-es/regionConfig/checkRegion.js
+const validRegions = new Set();
+const checkRegion = (region, check = isValidHostLabel) => {
+	if (!validRegions.has(region) && !check(region)) if (region === "*") console.warn(`@smithy/config-resolver WARN - Please use the caller region instead of "*". See "sigv4a" in https://github.com/aws/aws-sdk-js-v3/blob/main/supplemental-docs/CLIENTS.md.`);
+else throw new Error(`Region not accepted: region="${region}" is not a valid hostname component.`);
+else validRegions.add(region);
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+config-resolver@4.4.6/node_modules/@smithy/config-resolver/dist-es/regionConfig/isFipsRegion.js
 const isFipsRegion = (region) => typeof region === "string" && (region.startsWith("fips-") || region.endsWith("-fips"));
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+config-resolver@3.0.13/node_modules/@smithy/config-resolver/dist-es/regionConfig/getRealRegion.js
+//#region node_modules/.pnpm/@smithy+config-resolver@4.4.6/node_modules/@smithy/config-resolver/dist-es/regionConfig/getRealRegion.js
 const getRealRegion = (region) => isFipsRegion(region) ? ["fips-aws-global", "aws-fips"].includes(region) ? "us-east-1" : region.replace(/fips-(dkr-|prod-)?|-fips/, "") : region;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+config-resolver@3.0.13/node_modules/@smithy/config-resolver/dist-es/regionConfig/resolveRegionConfig.js
+//#region node_modules/.pnpm/@smithy+config-resolver@4.4.6/node_modules/@smithy/config-resolver/dist-es/regionConfig/resolveRegionConfig.js
 const resolveRegionConfig = (input) => {
 	const { region, useFipsEndpoint } = input;
 	if (!region) throw new Error("Region is missing");
-	return {
-		...input,
+	return Object.assign(input, {
 		region: async () => {
-			if (typeof region === "string") return getRealRegion(region);
-			const providedRegion = await region();
-			return getRealRegion(providedRegion);
+			const providedRegion = typeof region === "function" ? await region() : region;
+			const realRegion = getRealRegion(providedRegion);
+			checkRegion(realRegion);
+			return realRegion;
 		},
 		useFipsEndpoint: async () => {
 			const providedRegion = typeof region === "string" ? region : await region();
 			if (isFipsRegion(providedRegion)) return true;
 			return typeof useFipsEndpoint !== "function" ? Promise.resolve(!!useFipsEndpoint) : useFipsEndpoint();
 		}
-	};
+	});
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-serde-config-resolver@3.0.11/node_modules/@smithy/eventstream-serde-config-resolver/dist-es/EventStreamSerdeConfig.js
-const resolveEventStreamSerdeConfig = (input) => ({
-	...input,
-	eventStreamMarshaller: input.eventStreamSerdeProvider(input)
-});
+//#region node_modules/.pnpm/@smithy+eventstream-serde-config-resolver@4.3.8/node_modules/@smithy/eventstream-serde-config-resolver/dist-es/EventStreamSerdeConfig.js
+const resolveEventStreamSerdeConfig = (input) => Object.assign(input, { eventStreamMarshaller: input.eventStreamSerdeProvider(input) });
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-content-length@3.0.13/node_modules/@smithy/middleware-content-length/dist-es/index.js
+//#region node_modules/.pnpm/@smithy+middleware-content-length@4.2.8/node_modules/@smithy/middleware-content-length/dist-es/index.js
 const CONTENT_LENGTH_HEADER = "content-length";
 function contentLengthMiddleware(bodyLengthChecker) {
 	return (next) => async (args) => {
@@ -6729,7 +7054,7 @@ const getContentLengthPlugin = (options) => ({ applyToStack: (clientStack) => {
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-endpoint@3.2.7/node_modules/@smithy/middleware-endpoint/dist-es/service-customizations/s3.js
+//#region node_modules/.pnpm/@smithy+middleware-endpoint@4.4.11/node_modules/@smithy/middleware-endpoint/dist-es/service-customizations/s3.js
 const resolveParamsForS3 = async (endpointParams) => {
 	const bucket = endpointParams?.Bucket || "";
 	if (typeof endpointParams.Bucket === "string") endpointParams.Bucket = bucket.replace(/#/g, encodeURIComponent("#")).replace(/\?/g, encodeURIComponent("?"));
@@ -6755,10 +7080,15 @@ const isArnBucketName = (bucketName) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-endpoint@3.2.7/node_modules/@smithy/middleware-endpoint/dist-es/adaptors/createConfigValueProvider.js
-const createConfigValueProvider = (configKey, canonicalEndpointParamKey, config$1) => {
+//#region node_modules/.pnpm/@smithy+middleware-endpoint@4.4.11/node_modules/@smithy/middleware-endpoint/dist-es/adaptors/createConfigValueProvider.js
+const createConfigValueProvider = (configKey, canonicalEndpointParamKey, config$1, isClientContextParam = false) => {
 	const configProvider = async () => {
-		const configValue = config$1[configKey] ?? config$1[canonicalEndpointParamKey];
+		let configValue;
+		if (isClientContextParam) {
+			const clientContextParams = config$1.clientContextParams;
+			const nestedValue = clientContextParams?.[configKey];
+			configValue = nestedValue ?? config$1[configKey] ?? config$1[canonicalEndpointParamKey];
+		} else configValue = config$1[configKey] ?? config$1[canonicalEndpointParamKey];
 		if (typeof configValue === "function") return configValue();
 		return configValue;
 	};
@@ -6773,6 +7103,7 @@ const createConfigValueProvider = (configKey, canonicalEndpointParamKey, config$
 		return configValue;
 	};
 	if (configKey === "endpoint" || canonicalEndpointParamKey === "endpoint") return async () => {
+		if (config$1.isCustomEndpoint === false) return undefined;
 		const endpoint = await configProvider();
 		if (endpoint && typeof endpoint === "object") {
 			if ("url" in endpoint) return endpoint.url.href;
@@ -6787,43 +7118,11 @@ const createConfigValueProvider = (configKey, canonicalEndpointParamKey, config$
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-endpoint@3.2.7/node_modules/@smithy/middleware-endpoint/dist-es/adaptors/getEndpointFromConfig.browser.js
+//#region node_modules/.pnpm/@smithy+middleware-endpoint@4.4.11/node_modules/@smithy/middleware-endpoint/dist-es/adaptors/getEndpointFromConfig.browser.js
 const getEndpointFromConfig = async (serviceId) => undefined;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+querystring-parser@3.0.11/node_modules/@smithy/querystring-parser/dist-es/index.js
-function parseQueryString(querystring) {
-	const query = {};
-	querystring = querystring.replace(/^\?/, "");
-	if (querystring) for (const pair of querystring.split("&")) {
-		let [key, value = null] = pair.split("=");
-		key = decodeURIComponent(key);
-		if (value) value = decodeURIComponent(value);
-		if (!(key in query)) query[key] = value;
-else if (Array.isArray(query[key])) query[key].push(value);
-else query[key] = [query[key], value];
-	}
-	return query;
-}
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+url-parser@3.0.11/node_modules/@smithy/url-parser/dist-es/index.js
-const parseUrl = (url) => {
-	if (typeof url === "string") return parseUrl(new URL(url));
-	const { hostname, pathname, port, protocol, search } = url;
-	let query;
-	if (search) query = parseQueryString(search);
-	return {
-		hostname,
-		port: port ? parseInt(port) : undefined,
-		protocol,
-		path: pathname,
-		query
-	};
-};
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+middleware-endpoint@3.2.7/node_modules/@smithy/middleware-endpoint/dist-es/adaptors/toEndpointV1.js
+//#region node_modules/.pnpm/@smithy+middleware-endpoint@4.4.11/node_modules/@smithy/middleware-endpoint/dist-es/adaptors/toEndpointV1.js
 const toEndpointV1 = (endpoint) => {
 	if (typeof endpoint === "object") {
 		if ("url" in endpoint) return parseUrl(endpoint.url);
@@ -6833,13 +7132,16 @@ const toEndpointV1 = (endpoint) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-endpoint@3.2.7/node_modules/@smithy/middleware-endpoint/dist-es/adaptors/getEndpointFromInstructions.js
+//#region node_modules/.pnpm/@smithy+middleware-endpoint@4.4.11/node_modules/@smithy/middleware-endpoint/dist-es/adaptors/getEndpointFromInstructions.js
 const getEndpointFromInstructions = async (commandInput, instructionsSupplier, clientConfig, context) => {
-	if (!clientConfig.endpoint) {
+	if (!clientConfig.isCustomEndpoint) {
 		let endpointFromConfig;
 		if (clientConfig.serviceConfiguredEndpoint) endpointFromConfig = await clientConfig.serviceConfiguredEndpoint();
 else endpointFromConfig = await getEndpointFromConfig(clientConfig.serviceId);
-		if (endpointFromConfig) clientConfig.endpoint = () => Promise.resolve(toEndpointV1(endpointFromConfig));
+		if (endpointFromConfig) {
+			clientConfig.endpoint = () => Promise.resolve(toEndpointV1(endpointFromConfig));
+			clientConfig.isCustomEndpoint = true;
+		}
 	}
 	const endpointParams = await resolveParams(commandInput, instructionsSupplier, clientConfig);
 	if (typeof clientConfig.endpointProvider !== "function") throw new Error("config.endpointProvider is not set.");
@@ -6858,7 +7160,7 @@ const resolveParams = async (commandInput, instructionsSupplier, clientConfig) =
 			break;
 		case "clientContextParams":
 		case "builtInParams":
-			endpointParams[name$1] = await createConfigValueProvider(instruction.name, name$1, clientConfig)();
+			endpointParams[name$1] = await createConfigValueProvider(instruction.name, name$1, clientConfig, instruction.type !== "builtInParams")();
 			break;
 		case "operationContextParams":
 			endpointParams[name$1] = instruction.get(commandInput);
@@ -6871,10 +7173,10 @@ const resolveParams = async (commandInput, instructionsSupplier, clientConfig) =
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-endpoint@3.2.7/node_modules/@smithy/middleware-endpoint/dist-es/endpointMiddleware.js
+//#region node_modules/.pnpm/@smithy+middleware-endpoint@4.4.11/node_modules/@smithy/middleware-endpoint/dist-es/endpointMiddleware.js
 const endpointMiddleware = ({ config: config$1, instructions }) => {
 	return (next, context) => async (args) => {
-		if (config$1.endpoint) setFeature(context, "ENDPOINT_OVERRIDE", "N");
+		if (config$1.isCustomEndpoint) setFeature(context, "ENDPOINT_OVERRIDE", "N");
 		const endpoint = await getEndpointFromInstructions(args.input, { getEndpointParameterInstructions() {
 			return instructions;
 		} }, { ...config$1 }, context);
@@ -6899,7 +7201,7 @@ const endpointMiddleware = ({ config: config$1, instructions }) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-endpoint@3.2.7/node_modules/@smithy/middleware-endpoint/dist-es/getEndpointPlugin.js
+//#region node_modules/.pnpm/@smithy+middleware-endpoint@4.4.11/node_modules/@smithy/middleware-endpoint/dist-es/getEndpointPlugin.js
 const endpointMiddlewareOptions = {
 	step: "serialize",
 	tags: [
@@ -6910,7 +7212,7 @@ const endpointMiddlewareOptions = {
 	name: "endpointV2Middleware",
 	override: true,
 	relation: "before",
-	toMiddleware: serializerMiddlewareOption.name
+	toMiddleware: serializerMiddlewareOption$1.name
 };
 const getEndpointPlugin = (config$1, instructions) => ({ applyToStack: (clientStack) => {
 	clientStack.addRelativeTo(endpointMiddleware({
@@ -6920,20 +7222,19 @@ const getEndpointPlugin = (config$1, instructions) => ({ applyToStack: (clientSt
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-endpoint@3.2.7/node_modules/@smithy/middleware-endpoint/dist-es/resolveEndpointConfig.js
+//#region node_modules/.pnpm/@smithy+middleware-endpoint@4.4.11/node_modules/@smithy/middleware-endpoint/dist-es/resolveEndpointConfig.js
 const resolveEndpointConfig = (input) => {
 	const tls = input.tls ?? true;
-	const { endpoint } = input;
+	const { endpoint, useDualstackEndpoint, useFipsEndpoint } = input;
 	const customEndpointProvider = endpoint != null ? async () => toEndpointV1(await normalizeProvider$1(endpoint)()) : undefined;
 	const isCustomEndpoint = !!endpoint;
-	const resolvedConfig = {
-		...input,
+	const resolvedConfig = Object.assign(input, {
 		endpoint: customEndpointProvider,
 		tls,
 		isCustomEndpoint,
-		useDualstackEndpoint: normalizeProvider$1(input.useDualstackEndpoint ?? false),
-		useFipsEndpoint: normalizeProvider$1(input.useFipsEndpoint ?? false)
-	};
+		useDualstackEndpoint: normalizeProvider$1(useDualstackEndpoint ?? false),
+		useFipsEndpoint: normalizeProvider$1(useFipsEndpoint ?? false)
+	});
 	let configuredEndpointPromise = undefined;
 	resolvedConfig.serviceConfiguredEndpoint = async () => {
 		if (input.serviceId && !configuredEndpointPromise) configuredEndpointPromise = getEndpointFromConfig(input.serviceId);
@@ -6943,7 +7244,7 @@ const resolveEndpointConfig = (input) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-retry@3.0.11/node_modules/@smithy/util-retry/dist-es/config.js
+//#region node_modules/.pnpm/@smithy+util-retry@4.2.8/node_modules/@smithy/util-retry/dist-es/config.js
 var RETRY_MODES;
 (function(RETRY_MODES$1) {
 	RETRY_MODES$1["STANDARD"] = "standard";
@@ -6953,7 +7254,7 @@ const DEFAULT_MAX_ATTEMPTS = 3;
 const DEFAULT_RETRY_MODE = RETRY_MODES.STANDARD;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+service-error-classification@3.0.11/node_modules/@smithy/service-error-classification/dist-es/constants.js
+//#region node_modules/.pnpm/@smithy+service-error-classification@4.2.8/node_modules/@smithy/service-error-classification/dist-es/constants.js
 const THROTTLING_ERROR_CODES = [
 	"BandwidthLimitExceeded",
 	"EC2ThrottledException",
@@ -6987,12 +7288,30 @@ const NODEJS_TIMEOUT_ERROR_CODES = [
 	"EPIPE",
 	"ETIMEDOUT"
 ];
+const NODEJS_NETWORK_ERROR_CODES = [
+	"EHOSTUNREACH",
+	"ENETUNREACH",
+	"ENOTFOUND"
+];
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+service-error-classification@3.0.11/node_modules/@smithy/service-error-classification/dist-es/index.js
+//#region node_modules/.pnpm/@smithy+service-error-classification@4.2.8/node_modules/@smithy/service-error-classification/dist-es/index.js
+const isRetryableByTrait = (error) => error?.$retryable !== undefined;
 const isClockSkewCorrectedError = (error) => error.$metadata?.clockSkewCorrected;
+const isBrowserNetworkError = (error) => {
+	const errorMessages = new Set([
+		"Failed to fetch",
+		"NetworkError when attempting to fetch resource",
+		"The Internet connection appears to be offline",
+		"Load failed",
+		"Network request failed"
+	]);
+	const isValid = error && error instanceof TypeError;
+	if (!isValid) return false;
+	return errorMessages.has(error.message);
+};
 const isThrottlingError = (error) => error.$metadata?.httpStatusCode === 429 || THROTTLING_ERROR_CODES.includes(error.name) || error.$retryable?.throttling == true;
-const isTransientError = (error, depth = 0) => isClockSkewCorrectedError(error) || TRANSIENT_ERROR_CODES.includes(error.name) || NODEJS_TIMEOUT_ERROR_CODES.includes(error?.code || "") || TRANSIENT_ERROR_STATUS_CODES.includes(error.$metadata?.httpStatusCode || 0) || error.cause !== undefined && depth <= 10 && isTransientError(error.cause, depth + 1);
+const isTransientError = (error, depth = 0) => isRetryableByTrait(error) || isClockSkewCorrectedError(error) || TRANSIENT_ERROR_CODES.includes(error.name) || NODEJS_TIMEOUT_ERROR_CODES.includes(error?.code || "") || NODEJS_NETWORK_ERROR_CODES.includes(error?.code || "") || TRANSIENT_ERROR_STATUS_CODES.includes(error.$metadata?.httpStatusCode || 0) || isBrowserNetworkError(error) || error.cause !== undefined && depth <= 10 && isTransientError(error.cause, depth + 1);
 const isServerError = (error) => {
 	if (error.$metadata?.httpStatusCode !== undefined) {
 		const statusCode = error.$metadata.httpStatusCode;
@@ -7003,16 +7322,26 @@ const isServerError = (error) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-retry@3.0.11/node_modules/@smithy/util-retry/dist-es/DefaultRateLimiter.js
+//#region node_modules/.pnpm/@smithy+util-retry@4.2.8/node_modules/@smithy/util-retry/dist-es/DefaultRateLimiter.js
 var DefaultRateLimiter = class DefaultRateLimiter {
+	static setTimeoutFn = setTimeout;
+	beta;
+	minCapacity;
+	minFillRate;
+	scaleConstant;
+	smooth;
+	currentCapacity = 0;
+	enabled = false;
+	lastMaxRate = 0;
+	measuredTxRate = 0;
+	requestCount = 0;
+	fillRate;
+	lastThrottleTime;
+	lastTimestamp = 0;
+	lastTxRateBucket;
+	maxCapacity;
+	timeWindow = 0;
 	constructor(options) {
-		this.currentCapacity = 0;
-		this.enabled = false;
-		this.lastMaxRate = 0;
-		this.measuredTxRate = 0;
-		this.requestCount = 0;
-		this.lastTimestamp = 0;
-		this.timeWindow = 0;
 		this.beta = options?.beta ?? .7;
 		this.minCapacity = options?.minCapacity ?? 1;
 		this.minFillRate = options?.minFillRate ?? .5;
@@ -7099,10 +7428,9 @@ var DefaultRateLimiter = class DefaultRateLimiter {
 		return parseFloat(num.toFixed(8));
 	}
 };
-DefaultRateLimiter.setTimeoutFn = setTimeout;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-retry@3.0.11/node_modules/@smithy/util-retry/dist-es/constants.js
+//#region node_modules/.pnpm/@smithy+util-retry@4.2.8/node_modules/@smithy/util-retry/dist-es/constants.js
 const DEFAULT_RETRY_DELAY_BASE = 100;
 const MAXIMUM_RETRY_DELAY = 2e4;
 const THROTTLING_RETRY_DELAY_BASE = 500;
@@ -7114,7 +7442,7 @@ const INVOCATION_ID_HEADER = "amz-sdk-invocation-id";
 const REQUEST_HEADER = "amz-sdk-request";
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-retry@3.0.11/node_modules/@smithy/util-retry/dist-es/defaultRetryBackoffStrategy.js
+//#region node_modules/.pnpm/@smithy+util-retry@4.2.8/node_modules/@smithy/util-retry/dist-es/defaultRetryBackoffStrategy.js
 const getDefaultRetryBackoffStrategy = () => {
 	let delayBase = DEFAULT_RETRY_DELAY_BASE;
 	const computeNextBackoffDelay = (attempts) => {
@@ -7130,7 +7458,7 @@ const getDefaultRetryBackoffStrategy = () => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-retry@3.0.11/node_modules/@smithy/util-retry/dist-es/defaultRetryToken.js
+//#region node_modules/.pnpm/@smithy+util-retry@4.2.8/node_modules/@smithy/util-retry/dist-es/defaultRetryToken.js
 const createDefaultRetryToken = ({ retryDelay, retryCount, retryCost }) => {
 	const getRetryCount = () => retryCount;
 	const getRetryDelay = () => Math.min(MAXIMUM_RETRY_DELAY, retryDelay);
@@ -7143,13 +7471,15 @@ const createDefaultRetryToken = ({ retryDelay, retryCount, retryCost }) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-retry@3.0.11/node_modules/@smithy/util-retry/dist-es/StandardRetryStrategy.js
+//#region node_modules/.pnpm/@smithy+util-retry@4.2.8/node_modules/@smithy/util-retry/dist-es/StandardRetryStrategy.js
 var StandardRetryStrategy = class {
+	maxAttempts;
+	mode = RETRY_MODES.STANDARD;
+	capacity = INITIAL_RETRY_TOKENS;
+	retryBackoffStrategy = getDefaultRetryBackoffStrategy();
+	maxAttemptsProvider;
 	constructor(maxAttempts) {
 		this.maxAttempts = maxAttempts;
-		this.mode = RETRY_MODES.STANDARD;
-		this.capacity = INITIAL_RETRY_TOKENS;
-		this.retryBackoffStrategy = getDefaultRetryBackoffStrategy();
 		this.maxAttemptsProvider = typeof maxAttempts === "function" ? maxAttempts : async () => maxAttempts;
 	}
 	async acquireInitialRetryToken(retryTokenScope) {
@@ -7202,11 +7532,14 @@ var StandardRetryStrategy = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-retry@3.0.11/node_modules/@smithy/util-retry/dist-es/AdaptiveRetryStrategy.js
+//#region node_modules/.pnpm/@smithy+util-retry@4.2.8/node_modules/@smithy/util-retry/dist-es/AdaptiveRetryStrategy.js
 var AdaptiveRetryStrategy = class {
+	maxAttemptsProvider;
+	rateLimiter;
+	standardRetryStrategy;
+	mode = RETRY_MODES.ADAPTIVE;
 	constructor(maxAttemptsProvider, options) {
 		this.maxAttemptsProvider = maxAttemptsProvider;
-		this.mode = RETRY_MODES.ADAPTIVE;
 		const { rateLimiter } = options ?? {};
 		this.rateLimiter = rateLimiter ?? new DefaultRateLimiter();
 		this.standardRetryStrategy = new StandardRetryStrategy(maxAttemptsProvider);
@@ -7226,53 +7559,7 @@ var AdaptiveRetryStrategy = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/uuid@9.0.1/node_modules/uuid/dist/esm-browser/rng.js
-let getRandomValues;
-const rnds8 = new Uint8Array(16);
-function rng() {
-	if (!getRandomValues) {
-		getRandomValues = typeof crypto !== "undefined" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto);
-		if (!getRandomValues) throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
-	}
-	return getRandomValues(rnds8);
-}
-
-//#endregion
-//#region node_modules/.pnpm/uuid@9.0.1/node_modules/uuid/dist/esm-browser/stringify.js
-/**
-* Convert array of 16 byte values to UUID string format of the form:
-* XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-*/
-const byteToHex = [];
-for (let i$2 = 0; i$2 < 256; ++i$2) byteToHex.push((i$2 + 256).toString(16).slice(1));
-function unsafeStringify(arr, offset = 0) {
-	return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
-}
-
-//#endregion
-//#region node_modules/.pnpm/uuid@9.0.1/node_modules/uuid/dist/esm-browser/native.js
-const randomUUID = typeof crypto !== "undefined" && crypto.randomUUID && crypto.randomUUID.bind(crypto);
-var native_default = { randomUUID };
-
-//#endregion
-//#region node_modules/.pnpm/uuid@9.0.1/node_modules/uuid/dist/esm-browser/v4.js
-function v4(options, buf, offset) {
-	if (native_default.randomUUID && !buf && !options) return native_default.randomUUID();
-	options = options || {};
-	const rnds = options.random || (options.rng || rng)();
-	rnds[6] = rnds[6] & 15 | 64;
-	rnds[8] = rnds[8] & 63 | 128;
-	if (buf) {
-		offset = offset || 0;
-		for (let i$2 = 0; i$2 < 16; ++i$2) buf[offset + i$2] = rnds[i$2];
-		return buf;
-	}
-	return unsafeStringify(rnds);
-}
-var v4_default = v4;
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+middleware-retry@3.0.32/node_modules/@smithy/middleware-retry/dist-es/util.js
+//#region node_modules/.pnpm/@smithy+middleware-retry@4.4.27/node_modules/@smithy/middleware-retry/dist-es/util.js
 const asSdkError = (error) => {
 	if (error instanceof Error) return error;
 	if (error instanceof Object) return Object.assign(new Error(), error);
@@ -7281,28 +7568,27 @@ const asSdkError = (error) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-retry@3.0.32/node_modules/@smithy/middleware-retry/dist-es/configurations.js
+//#region node_modules/.pnpm/@smithy+middleware-retry@4.4.27/node_modules/@smithy/middleware-retry/dist-es/configurations.js
 const resolveRetryConfig = (input) => {
-	const { retryStrategy } = input;
-	const maxAttempts = normalizeProvider$1(input.maxAttempts ?? DEFAULT_MAX_ATTEMPTS);
-	return {
-		...input,
+	const { retryStrategy, retryMode: _retryMode, maxAttempts: _maxAttempts } = input;
+	const maxAttempts = normalizeProvider$1(_maxAttempts ?? DEFAULT_MAX_ATTEMPTS);
+	return Object.assign(input, {
 		maxAttempts,
 		retryStrategy: async () => {
 			if (retryStrategy) return retryStrategy;
-			const retryMode = await normalizeProvider$1(input.retryMode)();
+			const retryMode = await normalizeProvider$1(_retryMode)();
 			if (retryMode === RETRY_MODES.ADAPTIVE) return new AdaptiveRetryStrategy(maxAttempts);
 			return new StandardRetryStrategy(maxAttempts);
 		}
-	};
+	});
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-retry@3.0.32/node_modules/@smithy/middleware-retry/dist-es/isStreamingPayload/isStreamingPayload.browser.js
+//#region node_modules/.pnpm/@smithy+middleware-retry@4.4.27/node_modules/@smithy/middleware-retry/dist-es/isStreamingPayload/isStreamingPayload.browser.js
 const isStreamingPayload = (request) => request?.body instanceof ReadableStream;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+middleware-retry@3.0.32/node_modules/@smithy/middleware-retry/dist-es/retryMiddleware.js
+//#region node_modules/.pnpm/@smithy+middleware-retry@4.4.27/node_modules/@smithy/middleware-retry/dist-es/retryMiddleware.js
 const retryMiddleware = (options) => (next, context) => async (args) => {
 	let retryStrategy = await options.retryStrategy();
 	const maxAttempts = await options.maxAttempts();
@@ -7314,7 +7600,7 @@ const retryMiddleware = (options) => (next, context) => async (args) => {
 		let totalRetryDelay = 0;
 		const { request } = args;
 		const isRequest$2 = HttpRequest.isInstance(request);
-		if (isRequest$2) request.headers[INVOCATION_ID_HEADER] = v4_default();
+		if (isRequest$2) request.headers[INVOCATION_ID_HEADER] = v4();
 		while (true) try {
 			if (isRequest$2) request.headers[REQUEST_HEADER] = `attempt=${attempts + 1}; max=${maxAttempts}`;
 			const { response, output } = await next(args);
@@ -7389,34 +7675,90 @@ const getRetryAfterHint = (response) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+signature-v4-multi-region@3.716.0/node_modules/@aws-sdk/signature-v4-multi-region/dist-es/signature-v4-crt-container.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/constants.js
+const SESSION_TOKEN_QUERY_PARAM = "X-Amz-S3session-Token";
+const SESSION_TOKEN_HEADER = SESSION_TOKEN_QUERY_PARAM.toLowerCase();
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.0/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-express/classes/SignatureV4S3Express.js
+var SignatureV4S3Express = class extends SignatureV4 {
+	async signWithCredentials(requestToSign, credentials, options) {
+		const credentialsWithoutSessionToken = getCredentialsWithoutSessionToken(credentials);
+		requestToSign.headers[SESSION_TOKEN_HEADER] = credentials.sessionToken;
+		const privateAccess = this;
+		setSingleOverride(privateAccess, credentialsWithoutSessionToken);
+		return privateAccess.signRequest(requestToSign, options ?? {});
+	}
+	async presignWithCredentials(requestToSign, credentials, options) {
+		const credentialsWithoutSessionToken = getCredentialsWithoutSessionToken(credentials);
+		delete requestToSign.headers[SESSION_TOKEN_HEADER];
+		requestToSign.headers[SESSION_TOKEN_QUERY_PARAM] = credentials.sessionToken;
+		requestToSign.query = requestToSign.query ?? {};
+		requestToSign.query[SESSION_TOKEN_QUERY_PARAM] = credentials.sessionToken;
+		const privateAccess = this;
+		setSingleOverride(privateAccess, credentialsWithoutSessionToken);
+		return this.presign(requestToSign, options);
+	}
+};
+function getCredentialsWithoutSessionToken(credentials) {
+	const credentialsWithoutSessionToken = {
+		accessKeyId: credentials.accessKeyId,
+		secretAccessKey: credentials.secretAccessKey,
+		expiration: credentials.expiration
+	};
+	return credentialsWithoutSessionToken;
+}
+function setSingleOverride(privateAccess, credentialsWithoutSessionToken) {
+	const id = setTimeout(() => {
+		throw new Error("SignatureV4S3Express credential override was created but not called.");
+	}, 10);
+	const currentCredentialProvider = privateAccess.credentialProvider;
+	const overrideCredentialsProviderOnce = () => {
+		clearTimeout(id);
+		privateAccess.credentialProvider = currentCredentialProvider;
+		return Promise.resolve(credentialsWithoutSessionToken);
+	};
+	privateAccess.credentialProvider = overrideCredentialsProviderOnce;
+}
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+signature-v4-multi-region@3.972.0/node_modules/@aws-sdk/signature-v4-multi-region/dist-es/signature-v4-crt-container.js
 const signatureV4CrtContainer = { CrtSignerV4: null };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+signature-v4-multi-region@3.716.0/node_modules/@aws-sdk/signature-v4-multi-region/dist-es/SignatureV4MultiRegion.js
+//#region node_modules/.pnpm/@aws-sdk+signature-v4-multi-region@3.972.0/node_modules/@aws-sdk/signature-v4-multi-region/dist-es/SignatureV4MultiRegion.js
 var SignatureV4MultiRegion = class {
+	sigv4aSigner;
+	sigv4Signer;
+	signerOptions;
+	static sigv4aDependency() {
+		if (typeof signatureV4CrtContainer.CrtSignerV4 === "function") return "crt";
+else if (typeof signatureV4aContainer.SignatureV4a === "function") return "js";
+		return "none";
+	}
 	constructor(options) {
 		this.sigv4Signer = new SignatureV4S3Express(options);
 		this.signerOptions = options;
 	}
 	async sign(requestToSign, options = {}) {
-		if (options.signingRegion === "*") {
-			if (this.signerOptions.runtime !== "node") throw new Error("This request requires signing with SigV4Asymmetric algorithm. It's only available in Node.js");
-			return this.getSigv4aSigner().sign(requestToSign, options);
-		}
+		if (options.signingRegion === "*") return this.getSigv4aSigner().sign(requestToSign, options);
 		return this.sigv4Signer.sign(requestToSign, options);
 	}
 	async signWithCredentials(requestToSign, credentials, options = {}) {
 		if (options.signingRegion === "*") {
-			if (this.signerOptions.runtime !== "node") throw new Error("This request requires signing with SigV4Asymmetric algorithm. It's only available in Node.js");
-			return this.getSigv4aSigner().signWithCredentials(requestToSign, credentials, options);
+			const signer = this.getSigv4aSigner();
+			const CrtSignerV4 = signatureV4CrtContainer.CrtSignerV4;
+			if (CrtSignerV4 && signer instanceof CrtSignerV4) return signer.signWithCredentials(requestToSign, credentials, options);
+else throw new Error(`signWithCredentials with signingRegion '*' is only supported when using the CRT dependency @aws-sdk/signature-v4-crt. ` + `Please check whether you have installed the "@aws-sdk/signature-v4-crt" package explicitly. ` + `You must also register the package by calling [require("@aws-sdk/signature-v4-crt");] ` + `or an ESM equivalent such as [import "@aws-sdk/signature-v4-crt";]. ` + `For more information please go to https://github.com/aws/aws-sdk-js-v3#functionality-requiring-aws-common-runtime-crt`);
 		}
 		return this.sigv4Signer.signWithCredentials(requestToSign, credentials, options);
 	}
 	async presign(originalRequest, options = {}) {
 		if (options.signingRegion === "*") {
-			if (this.signerOptions.runtime !== "node") throw new Error("This request requires signing with SigV4Asymmetric algorithm. It's only available in Node.js");
-			return this.getSigv4aSigner().presign(originalRequest, options);
+			const signer = this.getSigv4aSigner();
+			const CrtSignerV4 = signatureV4CrtContainer.CrtSignerV4;
+			if (CrtSignerV4 && signer instanceof CrtSignerV4) return signer.presign(originalRequest, options);
+else throw new Error(`presign with signingRegion '*' is only supported when using the CRT dependency @aws-sdk/signature-v4-crt. ` + `Please check whether you have installed the "@aws-sdk/signature-v4-crt" package explicitly. ` + `You must also register the package by calling [require("@aws-sdk/signature-v4-crt");] ` + `or an ESM equivalent such as [import "@aws-sdk/signature-v4-crt";]. ` + `For more information please go to https://github.com/aws/aws-sdk-js-v3#functionality-requiring-aws-common-runtime-crt`);
 		}
 		return this.sigv4Signer.presign(originalRequest, options);
 	}
@@ -7426,577 +7768,924 @@ var SignatureV4MultiRegion = class {
 	}
 	getSigv4aSigner() {
 		if (!this.sigv4aSigner) {
-			let CrtSignerV4 = null;
-			try {
-				CrtSignerV4 = signatureV4CrtContainer.CrtSignerV4;
-				if (typeof CrtSignerV4 !== "function") throw new Error();
-			} catch (e$2) {
-				e$2.message = `${e$2.message}\n` + `Please check whether you have installed the "@aws-sdk/signature-v4-crt" package explicitly. \n` + `You must also register the package by calling [require("@aws-sdk/signature-v4-crt");] ` + `or an ESM equivalent such as [import "@aws-sdk/signature-v4-crt";]. \n` + "For more information please go to " + "https://github.com/aws/aws-sdk-js-v3#functionality-requiring-aws-common-runtime-crt";
-				throw e$2;
+			const CrtSignerV4 = signatureV4CrtContainer.CrtSignerV4;
+			const JsSigV4aSigner = signatureV4aContainer.SignatureV4a;
+			if (this.signerOptions.runtime === "node") {
+				if (!CrtSignerV4 && !JsSigV4aSigner) throw new Error("Neither CRT nor JS SigV4a implementation is available. Please load either @aws-sdk/signature-v4-crt or @aws-sdk/signature-v4a. For more information please go to https://github.com/aws/aws-sdk-js-v3#functionality-requiring-aws-common-runtime-crt");
+				if (CrtSignerV4 && typeof CrtSignerV4 === "function") this.sigv4aSigner = new CrtSignerV4({
+					...this.signerOptions,
+					signingAlgorithm: 1
+				});
+else if (JsSigV4aSigner && typeof JsSigV4aSigner === "function") this.sigv4aSigner = new JsSigV4aSigner({ ...this.signerOptions });
+else throw new Error("Available SigV4a implementation is not a valid constructor. Please ensure you've properly imported @aws-sdk/signature-v4-crt or @aws-sdk/signature-v4a.For more information please go to https://github.com/aws/aws-sdk-js-v3#functionality-requiring-aws-common-runtime-crt");
+			} else {
+				if (!JsSigV4aSigner || typeof JsSigV4aSigner !== "function") throw new Error("JS SigV4a implementation is not available or not a valid constructor. Please check whether you have installed the @aws-sdk/signature-v4a package explicitly. The CRT implementation is not available for browsers. You must also register the package by calling [require('@aws-sdk/signature-v4a');] or an ESM equivalent such as [import '@aws-sdk/signature-v4a';]. For more information please go to https://github.com/aws/aws-sdk-js-v3#using-javascript-non-crt-implementation-of-sigv4a");
+				this.sigv4aSigner = new JsSigV4aSigner({ ...this.signerOptions });
 			}
-			this.sigv4aSigner = new CrtSignerV4({
-				...this.signerOptions,
-				signingAlgorithm: 1
-			});
 		}
 		return this.sigv4aSigner;
 	}
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/endpoint/ruleset.js
-const ci = "required", cj = "type", ck = "conditions", cl = "fn", cm = "argv", cn = "ref", co = "assign", cp = "url", cq = "properties", cr = "backend", cs = "authSchemes", ct = "disableDoubleEncoding", cu = "signingName", cv = "signingRegion", cw = "headers", cx = "signingRegionSet";
-const a = 6, b = false, c = true, d = "isSet", e$1 = "booleanEquals", f = "error", g = "aws.partition", h = "stringEquals", i$1 = "getAttr", j = "name", k = "substring", l = "bucketSuffix", m = "parseURL", n = "{url#scheme}://{url#authority}/{uri_encoded_bucket}{url#path}", o = "endpoint", p = "tree", q = "aws.isVirtualHostableS3Bucket", r = "{url#scheme}://{Bucket}.{url#authority}{url#path}", s = "not", t$1 = "{url#scheme}://{url#authority}{url#path}", u = "hardwareType", v$1 = "regionPrefix", w = "bucketAliasSuffix", x = "outpostId", y = "isValidHostLabel", z = "sigv4a", A = "s3-outposts", B = "s3", C = "{url#scheme}://{url#authority}{url#normalizedPath}{Bucket}", D = "https://{Bucket}.s3-accelerate.{partitionResult#dnsSuffix}", E = "https://{Bucket}.s3.{partitionResult#dnsSuffix}", F = "aws.parseArn", G = "bucketArn", H = "arnType", I = "", J = "s3-object-lambda", K = "accesspoint", L = "accessPointName", M = "{url#scheme}://{accessPointName}-{bucketArn#accountId}.{url#authority}{url#path}", N = "mrapPartition", O = "outpostType", P = "arnPrefix", Q = "{url#scheme}://{url#authority}{url#normalizedPath}{uri_encoded_bucket}", R$1 = "https://s3.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", S = "https://s3.{partitionResult#dnsSuffix}", T = {
-	[ci]: false,
-	[cj]: "String"
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/endpoint/ruleset.js
+const cs = "required", ct = "type", cu = "rules", cv = "conditions", cw = "fn", cx = "argv", cy = "ref", cz = "assign", cA = "url", cB = "properties", cC = "backend", cD = "authSchemes", cE = "disableDoubleEncoding", cF = "signingName", cG = "signingRegion", cH = "headers", cI = "signingRegionSet";
+const a = 6, b = false, c = true, d = "isSet", e$1 = "booleanEquals", f = "error", g = "aws.partition", h = "stringEquals", i$1 = "getAttr", j = "name", k = "substring", l = "bucketSuffix", m = "parseURL", n = "endpoint", o = "tree", p = "aws.isVirtualHostableS3Bucket", q = "{url#scheme}://{Bucket}.{url#authority}{url#path}", r = "not", s = "accessPointSuffix", t$1 = "{url#scheme}://{url#authority}{url#path}", u = "hardwareType", v$1 = "regionPrefix", w = "bucketAliasSuffix", x = "outpostId", y = "isValidHostLabel", z = "sigv4a", A = "s3-outposts", B = "s3", C = "{url#scheme}://{url#authority}{url#normalizedPath}{Bucket}", D = "https://{Bucket}.s3-accelerate.{partitionResult#dnsSuffix}", E = "https://{Bucket}.s3.{partitionResult#dnsSuffix}", F = "aws.parseArn", G = "bucketArn", H = "arnType", I = "", J = "s3-object-lambda", K = "accesspoint", L = "accessPointName", M = "{url#scheme}://{accessPointName}-{bucketArn#accountId}.{url#authority}{url#path}", N = "mrapPartition", O = "outpostType", P = "arnPrefix", Q = "{url#scheme}://{url#authority}{url#normalizedPath}{uri_encoded_bucket}", R$1 = "https://s3.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", S = "https://s3.{partitionResult#dnsSuffix}", T = {
+	[cs]: false,
+	[ct]: "string"
 }, U = {
-	[ci]: true,
+	[cs]: true,
 	"default": false,
-	[cj]: "Boolean"
+	[ct]: "boolean"
 }, V = {
-	[ci]: false,
-	[cj]: "Boolean"
+	[cs]: false,
+	[ct]: "boolean"
 }, W = {
-	[cl]: e$1,
-	[cm]: [{ [cn]: "Accelerate" }, true]
+	[cw]: e$1,
+	[cx]: [{ [cy]: "Accelerate" }, true]
 }, X = {
-	[cl]: e$1,
-	[cm]: [{ [cn]: "UseFIPS" }, true]
+	[cw]: e$1,
+	[cx]: [{ [cy]: "UseFIPS" }, true]
 }, Y = {
-	[cl]: e$1,
-	[cm]: [{ [cn]: "UseDualStack" }, true]
+	[cw]: e$1,
+	[cx]: [{ [cy]: "UseDualStack" }, true]
 }, Z = {
-	[cl]: d,
-	[cm]: [{ [cn]: "Endpoint" }]
+	[cw]: d,
+	[cx]: [{ [cy]: "Endpoint" }]
 }, aa = {
-	[cl]: g,
-	[cm]: [{ [cn]: "Region" }],
-	[co]: "partitionResult"
+	[cw]: g,
+	[cx]: [{ [cy]: "Region" }],
+	[cz]: "partitionResult"
 }, ab = {
-	[cl]: h,
-	[cm]: [{
-		[cl]: i$1,
-		[cm]: [{ [cn]: "partitionResult" }, j]
+	[cw]: h,
+	[cx]: [{
+		[cw]: i$1,
+		[cx]: [{ [cy]: "partitionResult" }, j]
 	}, "aws-cn"]
 }, ac = {
-	[cl]: d,
-	[cm]: [{ [cn]: "Bucket" }]
-}, ad = { [cn]: "Bucket" }, ae = {
-	[cl]: m,
-	[cm]: [{ [cn]: "Endpoint" }],
-	[co]: "url"
+	[cw]: d,
+	[cx]: [{ [cy]: "Bucket" }]
+}, ad = { [cy]: "Bucket" }, ae = {
+	[cv]: [W],
+	[f]: "S3Express does not support S3 Accelerate.",
+	[ct]: f
 }, af = {
-	[cl]: e$1,
-	[cm]: [{
-		[cl]: i$1,
-		[cm]: [{ [cn]: "url" }, "isIp"]
+	[cv]: [Z, {
+		[cw]: m,
+		[cx]: [{ [cy]: "Endpoint" }],
+		[cz]: "url"
+	}],
+	[cu]: [
+		{
+			[cv]: [{
+				[cw]: d,
+				[cx]: [{ [cy]: "DisableS3ExpressSessionAuth" }]
+			}, {
+				[cw]: e$1,
+				[cx]: [{ [cy]: "DisableS3ExpressSessionAuth" }, true]
+			}],
+			[cu]: [
+				{
+					[cv]: [{
+						[cw]: e$1,
+						[cx]: [{
+							[cw]: i$1,
+							[cx]: [{ [cy]: "url" }, "isIp"]
+						}, true]
+					}],
+					[cu]: [{
+						[cv]: [{
+							[cw]: "uriEncode",
+							[cx]: [ad],
+							[cz]: "uri_encoded_bucket"
+						}],
+						[cu]: [{
+							[n]: {
+								[cA]: "{url#scheme}://{url#authority}/{uri_encoded_bucket}{url#path}",
+								[cB]: {
+									[cC]: "S3Express",
+									[cD]: [{
+										[cE]: true,
+										[j]: "sigv4",
+										[cF]: "s3express",
+										[cG]: "{Region}"
+									}]
+								},
+								[cH]: {}
+							},
+							[ct]: n
+						}],
+						[ct]: o
+					}],
+					[ct]: o
+				},
+				{
+					[cv]: [{
+						[cw]: p,
+						[cx]: [ad, false]
+					}],
+					[cu]: [{
+						[n]: {
+							[cA]: q,
+							[cB]: {
+								[cC]: "S3Express",
+								[cD]: [{
+									[cE]: true,
+									[j]: "sigv4",
+									[cF]: "s3express",
+									[cG]: "{Region}"
+								}]
+							},
+							[cH]: {}
+						},
+						[ct]: n
+					}],
+					[ct]: o
+				},
+				{
+					[f]: "S3Express bucket name is not a valid virtual hostable name.",
+					[ct]: f
+				}
+			],
+			[ct]: o
+		},
+		{
+			[cv]: [{
+				[cw]: e$1,
+				[cx]: [{
+					[cw]: i$1,
+					[cx]: [{ [cy]: "url" }, "isIp"]
+				}, true]
+			}],
+			[cu]: [{
+				[cv]: [{
+					[cw]: "uriEncode",
+					[cx]: [ad],
+					[cz]: "uri_encoded_bucket"
+				}],
+				[cu]: [{
+					[n]: {
+						[cA]: "{url#scheme}://{url#authority}/{uri_encoded_bucket}{url#path}",
+						[cB]: {
+							[cC]: "S3Express",
+							[cD]: [{
+								[cE]: true,
+								[j]: "sigv4-s3express",
+								[cF]: "s3express",
+								[cG]: "{Region}"
+							}]
+						},
+						[cH]: {}
+					},
+					[ct]: n
+				}],
+				[ct]: o
+			}],
+			[ct]: o
+		},
+		{
+			[cv]: [{
+				[cw]: p,
+				[cx]: [ad, false]
+			}],
+			[cu]: [{
+				[n]: {
+					[cA]: q,
+					[cB]: {
+						[cC]: "S3Express",
+						[cD]: [{
+							[cE]: true,
+							[j]: "sigv4-s3express",
+							[cF]: "s3express",
+							[cG]: "{Region}"
+						}]
+					},
+					[cH]: {}
+				},
+				[ct]: n
+			}],
+			[ct]: o
+		},
+		{
+			[f]: "S3Express bucket name is not a valid virtual hostable name.",
+			[ct]: f
+		}
+	],
+	[ct]: o
+}, ag = {
+	[cw]: m,
+	[cx]: [{ [cy]: "Endpoint" }],
+	[cz]: "url"
+}, ah = {
+	[cw]: e$1,
+	[cx]: [{
+		[cw]: i$1,
+		[cx]: [{ [cy]: "url" }, "isIp"]
 	}, true]
-}, ag = { [cn]: "url" }, ah = {
-	[cl]: "uriEncode",
-	[cm]: [ad],
-	[co]: "uri_encoded_bucket"
-}, ai = {
-	[cr]: "S3Express",
-	[cs]: [{
-		[ct]: true,
+}, ai = { [cy]: "url" }, aj = {
+	[cw]: "uriEncode",
+	[cx]: [ad],
+	[cz]: "uri_encoded_bucket"
+}, ak = {
+	[cC]: "S3Express",
+	[cD]: [{
+		[cE]: true,
 		[j]: "sigv4",
-		[cu]: "s3express",
-		[cv]: "{Region}"
+		[cF]: "s3express",
+		[cG]: "{Region}"
 	}]
-}, aj = {}, ak = {
-	[cl]: q,
-	[cm]: [ad, false]
-}, al = {
-	[f]: "S3Express bucket name is not a valid virtual hostable name.",
-	[cj]: f
-}, am = {
-	[cr]: "S3Express",
-	[cs]: [{
-		[ct]: true,
-		[j]: "sigv4-s3express",
-		[cu]: "s3express",
-		[cv]: "{Region}"
-	}]
+}, al = {}, am = {
+	[cw]: p,
+	[cx]: [ad, false]
 }, an = {
-	[cl]: d,
-	[cm]: [{ [cn]: "UseS3ExpressControlEndpoint" }]
+	[f]: "S3Express bucket name is not a valid virtual hostable name.",
+	[ct]: f
 }, ao = {
-	[cl]: e$1,
-	[cm]: [{ [cn]: "UseS3ExpressControlEndpoint" }, true]
+	[cw]: d,
+	[cx]: [{ [cy]: "UseS3ExpressControlEndpoint" }]
 }, ap = {
-	[cl]: s,
-	[cm]: [Z]
+	[cw]: e$1,
+	[cx]: [{ [cy]: "UseS3ExpressControlEndpoint" }, true]
 }, aq = {
-	[f]: "Unrecognized S3Express bucket name format.",
-	[cj]: f
+	[cw]: r,
+	[cx]: [Z]
 }, ar = {
-	[cl]: s,
-	[cm]: [ac]
-}, as = { [cn]: u }, at = {
-	[ck]: [ap],
+	[cw]: e$1,
+	[cx]: [{ [cy]: "UseDualStack" }, false]
+}, as = {
+	[cw]: e$1,
+	[cx]: [{ [cy]: "UseFIPS" }, false]
+}, at = {
+	[f]: "Unrecognized S3Express bucket name format.",
+	[ct]: f
+}, au = {
+	[cw]: r,
+	[cx]: [ac]
+}, av = { [cy]: u }, aw = {
+	[cv]: [aq],
 	[f]: "Expected a endpoint to be specified but no endpoint was found",
-	[cj]: f
-}, au = { [cs]: [{
-	[ct]: true,
+	[ct]: f
+}, ax = { [cD]: [{
+	[cE]: true,
 	[j]: z,
-	[cu]: A,
-	[cx]: ["*"]
+	[cF]: A,
+	[cI]: ["*"]
 }, {
-	[ct]: true,
+	[cE]: true,
 	[j]: "sigv4",
-	[cu]: A,
-	[cv]: "{Region}"
-}] }, av = {
-	[cl]: e$1,
-	[cm]: [{ [cn]: "ForcePathStyle" }, false]
-}, aw = { [cn]: "ForcePathStyle" }, ax = {
-	[cl]: e$1,
-	[cm]: [{ [cn]: "Accelerate" }, false]
-}, ay = {
-	[cl]: h,
-	[cm]: [{ [cn]: "Region" }, "aws-global"]
-}, az = { [cs]: [{
-	[ct]: true,
-	[j]: "sigv4",
-	[cu]: B,
-	[cv]: "us-east-1"
-}] }, aA = {
-	[cl]: s,
-	[cm]: [ay]
+	[cF]: A,
+	[cG]: "{Region}"
+}] }, ay = {
+	[cw]: e$1,
+	[cx]: [{ [cy]: "ForcePathStyle" }, false]
+}, az = { [cy]: "ForcePathStyle" }, aA = {
+	[cw]: e$1,
+	[cx]: [{ [cy]: "Accelerate" }, false]
 }, aB = {
-	[cl]: e$1,
-	[cm]: [{ [cn]: "UseGlobalEndpoint" }, true]
-}, aC = {
-	[cp]: "https://{Bucket}.s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}",
-	[cq]: { [cs]: [{
-		[ct]: true,
-		[j]: "sigv4",
-		[cu]: B,
-		[cv]: "{Region}"
-	}] },
-	[cw]: {}
-}, aD = { [cs]: [{
-	[ct]: true,
+	[cw]: h,
+	[cx]: [{ [cy]: "Region" }, "aws-global"]
+}, aC = { [cD]: [{
+	[cE]: true,
 	[j]: "sigv4",
-	[cu]: B,
-	[cv]: "{Region}"
-}] }, aE = {
-	[cl]: e$1,
-	[cm]: [{ [cn]: "UseGlobalEndpoint" }, false]
+	[cF]: B,
+	[cG]: "us-east-1"
+}] }, aD = {
+	[cw]: r,
+	[cx]: [aB]
+}, aE = {
+	[cw]: e$1,
+	[cx]: [{ [cy]: "UseGlobalEndpoint" }, true]
 }, aF = {
-	[cl]: e$1,
-	[cm]: [{ [cn]: "UseDualStack" }, false]
-}, aG = {
-	[cp]: "https://{Bucket}.s3-fips.{Region}.{partitionResult#dnsSuffix}",
-	[cq]: aD,
-	[cw]: {}
-}, aH = {
-	[cl]: e$1,
-	[cm]: [{ [cn]: "UseFIPS" }, false]
+	[cA]: "https://{Bucket}.s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}",
+	[cB]: { [cD]: [{
+		[cE]: true,
+		[j]: "sigv4",
+		[cF]: B,
+		[cG]: "{Region}"
+	}] },
+	[cH]: {}
+}, aG = { [cD]: [{
+	[cE]: true,
+	[j]: "sigv4",
+	[cF]: B,
+	[cG]: "{Region}"
+}] }, aH = {
+	[cw]: e$1,
+	[cx]: [{ [cy]: "UseGlobalEndpoint" }, false]
 }, aI = {
-	[cp]: "https://{Bucket}.s3-accelerate.dualstack.{partitionResult#dnsSuffix}",
-	[cq]: aD,
-	[cw]: {}
+	[cA]: "https://{Bucket}.s3-fips.{Region}.{partitionResult#dnsSuffix}",
+	[cB]: aG,
+	[cH]: {}
 }, aJ = {
-	[cp]: "https://{Bucket}.s3.dualstack.{Region}.{partitionResult#dnsSuffix}",
-	[cq]: aD,
-	[cw]: {}
+	[cA]: "https://{Bucket}.s3-accelerate.dualstack.{partitionResult#dnsSuffix}",
+	[cB]: aG,
+	[cH]: {}
 }, aK = {
-	[cl]: e$1,
-	[cm]: [{
-		[cl]: i$1,
-		[cm]: [ag, "isIp"]
-	}, false]
+	[cA]: "https://{Bucket}.s3.dualstack.{Region}.{partitionResult#dnsSuffix}",
+	[cB]: aG,
+	[cH]: {}
 }, aL = {
-	[cp]: C,
-	[cq]: aD,
-	[cw]: {}
+	[cw]: e$1,
+	[cx]: [{
+		[cw]: i$1,
+		[cx]: [ai, "isIp"]
+	}, false]
 }, aM = {
-	[cp]: r,
-	[cq]: aD,
-	[cw]: {}
+	[cA]: C,
+	[cB]: aG,
+	[cH]: {}
 }, aN = {
-	[o]: aM,
-	[cj]: o
+	[cA]: q,
+	[cB]: aG,
+	[cH]: {}
 }, aO = {
-	[cp]: D,
-	[cq]: aD,
-	[cw]: {}
+	[n]: aN,
+	[ct]: n
 }, aP = {
-	[cp]: "https://{Bucket}.s3.{Region}.{partitionResult#dnsSuffix}",
-	[cq]: aD,
-	[cw]: {}
+	[cA]: D,
+	[cB]: aG,
+	[cH]: {}
 }, aQ = {
+	[cA]: "https://{Bucket}.s3.{Region}.{partitionResult#dnsSuffix}",
+	[cB]: aG,
+	[cH]: {}
+}, aR = {
 	[f]: "Invalid region: region was not a valid DNS name.",
-	[cj]: f
-}, aR = { [cn]: G }, aS = { [cn]: H }, aT = {
-	[cl]: i$1,
-	[cm]: [aR, "service"]
-}, aU = { [cn]: L }, aV = {
-	[ck]: [Y],
+	[ct]: f
+}, aS = { [cy]: G }, aT = { [cy]: H }, aU = {
+	[cw]: i$1,
+	[cx]: [aS, "service"]
+}, aV = { [cy]: L }, aW = {
+	[cv]: [Y],
 	[f]: "S3 Object Lambda does not support Dual-stack",
-	[cj]: f
-}, aW = {
-	[ck]: [W],
-	[f]: "S3 Object Lambda does not support S3 Accelerate",
-	[cj]: f
+	[ct]: f
 }, aX = {
-	[ck]: [{
-		[cl]: d,
-		[cm]: [{ [cn]: "DisableAccessPoints" }]
+	[cv]: [W],
+	[f]: "S3 Object Lambda does not support S3 Accelerate",
+	[ct]: f
+}, aY = {
+	[cv]: [{
+		[cw]: d,
+		[cx]: [{ [cy]: "DisableAccessPoints" }]
 	}, {
-		[cl]: e$1,
-		[cm]: [{ [cn]: "DisableAccessPoints" }, true]
+		[cw]: e$1,
+		[cx]: [{ [cy]: "DisableAccessPoints" }, true]
 	}],
 	[f]: "Access points are not supported for this operation",
-	[cj]: f
-}, aY = {
-	[ck]: [
+	[ct]: f
+}, aZ = {
+	[cv]: [
 		{
-			[cl]: d,
-			[cm]: [{ [cn]: "UseArnRegion" }]
+			[cw]: d,
+			[cx]: [{ [cy]: "UseArnRegion" }]
 		},
 		{
-			[cl]: e$1,
-			[cm]: [{ [cn]: "UseArnRegion" }, false]
+			[cw]: e$1,
+			[cx]: [{ [cy]: "UseArnRegion" }, false]
 		},
 		{
-			[cl]: s,
-			[cm]: [{
-				[cl]: h,
-				[cm]: [{
-					[cl]: i$1,
-					[cm]: [aR, "region"]
+			[cw]: r,
+			[cx]: [{
+				[cw]: h,
+				[cx]: [{
+					[cw]: i$1,
+					[cx]: [aS, "region"]
 				}, "{Region}"]
 			}]
 		}
 	],
 	[f]: "Invalid configuration: region from ARN `{bucketArn#region}` does not match client region `{Region}` and UseArnRegion is `false`",
-	[cj]: f
-}, aZ = {
-	[cl]: i$1,
-	[cm]: [{ [cn]: "bucketPartition" }, j]
+	[ct]: f
 }, ba = {
-	[cl]: i$1,
-	[cm]: [aR, "accountId"]
-}, bb = { [cs]: [{
-	[ct]: true,
+	[cw]: i$1,
+	[cx]: [{ [cy]: "bucketPartition" }, j]
+}, bb = {
+	[cw]: i$1,
+	[cx]: [aS, "accountId"]
+}, bc = { [cD]: [{
+	[cE]: true,
 	[j]: "sigv4",
-	[cu]: J,
-	[cv]: "{bucketArn#region}"
-}] }, bc = {
+	[cF]: J,
+	[cG]: "{bucketArn#region}"
+}] }, bd = {
 	[f]: "Invalid ARN: The access point name may only contain a-z, A-Z, 0-9 and `-`. Found: `{accessPointName}`",
-	[cj]: f
-}, bd = {
-	[f]: "Invalid ARN: The account id may only contain a-z, A-Z, 0-9 and `-`. Found: `{bucketArn#accountId}`",
-	[cj]: f
+	[ct]: f
 }, be = {
-	[f]: "Invalid region in ARN: `{bucketArn#region}` (invalid DNS name)",
-	[cj]: f
+	[f]: "Invalid ARN: The account id may only contain a-z, A-Z, 0-9 and `-`. Found: `{bucketArn#accountId}`",
+	[ct]: f
 }, bf = {
-	[f]: "Client was configured for partition `{partitionResult#name}` but ARN (`{Bucket}`) has `{bucketPartition#name}`",
-	[cj]: f
+	[f]: "Invalid region in ARN: `{bucketArn#region}` (invalid DNS name)",
+	[ct]: f
 }, bg = {
-	[f]: "Invalid ARN: The ARN may only contain a single resource component after `accesspoint`.",
-	[cj]: f
+	[f]: "Client was configured for partition `{partitionResult#name}` but ARN (`{Bucket}`) has `{bucketPartition#name}`",
+	[ct]: f
 }, bh = {
+	[f]: "Invalid ARN: The ARN may only contain a single resource component after `accesspoint`.",
+	[ct]: f
+}, bi = {
 	[f]: "Invalid ARN: Expected a resource of the format `accesspoint:<accesspoint name>` but no name was provided",
-	[cj]: f
-}, bi = { [cs]: [{
-	[ct]: true,
+	[ct]: f
+}, bj = { [cD]: [{
+	[cE]: true,
 	[j]: "sigv4",
-	[cu]: B,
-	[cv]: "{bucketArn#region}"
-}] }, bj = { [cs]: [{
-	[ct]: true,
+	[cF]: B,
+	[cG]: "{bucketArn#region}"
+}] }, bk = { [cD]: [{
+	[cE]: true,
 	[j]: z,
-	[cu]: A,
-	[cx]: ["*"]
+	[cF]: A,
+	[cI]: ["*"]
 }, {
-	[ct]: true,
+	[cE]: true,
 	[j]: "sigv4",
-	[cu]: A,
-	[cv]: "{bucketArn#region}"
-}] }, bk = {
-	[cl]: F,
-	[cm]: [ad]
-}, bl = {
-	[cp]: "https://s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
-	[cq]: aD,
-	[cw]: {}
+	[cF]: A,
+	[cG]: "{bucketArn#region}"
+}] }, bl = {
+	[cw]: F,
+	[cx]: [ad]
 }, bm = {
-	[cp]: "https://s3-fips.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
-	[cq]: aD,
-	[cw]: {}
+	[cA]: "https://s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
+	[cB]: aG,
+	[cH]: {}
 }, bn = {
-	[cp]: "https://s3.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
-	[cq]: aD,
-	[cw]: {}
+	[cA]: "https://s3-fips.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
+	[cB]: aG,
+	[cH]: {}
 }, bo = {
-	[cp]: Q,
-	[cq]: aD,
-	[cw]: {}
+	[cA]: "https://s3.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
+	[cB]: aG,
+	[cH]: {}
 }, bp = {
-	[cp]: "https://s3.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
-	[cq]: aD,
-	[cw]: {}
-}, bq = { [cn]: "UseObjectLambdaEndpoint" }, br = { [cs]: [{
-	[ct]: true,
+	[cA]: Q,
+	[cB]: aG,
+	[cH]: {}
+}, bq = {
+	[cA]: "https://s3.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
+	[cB]: aG,
+	[cH]: {}
+}, br = { [cy]: "UseObjectLambdaEndpoint" }, bs = { [cD]: [{
+	[cE]: true,
 	[j]: "sigv4",
-	[cu]: J,
-	[cv]: "{Region}"
-}] }, bs = {
-	[cp]: "https://s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}",
-	[cq]: aD,
-	[cw]: {}
-}, bt = {
-	[cp]: "https://s3-fips.{Region}.{partitionResult#dnsSuffix}",
-	[cq]: aD,
-	[cw]: {}
+	[cF]: J,
+	[cG]: "{Region}"
+}] }, bt = {
+	[cA]: "https://s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}",
+	[cB]: aG,
+	[cH]: {}
 }, bu = {
-	[cp]: "https://s3.dualstack.{Region}.{partitionResult#dnsSuffix}",
-	[cq]: aD,
-	[cw]: {}
+	[cA]: "https://s3-fips.{Region}.{partitionResult#dnsSuffix}",
+	[cB]: aG,
+	[cH]: {}
 }, bv = {
-	[cp]: t$1,
-	[cq]: aD,
-	[cw]: {}
+	[cA]: "https://s3.dualstack.{Region}.{partitionResult#dnsSuffix}",
+	[cB]: aG,
+	[cH]: {}
 }, bw = {
-	[cp]: "https://s3.{Region}.{partitionResult#dnsSuffix}",
-	[cq]: aD,
-	[cw]: {}
-}, bx = [{ [cn]: "Region" }], by = [{ [cn]: "Endpoint" }], bz = [ad], bA = [Y], bB = [W], bC = [Z, ae], bD = [{
-	[cl]: d,
-	[cm]: [{ [cn]: "DisableS3ExpressSessionAuth" }]
+	[cA]: t$1,
+	[cB]: aG,
+	[cH]: {}
+}, bx = {
+	[cA]: "https://s3.{Region}.{partitionResult#dnsSuffix}",
+	[cB]: aG,
+	[cH]: {}
+}, by = [{ [cy]: "Region" }], bz = [{ [cy]: "Endpoint" }], bA = [ad], bB = [W], bC = [Z, ag], bD = [{
+	[cw]: d,
+	[cx]: [{ [cy]: "DisableS3ExpressSessionAuth" }]
 }, {
-	[cl]: e$1,
-	[cm]: [{ [cn]: "DisableS3ExpressSessionAuth" }, true]
-}], bE = [af], bF = [ah], bG = [ak], bH = [X], bI = [
+	[cw]: e$1,
+	[cx]: [{ [cy]: "DisableS3ExpressSessionAuth" }, true]
+}], bE = [aj], bF = [am], bG = [aa], bH = [X, Y], bI = [X, ar], bJ = [as, Y], bK = [as, ar], bL = [
 	{
-		[cl]: k,
-		[cm]: [
+		[cw]: k,
+		[cx]: [
 			ad,
 			6,
 			14,
 			true
 		],
-		[co]: "s3expressAvailabilityZoneId"
+		[cz]: "s3expressAvailabilityZoneId"
 	},
 	{
-		[cl]: k,
-		[cm]: [
+		[cw]: k,
+		[cx]: [
 			ad,
 			14,
 			16,
 			true
 		],
-		[co]: "s3expressAvailabilityZoneDelim"
+		[cz]: "s3expressAvailabilityZoneDelim"
 	},
 	{
-		[cl]: h,
-		[cm]: [{ [cn]: "s3expressAvailabilityZoneDelim" }, "--"]
+		[cw]: h,
+		[cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"]
 	}
-], bJ = [{
-	[ck]: [X],
-	[o]: {
-		[cp]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
-		[cq]: ai,
-		[cw]: {}
-	},
-	[cj]: o
-}, {
-	[o]: {
-		[cp]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
-		[cq]: ai,
-		[cw]: {}
-	},
-	[cj]: o
-}], bK = [
+], bM = [
 	{
-		[cl]: k,
-		[cm]: [
+		[cv]: [X, Y],
+		[n]: {
+			[cA]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.dualstack.{Region}.{partitionResult#dnsSuffix}",
+			[cB]: ak,
+			[cH]: {}
+		},
+		[ct]: n
+	},
+	{
+		[cv]: bI,
+		[n]: {
+			[cA]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.{partitionResult#dnsSuffix}",
+			[cB]: ak,
+			[cH]: {}
+		},
+		[ct]: n
+	},
+	{
+		[cv]: bJ,
+		[n]: {
+			[cA]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.dualstack.{Region}.{partitionResult#dnsSuffix}",
+			[cB]: ak,
+			[cH]: {}
+		},
+		[ct]: n
+	},
+	{
+		[cv]: bK,
+		[n]: {
+			[cA]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.{partitionResult#dnsSuffix}",
+			[cB]: ak,
+			[cH]: {}
+		},
+		[ct]: n
+	}
+], bN = [
+	{
+		[cw]: k,
+		[cx]: [
 			ad,
 			6,
 			15,
 			true
 		],
-		[co]: "s3expressAvailabilityZoneId"
+		[cz]: "s3expressAvailabilityZoneId"
 	},
 	{
-		[cl]: k,
-		[cm]: [
+		[cw]: k,
+		[cx]: [
 			ad,
 			15,
 			17,
 			true
 		],
-		[co]: "s3expressAvailabilityZoneDelim"
+		[cz]: "s3expressAvailabilityZoneDelim"
 	},
 	{
-		[cl]: h,
-		[cm]: [{ [cn]: "s3expressAvailabilityZoneDelim" }, "--"]
+		[cw]: h,
+		[cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"]
 	}
-], bL = [
+], bO = [
 	{
-		[cl]: k,
-		[cm]: [
+		[cw]: k,
+		[cx]: [
 			ad,
 			6,
 			19,
 			true
 		],
-		[co]: "s3expressAvailabilityZoneId"
+		[cz]: "s3expressAvailabilityZoneId"
 	},
 	{
-		[cl]: k,
-		[cm]: [
+		[cw]: k,
+		[cx]: [
 			ad,
 			19,
 			21,
 			true
 		],
-		[co]: "s3expressAvailabilityZoneDelim"
+		[cz]: "s3expressAvailabilityZoneDelim"
 	},
 	{
-		[cl]: h,
-		[cm]: [{ [cn]: "s3expressAvailabilityZoneDelim" }, "--"]
+		[cw]: h,
+		[cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"]
 	}
-], bM = [
+], bP = [
 	{
-		[cl]: k,
-		[cm]: [
+		[cw]: k,
+		[cx]: [
 			ad,
 			6,
 			20,
 			true
 		],
-		[co]: "s3expressAvailabilityZoneId"
+		[cz]: "s3expressAvailabilityZoneId"
 	},
 	{
-		[cl]: k,
-		[cm]: [
+		[cw]: k,
+		[cx]: [
 			ad,
 			20,
 			22,
 			true
 		],
-		[co]: "s3expressAvailabilityZoneDelim"
+		[cz]: "s3expressAvailabilityZoneDelim"
 	},
 	{
-		[cl]: h,
-		[cm]: [{ [cn]: "s3expressAvailabilityZoneDelim" }, "--"]
+		[cw]: h,
+		[cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"]
 	}
-], bN = [
+], bQ = [
 	{
-		[cl]: k,
-		[cm]: [
+		[cw]: k,
+		[cx]: [
 			ad,
 			6,
 			26,
 			true
 		],
-		[co]: "s3expressAvailabilityZoneId"
+		[cz]: "s3expressAvailabilityZoneId"
 	},
 	{
-		[cl]: k,
-		[cm]: [
+		[cw]: k,
+		[cx]: [
 			ad,
 			26,
 			28,
 			true
 		],
-		[co]: "s3expressAvailabilityZoneDelim"
+		[cz]: "s3expressAvailabilityZoneDelim"
 	},
 	{
-		[cl]: h,
-		[cm]: [{ [cn]: "s3expressAvailabilityZoneDelim" }, "--"]
+		[cw]: h,
+		[cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"]
 	}
-], bO = [{
-	[ck]: [X],
-	[o]: {
-		[cp]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
-		[cq]: am,
-		[cw]: {}
+], bR = [
+	{
+		[cv]: [X, Y],
+		[n]: {
+			[cA]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.dualstack.{Region}.{partitionResult#dnsSuffix}",
+			[cB]: {
+				[cC]: "S3Express",
+				[cD]: [{
+					[cE]: true,
+					[j]: "sigv4-s3express",
+					[cF]: "s3express",
+					[cG]: "{Region}"
+				}]
+			},
+			[cH]: {}
+		},
+		[ct]: n
 	},
-	[cj]: o
-}, {
-	[o]: {
-		[cp]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
-		[cq]: am,
-		[cw]: {}
+	{
+		[cv]: bI,
+		[n]: {
+			[cA]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.{partitionResult#dnsSuffix}",
+			[cB]: {
+				[cC]: "S3Express",
+				[cD]: [{
+					[cE]: true,
+					[j]: "sigv4-s3express",
+					[cF]: "s3express",
+					[cG]: "{Region}"
+				}]
+			},
+			[cH]: {}
+		},
+		[ct]: n
 	},
-	[cj]: o
-}], bP = [ac], bQ = [{
-	[cl]: y,
-	[cm]: [{ [cn]: x }, false]
-}], bR = [{
-	[cl]: h,
-	[cm]: [{ [cn]: v$1 }, "beta"]
-}], bS = ["*"], bT = [aa], bU = [{
-	[cl]: y,
-	[cm]: [{ [cn]: "Region" }, false]
-}], bV = [{
-	[cl]: h,
-	[cm]: [{ [cn]: "Region" }, "us-east-1"]
-}], bW = [{
-	[cl]: h,
-	[cm]: [aS, K]
-}], bX = [{
-	[cl]: i$1,
-	[cm]: [aR, "resourceId[1]"],
-	[co]: L
+	{
+		[cv]: bJ,
+		[n]: {
+			[cA]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.dualstack.{Region}.{partitionResult#dnsSuffix}",
+			[cB]: {
+				[cC]: "S3Express",
+				[cD]: [{
+					[cE]: true,
+					[j]: "sigv4-s3express",
+					[cF]: "s3express",
+					[cG]: "{Region}"
+				}]
+			},
+			[cH]: {}
+		},
+		[ct]: n
+	},
+	{
+		[cv]: bK,
+		[n]: {
+			[cA]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.{partitionResult#dnsSuffix}",
+			[cB]: {
+				[cC]: "S3Express",
+				[cD]: [{
+					[cE]: true,
+					[j]: "sigv4-s3express",
+					[cF]: "s3express",
+					[cG]: "{Region}"
+				}]
+			},
+			[cH]: {}
+		},
+		[ct]: n
+	}
+], bS = [
+	ad,
+	0,
+	7,
+	true
+], bT = [
+	{
+		[cw]: k,
+		[cx]: [
+			ad,
+			7,
+			15,
+			true
+		],
+		[cz]: "s3expressAvailabilityZoneId"
+	},
+	{
+		[cw]: k,
+		[cx]: [
+			ad,
+			15,
+			17,
+			true
+		],
+		[cz]: "s3expressAvailabilityZoneDelim"
+	},
+	{
+		[cw]: h,
+		[cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"]
+	}
+], bU = [
+	{
+		[cw]: k,
+		[cx]: [
+			ad,
+			7,
+			16,
+			true
+		],
+		[cz]: "s3expressAvailabilityZoneId"
+	},
+	{
+		[cw]: k,
+		[cx]: [
+			ad,
+			16,
+			18,
+			true
+		],
+		[cz]: "s3expressAvailabilityZoneDelim"
+	},
+	{
+		[cw]: h,
+		[cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"]
+	}
+], bV = [
+	{
+		[cw]: k,
+		[cx]: [
+			ad,
+			7,
+			20,
+			true
+		],
+		[cz]: "s3expressAvailabilityZoneId"
+	},
+	{
+		[cw]: k,
+		[cx]: [
+			ad,
+			20,
+			22,
+			true
+		],
+		[cz]: "s3expressAvailabilityZoneDelim"
+	},
+	{
+		[cw]: h,
+		[cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"]
+	}
+], bW = [
+	{
+		[cw]: k,
+		[cx]: [
+			ad,
+			7,
+			21,
+			true
+		],
+		[cz]: "s3expressAvailabilityZoneId"
+	},
+	{
+		[cw]: k,
+		[cx]: [
+			ad,
+			21,
+			23,
+			true
+		],
+		[cz]: "s3expressAvailabilityZoneDelim"
+	},
+	{
+		[cw]: h,
+		[cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"]
+	}
+], bX = [
+	{
+		[cw]: k,
+		[cx]: [
+			ad,
+			7,
+			27,
+			true
+		],
+		[cz]: "s3expressAvailabilityZoneId"
+	},
+	{
+		[cw]: k,
+		[cx]: [
+			ad,
+			27,
+			29,
+			true
+		],
+		[cz]: "s3expressAvailabilityZoneDelim"
+	},
+	{
+		[cw]: h,
+		[cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"]
+	}
+], bY = [ac], bZ = [{
+	[cw]: y,
+	[cx]: [{ [cy]: x }, false]
+}], ca = [{
+	[cw]: h,
+	[cx]: [{ [cy]: v$1 }, "beta"]
+}], cb = ["*"], cc = [{
+	[cw]: y,
+	[cx]: [{ [cy]: "Region" }, false]
+}], cd = [{
+	[cw]: h,
+	[cx]: [{ [cy]: "Region" }, "us-east-1"]
+}], ce = [{
+	[cw]: h,
+	[cx]: [aT, K]
+}], cf = [{
+	[cw]: i$1,
+	[cx]: [aS, "resourceId[1]"],
+	[cz]: L
 }, {
-	[cl]: s,
-	[cm]: [{
-		[cl]: h,
-		[cm]: [aU, I]
+	[cw]: r,
+	[cx]: [{
+		[cw]: h,
+		[cx]: [aV, I]
 	}]
-}], bY = [aR, "resourceId[1]"], bZ = [{
-	[cl]: s,
-	[cm]: [{
-		[cl]: h,
-		[cm]: [{
-			[cl]: i$1,
-			[cm]: [aR, "region"]
+}], cg = [aS, "resourceId[1]"], ch = [Y], ci = [{
+	[cw]: r,
+	[cx]: [{
+		[cw]: h,
+		[cx]: [{
+			[cw]: i$1,
+			[cx]: [aS, "region"]
 		}, I]
 	}]
-}], ca = [{
-	[cl]: s,
-	[cm]: [{
-		[cl]: d,
-		[cm]: [{
-			[cl]: i$1,
-			[cm]: [aR, "resourceId[2]"]
+}], cj = [{
+	[cw]: r,
+	[cx]: [{
+		[cw]: d,
+		[cx]: [{
+			[cw]: i$1,
+			[cx]: [aS, "resourceId[2]"]
 		}]
 	}]
-}], cb = [aR, "resourceId[2]"], cc = [{
-	[cl]: g,
-	[cm]: [{
-		[cl]: i$1,
-		[cm]: [aR, "region"]
+}], ck = [aS, "resourceId[2]"], cl = [{
+	[cw]: g,
+	[cx]: [{
+		[cw]: i$1,
+		[cx]: [aS, "region"]
 	}],
-	[co]: "bucketPartition"
-}], cd = [{
-	[cl]: h,
-	[cm]: [aZ, {
-		[cl]: i$1,
-		[cm]: [{ [cn]: "partitionResult" }, j]
+	[cz]: "bucketPartition"
+}], cm = [{
+	[cw]: h,
+	[cx]: [ba, {
+		[cw]: i$1,
+		[cx]: [{ [cy]: "partitionResult" }, j]
 	}]
-}], ce = [{
-	[cl]: y,
-	[cm]: [{
-		[cl]: i$1,
-		[cm]: [aR, "region"]
+}], cn = [{
+	[cw]: y,
+	[cx]: [{
+		[cw]: i$1,
+		[cx]: [aS, "region"]
 	}, true]
-}], cf = [{
-	[cl]: y,
-	[cm]: [ba, false]
-}], cg = [{
-	[cl]: y,
-	[cm]: [aU, false]
-}], ch = [{
-	[cl]: y,
-	[cm]: [{ [cn]: "Region" }, true]
+}], co = [{
+	[cw]: y,
+	[cx]: [bb, false]
+}], cp = [{
+	[cw]: y,
+	[cx]: [aV, false]
+}], cq = [X], cr = [{
+	[cw]: y,
+	[cx]: [{ [cy]: "Region" }, true]
 }];
 const _data = {
 	version: "1.0",
@@ -8019,1821 +8708,1886 @@ const _data = {
 		UseS3ExpressControlEndpoint: V,
 		DisableS3ExpressSessionAuth: V
 	},
-	rules: [{
-		[ck]: [{
-			[cl]: d,
-			[cm]: bx
+	[cu]: [{
+		[cv]: [{
+			[cw]: d,
+			[cx]: by
 		}],
-		rules: [
+		[cu]: [
 			{
-				[ck]: [W, X],
+				[cv]: [W, X],
 				error: "Accelerate cannot be used with FIPS",
-				[cj]: f
+				[ct]: f
 			},
 			{
-				[ck]: [Y, Z],
+				[cv]: [Y, Z],
 				error: "Cannot set dual-stack in combination with a custom endpoint.",
-				[cj]: f
+				[ct]: f
 			},
 			{
-				[ck]: [Z, X],
+				[cv]: [Z, X],
 				error: "A custom endpoint cannot be combined with FIPS",
-				[cj]: f
+				[ct]: f
 			},
 			{
-				[ck]: [Z, W],
+				[cv]: [Z, W],
 				error: "A custom endpoint cannot be combined with S3 Accelerate",
-				[cj]: f
+				[ct]: f
 			},
 			{
-				[ck]: [
+				[cv]: [
 					X,
 					aa,
 					ab
 				],
 				error: "Partition does not support FIPS",
-				[cj]: f
+				[ct]: f
 			},
 			{
-				[ck]: [
+				[cv]: [
 					ac,
 					{
-						[cl]: k,
-						[cm]: [
+						[cw]: k,
+						[cx]: [
 							ad,
 							0,
 							a,
 							c
 						],
-						[co]: l
+						[cz]: l
 					},
 					{
-						[cl]: h,
-						[cm]: [{ [cn]: l }, "--x-s3"]
+						[cw]: h,
+						[cx]: [{ [cy]: l }, "--x-s3"]
 					}
 				],
-				rules: [
+				[cu]: [
+					ae,
+					af,
 					{
-						[ck]: bA,
-						error: "S3Express does not support Dual-stack.",
-						[cj]: f
-					},
-					{
-						[ck]: bB,
-						error: "S3Express does not support S3 Accelerate.",
-						[cj]: f
-					},
-					{
-						[ck]: bC,
-						rules: [
-							{
-								[ck]: bD,
-								rules: [
+						[cv]: [ao, ap],
+						[cu]: [{
+							[cv]: bG,
+							[cu]: [{
+								[cv]: [aj, aq],
+								[cu]: [
 									{
-										[ck]: bE,
-										rules: [{
-											[ck]: bF,
-											rules: [{
-												endpoint: {
-													[cp]: n,
-													[cq]: ai,
-													[cw]: aj
-												},
-												[cj]: o
-											}],
-											[cj]: p
-										}],
-										[cj]: p
-									},
-									{
-										[ck]: bG,
-										rules: [{
-											endpoint: {
-												[cp]: r,
-												[cq]: ai,
-												[cw]: aj
-											},
-											[cj]: o
-										}],
-										[cj]: p
-									},
-									al
-								],
-								[cj]: p
-							},
-							{
-								[ck]: bE,
-								rules: [{
-									[ck]: bF,
-									rules: [{
+										[cv]: bH,
 										endpoint: {
-											[cp]: n,
-											[cq]: am,
-											[cw]: aj
+											[cA]: "https://s3express-control-fips.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
+											[cB]: ak,
+											[cH]: al
 										},
-										[cj]: o
-									}],
-									[cj]: p
-								}],
-								[cj]: p
-							},
-							{
-								[ck]: bG,
-								rules: [{
-									endpoint: {
-										[cp]: r,
-										[cq]: am,
-										[cw]: aj
-									},
-									[cj]: o
-								}],
-								[cj]: p
-							},
-							al
-						],
-						[cj]: p
-					},
-					{
-						[ck]: [an, ao],
-						rules: [{
-							[ck]: [ah, ap],
-							rules: [{
-								[ck]: bH,
-								endpoint: {
-									[cp]: "https://s3express-control-fips.{Region}.amazonaws.com/{uri_encoded_bucket}",
-									[cq]: ai,
-									[cw]: aj
-								},
-								[cj]: o
-							}, {
-								endpoint: {
-									[cp]: "https://s3express-control.{Region}.amazonaws.com/{uri_encoded_bucket}",
-									[cq]: ai,
-									[cw]: aj
-								},
-								[cj]: o
-							}],
-							[cj]: p
-						}],
-						[cj]: p
-					},
-					{
-						[ck]: bG,
-						rules: [
-							{
-								[ck]: bD,
-								rules: [
-									{
-										[ck]: bI,
-										rules: bJ,
-										[cj]: p
+										[ct]: n
 									},
 									{
-										[ck]: bK,
-										rules: bJ,
-										[cj]: p
+										[cv]: bI,
+										endpoint: {
+											[cA]: "https://s3express-control-fips.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
+											[cB]: ak,
+											[cH]: al
+										},
+										[ct]: n
 									},
 									{
-										[ck]: bL,
-										rules: bJ,
-										[cj]: p
+										[cv]: bJ,
+										endpoint: {
+											[cA]: "https://s3express-control.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
+											[cB]: ak,
+											[cH]: al
+										},
+										[ct]: n
 									},
 									{
-										[ck]: bM,
-										rules: bJ,
-										[cj]: p
-									},
-									{
-										[ck]: bN,
-										rules: bJ,
-										[cj]: p
-									},
-									aq
+										[cv]: bK,
+										endpoint: {
+											[cA]: "https://s3express-control.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
+											[cB]: ak,
+											[cH]: al
+										},
+										[ct]: n
+									}
 								],
-								[cj]: p
-							},
-							{
-								[ck]: bI,
-								rules: bO,
-								[cj]: p
-							},
-							{
-								[ck]: bK,
-								rules: bO,
-								[cj]: p
-							},
-							{
-								[ck]: bL,
-								rules: bO,
-								[cj]: p
-							},
-							{
-								[ck]: bM,
-								rules: bO,
-								[cj]: p
-							},
-							{
-								[ck]: bN,
-								rules: bO,
-								[cj]: p
-							},
-							aq
-						],
-						[cj]: p
+								[ct]: o
+							}],
+							[ct]: o
+						}],
+						[ct]: o
 					},
-					al
+					{
+						[cv]: bF,
+						[cu]: [{
+							[cv]: bG,
+							[cu]: [
+								{
+									[cv]: bD,
+									[cu]: [
+										{
+											[cv]: bL,
+											[cu]: bM,
+											[ct]: o
+										},
+										{
+											[cv]: bN,
+											[cu]: bM,
+											[ct]: o
+										},
+										{
+											[cv]: bO,
+											[cu]: bM,
+											[ct]: o
+										},
+										{
+											[cv]: bP,
+											[cu]: bM,
+											[ct]: o
+										},
+										{
+											[cv]: bQ,
+											[cu]: bM,
+											[ct]: o
+										},
+										at
+									],
+									[ct]: o
+								},
+								{
+									[cv]: bL,
+									[cu]: bR,
+									[ct]: o
+								},
+								{
+									[cv]: bN,
+									[cu]: bR,
+									[ct]: o
+								},
+								{
+									[cv]: bO,
+									[cu]: bR,
+									[ct]: o
+								},
+								{
+									[cv]: bP,
+									[cu]: bR,
+									[ct]: o
+								},
+								{
+									[cv]: bQ,
+									[cu]: bR,
+									[ct]: o
+								},
+								at
+							],
+							[ct]: o
+						}],
+						[ct]: o
+					},
+					an
 				],
-				[cj]: p
+				[ct]: o
 			},
 			{
-				[ck]: [
-					ar,
-					an,
-					ao
-				],
-				rules: [
-					{
-						[ck]: bC,
-						endpoint: {
-							[cp]: t$1,
-							[cq]: ai,
-							[cw]: aj
-						},
-						[cj]: o
-					},
-					{
-						[ck]: bH,
-						endpoint: {
-							[cp]: "https://s3express-control-fips.{Region}.amazonaws.com",
-							[cq]: ai,
-							[cw]: aj
-						},
-						[cj]: o
-					},
-					{
-						endpoint: {
-							[cp]: "https://s3express-control.{Region}.amazonaws.com",
-							[cq]: ai,
-							[cw]: aj
-						},
-						[cj]: o
-					}
-				],
-				[cj]: p
-			},
-			{
-				[ck]: [
+				[cv]: [
 					ac,
 					{
-						[cl]: k,
-						[cm]: [
+						[cw]: k,
+						[cx]: bS,
+						[cz]: s
+					},
+					{
+						[cw]: h,
+						[cx]: [{ [cy]: s }, "--xa-s3"]
+					}
+				],
+				[cu]: [
+					ae,
+					af,
+					{
+						[cv]: bF,
+						[cu]: [{
+							[cv]: bG,
+							[cu]: [
+								{
+									[cv]: bD,
+									[cu]: [
+										{
+											[cv]: bT,
+											[cu]: bM,
+											[ct]: o
+										},
+										{
+											[cv]: bU,
+											[cu]: bM,
+											[ct]: o
+										},
+										{
+											[cv]: bV,
+											[cu]: bM,
+											[ct]: o
+										},
+										{
+											[cv]: bW,
+											[cu]: bM,
+											[ct]: o
+										},
+										{
+											[cv]: bX,
+											[cu]: bM,
+											[ct]: o
+										},
+										at
+									],
+									[ct]: o
+								},
+								{
+									[cv]: bT,
+									[cu]: bR,
+									[ct]: o
+								},
+								{
+									[cv]: bU,
+									[cu]: bR,
+									[ct]: o
+								},
+								{
+									[cv]: bV,
+									[cu]: bR,
+									[ct]: o
+								},
+								{
+									[cv]: bW,
+									[cu]: bR,
+									[ct]: o
+								},
+								{
+									[cv]: bX,
+									[cu]: bR,
+									[ct]: o
+								},
+								at
+							],
+							[ct]: o
+						}],
+						[ct]: o
+					},
+					an
+				],
+				[ct]: o
+			},
+			{
+				[cv]: [
+					au,
+					ao,
+					ap
+				],
+				[cu]: [{
+					[cv]: bG,
+					[cu]: [
+						{
+							[cv]: bC,
+							endpoint: {
+								[cA]: t$1,
+								[cB]: ak,
+								[cH]: al
+							},
+							[ct]: n
+						},
+						{
+							[cv]: bH,
+							endpoint: {
+								[cA]: "https://s3express-control-fips.dualstack.{Region}.{partitionResult#dnsSuffix}",
+								[cB]: ak,
+								[cH]: al
+							},
+							[ct]: n
+						},
+						{
+							[cv]: bI,
+							endpoint: {
+								[cA]: "https://s3express-control-fips.{Region}.{partitionResult#dnsSuffix}",
+								[cB]: ak,
+								[cH]: al
+							},
+							[ct]: n
+						},
+						{
+							[cv]: bJ,
+							endpoint: {
+								[cA]: "https://s3express-control.dualstack.{Region}.{partitionResult#dnsSuffix}",
+								[cB]: ak,
+								[cH]: al
+							},
+							[ct]: n
+						},
+						{
+							[cv]: bK,
+							endpoint: {
+								[cA]: "https://s3express-control.{Region}.{partitionResult#dnsSuffix}",
+								[cB]: ak,
+								[cH]: al
+							},
+							[ct]: n
+						}
+					],
+					[ct]: o
+				}],
+				[ct]: o
+			},
+			{
+				[cv]: [
+					ac,
+					{
+						[cw]: k,
+						[cx]: [
 							ad,
 							49,
 							50,
 							c
 						],
-						[co]: u
+						[cz]: u
 					},
 					{
-						[cl]: k,
-						[cm]: [
+						[cw]: k,
+						[cx]: [
 							ad,
 							8,
 							12,
 							c
 						],
-						[co]: v$1
+						[cz]: v$1
 					},
 					{
-						[cl]: k,
-						[cm]: [
-							ad,
-							0,
-							7,
-							c
-						],
-						[co]: w
+						[cw]: k,
+						[cx]: bS,
+						[cz]: w
 					},
 					{
-						[cl]: k,
-						[cm]: [
+						[cw]: k,
+						[cx]: [
 							ad,
 							32,
 							49,
 							c
 						],
-						[co]: x
+						[cz]: x
 					},
 					{
-						[cl]: g,
-						[cm]: bx,
-						[co]: "regionPartition"
+						[cw]: g,
+						[cx]: by,
+						[cz]: "regionPartition"
 					},
 					{
-						[cl]: h,
-						[cm]: [{ [cn]: w }, "--op-s3"]
+						[cw]: h,
+						[cx]: [{ [cy]: w }, "--op-s3"]
 					}
 				],
-				rules: [{
-					[ck]: bQ,
-					rules: [
-						{
-							[ck]: [{
-								[cl]: h,
-								[cm]: [as, "e"]
-							}],
-							rules: [{
-								[ck]: bR,
-								rules: [at, {
-									[ck]: bC,
-									endpoint: {
-										[cp]: "https://{Bucket}.ec2.{url#authority}",
-										[cq]: au,
-										[cw]: aj
-									},
-									[cj]: o
+				[cu]: [{
+					[cv]: bZ,
+					[cu]: [{
+						[cv]: bF,
+						[cu]: [
+							{
+								[cv]: [{
+									[cw]: h,
+									[cx]: [av, "e"]
 								}],
-								[cj]: p
-							}, {
-								endpoint: {
-									[cp]: "https://{Bucket}.ec2.s3-outposts.{Region}.{regionPartition#dnsSuffix}",
-									[cq]: au,
-									[cw]: aj
-								},
-								[cj]: o
-							}],
-							[cj]: p
-						},
-						{
-							[ck]: [{
-								[cl]: h,
-								[cm]: [as, "o"]
-							}],
-							rules: [{
-								[ck]: bR,
-								rules: [at, {
-									[ck]: bC,
+								[cu]: [{
+									[cv]: ca,
+									[cu]: [aw, {
+										[cv]: bC,
+										endpoint: {
+											[cA]: "https://{Bucket}.ec2.{url#authority}",
+											[cB]: ax,
+											[cH]: al
+										},
+										[ct]: n
+									}],
+									[ct]: o
+								}, {
 									endpoint: {
-										[cp]: "https://{Bucket}.op-{outpostId}.{url#authority}",
-										[cq]: au,
-										[cw]: aj
+										[cA]: "https://{Bucket}.ec2.s3-outposts.{Region}.{regionPartition#dnsSuffix}",
+										[cB]: ax,
+										[cH]: al
 									},
-									[cj]: o
+									[ct]: n
 								}],
-								[cj]: p
-							}, {
-								endpoint: {
-									[cp]: "https://{Bucket}.op-{outpostId}.s3-outposts.{Region}.{regionPartition#dnsSuffix}",
-									[cq]: au,
-									[cw]: aj
-								},
-								[cj]: o
-							}],
-							[cj]: p
-						},
-						{
-							error: "Unrecognized hardware type: \"Expected hardware type o or e but got {hardwareType}\"",
-							[cj]: f
-						}
-					],
-					[cj]: p
+								[ct]: o
+							},
+							{
+								[cv]: [{
+									[cw]: h,
+									[cx]: [av, "o"]
+								}],
+								[cu]: [{
+									[cv]: ca,
+									[cu]: [aw, {
+										[cv]: bC,
+										endpoint: {
+											[cA]: "https://{Bucket}.op-{outpostId}.{url#authority}",
+											[cB]: ax,
+											[cH]: al
+										},
+										[ct]: n
+									}],
+									[ct]: o
+								}, {
+									endpoint: {
+										[cA]: "https://{Bucket}.op-{outpostId}.s3-outposts.{Region}.{regionPartition#dnsSuffix}",
+										[cB]: ax,
+										[cH]: al
+									},
+									[ct]: n
+								}],
+								[ct]: o
+							},
+							{
+								error: "Unrecognized hardware type: \"Expected hardware type o or e but got {hardwareType}\"",
+								[ct]: f
+							}
+						],
+						[ct]: o
+					}, {
+						error: "Invalid Outposts Bucket alias - it must be a valid bucket name.",
+						[ct]: f
+					}],
+					[ct]: o
 				}, {
 					error: "Invalid ARN: The outpost Id must only contain a-z, A-Z, 0-9 and `-`.",
-					[cj]: f
+					[ct]: f
 				}],
-				[cj]: p
+				[ct]: o
 			},
 			{
-				[ck]: bP,
-				rules: [
+				[cv]: bY,
+				[cu]: [
 					{
-						[ck]: [Z, {
-							[cl]: s,
-							[cm]: [{
-								[cl]: d,
-								[cm]: [{
-									[cl]: m,
-									[cm]: by
+						[cv]: [Z, {
+							[cw]: r,
+							[cx]: [{
+								[cw]: d,
+								[cx]: [{
+									[cw]: m,
+									[cx]: bz
 								}]
 							}]
 						}],
 						error: "Custom endpoint `{Endpoint}` was not a valid URI",
-						[cj]: f
+						[ct]: f
 					},
 					{
-						[ck]: [av, ak],
-						rules: [{
-							[ck]: bT,
-							rules: [{
-								[ck]: bU,
-								rules: [
+						[cv]: [ay, am],
+						[cu]: [{
+							[cv]: bG,
+							[cu]: [{
+								[cv]: cc,
+								[cu]: [
 									{
-										[ck]: [W, ab],
+										[cv]: [W, ab],
 										error: "S3 Accelerate cannot be used in this region",
-										[cj]: f
+										[ct]: f
 									},
 									{
-										[ck]: [
+										[cv]: [
 											Y,
 											X,
-											ax,
-											ap,
-											ay
-										],
-										endpoint: {
-											[cp]: "https://{Bucket}.s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}",
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											Y,
-											X,
-											ax,
-											ap,
 											aA,
+											aq,
 											aB
 										],
-										rules: [{
-											endpoint: aC,
-											[cj]: o
-										}],
-										[cj]: p
+										endpoint: {
+											[cA]: "https://{Bucket}.s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}",
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
 									},
 									{
-										[ck]: [
+										[cv]: [
 											Y,
 											X,
-											ax,
-											ap,
 											aA,
+											aq,
+											aD,
 											aE
 										],
-										endpoint: aC,
-										[cj]: o
+										[cu]: [{
+											endpoint: aF,
+											[ct]: n
+										}],
+										[ct]: o
 									},
 									{
-										[ck]: [
-											aF,
+										[cv]: [
+											Y,
 											X,
-											ax,
-											ap,
-											ay
-										],
-										endpoint: {
-											[cp]: "https://{Bucket}.s3-fips.us-east-1.{partitionResult#dnsSuffix}",
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											aF,
-											X,
-											ax,
-											ap,
 											aA,
+											aq,
+											aD,
+											aH
+										],
+										endpoint: aF,
+										[ct]: n
+									},
+									{
+										[cv]: [
+											ar,
+											X,
+											aA,
+											aq,
 											aB
 										],
-										rules: [{
-											endpoint: aG,
-											[cj]: o
-										}],
-										[cj]: p
+										endpoint: {
+											[cA]: "https://{Bucket}.s3-fips.us-east-1.{partitionResult#dnsSuffix}",
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
 									},
 									{
-										[ck]: [
-											aF,
+										[cv]: [
+											ar,
 											X,
-											ax,
-											ap,
 											aA,
+											aq,
+											aD,
 											aE
 										],
-										endpoint: aG,
-										[cj]: o
-									},
-									{
-										[ck]: [
-											Y,
-											aH,
-											W,
-											ap,
-											ay
-										],
-										endpoint: {
-											[cp]: "https://{Bucket}.s3-accelerate.dualstack.us-east-1.{partitionResult#dnsSuffix}",
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											Y,
-											aH,
-											W,
-											ap,
-											aA,
-											aB
-										],
-										rules: [{
+										[cu]: [{
 											endpoint: aI,
-											[cj]: o
+											[ct]: n
 										}],
-										[cj]: p
+										[ct]: o
 									},
 									{
-										[ck]: [
-											Y,
-											aH,
-											W,
-											ap,
+										[cv]: [
+											ar,
+											X,
 											aA,
-											aE
+											aq,
+											aD,
+											aH
 										],
 										endpoint: aI,
-										[cj]: o
+										[ct]: n
 									},
 									{
-										[ck]: [
+										[cv]: [
 											Y,
-											aH,
-											ax,
-											ap,
-											ay
-										],
-										endpoint: {
-											[cp]: "https://{Bucket}.s3.dualstack.us-east-1.{partitionResult#dnsSuffix}",
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											Y,
-											aH,
-											ax,
-											ap,
-											aA,
+											as,
+											W,
+											aq,
 											aB
 										],
-										rules: [{
-											endpoint: aJ,
-											[cj]: o
-										}],
-										[cj]: p
+										endpoint: {
+											[cA]: "https://{Bucket}.s3-accelerate.dualstack.us-east-1.{partitionResult#dnsSuffix}",
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
 									},
 									{
-										[ck]: [
+										[cv]: [
 											Y,
-											aH,
-											ax,
-											ap,
-											aA,
+											as,
+											W,
+											aq,
+											aD,
 											aE
+										],
+										[cu]: [{
+											endpoint: aJ,
+											[ct]: n
+										}],
+										[ct]: o
+									},
+									{
+										[cv]: [
+											Y,
+											as,
+											W,
+											aq,
+											aD,
+											aH
 										],
 										endpoint: aJ,
-										[cj]: o
+										[ct]: n
 									},
 									{
-										[ck]: [
-											aF,
-											aH,
-											ax,
-											Z,
-											ae,
-											af,
-											ay
-										],
-										endpoint: {
-											[cp]: C,
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											aF,
-											aH,
-											ax,
-											Z,
-											ae,
-											aK,
-											ay
-										],
-										endpoint: {
-											[cp]: r,
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											aF,
-											aH,
-											ax,
-											Z,
-											ae,
-											af,
+										[cv]: [
+											Y,
+											as,
 											aA,
+											aq,
 											aB
 										],
-										rules: [{
-											[ck]: bV,
-											endpoint: aL,
-											[cj]: o
-										}, {
-											endpoint: aL,
-											[cj]: o
+										endpoint: {
+											[cA]: "https://{Bucket}.s3.dualstack.us-east-1.{partitionResult#dnsSuffix}",
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
+									},
+									{
+										[cv]: [
+											Y,
+											as,
+											aA,
+											aq,
+											aD,
+											aE
+										],
+										[cu]: [{
+											endpoint: aK,
+											[ct]: n
 										}],
-										[cj]: p
+										[ct]: o
 									},
 									{
-										[ck]: [
-											aF,
-											aH,
-											ax,
-											Z,
-											ae,
-											aK,
+										[cv]: [
+											Y,
+											as,
 											aA,
+											aq,
+											aD,
+											aH
+										],
+										endpoint: aK,
+										[ct]: n
+									},
+									{
+										[cv]: [
+											ar,
+											as,
+											aA,
+											Z,
+											ag,
+											ah,
 											aB
 										],
-										rules: [{
-											[ck]: bV,
-											endpoint: aM,
-											[cj]: o
-										}, aN],
-										[cj]: p
+										endpoint: {
+											[cA]: C,
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
 									},
 									{
-										[ck]: [
-											aF,
-											aH,
-											ax,
-											Z,
-											ae,
-											af,
+										[cv]: [
+											ar,
+											as,
 											aA,
+											Z,
+											ag,
+											aL,
+											aB
+										],
+										endpoint: {
+											[cA]: q,
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
+									},
+									{
+										[cv]: [
+											ar,
+											as,
+											aA,
+											Z,
+											ag,
+											ah,
+											aD,
 											aE
 										],
-										endpoint: aL,
-										[cj]: o
+										[cu]: [{
+											[cv]: cd,
+											endpoint: aM,
+											[ct]: n
+										}, {
+											endpoint: aM,
+											[ct]: n
+										}],
+										[ct]: o
 									},
 									{
-										[ck]: [
-											aF,
-											aH,
-											ax,
-											Z,
-											ae,
-											aK,
+										[cv]: [
+											ar,
+											as,
 											aA,
+											Z,
+											ag,
+											aL,
+											aD,
 											aE
+										],
+										[cu]: [{
+											[cv]: cd,
+											endpoint: aN,
+											[ct]: n
+										}, aO],
+										[ct]: o
+									},
+									{
+										[cv]: [
+											ar,
+											as,
+											aA,
+											Z,
+											ag,
+											ah,
+											aD,
+											aH
 										],
 										endpoint: aM,
-										[cj]: o
+										[ct]: n
 									},
 									{
-										[ck]: [
-											aF,
-											aH,
-											W,
-											ap,
-											ay
-										],
-										endpoint: {
-											[cp]: D,
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											aF,
-											aH,
-											W,
-											ap,
+										[cv]: [
+											ar,
+											as,
 											aA,
+											Z,
+											ag,
+											aL,
+											aD,
+											aH
+										],
+										endpoint: aN,
+										[ct]: n
+									},
+									{
+										[cv]: [
+											ar,
+											as,
+											W,
+											aq,
 											aB
 										],
-										rules: [{
-											[ck]: bV,
-											endpoint: aO,
-											[cj]: o
-										}, {
-											endpoint: aO,
-											[cj]: o
-										}],
-										[cj]: p
+										endpoint: {
+											[cA]: D,
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
 									},
 									{
-										[ck]: [
-											aF,
-											aH,
+										[cv]: [
+											ar,
+											as,
 											W,
-											ap,
-											aA,
+											aq,
+											aD,
 											aE
 										],
-										endpoint: aO,
-										[cj]: o
-									},
-									{
-										[ck]: [
-											aF,
-											aH,
-											ax,
-											ap,
-											ay
-										],
-										endpoint: {
-											[cp]: E,
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											aF,
-											aH,
-											ax,
-											ap,
-											aA,
-											aB
-										],
-										rules: [{
-											[ck]: bV,
-											endpoint: {
-												[cp]: E,
-												[cq]: aD,
-												[cw]: aj
-											},
-											[cj]: o
+										[cu]: [{
+											[cv]: cd,
+											endpoint: aP,
+											[ct]: n
 										}, {
 											endpoint: aP,
-											[cj]: o
+											[ct]: n
 										}],
-										[cj]: p
+										[ct]: o
 									},
 									{
-										[ck]: [
-											aF,
-											aH,
-											ax,
-											ap,
-											aA,
-											aE
+										[cv]: [
+											ar,
+											as,
+											W,
+											aq,
+											aD,
+											aH
 										],
 										endpoint: aP,
-										[cj]: o
+										[ct]: n
+									},
+									{
+										[cv]: [
+											ar,
+											as,
+											aA,
+											aq,
+											aB
+										],
+										endpoint: {
+											[cA]: E,
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
+									},
+									{
+										[cv]: [
+											ar,
+											as,
+											aA,
+											aq,
+											aD,
+											aE
+										],
+										[cu]: [{
+											[cv]: cd,
+											endpoint: {
+												[cA]: E,
+												[cB]: aG,
+												[cH]: al
+											},
+											[ct]: n
+										}, {
+											endpoint: aQ,
+											[ct]: n
+										}],
+										[ct]: o
+									},
+									{
+										[cv]: [
+											ar,
+											as,
+											aA,
+											aq,
+											aD,
+											aH
+										],
+										endpoint: aQ,
+										[ct]: n
 									}
 								],
-								[cj]: p
-							}, aQ],
-							[cj]: p
+								[ct]: o
+							}, aR],
+							[ct]: o
 						}],
-						[cj]: p
+						[ct]: o
 					},
 					{
-						[ck]: [
+						[cv]: [
 							Z,
-							ae,
+							ag,
 							{
-								[cl]: h,
-								[cm]: [{
-									[cl]: i$1,
-									[cm]: [ag, "scheme"]
+								[cw]: h,
+								[cx]: [{
+									[cw]: i$1,
+									[cx]: [ai, "scheme"]
 								}, "http"]
 							},
 							{
-								[cl]: q,
-								[cm]: [ad, c]
+								[cw]: p,
+								[cx]: [ad, c]
 							},
-							av,
-							aH,
-							aF,
-							ax
+							ay,
+							as,
+							ar,
+							aA
 						],
-						rules: [{
-							[ck]: bT,
-							rules: [{
-								[ck]: bU,
-								rules: [aN],
-								[cj]: p
-							}, aQ],
-							[cj]: p
+						[cu]: [{
+							[cv]: bG,
+							[cu]: [{
+								[cv]: cc,
+								[cu]: [aO],
+								[ct]: o
+							}, aR],
+							[ct]: o
 						}],
-						[cj]: p
+						[ct]: o
 					},
 					{
-						[ck]: [av, {
-							[cl]: F,
-							[cm]: bz,
-							[co]: G
+						[cv]: [ay, {
+							[cw]: F,
+							[cx]: bA,
+							[cz]: G
 						}],
-						rules: [{
-							[ck]: [{
-								[cl]: i$1,
-								[cm]: [aR, "resourceId[0]"],
-								[co]: H
+						[cu]: [{
+							[cv]: [{
+								[cw]: i$1,
+								[cx]: [aS, "resourceId[0]"],
+								[cz]: H
 							}, {
-								[cl]: s,
-								[cm]: [{
-									[cl]: h,
-									[cm]: [aS, I]
+								[cw]: r,
+								[cx]: [{
+									[cw]: h,
+									[cx]: [aT, I]
 								}]
 							}],
-							rules: [
+							[cu]: [
 								{
-									[ck]: [{
-										[cl]: h,
-										[cm]: [aT, J]
+									[cv]: [{
+										[cw]: h,
+										[cx]: [aU, J]
 									}],
-									rules: [{
-										[ck]: bW,
-										rules: [{
-											[ck]: bX,
-											rules: [
-												aV,
+									[cu]: [{
+										[cv]: ce,
+										[cu]: [{
+											[cv]: cf,
+											[cu]: [
 												aW,
+												aX,
 												{
-													[ck]: bZ,
-													rules: [
-														aX,
+													[cv]: ci,
+													[cu]: [
+														aY,
 														{
-															[ck]: ca,
-															rules: [aY, {
-																[ck]: cc,
-																rules: [{
-																	[ck]: bT,
-																	rules: [{
-																		[ck]: cd,
-																		rules: [{
-																			[ck]: ce,
-																			rules: [
+															[cv]: cj,
+															[cu]: [aZ, {
+																[cv]: cl,
+																[cu]: [{
+																	[cv]: bG,
+																	[cu]: [{
+																		[cv]: cm,
+																		[cu]: [{
+																			[cv]: cn,
+																			[cu]: [
 																				{
-																					[ck]: [{
-																						[cl]: h,
-																						[cm]: [ba, I]
+																					[cv]: [{
+																						[cw]: h,
+																						[cx]: [bb, I]
 																					}],
 																					error: "Invalid ARN: Missing account id",
-																					[cj]: f
+																					[ct]: f
 																				},
 																				{
-																					[ck]: cf,
-																					rules: [{
-																						[ck]: cg,
-																						rules: [
+																					[cv]: co,
+																					[cu]: [{
+																						[cv]: cp,
+																						[cu]: [
 																							{
-																								[ck]: bC,
+																								[cv]: bC,
 																								endpoint: {
-																									[cp]: M,
-																									[cq]: bb,
-																									[cw]: aj
+																									[cA]: M,
+																									[cB]: bc,
+																									[cH]: al
 																								},
-																								[cj]: o
+																								[ct]: n
 																							},
 																							{
-																								[ck]: bH,
+																								[cv]: cq,
 																								endpoint: {
-																									[cp]: "https://{accessPointName}-{bucketArn#accountId}.s3-object-lambda-fips.{bucketArn#region}.{bucketPartition#dnsSuffix}",
-																									[cq]: bb,
-																									[cw]: aj
+																									[cA]: "https://{accessPointName}-{bucketArn#accountId}.s3-object-lambda-fips.{bucketArn#region}.{bucketPartition#dnsSuffix}",
+																									[cB]: bc,
+																									[cH]: al
 																								},
-																								[cj]: o
+																								[ct]: n
 																							},
 																							{
 																								endpoint: {
-																									[cp]: "https://{accessPointName}-{bucketArn#accountId}.s3-object-lambda.{bucketArn#region}.{bucketPartition#dnsSuffix}",
-																									[cq]: bb,
-																									[cw]: aj
+																									[cA]: "https://{accessPointName}-{bucketArn#accountId}.s3-object-lambda.{bucketArn#region}.{bucketPartition#dnsSuffix}",
+																									[cB]: bc,
+																									[cH]: al
 																								},
-																								[cj]: o
+																								[ct]: n
 																							}
 																						],
-																						[cj]: p
-																					}, bc],
-																					[cj]: p
+																						[ct]: o
+																					}, bd],
+																					[ct]: o
 																				},
-																				bd
+																				be
 																			],
-																			[cj]: p
-																		}, be],
-																		[cj]: p
-																	}, bf],
-																	[cj]: p
+																			[ct]: o
+																		}, bf],
+																		[ct]: o
+																	}, bg],
+																	[ct]: o
 																}],
-																[cj]: p
+																[ct]: o
 															}],
-															[cj]: p
+															[ct]: o
 														},
-														bg
+														bh
 													],
-													[cj]: p
+													[ct]: o
 												},
 												{
 													error: "Invalid ARN: bucket ARN is missing a region",
-													[cj]: f
+													[ct]: f
 												}
 											],
-											[cj]: p
-										}, bh],
-										[cj]: p
+											[ct]: o
+										}, bi],
+										[ct]: o
 									}, {
 										error: "Invalid ARN: Object Lambda ARNs only support `accesspoint` arn types, but found: `{arnType}`",
-										[cj]: f
+										[ct]: f
 									}],
-									[cj]: p
+									[ct]: o
 								},
 								{
-									[ck]: bW,
-									rules: [{
-										[ck]: bX,
-										rules: [
+									[cv]: ce,
+									[cu]: [{
+										[cv]: cf,
+										[cu]: [
 											{
-												[ck]: bZ,
-												rules: [{
-													[ck]: bW,
-													rules: [{
-														[ck]: bZ,
-														rules: [
-															aX,
+												[cv]: ci,
+												[cu]: [{
+													[cv]: ce,
+													[cu]: [{
+														[cv]: ci,
+														[cu]: [
+															aY,
 															{
-																[ck]: ca,
-																rules: [aY, {
-																	[ck]: cc,
-																	rules: [{
-																		[ck]: bT,
-																		rules: [{
-																			[ck]: [{
-																				[cl]: h,
-																				[cm]: [aZ, "{partitionResult#name}"]
+																[cv]: cj,
+																[cu]: [aZ, {
+																	[cv]: cl,
+																	[cu]: [{
+																		[cv]: bG,
+																		[cu]: [{
+																			[cv]: [{
+																				[cw]: h,
+																				[cx]: [ba, "{partitionResult#name}"]
 																			}],
-																			rules: [{
-																				[ck]: ce,
-																				rules: [{
-																					[ck]: [{
-																						[cl]: h,
-																						[cm]: [aT, B]
+																			[cu]: [{
+																				[cv]: cn,
+																				[cu]: [{
+																					[cv]: [{
+																						[cw]: h,
+																						[cx]: [aU, B]
 																					}],
-																					rules: [{
-																						[ck]: cf,
-																						rules: [{
-																							[ck]: cg,
-																							rules: [
+																					[cu]: [{
+																						[cv]: co,
+																						[cu]: [{
+																							[cv]: cp,
+																							[cu]: [
 																								{
-																									[ck]: bB,
+																									[cv]: bB,
 																									error: "Access Points do not support S3 Accelerate",
-																									[cj]: f
+																									[ct]: f
 																								},
 																								{
-																									[ck]: [X, Y],
+																									[cv]: bH,
 																									endpoint: {
-																										[cp]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint-fips.dualstack.{bucketArn#region}.{bucketPartition#dnsSuffix}",
-																										[cq]: bi,
-																										[cw]: aj
+																										[cA]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint-fips.dualstack.{bucketArn#region}.{bucketPartition#dnsSuffix}",
+																										[cB]: bj,
+																										[cH]: al
 																									},
-																									[cj]: o
+																									[ct]: n
 																								},
 																								{
-																									[ck]: [X, aF],
+																									[cv]: bI,
 																									endpoint: {
-																										[cp]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint-fips.{bucketArn#region}.{bucketPartition#dnsSuffix}",
-																										[cq]: bi,
-																										[cw]: aj
+																										[cA]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint-fips.{bucketArn#region}.{bucketPartition#dnsSuffix}",
+																										[cB]: bj,
+																										[cH]: al
 																									},
-																									[cj]: o
+																									[ct]: n
 																								},
 																								{
-																									[ck]: [aH, Y],
+																									[cv]: bJ,
 																									endpoint: {
-																										[cp]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint.dualstack.{bucketArn#region}.{bucketPartition#dnsSuffix}",
-																										[cq]: bi,
-																										[cw]: aj
+																										[cA]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint.dualstack.{bucketArn#region}.{bucketPartition#dnsSuffix}",
+																										[cB]: bj,
+																										[cH]: al
 																									},
-																									[cj]: o
+																									[ct]: n
 																								},
 																								{
-																									[ck]: [
-																										aH,
-																										aF,
+																									[cv]: [
+																										as,
+																										ar,
 																										Z,
-																										ae
+																										ag
 																									],
 																									endpoint: {
-																										[cp]: M,
-																										[cq]: bi,
-																										[cw]: aj
+																										[cA]: M,
+																										[cB]: bj,
+																										[cH]: al
 																									},
-																									[cj]: o
+																									[ct]: n
 																								},
 																								{
-																									[ck]: [aH, aF],
+																									[cv]: bK,
 																									endpoint: {
-																										[cp]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint.{bucketArn#region}.{bucketPartition#dnsSuffix}",
-																										[cq]: bi,
-																										[cw]: aj
+																										[cA]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint.{bucketArn#region}.{bucketPartition#dnsSuffix}",
+																										[cB]: bj,
+																										[cH]: al
 																									},
-																									[cj]: o
+																									[ct]: n
 																								}
 																							],
-																							[cj]: p
-																						}, bc],
-																						[cj]: p
-																					}, bd],
-																					[cj]: p
+																							[ct]: o
+																						}, bd],
+																						[ct]: o
+																					}, be],
+																					[ct]: o
 																				}, {
 																					error: "Invalid ARN: The ARN was not for the S3 service, found: {bucketArn#service}",
-																					[cj]: f
+																					[ct]: f
 																				}],
-																				[cj]: p
-																			}, be],
-																			[cj]: p
-																		}, bf],
-																		[cj]: p
+																				[ct]: o
+																			}, bf],
+																			[ct]: o
+																		}, bg],
+																		[ct]: o
 																	}],
-																	[cj]: p
+																	[ct]: o
 																}],
-																[cj]: p
+																[ct]: o
 															},
-															bg
+															bh
 														],
-														[cj]: p
+														[ct]: o
 													}],
-													[cj]: p
+													[ct]: o
 												}],
-												[cj]: p
+												[ct]: o
 											},
 											{
-												[ck]: [{
-													[cl]: y,
-													[cm]: [aU, c]
+												[cv]: [{
+													[cw]: y,
+													[cx]: [aV, c]
 												}],
-												rules: [
+												[cu]: [
 													{
-														[ck]: bA,
+														[cv]: ch,
 														error: "S3 MRAP does not support dual-stack",
-														[cj]: f
+														[ct]: f
 													},
 													{
-														[ck]: bH,
+														[cv]: cq,
 														error: "S3 MRAP does not support FIPS",
-														[cj]: f
+														[ct]: f
 													},
 													{
-														[ck]: bB,
+														[cv]: bB,
 														error: "S3 MRAP does not support S3 Accelerate",
-														[cj]: f
+														[ct]: f
 													},
 													{
-														[ck]: [{
-															[cl]: e$1,
-															[cm]: [{ [cn]: "DisableMultiRegionAccessPoints" }, c]
+														[cv]: [{
+															[cw]: e$1,
+															[cx]: [{ [cy]: "DisableMultiRegionAccessPoints" }, c]
 														}],
 														error: "Invalid configuration: Multi-Region Access Point ARNs are disabled.",
-														[cj]: f
+														[ct]: f
 													},
 													{
-														[ck]: [{
-															[cl]: g,
-															[cm]: bx,
-															[co]: N
+														[cv]: [{
+															[cw]: g,
+															[cx]: by,
+															[cz]: N
 														}],
-														rules: [{
-															[ck]: [{
-																[cl]: h,
-																[cm]: [{
-																	[cl]: i$1,
-																	[cm]: [{ [cn]: N }, j]
+														[cu]: [{
+															[cv]: [{
+																[cw]: h,
+																[cx]: [{
+																	[cw]: i$1,
+																	[cx]: [{ [cy]: N }, j]
 																}, {
-																	[cl]: i$1,
-																	[cm]: [aR, "partition"]
+																	[cw]: i$1,
+																	[cx]: [aS, "partition"]
 																}]
 															}],
-															rules: [{
+															[cu]: [{
 																endpoint: {
-																	[cp]: "https://{accessPointName}.accesspoint.s3-global.{mrapPartition#dnsSuffix}",
-																	[cq]: { [cs]: [{
-																		[ct]: c,
+																	[cA]: "https://{accessPointName}.accesspoint.s3-global.{mrapPartition#dnsSuffix}",
+																	[cB]: { [cD]: [{
+																		[cE]: c,
 																		name: z,
-																		[cu]: B,
-																		[cx]: bS
+																		[cF]: B,
+																		[cI]: cb
 																	}] },
-																	[cw]: aj
+																	[cH]: al
 																},
-																[cj]: o
+																[ct]: n
 															}],
-															[cj]: p
+															[ct]: o
 														}, {
 															error: "Client was configured for partition `{mrapPartition#name}` but bucket referred to partition `{bucketArn#partition}`",
-															[cj]: f
+															[ct]: f
 														}],
-														[cj]: p
+														[ct]: o
 													}
 												],
-												[cj]: p
+												[ct]: o
 											},
 											{
 												error: "Invalid Access Point Name",
-												[cj]: f
+												[ct]: f
 											}
 										],
-										[cj]: p
-									}, bh],
-									[cj]: p
+										[ct]: o
+									}, bi],
+									[ct]: o
 								},
 								{
-									[ck]: [{
-										[cl]: h,
-										[cm]: [aT, A]
+									[cv]: [{
+										[cw]: h,
+										[cx]: [aU, A]
 									}],
-									rules: [
+									[cu]: [
 										{
-											[ck]: bA,
+											[cv]: ch,
 											error: "S3 Outposts does not support Dual-stack",
-											[cj]: f
+											[ct]: f
 										},
 										{
-											[ck]: bH,
+											[cv]: cq,
 											error: "S3 Outposts does not support FIPS",
-											[cj]: f
+											[ct]: f
 										},
 										{
-											[ck]: bB,
+											[cv]: bB,
 											error: "S3 Outposts does not support S3 Accelerate",
-											[cj]: f
+											[ct]: f
 										},
 										{
-											[ck]: [{
-												[cl]: d,
-												[cm]: [{
-													[cl]: i$1,
-													[cm]: [aR, "resourceId[4]"]
+											[cv]: [{
+												[cw]: d,
+												[cx]: [{
+													[cw]: i$1,
+													[cx]: [aS, "resourceId[4]"]
 												}]
 											}],
 											error: "Invalid Arn: Outpost Access Point ARN contains sub resources",
-											[cj]: f
+											[ct]: f
 										},
 										{
-											[ck]: [{
-												[cl]: i$1,
-												[cm]: bY,
-												[co]: x
+											[cv]: [{
+												[cw]: i$1,
+												[cx]: cg,
+												[cz]: x
 											}],
-											rules: [{
-												[ck]: bQ,
-												rules: [aY, {
-													[ck]: cc,
-													rules: [{
-														[ck]: bT,
-														rules: [{
-															[ck]: cd,
-															rules: [{
-																[ck]: ce,
-																rules: [{
-																	[ck]: cf,
-																	rules: [{
-																		[ck]: [{
-																			[cl]: i$1,
-																			[cm]: cb,
-																			[co]: O
+											[cu]: [{
+												[cv]: bZ,
+												[cu]: [aZ, {
+													[cv]: cl,
+													[cu]: [{
+														[cv]: bG,
+														[cu]: [{
+															[cv]: cm,
+															[cu]: [{
+																[cv]: cn,
+																[cu]: [{
+																	[cv]: co,
+																	[cu]: [{
+																		[cv]: [{
+																			[cw]: i$1,
+																			[cx]: ck,
+																			[cz]: O
 																		}],
-																		rules: [{
-																			[ck]: [{
-																				[cl]: i$1,
-																				[cm]: [aR, "resourceId[3]"],
-																				[co]: L
+																		[cu]: [{
+																			[cv]: [{
+																				[cw]: i$1,
+																				[cx]: [aS, "resourceId[3]"],
+																				[cz]: L
 																			}],
-																			rules: [{
-																				[ck]: [{
-																					[cl]: h,
-																					[cm]: [{ [cn]: O }, K]
+																			[cu]: [{
+																				[cv]: [{
+																					[cw]: h,
+																					[cx]: [{ [cy]: O }, K]
 																				}],
-																				rules: [{
-																					[ck]: bC,
+																				[cu]: [{
+																					[cv]: bC,
 																					endpoint: {
-																						[cp]: "https://{accessPointName}-{bucketArn#accountId}.{outpostId}.{url#authority}",
-																						[cq]: bj,
-																						[cw]: aj
+																						[cA]: "https://{accessPointName}-{bucketArn#accountId}.{outpostId}.{url#authority}",
+																						[cB]: bk,
+																						[cH]: al
 																					},
-																					[cj]: o
+																					[ct]: n
 																				}, {
 																					endpoint: {
-																						[cp]: "https://{accessPointName}-{bucketArn#accountId}.{outpostId}.s3-outposts.{bucketArn#region}.{bucketPartition#dnsSuffix}",
-																						[cq]: bj,
-																						[cw]: aj
+																						[cA]: "https://{accessPointName}-{bucketArn#accountId}.{outpostId}.s3-outposts.{bucketArn#region}.{bucketPartition#dnsSuffix}",
+																						[cB]: bk,
+																						[cH]: al
 																					},
-																					[cj]: o
+																					[ct]: n
 																				}],
-																				[cj]: p
+																				[ct]: o
 																			}, {
 																				error: "Expected an outpost type `accesspoint`, found {outpostType}",
-																				[cj]: f
+																				[ct]: f
 																			}],
-																			[cj]: p
+																			[ct]: o
 																		}, {
 																			error: "Invalid ARN: expected an access point name",
-																			[cj]: f
+																			[ct]: f
 																		}],
-																		[cj]: p
+																		[ct]: o
 																	}, {
 																		error: "Invalid ARN: Expected a 4-component resource",
-																		[cj]: f
+																		[ct]: f
 																	}],
-																	[cj]: p
-																}, bd],
-																[cj]: p
-															}, be],
-															[cj]: p
-														}, bf],
-														[cj]: p
+																	[ct]: o
+																}, be],
+																[ct]: o
+															}, bf],
+															[ct]: o
+														}, bg],
+														[ct]: o
 													}],
-													[cj]: p
+													[ct]: o
 												}],
-												[cj]: p
+												[ct]: o
 											}, {
 												error: "Invalid ARN: The outpost Id may only contain a-z, A-Z, 0-9 and `-`. Found: `{outpostId}`",
-												[cj]: f
+												[ct]: f
 											}],
-											[cj]: p
+											[ct]: o
 										},
 										{
 											error: "Invalid ARN: The Outpost Id was not set",
-											[cj]: f
+											[ct]: f
 										}
 									],
-									[cj]: p
+									[ct]: o
 								},
 								{
 									error: "Invalid ARN: Unrecognized format: {Bucket} (type: {arnType})",
-									[cj]: f
+									[ct]: f
 								}
 							],
-							[cj]: p
+							[ct]: o
 						}, {
 							error: "Invalid ARN: No ARN type specified",
-							[cj]: f
+							[ct]: f
 						}],
-						[cj]: p
+						[ct]: o
 					},
 					{
-						[ck]: [
+						[cv]: [
 							{
-								[cl]: k,
-								[cm]: [
+								[cw]: k,
+								[cx]: [
 									ad,
 									0,
 									4,
 									b
 								],
-								[co]: P
+								[cz]: P
 							},
 							{
-								[cl]: h,
-								[cm]: [{ [cn]: P }, "arn:"]
+								[cw]: h,
+								[cx]: [{ [cy]: P }, "arn:"]
 							},
 							{
-								[cl]: s,
-								[cm]: [{
-									[cl]: d,
-									[cm]: [bk]
+								[cw]: r,
+								[cx]: [{
+									[cw]: d,
+									[cx]: [bl]
 								}]
 							}
 						],
 						error: "Invalid ARN: `{Bucket}` was not a valid ARN",
-						[cj]: f
+						[ct]: f
 					},
 					{
-						[ck]: [{
-							[cl]: e$1,
-							[cm]: [aw, c]
-						}, bk],
+						[cv]: [{
+							[cw]: e$1,
+							[cx]: [az, c]
+						}, bl],
 						error: "Path-style addressing cannot be used with ARN buckets",
-						[cj]: f
+						[ct]: f
 					},
 					{
-						[ck]: bF,
-						rules: [{
-							[ck]: bT,
-							rules: [{
-								[ck]: [ax],
-								rules: [
+						[cv]: bE,
+						[cu]: [{
+							[cv]: bG,
+							[cu]: [{
+								[cv]: [aA],
+								[cu]: [
 									{
-										[ck]: [
+										[cv]: [
 											Y,
-											ap,
+											aq,
 											X,
-											ay
-										],
-										endpoint: {
-											[cp]: "https://s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											Y,
-											ap,
-											X,
-											aA,
 											aB
 										],
-										rules: [{
-											endpoint: bl,
-											[cj]: o
-										}],
-										[cj]: p
+										endpoint: {
+											[cA]: "https://s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
 									},
 									{
-										[ck]: [
+										[cv]: [
 											Y,
-											ap,
+											aq,
 											X,
-											aA,
+											aD,
 											aE
 										],
-										endpoint: bl,
-										[cj]: o
-									},
-									{
-										[ck]: [
-											aF,
-											ap,
-											X,
-											ay
-										],
-										endpoint: {
-											[cp]: "https://s3-fips.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											aF,
-											ap,
-											X,
-											aA,
-											aB
-										],
-										rules: [{
+										[cu]: [{
 											endpoint: bm,
-											[cj]: o
+											[ct]: n
 										}],
-										[cj]: p
+										[ct]: o
 									},
 									{
-										[ck]: [
-											aF,
-											ap,
+										[cv]: [
+											Y,
+											aq,
 											X,
-											aA,
-											aE
+											aD,
+											aH
 										],
 										endpoint: bm,
-										[cj]: o
+										[ct]: n
 									},
 									{
-										[ck]: [
-											Y,
-											ap,
-											aH,
-											ay
-										],
-										endpoint: {
-											[cp]: "https://s3.dualstack.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											Y,
-											ap,
-											aH,
-											aA,
+										[cv]: [
+											ar,
+											aq,
+											X,
 											aB
 										],
-										rules: [{
-											endpoint: bn,
-											[cj]: o
-										}],
-										[cj]: p
+										endpoint: {
+											[cA]: "https://s3-fips.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
 									},
 									{
-										[ck]: [
-											Y,
-											ap,
-											aH,
-											aA,
+										[cv]: [
+											ar,
+											aq,
+											X,
+											aD,
 											aE
+										],
+										[cu]: [{
+											endpoint: bn,
+											[ct]: n
+										}],
+										[ct]: o
+									},
+									{
+										[cv]: [
+											ar,
+											aq,
+											X,
+											aD,
+											aH
 										],
 										endpoint: bn,
-										[cj]: o
+										[ct]: n
 									},
 									{
-										[ck]: [
-											aF,
-											Z,
-											ae,
-											aH,
-											ay
-										],
-										endpoint: {
-											[cp]: Q,
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											aF,
-											Z,
-											ae,
-											aH,
-											aA,
+										[cv]: [
+											Y,
+											aq,
+											as,
 											aB
 										],
-										rules: [{
-											[ck]: bV,
-											endpoint: bo,
-											[cj]: o
-										}, {
-											endpoint: bo,
-											[cj]: o
-										}],
-										[cj]: p
+										endpoint: {
+											[cA]: "https://s3.dualstack.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}",
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
 									},
 									{
-										[ck]: [
-											aF,
-											Z,
-											ae,
-											aH,
-											aA,
+										[cv]: [
+											Y,
+											aq,
+											as,
+											aD,
 											aE
+										],
+										[cu]: [{
+											endpoint: bo,
+											[ct]: n
+										}],
+										[ct]: o
+									},
+									{
+										[cv]: [
+											Y,
+											aq,
+											as,
+											aD,
+											aH
 										],
 										endpoint: bo,
-										[cj]: o
+										[ct]: n
 									},
 									{
-										[ck]: [
-											aF,
-											ap,
-											aH,
-											ay
-										],
-										endpoint: {
-											[cp]: R$1,
-											[cq]: az,
-											[cw]: aj
-										},
-										[cj]: o
-									},
-									{
-										[ck]: [
-											aF,
-											ap,
-											aH,
-											aA,
+										[cv]: [
+											ar,
+											Z,
+											ag,
+											as,
 											aB
 										],
-										rules: [{
-											[ck]: bV,
-											endpoint: {
-												[cp]: R$1,
-												[cq]: aD,
-												[cw]: aj
-											},
-											[cj]: o
-										}, {
-											endpoint: bp,
-											[cj]: o
-										}],
-										[cj]: p
+										endpoint: {
+											[cA]: Q,
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
 									},
 									{
-										[ck]: [
-											aF,
-											ap,
-											aH,
-											aA,
+										[cv]: [
+											ar,
+											Z,
+											ag,
+											as,
+											aD,
 											aE
 										],
+										[cu]: [{
+											[cv]: cd,
+											endpoint: bp,
+											[ct]: n
+										}, {
+											endpoint: bp,
+											[ct]: n
+										}],
+										[ct]: o
+									},
+									{
+										[cv]: [
+											ar,
+											Z,
+											ag,
+											as,
+											aD,
+											aH
+										],
 										endpoint: bp,
-										[cj]: o
+										[ct]: n
+									},
+									{
+										[cv]: [
+											ar,
+											aq,
+											as,
+											aB
+										],
+										endpoint: {
+											[cA]: R$1,
+											[cB]: aC,
+											[cH]: al
+										},
+										[ct]: n
+									},
+									{
+										[cv]: [
+											ar,
+											aq,
+											as,
+											aD,
+											aE
+										],
+										[cu]: [{
+											[cv]: cd,
+											endpoint: {
+												[cA]: R$1,
+												[cB]: aG,
+												[cH]: al
+											},
+											[ct]: n
+										}, {
+											endpoint: bq,
+											[ct]: n
+										}],
+										[ct]: o
+									},
+									{
+										[cv]: [
+											ar,
+											aq,
+											as,
+											aD,
+											aH
+										],
+										endpoint: bq,
+										[ct]: n
 									}
 								],
-								[cj]: p
+								[ct]: o
 							}, {
 								error: "Path-style addressing cannot be used with S3 Accelerate",
-								[cj]: f
+								[ct]: f
 							}],
-							[cj]: p
+							[ct]: o
 						}],
-						[cj]: p
+						[ct]: o
 					}
 				],
-				[cj]: p
+				[ct]: o
 			},
 			{
-				[ck]: [{
-					[cl]: d,
-					[cm]: [bq]
+				[cv]: [{
+					[cw]: d,
+					[cx]: [br]
 				}, {
-					[cl]: e$1,
-					[cm]: [bq, c]
+					[cw]: e$1,
+					[cx]: [br, c]
 				}],
-				rules: [{
-					[ck]: bT,
-					rules: [{
-						[ck]: ch,
-						rules: [
-							aV,
+				[cu]: [{
+					[cv]: bG,
+					[cu]: [{
+						[cv]: cr,
+						[cu]: [
 							aW,
+							aX,
 							{
-								[ck]: bC,
+								[cv]: bC,
 								endpoint: {
-									[cp]: t$1,
-									[cq]: br,
-									[cw]: aj
+									[cA]: t$1,
+									[cB]: bs,
+									[cH]: al
 								},
-								[cj]: o
+								[ct]: n
 							},
 							{
-								[ck]: bH,
+								[cv]: cq,
 								endpoint: {
-									[cp]: "https://s3-object-lambda-fips.{Region}.{partitionResult#dnsSuffix}",
-									[cq]: br,
-									[cw]: aj
+									[cA]: "https://s3-object-lambda-fips.{Region}.{partitionResult#dnsSuffix}",
+									[cB]: bs,
+									[cH]: al
 								},
-								[cj]: o
+								[ct]: n
 							},
 							{
 								endpoint: {
-									[cp]: "https://s3-object-lambda.{Region}.{partitionResult#dnsSuffix}",
-									[cq]: br,
-									[cw]: aj
+									[cA]: "https://s3-object-lambda.{Region}.{partitionResult#dnsSuffix}",
+									[cB]: bs,
+									[cH]: al
 								},
-								[cj]: o
+								[ct]: n
 							}
 						],
-						[cj]: p
-					}, aQ],
-					[cj]: p
+						[ct]: o
+					}, aR],
+					[ct]: o
 				}],
-				[cj]: p
+				[ct]: o
 			},
 			{
-				[ck]: [ar],
-				rules: [{
-					[ck]: bT,
-					rules: [{
-						[ck]: ch,
-						rules: [
+				[cv]: [au],
+				[cu]: [{
+					[cv]: bG,
+					[cu]: [{
+						[cv]: cr,
+						[cu]: [
 							{
-								[ck]: [
+								[cv]: [
 									X,
 									Y,
-									ap,
-									ay
-								],
-								endpoint: {
-									[cp]: "https://s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}",
-									[cq]: az,
-									[cw]: aj
-								},
-								[cj]: o
-							},
-							{
-								[ck]: [
-									X,
-									Y,
-									ap,
-									aA,
+									aq,
 									aB
 								],
-								rules: [{
-									endpoint: bs,
-									[cj]: o
-								}],
-								[cj]: p
+								endpoint: {
+									[cA]: "https://s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}",
+									[cB]: aC,
+									[cH]: al
+								},
+								[ct]: n
 							},
 							{
-								[ck]: [
+								[cv]: [
 									X,
 									Y,
-									ap,
-									aA,
+									aq,
+									aD,
 									aE
 								],
-								endpoint: bs,
-								[cj]: o
-							},
-							{
-								[ck]: [
-									X,
-									aF,
-									ap,
-									ay
-								],
-								endpoint: {
-									[cp]: "https://s3-fips.us-east-1.{partitionResult#dnsSuffix}",
-									[cq]: az,
-									[cw]: aj
-								},
-								[cj]: o
-							},
-							{
-								[ck]: [
-									X,
-									aF,
-									ap,
-									aA,
-									aB
-								],
-								rules: [{
+								[cu]: [{
 									endpoint: bt,
-									[cj]: o
+									[ct]: n
 								}],
-								[cj]: p
+								[ct]: o
 							},
 							{
-								[ck]: [
+								[cv]: [
 									X,
-									aF,
-									ap,
-									aA,
-									aE
+									Y,
+									aq,
+									aD,
+									aH
 								],
 								endpoint: bt,
-								[cj]: o
+								[ct]: n
 							},
 							{
-								[ck]: [
-									aH,
-									Y,
-									ap,
-									ay
-								],
-								endpoint: {
-									[cp]: "https://s3.dualstack.us-east-1.{partitionResult#dnsSuffix}",
-									[cq]: az,
-									[cw]: aj
-								},
-								[cj]: o
-							},
-							{
-								[ck]: [
-									aH,
-									Y,
-									ap,
-									aA,
+								[cv]: [
+									X,
+									ar,
+									aq,
 									aB
 								],
-								rules: [{
-									endpoint: bu,
-									[cj]: o
-								}],
-								[cj]: p
+								endpoint: {
+									[cA]: "https://s3-fips.us-east-1.{partitionResult#dnsSuffix}",
+									[cB]: aC,
+									[cH]: al
+								},
+								[ct]: n
 							},
 							{
-								[ck]: [
-									aH,
-									Y,
-									ap,
-									aA,
+								[cv]: [
+									X,
+									ar,
+									aq,
+									aD,
 									aE
+								],
+								[cu]: [{
+									endpoint: bu,
+									[ct]: n
+								}],
+								[ct]: o
+							},
+							{
+								[cv]: [
+									X,
+									ar,
+									aq,
+									aD,
+									aH
 								],
 								endpoint: bu,
-								[cj]: o
+								[ct]: n
 							},
 							{
-								[ck]: [
-									aH,
-									aF,
-									Z,
-									ae,
-									ay
-								],
-								endpoint: {
-									[cp]: t$1,
-									[cq]: az,
-									[cw]: aj
-								},
-								[cj]: o
-							},
-							{
-								[ck]: [
-									aH,
-									aF,
-									Z,
-									ae,
-									aA,
+								[cv]: [
+									as,
+									Y,
+									aq,
 									aB
 								],
-								rules: [{
-									[ck]: bV,
-									endpoint: bv,
-									[cj]: o
-								}, {
-									endpoint: bv,
-									[cj]: o
-								}],
-								[cj]: p
+								endpoint: {
+									[cA]: "https://s3.dualstack.us-east-1.{partitionResult#dnsSuffix}",
+									[cB]: aC,
+									[cH]: al
+								},
+								[ct]: n
 							},
 							{
-								[ck]: [
-									aH,
-									aF,
-									Z,
-									ae,
-									aA,
+								[cv]: [
+									as,
+									Y,
+									aq,
+									aD,
 									aE
+								],
+								[cu]: [{
+									endpoint: bv,
+									[ct]: n
+								}],
+								[ct]: o
+							},
+							{
+								[cv]: [
+									as,
+									Y,
+									aq,
+									aD,
+									aH
 								],
 								endpoint: bv,
-								[cj]: o
+								[ct]: n
 							},
 							{
-								[ck]: [
-									aH,
-									aF,
-									ap,
-									ay
-								],
-								endpoint: {
-									[cp]: S,
-									[cq]: az,
-									[cw]: aj
-								},
-								[cj]: o
-							},
-							{
-								[ck]: [
-									aH,
-									aF,
-									ap,
-									aA,
+								[cv]: [
+									as,
+									ar,
+									Z,
+									ag,
 									aB
 								],
-								rules: [{
-									[ck]: bV,
-									endpoint: {
-										[cp]: S,
-										[cq]: aD,
-										[cw]: aj
-									},
-									[cj]: o
-								}, {
-									endpoint: bw,
-									[cj]: o
-								}],
-								[cj]: p
+								endpoint: {
+									[cA]: t$1,
+									[cB]: aC,
+									[cH]: al
+								},
+								[ct]: n
 							},
 							{
-								[ck]: [
-									aH,
-									aF,
-									ap,
-									aA,
+								[cv]: [
+									as,
+									ar,
+									Z,
+									ag,
+									aD,
 									aE
 								],
+								[cu]: [{
+									[cv]: cd,
+									endpoint: bw,
+									[ct]: n
+								}, {
+									endpoint: bw,
+									[ct]: n
+								}],
+								[ct]: o
+							},
+							{
+								[cv]: [
+									as,
+									ar,
+									Z,
+									ag,
+									aD,
+									aH
+								],
 								endpoint: bw,
-								[cj]: o
+								[ct]: n
+							},
+							{
+								[cv]: [
+									as,
+									ar,
+									aq,
+									aB
+								],
+								endpoint: {
+									[cA]: S,
+									[cB]: aC,
+									[cH]: al
+								},
+								[ct]: n
+							},
+							{
+								[cv]: [
+									as,
+									ar,
+									aq,
+									aD,
+									aE
+								],
+								[cu]: [{
+									[cv]: cd,
+									endpoint: {
+										[cA]: S,
+										[cB]: aG,
+										[cH]: al
+									},
+									[ct]: n
+								}, {
+									endpoint: bx,
+									[ct]: n
+								}],
+								[ct]: o
+							},
+							{
+								[cv]: [
+									as,
+									ar,
+									aq,
+									aD,
+									aH
+								],
+								endpoint: bx,
+								[ct]: n
 							}
 						],
-						[cj]: p
-					}, aQ],
-					[cj]: p
+						[ct]: o
+					}, aR],
+					[ct]: o
 				}],
-				[cj]: p
+				[ct]: o
 			}
 		],
-		[cj]: p
+		[ct]: o
 	}, {
 		error: "A region must be set when sending requests to S3.",
-		[cj]: f
+		[ct]: f
 	}]
 };
 const ruleSet = _data;
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/endpoint/endpointResolver.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/endpoint/endpointResolver.js
 const cache = new EndpointCache({
 	size: 50,
 	params: [
@@ -9862,12 +10616,12 @@ const defaultEndpointResolver = (endpointParams, context = {}) => {
 customEndpointFunctions.aws = awsEndpointFunctions;
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/auth/httpAuthSchemeProvider.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/auth/httpAuthSchemeProvider.js
 const createEndpointRuleSetHttpAuthSchemeParametersProvider = (defaultHttpAuthSchemeParametersProvider) => async (config$1, context, input) => {
-	if (!input) throw new Error(`Could not find \`input\` for \`defaultEndpointRuleSetHttpAuthSchemeParametersProvider\``);
+	if (!input) throw new Error("Could not find `input` for `defaultEndpointRuleSetHttpAuthSchemeParametersProvider`");
 	const defaultParameters = await defaultHttpAuthSchemeParametersProvider(config$1, context, input);
 	const instructionsFn = getSmithyContext(context)?.commandInstance?.constructor?.getEndpointParameterInstructions;
-	if (!instructionsFn) throw new Error(`getEndpointParameterInstructions() is not defined on \`${context.commandName}\``);
+	if (!instructionsFn) throw new Error(`getEndpointParameterInstructions() is not defined on '${context.commandName}'`);
 	const endpointParameters = await resolveParams(input, { getEndpointParameterInstructions: instructionsFn }, config$1);
 	return Object.assign(defaultParameters, endpointParameters);
 };
@@ -9915,7 +10669,7 @@ const createEndpointRuleSetHttpAuthSchemeProvider = (defaultEndpointResolver$1, 
 		for (const scheme of authSchemes) {
 			const { name: resolvedName, properties = {},...rest } = scheme;
 			const name$1 = resolvedName.toLowerCase();
-			if (resolvedName !== name$1) console.warn(`HttpAuthScheme has been normalized with lowercasing: \`${resolvedName}\` to \`${name$1}\``);
+			if (resolvedName !== name$1) console.warn(`HttpAuthScheme has been normalized with lowercasing: '${resolvedName}' to '${name$1}'`);
 			let schemeId;
 			if (name$1 === "sigv4a") {
 				schemeId = "aws.auth#sigv4a";
@@ -9923,11 +10677,11 @@ const createEndpointRuleSetHttpAuthSchemeProvider = (defaultEndpointResolver$1, 
 					const name$2 = s$1.name.toLowerCase();
 					return name$2 !== "sigv4a" && name$2.startsWith("sigv4");
 				});
-				if (!signatureV4CrtContainer.CrtSignerV4 && sigv4Present) continue;
+				if (SignatureV4MultiRegion.sigv4aDependency() === "none" && sigv4Present) continue;
 			} else if (name$1.startsWith("sigv4")) schemeId = "aws.auth#sigv4";
-else throw new Error(`Unknown HttpAuthScheme found in \`@smithy.rules#endpointRuleSet\`: \`${name$1}\``);
+else throw new Error(`Unknown HttpAuthScheme found in '@smithy.rules#endpointRuleSet': '${name$1}'`);
 			const createOption = createHttpAuthOptionFunctions[schemeId];
-			if (!createOption) throw new Error(`Could not find HttpAuthOption create function for \`${schemeId}\``);
+			if (!createOption) throw new Error(`Could not find HttpAuthOption create function for '${schemeId}'`);
 			const option = createOption(authParameters);
 			option.schemeId = schemeId;
 			option.signingProperties = {
@@ -9958,22 +10712,22 @@ const defaultS3HttpAuthSchemeProvider = createEndpointRuleSetHttpAuthSchemeProvi
 const resolveHttpAuthSchemeConfig = (config$1) => {
 	const config_0 = resolveAwsSdkSigV4Config(config$1);
 	const config_1 = resolveAwsSdkSigV4AConfig(config_0);
-	return { ...config_1 };
+	return Object.assign(config_1, { authSchemePreference: normalizeProvider$1(config$1.authSchemePreference ?? []) });
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/endpoint/EndpointParameters.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/endpoint/EndpointParameters.js
 const resolveClientEndpointParameters = (options) => {
-	return {
-		...options,
+	return Object.assign(options, {
 		useFipsEndpoint: options.useFipsEndpoint ?? false,
 		useDualstackEndpoint: options.useDualstackEndpoint ?? false,
 		forcePathStyle: options.forcePathStyle ?? false,
 		useAccelerateEndpoint: options.useAccelerateEndpoint ?? false,
 		useGlobalEndpoint: options.useGlobalEndpoint ?? false,
 		disableMultiregionAccessPoints: options.disableMultiregionAccessPoints ?? false,
-		defaultSigningName: "s3"
-	};
+		defaultSigningName: "s3",
+		clientContextParams: options.clientContextParams ?? {}
+	});
 };
 const commonParams = {
 	ForcePathStyle: {
@@ -10019,7 +10773,7 @@ const commonParams = {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/models/S3ServiceException.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/models/S3ServiceException.js
 var S3ServiceException = class S3ServiceException extends ServiceException {
 	constructor(options) {
 		super(options);
@@ -10028,1198 +10782,8784 @@ var S3ServiceException = class S3ServiceException extends ServiceException {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/models/models_0.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/models/errors.js
 var NoSuchUpload = class NoSuchUpload extends S3ServiceException {
+	name = "NoSuchUpload";
+	$fault = "client";
 	constructor(opts) {
 		super({
 			name: "NoSuchUpload",
 			$fault: "client",
 			...opts
 		});
-		this.name = "NoSuchUpload";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, NoSuchUpload.prototype);
 	}
 };
 var ObjectNotInActiveTierError = class ObjectNotInActiveTierError extends S3ServiceException {
+	name = "ObjectNotInActiveTierError";
+	$fault = "client";
 	constructor(opts) {
 		super({
 			name: "ObjectNotInActiveTierError",
 			$fault: "client",
 			...opts
 		});
-		this.name = "ObjectNotInActiveTierError";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, ObjectNotInActiveTierError.prototype);
 	}
 };
 var BucketAlreadyExists = class BucketAlreadyExists extends S3ServiceException {
+	name = "BucketAlreadyExists";
+	$fault = "client";
 	constructor(opts) {
 		super({
 			name: "BucketAlreadyExists",
 			$fault: "client",
 			...opts
 		});
-		this.name = "BucketAlreadyExists";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, BucketAlreadyExists.prototype);
 	}
 };
 var BucketAlreadyOwnedByYou = class BucketAlreadyOwnedByYou extends S3ServiceException {
+	name = "BucketAlreadyOwnedByYou";
+	$fault = "client";
 	constructor(opts) {
 		super({
 			name: "BucketAlreadyOwnedByYou",
 			$fault: "client",
 			...opts
 		});
-		this.name = "BucketAlreadyOwnedByYou";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, BucketAlreadyOwnedByYou.prototype);
 	}
 };
 var NoSuchBucket = class NoSuchBucket extends S3ServiceException {
+	name = "NoSuchBucket";
+	$fault = "client";
 	constructor(opts) {
 		super({
 			name: "NoSuchBucket",
 			$fault: "client",
 			...opts
 		});
-		this.name = "NoSuchBucket";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, NoSuchBucket.prototype);
 	}
 };
-var AnalyticsFilter;
-(function(AnalyticsFilter$1) {
-	AnalyticsFilter$1.visit = (value, visitor) => {
-		if (value.Prefix !== undefined) return visitor.Prefix(value.Prefix);
-		if (value.Tag !== undefined) return visitor.Tag(value.Tag);
-		if (value.And !== undefined) return visitor.And(value.And);
-		return visitor._(value.$unknown[0], value.$unknown[1]);
-	};
-})(AnalyticsFilter || (AnalyticsFilter = {}));
-var MetricsFilter;
-(function(MetricsFilter$1) {
-	MetricsFilter$1.visit = (value, visitor) => {
-		if (value.Prefix !== undefined) return visitor.Prefix(value.Prefix);
-		if (value.Tag !== undefined) return visitor.Tag(value.Tag);
-		if (value.AccessPointArn !== undefined) return visitor.AccessPointArn(value.AccessPointArn);
-		if (value.And !== undefined) return visitor.And(value.And);
-		return visitor._(value.$unknown[0], value.$unknown[1]);
-	};
-})(MetricsFilter || (MetricsFilter = {}));
 var InvalidObjectState = class InvalidObjectState extends S3ServiceException {
+	name = "InvalidObjectState";
+	$fault = "client";
+	StorageClass;
+	AccessTier;
 	constructor(opts) {
 		super({
 			name: "InvalidObjectState",
 			$fault: "client",
 			...opts
 		});
-		this.name = "InvalidObjectState";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, InvalidObjectState.prototype);
 		this.StorageClass = opts.StorageClass;
 		this.AccessTier = opts.AccessTier;
 	}
 };
 var NoSuchKey = class NoSuchKey extends S3ServiceException {
+	name = "NoSuchKey";
+	$fault = "client";
 	constructor(opts) {
 		super({
 			name: "NoSuchKey",
 			$fault: "client",
 			...opts
 		});
-		this.name = "NoSuchKey";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, NoSuchKey.prototype);
 	}
 };
 var NotFound = class NotFound extends S3ServiceException {
+	name = "NotFound";
+	$fault = "client";
 	constructor(opts) {
 		super({
 			name: "NotFound",
 			$fault: "client",
 			...opts
 		});
-		this.name = "NotFound";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, NotFound.prototype);
 	}
 };
-const CompleteMultipartUploadOutputFilterSensitiveLog = (obj) => ({
-	...obj,
-	...obj.SSEKMSKeyId && { SSEKMSKeyId: SENSITIVE_STRING }
-});
-const CompleteMultipartUploadRequestFilterSensitiveLog = (obj) => ({
-	...obj,
-	...obj.SSECustomerKey && { SSECustomerKey: SENSITIVE_STRING }
-});
-const CreateMultipartUploadOutputFilterSensitiveLog = (obj) => ({
-	...obj,
-	...obj.SSEKMSKeyId && { SSEKMSKeyId: SENSITIVE_STRING },
-	...obj.SSEKMSEncryptionContext && { SSEKMSEncryptionContext: SENSITIVE_STRING }
-});
-const CreateMultipartUploadRequestFilterSensitiveLog = (obj) => ({
-	...obj,
-	...obj.SSECustomerKey && { SSECustomerKey: SENSITIVE_STRING },
-	...obj.SSEKMSKeyId && { SSEKMSKeyId: SENSITIVE_STRING },
-	...obj.SSEKMSEncryptionContext && { SSEKMSEncryptionContext: SENSITIVE_STRING }
-});
-const SessionCredentialsFilterSensitiveLog = (obj) => ({
-	...obj,
-	...obj.SecretAccessKey && { SecretAccessKey: SENSITIVE_STRING },
-	...obj.SessionToken && { SessionToken: SENSITIVE_STRING }
-});
-const CreateSessionOutputFilterSensitiveLog = (obj) => ({
-	...obj,
-	...obj.SSEKMSKeyId && { SSEKMSKeyId: SENSITIVE_STRING },
-	...obj.SSEKMSEncryptionContext && { SSEKMSEncryptionContext: SENSITIVE_STRING },
-	...obj.Credentials && { Credentials: SessionCredentialsFilterSensitiveLog(obj.Credentials) }
-});
-const CreateSessionRequestFilterSensitiveLog = (obj) => ({
-	...obj,
-	...obj.SSEKMSKeyId && { SSEKMSKeyId: SENSITIVE_STRING },
-	...obj.SSEKMSEncryptionContext && { SSEKMSEncryptionContext: SENSITIVE_STRING }
-});
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+xml-builder@3.709.0/node_modules/@aws-sdk/xml-builder/dist-es/escape-attribute.js
-function escapeAttribute(value) {
-	return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-}
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+xml-builder@3.709.0/node_modules/@aws-sdk/xml-builder/dist-es/escape-element.js
-function escapeElement(value) {
-	return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/'/g, "&apos;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\r/g, "&#x0D;").replace(/\n/g, "&#x0A;").replace(/\u0085/g, "&#x85;").replace(/\u2028/, "&#x2028;");
-}
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+xml-builder@3.709.0/node_modules/@aws-sdk/xml-builder/dist-es/XmlText.js
-var XmlText = class {
-	constructor(value) {
-		this.value = value;
-	}
-	toString() {
-		return escapeElement("" + this.value);
-	}
-};
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+xml-builder@3.709.0/node_modules/@aws-sdk/xml-builder/dist-es/XmlNode.js
-var XmlNode = class XmlNode {
-	static of(name$1, childText, withName) {
-		const node = new XmlNode(name$1);
-		if (childText !== undefined) node.addChildNode(new XmlText(childText));
-		if (withName !== undefined) node.withName(withName);
-		return node;
-	}
-	constructor(name$1, children = []) {
-		this.name = name$1;
-		this.children = children;
-		this.attributes = {};
-	}
-	withName(name$1) {
-		this.name = name$1;
-		return this;
-	}
-	addAttribute(name$1, value) {
-		this.attributes[name$1] = value;
-		return this;
-	}
-	addChildNode(child) {
-		this.children.push(child);
-		return this;
-	}
-	removeAttribute(name$1) {
-		delete this.attributes[name$1];
-		return this;
-	}
-	n(name$1) {
-		this.name = name$1;
-		return this;
-	}
-	c(child) {
-		this.children.push(child);
-		return this;
-	}
-	a(name$1, value) {
-		if (value != null) this.attributes[name$1] = value;
-		return this;
-	}
-	cc(input, field, withName = field) {
-		if (input[field] != null) {
-			const node = XmlNode.of(field, input[field]).withName(withName);
-			this.c(node);
-		}
-	}
-	l(input, listName, memberName, valueProvider) {
-		if (input[listName] != null) {
-			const nodes = valueProvider();
-			nodes.map((node) => {
-				node.withName(memberName);
-				this.c(node);
-			});
-		}
-	}
-	lc(input, listName, memberName, valueProvider) {
-		if (input[listName] != null) {
-			const nodes = valueProvider();
-			const containerNode = new XmlNode(memberName);
-			nodes.map((node) => {
-				containerNode.c(node);
-			});
-			this.c(containerNode);
-		}
-	}
-	toString() {
-		const hasChildren = Boolean(this.children.length);
-		let xmlText = `<${this.name}`;
-		const attributes = this.attributes;
-		for (const attributeName of Object.keys(attributes)) {
-			const attribute = attributes[attributeName];
-			if (attribute != null) xmlText += ` ${attributeName}="${escapeAttribute("" + attribute)}"`;
-		}
-		return xmlText += !hasChildren ? "/>" : `>${this.children.map((c$1) => c$1.toString()).join("")}</${this.name}>`;
-	}
-};
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/models/models_1.js
 var EncryptionTypeMismatch = class EncryptionTypeMismatch extends S3ServiceException {
+	name = "EncryptionTypeMismatch";
+	$fault = "client";
 	constructor(opts) {
 		super({
 			name: "EncryptionTypeMismatch",
 			$fault: "client",
 			...opts
 		});
-		this.name = "EncryptionTypeMismatch";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, EncryptionTypeMismatch.prototype);
 	}
 };
 var InvalidRequest = class InvalidRequest extends S3ServiceException {
+	name = "InvalidRequest";
+	$fault = "client";
 	constructor(opts) {
 		super({
 			name: "InvalidRequest",
 			$fault: "client",
 			...opts
 		});
-		this.name = "InvalidRequest";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, InvalidRequest.prototype);
 	}
 };
 var InvalidWriteOffset = class InvalidWriteOffset extends S3ServiceException {
+	name = "InvalidWriteOffset";
+	$fault = "client";
 	constructor(opts) {
 		super({
 			name: "InvalidWriteOffset",
 			$fault: "client",
 			...opts
 		});
-		this.name = "InvalidWriteOffset";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, InvalidWriteOffset.prototype);
 	}
 };
 var TooManyParts = class TooManyParts extends S3ServiceException {
+	name = "TooManyParts";
+	$fault = "client";
 	constructor(opts) {
 		super({
 			name: "TooManyParts",
 			$fault: "client",
 			...opts
 		});
-		this.name = "TooManyParts";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, TooManyParts.prototype);
 	}
 };
+var IdempotencyParameterMismatch = class IdempotencyParameterMismatch extends S3ServiceException {
+	name = "IdempotencyParameterMismatch";
+	$fault = "client";
+	constructor(opts) {
+		super({
+			name: "IdempotencyParameterMismatch",
+			$fault: "client",
+			...opts
+		});
+		Object.setPrototypeOf(this, IdempotencyParameterMismatch.prototype);
+	}
+};
 var ObjectAlreadyInActiveTierError = class ObjectAlreadyInActiveTierError extends S3ServiceException {
+	name = "ObjectAlreadyInActiveTierError";
+	$fault = "client";
 	constructor(opts) {
 		super({
 			name: "ObjectAlreadyInActiveTierError",
 			$fault: "client",
 			...opts
 		});
-		this.name = "ObjectAlreadyInActiveTierError";
-		this.$fault = "client";
 		Object.setPrototypeOf(this, ObjectAlreadyInActiveTierError.prototype);
 	}
 };
-var SelectObjectContentEventStream;
-(function(SelectObjectContentEventStream$1) {
-	SelectObjectContentEventStream$1.visit = (value, visitor) => {
-		if (value.Records !== undefined) return visitor.Records(value.Records);
-		if (value.Stats !== undefined) return visitor.Stats(value.Stats);
-		if (value.Progress !== undefined) return visitor.Progress(value.Progress);
-		if (value.Cont !== undefined) return visitor.Cont(value.Cont);
-		if (value.End !== undefined) return visitor.End(value.End);
-		return visitor._(value.$unknown[0], value.$unknown[1]);
-	};
-})(SelectObjectContentEventStream || (SelectObjectContentEventStream = {}));
-const PutObjectOutputFilterSensitiveLog = (obj) => ({
-	...obj,
-	...obj.SSEKMSKeyId && { SSEKMSKeyId: SENSITIVE_STRING },
-	...obj.SSEKMSEncryptionContext && { SSEKMSEncryptionContext: SENSITIVE_STRING }
-});
-const PutObjectRequestFilterSensitiveLog = (obj) => ({
-	...obj,
-	...obj.SSECustomerKey && { SSECustomerKey: SENSITIVE_STRING },
-	...obj.SSEKMSKeyId && { SSEKMSKeyId: SENSITIVE_STRING },
-	...obj.SSEKMSEncryptionContext && { SSEKMSEncryptionContext: SENSITIVE_STRING }
-});
-const UploadPartOutputFilterSensitiveLog = (obj) => ({
-	...obj,
-	...obj.SSEKMSKeyId && { SSEKMSKeyId: SENSITIVE_STRING }
-});
-const UploadPartRequestFilterSensitiveLog = (obj) => ({
-	...obj,
-	...obj.SSECustomerKey && { SSECustomerKey: SENSITIVE_STRING }
-});
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/protocols/Aws_restXml.js
-const se_AbortMultipartUploadCommand = async (input, context) => {
-	const b$1 = requestBuilder(input, context);
-	const headers = map({}, isSerializableHeaderValue, {
-		[_xarp]: input[_RP],
-		[_xaebo]: input[_EBO],
-		[_xaimit]: [() => isSerializableHeaderValue(input[_IMIT]), () => dateToUtcString(input[_IMIT]).toString()]
-	});
-	b$1.bp("/{Key+}");
-	b$1.p("Bucket", () => input.Bucket, "{Bucket}", false);
-	b$1.p("Key", () => input.Key, "{Key+}", true);
-	const query = map({
-		[_xi]: [, "AbortMultipartUpload"],
-		[_uI]: [, expectNonNull(input[_UI], `UploadId`)]
-	});
-	let body;
-	b$1.m("DELETE").h(headers).q(query).b(body);
-	return b$1.build();
-};
-const se_CompleteMultipartUploadCommand = async (input, context) => {
-	const b$1 = requestBuilder(input, context);
-	const headers = map({}, isSerializableHeaderValue, {
-		"content-type": "application/xml",
-		[_xacc]: input[_CCRC],
-		[_xacc_]: input[_CCRCC],
-		[_xacs]: input[_CSHA],
-		[_xacs_]: input[_CSHAh],
-		[_xarp]: input[_RP],
-		[_xaebo]: input[_EBO],
-		[_im]: input[_IM],
-		[_inm]: input[_INM],
-		[_xasseca]: input[_SSECA],
-		[_xasseck]: input[_SSECK],
-		[_xasseckm]: input[_SSECKMD]
-	});
-	b$1.bp("/{Key+}");
-	b$1.p("Bucket", () => input.Bucket, "{Bucket}", false);
-	b$1.p("Key", () => input.Key, "{Key+}", true);
-	const query = map({ [_uI]: [, expectNonNull(input[_UI], `UploadId`)] });
-	let body;
-	let contents;
-	if (input.MultipartUpload !== undefined) {
-		contents = se_CompletedMultipartUpload(input.MultipartUpload, context);
-		contents = contents.n("CompleteMultipartUpload");
-		body = _ve;
-		contents.a("xmlns", "http://s3.amazonaws.com/doc/2006-03-01/");
-		body += contents.toString();
-	}
-	b$1.m("POST").h(headers).q(query).b(body);
-	return b$1.build();
-};
-const se_CreateMultipartUploadCommand = async (input, context) => {
-	const b$1 = requestBuilder(input, context);
-	const headers = map({}, isSerializableHeaderValue, {
-		[_xaa]: input[_ACL],
-		[_cc]: input[_CC],
-		[_cd]: input[_CD],
-		[_ce]: input[_CE],
-		[_cl]: input[_CL],
-		[_ct]: input[_CT],
-		[_e]: [() => isSerializableHeaderValue(input[_E]), () => dateToUtcString(input[_E]).toString()],
-		[_xagfc]: input[_GFC],
-		[_xagr]: input[_GR],
-		[_xagra]: input[_GRACP],
-		[_xagwa]: input[_GWACP],
-		[_xasse]: input[_SSE],
-		[_xasc]: input[_SC],
-		[_xawrl]: input[_WRL],
-		[_xasseca]: input[_SSECA],
-		[_xasseck]: input[_SSECK],
-		[_xasseckm]: input[_SSECKMD],
-		[_xasseakki]: input[_SSEKMSKI],
-		[_xassec]: input[_SSEKMSEC],
-		[_xassebke]: [() => isSerializableHeaderValue(input[_BKE]), () => input[_BKE].toString()],
-		[_xarp]: input[_RP],
-		[_xat]: input[_T],
-		[_xaolm]: input[_OLM],
-		[_xaolrud]: [() => isSerializableHeaderValue(input[_OLRUD]), () => serializeDateTime(input[_OLRUD]).toString()],
-		[_xaollh]: input[_OLLHS],
-		[_xaebo]: input[_EBO],
-		[_xaca]: input[_CA],
-		...input.Metadata !== undefined && Object.keys(input.Metadata).reduce((acc, suffix) => {
-			acc[`x-amz-meta-${suffix.toLowerCase()}`] = input.Metadata[suffix];
-			return acc;
-		}, {})
-	});
-	b$1.bp("/{Key+}");
-	b$1.p("Bucket", () => input.Bucket, "{Bucket}", false);
-	b$1.p("Key", () => input.Key, "{Key+}", true);
-	const query = map({ [_u]: [, ""] });
-	let body;
-	b$1.m("POST").h(headers).q(query).b(body);
-	return b$1.build();
-};
-const se_CreateSessionCommand = async (input, context) => {
-	const b$1 = requestBuilder(input, context);
-	const headers = map({}, isSerializableHeaderValue, {
-		[_xacsm]: input[_SM],
-		[_xasse]: input[_SSE],
-		[_xasseakki]: input[_SSEKMSKI],
-		[_xassec]: input[_SSEKMSEC],
-		[_xassebke]: [() => isSerializableHeaderValue(input[_BKE]), () => input[_BKE].toString()]
-	});
-	b$1.bp("/");
-	b$1.p("Bucket", () => input.Bucket, "{Bucket}", false);
-	const query = map({ [_s]: [, ""] });
-	let body;
-	b$1.m("GET").h(headers).q(query).b(body);
-	return b$1.build();
-};
-const se_DeleteObjectCommand = async (input, context) => {
-	const b$1 = requestBuilder(input, context);
-	const headers = map({}, isSerializableHeaderValue, {
-		[_xam]: input[_MFA],
-		[_xarp]: input[_RP],
-		[_xabgr]: [() => isSerializableHeaderValue(input[_BGR]), () => input[_BGR].toString()],
-		[_xaebo]: input[_EBO],
-		[_im]: input[_IM],
-		[_xaimlmt]: [() => isSerializableHeaderValue(input[_IMLMT]), () => dateToUtcString(input[_IMLMT]).toString()],
-		[_xaims]: [() => isSerializableHeaderValue(input[_IMS]), () => input[_IMS].toString()]
-	});
-	b$1.bp("/{Key+}");
-	b$1.p("Bucket", () => input.Bucket, "{Bucket}", false);
-	b$1.p("Key", () => input.Key, "{Key+}", true);
-	const query = map({
-		[_xi]: [, "DeleteObject"],
-		[_vI]: [, input[_VI]]
-	});
-	let body;
-	b$1.m("DELETE").h(headers).q(query).b(body);
-	return b$1.build();
-};
-const se_ListObjectsV2Command = async (input, context) => {
-	const b$1 = requestBuilder(input, context);
-	const headers = map({}, isSerializableHeaderValue, {
-		[_xarp]: input[_RP],
-		[_xaebo]: input[_EBO],
-		[_xaooa]: [() => isSerializableHeaderValue(input[_OOA]), () => (input[_OOA] || []).map(quoteHeader).join(", ")]
-	});
-	b$1.bp("/");
-	b$1.p("Bucket", () => input.Bucket, "{Bucket}", false);
-	const query = map({
-		[_lt]: [, "2"],
-		[_de]: [, input[_D]],
-		[_et]: [, input[_ET]],
-		[_mk]: [() => input.MaxKeys !== void 0, () => input[_MK].toString()],
-		[_pr]: [, input[_P]],
-		[_ct_]: [, input[_CTo]],
-		[_fo]: [() => input.FetchOwner !== void 0, () => input[_FO].toString()],
-		[_sa]: [, input[_SA]]
-	});
-	let body;
-	b$1.m("GET").h(headers).q(query).b(body);
-	return b$1.build();
-};
-const se_PutObjectCommand = async (input, context) => {
-	const b$1 = requestBuilder(input, context);
-	const headers = map({}, isSerializableHeaderValue, {
-		[_ct]: input[_CT] || "application/octet-stream",
-		[_xaa]: input[_ACL],
-		[_cc]: input[_CC],
-		[_cd]: input[_CD],
-		[_ce]: input[_CE],
-		[_cl]: input[_CL],
-		[_cl_]: [() => isSerializableHeaderValue(input[_CLo]), () => input[_CLo].toString()],
-		[_cm]: input[_CMD],
-		[_xasca]: input[_CA],
-		[_xacc]: input[_CCRC],
-		[_xacc_]: input[_CCRCC],
-		[_xacs]: input[_CSHA],
-		[_xacs_]: input[_CSHAh],
-		[_e]: [() => isSerializableHeaderValue(input[_E]), () => dateToUtcString(input[_E]).toString()],
-		[_im]: input[_IM],
-		[_inm]: input[_INM],
-		[_xagfc]: input[_GFC],
-		[_xagr]: input[_GR],
-		[_xagra]: input[_GRACP],
-		[_xagwa]: input[_GWACP],
-		[_xawob]: [() => isSerializableHeaderValue(input[_WOB]), () => input[_WOB].toString()],
-		[_xasse]: input[_SSE],
-		[_xasc]: input[_SC],
-		[_xawrl]: input[_WRL],
-		[_xasseca]: input[_SSECA],
-		[_xasseck]: input[_SSECK],
-		[_xasseckm]: input[_SSECKMD],
-		[_xasseakki]: input[_SSEKMSKI],
-		[_xassec]: input[_SSEKMSEC],
-		[_xassebke]: [() => isSerializableHeaderValue(input[_BKE]), () => input[_BKE].toString()],
-		[_xarp]: input[_RP],
-		[_xat]: input[_T],
-		[_xaolm]: input[_OLM],
-		[_xaolrud]: [() => isSerializableHeaderValue(input[_OLRUD]), () => serializeDateTime(input[_OLRUD]).toString()],
-		[_xaollh]: input[_OLLHS],
-		[_xaebo]: input[_EBO],
-		...input.Metadata !== undefined && Object.keys(input.Metadata).reduce((acc, suffix) => {
-			acc[`x-amz-meta-${suffix.toLowerCase()}`] = input.Metadata[suffix];
-			return acc;
-		}, {})
-	});
-	b$1.bp("/{Key+}");
-	b$1.p("Bucket", () => input.Bucket, "{Bucket}", false);
-	b$1.p("Key", () => input.Key, "{Key+}", true);
-	const query = map({ [_xi]: [, "PutObject"] });
-	let body;
-	let contents;
-	if (input.Body !== undefined) {
-		contents = input.Body;
-		body = contents;
-	}
-	b$1.m("PUT").h(headers).q(query).b(body);
-	return b$1.build();
-};
-const se_PutObjectTaggingCommand = async (input, context) => {
-	const b$1 = requestBuilder(input, context);
-	const headers = map({}, isSerializableHeaderValue, {
-		"content-type": "application/xml",
-		[_cm]: input[_CMD],
-		[_xasca]: input[_CA],
-		[_xaebo]: input[_EBO],
-		[_xarp]: input[_RP]
-	});
-	b$1.bp("/{Key+}");
-	b$1.p("Bucket", () => input.Bucket, "{Bucket}", false);
-	b$1.p("Key", () => input.Key, "{Key+}", true);
-	const query = map({
-		[_t]: [, ""],
-		[_vI]: [, input[_VI]]
-	});
-	let body;
-	let contents;
-	if (input.Tagging !== undefined) {
-		contents = se_Tagging(input.Tagging, context);
-		body = _ve;
-		contents.a("xmlns", "http://s3.amazonaws.com/doc/2006-03-01/");
-		body += contents.toString();
-	}
-	b$1.m("PUT").h(headers).q(query).b(body);
-	return b$1.build();
-};
-const se_UploadPartCommand = async (input, context) => {
-	const b$1 = requestBuilder(input, context);
-	const headers = map({}, isSerializableHeaderValue, {
-		"content-type": "application/octet-stream",
-		[_cl_]: [() => isSerializableHeaderValue(input[_CLo]), () => input[_CLo].toString()],
-		[_cm]: input[_CMD],
-		[_xasca]: input[_CA],
-		[_xacc]: input[_CCRC],
-		[_xacc_]: input[_CCRCC],
-		[_xacs]: input[_CSHA],
-		[_xacs_]: input[_CSHAh],
-		[_xasseca]: input[_SSECA],
-		[_xasseck]: input[_SSECK],
-		[_xasseckm]: input[_SSECKMD],
-		[_xarp]: input[_RP],
-		[_xaebo]: input[_EBO]
-	});
-	b$1.bp("/{Key+}");
-	b$1.p("Bucket", () => input.Bucket, "{Bucket}", false);
-	b$1.p("Key", () => input.Key, "{Key+}", true);
-	const query = map({
-		[_xi]: [, "UploadPart"],
-		[_pN]: [expectNonNull(input.PartNumber, `PartNumber`) != null, () => input[_PN].toString()],
-		[_uI]: [, expectNonNull(input[_UI], `UploadId`)]
-	});
-	let body;
-	let contents;
-	if (input.Body !== undefined) {
-		contents = input.Body;
-		body = contents;
-	}
-	b$1.m("PUT").h(headers).q(query).b(body);
-	return b$1.build();
-};
-const de_AbortMultipartUploadCommand = async (output, context) => {
-	if (output.statusCode !== 204 && output.statusCode >= 300) return de_CommandError(output, context);
-	const contents = map({
-		$metadata: deserializeMetadata(output),
-		[_RC]: [, output.headers[_xarc]]
-	});
-	await collectBody$1(output.body, context);
-	return contents;
-};
-const de_CompleteMultipartUploadCommand = async (output, context) => {
-	if (output.statusCode !== 200 && output.statusCode >= 300) return de_CommandError(output, context);
-	const contents = map({
-		$metadata: deserializeMetadata(output),
-		[_Exp]: [, output.headers[_xae]],
-		[_SSE]: [, output.headers[_xasse]],
-		[_VI]: [, output.headers[_xavi]],
-		[_SSEKMSKI]: [, output.headers[_xasseakki]],
-		[_BKE]: [() => void 0 !== output.headers[_xassebke], () => parseBoolean(output.headers[_xassebke])],
-		[_RC]: [, output.headers[_xarc]]
-	});
-	const data = expectNonNull(expectObject(await parseXmlBody(output.body, context)), "body");
-	if (data[_B] != null) contents[_B] = expectString(data[_B]);
-	if (data[_CCRC] != null) contents[_CCRC] = expectString(data[_CCRC]);
-	if (data[_CCRCC] != null) contents[_CCRCC] = expectString(data[_CCRCC]);
-	if (data[_CSHA] != null) contents[_CSHA] = expectString(data[_CSHA]);
-	if (data[_CSHAh] != null) contents[_CSHAh] = expectString(data[_CSHAh]);
-	if (data[_ETa] != null) contents[_ETa] = expectString(data[_ETa]);
-	if (data[_K] != null) contents[_K] = expectString(data[_K]);
-	if (data[_L] != null) contents[_L] = expectString(data[_L]);
-	return contents;
-};
-const de_CreateMultipartUploadCommand = async (output, context) => {
-	if (output.statusCode !== 200 && output.statusCode >= 300) return de_CommandError(output, context);
-	const contents = map({
-		$metadata: deserializeMetadata(output),
-		[_AD]: [() => void 0 !== output.headers[_xaad], () => expectNonNull(parseRfc7231DateTime(output.headers[_xaad]))],
-		[_ARI]: [, output.headers[_xaari]],
-		[_SSE]: [, output.headers[_xasse]],
-		[_SSECA]: [, output.headers[_xasseca]],
-		[_SSECKMD]: [, output.headers[_xasseckm]],
-		[_SSEKMSKI]: [, output.headers[_xasseakki]],
-		[_SSEKMSEC]: [, output.headers[_xassec]],
-		[_BKE]: [() => void 0 !== output.headers[_xassebke], () => parseBoolean(output.headers[_xassebke])],
-		[_RC]: [, output.headers[_xarc]],
-		[_CA]: [, output.headers[_xaca]]
-	});
-	const data = expectNonNull(expectObject(await parseXmlBody(output.body, context)), "body");
-	if (data[_B] != null) contents[_B] = expectString(data[_B]);
-	if (data[_K] != null) contents[_K] = expectString(data[_K]);
-	if (data[_UI] != null) contents[_UI] = expectString(data[_UI]);
-	return contents;
-};
-const de_CreateSessionCommand = async (output, context) => {
-	if (output.statusCode !== 200 && output.statusCode >= 300) return de_CommandError(output, context);
-	const contents = map({
-		$metadata: deserializeMetadata(output),
-		[_SSE]: [, output.headers[_xasse]],
-		[_SSEKMSKI]: [, output.headers[_xasseakki]],
-		[_SSEKMSEC]: [, output.headers[_xassec]],
-		[_BKE]: [() => void 0 !== output.headers[_xassebke], () => parseBoolean(output.headers[_xassebke])]
-	});
-	const data = expectNonNull(expectObject(await parseXmlBody(output.body, context)), "body");
-	if (data[_C] != null) contents[_C] = de_SessionCredentials(data[_C], context);
-	return contents;
-};
-const de_DeleteObjectCommand = async (output, context) => {
-	if (output.statusCode !== 204 && output.statusCode >= 300) return de_CommandError(output, context);
-	const contents = map({
-		$metadata: deserializeMetadata(output),
-		[_DM]: [() => void 0 !== output.headers[_xadm], () => parseBoolean(output.headers[_xadm])],
-		[_VI]: [, output.headers[_xavi]],
-		[_RC]: [, output.headers[_xarc]]
-	});
-	await collectBody$1(output.body, context);
-	return contents;
-};
-const de_ListObjectsV2Command = async (output, context) => {
-	if (output.statusCode !== 200 && output.statusCode >= 300) return de_CommandError(output, context);
-	const contents = map({
-		$metadata: deserializeMetadata(output),
-		[_RC]: [, output.headers[_xarc]]
-	});
-	const data = expectNonNull(expectObject(await parseXmlBody(output.body, context)), "body");
-	if (data.CommonPrefixes === "") contents[_CP] = [];
-else if (data[_CP] != null) contents[_CP] = de_CommonPrefixList(getArrayIfSingleItem(data[_CP]), context);
-	if (data.Contents === "") contents[_Co] = [];
-else if (data[_Co] != null) contents[_Co] = de_ObjectList(getArrayIfSingleItem(data[_Co]), context);
-	if (data[_CTo] != null) contents[_CTo] = expectString(data[_CTo]);
-	if (data[_D] != null) contents[_D] = expectString(data[_D]);
-	if (data[_ET] != null) contents[_ET] = expectString(data[_ET]);
-	if (data[_IT] != null) contents[_IT] = parseBoolean(data[_IT]);
-	if (data[_KC] != null) contents[_KC] = strictParseInt32(data[_KC]);
-	if (data[_MK] != null) contents[_MK] = strictParseInt32(data[_MK]);
-	if (data[_N] != null) contents[_N] = expectString(data[_N]);
-	if (data[_NCT] != null) contents[_NCT] = expectString(data[_NCT]);
-	if (data[_P] != null) contents[_P] = expectString(data[_P]);
-	if (data[_SA] != null) contents[_SA] = expectString(data[_SA]);
-	return contents;
-};
-const de_PutObjectCommand = async (output, context) => {
-	if (output.statusCode !== 200 && output.statusCode >= 300) return de_CommandError(output, context);
-	const contents = map({
-		$metadata: deserializeMetadata(output),
-		[_Exp]: [, output.headers[_xae]],
-		[_ETa]: [, output.headers[_eta]],
-		[_CCRC]: [, output.headers[_xacc]],
-		[_CCRCC]: [, output.headers[_xacc_]],
-		[_CSHA]: [, output.headers[_xacs]],
-		[_CSHAh]: [, output.headers[_xacs_]],
-		[_SSE]: [, output.headers[_xasse]],
-		[_VI]: [, output.headers[_xavi]],
-		[_SSECA]: [, output.headers[_xasseca]],
-		[_SSECKMD]: [, output.headers[_xasseckm]],
-		[_SSEKMSKI]: [, output.headers[_xasseakki]],
-		[_SSEKMSEC]: [, output.headers[_xassec]],
-		[_BKE]: [() => void 0 !== output.headers[_xassebke], () => parseBoolean(output.headers[_xassebke])],
-		[_Si]: [() => void 0 !== output.headers[_xaos], () => strictParseLong(output.headers[_xaos])],
-		[_RC]: [, output.headers[_xarc]]
-	});
-	await collectBody$1(output.body, context);
-	return contents;
-};
-const de_PutObjectTaggingCommand = async (output, context) => {
-	if (output.statusCode !== 200 && output.statusCode >= 300) return de_CommandError(output, context);
-	const contents = map({
-		$metadata: deserializeMetadata(output),
-		[_VI]: [, output.headers[_xavi]]
-	});
-	await collectBody$1(output.body, context);
-	return contents;
-};
-const de_UploadPartCommand = async (output, context) => {
-	if (output.statusCode !== 200 && output.statusCode >= 300) return de_CommandError(output, context);
-	const contents = map({
-		$metadata: deserializeMetadata(output),
-		[_SSE]: [, output.headers[_xasse]],
-		[_ETa]: [, output.headers[_eta]],
-		[_CCRC]: [, output.headers[_xacc]],
-		[_CCRCC]: [, output.headers[_xacc_]],
-		[_CSHA]: [, output.headers[_xacs]],
-		[_CSHAh]: [, output.headers[_xacs_]],
-		[_SSECA]: [, output.headers[_xasseca]],
-		[_SSECKMD]: [, output.headers[_xasseckm]],
-		[_SSEKMSKI]: [, output.headers[_xasseakki]],
-		[_BKE]: [() => void 0 !== output.headers[_xassebke], () => parseBoolean(output.headers[_xassebke])],
-		[_RC]: [, output.headers[_xarc]]
-	});
-	await collectBody$1(output.body, context);
-	return contents;
-};
-const de_CommandError = async (output, context) => {
-	const parsedOutput = {
-		...output,
-		body: await parseXmlErrorBody(output.body, context)
-	};
-	const errorCode = loadRestXmlErrorCode(output, parsedOutput.body);
-	switch (errorCode) {
-		case "NoSuchUpload":
-		case "com.amazonaws.s3#NoSuchUpload": throw await de_NoSuchUploadRes(parsedOutput, context);
-		case "ObjectNotInActiveTierError":
-		case "com.amazonaws.s3#ObjectNotInActiveTierError": throw await de_ObjectNotInActiveTierErrorRes(parsedOutput, context);
-		case "BucketAlreadyExists":
-		case "com.amazonaws.s3#BucketAlreadyExists": throw await de_BucketAlreadyExistsRes(parsedOutput, context);
-		case "BucketAlreadyOwnedByYou":
-		case "com.amazonaws.s3#BucketAlreadyOwnedByYou": throw await de_BucketAlreadyOwnedByYouRes(parsedOutput, context);
-		case "NoSuchBucket":
-		case "com.amazonaws.s3#NoSuchBucket": throw await de_NoSuchBucketRes(parsedOutput, context);
-		case "InvalidObjectState":
-		case "com.amazonaws.s3#InvalidObjectState": throw await de_InvalidObjectStateRes(parsedOutput, context);
-		case "NoSuchKey":
-		case "com.amazonaws.s3#NoSuchKey": throw await de_NoSuchKeyRes(parsedOutput, context);
-		case "NotFound":
-		case "com.amazonaws.s3#NotFound": throw await de_NotFoundRes(parsedOutput, context);
-		case "EncryptionTypeMismatch":
-		case "com.amazonaws.s3#EncryptionTypeMismatch": throw await de_EncryptionTypeMismatchRes(parsedOutput, context);
-		case "InvalidRequest":
-		case "com.amazonaws.s3#InvalidRequest": throw await de_InvalidRequestRes(parsedOutput, context);
-		case "InvalidWriteOffset":
-		case "com.amazonaws.s3#InvalidWriteOffset": throw await de_InvalidWriteOffsetRes(parsedOutput, context);
-		case "TooManyParts":
-		case "com.amazonaws.s3#TooManyParts": throw await de_TooManyPartsRes(parsedOutput, context);
-		case "ObjectAlreadyInActiveTierError":
-		case "com.amazonaws.s3#ObjectAlreadyInActiveTierError": throw await de_ObjectAlreadyInActiveTierErrorRes(parsedOutput, context);
-		default:
-			const parsedBody = parsedOutput.body;
-			return throwDefaultError({
-				output,
-				parsedBody,
-				errorCode
-			});
-	}
-};
-const throwDefaultError = withBaseException(S3ServiceException);
-const de_BucketAlreadyExistsRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	const exception = new BucketAlreadyExists({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const de_BucketAlreadyOwnedByYouRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	const exception = new BucketAlreadyOwnedByYou({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const de_EncryptionTypeMismatchRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	const exception = new EncryptionTypeMismatch({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const de_InvalidObjectStateRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	if (data[_AT] != null) contents[_AT] = expectString(data[_AT]);
-	if (data[_SC] != null) contents[_SC] = expectString(data[_SC]);
-	const exception = new InvalidObjectState({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const de_InvalidRequestRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	const exception = new InvalidRequest({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const de_InvalidWriteOffsetRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	const exception = new InvalidWriteOffset({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const de_NoSuchBucketRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	const exception = new NoSuchBucket({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const de_NoSuchKeyRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	const exception = new NoSuchKey({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const de_NoSuchUploadRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	const exception = new NoSuchUpload({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const de_NotFoundRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	const exception = new NotFound({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const de_ObjectAlreadyInActiveTierErrorRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	const exception = new ObjectAlreadyInActiveTierError({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const de_ObjectNotInActiveTierErrorRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	const exception = new ObjectNotInActiveTierError({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const de_TooManyPartsRes = async (parsedOutput, context) => {
-	const contents = map({});
-	const data = parsedOutput.body;
-	const exception = new TooManyParts({
-		$metadata: deserializeMetadata(parsedOutput),
-		...contents
-	});
-	return decorateServiceException(exception, parsedOutput.body);
-};
-const se_CompletedMultipartUpload = (input, context) => {
-	const bn$1 = new XmlNode(_CMU);
-	bn$1.l(input, "Parts", "Part", () => se_CompletedPartList(input[_Part], context));
-	return bn$1;
-};
-const se_CompletedPart = (input, context) => {
-	const bn$1 = new XmlNode(_CPo);
-	bn$1.cc(input, _ETa);
-	bn$1.cc(input, _CCRC);
-	bn$1.cc(input, _CCRCC);
-	bn$1.cc(input, _CSHA);
-	bn$1.cc(input, _CSHAh);
-	if (input[_PN] != null) bn$1.c(XmlNode.of(_PN, String(input[_PN])).n(_PN));
-	return bn$1;
-};
-const se_CompletedPartList = (input, context) => {
-	return input.filter((e$2) => e$2 != null).map((entry) => {
-		const n$1 = se_CompletedPart(entry, context);
-		return n$1.n(_me);
-	});
-};
-const se_Tag = (input, context) => {
-	const bn$1 = new XmlNode(_Ta);
-	if (input[_K] != null) bn$1.c(XmlNode.of(_OK, input[_K]).n(_K));
-	bn$1.cc(input, _Va);
-	return bn$1;
-};
-const se_Tagging = (input, context) => {
-	const bn$1 = new XmlNode(_T);
-	bn$1.lc(input, "TagSet", "TagSet", () => se_TagSet(input[_TS], context));
-	return bn$1;
-};
-const se_TagSet = (input, context) => {
-	return input.filter((e$2) => e$2 != null).map((entry) => {
-		const n$1 = se_Tag(entry, context);
-		return n$1.n(_Ta);
-	});
-};
-const de_ChecksumAlgorithmList = (output, context) => {
-	return (output || []).filter((e$2) => e$2 != null).map((entry) => {
-		return expectString(entry);
-	});
-};
-const de_CommonPrefix = (output, context) => {
-	const contents = {};
-	if (output[_P] != null) contents[_P] = expectString(output[_P]);
-	return contents;
-};
-const de_CommonPrefixList = (output, context) => {
-	return (output || []).filter((e$2) => e$2 != null).map((entry) => {
-		return de_CommonPrefix(entry, context);
-	});
-};
-const de__Object = (output, context) => {
-	const contents = {};
-	if (output[_K] != null) contents[_K] = expectString(output[_K]);
-	if (output[_LM] != null) contents[_LM] = expectNonNull(parseRfc3339DateTimeWithOffset(output[_LM]));
-	if (output[_ETa] != null) contents[_ETa] = expectString(output[_ETa]);
-	if (output.ChecksumAlgorithm === "") contents[_CA] = [];
-else if (output[_CA] != null) contents[_CA] = de_ChecksumAlgorithmList(getArrayIfSingleItem(output[_CA]), context);
-	if (output[_Si] != null) contents[_Si] = strictParseLong(output[_Si]);
-	if (output[_SC] != null) contents[_SC] = expectString(output[_SC]);
-	if (output[_O] != null) contents[_O] = de_Owner(output[_O], context);
-	if (output[_RSe] != null) contents[_RSe] = de_RestoreStatus(output[_RSe], context);
-	return contents;
-};
-const de_ObjectList = (output, context) => {
-	return (output || []).filter((e$2) => e$2 != null).map((entry) => {
-		return de__Object(entry, context);
-	});
-};
-const de_Owner = (output, context) => {
-	const contents = {};
-	if (output[_DN] != null) contents[_DN] = expectString(output[_DN]);
-	if (output[_ID_] != null) contents[_ID_] = expectString(output[_ID_]);
-	return contents;
-};
-const de_RestoreStatus = (output, context) => {
-	const contents = {};
-	if (output[_IRIP] != null) contents[_IRIP] = parseBoolean(output[_IRIP]);
-	if (output[_RED] != null) contents[_RED] = expectNonNull(parseRfc3339DateTimeWithOffset(output[_RED]));
-	return contents;
-};
-const de_SessionCredentials = (output, context) => {
-	const contents = {};
-	if (output[_AKI] != null) contents[_AKI] = expectString(output[_AKI]);
-	if (output[_SAK] != null) contents[_SAK] = expectString(output[_SAK]);
-	if (output[_ST] != null) contents[_ST] = expectString(output[_ST]);
-	if (output[_Exp] != null) contents[_Exp] = expectNonNull(parseRfc3339DateTimeWithOffset(output[_Exp]));
-	return contents;
-};
-const deserializeMetadata = (output) => ({
-	httpStatusCode: output.statusCode,
-	requestId: output.headers["x-amzn-requestid"] ?? output.headers["x-amzn-request-id"] ?? output.headers["x-amz-request-id"],
-	extendedRequestId: output.headers["x-amz-id-2"],
-	cfId: output.headers["x-amz-cf-id"]
-});
-const _ACL = "ACL";
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/schemas/schemas_0.js
+const _A = "Account";
+const _AAO = "AnalyticsAndOperator";
+const _AC = "AccelerateConfiguration";
+const _ACL = "AccessControlList";
+const _ACL_ = "ACL";
+const _ACLn = "AnalyticsConfigurationList";
+const _ACP = "AccessControlPolicy";
+const _ACT = "AccessControlTranslation";
+const _ACn = "AnalyticsConfiguration";
 const _AD = "AbortDate";
+const _AED = "AnalyticsExportDestination";
+const _AF = "AnalyticsFilter";
+const _AH = "AllowedHeaders";
+const _AHl = "AllowedHeader";
+const _AI = "AccountId";
+const _AIMU = "AbortIncompleteMultipartUpload";
 const _AKI = "AccessKeyId";
+const _AM = "AllowedMethods";
+const _AMU = "AbortMultipartUpload";
+const _AMUO = "AbortMultipartUploadOutput";
+const _AMUR = "AbortMultipartUploadRequest";
+const _AMl = "AllowedMethod";
+const _AO = "AllowedOrigins";
+const _AOl = "AllowedOrigin";
+const _APA = "AccessPointAlias";
+const _APAc = "AccessPointArn";
+const _AQRD = "AllowQuotedRecordDelimiter";
+const _AR = "AcceptRanges";
 const _ARI = "AbortRuleId";
+const _AS = "AbacStatus";
+const _ASBD = "AnalyticsS3BucketDestination";
+const _ASSEBD = "ApplyServerSideEncryptionByDefault";
+const _ASr = "ArchiveStatus";
 const _AT = "AccessTier";
+const _An = "And";
 const _B = "Bucket";
+const _BA = "BucketArn";
+const _BAE = "BucketAlreadyExists";
+const _BAI = "BucketAccountId";
+const _BAOBY = "BucketAlreadyOwnedByYou";
+const _BET = "BlockedEncryptionTypes";
 const _BGR = "BypassGovernanceRetention";
+const _BI = "BucketInfo";
 const _BKE = "BucketKeyEnabled";
-const _C = "Credentials";
+const _BLC = "BucketLifecycleConfiguration";
+const _BLN = "BucketLocationName";
+const _BLS = "BucketLoggingStatus";
+const _BLT = "BucketLocationType";
+const _BN = "BucketName";
+const _BP = "BytesProcessed";
+const _BPA = "BlockPublicAcls";
+const _BPP = "BlockPublicPolicy";
+const _BR = "BucketRegion";
+const _BRy = "BytesReturned";
+const _BS = "BytesScanned";
+const _Bo = "Body";
+const _Bu = "Buckets";
+const _C = "Checksum";
 const _CA = "ChecksumAlgorithm";
+const _CACL = "CannedACL";
+const _CB = "CreateBucket";
+const _CBC = "CreateBucketConfiguration";
+const _CBMC = "CreateBucketMetadataConfiguration";
+const _CBMCR = "CreateBucketMetadataConfigurationRequest";
+const _CBMTC = "CreateBucketMetadataTableConfiguration";
+const _CBMTCR = "CreateBucketMetadataTableConfigurationRequest";
+const _CBO = "CreateBucketOutput";
+const _CBR = "CreateBucketRequest";
 const _CC = "CacheControl";
 const _CCRC = "ChecksumCRC32";
 const _CCRCC = "ChecksumCRC32C";
-const _CD = "ContentDisposition";
-const _CE = "ContentEncoding";
+const _CCRCNVME = "ChecksumCRC64NVME";
+const _CC_ = "Cache-Control";
+const _CD = "CreationDate";
+const _CD_ = "Content-Disposition";
+const _CDo = "ContentDisposition";
+const _CE = "ContinuationEvent";
+const _CE_ = "Content-Encoding";
+const _CEo = "ContentEncoding";
+const _CF = "CloudFunction";
+const _CFC = "CloudFunctionConfiguration";
 const _CL = "ContentLanguage";
+const _CL_ = "Content-Language";
+const _CL__ = "Content-Length";
 const _CLo = "ContentLength";
+const _CM = "Content-MD5";
 const _CMD = "ContentMD5";
 const _CMU = "CompletedMultipartUpload";
-const _CP = "CommonPrefixes";
+const _CMUO = "CompleteMultipartUploadOutput";
+const _CMUOr = "CreateMultipartUploadOutput";
+const _CMUR = "CompleteMultipartUploadResult";
+const _CMURo = "CompleteMultipartUploadRequest";
+const _CMURr = "CreateMultipartUploadRequest";
+const _CMUo = "CompleteMultipartUpload";
+const _CMUr = "CreateMultipartUpload";
+const _CMh = "ChecksumMode";
+const _CO = "CopyObject";
+const _COO = "CopyObjectOutput";
+const _COR = "CopyObjectResult";
+const _CORSC = "CORSConfiguration";
+const _CORSR = "CORSRules";
+const _CORSRu = "CORSRule";
+const _CORo = "CopyObjectRequest";
+const _CP = "CommonPrefix";
+const _CPL = "CommonPrefixList";
+const _CPLo = "CompletedPartList";
+const _CPR = "CopyPartResult";
 const _CPo = "CompletedPart";
+const _CPom = "CommonPrefixes";
+const _CR = "ContentRange";
+const _CRSBA = "ConfirmRemoveSelfBucketAccess";
+const _CR_ = "Content-Range";
+const _CS = "CopySource";
 const _CSHA = "ChecksumSHA1";
 const _CSHAh = "ChecksumSHA256";
-const _CT = "ContentType";
-const _CTo = "ContinuationToken";
-const _Co = "Contents";
-const _D = "Delimiter";
+const _CSIM = "CopySourceIfMatch";
+const _CSIMS = "CopySourceIfModifiedSince";
+const _CSINM = "CopySourceIfNoneMatch";
+const _CSIUS = "CopySourceIfUnmodifiedSince";
+const _CSO = "CreateSessionOutput";
+const _CSR = "CreateSessionResult";
+const _CSRo = "CopySourceRange";
+const _CSRr = "CreateSessionRequest";
+const _CSSSECA = "CopySourceSSECustomerAlgorithm";
+const _CSSSECK = "CopySourceSSECustomerKey";
+const _CSSSECKMD = "CopySourceSSECustomerKeyMD5";
+const _CSV = "CSV";
+const _CSVI = "CopySourceVersionId";
+const _CSVIn = "CSVInput";
+const _CSVO = "CSVOutput";
+const _CSo = "ConfigurationState";
+const _CSr = "CreateSession";
+const _CT = "ChecksumType";
+const _CT_ = "Content-Type";
+const _CTl = "ClientToken";
+const _CTo = "ContentType";
+const _CTom = "CompressionType";
+const _CTon = "ContinuationToken";
+const _Co = "Condition";
+const _Cod = "Code";
+const _Com = "Comments";
+const _Con = "Contents";
+const _Cont = "Cont";
+const _Cr = "Credentials";
+const _D = "Days";
+const _DAI = "DaysAfterInitiation";
+const _DB = "DeleteBucket";
+const _DBAC = "DeleteBucketAnalyticsConfiguration";
+const _DBACR = "DeleteBucketAnalyticsConfigurationRequest";
+const _DBC = "DeleteBucketCors";
+const _DBCR = "DeleteBucketCorsRequest";
+const _DBE = "DeleteBucketEncryption";
+const _DBER = "DeleteBucketEncryptionRequest";
+const _DBIC = "DeleteBucketInventoryConfiguration";
+const _DBICR = "DeleteBucketInventoryConfigurationRequest";
+const _DBITC = "DeleteBucketIntelligentTieringConfiguration";
+const _DBITCR = "DeleteBucketIntelligentTieringConfigurationRequest";
+const _DBL = "DeleteBucketLifecycle";
+const _DBLR = "DeleteBucketLifecycleRequest";
+const _DBMC = "DeleteBucketMetadataConfiguration";
+const _DBMCR = "DeleteBucketMetadataConfigurationRequest";
+const _DBMCRe = "DeleteBucketMetricsConfigurationRequest";
+const _DBMCe = "DeleteBucketMetricsConfiguration";
+const _DBMTC = "DeleteBucketMetadataTableConfiguration";
+const _DBMTCR = "DeleteBucketMetadataTableConfigurationRequest";
+const _DBOC = "DeleteBucketOwnershipControls";
+const _DBOCR = "DeleteBucketOwnershipControlsRequest";
+const _DBP = "DeleteBucketPolicy";
+const _DBPR = "DeleteBucketPolicyRequest";
+const _DBR = "DeleteBucketRequest";
+const _DBRR = "DeleteBucketReplicationRequest";
+const _DBRe = "DeleteBucketReplication";
+const _DBT = "DeleteBucketTagging";
+const _DBTR = "DeleteBucketTaggingRequest";
+const _DBW = "DeleteBucketWebsite";
+const _DBWR = "DeleteBucketWebsiteRequest";
+const _DE = "DataExport";
+const _DIM = "DestinationIfMatch";
+const _DIMS = "DestinationIfModifiedSince";
+const _DINM = "DestinationIfNoneMatch";
+const _DIUS = "DestinationIfUnmodifiedSince";
 const _DM = "DeleteMarker";
+const _DME = "DeleteMarkerEntry";
+const _DMR = "DeleteMarkerReplication";
+const _DMVI = "DeleteMarkerVersionId";
+const _DMe = "DeleteMarkers";
 const _DN = "DisplayName";
-const _E = "Expires";
+const _DO = "DeletedObject";
+const _DOO = "DeleteObjectOutput";
+const _DOOe = "DeleteObjectsOutput";
+const _DOR = "DeleteObjectRequest";
+const _DORe = "DeleteObjectsRequest";
+const _DOT = "DeleteObjectTagging";
+const _DOTO = "DeleteObjectTaggingOutput";
+const _DOTR = "DeleteObjectTaggingRequest";
+const _DOe = "DeletedObjects";
+const _DOel = "DeleteObject";
+const _DOele = "DeleteObjects";
+const _DPAB = "DeletePublicAccessBlock";
+const _DPABR = "DeletePublicAccessBlockRequest";
+const _DR = "DataRedundancy";
+const _DRe = "DefaultRetention";
+const _DRel = "DeleteResult";
+const _DRes = "DestinationResult";
+const _Da = "Date";
+const _De = "Delete";
+const _Del = "Deleted";
+const _Deli = "Delimiter";
+const _Des = "Destination";
+const _Desc = "Description";
+const _Det = "Details";
+const _E = "Expiration";
+const _EA = "EmailAddress";
+const _EBC = "EventBridgeConfiguration";
 const _EBO = "ExpectedBucketOwner";
-const _ET = "EncodingType";
+const _EC = "EncryptionConfiguration";
+const _ECr = "ErrorCode";
+const _ED = "ErrorDetails";
+const _EDr = "ErrorDocument";
+const _EE = "EndEvent";
+const _EH = "ExposeHeaders";
+const _EHx = "ExposeHeader";
+const _EM = "ErrorMessage";
+const _EODM = "ExpiredObjectDeleteMarker";
+const _EOR = "ExistingObjectReplication";
+const _ES = "ExpiresString";
+const _ESBO = "ExpectedSourceBucketOwner";
+const _ET = "EncryptionType";
+const _ETL = "EncryptionTypeList";
+const _ETM = "EncryptionTypeMismatch";
 const _ETa = "ETag";
-const _Exp = "Expiration";
+const _ETn = "EncodingType";
+const _ETv = "EventThreshold";
+const _ETx = "ExpressionType";
+const _En = "Encryption";
+const _Ena = "Enabled";
+const _End = "End";
+const _Er = "Errors";
+const _Err = "Error";
+const _Ev = "Events";
+const _Eve = "Event";
+const _Ex = "Expires";
+const _Exp = "Expression";
+const _F = "Filter";
+const _FD = "FieldDelimiter";
+const _FHI = "FileHeaderInfo";
 const _FO = "FetchOwner";
+const _FR = "FilterRule";
+const _FRL = "FilterRuleList";
+const _FRi = "FilterRules";
+const _Fi = "Field";
+const _Fo = "Format";
+const _Fr = "Frequency";
+const _G = "Grants";
+const _GBA = "GetBucketAbac";
+const _GBAC = "GetBucketAccelerateConfiguration";
+const _GBACO = "GetBucketAccelerateConfigurationOutput";
+const _GBACOe = "GetBucketAnalyticsConfigurationOutput";
+const _GBACR = "GetBucketAccelerateConfigurationRequest";
+const _GBACRe = "GetBucketAnalyticsConfigurationRequest";
+const _GBACe = "GetBucketAnalyticsConfiguration";
+const _GBAO = "GetBucketAbacOutput";
+const _GBAOe = "GetBucketAclOutput";
+const _GBAR = "GetBucketAbacRequest";
+const _GBARe = "GetBucketAclRequest";
+const _GBAe = "GetBucketAcl";
+const _GBC = "GetBucketCors";
+const _GBCO = "GetBucketCorsOutput";
+const _GBCR = "GetBucketCorsRequest";
+const _GBE = "GetBucketEncryption";
+const _GBEO = "GetBucketEncryptionOutput";
+const _GBER = "GetBucketEncryptionRequest";
+const _GBIC = "GetBucketInventoryConfiguration";
+const _GBICO = "GetBucketInventoryConfigurationOutput";
+const _GBICR = "GetBucketInventoryConfigurationRequest";
+const _GBITC = "GetBucketIntelligentTieringConfiguration";
+const _GBITCO = "GetBucketIntelligentTieringConfigurationOutput";
+const _GBITCR = "GetBucketIntelligentTieringConfigurationRequest";
+const _GBL = "GetBucketLocation";
+const _GBLC = "GetBucketLifecycleConfiguration";
+const _GBLCO = "GetBucketLifecycleConfigurationOutput";
+const _GBLCR = "GetBucketLifecycleConfigurationRequest";
+const _GBLO = "GetBucketLocationOutput";
+const _GBLOe = "GetBucketLoggingOutput";
+const _GBLR = "GetBucketLocationRequest";
+const _GBLRe = "GetBucketLoggingRequest";
+const _GBLe = "GetBucketLogging";
+const _GBMC = "GetBucketMetadataConfiguration";
+const _GBMCO = "GetBucketMetadataConfigurationOutput";
+const _GBMCOe = "GetBucketMetricsConfigurationOutput";
+const _GBMCR = "GetBucketMetadataConfigurationResult";
+const _GBMCRe = "GetBucketMetadataConfigurationRequest";
+const _GBMCRet = "GetBucketMetricsConfigurationRequest";
+const _GBMCe = "GetBucketMetricsConfiguration";
+const _GBMTC = "GetBucketMetadataTableConfiguration";
+const _GBMTCO = "GetBucketMetadataTableConfigurationOutput";
+const _GBMTCR = "GetBucketMetadataTableConfigurationResult";
+const _GBMTCRe = "GetBucketMetadataTableConfigurationRequest";
+const _GBNC = "GetBucketNotificationConfiguration";
+const _GBNCR = "GetBucketNotificationConfigurationRequest";
+const _GBOC = "GetBucketOwnershipControls";
+const _GBOCO = "GetBucketOwnershipControlsOutput";
+const _GBOCR = "GetBucketOwnershipControlsRequest";
+const _GBP = "GetBucketPolicy";
+const _GBPO = "GetBucketPolicyOutput";
+const _GBPR = "GetBucketPolicyRequest";
+const _GBPS = "GetBucketPolicyStatus";
+const _GBPSO = "GetBucketPolicyStatusOutput";
+const _GBPSR = "GetBucketPolicyStatusRequest";
+const _GBR = "GetBucketReplication";
+const _GBRO = "GetBucketReplicationOutput";
+const _GBRP = "GetBucketRequestPayment";
+const _GBRPO = "GetBucketRequestPaymentOutput";
+const _GBRPR = "GetBucketRequestPaymentRequest";
+const _GBRR = "GetBucketReplicationRequest";
+const _GBT = "GetBucketTagging";
+const _GBTO = "GetBucketTaggingOutput";
+const _GBTR = "GetBucketTaggingRequest";
+const _GBV = "GetBucketVersioning";
+const _GBVO = "GetBucketVersioningOutput";
+const _GBVR = "GetBucketVersioningRequest";
+const _GBW = "GetBucketWebsite";
+const _GBWO = "GetBucketWebsiteOutput";
+const _GBWR = "GetBucketWebsiteRequest";
 const _GFC = "GrantFullControl";
+const _GJP = "GlacierJobParameters";
+const _GO = "GetObject";
+const _GOA = "GetObjectAcl";
+const _GOAO = "GetObjectAclOutput";
+const _GOAOe = "GetObjectAttributesOutput";
+const _GOAP = "GetObjectAttributesParts";
+const _GOAR = "GetObjectAclRequest";
+const _GOARe = "GetObjectAttributesResponse";
+const _GOARet = "GetObjectAttributesRequest";
+const _GOAe = "GetObjectAttributes";
+const _GOLC = "GetObjectLockConfiguration";
+const _GOLCO = "GetObjectLockConfigurationOutput";
+const _GOLCR = "GetObjectLockConfigurationRequest";
+const _GOLH = "GetObjectLegalHold";
+const _GOLHO = "GetObjectLegalHoldOutput";
+const _GOLHR = "GetObjectLegalHoldRequest";
+const _GOO = "GetObjectOutput";
+const _GOR = "GetObjectRequest";
+const _GORO = "GetObjectRetentionOutput";
+const _GORR = "GetObjectRetentionRequest";
+const _GORe = "GetObjectRetention";
+const _GOT = "GetObjectTagging";
+const _GOTO = "GetObjectTaggingOutput";
+const _GOTOe = "GetObjectTorrentOutput";
+const _GOTR = "GetObjectTaggingRequest";
+const _GOTRe = "GetObjectTorrentRequest";
+const _GOTe = "GetObjectTorrent";
+const _GPAB = "GetPublicAccessBlock";
+const _GPABO = "GetPublicAccessBlockOutput";
+const _GPABR = "GetPublicAccessBlockRequest";
 const _GR = "GrantRead";
 const _GRACP = "GrantReadACP";
+const _GW = "GrantWrite";
 const _GWACP = "GrantWriteACP";
-const _ID_ = "ID";
+const _Gr = "Grant";
+const _Gra = "Grantee";
+const _HB = "HeadBucket";
+const _HBO = "HeadBucketOutput";
+const _HBR = "HeadBucketRequest";
+const _HECRE = "HttpErrorCodeReturnedEquals";
+const _HN = "HostName";
+const _HO = "HeadObject";
+const _HOO = "HeadObjectOutput";
+const _HOR = "HeadObjectRequest";
+const _HRC = "HttpRedirectCode";
+const _I = "Id";
+const _IC = "InventoryConfiguration";
+const _ICL = "InventoryConfigurationList";
+const _ID = "ID";
+const _IDn = "IndexDocument";
+const _IDnv = "InventoryDestination";
+const _IE = "IsEnabled";
+const _IEn = "InventoryEncryption";
+const _IF = "InventoryFilter";
+const _IL = "IsLatest";
 const _IM = "IfMatch";
 const _IMIT = "IfMatchInitiatedTime";
 const _IMLMT = "IfMatchLastModifiedTime";
 const _IMS = "IfMatchSize";
+const _IMS_ = "If-Modified-Since";
+const _IMSf = "IfModifiedSince";
+const _IMUR = "InitiateMultipartUploadResult";
+const _IM_ = "If-Match";
 const _INM = "IfNoneMatch";
+const _INM_ = "If-None-Match";
+const _IOF = "InventoryOptionalFields";
+const _IOS = "InvalidObjectState";
+const _IOV = "IncludedObjectVersions";
+const _IP = "IsPublic";
+const _IPA = "IgnorePublicAcls";
+const _IPM = "IdempotencyParameterMismatch";
+const _IR = "InvalidRequest";
 const _IRIP = "IsRestoreInProgress";
+const _IS = "InputSerialization";
+const _ISBD = "InventoryS3BucketDestination";
+const _ISn = "InventorySchedule";
 const _IT = "IsTruncated";
+const _ITAO = "IntelligentTieringAndOperator";
+const _ITC = "IntelligentTieringConfiguration";
+const _ITCL = "IntelligentTieringConfigurationList";
+const _ITCR = "InventoryTableConfigurationResult";
+const _ITCU = "InventoryTableConfigurationUpdates";
+const _ITCn = "InventoryTableConfiguration";
+const _ITF = "IntelligentTieringFilter";
+const _IUS = "IfUnmodifiedSince";
+const _IUS_ = "If-Unmodified-Since";
+const _IWO = "InvalidWriteOffset";
+const _In = "Initiator";
+const _Ini = "Initiated";
+const _JSON = "JSON";
+const _JSONI = "JSONInput";
+const _JSONO = "JSONOutput";
+const _JTC = "JournalTableConfiguration";
+const _JTCR = "JournalTableConfigurationResult";
+const _JTCU = "JournalTableConfigurationUpdates";
 const _K = "Key";
 const _KC = "KeyCount";
+const _KI = "KeyId";
+const _KKA = "KmsKeyArn";
+const _KM = "KeyMarker";
+const _KMSC = "KMSContext";
+const _KMSKI = "KMSKeyId";
+const _KMSMKID = "KMSMasterKeyID";
+const _KPE = "KeyPrefixEquals";
 const _L = "Location";
+const _LAMBR = "ListAllMyBucketsResult";
+const _LAMDBR = "ListAllMyDirectoryBucketsResult";
+const _LB = "ListBuckets";
+const _LBAC = "ListBucketAnalyticsConfigurations";
+const _LBACO = "ListBucketAnalyticsConfigurationsOutput";
+const _LBACR = "ListBucketAnalyticsConfigurationResult";
+const _LBACRi = "ListBucketAnalyticsConfigurationsRequest";
+const _LBIC = "ListBucketInventoryConfigurations";
+const _LBICO = "ListBucketInventoryConfigurationsOutput";
+const _LBICR = "ListBucketInventoryConfigurationsRequest";
+const _LBITC = "ListBucketIntelligentTieringConfigurations";
+const _LBITCO = "ListBucketIntelligentTieringConfigurationsOutput";
+const _LBITCR = "ListBucketIntelligentTieringConfigurationsRequest";
+const _LBMC = "ListBucketMetricsConfigurations";
+const _LBMCO = "ListBucketMetricsConfigurationsOutput";
+const _LBMCR = "ListBucketMetricsConfigurationsRequest";
+const _LBO = "ListBucketsOutput";
+const _LBR = "ListBucketsRequest";
+const _LBRi = "ListBucketResult";
+const _LC = "LocationConstraint";
+const _LCi = "LifecycleConfiguration";
+const _LDB = "ListDirectoryBuckets";
+const _LDBO = "ListDirectoryBucketsOutput";
+const _LDBR = "ListDirectoryBucketsRequest";
+const _LE = "LoggingEnabled";
+const _LEi = "LifecycleExpiration";
+const _LFA = "LambdaFunctionArn";
+const _LFC = "LambdaFunctionConfiguration";
+const _LFCL = "LambdaFunctionConfigurationList";
+const _LFCa = "LambdaFunctionConfigurations";
+const _LH = "LegalHold";
+const _LI = "LocationInfo";
+const _LICR = "ListInventoryConfigurationsResult";
 const _LM = "LastModified";
+const _LMCR = "ListMetricsConfigurationsResult";
+const _LMT = "LastModifiedTime";
+const _LMU = "ListMultipartUploads";
+const _LMUO = "ListMultipartUploadsOutput";
+const _LMUR = "ListMultipartUploadsResult";
+const _LMURi = "ListMultipartUploadsRequest";
+const _LM_ = "Last-Modified";
+const _LO = "ListObjects";
+const _LOO = "ListObjectsOutput";
+const _LOR = "ListObjectsRequest";
+const _LOV = "ListObjectsV2";
+const _LOVO = "ListObjectsV2Output";
+const _LOVOi = "ListObjectVersionsOutput";
+const _LOVR = "ListObjectsV2Request";
+const _LOVRi = "ListObjectVersionsRequest";
+const _LOVi = "ListObjectVersions";
+const _LP = "ListParts";
+const _LPO = "ListPartsOutput";
+const _LPR = "ListPartsResult";
+const _LPRi = "ListPartsRequest";
+const _LR = "LifecycleRule";
+const _LRAO = "LifecycleRuleAndOperator";
+const _LRF = "LifecycleRuleFilter";
+const _LRi = "LifecycleRules";
+const _LVR = "ListVersionsResult";
+const _M = "Metadata";
+const _MAO = "MetricsAndOperator";
+const _MAS = "MaxAgeSeconds";
+const _MB = "MaxBuckets";
+const _MC = "MetadataConfiguration";
+const _MCL = "MetricsConfigurationList";
+const _MCR = "MetadataConfigurationResult";
+const _MCe = "MetricsConfiguration";
+const _MD = "MetadataDirective";
+const _MDB = "MaxDirectoryBuckets";
+const _MDf = "MfaDelete";
+const _ME = "MetadataEntry";
+const _MF = "MetricsFilter";
 const _MFA = "MFA";
+const _MFAD = "MFADelete";
 const _MK = "MaxKeys";
+const _MM = "MissingMeta";
+const _MOS = "MpuObjectSize";
+const _MP = "MaxParts";
+const _MTC = "MetadataTableConfiguration";
+const _MTCR = "MetadataTableConfigurationResult";
+const _MTEC = "MetadataTableEncryptionConfiguration";
+const _MU = "MultipartUpload";
+const _MUL = "MultipartUploadList";
+const _MUa = "MaxUploads";
+const _Ma = "Marker";
+const _Me = "Metrics";
+const _Mes = "Message";
+const _Mi = "Minutes";
+const _Mo = "Mode";
 const _N = "Name";
+const _NC = "NotificationConfiguration";
+const _NCF = "NotificationConfigurationFilter";
 const _NCT = "NextContinuationToken";
+const _ND = "NoncurrentDays";
+const _NF = "NotFound";
+const _NKM = "NextKeyMarker";
+const _NM = "NextMarker";
+const _NNV = "NewerNoncurrentVersions";
+const _NPNM = "NextPartNumberMarker";
+const _NSB = "NoSuchBucket";
+const _NSK = "NoSuchKey";
+const _NSU = "NoSuchUpload";
+const _NUIM = "NextUploadIdMarker";
+const _NVE = "NoncurrentVersionExpiration";
+const _NVIM = "NextVersionIdMarker";
+const _NVT = "NoncurrentVersionTransitions";
+const _NVTL = "NoncurrentVersionTransitionList";
+const _NVTo = "NoncurrentVersionTransition";
 const _O = "Owner";
-const _OK = "ObjectKey";
+const _OA = "ObjectAttributes";
+const _OAIATE = "ObjectAlreadyInActiveTierError";
+const _OC = "OwnershipControls";
+const _OCR = "OwnershipControlsRule";
+const _OCRw = "OwnershipControlsRules";
+const _OF = "OptionalFields";
+const _OI = "ObjectIdentifier";
+const _OIL = "ObjectIdentifierList";
+const _OL = "OutputLocation";
+const _OLC = "ObjectLockConfiguration";
+const _OLE = "ObjectLockEnabled";
+const _OLEFB = "ObjectLockEnabledForBucket";
+const _OLLH = "ObjectLockLegalHold";
 const _OLLHS = "ObjectLockLegalHoldStatus";
 const _OLM = "ObjectLockMode";
+const _OLR = "ObjectLockRetention";
 const _OLRUD = "ObjectLockRetainUntilDate";
+const _OLRb = "ObjectLockRule";
+const _OLb = "ObjectList";
+const _ONIATE = "ObjectNotInActiveTierError";
+const _OO = "ObjectOwnership";
 const _OOA = "OptionalObjectAttributes";
+const _OP = "ObjectParts";
+const _OPb = "ObjectPart";
+const _OS = "ObjectSize";
+const _OSGT = "ObjectSizeGreaterThan";
+const _OSLT = "ObjectSizeLessThan";
+const _OSV = "OutputSchemaVersion";
+const _OSu = "OutputSerialization";
+const _OV = "ObjectVersion";
+const _OVL = "ObjectVersionList";
+const _Ob = "Objects";
+const _Obj = "Object";
 const _P = "Prefix";
+const _PABC = "PublicAccessBlockConfiguration";
+const _PBA = "PutBucketAbac";
+const _PBAC = "PutBucketAccelerateConfiguration";
+const _PBACR = "PutBucketAccelerateConfigurationRequest";
+const _PBACRu = "PutBucketAnalyticsConfigurationRequest";
+const _PBACu = "PutBucketAnalyticsConfiguration";
+const _PBAR = "PutBucketAbacRequest";
+const _PBARu = "PutBucketAclRequest";
+const _PBAu = "PutBucketAcl";
+const _PBC = "PutBucketCors";
+const _PBCR = "PutBucketCorsRequest";
+const _PBE = "PutBucketEncryption";
+const _PBER = "PutBucketEncryptionRequest";
+const _PBIC = "PutBucketInventoryConfiguration";
+const _PBICR = "PutBucketInventoryConfigurationRequest";
+const _PBITC = "PutBucketIntelligentTieringConfiguration";
+const _PBITCR = "PutBucketIntelligentTieringConfigurationRequest";
+const _PBL = "PutBucketLogging";
+const _PBLC = "PutBucketLifecycleConfiguration";
+const _PBLCO = "PutBucketLifecycleConfigurationOutput";
+const _PBLCR = "PutBucketLifecycleConfigurationRequest";
+const _PBLR = "PutBucketLoggingRequest";
+const _PBMC = "PutBucketMetricsConfiguration";
+const _PBMCR = "PutBucketMetricsConfigurationRequest";
+const _PBNC = "PutBucketNotificationConfiguration";
+const _PBNCR = "PutBucketNotificationConfigurationRequest";
+const _PBOC = "PutBucketOwnershipControls";
+const _PBOCR = "PutBucketOwnershipControlsRequest";
+const _PBP = "PutBucketPolicy";
+const _PBPR = "PutBucketPolicyRequest";
+const _PBR = "PutBucketReplication";
+const _PBRP = "PutBucketRequestPayment";
+const _PBRPR = "PutBucketRequestPaymentRequest";
+const _PBRR = "PutBucketReplicationRequest";
+const _PBT = "PutBucketTagging";
+const _PBTR = "PutBucketTaggingRequest";
+const _PBV = "PutBucketVersioning";
+const _PBVR = "PutBucketVersioningRequest";
+const _PBW = "PutBucketWebsite";
+const _PBWR = "PutBucketWebsiteRequest";
+const _PC = "PartsCount";
+const _PDS = "PartitionDateSource";
+const _PE = "ProgressEvent";
+const _PI = "ParquetInput";
+const _PL = "PartsList";
 const _PN = "PartNumber";
-const _Part = "Parts";
+const _PNM = "PartNumberMarker";
+const _PO = "PutObject";
+const _POA = "PutObjectAcl";
+const _POAO = "PutObjectAclOutput";
+const _POAR = "PutObjectAclRequest";
+const _POLC = "PutObjectLockConfiguration";
+const _POLCO = "PutObjectLockConfigurationOutput";
+const _POLCR = "PutObjectLockConfigurationRequest";
+const _POLH = "PutObjectLegalHold";
+const _POLHO = "PutObjectLegalHoldOutput";
+const _POLHR = "PutObjectLegalHoldRequest";
+const _POO = "PutObjectOutput";
+const _POR = "PutObjectRequest";
+const _PORO = "PutObjectRetentionOutput";
+const _PORR = "PutObjectRetentionRequest";
+const _PORu = "PutObjectRetention";
+const _POT = "PutObjectTagging";
+const _POTO = "PutObjectTaggingOutput";
+const _POTR = "PutObjectTaggingRequest";
+const _PP = "PartitionedPrefix";
+const _PPAB = "PutPublicAccessBlock";
+const _PPABR = "PutPublicAccessBlockRequest";
+const _PS = "PolicyStatus";
+const _Pa = "Parts";
+const _Par = "Part";
+const _Parq = "Parquet";
+const _Pay = "Payer";
+const _Payl = "Payload";
+const _Pe = "Permission";
+const _Po = "Policy";
+const _Pr = "Progress";
+const _Pri = "Priority";
+const _Pro = "Protocol";
+const _Q = "Quiet";
+const _QA = "QueueArn";
+const _QC = "QuoteCharacter";
+const _QCL = "QueueConfigurationList";
+const _QCu = "QueueConfigurations";
+const _QCue = "QueueConfiguration";
+const _QEC = "QuoteEscapeCharacter";
+const _QF = "QuoteFields";
+const _Qu = "Queue";
+const _R = "Rules";
+const _RART = "RedirectAllRequestsTo";
 const _RC = "RequestCharged";
+const _RCC = "ResponseCacheControl";
+const _RCD = "ResponseContentDisposition";
+const _RCE = "ResponseContentEncoding";
+const _RCL = "ResponseContentLanguage";
+const _RCT = "ResponseContentType";
+const _RCe = "ReplicationConfiguration";
+const _RD = "RecordDelimiter";
+const _RE = "ResponseExpires";
 const _RED = "RestoreExpiryDate";
+const _REe = "RecordExpiration";
+const _REec = "RecordsEvent";
+const _RKKID = "ReplicaKmsKeyID";
+const _RKPW = "ReplaceKeyPrefixWith";
+const _RKW = "ReplaceKeyWith";
+const _RM = "ReplicaModifications";
+const _RO = "RenameObject";
+const _ROO = "RenameObjectOutput";
+const _ROOe = "RestoreObjectOutput";
+const _ROP = "RestoreOutputPath";
+const _ROR = "RenameObjectRequest";
+const _RORe = "RestoreObjectRequest";
+const _ROe = "RestoreObject";
 const _RP = "RequestPayer";
+const _RPB = "RestrictPublicBuckets";
+const _RPC = "RequestPaymentConfiguration";
+const _RPe = "RequestProgress";
+const _RR = "RoutingRules";
+const _RRAO = "ReplicationRuleAndOperator";
+const _RRF = "ReplicationRuleFilter";
+const _RRe = "ReplicationRule";
+const _RRep = "ReplicationRules";
+const _RReq = "RequestRoute";
+const _RRes = "RestoreRequest";
+const _RRo = "RoutingRule";
+const _RS = "ReplicationStatus";
 const _RSe = "RestoreStatus";
+const _RSen = "RenameSource";
+const _RT = "ReplicationTime";
+const _RTV = "ReplicationTimeValue";
+const _RTe = "RequestToken";
+const _RUD = "RetainUntilDate";
+const _Ra = "Range";
+const _Re = "Restore";
+const _Rec = "Records";
+const _Red = "Redirect";
+const _Ret = "Retention";
+const _Ro = "Role";
+const _Ru = "Rule";
+const _S = "Status";
 const _SA = "StartAfter";
 const _SAK = "SecretAccessKey";
+const _SAs = "SseAlgorithm";
+const _SB = "StreamingBlob";
+const _SBD = "S3BucketDestination";
 const _SC = "StorageClass";
+const _SCA = "StorageClassAnalysis";
+const _SCADE = "StorageClassAnalysisDataExport";
+const _SCV = "SessionCredentialValue";
+const _SCe = "SessionCredentials";
+const _SCt = "StatusCode";
+const _SDV = "SkipDestinationValidation";
+const _SE = "StatsEvent";
+const _SIM = "SourceIfMatch";
+const _SIMS = "SourceIfModifiedSince";
+const _SINM = "SourceIfNoneMatch";
+const _SIUS = "SourceIfUnmodifiedSince";
+const _SK = "SSE-KMS";
+const _SKEO = "SseKmsEncryptedObjects";
+const _SKF = "S3KeyFilter";
+const _SKe = "S3Key";
+const _SL = "S3Location";
 const _SM = "SessionMode";
+const _SOC = "SelectObjectContent";
+const _SOCES = "SelectObjectContentEventStream";
+const _SOCO = "SelectObjectContentOutput";
+const _SOCR = "SelectObjectContentRequest";
+const _SP = "SelectParameters";
+const _SPi = "SimplePrefix";
+const _SR = "ScanRange";
+const _SS = "SSE-S3";
+const _SSC = "SourceSelectionCriteria";
 const _SSE = "ServerSideEncryption";
+const _SSEA = "SSEAlgorithm";
+const _SSEBD = "ServerSideEncryptionByDefault";
+const _SSEC = "ServerSideEncryptionConfiguration";
 const _SSECA = "SSECustomerAlgorithm";
 const _SSECK = "SSECustomerKey";
 const _SSECKMD = "SSECustomerKeyMD5";
+const _SSEKMS = "SSEKMS";
 const _SSEKMSEC = "SSEKMSEncryptionContext";
 const _SSEKMSKI = "SSEKMSKeyId";
+const _SSER = "ServerSideEncryptionRule";
+const _SSERe = "ServerSideEncryptionRules";
+const _SSES = "SSES3";
 const _ST = "SessionToken";
+const _STD = "S3TablesDestination";
+const _STDR = "S3TablesDestinationResult";
+const _S_ = "S3";
+const _Sc = "Schedule";
 const _Si = "Size";
-const _T = "Tagging";
+const _St = "Start";
+const _Sta = "Stats";
+const _Su = "Suffix";
+const _T = "Tags";
+const _TA = "TableArn";
+const _TAo = "TopicArn";
+const _TB = "TargetBucket";
+const _TBA = "TableBucketArn";
+const _TBT = "TableBucketType";
+const _TC = "TagCount";
+const _TCL = "TopicConfigurationList";
+const _TCo = "TopicConfigurations";
+const _TCop = "TopicConfiguration";
+const _TD = "TaggingDirective";
+const _TDMOS = "TransitionDefaultMinimumObjectSize";
+const _TG = "TargetGrants";
+const _TGa = "TargetGrant";
+const _TL = "TieringList";
+const _TLr = "TransitionList";
+const _TMP = "TooManyParts";
+const _TN = "TableNamespace";
+const _TNa = "TableName";
+const _TOKF = "TargetObjectKeyFormat";
+const _TP = "TargetPrefix";
+const _TPC = "TotalPartsCount";
 const _TS = "TagSet";
+const _TSa = "TableStatus";
 const _Ta = "Tag";
+const _Tag = "Tagging";
+const _Ti = "Tier";
+const _Tie = "Tierings";
+const _Tier = "Tiering";
+const _Tim = "Time";
+const _To = "Token";
+const _Top = "Topic";
+const _Tr = "Transitions";
+const _Tra = "Transition";
+const _Ty = "Type";
+const _U = "Uploads";
+const _UBMITC = "UpdateBucketMetadataInventoryTableConfiguration";
+const _UBMITCR = "UpdateBucketMetadataInventoryTableConfigurationRequest";
+const _UBMJTC = "UpdateBucketMetadataJournalTableConfiguration";
+const _UBMJTCR = "UpdateBucketMetadataJournalTableConfigurationRequest";
 const _UI = "UploadId";
+const _UIM = "UploadIdMarker";
+const _UM = "UserMetadata";
+const _UP = "UploadPart";
+const _UPC = "UploadPartCopy";
+const _UPCO = "UploadPartCopyOutput";
+const _UPCR = "UploadPartCopyRequest";
+const _UPO = "UploadPartOutput";
+const _UPR = "UploadPartRequest";
+const _URI = "URI";
+const _Up = "Upload";
+const _V = "Value";
+const _VC = "VersioningConfiguration";
 const _VI = "VersionId";
-const _Va = "Value";
+const _VIM = "VersionIdMarker";
+const _Ve = "Versions";
+const _Ver = "Version";
+const _WC = "WebsiteConfiguration";
+const _WGOR = "WriteGetObjectResponse";
+const _WGORR = "WriteGetObjectResponseRequest";
 const _WOB = "WriteOffsetBytes";
 const _WRL = "WebsiteRedirectLocation";
-const _cc = "cache-control";
-const _cd = "content-disposition";
-const _ce = "content-encoding";
-const _cl = "content-language";
-const _cl_ = "content-length";
-const _cm = "content-md5";
-const _ct = "content-type";
-const _ct_ = "continuation-token";
-const _de = "delimiter";
-const _e = "expires";
+const _Y = "Years";
+const _ar = "accept-ranges";
+const _br = "bucket-region";
+const _c = "client";
+const _ct = "continuation-token";
+const _d = "delimiter";
+const _e = "error";
+const _eP = "eventPayload";
+const _en = "endpoint";
 const _et = "encoding-type";
-const _eta = "etag";
 const _fo = "fetch-owner";
-const _im = "if-match";
-const _inm = "if-none-match";
-const _lt = "list-type";
-const _me = "member";
+const _h = "http";
+const _hC = "httpChecksum";
+const _hE = "httpError";
+const _hH = "httpHeader";
+const _hL = "hostLabel";
+const _hP = "httpPayload";
+const _hPH = "httpPrefixHeaders";
+const _hQ = "httpQuery";
+const _hi = "http://www.w3.org/2001/XMLSchema-instance";
+const _i = "id";
+const _iT = "idempotencyToken";
+const _km = "key-marker";
+const _m = "marker";
+const _mb = "max-buckets";
+const _mdb = "max-directory-buckets";
 const _mk = "max-keys";
+const _mp = "max-parts";
+const _mu = "max-uploads";
+const _p = "prefix";
 const _pN = "partNumber";
-const _pr = "prefix";
-const _s = "session";
+const _pnm = "part-number-marker";
+const _rcc = "response-cache-control";
+const _rcd = "response-content-disposition";
+const _rce = "response-content-encoding";
+const _rcl = "response-content-language";
+const _rct = "response-content-type";
+const _re = "response-expires";
+const _s = "streaming";
 const _sa = "start-after";
-const _t = "tagging";
-const _u = "uploads";
+const _sm = "smithy.ts.sdk.synthetic.com.amazonaws.s3";
 const _uI = "uploadId";
+const _uim = "upload-id-marker";
 const _vI = "versionId";
-const _ve = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+const _vim = "version-id-marker";
+const _x = "xsi";
+const _xA = "xmlAttribute";
+const _xF = "xmlFlattened";
+const _xN = "xmlName";
+const _xNm = "xmlNamespace";
 const _xaa = "x-amz-acl";
 const _xaad = "x-amz-abort-date";
+const _xaapa = "x-amz-access-point-alias";
 const _xaari = "x-amz-abort-rule-id";
+const _xaas = "x-amz-archive-status";
+const _xaba = "x-amz-bucket-arn";
 const _xabgr = "x-amz-bypass-governance-retention";
+const _xabln = "x-amz-bucket-location-name";
+const _xablt = "x-amz-bucket-location-type";
+const _xabole = "x-amz-bucket-object-lock-enabled";
+const _xabolt = "x-amz-bucket-object-lock-token";
+const _xabr = "x-amz-bucket-region";
 const _xaca = "x-amz-checksum-algorithm";
 const _xacc = "x-amz-checksum-crc32";
 const _xacc_ = "x-amz-checksum-crc32c";
+const _xacc__ = "x-amz-checksum-crc64nvme";
+const _xacm = "x-amz-checksum-mode";
+const _xacrsba = "x-amz-confirm-remove-self-bucket-access";
 const _xacs = "x-amz-checksum-sha1";
 const _xacs_ = "x-amz-checksum-sha256";
+const _xacs__ = "x-amz-copy-source";
+const _xacsim = "x-amz-copy-source-if-match";
+const _xacsims = "x-amz-copy-source-if-modified-since";
+const _xacsinm = "x-amz-copy-source-if-none-match";
+const _xacsius = "x-amz-copy-source-if-unmodified-since";
 const _xacsm = "x-amz-create-session-mode";
+const _xacsr = "x-amz-copy-source-range";
+const _xacssseca = "x-amz-copy-source-server-side-encryption-customer-algorithm";
+const _xacssseck = "x-amz-copy-source-server-side-encryption-customer-key";
+const _xacssseckM = "x-amz-copy-source-server-side-encryption-customer-key-MD5";
+const _xacsvi = "x-amz-copy-source-version-id";
+const _xact = "x-amz-checksum-type";
+const _xact_ = "x-amz-client-token";
 const _xadm = "x-amz-delete-marker";
 const _xae = "x-amz-expiration";
 const _xaebo = "x-amz-expected-bucket-owner";
+const _xafec = "x-amz-fwd-error-code";
+const _xafem = "x-amz-fwd-error-message";
+const _xafhCC = "x-amz-fwd-header-Cache-Control";
+const _xafhCD = "x-amz-fwd-header-Content-Disposition";
+const _xafhCE = "x-amz-fwd-header-Content-Encoding";
+const _xafhCL = "x-amz-fwd-header-Content-Language";
+const _xafhCR = "x-amz-fwd-header-Content-Range";
+const _xafhCT = "x-amz-fwd-header-Content-Type";
+const _xafhE = "x-amz-fwd-header-ETag";
+const _xafhE_ = "x-amz-fwd-header-Expires";
+const _xafhLM = "x-amz-fwd-header-Last-Modified";
+const _xafhar = "x-amz-fwd-header-accept-ranges";
+const _xafhxacc = "x-amz-fwd-header-x-amz-checksum-crc32";
+const _xafhxacc_ = "x-amz-fwd-header-x-amz-checksum-crc32c";
+const _xafhxacc__ = "x-amz-fwd-header-x-amz-checksum-crc64nvme";
+const _xafhxacs = "x-amz-fwd-header-x-amz-checksum-sha1";
+const _xafhxacs_ = "x-amz-fwd-header-x-amz-checksum-sha256";
+const _xafhxadm = "x-amz-fwd-header-x-amz-delete-marker";
+const _xafhxae = "x-amz-fwd-header-x-amz-expiration";
+const _xafhxamm = "x-amz-fwd-header-x-amz-missing-meta";
+const _xafhxampc = "x-amz-fwd-header-x-amz-mp-parts-count";
+const _xafhxaollh = "x-amz-fwd-header-x-amz-object-lock-legal-hold";
+const _xafhxaolm = "x-amz-fwd-header-x-amz-object-lock-mode";
+const _xafhxaolrud = "x-amz-fwd-header-x-amz-object-lock-retain-until-date";
+const _xafhxar = "x-amz-fwd-header-x-amz-restore";
+const _xafhxarc = "x-amz-fwd-header-x-amz-request-charged";
+const _xafhxars = "x-amz-fwd-header-x-amz-replication-status";
+const _xafhxasc = "x-amz-fwd-header-x-amz-storage-class";
+const _xafhxasse = "x-amz-fwd-header-x-amz-server-side-encryption";
+const _xafhxasseakki = "x-amz-fwd-header-x-amz-server-side-encryption-aws-kms-key-id";
+const _xafhxassebke = "x-amz-fwd-header-x-amz-server-side-encryption-bucket-key-enabled";
+const _xafhxasseca = "x-amz-fwd-header-x-amz-server-side-encryption-customer-algorithm";
+const _xafhxasseckM = "x-amz-fwd-header-x-amz-server-side-encryption-customer-key-MD5";
+const _xafhxatc = "x-amz-fwd-header-x-amz-tagging-count";
+const _xafhxavi = "x-amz-fwd-header-x-amz-version-id";
+const _xafs = "x-amz-fwd-status";
 const _xagfc = "x-amz-grant-full-control";
 const _xagr = "x-amz-grant-read";
 const _xagra = "x-amz-grant-read-acp";
+const _xagw = "x-amz-grant-write";
 const _xagwa = "x-amz-grant-write-acp";
 const _xaimit = "x-amz-if-match-initiated-time";
 const _xaimlmt = "x-amz-if-match-last-modified-time";
 const _xaims = "x-amz-if-match-size";
-const _xam = "x-amz-mfa";
+const _xam = "x-amz-meta-";
+const _xam_ = "x-amz-mfa";
+const _xamd = "x-amz-metadata-directive";
+const _xamm = "x-amz-missing-meta";
+const _xamos = "x-amz-mp-object-size";
+const _xamp = "x-amz-max-parts";
+const _xampc = "x-amz-mp-parts-count";
+const _xaoa = "x-amz-object-attributes";
 const _xaollh = "x-amz-object-lock-legal-hold";
 const _xaolm = "x-amz-object-lock-mode";
 const _xaolrud = "x-amz-object-lock-retain-until-date";
+const _xaoo = "x-amz-object-ownership";
 const _xaooa = "x-amz-optional-object-attributes";
 const _xaos = "x-amz-object-size";
+const _xapnm = "x-amz-part-number-marker";
+const _xar = "x-amz-restore";
 const _xarc = "x-amz-request-charged";
+const _xarop = "x-amz-restore-output-path";
 const _xarp = "x-amz-request-payer";
+const _xarr = "x-amz-request-route";
+const _xars = "x-amz-replication-status";
+const _xars_ = "x-amz-rename-source";
+const _xarsim = "x-amz-rename-source-if-match";
+const _xarsims = "x-amz-rename-source-if-modified-since";
+const _xarsinm = "x-amz-rename-source-if-none-match";
+const _xarsius = "x-amz-rename-source-if-unmodified-since";
+const _xart = "x-amz-request-token";
 const _xasc = "x-amz-storage-class";
 const _xasca = "x-amz-sdk-checksum-algorithm";
+const _xasdv = "x-amz-skip-destination-validation";
+const _xasebo = "x-amz-source-expected-bucket-owner";
 const _xasse = "x-amz-server-side-encryption";
 const _xasseakki = "x-amz-server-side-encryption-aws-kms-key-id";
 const _xassebke = "x-amz-server-side-encryption-bucket-key-enabled";
 const _xassec = "x-amz-server-side-encryption-context";
 const _xasseca = "x-amz-server-side-encryption-customer-algorithm";
 const _xasseck = "x-amz-server-side-encryption-customer-key";
-const _xasseckm = "x-amz-server-side-encryption-customer-key-md5";
+const _xasseckM = "x-amz-server-side-encryption-customer-key-MD5";
 const _xat = "x-amz-tagging";
+const _xatc = "x-amz-tagging-count";
+const _xatd = "x-amz-tagging-directive";
+const _xatdmos = "x-amz-transition-default-minimum-object-size";
 const _xavi = "x-amz-version-id";
 const _xawob = "x-amz-write-offset-bytes";
 const _xawrl = "x-amz-website-redirect-location";
-const _xi = "x-id";
+const _xs = "xsi:type";
+const n0 = "com.amazonaws.s3";
+var CopySourceSSECustomerKey = [
+	0,
+	n0,
+	_CSSSECK,
+	8,
+	0
+];
+var SessionCredentialValue = [
+	0,
+	n0,
+	_SCV,
+	8,
+	0
+];
+var SSECustomerKey = [
+	0,
+	n0,
+	_SSECK,
+	8,
+	0
+];
+var SSEKMSEncryptionContext = [
+	0,
+	n0,
+	_SSEKMSEC,
+	8,
+	0
+];
+var SSEKMSKeyId = [
+	0,
+	n0,
+	_SSEKMSKI,
+	8,
+	0
+];
+var StreamingBlob = [
+	0,
+	n0,
+	_SB,
+	{ [_s]: 1 },
+	42
+];
+var AbacStatus$ = [
+	3,
+	n0,
+	_AS,
+	0,
+	[_S],
+	[0]
+];
+var AbortIncompleteMultipartUpload$ = [
+	3,
+	n0,
+	_AIMU,
+	0,
+	[_DAI],
+	[1]
+];
+var AbortMultipartUploadOutput$ = [
+	3,
+	n0,
+	_AMUO,
+	0,
+	[_RC],
+	[[0, { [_hH]: _xarc }]]
+];
+var AbortMultipartUploadRequest$ = [
+	3,
+	n0,
+	_AMUR,
+	0,
+	[
+		_B,
+		_K,
+		_UI,
+		_RP,
+		_EBO,
+		_IMIT
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hQ]: _uI }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xaebo }],
+		[6, { [_hH]: _xaimit }]
+	],
+	3
+];
+var AccelerateConfiguration$ = [
+	3,
+	n0,
+	_AC,
+	0,
+	[_S],
+	[0]
+];
+var AccessControlPolicy$ = [
+	3,
+	n0,
+	_ACP,
+	0,
+	[_G, _O],
+	[[() => Grants, { [_xN]: _ACL }], () => Owner$]
+];
+var AccessControlTranslation$ = [
+	3,
+	n0,
+	_ACT,
+	0,
+	[_O],
+	[0],
+	1
+];
+var AnalyticsAndOperator$ = [
+	3,
+	n0,
+	_AAO,
+	0,
+	[_P, _T],
+	[0, [() => TagSet, {
+		[_xF]: 1,
+		[_xN]: _Ta
+	}]]
+];
+var AnalyticsConfiguration$ = [
+	3,
+	n0,
+	_ACn,
+	0,
+	[
+		_I,
+		_SCA,
+		_F
+	],
+	[
+		0,
+		() => StorageClassAnalysis$,
+		[() => AnalyticsFilter$, 0]
+	],
+	2
+];
+var AnalyticsExportDestination$ = [
+	3,
+	n0,
+	_AED,
+	0,
+	[_SBD],
+	[() => AnalyticsS3BucketDestination$],
+	1
+];
+var AnalyticsS3BucketDestination$ = [
+	3,
+	n0,
+	_ASBD,
+	0,
+	[
+		_Fo,
+		_B,
+		_BAI,
+		_P
+	],
+	[
+		0,
+		0,
+		0,
+		0
+	],
+	2
+];
+var BlockedEncryptionTypes$ = [
+	3,
+	n0,
+	_BET,
+	0,
+	[_ET],
+	[[() => EncryptionTypeList, { [_xF]: 1 }]]
+];
+var Bucket$ = [
+	3,
+	n0,
+	_B,
+	0,
+	[
+		_N,
+		_CD,
+		_BR,
+		_BA
+	],
+	[
+		0,
+		4,
+		0,
+		0
+	]
+];
+var BucketAlreadyExists$ = [
+	-3,
+	n0,
+	_BAE,
+	{
+		[_e]: _c,
+		[_hE]: 409
+	},
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(BucketAlreadyExists$, BucketAlreadyExists);
+var BucketAlreadyOwnedByYou$ = [
+	-3,
+	n0,
+	_BAOBY,
+	{
+		[_e]: _c,
+		[_hE]: 409
+	},
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(BucketAlreadyOwnedByYou$, BucketAlreadyOwnedByYou);
+var BucketInfo$ = [
+	3,
+	n0,
+	_BI,
+	0,
+	[_DR, _Ty],
+	[0, 0]
+];
+var BucketLifecycleConfiguration$ = [
+	3,
+	n0,
+	_BLC,
+	0,
+	[_R],
+	[[() => LifecycleRules, {
+		[_xF]: 1,
+		[_xN]: _Ru
+	}]],
+	1
+];
+var BucketLoggingStatus$ = [
+	3,
+	n0,
+	_BLS,
+	0,
+	[_LE],
+	[[() => LoggingEnabled$, 0]]
+];
+var Checksum$ = [
+	3,
+	n0,
+	_C,
+	0,
+	[
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh,
+		_CT
+	],
+	[
+		0,
+		0,
+		0,
+		0,
+		0,
+		0
+	]
+];
+var CommonPrefix$ = [
+	3,
+	n0,
+	_CP,
+	0,
+	[_P],
+	[0]
+];
+var CompletedMultipartUpload$ = [
+	3,
+	n0,
+	_CMU,
+	0,
+	[_Pa],
+	[[() => CompletedPartList, {
+		[_xF]: 1,
+		[_xN]: _Par
+	}]]
+];
+var CompletedPart$ = [
+	3,
+	n0,
+	_CPo,
+	0,
+	[
+		_ETa,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh,
+		_PN
+	],
+	[
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		1
+	]
+];
+var CompleteMultipartUploadOutput$ = [
+	3,
+	n0,
+	_CMUO,
+	{ [_xN]: _CMUR },
+	[
+		_L,
+		_B,
+		_K,
+		_E,
+		_ETa,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh,
+		_CT,
+		_SSE,
+		_VI,
+		_SSEKMSKI,
+		_BKE,
+		_RC
+	],
+	[
+		0,
+		0,
+		0,
+		[0, { [_hH]: _xae }],
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		[0, { [_hH]: _xasse }],
+		[0, { [_hH]: _xavi }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[2, { [_hH]: _xassebke }],
+		[0, { [_hH]: _xarc }]
+	]
+];
+var CompleteMultipartUploadRequest$ = [
+	3,
+	n0,
+	_CMURo,
+	0,
+	[
+		_B,
+		_K,
+		_UI,
+		_MU,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh,
+		_CT,
+		_MOS,
+		_RP,
+		_EBO,
+		_IM,
+		_INM,
+		_SSECA,
+		_SSECK,
+		_SSECKMD
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hQ]: _uI }],
+		[() => CompletedMultipartUpload$, {
+			[_hP]: 1,
+			[_xN]: _CMUo
+		}],
+		[0, { [_hH]: _xacc }],
+		[0, { [_hH]: _xacc_ }],
+		[0, { [_hH]: _xacc__ }],
+		[0, { [_hH]: _xacs }],
+		[0, { [_hH]: _xacs_ }],
+		[0, { [_hH]: _xact }],
+		[1, { [_hH]: _xamos }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _IM_ }],
+		[0, { [_hH]: _INM_ }],
+		[0, { [_hH]: _xasseca }],
+		[() => SSECustomerKey, { [_hH]: _xasseck }],
+		[0, { [_hH]: _xasseckM }]
+	],
+	3
+];
+var Condition$ = [
+	3,
+	n0,
+	_Co,
+	0,
+	[_HECRE, _KPE],
+	[0, 0]
+];
+var ContinuationEvent$ = [
+	3,
+	n0,
+	_CE,
+	0,
+	[],
+	[]
+];
+var CopyObjectOutput$ = [
+	3,
+	n0,
+	_COO,
+	0,
+	[
+		_COR,
+		_E,
+		_CSVI,
+		_VI,
+		_SSE,
+		_SSECA,
+		_SSECKMD,
+		_SSEKMSKI,
+		_SSEKMSEC,
+		_BKE,
+		_RC
+	],
+	[
+		[() => CopyObjectResult$, 16],
+		[0, { [_hH]: _xae }],
+		[0, { [_hH]: _xacsvi }],
+		[0, { [_hH]: _xavi }],
+		[0, { [_hH]: _xasse }],
+		[0, { [_hH]: _xasseca }],
+		[0, { [_hH]: _xasseckM }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[() => SSEKMSEncryptionContext, { [_hH]: _xassec }],
+		[2, { [_hH]: _xassebke }],
+		[0, { [_hH]: _xarc }]
+	]
+];
+var CopyObjectRequest$ = [
+	3,
+	n0,
+	_CORo,
+	0,
+	[
+		_B,
+		_CS,
+		_K,
+		_ACL_,
+		_CC,
+		_CA,
+		_CDo,
+		_CEo,
+		_CL,
+		_CTo,
+		_CSIM,
+		_CSIMS,
+		_CSINM,
+		_CSIUS,
+		_Ex,
+		_GFC,
+		_GR,
+		_GRACP,
+		_GWACP,
+		_IM,
+		_INM,
+		_M,
+		_MD,
+		_TD,
+		_SSE,
+		_SC,
+		_WRL,
+		_SSECA,
+		_SSECK,
+		_SSECKMD,
+		_SSEKMSKI,
+		_SSEKMSEC,
+		_BKE,
+		_CSSSECA,
+		_CSSSECK,
+		_CSSSECKMD,
+		_RP,
+		_Tag,
+		_OLM,
+		_OLRUD,
+		_OLLHS,
+		_EBO,
+		_ESBO
+	],
+	[
+		[0, 1],
+		[0, { [_hH]: _xacs__ }],
+		[0, 1],
+		[0, { [_hH]: _xaa }],
+		[0, { [_hH]: _CC_ }],
+		[0, { [_hH]: _xaca }],
+		[0, { [_hH]: _CD_ }],
+		[0, { [_hH]: _CE_ }],
+		[0, { [_hH]: _CL_ }],
+		[0, { [_hH]: _CT_ }],
+		[0, { [_hH]: _xacsim }],
+		[4, { [_hH]: _xacsims }],
+		[0, { [_hH]: _xacsinm }],
+		[4, { [_hH]: _xacsius }],
+		[4, { [_hH]: _Ex }],
+		[0, { [_hH]: _xagfc }],
+		[0, { [_hH]: _xagr }],
+		[0, { [_hH]: _xagra }],
+		[0, { [_hH]: _xagwa }],
+		[0, { [_hH]: _IM_ }],
+		[0, { [_hH]: _INM_ }],
+		[128, { [_hPH]: _xam }],
+		[0, { [_hH]: _xamd }],
+		[0, { [_hH]: _xatd }],
+		[0, { [_hH]: _xasse }],
+		[0, { [_hH]: _xasc }],
+		[0, { [_hH]: _xawrl }],
+		[0, { [_hH]: _xasseca }],
+		[() => SSECustomerKey, { [_hH]: _xasseck }],
+		[0, { [_hH]: _xasseckM }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[() => SSEKMSEncryptionContext, { [_hH]: _xassec }],
+		[2, { [_hH]: _xassebke }],
+		[0, { [_hH]: _xacssseca }],
+		[() => CopySourceSSECustomerKey, { [_hH]: _xacssseck }],
+		[0, { [_hH]: _xacssseckM }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xat }],
+		[0, { [_hH]: _xaolm }],
+		[5, { [_hH]: _xaolrud }],
+		[0, { [_hH]: _xaollh }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xasebo }]
+	],
+	3
+];
+var CopyObjectResult$ = [
+	3,
+	n0,
+	_COR,
+	0,
+	[
+		_ETa,
+		_LM,
+		_CT,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh
+	],
+	[
+		0,
+		4,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0
+	]
+];
+var CopyPartResult$ = [
+	3,
+	n0,
+	_CPR,
+	0,
+	[
+		_ETa,
+		_LM,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh
+	],
+	[
+		0,
+		4,
+		0,
+		0,
+		0,
+		0,
+		0
+	]
+];
+var CORSConfiguration$ = [
+	3,
+	n0,
+	_CORSC,
+	0,
+	[_CORSR],
+	[[() => CORSRules, {
+		[_xF]: 1,
+		[_xN]: _CORSRu
+	}]],
+	1
+];
+var CORSRule$ = [
+	3,
+	n0,
+	_CORSRu,
+	0,
+	[
+		_AM,
+		_AO,
+		_ID,
+		_AH,
+		_EH,
+		_MAS
+	],
+	[
+		[64, {
+			[_xF]: 1,
+			[_xN]: _AMl
+		}],
+		[64, {
+			[_xF]: 1,
+			[_xN]: _AOl
+		}],
+		0,
+		[64, {
+			[_xF]: 1,
+			[_xN]: _AHl
+		}],
+		[64, {
+			[_xF]: 1,
+			[_xN]: _EHx
+		}],
+		1
+	],
+	2
+];
+var CreateBucketConfiguration$ = [
+	3,
+	n0,
+	_CBC,
+	0,
+	[
+		_LC,
+		_L,
+		_B,
+		_T
+	],
+	[
+		0,
+		() => LocationInfo$,
+		() => BucketInfo$,
+		[() => TagSet, 0]
+	]
+];
+var CreateBucketMetadataConfigurationRequest$ = [
+	3,
+	n0,
+	_CBMCR,
+	0,
+	[
+		_B,
+		_MC,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => MetadataConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _MC
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var CreateBucketMetadataTableConfigurationRequest$ = [
+	3,
+	n0,
+	_CBMTCR,
+	0,
+	[
+		_B,
+		_MTC,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => MetadataTableConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _MTC
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var CreateBucketOutput$ = [
+	3,
+	n0,
+	_CBO,
+	0,
+	[_L, _BA],
+	[[0, { [_hH]: _L }], [0, { [_hH]: _xaba }]]
+];
+var CreateBucketRequest$ = [
+	3,
+	n0,
+	_CBR,
+	0,
+	[
+		_B,
+		_ACL_,
+		_CBC,
+		_GFC,
+		_GR,
+		_GRACP,
+		_GW,
+		_GWACP,
+		_OLEFB,
+		_OO
+	],
+	[
+		[0, 1],
+		[0, { [_hH]: _xaa }],
+		[() => CreateBucketConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _CBC
+		}],
+		[0, { [_hH]: _xagfc }],
+		[0, { [_hH]: _xagr }],
+		[0, { [_hH]: _xagra }],
+		[0, { [_hH]: _xagw }],
+		[0, { [_hH]: _xagwa }],
+		[2, { [_hH]: _xabole }],
+		[0, { [_hH]: _xaoo }]
+	],
+	1
+];
+var CreateMultipartUploadOutput$ = [
+	3,
+	n0,
+	_CMUOr,
+	{ [_xN]: _IMUR },
+	[
+		_AD,
+		_ARI,
+		_B,
+		_K,
+		_UI,
+		_SSE,
+		_SSECA,
+		_SSECKMD,
+		_SSEKMSKI,
+		_SSEKMSEC,
+		_BKE,
+		_RC,
+		_CA,
+		_CT
+	],
+	[
+		[4, { [_hH]: _xaad }],
+		[0, { [_hH]: _xaari }],
+		[0, { [_xN]: _B }],
+		0,
+		0,
+		[0, { [_hH]: _xasse }],
+		[0, { [_hH]: _xasseca }],
+		[0, { [_hH]: _xasseckM }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[() => SSEKMSEncryptionContext, { [_hH]: _xassec }],
+		[2, { [_hH]: _xassebke }],
+		[0, { [_hH]: _xarc }],
+		[0, { [_hH]: _xaca }],
+		[0, { [_hH]: _xact }]
+	]
+];
+var CreateMultipartUploadRequest$ = [
+	3,
+	n0,
+	_CMURr,
+	0,
+	[
+		_B,
+		_K,
+		_ACL_,
+		_CC,
+		_CDo,
+		_CEo,
+		_CL,
+		_CTo,
+		_Ex,
+		_GFC,
+		_GR,
+		_GRACP,
+		_GWACP,
+		_M,
+		_SSE,
+		_SC,
+		_WRL,
+		_SSECA,
+		_SSECK,
+		_SSECKMD,
+		_SSEKMSKI,
+		_SSEKMSEC,
+		_BKE,
+		_RP,
+		_Tag,
+		_OLM,
+		_OLRUD,
+		_OLLHS,
+		_EBO,
+		_CA,
+		_CT
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hH]: _xaa }],
+		[0, { [_hH]: _CC_ }],
+		[0, { [_hH]: _CD_ }],
+		[0, { [_hH]: _CE_ }],
+		[0, { [_hH]: _CL_ }],
+		[0, { [_hH]: _CT_ }],
+		[4, { [_hH]: _Ex }],
+		[0, { [_hH]: _xagfc }],
+		[0, { [_hH]: _xagr }],
+		[0, { [_hH]: _xagra }],
+		[0, { [_hH]: _xagwa }],
+		[128, { [_hPH]: _xam }],
+		[0, { [_hH]: _xasse }],
+		[0, { [_hH]: _xasc }],
+		[0, { [_hH]: _xawrl }],
+		[0, { [_hH]: _xasseca }],
+		[() => SSECustomerKey, { [_hH]: _xasseck }],
+		[0, { [_hH]: _xasseckM }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[() => SSEKMSEncryptionContext, { [_hH]: _xassec }],
+		[2, { [_hH]: _xassebke }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xat }],
+		[0, { [_hH]: _xaolm }],
+		[5, { [_hH]: _xaolrud }],
+		[0, { [_hH]: _xaollh }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xaca }],
+		[0, { [_hH]: _xact }]
+	],
+	2
+];
+var CreateSessionOutput$ = [
+	3,
+	n0,
+	_CSO,
+	{ [_xN]: _CSR },
+	[
+		_Cr,
+		_SSE,
+		_SSEKMSKI,
+		_SSEKMSEC,
+		_BKE
+	],
+	[
+		[() => SessionCredentials$, { [_xN]: _Cr }],
+		[0, { [_hH]: _xasse }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[() => SSEKMSEncryptionContext, { [_hH]: _xassec }],
+		[2, { [_hH]: _xassebke }]
+	],
+	1
+];
+var CreateSessionRequest$ = [
+	3,
+	n0,
+	_CSRr,
+	0,
+	[
+		_B,
+		_SM,
+		_SSE,
+		_SSEKMSKI,
+		_SSEKMSEC,
+		_BKE
+	],
+	[
+		[0, 1],
+		[0, { [_hH]: _xacsm }],
+		[0, { [_hH]: _xasse }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[() => SSEKMSEncryptionContext, { [_hH]: _xassec }],
+		[2, { [_hH]: _xassebke }]
+	],
+	1
+];
+var CSVInput$ = [
+	3,
+	n0,
+	_CSVIn,
+	0,
+	[
+		_FHI,
+		_Com,
+		_QEC,
+		_RD,
+		_FD,
+		_QC,
+		_AQRD
+	],
+	[
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		2
+	]
+];
+var CSVOutput$ = [
+	3,
+	n0,
+	_CSVO,
+	0,
+	[
+		_QF,
+		_QEC,
+		_RD,
+		_FD,
+		_QC
+	],
+	[
+		0,
+		0,
+		0,
+		0,
+		0
+	]
+];
+var DefaultRetention$ = [
+	3,
+	n0,
+	_DRe,
+	0,
+	[
+		_Mo,
+		_D,
+		_Y
+	],
+	[
+		0,
+		1,
+		1
+	]
+];
+var Delete$ = [
+	3,
+	n0,
+	_De,
+	0,
+	[_Ob, _Q],
+	[[() => ObjectIdentifierList, {
+		[_xF]: 1,
+		[_xN]: _Obj
+	}], 2],
+	1
+];
+var DeleteBucketAnalyticsConfigurationRequest$ = [
+	3,
+	n0,
+	_DBACR,
+	0,
+	[
+		_B,
+		_I,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _i }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var DeleteBucketCorsRequest$ = [
+	3,
+	n0,
+	_DBCR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var DeleteBucketEncryptionRequest$ = [
+	3,
+	n0,
+	_DBER,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var DeleteBucketIntelligentTieringConfigurationRequest$ = [
+	3,
+	n0,
+	_DBITCR,
+	0,
+	[
+		_B,
+		_I,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _i }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var DeleteBucketInventoryConfigurationRequest$ = [
+	3,
+	n0,
+	_DBICR,
+	0,
+	[
+		_B,
+		_I,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _i }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var DeleteBucketLifecycleRequest$ = [
+	3,
+	n0,
+	_DBLR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var DeleteBucketMetadataConfigurationRequest$ = [
+	3,
+	n0,
+	_DBMCR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var DeleteBucketMetadataTableConfigurationRequest$ = [
+	3,
+	n0,
+	_DBMTCR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var DeleteBucketMetricsConfigurationRequest$ = [
+	3,
+	n0,
+	_DBMCRe,
+	0,
+	[
+		_B,
+		_I,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _i }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var DeleteBucketOwnershipControlsRequest$ = [
+	3,
+	n0,
+	_DBOCR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var DeleteBucketPolicyRequest$ = [
+	3,
+	n0,
+	_DBPR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var DeleteBucketReplicationRequest$ = [
+	3,
+	n0,
+	_DBRR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var DeleteBucketRequest$ = [
+	3,
+	n0,
+	_DBR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var DeleteBucketTaggingRequest$ = [
+	3,
+	n0,
+	_DBTR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var DeleteBucketWebsiteRequest$ = [
+	3,
+	n0,
+	_DBWR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var DeletedObject$ = [
+	3,
+	n0,
+	_DO,
+	0,
+	[
+		_K,
+		_VI,
+		_DM,
+		_DMVI
+	],
+	[
+		0,
+		0,
+		2,
+		0
+	]
+];
+var DeleteMarkerEntry$ = [
+	3,
+	n0,
+	_DME,
+	0,
+	[
+		_O,
+		_K,
+		_VI,
+		_IL,
+		_LM
+	],
+	[
+		() => Owner$,
+		0,
+		0,
+		2,
+		4
+	]
+];
+var DeleteMarkerReplication$ = [
+	3,
+	n0,
+	_DMR,
+	0,
+	[_S],
+	[0]
+];
+var DeleteObjectOutput$ = [
+	3,
+	n0,
+	_DOO,
+	0,
+	[
+		_DM,
+		_VI,
+		_RC
+	],
+	[
+		[2, { [_hH]: _xadm }],
+		[0, { [_hH]: _xavi }],
+		[0, { [_hH]: _xarc }]
+	]
+];
+var DeleteObjectRequest$ = [
+	3,
+	n0,
+	_DOR,
+	0,
+	[
+		_B,
+		_K,
+		_MFA,
+		_VI,
+		_RP,
+		_BGR,
+		_EBO,
+		_IM,
+		_IMLMT,
+		_IMS
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hH]: _xam_ }],
+		[0, { [_hQ]: _vI }],
+		[0, { [_hH]: _xarp }],
+		[2, { [_hH]: _xabgr }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _IM_ }],
+		[6, { [_hH]: _xaimlmt }],
+		[1, { [_hH]: _xaims }]
+	],
+	2
+];
+var DeleteObjectsOutput$ = [
+	3,
+	n0,
+	_DOOe,
+	{ [_xN]: _DRel },
+	[
+		_Del,
+		_RC,
+		_Er
+	],
+	[
+		[() => DeletedObjects, { [_xF]: 1 }],
+		[0, { [_hH]: _xarc }],
+		[() => Errors, {
+			[_xF]: 1,
+			[_xN]: _Err
+		}]
+	]
+];
+var DeleteObjectsRequest$ = [
+	3,
+	n0,
+	_DORe,
+	0,
+	[
+		_B,
+		_De,
+		_MFA,
+		_RP,
+		_BGR,
+		_EBO,
+		_CA
+	],
+	[
+		[0, 1],
+		[() => Delete$, {
+			[_hP]: 1,
+			[_xN]: _De
+		}],
+		[0, { [_hH]: _xam_ }],
+		[0, { [_hH]: _xarp }],
+		[2, { [_hH]: _xabgr }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xasca }]
+	],
+	2
+];
+var DeleteObjectTaggingOutput$ = [
+	3,
+	n0,
+	_DOTO,
+	0,
+	[_VI],
+	[[0, { [_hH]: _xavi }]]
+];
+var DeleteObjectTaggingRequest$ = [
+	3,
+	n0,
+	_DOTR,
+	0,
+	[
+		_B,
+		_K,
+		_VI,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hQ]: _vI }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var DeletePublicAccessBlockRequest$ = [
+	3,
+	n0,
+	_DPABR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var Destination$ = [
+	3,
+	n0,
+	_Des,
+	0,
+	[
+		_B,
+		_A,
+		_SC,
+		_ACT,
+		_EC,
+		_RT,
+		_Me
+	],
+	[
+		0,
+		0,
+		0,
+		() => AccessControlTranslation$,
+		() => EncryptionConfiguration$,
+		() => ReplicationTime$,
+		() => Metrics$
+	],
+	1
+];
+var DestinationResult$ = [
+	3,
+	n0,
+	_DRes,
+	0,
+	[
+		_TBT,
+		_TBA,
+		_TN
+	],
+	[
+		0,
+		0,
+		0
+	]
+];
+var Encryption$ = [
+	3,
+	n0,
+	_En,
+	0,
+	[
+		_ET,
+		_KMSKI,
+		_KMSC
+	],
+	[
+		0,
+		[() => SSEKMSKeyId, 0],
+		0
+	],
+	1
+];
+var EncryptionConfiguration$ = [
+	3,
+	n0,
+	_EC,
+	0,
+	[_RKKID],
+	[0]
+];
+var EncryptionTypeMismatch$ = [
+	-3,
+	n0,
+	_ETM,
+	{
+		[_e]: _c,
+		[_hE]: 400
+	},
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(EncryptionTypeMismatch$, EncryptionTypeMismatch);
+var EndEvent$ = [
+	3,
+	n0,
+	_EE,
+	0,
+	[],
+	[]
+];
+var _Error$ = [
+	3,
+	n0,
+	_Err,
+	0,
+	[
+		_K,
+		_VI,
+		_Cod,
+		_Mes
+	],
+	[
+		0,
+		0,
+		0,
+		0
+	]
+];
+var ErrorDetails$ = [
+	3,
+	n0,
+	_ED,
+	0,
+	[_ECr, _EM],
+	[0, 0]
+];
+var ErrorDocument$ = [
+	3,
+	n0,
+	_EDr,
+	0,
+	[_K],
+	[0],
+	1
+];
+var EventBridgeConfiguration$ = [
+	3,
+	n0,
+	_EBC,
+	0,
+	[],
+	[]
+];
+var ExistingObjectReplication$ = [
+	3,
+	n0,
+	_EOR,
+	0,
+	[_S],
+	[0],
+	1
+];
+var FilterRule$ = [
+	3,
+	n0,
+	_FR,
+	0,
+	[_N, _V],
+	[0, 0]
+];
+var GetBucketAbacOutput$ = [
+	3,
+	n0,
+	_GBAO,
+	0,
+	[_AS],
+	[[() => AbacStatus$, 16]]
+];
+var GetBucketAbacRequest$ = [
+	3,
+	n0,
+	_GBAR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketAccelerateConfigurationOutput$ = [
+	3,
+	n0,
+	_GBACO,
+	{ [_xN]: _AC },
+	[_S, _RC],
+	[0, [0, { [_hH]: _xarc }]]
+];
+var GetBucketAccelerateConfigurationRequest$ = [
+	3,
+	n0,
+	_GBACR,
+	0,
+	[
+		_B,
+		_EBO,
+		_RP
+	],
+	[
+		[0, 1],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xarp }]
+	],
+	1
+];
+var GetBucketAclOutput$ = [
+	3,
+	n0,
+	_GBAOe,
+	{ [_xN]: _ACP },
+	[_O, _G],
+	[() => Owner$, [() => Grants, { [_xN]: _ACL }]]
+];
+var GetBucketAclRequest$ = [
+	3,
+	n0,
+	_GBARe,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketAnalyticsConfigurationOutput$ = [
+	3,
+	n0,
+	_GBACOe,
+	0,
+	[_ACn],
+	[[() => AnalyticsConfiguration$, 16]]
+];
+var GetBucketAnalyticsConfigurationRequest$ = [
+	3,
+	n0,
+	_GBACRe,
+	0,
+	[
+		_B,
+		_I,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _i }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var GetBucketCorsOutput$ = [
+	3,
+	n0,
+	_GBCO,
+	{ [_xN]: _CORSC },
+	[_CORSR],
+	[[() => CORSRules, {
+		[_xF]: 1,
+		[_xN]: _CORSRu
+	}]]
+];
+var GetBucketCorsRequest$ = [
+	3,
+	n0,
+	_GBCR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketEncryptionOutput$ = [
+	3,
+	n0,
+	_GBEO,
+	0,
+	[_SSEC],
+	[[() => ServerSideEncryptionConfiguration$, 16]]
+];
+var GetBucketEncryptionRequest$ = [
+	3,
+	n0,
+	_GBER,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketIntelligentTieringConfigurationOutput$ = [
+	3,
+	n0,
+	_GBITCO,
+	0,
+	[_ITC],
+	[[() => IntelligentTieringConfiguration$, 16]]
+];
+var GetBucketIntelligentTieringConfigurationRequest$ = [
+	3,
+	n0,
+	_GBITCR,
+	0,
+	[
+		_B,
+		_I,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _i }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var GetBucketInventoryConfigurationOutput$ = [
+	3,
+	n0,
+	_GBICO,
+	0,
+	[_IC],
+	[[() => InventoryConfiguration$, 16]]
+];
+var GetBucketInventoryConfigurationRequest$ = [
+	3,
+	n0,
+	_GBICR,
+	0,
+	[
+		_B,
+		_I,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _i }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var GetBucketLifecycleConfigurationOutput$ = [
+	3,
+	n0,
+	_GBLCO,
+	{ [_xN]: _LCi },
+	[_R, _TDMOS],
+	[[() => LifecycleRules, {
+		[_xF]: 1,
+		[_xN]: _Ru
+	}], [0, { [_hH]: _xatdmos }]]
+];
+var GetBucketLifecycleConfigurationRequest$ = [
+	3,
+	n0,
+	_GBLCR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketLocationOutput$ = [
+	3,
+	n0,
+	_GBLO,
+	{ [_xN]: _LC },
+	[_LC],
+	[0]
+];
+var GetBucketLocationRequest$ = [
+	3,
+	n0,
+	_GBLR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketLoggingOutput$ = [
+	3,
+	n0,
+	_GBLOe,
+	{ [_xN]: _BLS },
+	[_LE],
+	[[() => LoggingEnabled$, 0]]
+];
+var GetBucketLoggingRequest$ = [
+	3,
+	n0,
+	_GBLRe,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketMetadataConfigurationOutput$ = [
+	3,
+	n0,
+	_GBMCO,
+	0,
+	[_GBMCR],
+	[[() => GetBucketMetadataConfigurationResult$, 16]]
+];
+var GetBucketMetadataConfigurationRequest$ = [
+	3,
+	n0,
+	_GBMCRe,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketMetadataConfigurationResult$ = [
+	3,
+	n0,
+	_GBMCR,
+	0,
+	[_MCR],
+	[() => MetadataConfigurationResult$],
+	1
+];
+var GetBucketMetadataTableConfigurationOutput$ = [
+	3,
+	n0,
+	_GBMTCO,
+	0,
+	[_GBMTCR],
+	[[() => GetBucketMetadataTableConfigurationResult$, 16]]
+];
+var GetBucketMetadataTableConfigurationRequest$ = [
+	3,
+	n0,
+	_GBMTCRe,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketMetadataTableConfigurationResult$ = [
+	3,
+	n0,
+	_GBMTCR,
+	0,
+	[
+		_MTCR,
+		_S,
+		_Err
+	],
+	[
+		() => MetadataTableConfigurationResult$,
+		0,
+		() => ErrorDetails$
+	],
+	2
+];
+var GetBucketMetricsConfigurationOutput$ = [
+	3,
+	n0,
+	_GBMCOe,
+	0,
+	[_MCe],
+	[[() => MetricsConfiguration$, 16]]
+];
+var GetBucketMetricsConfigurationRequest$ = [
+	3,
+	n0,
+	_GBMCRet,
+	0,
+	[
+		_B,
+		_I,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _i }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var GetBucketNotificationConfigurationRequest$ = [
+	3,
+	n0,
+	_GBNCR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketOwnershipControlsOutput$ = [
+	3,
+	n0,
+	_GBOCO,
+	0,
+	[_OC],
+	[[() => OwnershipControls$, 16]]
+];
+var GetBucketOwnershipControlsRequest$ = [
+	3,
+	n0,
+	_GBOCR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketPolicyOutput$ = [
+	3,
+	n0,
+	_GBPO,
+	0,
+	[_Po],
+	[[0, 16]]
+];
+var GetBucketPolicyRequest$ = [
+	3,
+	n0,
+	_GBPR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketPolicyStatusOutput$ = [
+	3,
+	n0,
+	_GBPSO,
+	0,
+	[_PS],
+	[[() => PolicyStatus$, 16]]
+];
+var GetBucketPolicyStatusRequest$ = [
+	3,
+	n0,
+	_GBPSR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketReplicationOutput$ = [
+	3,
+	n0,
+	_GBRO,
+	0,
+	[_RCe],
+	[[() => ReplicationConfiguration$, 16]]
+];
+var GetBucketReplicationRequest$ = [
+	3,
+	n0,
+	_GBRR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketRequestPaymentOutput$ = [
+	3,
+	n0,
+	_GBRPO,
+	{ [_xN]: _RPC },
+	[_Pay],
+	[0]
+];
+var GetBucketRequestPaymentRequest$ = [
+	3,
+	n0,
+	_GBRPR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketTaggingOutput$ = [
+	3,
+	n0,
+	_GBTO,
+	{ [_xN]: _Tag },
+	[_TS],
+	[[() => TagSet, 0]],
+	1
+];
+var GetBucketTaggingRequest$ = [
+	3,
+	n0,
+	_GBTR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketVersioningOutput$ = [
+	3,
+	n0,
+	_GBVO,
+	{ [_xN]: _VC },
+	[_S, _MFAD],
+	[0, [0, { [_xN]: _MDf }]]
+];
+var GetBucketVersioningRequest$ = [
+	3,
+	n0,
+	_GBVR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetBucketWebsiteOutput$ = [
+	3,
+	n0,
+	_GBWO,
+	{ [_xN]: _WC },
+	[
+		_RART,
+		_IDn,
+		_EDr,
+		_RR
+	],
+	[
+		() => RedirectAllRequestsTo$,
+		() => IndexDocument$,
+		() => ErrorDocument$,
+		[() => RoutingRules, 0]
+	]
+];
+var GetBucketWebsiteRequest$ = [
+	3,
+	n0,
+	_GBWR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetObjectAclOutput$ = [
+	3,
+	n0,
+	_GOAO,
+	{ [_xN]: _ACP },
+	[
+		_O,
+		_G,
+		_RC
+	],
+	[
+		() => Owner$,
+		[() => Grants, { [_xN]: _ACL }],
+		[0, { [_hH]: _xarc }]
+	]
+];
+var GetObjectAclRequest$ = [
+	3,
+	n0,
+	_GOAR,
+	0,
+	[
+		_B,
+		_K,
+		_VI,
+		_RP,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hQ]: _vI }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var GetObjectAttributesOutput$ = [
+	3,
+	n0,
+	_GOAOe,
+	{ [_xN]: _GOARe },
+	[
+		_DM,
+		_LM,
+		_VI,
+		_RC,
+		_ETa,
+		_C,
+		_OP,
+		_SC,
+		_OS
+	],
+	[
+		[2, { [_hH]: _xadm }],
+		[4, { [_hH]: _LM_ }],
+		[0, { [_hH]: _xavi }],
+		[0, { [_hH]: _xarc }],
+		0,
+		() => Checksum$,
+		[() => GetObjectAttributesParts$, 0],
+		0,
+		1
+	]
+];
+var GetObjectAttributesParts$ = [
+	3,
+	n0,
+	_GOAP,
+	0,
+	[
+		_TPC,
+		_PNM,
+		_NPNM,
+		_MP,
+		_IT,
+		_Pa
+	],
+	[
+		[1, { [_xN]: _PC }],
+		0,
+		0,
+		1,
+		2,
+		[() => PartsList, {
+			[_xF]: 1,
+			[_xN]: _Par
+		}]
+	]
+];
+var GetObjectAttributesRequest$ = [
+	3,
+	n0,
+	_GOARet,
+	0,
+	[
+		_B,
+		_K,
+		_OA,
+		_VI,
+		_MP,
+		_PNM,
+		_SSECA,
+		_SSECK,
+		_SSECKMD,
+		_RP,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[64, { [_hH]: _xaoa }],
+		[0, { [_hQ]: _vI }],
+		[1, { [_hH]: _xamp }],
+		[0, { [_hH]: _xapnm }],
+		[0, { [_hH]: _xasseca }],
+		[() => SSECustomerKey, { [_hH]: _xasseck }],
+		[0, { [_hH]: _xasseckM }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xaebo }]
+	],
+	3
+];
+var GetObjectLegalHoldOutput$ = [
+	3,
+	n0,
+	_GOLHO,
+	0,
+	[_LH],
+	[[() => ObjectLockLegalHold$, {
+		[_hP]: 1,
+		[_xN]: _LH
+	}]]
+];
+var GetObjectLegalHoldRequest$ = [
+	3,
+	n0,
+	_GOLHR,
+	0,
+	[
+		_B,
+		_K,
+		_VI,
+		_RP,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hQ]: _vI }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var GetObjectLockConfigurationOutput$ = [
+	3,
+	n0,
+	_GOLCO,
+	0,
+	[_OLC],
+	[[() => ObjectLockConfiguration$, 16]]
+];
+var GetObjectLockConfigurationRequest$ = [
+	3,
+	n0,
+	_GOLCR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GetObjectOutput$ = [
+	3,
+	n0,
+	_GOO,
+	0,
+	[
+		_Bo,
+		_DM,
+		_AR,
+		_E,
+		_Re,
+		_LM,
+		_CLo,
+		_ETa,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh,
+		_CT,
+		_MM,
+		_VI,
+		_CC,
+		_CDo,
+		_CEo,
+		_CL,
+		_CR,
+		_CTo,
+		_Ex,
+		_ES,
+		_WRL,
+		_SSE,
+		_M,
+		_SSECA,
+		_SSECKMD,
+		_SSEKMSKI,
+		_BKE,
+		_SC,
+		_RC,
+		_RS,
+		_PC,
+		_TC,
+		_OLM,
+		_OLRUD,
+		_OLLHS
+	],
+	[
+		[() => StreamingBlob, 16],
+		[2, { [_hH]: _xadm }],
+		[0, { [_hH]: _ar }],
+		[0, { [_hH]: _xae }],
+		[0, { [_hH]: _xar }],
+		[4, { [_hH]: _LM_ }],
+		[1, { [_hH]: _CL__ }],
+		[0, { [_hH]: _ETa }],
+		[0, { [_hH]: _xacc }],
+		[0, { [_hH]: _xacc_ }],
+		[0, { [_hH]: _xacc__ }],
+		[0, { [_hH]: _xacs }],
+		[0, { [_hH]: _xacs_ }],
+		[0, { [_hH]: _xact }],
+		[1, { [_hH]: _xamm }],
+		[0, { [_hH]: _xavi }],
+		[0, { [_hH]: _CC_ }],
+		[0, { [_hH]: _CD_ }],
+		[0, { [_hH]: _CE_ }],
+		[0, { [_hH]: _CL_ }],
+		[0, { [_hH]: _CR_ }],
+		[0, { [_hH]: _CT_ }],
+		[4, { [_hH]: _Ex }],
+		[0, { [_hH]: _ES }],
+		[0, { [_hH]: _xawrl }],
+		[0, { [_hH]: _xasse }],
+		[128, { [_hPH]: _xam }],
+		[0, { [_hH]: _xasseca }],
+		[0, { [_hH]: _xasseckM }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[2, { [_hH]: _xassebke }],
+		[0, { [_hH]: _xasc }],
+		[0, { [_hH]: _xarc }],
+		[0, { [_hH]: _xars }],
+		[1, { [_hH]: _xampc }],
+		[1, { [_hH]: _xatc }],
+		[0, { [_hH]: _xaolm }],
+		[5, { [_hH]: _xaolrud }],
+		[0, { [_hH]: _xaollh }]
+	]
+];
+var GetObjectRequest$ = [
+	3,
+	n0,
+	_GOR,
+	0,
+	[
+		_B,
+		_K,
+		_IM,
+		_IMSf,
+		_INM,
+		_IUS,
+		_Ra,
+		_RCC,
+		_RCD,
+		_RCE,
+		_RCL,
+		_RCT,
+		_RE,
+		_VI,
+		_SSECA,
+		_SSECK,
+		_SSECKMD,
+		_RP,
+		_PN,
+		_EBO,
+		_CMh
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hH]: _IM_ }],
+		[4, { [_hH]: _IMS_ }],
+		[0, { [_hH]: _INM_ }],
+		[4, { [_hH]: _IUS_ }],
+		[0, { [_hH]: _Ra }],
+		[0, { [_hQ]: _rcc }],
+		[0, { [_hQ]: _rcd }],
+		[0, { [_hQ]: _rce }],
+		[0, { [_hQ]: _rcl }],
+		[0, { [_hQ]: _rct }],
+		[6, { [_hQ]: _re }],
+		[0, { [_hQ]: _vI }],
+		[0, { [_hH]: _xasseca }],
+		[() => SSECustomerKey, { [_hH]: _xasseck }],
+		[0, { [_hH]: _xasseckM }],
+		[0, { [_hH]: _xarp }],
+		[1, { [_hQ]: _pN }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xacm }]
+	],
+	2
+];
+var GetObjectRetentionOutput$ = [
+	3,
+	n0,
+	_GORO,
+	0,
+	[_Ret],
+	[[() => ObjectLockRetention$, {
+		[_hP]: 1,
+		[_xN]: _Ret
+	}]]
+];
+var GetObjectRetentionRequest$ = [
+	3,
+	n0,
+	_GORR,
+	0,
+	[
+		_B,
+		_K,
+		_VI,
+		_RP,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hQ]: _vI }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var GetObjectTaggingOutput$ = [
+	3,
+	n0,
+	_GOTO,
+	{ [_xN]: _Tag },
+	[_TS, _VI],
+	[[() => TagSet, 0], [0, { [_hH]: _xavi }]],
+	1
+];
+var GetObjectTaggingRequest$ = [
+	3,
+	n0,
+	_GOTR,
+	0,
+	[
+		_B,
+		_K,
+		_VI,
+		_EBO,
+		_RP
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hQ]: _vI }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xarp }]
+	],
+	2
+];
+var GetObjectTorrentOutput$ = [
+	3,
+	n0,
+	_GOTOe,
+	0,
+	[_Bo, _RC],
+	[[() => StreamingBlob, 16], [0, { [_hH]: _xarc }]]
+];
+var GetObjectTorrentRequest$ = [
+	3,
+	n0,
+	_GOTRe,
+	0,
+	[
+		_B,
+		_K,
+		_RP,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var GetPublicAccessBlockOutput$ = [
+	3,
+	n0,
+	_GPABO,
+	0,
+	[_PABC],
+	[[() => PublicAccessBlockConfiguration$, 16]]
+];
+var GetPublicAccessBlockRequest$ = [
+	3,
+	n0,
+	_GPABR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var GlacierJobParameters$ = [
+	3,
+	n0,
+	_GJP,
+	0,
+	[_Ti],
+	[0],
+	1
+];
+var Grant$ = [
+	3,
+	n0,
+	_Gr,
+	0,
+	[_Gra, _Pe],
+	[[() => Grantee$, { [_xNm]: [_x, _hi] }], 0]
+];
+var Grantee$ = [
+	3,
+	n0,
+	_Gra,
+	0,
+	[
+		_Ty,
+		_DN,
+		_EA,
+		_ID,
+		_URI
+	],
+	[
+		[0, {
+			[_xA]: 1,
+			[_xN]: _xs
+		}],
+		0,
+		0,
+		0,
+		0
+	],
+	1
+];
+var HeadBucketOutput$ = [
+	3,
+	n0,
+	_HBO,
+	0,
+	[
+		_BA,
+		_BLT,
+		_BLN,
+		_BR,
+		_APA
+	],
+	[
+		[0, { [_hH]: _xaba }],
+		[0, { [_hH]: _xablt }],
+		[0, { [_hH]: _xabln }],
+		[0, { [_hH]: _xabr }],
+		[2, { [_hH]: _xaapa }]
+	]
+];
+var HeadBucketRequest$ = [
+	3,
+	n0,
+	_HBR,
+	0,
+	[_B, _EBO],
+	[[0, 1], [0, { [_hH]: _xaebo }]],
+	1
+];
+var HeadObjectOutput$ = [
+	3,
+	n0,
+	_HOO,
+	0,
+	[
+		_DM,
+		_AR,
+		_E,
+		_Re,
+		_ASr,
+		_LM,
+		_CLo,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh,
+		_CT,
+		_ETa,
+		_MM,
+		_VI,
+		_CC,
+		_CDo,
+		_CEo,
+		_CL,
+		_CTo,
+		_CR,
+		_Ex,
+		_ES,
+		_WRL,
+		_SSE,
+		_M,
+		_SSECA,
+		_SSECKMD,
+		_SSEKMSKI,
+		_BKE,
+		_SC,
+		_RC,
+		_RS,
+		_PC,
+		_TC,
+		_OLM,
+		_OLRUD,
+		_OLLHS
+	],
+	[
+		[2, { [_hH]: _xadm }],
+		[0, { [_hH]: _ar }],
+		[0, { [_hH]: _xae }],
+		[0, { [_hH]: _xar }],
+		[0, { [_hH]: _xaas }],
+		[4, { [_hH]: _LM_ }],
+		[1, { [_hH]: _CL__ }],
+		[0, { [_hH]: _xacc }],
+		[0, { [_hH]: _xacc_ }],
+		[0, { [_hH]: _xacc__ }],
+		[0, { [_hH]: _xacs }],
+		[0, { [_hH]: _xacs_ }],
+		[0, { [_hH]: _xact }],
+		[0, { [_hH]: _ETa }],
+		[1, { [_hH]: _xamm }],
+		[0, { [_hH]: _xavi }],
+		[0, { [_hH]: _CC_ }],
+		[0, { [_hH]: _CD_ }],
+		[0, { [_hH]: _CE_ }],
+		[0, { [_hH]: _CL_ }],
+		[0, { [_hH]: _CT_ }],
+		[0, { [_hH]: _CR_ }],
+		[4, { [_hH]: _Ex }],
+		[0, { [_hH]: _ES }],
+		[0, { [_hH]: _xawrl }],
+		[0, { [_hH]: _xasse }],
+		[128, { [_hPH]: _xam }],
+		[0, { [_hH]: _xasseca }],
+		[0, { [_hH]: _xasseckM }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[2, { [_hH]: _xassebke }],
+		[0, { [_hH]: _xasc }],
+		[0, { [_hH]: _xarc }],
+		[0, { [_hH]: _xars }],
+		[1, { [_hH]: _xampc }],
+		[1, { [_hH]: _xatc }],
+		[0, { [_hH]: _xaolm }],
+		[5, { [_hH]: _xaolrud }],
+		[0, { [_hH]: _xaollh }]
+	]
+];
+var HeadObjectRequest$ = [
+	3,
+	n0,
+	_HOR,
+	0,
+	[
+		_B,
+		_K,
+		_IM,
+		_IMSf,
+		_INM,
+		_IUS,
+		_Ra,
+		_RCC,
+		_RCD,
+		_RCE,
+		_RCL,
+		_RCT,
+		_RE,
+		_VI,
+		_SSECA,
+		_SSECK,
+		_SSECKMD,
+		_RP,
+		_PN,
+		_EBO,
+		_CMh
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hH]: _IM_ }],
+		[4, { [_hH]: _IMS_ }],
+		[0, { [_hH]: _INM_ }],
+		[4, { [_hH]: _IUS_ }],
+		[0, { [_hH]: _Ra }],
+		[0, { [_hQ]: _rcc }],
+		[0, { [_hQ]: _rcd }],
+		[0, { [_hQ]: _rce }],
+		[0, { [_hQ]: _rcl }],
+		[0, { [_hQ]: _rct }],
+		[6, { [_hQ]: _re }],
+		[0, { [_hQ]: _vI }],
+		[0, { [_hH]: _xasseca }],
+		[() => SSECustomerKey, { [_hH]: _xasseck }],
+		[0, { [_hH]: _xasseckM }],
+		[0, { [_hH]: _xarp }],
+		[1, { [_hQ]: _pN }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xacm }]
+	],
+	2
+];
+var IdempotencyParameterMismatch$ = [
+	-3,
+	n0,
+	_IPM,
+	{
+		[_e]: _c,
+		[_hE]: 400
+	},
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(IdempotencyParameterMismatch$, IdempotencyParameterMismatch);
+var IndexDocument$ = [
+	3,
+	n0,
+	_IDn,
+	0,
+	[_Su],
+	[0],
+	1
+];
+var Initiator$ = [
+	3,
+	n0,
+	_In,
+	0,
+	[_ID, _DN],
+	[0, 0]
+];
+var InputSerialization$ = [
+	3,
+	n0,
+	_IS,
+	0,
+	[
+		_CSV,
+		_CTom,
+		_JSON,
+		_Parq
+	],
+	[
+		() => CSVInput$,
+		0,
+		() => JSONInput$,
+		() => ParquetInput$
+	]
+];
+var IntelligentTieringAndOperator$ = [
+	3,
+	n0,
+	_ITAO,
+	0,
+	[_P, _T],
+	[0, [() => TagSet, {
+		[_xF]: 1,
+		[_xN]: _Ta
+	}]]
+];
+var IntelligentTieringConfiguration$ = [
+	3,
+	n0,
+	_ITC,
+	0,
+	[
+		_I,
+		_S,
+		_Tie,
+		_F
+	],
+	[
+		0,
+		0,
+		[() => TieringList, {
+			[_xF]: 1,
+			[_xN]: _Tier
+		}],
+		[() => IntelligentTieringFilter$, 0]
+	],
+	3
+];
+var IntelligentTieringFilter$ = [
+	3,
+	n0,
+	_ITF,
+	0,
+	[
+		_P,
+		_Ta,
+		_An
+	],
+	[
+		0,
+		() => Tag$,
+		[() => IntelligentTieringAndOperator$, 0]
+	]
+];
+var InvalidObjectState$ = [
+	-3,
+	n0,
+	_IOS,
+	{
+		[_e]: _c,
+		[_hE]: 403
+	},
+	[_SC, _AT],
+	[0, 0]
+];
+TypeRegistry.for(n0).registerError(InvalidObjectState$, InvalidObjectState);
+var InvalidRequest$ = [
+	-3,
+	n0,
+	_IR,
+	{
+		[_e]: _c,
+		[_hE]: 400
+	},
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(InvalidRequest$, InvalidRequest);
+var InvalidWriteOffset$ = [
+	-3,
+	n0,
+	_IWO,
+	{
+		[_e]: _c,
+		[_hE]: 400
+	},
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(InvalidWriteOffset$, InvalidWriteOffset);
+var InventoryConfiguration$ = [
+	3,
+	n0,
+	_IC,
+	0,
+	[
+		_Des,
+		_IE,
+		_I,
+		_IOV,
+		_Sc,
+		_F,
+		_OF
+	],
+	[
+		[() => InventoryDestination$, 0],
+		2,
+		0,
+		0,
+		() => InventorySchedule$,
+		() => InventoryFilter$,
+		[() => InventoryOptionalFields, 0]
+	],
+	5
+];
+var InventoryDestination$ = [
+	3,
+	n0,
+	_IDnv,
+	0,
+	[_SBD],
+	[[() => InventoryS3BucketDestination$, 0]],
+	1
+];
+var InventoryEncryption$ = [
+	3,
+	n0,
+	_IEn,
+	0,
+	[_SSES, _SSEKMS],
+	[[() => SSES3$, { [_xN]: _SS }], [() => SSEKMS$, { [_xN]: _SK }]]
+];
+var InventoryFilter$ = [
+	3,
+	n0,
+	_IF,
+	0,
+	[_P],
+	[0],
+	1
+];
+var InventoryS3BucketDestination$ = [
+	3,
+	n0,
+	_ISBD,
+	0,
+	[
+		_B,
+		_Fo,
+		_AI,
+		_P,
+		_En
+	],
+	[
+		0,
+		0,
+		0,
+		0,
+		[() => InventoryEncryption$, 0]
+	],
+	2
+];
+var InventorySchedule$ = [
+	3,
+	n0,
+	_ISn,
+	0,
+	[_Fr],
+	[0],
+	1
+];
+var InventoryTableConfiguration$ = [
+	3,
+	n0,
+	_ITCn,
+	0,
+	[_CSo, _EC],
+	[0, () => MetadataTableEncryptionConfiguration$],
+	1
+];
+var InventoryTableConfigurationResult$ = [
+	3,
+	n0,
+	_ITCR,
+	0,
+	[
+		_CSo,
+		_TSa,
+		_Err,
+		_TNa,
+		_TA
+	],
+	[
+		0,
+		0,
+		() => ErrorDetails$,
+		0,
+		0
+	],
+	1
+];
+var InventoryTableConfigurationUpdates$ = [
+	3,
+	n0,
+	_ITCU,
+	0,
+	[_CSo, _EC],
+	[0, () => MetadataTableEncryptionConfiguration$],
+	1
+];
+var JournalTableConfiguration$ = [
+	3,
+	n0,
+	_JTC,
+	0,
+	[_REe, _EC],
+	[() => RecordExpiration$, () => MetadataTableEncryptionConfiguration$],
+	1
+];
+var JournalTableConfigurationResult$ = [
+	3,
+	n0,
+	_JTCR,
+	0,
+	[
+		_TSa,
+		_TNa,
+		_REe,
+		_Err,
+		_TA
+	],
+	[
+		0,
+		0,
+		() => RecordExpiration$,
+		() => ErrorDetails$,
+		0
+	],
+	3
+];
+var JournalTableConfigurationUpdates$ = [
+	3,
+	n0,
+	_JTCU,
+	0,
+	[_REe],
+	[() => RecordExpiration$],
+	1
+];
+var JSONInput$ = [
+	3,
+	n0,
+	_JSONI,
+	0,
+	[_Ty],
+	[0]
+];
+var JSONOutput$ = [
+	3,
+	n0,
+	_JSONO,
+	0,
+	[_RD],
+	[0]
+];
+var LambdaFunctionConfiguration$ = [
+	3,
+	n0,
+	_LFC,
+	0,
+	[
+		_LFA,
+		_Ev,
+		_I,
+		_F
+	],
+	[
+		[0, { [_xN]: _CF }],
+		[64, {
+			[_xF]: 1,
+			[_xN]: _Eve
+		}],
+		0,
+		[() => NotificationConfigurationFilter$, 0]
+	],
+	2
+];
+var LifecycleExpiration$ = [
+	3,
+	n0,
+	_LEi,
+	0,
+	[
+		_Da,
+		_D,
+		_EODM
+	],
+	[
+		5,
+		1,
+		2
+	]
+];
+var LifecycleRule$ = [
+	3,
+	n0,
+	_LR,
+	0,
+	[
+		_S,
+		_E,
+		_ID,
+		_P,
+		_F,
+		_Tr,
+		_NVT,
+		_NVE,
+		_AIMU
+	],
+	[
+		0,
+		() => LifecycleExpiration$,
+		0,
+		0,
+		[() => LifecycleRuleFilter$, 0],
+		[() => TransitionList, {
+			[_xF]: 1,
+			[_xN]: _Tra
+		}],
+		[() => NoncurrentVersionTransitionList, {
+			[_xF]: 1,
+			[_xN]: _NVTo
+		}],
+		() => NoncurrentVersionExpiration$,
+		() => AbortIncompleteMultipartUpload$
+	],
+	1
+];
+var LifecycleRuleAndOperator$ = [
+	3,
+	n0,
+	_LRAO,
+	0,
+	[
+		_P,
+		_T,
+		_OSGT,
+		_OSLT
+	],
+	[
+		0,
+		[() => TagSet, {
+			[_xF]: 1,
+			[_xN]: _Ta
+		}],
+		1,
+		1
+	]
+];
+var LifecycleRuleFilter$ = [
+	3,
+	n0,
+	_LRF,
+	0,
+	[
+		_P,
+		_Ta,
+		_OSGT,
+		_OSLT,
+		_An
+	],
+	[
+		0,
+		() => Tag$,
+		1,
+		1,
+		[() => LifecycleRuleAndOperator$, 0]
+	]
+];
+var ListBucketAnalyticsConfigurationsOutput$ = [
+	3,
+	n0,
+	_LBACO,
+	{ [_xN]: _LBACR },
+	[
+		_IT,
+		_CTon,
+		_NCT,
+		_ACLn
+	],
+	[
+		2,
+		0,
+		0,
+		[() => AnalyticsConfigurationList, {
+			[_xF]: 1,
+			[_xN]: _ACn
+		}]
+	]
+];
+var ListBucketAnalyticsConfigurationsRequest$ = [
+	3,
+	n0,
+	_LBACRi,
+	0,
+	[
+		_B,
+		_CTon,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _ct }],
+		[0, { [_hH]: _xaebo }]
+	],
+	1
+];
+var ListBucketIntelligentTieringConfigurationsOutput$ = [
+	3,
+	n0,
+	_LBITCO,
+	0,
+	[
+		_IT,
+		_CTon,
+		_NCT,
+		_ITCL
+	],
+	[
+		2,
+		0,
+		0,
+		[() => IntelligentTieringConfigurationList, {
+			[_xF]: 1,
+			[_xN]: _ITC
+		}]
+	]
+];
+var ListBucketIntelligentTieringConfigurationsRequest$ = [
+	3,
+	n0,
+	_LBITCR,
+	0,
+	[
+		_B,
+		_CTon,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _ct }],
+		[0, { [_hH]: _xaebo }]
+	],
+	1
+];
+var ListBucketInventoryConfigurationsOutput$ = [
+	3,
+	n0,
+	_LBICO,
+	{ [_xN]: _LICR },
+	[
+		_CTon,
+		_ICL,
+		_IT,
+		_NCT
+	],
+	[
+		0,
+		[() => InventoryConfigurationList, {
+			[_xF]: 1,
+			[_xN]: _IC
+		}],
+		2,
+		0
+	]
+];
+var ListBucketInventoryConfigurationsRequest$ = [
+	3,
+	n0,
+	_LBICR,
+	0,
+	[
+		_B,
+		_CTon,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _ct }],
+		[0, { [_hH]: _xaebo }]
+	],
+	1
+];
+var ListBucketMetricsConfigurationsOutput$ = [
+	3,
+	n0,
+	_LBMCO,
+	{ [_xN]: _LMCR },
+	[
+		_IT,
+		_CTon,
+		_NCT,
+		_MCL
+	],
+	[
+		2,
+		0,
+		0,
+		[() => MetricsConfigurationList, {
+			[_xF]: 1,
+			[_xN]: _MCe
+		}]
+	]
+];
+var ListBucketMetricsConfigurationsRequest$ = [
+	3,
+	n0,
+	_LBMCR,
+	0,
+	[
+		_B,
+		_CTon,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _ct }],
+		[0, { [_hH]: _xaebo }]
+	],
+	1
+];
+var ListBucketsOutput$ = [
+	3,
+	n0,
+	_LBO,
+	{ [_xN]: _LAMBR },
+	[
+		_Bu,
+		_O,
+		_CTon,
+		_P
+	],
+	[
+		[() => Buckets, 0],
+		() => Owner$,
+		0,
+		0
+	]
+];
+var ListBucketsRequest$ = [
+	3,
+	n0,
+	_LBR,
+	0,
+	[
+		_MB,
+		_CTon,
+		_P,
+		_BR
+	],
+	[
+		[1, { [_hQ]: _mb }],
+		[0, { [_hQ]: _ct }],
+		[0, { [_hQ]: _p }],
+		[0, { [_hQ]: _br }]
+	]
+];
+var ListDirectoryBucketsOutput$ = [
+	3,
+	n0,
+	_LDBO,
+	{ [_xN]: _LAMDBR },
+	[_Bu, _CTon],
+	[[() => Buckets, 0], 0]
+];
+var ListDirectoryBucketsRequest$ = [
+	3,
+	n0,
+	_LDBR,
+	0,
+	[_CTon, _MDB],
+	[[0, { [_hQ]: _ct }], [1, { [_hQ]: _mdb }]]
+];
+var ListMultipartUploadsOutput$ = [
+	3,
+	n0,
+	_LMUO,
+	{ [_xN]: _LMUR },
+	[
+		_B,
+		_KM,
+		_UIM,
+		_NKM,
+		_P,
+		_Deli,
+		_NUIM,
+		_MUa,
+		_IT,
+		_U,
+		_CPom,
+		_ETn,
+		_RC
+	],
+	[
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		1,
+		2,
+		[() => MultipartUploadList, {
+			[_xF]: 1,
+			[_xN]: _Up
+		}],
+		[() => CommonPrefixList, { [_xF]: 1 }],
+		0,
+		[0, { [_hH]: _xarc }]
+	]
+];
+var ListMultipartUploadsRequest$ = [
+	3,
+	n0,
+	_LMURi,
+	0,
+	[
+		_B,
+		_Deli,
+		_ETn,
+		_KM,
+		_MUa,
+		_P,
+		_UIM,
+		_EBO,
+		_RP
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _d }],
+		[0, { [_hQ]: _et }],
+		[0, { [_hQ]: _km }],
+		[1, { [_hQ]: _mu }],
+		[0, { [_hQ]: _p }],
+		[0, { [_hQ]: _uim }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xarp }]
+	],
+	1
+];
+var ListObjectsOutput$ = [
+	3,
+	n0,
+	_LOO,
+	{ [_xN]: _LBRi },
+	[
+		_IT,
+		_Ma,
+		_NM,
+		_Con,
+		_N,
+		_P,
+		_Deli,
+		_MK,
+		_CPom,
+		_ETn,
+		_RC
+	],
+	[
+		2,
+		0,
+		0,
+		[() => ObjectList, { [_xF]: 1 }],
+		0,
+		0,
+		0,
+		1,
+		[() => CommonPrefixList, { [_xF]: 1 }],
+		0,
+		[0, { [_hH]: _xarc }]
+	]
+];
+var ListObjectsRequest$ = [
+	3,
+	n0,
+	_LOR,
+	0,
+	[
+		_B,
+		_Deli,
+		_ETn,
+		_Ma,
+		_MK,
+		_P,
+		_RP,
+		_EBO,
+		_OOA
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _d }],
+		[0, { [_hQ]: _et }],
+		[0, { [_hQ]: _m }],
+		[1, { [_hQ]: _mk }],
+		[0, { [_hQ]: _p }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xaebo }],
+		[64, { [_hH]: _xaooa }]
+	],
+	1
+];
+var ListObjectsV2Output$ = [
+	3,
+	n0,
+	_LOVO,
+	{ [_xN]: _LBRi },
+	[
+		_IT,
+		_Con,
+		_N,
+		_P,
+		_Deli,
+		_MK,
+		_CPom,
+		_ETn,
+		_KC,
+		_CTon,
+		_NCT,
+		_SA,
+		_RC
+	],
+	[
+		2,
+		[() => ObjectList, { [_xF]: 1 }],
+		0,
+		0,
+		0,
+		1,
+		[() => CommonPrefixList, { [_xF]: 1 }],
+		0,
+		1,
+		0,
+		0,
+		0,
+		[0, { [_hH]: _xarc }]
+	]
+];
+var ListObjectsV2Request$ = [
+	3,
+	n0,
+	_LOVR,
+	0,
+	[
+		_B,
+		_Deli,
+		_ETn,
+		_MK,
+		_P,
+		_CTon,
+		_FO,
+		_SA,
+		_RP,
+		_EBO,
+		_OOA
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _d }],
+		[0, { [_hQ]: _et }],
+		[1, { [_hQ]: _mk }],
+		[0, { [_hQ]: _p }],
+		[0, { [_hQ]: _ct }],
+		[2, { [_hQ]: _fo }],
+		[0, { [_hQ]: _sa }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xaebo }],
+		[64, { [_hH]: _xaooa }]
+	],
+	1
+];
+var ListObjectVersionsOutput$ = [
+	3,
+	n0,
+	_LOVOi,
+	{ [_xN]: _LVR },
+	[
+		_IT,
+		_KM,
+		_VIM,
+		_NKM,
+		_NVIM,
+		_Ve,
+		_DMe,
+		_N,
+		_P,
+		_Deli,
+		_MK,
+		_CPom,
+		_ETn,
+		_RC
+	],
+	[
+		2,
+		0,
+		0,
+		0,
+		0,
+		[() => ObjectVersionList, {
+			[_xF]: 1,
+			[_xN]: _Ver
+		}],
+		[() => DeleteMarkers, {
+			[_xF]: 1,
+			[_xN]: _DM
+		}],
+		0,
+		0,
+		0,
+		1,
+		[() => CommonPrefixList, { [_xF]: 1 }],
+		0,
+		[0, { [_hH]: _xarc }]
+	]
+];
+var ListObjectVersionsRequest$ = [
+	3,
+	n0,
+	_LOVRi,
+	0,
+	[
+		_B,
+		_Deli,
+		_ETn,
+		_KM,
+		_MK,
+		_P,
+		_VIM,
+		_EBO,
+		_RP,
+		_OOA
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _d }],
+		[0, { [_hQ]: _et }],
+		[0, { [_hQ]: _km }],
+		[1, { [_hQ]: _mk }],
+		[0, { [_hQ]: _p }],
+		[0, { [_hQ]: _vim }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xarp }],
+		[64, { [_hH]: _xaooa }]
+	],
+	1
+];
+var ListPartsOutput$ = [
+	3,
+	n0,
+	_LPO,
+	{ [_xN]: _LPR },
+	[
+		_AD,
+		_ARI,
+		_B,
+		_K,
+		_UI,
+		_PNM,
+		_NPNM,
+		_MP,
+		_IT,
+		_Pa,
+		_In,
+		_O,
+		_SC,
+		_RC,
+		_CA,
+		_CT
+	],
+	[
+		[4, { [_hH]: _xaad }],
+		[0, { [_hH]: _xaari }],
+		0,
+		0,
+		0,
+		0,
+		0,
+		1,
+		2,
+		[() => Parts, {
+			[_xF]: 1,
+			[_xN]: _Par
+		}],
+		() => Initiator$,
+		() => Owner$,
+		0,
+		[0, { [_hH]: _xarc }],
+		0,
+		0
+	]
+];
+var ListPartsRequest$ = [
+	3,
+	n0,
+	_LPRi,
+	0,
+	[
+		_B,
+		_K,
+		_UI,
+		_MP,
+		_PNM,
+		_RP,
+		_EBO,
+		_SSECA,
+		_SSECK,
+		_SSECKMD
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hQ]: _uI }],
+		[1, { [_hQ]: _mp }],
+		[0, { [_hQ]: _pnm }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xasseca }],
+		[() => SSECustomerKey, { [_hH]: _xasseck }],
+		[0, { [_hH]: _xasseckM }]
+	],
+	3
+];
+var LocationInfo$ = [
+	3,
+	n0,
+	_LI,
+	0,
+	[_Ty, _N],
+	[0, 0]
+];
+var LoggingEnabled$ = [
+	3,
+	n0,
+	_LE,
+	0,
+	[
+		_TB,
+		_TP,
+		_TG,
+		_TOKF
+	],
+	[
+		0,
+		0,
+		[() => TargetGrants, 0],
+		[() => TargetObjectKeyFormat$, 0]
+	],
+	2
+];
+var MetadataConfiguration$ = [
+	3,
+	n0,
+	_MC,
+	0,
+	[_JTC, _ITCn],
+	[() => JournalTableConfiguration$, () => InventoryTableConfiguration$],
+	1
+];
+var MetadataConfigurationResult$ = [
+	3,
+	n0,
+	_MCR,
+	0,
+	[
+		_DRes,
+		_JTCR,
+		_ITCR
+	],
+	[
+		() => DestinationResult$,
+		() => JournalTableConfigurationResult$,
+		() => InventoryTableConfigurationResult$
+	],
+	1
+];
+var MetadataEntry$ = [
+	3,
+	n0,
+	_ME,
+	0,
+	[_N, _V],
+	[0, 0]
+];
+var MetadataTableConfiguration$ = [
+	3,
+	n0,
+	_MTC,
+	0,
+	[_STD],
+	[() => S3TablesDestination$],
+	1
+];
+var MetadataTableConfigurationResult$ = [
+	3,
+	n0,
+	_MTCR,
+	0,
+	[_STDR],
+	[() => S3TablesDestinationResult$],
+	1
+];
+var MetadataTableEncryptionConfiguration$ = [
+	3,
+	n0,
+	_MTEC,
+	0,
+	[_SAs, _KKA],
+	[0, 0],
+	1
+];
+var Metrics$ = [
+	3,
+	n0,
+	_Me,
+	0,
+	[_S, _ETv],
+	[0, () => ReplicationTimeValue$],
+	1
+];
+var MetricsAndOperator$ = [
+	3,
+	n0,
+	_MAO,
+	0,
+	[
+		_P,
+		_T,
+		_APAc
+	],
+	[
+		0,
+		[() => TagSet, {
+			[_xF]: 1,
+			[_xN]: _Ta
+		}],
+		0
+	]
+];
+var MetricsConfiguration$ = [
+	3,
+	n0,
+	_MCe,
+	0,
+	[_I, _F],
+	[0, [() => MetricsFilter$, 0]],
+	1
+];
+var MultipartUpload$ = [
+	3,
+	n0,
+	_MU,
+	0,
+	[
+		_UI,
+		_K,
+		_Ini,
+		_SC,
+		_O,
+		_In,
+		_CA,
+		_CT
+	],
+	[
+		0,
+		0,
+		4,
+		0,
+		() => Owner$,
+		() => Initiator$,
+		0,
+		0
+	]
+];
+var NoncurrentVersionExpiration$ = [
+	3,
+	n0,
+	_NVE,
+	0,
+	[_ND, _NNV],
+	[1, 1]
+];
+var NoncurrentVersionTransition$ = [
+	3,
+	n0,
+	_NVTo,
+	0,
+	[
+		_ND,
+		_SC,
+		_NNV
+	],
+	[
+		1,
+		0,
+		1
+	]
+];
+var NoSuchBucket$ = [
+	-3,
+	n0,
+	_NSB,
+	{
+		[_e]: _c,
+		[_hE]: 404
+	},
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(NoSuchBucket$, NoSuchBucket);
+var NoSuchKey$ = [
+	-3,
+	n0,
+	_NSK,
+	{
+		[_e]: _c,
+		[_hE]: 404
+	},
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(NoSuchKey$, NoSuchKey);
+var NoSuchUpload$ = [
+	-3,
+	n0,
+	_NSU,
+	{
+		[_e]: _c,
+		[_hE]: 404
+	},
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(NoSuchUpload$, NoSuchUpload);
+var NotFound$ = [
+	-3,
+	n0,
+	_NF,
+	{ [_e]: _c },
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(NotFound$, NotFound);
+var NotificationConfiguration$ = [
+	3,
+	n0,
+	_NC,
+	0,
+	[
+		_TCo,
+		_QCu,
+		_LFCa,
+		_EBC
+	],
+	[
+		[() => TopicConfigurationList, {
+			[_xF]: 1,
+			[_xN]: _TCop
+		}],
+		[() => QueueConfigurationList, {
+			[_xF]: 1,
+			[_xN]: _QCue
+		}],
+		[() => LambdaFunctionConfigurationList, {
+			[_xF]: 1,
+			[_xN]: _CFC
+		}],
+		() => EventBridgeConfiguration$
+	]
+];
+var NotificationConfigurationFilter$ = [
+	3,
+	n0,
+	_NCF,
+	0,
+	[_K],
+	[[() => S3KeyFilter$, { [_xN]: _SKe }]]
+];
+var _Object$ = [
+	3,
+	n0,
+	_Obj,
+	0,
+	[
+		_K,
+		_LM,
+		_ETa,
+		_CA,
+		_CT,
+		_Si,
+		_SC,
+		_O,
+		_RSe
+	],
+	[
+		0,
+		4,
+		0,
+		[64, { [_xF]: 1 }],
+		0,
+		1,
+		0,
+		() => Owner$,
+		() => RestoreStatus$
+	]
+];
+var ObjectAlreadyInActiveTierError$ = [
+	-3,
+	n0,
+	_OAIATE,
+	{
+		[_e]: _c,
+		[_hE]: 403
+	},
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(ObjectAlreadyInActiveTierError$, ObjectAlreadyInActiveTierError);
+var ObjectIdentifier$ = [
+	3,
+	n0,
+	_OI,
+	0,
+	[
+		_K,
+		_VI,
+		_ETa,
+		_LMT,
+		_Si
+	],
+	[
+		0,
+		0,
+		0,
+		6,
+		1
+	],
+	1
+];
+var ObjectLockConfiguration$ = [
+	3,
+	n0,
+	_OLC,
+	0,
+	[_OLE, _Ru],
+	[0, () => ObjectLockRule$]
+];
+var ObjectLockLegalHold$ = [
+	3,
+	n0,
+	_OLLH,
+	0,
+	[_S],
+	[0]
+];
+var ObjectLockRetention$ = [
+	3,
+	n0,
+	_OLR,
+	0,
+	[_Mo, _RUD],
+	[0, 5]
+];
+var ObjectLockRule$ = [
+	3,
+	n0,
+	_OLRb,
+	0,
+	[_DRe],
+	[() => DefaultRetention$]
+];
+var ObjectNotInActiveTierError$ = [
+	-3,
+	n0,
+	_ONIATE,
+	{
+		[_e]: _c,
+		[_hE]: 403
+	},
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(ObjectNotInActiveTierError$, ObjectNotInActiveTierError);
+var ObjectPart$ = [
+	3,
+	n0,
+	_OPb,
+	0,
+	[
+		_PN,
+		_Si,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh
+	],
+	[
+		1,
+		1,
+		0,
+		0,
+		0,
+		0,
+		0
+	]
+];
+var ObjectVersion$ = [
+	3,
+	n0,
+	_OV,
+	0,
+	[
+		_ETa,
+		_CA,
+		_CT,
+		_Si,
+		_SC,
+		_K,
+		_VI,
+		_IL,
+		_LM,
+		_O,
+		_RSe
+	],
+	[
+		0,
+		[64, { [_xF]: 1 }],
+		0,
+		1,
+		0,
+		0,
+		0,
+		2,
+		4,
+		() => Owner$,
+		() => RestoreStatus$
+	]
+];
+var OutputLocation$ = [
+	3,
+	n0,
+	_OL,
+	0,
+	[_S_],
+	[[() => S3Location$, 0]]
+];
+var OutputSerialization$ = [
+	3,
+	n0,
+	_OSu,
+	0,
+	[_CSV, _JSON],
+	[() => CSVOutput$, () => JSONOutput$]
+];
+var Owner$ = [
+	3,
+	n0,
+	_O,
+	0,
+	[_DN, _ID],
+	[0, 0]
+];
+var OwnershipControls$ = [
+	3,
+	n0,
+	_OC,
+	0,
+	[_R],
+	[[() => OwnershipControlsRules, {
+		[_xF]: 1,
+		[_xN]: _Ru
+	}]],
+	1
+];
+var OwnershipControlsRule$ = [
+	3,
+	n0,
+	_OCR,
+	0,
+	[_OO],
+	[0],
+	1
+];
+var ParquetInput$ = [
+	3,
+	n0,
+	_PI,
+	0,
+	[],
+	[]
+];
+var Part$ = [
+	3,
+	n0,
+	_Par,
+	0,
+	[
+		_PN,
+		_LM,
+		_ETa,
+		_Si,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh
+	],
+	[
+		1,
+		4,
+		0,
+		1,
+		0,
+		0,
+		0,
+		0,
+		0
+	]
+];
+var PartitionedPrefix$ = [
+	3,
+	n0,
+	_PP,
+	{ [_xN]: _PP },
+	[_PDS],
+	[0]
+];
+var PolicyStatus$ = [
+	3,
+	n0,
+	_PS,
+	0,
+	[_IP],
+	[[2, { [_xN]: _IP }]]
+];
+var Progress$ = [
+	3,
+	n0,
+	_Pr,
+	0,
+	[
+		_BS,
+		_BP,
+		_BRy
+	],
+	[
+		1,
+		1,
+		1
+	]
+];
+var ProgressEvent$ = [
+	3,
+	n0,
+	_PE,
+	0,
+	[_Det],
+	[[() => Progress$, { [_eP]: 1 }]]
+];
+var PublicAccessBlockConfiguration$ = [
+	3,
+	n0,
+	_PABC,
+	0,
+	[
+		_BPA,
+		_IPA,
+		_BPP,
+		_RPB
+	],
+	[
+		[2, { [_xN]: _BPA }],
+		[2, { [_xN]: _IPA }],
+		[2, { [_xN]: _BPP }],
+		[2, { [_xN]: _RPB }]
+	]
+];
+var PutBucketAbacRequest$ = [
+	3,
+	n0,
+	_PBAR,
+	0,
+	[
+		_B,
+		_AS,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => AbacStatus$, {
+			[_hP]: 1,
+			[_xN]: _AS
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutBucketAccelerateConfigurationRequest$ = [
+	3,
+	n0,
+	_PBACR,
+	0,
+	[
+		_B,
+		_AC,
+		_EBO,
+		_CA
+	],
+	[
+		[0, 1],
+		[() => AccelerateConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _AC
+		}],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xasca }]
+	],
+	2
+];
+var PutBucketAclRequest$ = [
+	3,
+	n0,
+	_PBARu,
+	0,
+	[
+		_B,
+		_ACL_,
+		_ACP,
+		_CMD,
+		_CA,
+		_GFC,
+		_GR,
+		_GRACP,
+		_GW,
+		_GWACP,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hH]: _xaa }],
+		[() => AccessControlPolicy$, {
+			[_hP]: 1,
+			[_xN]: _ACP
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xagfc }],
+		[0, { [_hH]: _xagr }],
+		[0, { [_hH]: _xagra }],
+		[0, { [_hH]: _xagw }],
+		[0, { [_hH]: _xagwa }],
+		[0, { [_hH]: _xaebo }]
+	],
+	1
+];
+var PutBucketAnalyticsConfigurationRequest$ = [
+	3,
+	n0,
+	_PBACRu,
+	0,
+	[
+		_B,
+		_I,
+		_ACn,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _i }],
+		[() => AnalyticsConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _ACn
+		}],
+		[0, { [_hH]: _xaebo }]
+	],
+	3
+];
+var PutBucketCorsRequest$ = [
+	3,
+	n0,
+	_PBCR,
+	0,
+	[
+		_B,
+		_CORSC,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => CORSConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _CORSC
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutBucketEncryptionRequest$ = [
+	3,
+	n0,
+	_PBER,
+	0,
+	[
+		_B,
+		_SSEC,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => ServerSideEncryptionConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _SSEC
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutBucketIntelligentTieringConfigurationRequest$ = [
+	3,
+	n0,
+	_PBITCR,
+	0,
+	[
+		_B,
+		_I,
+		_ITC,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _i }],
+		[() => IntelligentTieringConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _ITC
+		}],
+		[0, { [_hH]: _xaebo }]
+	],
+	3
+];
+var PutBucketInventoryConfigurationRequest$ = [
+	3,
+	n0,
+	_PBICR,
+	0,
+	[
+		_B,
+		_I,
+		_IC,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _i }],
+		[() => InventoryConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _IC
+		}],
+		[0, { [_hH]: _xaebo }]
+	],
+	3
+];
+var PutBucketLifecycleConfigurationOutput$ = [
+	3,
+	n0,
+	_PBLCO,
+	0,
+	[_TDMOS],
+	[[0, { [_hH]: _xatdmos }]]
+];
+var PutBucketLifecycleConfigurationRequest$ = [
+	3,
+	n0,
+	_PBLCR,
+	0,
+	[
+		_B,
+		_CA,
+		_LCi,
+		_EBO,
+		_TDMOS
+	],
+	[
+		[0, 1],
+		[0, { [_hH]: _xasca }],
+		[() => BucketLifecycleConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _LCi
+		}],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xatdmos }]
+	],
+	1
+];
+var PutBucketLoggingRequest$ = [
+	3,
+	n0,
+	_PBLR,
+	0,
+	[
+		_B,
+		_BLS,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => BucketLoggingStatus$, {
+			[_hP]: 1,
+			[_xN]: _BLS
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutBucketMetricsConfigurationRequest$ = [
+	3,
+	n0,
+	_PBMCR,
+	0,
+	[
+		_B,
+		_I,
+		_MCe,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, { [_hQ]: _i }],
+		[() => MetricsConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _MCe
+		}],
+		[0, { [_hH]: _xaebo }]
+	],
+	3
+];
+var PutBucketNotificationConfigurationRequest$ = [
+	3,
+	n0,
+	_PBNCR,
+	0,
+	[
+		_B,
+		_NC,
+		_EBO,
+		_SDV
+	],
+	[
+		[0, 1],
+		[() => NotificationConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _NC
+		}],
+		[0, { [_hH]: _xaebo }],
+		[2, { [_hH]: _xasdv }]
+	],
+	2
+];
+var PutBucketOwnershipControlsRequest$ = [
+	3,
+	n0,
+	_PBOCR,
+	0,
+	[
+		_B,
+		_OC,
+		_CMD,
+		_EBO,
+		_CA
+	],
+	[
+		[0, 1],
+		[() => OwnershipControls$, {
+			[_hP]: 1,
+			[_xN]: _OC
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xasca }]
+	],
+	2
+];
+var PutBucketPolicyRequest$ = [
+	3,
+	n0,
+	_PBPR,
+	0,
+	[
+		_B,
+		_Po,
+		_CMD,
+		_CA,
+		_CRSBA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 16],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[2, { [_hH]: _xacrsba }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutBucketReplicationRequest$ = [
+	3,
+	n0,
+	_PBRR,
+	0,
+	[
+		_B,
+		_RCe,
+		_CMD,
+		_CA,
+		_To,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => ReplicationConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _RCe
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xabolt }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutBucketRequestPaymentRequest$ = [
+	3,
+	n0,
+	_PBRPR,
+	0,
+	[
+		_B,
+		_RPC,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => RequestPaymentConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _RPC
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutBucketTaggingRequest$ = [
+	3,
+	n0,
+	_PBTR,
+	0,
+	[
+		_B,
+		_Tag,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => Tagging$, {
+			[_hP]: 1,
+			[_xN]: _Tag
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutBucketVersioningRequest$ = [
+	3,
+	n0,
+	_PBVR,
+	0,
+	[
+		_B,
+		_VC,
+		_CMD,
+		_CA,
+		_MFA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => VersioningConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _VC
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xam_ }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutBucketWebsiteRequest$ = [
+	3,
+	n0,
+	_PBWR,
+	0,
+	[
+		_B,
+		_WC,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => WebsiteConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _WC
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutObjectAclOutput$ = [
+	3,
+	n0,
+	_POAO,
+	0,
+	[_RC],
+	[[0, { [_hH]: _xarc }]]
+];
+var PutObjectAclRequest$ = [
+	3,
+	n0,
+	_POAR,
+	0,
+	[
+		_B,
+		_K,
+		_ACL_,
+		_ACP,
+		_CMD,
+		_CA,
+		_GFC,
+		_GR,
+		_GRACP,
+		_GW,
+		_GWACP,
+		_RP,
+		_VI,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hH]: _xaa }],
+		[() => AccessControlPolicy$, {
+			[_hP]: 1,
+			[_xN]: _ACP
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xagfc }],
+		[0, { [_hH]: _xagr }],
+		[0, { [_hH]: _xagra }],
+		[0, { [_hH]: _xagw }],
+		[0, { [_hH]: _xagwa }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hQ]: _vI }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutObjectLegalHoldOutput$ = [
+	3,
+	n0,
+	_POLHO,
+	0,
+	[_RC],
+	[[0, { [_hH]: _xarc }]]
+];
+var PutObjectLegalHoldRequest$ = [
+	3,
+	n0,
+	_POLHR,
+	0,
+	[
+		_B,
+		_K,
+		_LH,
+		_RP,
+		_VI,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[() => ObjectLockLegalHold$, {
+			[_hP]: 1,
+			[_xN]: _LH
+		}],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hQ]: _vI }],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutObjectLockConfigurationOutput$ = [
+	3,
+	n0,
+	_POLCO,
+	0,
+	[_RC],
+	[[0, { [_hH]: _xarc }]]
+];
+var PutObjectLockConfigurationRequest$ = [
+	3,
+	n0,
+	_POLCR,
+	0,
+	[
+		_B,
+		_OLC,
+		_RP,
+		_To,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => ObjectLockConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _OLC
+		}],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xabolt }],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	1
+];
+var PutObjectOutput$ = [
+	3,
+	n0,
+	_POO,
+	0,
+	[
+		_E,
+		_ETa,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh,
+		_CT,
+		_SSE,
+		_VI,
+		_SSECA,
+		_SSECKMD,
+		_SSEKMSKI,
+		_SSEKMSEC,
+		_BKE,
+		_Si,
+		_RC
+	],
+	[
+		[0, { [_hH]: _xae }],
+		[0, { [_hH]: _ETa }],
+		[0, { [_hH]: _xacc }],
+		[0, { [_hH]: _xacc_ }],
+		[0, { [_hH]: _xacc__ }],
+		[0, { [_hH]: _xacs }],
+		[0, { [_hH]: _xacs_ }],
+		[0, { [_hH]: _xact }],
+		[0, { [_hH]: _xasse }],
+		[0, { [_hH]: _xavi }],
+		[0, { [_hH]: _xasseca }],
+		[0, { [_hH]: _xasseckM }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[() => SSEKMSEncryptionContext, { [_hH]: _xassec }],
+		[2, { [_hH]: _xassebke }],
+		[1, { [_hH]: _xaos }],
+		[0, { [_hH]: _xarc }]
+	]
+];
+var PutObjectRequest$ = [
+	3,
+	n0,
+	_POR,
+	0,
+	[
+		_B,
+		_K,
+		_ACL_,
+		_Bo,
+		_CC,
+		_CDo,
+		_CEo,
+		_CL,
+		_CLo,
+		_CMD,
+		_CTo,
+		_CA,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh,
+		_Ex,
+		_IM,
+		_INM,
+		_GFC,
+		_GR,
+		_GRACP,
+		_GWACP,
+		_WOB,
+		_M,
+		_SSE,
+		_SC,
+		_WRL,
+		_SSECA,
+		_SSECK,
+		_SSECKMD,
+		_SSEKMSKI,
+		_SSEKMSEC,
+		_BKE,
+		_RP,
+		_Tag,
+		_OLM,
+		_OLRUD,
+		_OLLHS,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hH]: _xaa }],
+		[() => StreamingBlob, 16],
+		[0, { [_hH]: _CC_ }],
+		[0, { [_hH]: _CD_ }],
+		[0, { [_hH]: _CE_ }],
+		[0, { [_hH]: _CL_ }],
+		[1, { [_hH]: _CL__ }],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _CT_ }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xacc }],
+		[0, { [_hH]: _xacc_ }],
+		[0, { [_hH]: _xacc__ }],
+		[0, { [_hH]: _xacs }],
+		[0, { [_hH]: _xacs_ }],
+		[4, { [_hH]: _Ex }],
+		[0, { [_hH]: _IM_ }],
+		[0, { [_hH]: _INM_ }],
+		[0, { [_hH]: _xagfc }],
+		[0, { [_hH]: _xagr }],
+		[0, { [_hH]: _xagra }],
+		[0, { [_hH]: _xagwa }],
+		[1, { [_hH]: _xawob }],
+		[128, { [_hPH]: _xam }],
+		[0, { [_hH]: _xasse }],
+		[0, { [_hH]: _xasc }],
+		[0, { [_hH]: _xawrl }],
+		[0, { [_hH]: _xasseca }],
+		[() => SSECustomerKey, { [_hH]: _xasseck }],
+		[0, { [_hH]: _xasseckM }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[() => SSEKMSEncryptionContext, { [_hH]: _xassec }],
+		[2, { [_hH]: _xassebke }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xat }],
+		[0, { [_hH]: _xaolm }],
+		[5, { [_hH]: _xaolrud }],
+		[0, { [_hH]: _xaollh }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutObjectRetentionOutput$ = [
+	3,
+	n0,
+	_PORO,
+	0,
+	[_RC],
+	[[0, { [_hH]: _xarc }]]
+];
+var PutObjectRetentionRequest$ = [
+	3,
+	n0,
+	_PORR,
+	0,
+	[
+		_B,
+		_K,
+		_Ret,
+		_RP,
+		_VI,
+		_BGR,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[() => ObjectLockRetention$, {
+			[_hP]: 1,
+			[_xN]: _Ret
+		}],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hQ]: _vI }],
+		[2, { [_hH]: _xabgr }],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var PutObjectTaggingOutput$ = [
+	3,
+	n0,
+	_POTO,
+	0,
+	[_VI],
+	[[0, { [_hH]: _xavi }]]
+];
+var PutObjectTaggingRequest$ = [
+	3,
+	n0,
+	_POTR,
+	0,
+	[
+		_B,
+		_K,
+		_Tag,
+		_VI,
+		_CMD,
+		_CA,
+		_EBO,
+		_RP
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[() => Tagging$, {
+			[_hP]: 1,
+			[_xN]: _Tag
+		}],
+		[0, { [_hQ]: _vI }],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xarp }]
+	],
+	3
+];
+var PutPublicAccessBlockRequest$ = [
+	3,
+	n0,
+	_PPABR,
+	0,
+	[
+		_B,
+		_PABC,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => PublicAccessBlockConfiguration$, {
+			[_hP]: 1,
+			[_xN]: _PABC
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var QueueConfiguration$ = [
+	3,
+	n0,
+	_QCue,
+	0,
+	[
+		_QA,
+		_Ev,
+		_I,
+		_F
+	],
+	[
+		[0, { [_xN]: _Qu }],
+		[64, {
+			[_xF]: 1,
+			[_xN]: _Eve
+		}],
+		0,
+		[() => NotificationConfigurationFilter$, 0]
+	],
+	2
+];
+var RecordExpiration$ = [
+	3,
+	n0,
+	_REe,
+	0,
+	[_E, _D],
+	[0, 1],
+	1
+];
+var RecordsEvent$ = [
+	3,
+	n0,
+	_REec,
+	0,
+	[_Payl],
+	[[21, { [_eP]: 1 }]]
+];
+var Redirect$ = [
+	3,
+	n0,
+	_Red,
+	0,
+	[
+		_HN,
+		_HRC,
+		_Pro,
+		_RKPW,
+		_RKW
+	],
+	[
+		0,
+		0,
+		0,
+		0,
+		0
+	]
+];
+var RedirectAllRequestsTo$ = [
+	3,
+	n0,
+	_RART,
+	0,
+	[_HN, _Pro],
+	[0, 0],
+	1
+];
+var RenameObjectOutput$ = [
+	3,
+	n0,
+	_ROO,
+	0,
+	[],
+	[]
+];
+var RenameObjectRequest$ = [
+	3,
+	n0,
+	_ROR,
+	0,
+	[
+		_B,
+		_K,
+		_RSen,
+		_DIM,
+		_DINM,
+		_DIMS,
+		_DIUS,
+		_SIM,
+		_SINM,
+		_SIMS,
+		_SIUS,
+		_CTl
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hH]: _xars_ }],
+		[0, { [_hH]: _IM_ }],
+		[0, { [_hH]: _INM_ }],
+		[4, { [_hH]: _IMS_ }],
+		[4, { [_hH]: _IUS_ }],
+		[0, { [_hH]: _xarsim }],
+		[0, { [_hH]: _xarsinm }],
+		[6, { [_hH]: _xarsims }],
+		[6, { [_hH]: _xarsius }],
+		[0, {
+			[_hH]: _xact_,
+			[_iT]: 1
+		}]
+	],
+	3
+];
+var ReplicaModifications$ = [
+	3,
+	n0,
+	_RM,
+	0,
+	[_S],
+	[0],
+	1
+];
+var ReplicationConfiguration$ = [
+	3,
+	n0,
+	_RCe,
+	0,
+	[_Ro, _R],
+	[0, [() => ReplicationRules, {
+		[_xF]: 1,
+		[_xN]: _Ru
+	}]],
+	2
+];
+var ReplicationRule$ = [
+	3,
+	n0,
+	_RRe,
+	0,
+	[
+		_S,
+		_Des,
+		_ID,
+		_Pri,
+		_P,
+		_F,
+		_SSC,
+		_EOR,
+		_DMR
+	],
+	[
+		0,
+		() => Destination$,
+		0,
+		1,
+		0,
+		[() => ReplicationRuleFilter$, 0],
+		() => SourceSelectionCriteria$,
+		() => ExistingObjectReplication$,
+		() => DeleteMarkerReplication$
+	],
+	2
+];
+var ReplicationRuleAndOperator$ = [
+	3,
+	n0,
+	_RRAO,
+	0,
+	[_P, _T],
+	[0, [() => TagSet, {
+		[_xF]: 1,
+		[_xN]: _Ta
+	}]]
+];
+var ReplicationRuleFilter$ = [
+	3,
+	n0,
+	_RRF,
+	0,
+	[
+		_P,
+		_Ta,
+		_An
+	],
+	[
+		0,
+		() => Tag$,
+		[() => ReplicationRuleAndOperator$, 0]
+	]
+];
+var ReplicationTime$ = [
+	3,
+	n0,
+	_RT,
+	0,
+	[_S, _Tim],
+	[0, () => ReplicationTimeValue$],
+	2
+];
+var ReplicationTimeValue$ = [
+	3,
+	n0,
+	_RTV,
+	0,
+	[_Mi],
+	[1]
+];
+var RequestPaymentConfiguration$ = [
+	3,
+	n0,
+	_RPC,
+	0,
+	[_Pay],
+	[0],
+	1
+];
+var RequestProgress$ = [
+	3,
+	n0,
+	_RPe,
+	0,
+	[_Ena],
+	[2]
+];
+var RestoreObjectOutput$ = [
+	3,
+	n0,
+	_ROOe,
+	0,
+	[_RC, _ROP],
+	[[0, { [_hH]: _xarc }], [0, { [_hH]: _xarop }]]
+];
+var RestoreObjectRequest$ = [
+	3,
+	n0,
+	_RORe,
+	0,
+	[
+		_B,
+		_K,
+		_VI,
+		_RRes,
+		_RP,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[0, { [_hQ]: _vI }],
+		[() => RestoreRequest$, {
+			[_hP]: 1,
+			[_xN]: _RRes
+		}],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var RestoreRequest$ = [
+	3,
+	n0,
+	_RRes,
+	0,
+	[
+		_D,
+		_GJP,
+		_Ty,
+		_Ti,
+		_Desc,
+		_SP,
+		_OL
+	],
+	[
+		1,
+		() => GlacierJobParameters$,
+		0,
+		0,
+		0,
+		() => SelectParameters$,
+		[() => OutputLocation$, 0]
+	]
+];
+var RestoreStatus$ = [
+	3,
+	n0,
+	_RSe,
+	0,
+	[_IRIP, _RED],
+	[2, 4]
+];
+var RoutingRule$ = [
+	3,
+	n0,
+	_RRo,
+	0,
+	[_Red, _Co],
+	[() => Redirect$, () => Condition$],
+	1
+];
+var S3KeyFilter$ = [
+	3,
+	n0,
+	_SKF,
+	0,
+	[_FRi],
+	[[() => FilterRuleList, {
+		[_xF]: 1,
+		[_xN]: _FR
+	}]]
+];
+var S3Location$ = [
+	3,
+	n0,
+	_SL,
+	0,
+	[
+		_BN,
+		_P,
+		_En,
+		_CACL,
+		_ACL,
+		_Tag,
+		_UM,
+		_SC
+	],
+	[
+		0,
+		0,
+		[() => Encryption$, 0],
+		0,
+		[() => Grants, 0],
+		[() => Tagging$, 0],
+		[() => UserMetadata, 0],
+		0
+	],
+	2
+];
+var S3TablesDestination$ = [
+	3,
+	n0,
+	_STD,
+	0,
+	[_TBA, _TNa],
+	[0, 0],
+	2
+];
+var S3TablesDestinationResult$ = [
+	3,
+	n0,
+	_STDR,
+	0,
+	[
+		_TBA,
+		_TNa,
+		_TA,
+		_TN
+	],
+	[
+		0,
+		0,
+		0,
+		0
+	],
+	4
+];
+var ScanRange$ = [
+	3,
+	n0,
+	_SR,
+	0,
+	[_St, _End],
+	[1, 1]
+];
+var SelectObjectContentOutput$ = [
+	3,
+	n0,
+	_SOCO,
+	0,
+	[_Payl],
+	[[() => SelectObjectContentEventStream$, 16]]
+];
+var SelectObjectContentRequest$ = [
+	3,
+	n0,
+	_SOCR,
+	0,
+	[
+		_B,
+		_K,
+		_Exp,
+		_ETx,
+		_IS,
+		_OSu,
+		_SSECA,
+		_SSECK,
+		_SSECKMD,
+		_RPe,
+		_SR,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		0,
+		0,
+		() => InputSerialization$,
+		() => OutputSerialization$,
+		[0, { [_hH]: _xasseca }],
+		[() => SSECustomerKey, { [_hH]: _xasseck }],
+		[0, { [_hH]: _xasseckM }],
+		() => RequestProgress$,
+		() => ScanRange$,
+		[0, { [_hH]: _xaebo }]
+	],
+	6
+];
+var SelectParameters$ = [
+	3,
+	n0,
+	_SP,
+	0,
+	[
+		_IS,
+		_ETx,
+		_Exp,
+		_OSu
+	],
+	[
+		() => InputSerialization$,
+		0,
+		0,
+		() => OutputSerialization$
+	],
+	4
+];
+var ServerSideEncryptionByDefault$ = [
+	3,
+	n0,
+	_SSEBD,
+	0,
+	[_SSEA, _KMSMKID],
+	[0, [() => SSEKMSKeyId, 0]],
+	1
+];
+var ServerSideEncryptionConfiguration$ = [
+	3,
+	n0,
+	_SSEC,
+	0,
+	[_R],
+	[[() => ServerSideEncryptionRules, {
+		[_xF]: 1,
+		[_xN]: _Ru
+	}]],
+	1
+];
+var ServerSideEncryptionRule$ = [
+	3,
+	n0,
+	_SSER,
+	0,
+	[
+		_ASSEBD,
+		_BKE,
+		_BET
+	],
+	[
+		[() => ServerSideEncryptionByDefault$, 0],
+		2,
+		[() => BlockedEncryptionTypes$, 0]
+	]
+];
+var SessionCredentials$ = [
+	3,
+	n0,
+	_SCe,
+	0,
+	[
+		_AKI,
+		_SAK,
+		_ST,
+		_E
+	],
+	[
+		[0, { [_xN]: _AKI }],
+		[() => SessionCredentialValue, { [_xN]: _SAK }],
+		[() => SessionCredentialValue, { [_xN]: _ST }],
+		[4, { [_xN]: _E }]
+	],
+	4
+];
+var SimplePrefix$ = [
+	3,
+	n0,
+	_SPi,
+	{ [_xN]: _SPi },
+	[],
+	[]
+];
+var SourceSelectionCriteria$ = [
+	3,
+	n0,
+	_SSC,
+	0,
+	[_SKEO, _RM],
+	[() => SseKmsEncryptedObjects$, () => ReplicaModifications$]
+];
+var SSEKMS$ = [
+	3,
+	n0,
+	_SSEKMS,
+	{ [_xN]: _SK },
+	[_KI],
+	[[() => SSEKMSKeyId, 0]],
+	1
+];
+var SseKmsEncryptedObjects$ = [
+	3,
+	n0,
+	_SKEO,
+	0,
+	[_S],
+	[0],
+	1
+];
+var SSES3$ = [
+	3,
+	n0,
+	_SSES,
+	{ [_xN]: _SS },
+	[],
+	[]
+];
+var Stats$ = [
+	3,
+	n0,
+	_Sta,
+	0,
+	[
+		_BS,
+		_BP,
+		_BRy
+	],
+	[
+		1,
+		1,
+		1
+	]
+];
+var StatsEvent$ = [
+	3,
+	n0,
+	_SE,
+	0,
+	[_Det],
+	[[() => Stats$, { [_eP]: 1 }]]
+];
+var StorageClassAnalysis$ = [
+	3,
+	n0,
+	_SCA,
+	0,
+	[_DE],
+	[() => StorageClassAnalysisDataExport$]
+];
+var StorageClassAnalysisDataExport$ = [
+	3,
+	n0,
+	_SCADE,
+	0,
+	[_OSV, _Des],
+	[0, () => AnalyticsExportDestination$],
+	2
+];
+var Tag$ = [
+	3,
+	n0,
+	_Ta,
+	0,
+	[_K, _V],
+	[0, 0],
+	2
+];
+var Tagging$ = [
+	3,
+	n0,
+	_Tag,
+	0,
+	[_TS],
+	[[() => TagSet, 0]],
+	1
+];
+var TargetGrant$ = [
+	3,
+	n0,
+	_TGa,
+	0,
+	[_Gra, _Pe],
+	[[() => Grantee$, { [_xNm]: [_x, _hi] }], 0]
+];
+var TargetObjectKeyFormat$ = [
+	3,
+	n0,
+	_TOKF,
+	0,
+	[_SPi, _PP],
+	[[() => SimplePrefix$, { [_xN]: _SPi }], [() => PartitionedPrefix$, { [_xN]: _PP }]]
+];
+var Tiering$ = [
+	3,
+	n0,
+	_Tier,
+	0,
+	[_D, _AT],
+	[1, 0],
+	2
+];
+var TooManyParts$ = [
+	-3,
+	n0,
+	_TMP,
+	{
+		[_e]: _c,
+		[_hE]: 400
+	},
+	[],
+	[]
+];
+TypeRegistry.for(n0).registerError(TooManyParts$, TooManyParts);
+var TopicConfiguration$ = [
+	3,
+	n0,
+	_TCop,
+	0,
+	[
+		_TAo,
+		_Ev,
+		_I,
+		_F
+	],
+	[
+		[0, { [_xN]: _Top }],
+		[64, {
+			[_xF]: 1,
+			[_xN]: _Eve
+		}],
+		0,
+		[() => NotificationConfigurationFilter$, 0]
+	],
+	2
+];
+var Transition$ = [
+	3,
+	n0,
+	_Tra,
+	0,
+	[
+		_Da,
+		_D,
+		_SC
+	],
+	[
+		5,
+		1,
+		0
+	]
+];
+var UpdateBucketMetadataInventoryTableConfigurationRequest$ = [
+	3,
+	n0,
+	_UBMITCR,
+	0,
+	[
+		_B,
+		_ITCn,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => InventoryTableConfigurationUpdates$, {
+			[_hP]: 1,
+			[_xN]: _ITCn
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var UpdateBucketMetadataJournalTableConfigurationRequest$ = [
+	3,
+	n0,
+	_UBMJTCR,
+	0,
+	[
+		_B,
+		_JTC,
+		_CMD,
+		_CA,
+		_EBO
+	],
+	[
+		[0, 1],
+		[() => JournalTableConfigurationUpdates$, {
+			[_hP]: 1,
+			[_xN]: _JTC
+		}],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xaebo }]
+	],
+	2
+];
+var UploadPartCopyOutput$ = [
+	3,
+	n0,
+	_UPCO,
+	0,
+	[
+		_CSVI,
+		_CPR,
+		_SSE,
+		_SSECA,
+		_SSECKMD,
+		_SSEKMSKI,
+		_BKE,
+		_RC
+	],
+	[
+		[0, { [_hH]: _xacsvi }],
+		[() => CopyPartResult$, 16],
+		[0, { [_hH]: _xasse }],
+		[0, { [_hH]: _xasseca }],
+		[0, { [_hH]: _xasseckM }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[2, { [_hH]: _xassebke }],
+		[0, { [_hH]: _xarc }]
+	]
+];
+var UploadPartCopyRequest$ = [
+	3,
+	n0,
+	_UPCR,
+	0,
+	[
+		_B,
+		_CS,
+		_K,
+		_PN,
+		_UI,
+		_CSIM,
+		_CSIMS,
+		_CSINM,
+		_CSIUS,
+		_CSRo,
+		_SSECA,
+		_SSECK,
+		_SSECKMD,
+		_CSSSECA,
+		_CSSSECK,
+		_CSSSECKMD,
+		_RP,
+		_EBO,
+		_ESBO
+	],
+	[
+		[0, 1],
+		[0, { [_hH]: _xacs__ }],
+		[0, 1],
+		[1, { [_hQ]: _pN }],
+		[0, { [_hQ]: _uI }],
+		[0, { [_hH]: _xacsim }],
+		[4, { [_hH]: _xacsims }],
+		[0, { [_hH]: _xacsinm }],
+		[4, { [_hH]: _xacsius }],
+		[0, { [_hH]: _xacsr }],
+		[0, { [_hH]: _xasseca }],
+		[() => SSECustomerKey, { [_hH]: _xasseck }],
+		[0, { [_hH]: _xasseckM }],
+		[0, { [_hH]: _xacssseca }],
+		[() => CopySourceSSECustomerKey, { [_hH]: _xacssseck }],
+		[0, { [_hH]: _xacssseckM }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xaebo }],
+		[0, { [_hH]: _xasebo }]
+	],
+	5
+];
+var UploadPartOutput$ = [
+	3,
+	n0,
+	_UPO,
+	0,
+	[
+		_SSE,
+		_ETa,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh,
+		_SSECA,
+		_SSECKMD,
+		_SSEKMSKI,
+		_BKE,
+		_RC
+	],
+	[
+		[0, { [_hH]: _xasse }],
+		[0, { [_hH]: _ETa }],
+		[0, { [_hH]: _xacc }],
+		[0, { [_hH]: _xacc_ }],
+		[0, { [_hH]: _xacc__ }],
+		[0, { [_hH]: _xacs }],
+		[0, { [_hH]: _xacs_ }],
+		[0, { [_hH]: _xasseca }],
+		[0, { [_hH]: _xasseckM }],
+		[() => SSEKMSKeyId, { [_hH]: _xasseakki }],
+		[2, { [_hH]: _xassebke }],
+		[0, { [_hH]: _xarc }]
+	]
+];
+var UploadPartRequest$ = [
+	3,
+	n0,
+	_UPR,
+	0,
+	[
+		_B,
+		_K,
+		_PN,
+		_UI,
+		_Bo,
+		_CLo,
+		_CMD,
+		_CA,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh,
+		_SSECA,
+		_SSECK,
+		_SSECKMD,
+		_RP,
+		_EBO
+	],
+	[
+		[0, 1],
+		[0, 1],
+		[1, { [_hQ]: _pN }],
+		[0, { [_hQ]: _uI }],
+		[() => StreamingBlob, 16],
+		[1, { [_hH]: _CL__ }],
+		[0, { [_hH]: _CM }],
+		[0, { [_hH]: _xasca }],
+		[0, { [_hH]: _xacc }],
+		[0, { [_hH]: _xacc_ }],
+		[0, { [_hH]: _xacc__ }],
+		[0, { [_hH]: _xacs }],
+		[0, { [_hH]: _xacs_ }],
+		[0, { [_hH]: _xasseca }],
+		[() => SSECustomerKey, { [_hH]: _xasseck }],
+		[0, { [_hH]: _xasseckM }],
+		[0, { [_hH]: _xarp }],
+		[0, { [_hH]: _xaebo }]
+	],
+	4
+];
+var VersioningConfiguration$ = [
+	3,
+	n0,
+	_VC,
+	0,
+	[_MFAD, _S],
+	[[0, { [_xN]: _MDf }], 0]
+];
+var WebsiteConfiguration$ = [
+	3,
+	n0,
+	_WC,
+	0,
+	[
+		_EDr,
+		_IDn,
+		_RART,
+		_RR
+	],
+	[
+		() => ErrorDocument$,
+		() => IndexDocument$,
+		() => RedirectAllRequestsTo$,
+		[() => RoutingRules, 0]
+	]
+];
+var WriteGetObjectResponseRequest$ = [
+	3,
+	n0,
+	_WGORR,
+	0,
+	[
+		_RReq,
+		_RTe,
+		_Bo,
+		_SCt,
+		_ECr,
+		_EM,
+		_AR,
+		_CC,
+		_CDo,
+		_CEo,
+		_CL,
+		_CLo,
+		_CR,
+		_CTo,
+		_CCRC,
+		_CCRCC,
+		_CCRCNVME,
+		_CSHA,
+		_CSHAh,
+		_DM,
+		_ETa,
+		_Ex,
+		_E,
+		_LM,
+		_MM,
+		_M,
+		_OLM,
+		_OLLHS,
+		_OLRUD,
+		_PC,
+		_RS,
+		_RC,
+		_Re,
+		_SSE,
+		_SSECA,
+		_SSEKMSKI,
+		_SSECKMD,
+		_SC,
+		_TC,
+		_VI,
+		_BKE
+	],
+	[
+		[0, {
+			[_hL]: 1,
+			[_hH]: _xarr
+		}],
+		[0, { [_hH]: _xart }],
+		[() => StreamingBlob, 16],
+		[1, { [_hH]: _xafs }],
+		[0, { [_hH]: _xafec }],
+		[0, { [_hH]: _xafem }],
+		[0, { [_hH]: _xafhar }],
+		[0, { [_hH]: _xafhCC }],
+		[0, { [_hH]: _xafhCD }],
+		[0, { [_hH]: _xafhCE }],
+		[0, { [_hH]: _xafhCL }],
+		[1, { [_hH]: _CL__ }],
+		[0, { [_hH]: _xafhCR }],
+		[0, { [_hH]: _xafhCT }],
+		[0, { [_hH]: _xafhxacc }],
+		[0, { [_hH]: _xafhxacc_ }],
+		[0, { [_hH]: _xafhxacc__ }],
+		[0, { [_hH]: _xafhxacs }],
+		[0, { [_hH]: _xafhxacs_ }],
+		[2, { [_hH]: _xafhxadm }],
+		[0, { [_hH]: _xafhE }],
+		[4, { [_hH]: _xafhE_ }],
+		[0, { [_hH]: _xafhxae }],
+		[4, { [_hH]: _xafhLM }],
+		[1, { [_hH]: _xafhxamm }],
+		[128, { [_hPH]: _xam }],
+		[0, { [_hH]: _xafhxaolm }],
+		[0, { [_hH]: _xafhxaollh }],
+		[5, { [_hH]: _xafhxaolrud }],
+		[1, { [_hH]: _xafhxampc }],
+		[0, { [_hH]: _xafhxars }],
+		[0, { [_hH]: _xafhxarc }],
+		[0, { [_hH]: _xafhxar }],
+		[0, { [_hH]: _xafhxasse }],
+		[0, { [_hH]: _xafhxasseca }],
+		[() => SSEKMSKeyId, { [_hH]: _xafhxasseakki }],
+		[0, { [_hH]: _xafhxasseckM }],
+		[0, { [_hH]: _xafhxasc }],
+		[1, { [_hH]: _xafhxatc }],
+		[0, { [_hH]: _xafhxavi }],
+		[2, { [_hH]: _xafhxassebke }]
+	],
+	2
+];
+var __Unit = "unit";
+var S3ServiceException$ = [
+	-3,
+	_sm,
+	"S3ServiceException",
+	0,
+	[],
+	[]
+];
+TypeRegistry.for(_sm).registerError(S3ServiceException$, S3ServiceException);
+var AnalyticsConfigurationList = [
+	1,
+	n0,
+	_ACLn,
+	0,
+	[() => AnalyticsConfiguration$, 0]
+];
+var Buckets = [
+	1,
+	n0,
+	_Bu,
+	0,
+	[() => Bucket$, { [_xN]: _B }]
+];
+var CommonPrefixList = [
+	1,
+	n0,
+	_CPL,
+	0,
+	() => CommonPrefix$
+];
+var CompletedPartList = [
+	1,
+	n0,
+	_CPLo,
+	0,
+	() => CompletedPart$
+];
+var CORSRules = [
+	1,
+	n0,
+	_CORSR,
+	0,
+	[() => CORSRule$, 0]
+];
+var DeletedObjects = [
+	1,
+	n0,
+	_DOe,
+	0,
+	() => DeletedObject$
+];
+var DeleteMarkers = [
+	1,
+	n0,
+	_DMe,
+	0,
+	() => DeleteMarkerEntry$
+];
+var EncryptionTypeList = [
+	1,
+	n0,
+	_ETL,
+	0,
+	[0, { [_xN]: _ET }]
+];
+var Errors = [
+	1,
+	n0,
+	_Er,
+	0,
+	() => _Error$
+];
+var FilterRuleList = [
+	1,
+	n0,
+	_FRL,
+	0,
+	() => FilterRule$
+];
+var Grants = [
+	1,
+	n0,
+	_G,
+	0,
+	[() => Grant$, { [_xN]: _Gr }]
+];
+var IntelligentTieringConfigurationList = [
+	1,
+	n0,
+	_ITCL,
+	0,
+	[() => IntelligentTieringConfiguration$, 0]
+];
+var InventoryConfigurationList = [
+	1,
+	n0,
+	_ICL,
+	0,
+	[() => InventoryConfiguration$, 0]
+];
+var InventoryOptionalFields = [
+	1,
+	n0,
+	_IOF,
+	0,
+	[0, { [_xN]: _Fi }]
+];
+var LambdaFunctionConfigurationList = [
+	1,
+	n0,
+	_LFCL,
+	0,
+	[() => LambdaFunctionConfiguration$, 0]
+];
+var LifecycleRules = [
+	1,
+	n0,
+	_LRi,
+	0,
+	[() => LifecycleRule$, 0]
+];
+var MetricsConfigurationList = [
+	1,
+	n0,
+	_MCL,
+	0,
+	[() => MetricsConfiguration$, 0]
+];
+var MultipartUploadList = [
+	1,
+	n0,
+	_MUL,
+	0,
+	() => MultipartUpload$
+];
+var NoncurrentVersionTransitionList = [
+	1,
+	n0,
+	_NVTL,
+	0,
+	() => NoncurrentVersionTransition$
+];
+var ObjectIdentifierList = [
+	1,
+	n0,
+	_OIL,
+	0,
+	() => ObjectIdentifier$
+];
+var ObjectList = [
+	1,
+	n0,
+	_OLb,
+	0,
+	[() => _Object$, 0]
+];
+var ObjectVersionList = [
+	1,
+	n0,
+	_OVL,
+	0,
+	[() => ObjectVersion$, 0]
+];
+var OwnershipControlsRules = [
+	1,
+	n0,
+	_OCRw,
+	0,
+	() => OwnershipControlsRule$
+];
+var Parts = [
+	1,
+	n0,
+	_Pa,
+	0,
+	() => Part$
+];
+var PartsList = [
+	1,
+	n0,
+	_PL,
+	0,
+	() => ObjectPart$
+];
+var QueueConfigurationList = [
+	1,
+	n0,
+	_QCL,
+	0,
+	[() => QueueConfiguration$, 0]
+];
+var ReplicationRules = [
+	1,
+	n0,
+	_RRep,
+	0,
+	[() => ReplicationRule$, 0]
+];
+var RoutingRules = [
+	1,
+	n0,
+	_RR,
+	0,
+	[() => RoutingRule$, { [_xN]: _RRo }]
+];
+var ServerSideEncryptionRules = [
+	1,
+	n0,
+	_SSERe,
+	0,
+	[() => ServerSideEncryptionRule$, 0]
+];
+var TagSet = [
+	1,
+	n0,
+	_TS,
+	0,
+	[() => Tag$, { [_xN]: _Ta }]
+];
+var TargetGrants = [
+	1,
+	n0,
+	_TG,
+	0,
+	[() => TargetGrant$, { [_xN]: _Gr }]
+];
+var TieringList = [
+	1,
+	n0,
+	_TL,
+	0,
+	() => Tiering$
+];
+var TopicConfigurationList = [
+	1,
+	n0,
+	_TCL,
+	0,
+	[() => TopicConfiguration$, 0]
+];
+var TransitionList = [
+	1,
+	n0,
+	_TLr,
+	0,
+	() => Transition$
+];
+var UserMetadata = [
+	1,
+	n0,
+	_UM,
+	0,
+	[() => MetadataEntry$, { [_xN]: _ME }]
+];
+var AnalyticsFilter$ = [
+	4,
+	n0,
+	_AF,
+	0,
+	[
+		_P,
+		_Ta,
+		_An
+	],
+	[
+		0,
+		() => Tag$,
+		[() => AnalyticsAndOperator$, 0]
+	]
+];
+var MetricsFilter$ = [
+	4,
+	n0,
+	_MF,
+	0,
+	[
+		_P,
+		_Ta,
+		_APAc,
+		_An
+	],
+	[
+		0,
+		() => Tag$,
+		0,
+		[() => MetricsAndOperator$, 0]
+	]
+];
+var SelectObjectContentEventStream$ = [
+	4,
+	n0,
+	_SOCES,
+	{ [_s]: 1 },
+	[
+		_Rec,
+		_Sta,
+		_Pr,
+		_Cont,
+		_End
+	],
+	[
+		[() => RecordsEvent$, 0],
+		[() => StatsEvent$, 0],
+		[() => ProgressEvent$, 0],
+		() => ContinuationEvent$,
+		() => EndEvent$
+	]
+];
+var AbortMultipartUpload$ = [
+	9,
+	n0,
+	_AMU,
+	{ [_h]: [
+		"DELETE",
+		"/{Key+}?x-id=AbortMultipartUpload",
+		204
+	] },
+	() => AbortMultipartUploadRequest$,
+	() => AbortMultipartUploadOutput$
+];
+var CompleteMultipartUpload$ = [
+	9,
+	n0,
+	_CMUo,
+	{ [_h]: [
+		"POST",
+		"/{Key+}",
+		200
+	] },
+	() => CompleteMultipartUploadRequest$,
+	() => CompleteMultipartUploadOutput$
+];
+var CopyObject$ = [
+	9,
+	n0,
+	_CO,
+	{ [_h]: [
+		"PUT",
+		"/{Key+}?x-id=CopyObject",
+		200
+	] },
+	() => CopyObjectRequest$,
+	() => CopyObjectOutput$
+];
+var CreateBucket$ = [
+	9,
+	n0,
+	_CB,
+	{ [_h]: [
+		"PUT",
+		"/",
+		200
+	] },
+	() => CreateBucketRequest$,
+	() => CreateBucketOutput$
+];
+var CreateBucketMetadataConfiguration$ = [
+	9,
+	n0,
+	_CBMC,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"POST",
+			"/?metadataConfiguration",
+			200
+		]
+	},
+	() => CreateBucketMetadataConfigurationRequest$,
+	() => __Unit
+];
+var CreateBucketMetadataTableConfiguration$ = [
+	9,
+	n0,
+	_CBMTC,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"POST",
+			"/?metadataTable",
+			200
+		]
+	},
+	() => CreateBucketMetadataTableConfigurationRequest$,
+	() => __Unit
+];
+var CreateMultipartUpload$ = [
+	9,
+	n0,
+	_CMUr,
+	{ [_h]: [
+		"POST",
+		"/{Key+}?uploads",
+		200
+	] },
+	() => CreateMultipartUploadRequest$,
+	() => CreateMultipartUploadOutput$
+];
+var CreateSession$ = [
+	9,
+	n0,
+	_CSr,
+	{ [_h]: [
+		"GET",
+		"/?session",
+		200
+	] },
+	() => CreateSessionRequest$,
+	() => CreateSessionOutput$
+];
+var DeleteBucket$ = [
+	9,
+	n0,
+	_DB,
+	{ [_h]: [
+		"DELETE",
+		"/",
+		204
+	] },
+	() => DeleteBucketRequest$,
+	() => __Unit
+];
+var DeleteBucketAnalyticsConfiguration$ = [
+	9,
+	n0,
+	_DBAC,
+	{ [_h]: [
+		"DELETE",
+		"/?analytics",
+		204
+	] },
+	() => DeleteBucketAnalyticsConfigurationRequest$,
+	() => __Unit
+];
+var DeleteBucketCors$ = [
+	9,
+	n0,
+	_DBC,
+	{ [_h]: [
+		"DELETE",
+		"/?cors",
+		204
+	] },
+	() => DeleteBucketCorsRequest$,
+	() => __Unit
+];
+var DeleteBucketEncryption$ = [
+	9,
+	n0,
+	_DBE,
+	{ [_h]: [
+		"DELETE",
+		"/?encryption",
+		204
+	] },
+	() => DeleteBucketEncryptionRequest$,
+	() => __Unit
+];
+var DeleteBucketIntelligentTieringConfiguration$ = [
+	9,
+	n0,
+	_DBITC,
+	{ [_h]: [
+		"DELETE",
+		"/?intelligent-tiering",
+		204
+	] },
+	() => DeleteBucketIntelligentTieringConfigurationRequest$,
+	() => __Unit
+];
+var DeleteBucketInventoryConfiguration$ = [
+	9,
+	n0,
+	_DBIC,
+	{ [_h]: [
+		"DELETE",
+		"/?inventory",
+		204
+	] },
+	() => DeleteBucketInventoryConfigurationRequest$,
+	() => __Unit
+];
+var DeleteBucketLifecycle$ = [
+	9,
+	n0,
+	_DBL,
+	{ [_h]: [
+		"DELETE",
+		"/?lifecycle",
+		204
+	] },
+	() => DeleteBucketLifecycleRequest$,
+	() => __Unit
+];
+var DeleteBucketMetadataConfiguration$ = [
+	9,
+	n0,
+	_DBMC,
+	{ [_h]: [
+		"DELETE",
+		"/?metadataConfiguration",
+		204
+	] },
+	() => DeleteBucketMetadataConfigurationRequest$,
+	() => __Unit
+];
+var DeleteBucketMetadataTableConfiguration$ = [
+	9,
+	n0,
+	_DBMTC,
+	{ [_h]: [
+		"DELETE",
+		"/?metadataTable",
+		204
+	] },
+	() => DeleteBucketMetadataTableConfigurationRequest$,
+	() => __Unit
+];
+var DeleteBucketMetricsConfiguration$ = [
+	9,
+	n0,
+	_DBMCe,
+	{ [_h]: [
+		"DELETE",
+		"/?metrics",
+		204
+	] },
+	() => DeleteBucketMetricsConfigurationRequest$,
+	() => __Unit
+];
+var DeleteBucketOwnershipControls$ = [
+	9,
+	n0,
+	_DBOC,
+	{ [_h]: [
+		"DELETE",
+		"/?ownershipControls",
+		204
+	] },
+	() => DeleteBucketOwnershipControlsRequest$,
+	() => __Unit
+];
+var DeleteBucketPolicy$ = [
+	9,
+	n0,
+	_DBP,
+	{ [_h]: [
+		"DELETE",
+		"/?policy",
+		204
+	] },
+	() => DeleteBucketPolicyRequest$,
+	() => __Unit
+];
+var DeleteBucketReplication$ = [
+	9,
+	n0,
+	_DBRe,
+	{ [_h]: [
+		"DELETE",
+		"/?replication",
+		204
+	] },
+	() => DeleteBucketReplicationRequest$,
+	() => __Unit
+];
+var DeleteBucketTagging$ = [
+	9,
+	n0,
+	_DBT,
+	{ [_h]: [
+		"DELETE",
+		"/?tagging",
+		204
+	] },
+	() => DeleteBucketTaggingRequest$,
+	() => __Unit
+];
+var DeleteBucketWebsite$ = [
+	9,
+	n0,
+	_DBW,
+	{ [_h]: [
+		"DELETE",
+		"/?website",
+		204
+	] },
+	() => DeleteBucketWebsiteRequest$,
+	() => __Unit
+];
+var DeleteObject$ = [
+	9,
+	n0,
+	_DOel,
+	{ [_h]: [
+		"DELETE",
+		"/{Key+}?x-id=DeleteObject",
+		204
+	] },
+	() => DeleteObjectRequest$,
+	() => DeleteObjectOutput$
+];
+var DeleteObjects$ = [
+	9,
+	n0,
+	_DOele,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"POST",
+			"/?delete",
+			200
+		]
+	},
+	() => DeleteObjectsRequest$,
+	() => DeleteObjectsOutput$
+];
+var DeleteObjectTagging$ = [
+	9,
+	n0,
+	_DOT,
+	{ [_h]: [
+		"DELETE",
+		"/{Key+}?tagging",
+		204
+	] },
+	() => DeleteObjectTaggingRequest$,
+	() => DeleteObjectTaggingOutput$
+];
+var DeletePublicAccessBlock$ = [
+	9,
+	n0,
+	_DPAB,
+	{ [_h]: [
+		"DELETE",
+		"/?publicAccessBlock",
+		204
+	] },
+	() => DeletePublicAccessBlockRequest$,
+	() => __Unit
+];
+var GetBucketAbac$ = [
+	9,
+	n0,
+	_GBA,
+	{ [_h]: [
+		"GET",
+		"/?abac",
+		200
+	] },
+	() => GetBucketAbacRequest$,
+	() => GetBucketAbacOutput$
+];
+var GetBucketAccelerateConfiguration$ = [
+	9,
+	n0,
+	_GBAC,
+	{ [_h]: [
+		"GET",
+		"/?accelerate",
+		200
+	] },
+	() => GetBucketAccelerateConfigurationRequest$,
+	() => GetBucketAccelerateConfigurationOutput$
+];
+var GetBucketAcl$ = [
+	9,
+	n0,
+	_GBAe,
+	{ [_h]: [
+		"GET",
+		"/?acl",
+		200
+	] },
+	() => GetBucketAclRequest$,
+	() => GetBucketAclOutput$
+];
+var GetBucketAnalyticsConfiguration$ = [
+	9,
+	n0,
+	_GBACe,
+	{ [_h]: [
+		"GET",
+		"/?analytics&x-id=GetBucketAnalyticsConfiguration",
+		200
+	] },
+	() => GetBucketAnalyticsConfigurationRequest$,
+	() => GetBucketAnalyticsConfigurationOutput$
+];
+var GetBucketCors$ = [
+	9,
+	n0,
+	_GBC,
+	{ [_h]: [
+		"GET",
+		"/?cors",
+		200
+	] },
+	() => GetBucketCorsRequest$,
+	() => GetBucketCorsOutput$
+];
+var GetBucketEncryption$ = [
+	9,
+	n0,
+	_GBE,
+	{ [_h]: [
+		"GET",
+		"/?encryption",
+		200
+	] },
+	() => GetBucketEncryptionRequest$,
+	() => GetBucketEncryptionOutput$
+];
+var GetBucketIntelligentTieringConfiguration$ = [
+	9,
+	n0,
+	_GBITC,
+	{ [_h]: [
+		"GET",
+		"/?intelligent-tiering&x-id=GetBucketIntelligentTieringConfiguration",
+		200
+	] },
+	() => GetBucketIntelligentTieringConfigurationRequest$,
+	() => GetBucketIntelligentTieringConfigurationOutput$
+];
+var GetBucketInventoryConfiguration$ = [
+	9,
+	n0,
+	_GBIC,
+	{ [_h]: [
+		"GET",
+		"/?inventory&x-id=GetBucketInventoryConfiguration",
+		200
+	] },
+	() => GetBucketInventoryConfigurationRequest$,
+	() => GetBucketInventoryConfigurationOutput$
+];
+var GetBucketLifecycleConfiguration$ = [
+	9,
+	n0,
+	_GBLC,
+	{ [_h]: [
+		"GET",
+		"/?lifecycle",
+		200
+	] },
+	() => GetBucketLifecycleConfigurationRequest$,
+	() => GetBucketLifecycleConfigurationOutput$
+];
+var GetBucketLocation$ = [
+	9,
+	n0,
+	_GBL,
+	{ [_h]: [
+		"GET",
+		"/?location",
+		200
+	] },
+	() => GetBucketLocationRequest$,
+	() => GetBucketLocationOutput$
+];
+var GetBucketLogging$ = [
+	9,
+	n0,
+	_GBLe,
+	{ [_h]: [
+		"GET",
+		"/?logging",
+		200
+	] },
+	() => GetBucketLoggingRequest$,
+	() => GetBucketLoggingOutput$
+];
+var GetBucketMetadataConfiguration$ = [
+	9,
+	n0,
+	_GBMC,
+	{ [_h]: [
+		"GET",
+		"/?metadataConfiguration",
+		200
+	] },
+	() => GetBucketMetadataConfigurationRequest$,
+	() => GetBucketMetadataConfigurationOutput$
+];
+var GetBucketMetadataTableConfiguration$ = [
+	9,
+	n0,
+	_GBMTC,
+	{ [_h]: [
+		"GET",
+		"/?metadataTable",
+		200
+	] },
+	() => GetBucketMetadataTableConfigurationRequest$,
+	() => GetBucketMetadataTableConfigurationOutput$
+];
+var GetBucketMetricsConfiguration$ = [
+	9,
+	n0,
+	_GBMCe,
+	{ [_h]: [
+		"GET",
+		"/?metrics&x-id=GetBucketMetricsConfiguration",
+		200
+	] },
+	() => GetBucketMetricsConfigurationRequest$,
+	() => GetBucketMetricsConfigurationOutput$
+];
+var GetBucketNotificationConfiguration$ = [
+	9,
+	n0,
+	_GBNC,
+	{ [_h]: [
+		"GET",
+		"/?notification",
+		200
+	] },
+	() => GetBucketNotificationConfigurationRequest$,
+	() => NotificationConfiguration$
+];
+var GetBucketOwnershipControls$ = [
+	9,
+	n0,
+	_GBOC,
+	{ [_h]: [
+		"GET",
+		"/?ownershipControls",
+		200
+	] },
+	() => GetBucketOwnershipControlsRequest$,
+	() => GetBucketOwnershipControlsOutput$
+];
+var GetBucketPolicy$ = [
+	9,
+	n0,
+	_GBP,
+	{ [_h]: [
+		"GET",
+		"/?policy",
+		200
+	] },
+	() => GetBucketPolicyRequest$,
+	() => GetBucketPolicyOutput$
+];
+var GetBucketPolicyStatus$ = [
+	9,
+	n0,
+	_GBPS,
+	{ [_h]: [
+		"GET",
+		"/?policyStatus",
+		200
+	] },
+	() => GetBucketPolicyStatusRequest$,
+	() => GetBucketPolicyStatusOutput$
+];
+var GetBucketReplication$ = [
+	9,
+	n0,
+	_GBR,
+	{ [_h]: [
+		"GET",
+		"/?replication",
+		200
+	] },
+	() => GetBucketReplicationRequest$,
+	() => GetBucketReplicationOutput$
+];
+var GetBucketRequestPayment$ = [
+	9,
+	n0,
+	_GBRP,
+	{ [_h]: [
+		"GET",
+		"/?requestPayment",
+		200
+	] },
+	() => GetBucketRequestPaymentRequest$,
+	() => GetBucketRequestPaymentOutput$
+];
+var GetBucketTagging$ = [
+	9,
+	n0,
+	_GBT,
+	{ [_h]: [
+		"GET",
+		"/?tagging",
+		200
+	] },
+	() => GetBucketTaggingRequest$,
+	() => GetBucketTaggingOutput$
+];
+var GetBucketVersioning$ = [
+	9,
+	n0,
+	_GBV,
+	{ [_h]: [
+		"GET",
+		"/?versioning",
+		200
+	] },
+	() => GetBucketVersioningRequest$,
+	() => GetBucketVersioningOutput$
+];
+var GetBucketWebsite$ = [
+	9,
+	n0,
+	_GBW,
+	{ [_h]: [
+		"GET",
+		"/?website",
+		200
+	] },
+	() => GetBucketWebsiteRequest$,
+	() => GetBucketWebsiteOutput$
+];
+var GetObject$ = [
+	9,
+	n0,
+	_GO,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"GET",
+			"/{Key+}?x-id=GetObject",
+			200
+		]
+	},
+	() => GetObjectRequest$,
+	() => GetObjectOutput$
+];
+var GetObjectAcl$ = [
+	9,
+	n0,
+	_GOA,
+	{ [_h]: [
+		"GET",
+		"/{Key+}?acl",
+		200
+	] },
+	() => GetObjectAclRequest$,
+	() => GetObjectAclOutput$
+];
+var GetObjectAttributes$ = [
+	9,
+	n0,
+	_GOAe,
+	{ [_h]: [
+		"GET",
+		"/{Key+}?attributes",
+		200
+	] },
+	() => GetObjectAttributesRequest$,
+	() => GetObjectAttributesOutput$
+];
+var GetObjectLegalHold$ = [
+	9,
+	n0,
+	_GOLH,
+	{ [_h]: [
+		"GET",
+		"/{Key+}?legal-hold",
+		200
+	] },
+	() => GetObjectLegalHoldRequest$,
+	() => GetObjectLegalHoldOutput$
+];
+var GetObjectLockConfiguration$ = [
+	9,
+	n0,
+	_GOLC,
+	{ [_h]: [
+		"GET",
+		"/?object-lock",
+		200
+	] },
+	() => GetObjectLockConfigurationRequest$,
+	() => GetObjectLockConfigurationOutput$
+];
+var GetObjectRetention$ = [
+	9,
+	n0,
+	_GORe,
+	{ [_h]: [
+		"GET",
+		"/{Key+}?retention",
+		200
+	] },
+	() => GetObjectRetentionRequest$,
+	() => GetObjectRetentionOutput$
+];
+var GetObjectTagging$ = [
+	9,
+	n0,
+	_GOT,
+	{ [_h]: [
+		"GET",
+		"/{Key+}?tagging",
+		200
+	] },
+	() => GetObjectTaggingRequest$,
+	() => GetObjectTaggingOutput$
+];
+var GetObjectTorrent$ = [
+	9,
+	n0,
+	_GOTe,
+	{ [_h]: [
+		"GET",
+		"/{Key+}?torrent",
+		200
+	] },
+	() => GetObjectTorrentRequest$,
+	() => GetObjectTorrentOutput$
+];
+var GetPublicAccessBlock$ = [
+	9,
+	n0,
+	_GPAB,
+	{ [_h]: [
+		"GET",
+		"/?publicAccessBlock",
+		200
+	] },
+	() => GetPublicAccessBlockRequest$,
+	() => GetPublicAccessBlockOutput$
+];
+var HeadBucket$ = [
+	9,
+	n0,
+	_HB,
+	{ [_h]: [
+		"HEAD",
+		"/",
+		200
+	] },
+	() => HeadBucketRequest$,
+	() => HeadBucketOutput$
+];
+var HeadObject$ = [
+	9,
+	n0,
+	_HO,
+	{ [_h]: [
+		"HEAD",
+		"/{Key+}",
+		200
+	] },
+	() => HeadObjectRequest$,
+	() => HeadObjectOutput$
+];
+var ListBucketAnalyticsConfigurations$ = [
+	9,
+	n0,
+	_LBAC,
+	{ [_h]: [
+		"GET",
+		"/?analytics&x-id=ListBucketAnalyticsConfigurations",
+		200
+	] },
+	() => ListBucketAnalyticsConfigurationsRequest$,
+	() => ListBucketAnalyticsConfigurationsOutput$
+];
+var ListBucketIntelligentTieringConfigurations$ = [
+	9,
+	n0,
+	_LBITC,
+	{ [_h]: [
+		"GET",
+		"/?intelligent-tiering&x-id=ListBucketIntelligentTieringConfigurations",
+		200
+	] },
+	() => ListBucketIntelligentTieringConfigurationsRequest$,
+	() => ListBucketIntelligentTieringConfigurationsOutput$
+];
+var ListBucketInventoryConfigurations$ = [
+	9,
+	n0,
+	_LBIC,
+	{ [_h]: [
+		"GET",
+		"/?inventory&x-id=ListBucketInventoryConfigurations",
+		200
+	] },
+	() => ListBucketInventoryConfigurationsRequest$,
+	() => ListBucketInventoryConfigurationsOutput$
+];
+var ListBucketMetricsConfigurations$ = [
+	9,
+	n0,
+	_LBMC,
+	{ [_h]: [
+		"GET",
+		"/?metrics&x-id=ListBucketMetricsConfigurations",
+		200
+	] },
+	() => ListBucketMetricsConfigurationsRequest$,
+	() => ListBucketMetricsConfigurationsOutput$
+];
+var ListBuckets$ = [
+	9,
+	n0,
+	_LB,
+	{ [_h]: [
+		"GET",
+		"/?x-id=ListBuckets",
+		200
+	] },
+	() => ListBucketsRequest$,
+	() => ListBucketsOutput$
+];
+var ListDirectoryBuckets$ = [
+	9,
+	n0,
+	_LDB,
+	{ [_h]: [
+		"GET",
+		"/?x-id=ListDirectoryBuckets",
+		200
+	] },
+	() => ListDirectoryBucketsRequest$,
+	() => ListDirectoryBucketsOutput$
+];
+var ListMultipartUploads$ = [
+	9,
+	n0,
+	_LMU,
+	{ [_h]: [
+		"GET",
+		"/?uploads",
+		200
+	] },
+	() => ListMultipartUploadsRequest$,
+	() => ListMultipartUploadsOutput$
+];
+var ListObjects$ = [
+	9,
+	n0,
+	_LO,
+	{ [_h]: [
+		"GET",
+		"/",
+		200
+	] },
+	() => ListObjectsRequest$,
+	() => ListObjectsOutput$
+];
+var ListObjectsV2$ = [
+	9,
+	n0,
+	_LOV,
+	{ [_h]: [
+		"GET",
+		"/?list-type=2",
+		200
+	] },
+	() => ListObjectsV2Request$,
+	() => ListObjectsV2Output$
+];
+var ListObjectVersions$ = [
+	9,
+	n0,
+	_LOVi,
+	{ [_h]: [
+		"GET",
+		"/?versions",
+		200
+	] },
+	() => ListObjectVersionsRequest$,
+	() => ListObjectVersionsOutput$
+];
+var ListParts$ = [
+	9,
+	n0,
+	_LP,
+	{ [_h]: [
+		"GET",
+		"/{Key+}?x-id=ListParts",
+		200
+	] },
+	() => ListPartsRequest$,
+	() => ListPartsOutput$
+];
+var PutBucketAbac$ = [
+	9,
+	n0,
+	_PBA,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?abac",
+			200
+		]
+	},
+	() => PutBucketAbacRequest$,
+	() => __Unit
+];
+var PutBucketAccelerateConfiguration$ = [
+	9,
+	n0,
+	_PBAC,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?accelerate",
+			200
+		]
+	},
+	() => PutBucketAccelerateConfigurationRequest$,
+	() => __Unit
+];
+var PutBucketAcl$ = [
+	9,
+	n0,
+	_PBAu,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?acl",
+			200
+		]
+	},
+	() => PutBucketAclRequest$,
+	() => __Unit
+];
+var PutBucketAnalyticsConfiguration$ = [
+	9,
+	n0,
+	_PBACu,
+	{ [_h]: [
+		"PUT",
+		"/?analytics",
+		200
+	] },
+	() => PutBucketAnalyticsConfigurationRequest$,
+	() => __Unit
+];
+var PutBucketCors$ = [
+	9,
+	n0,
+	_PBC,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?cors",
+			200
+		]
+	},
+	() => PutBucketCorsRequest$,
+	() => __Unit
+];
+var PutBucketEncryption$ = [
+	9,
+	n0,
+	_PBE,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?encryption",
+			200
+		]
+	},
+	() => PutBucketEncryptionRequest$,
+	() => __Unit
+];
+var PutBucketIntelligentTieringConfiguration$ = [
+	9,
+	n0,
+	_PBITC,
+	{ [_h]: [
+		"PUT",
+		"/?intelligent-tiering",
+		200
+	] },
+	() => PutBucketIntelligentTieringConfigurationRequest$,
+	() => __Unit
+];
+var PutBucketInventoryConfiguration$ = [
+	9,
+	n0,
+	_PBIC,
+	{ [_h]: [
+		"PUT",
+		"/?inventory",
+		200
+	] },
+	() => PutBucketInventoryConfigurationRequest$,
+	() => __Unit
+];
+var PutBucketLifecycleConfiguration$ = [
+	9,
+	n0,
+	_PBLC,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?lifecycle",
+			200
+		]
+	},
+	() => PutBucketLifecycleConfigurationRequest$,
+	() => PutBucketLifecycleConfigurationOutput$
+];
+var PutBucketLogging$ = [
+	9,
+	n0,
+	_PBL,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?logging",
+			200
+		]
+	},
+	() => PutBucketLoggingRequest$,
+	() => __Unit
+];
+var PutBucketMetricsConfiguration$ = [
+	9,
+	n0,
+	_PBMC,
+	{ [_h]: [
+		"PUT",
+		"/?metrics",
+		200
+	] },
+	() => PutBucketMetricsConfigurationRequest$,
+	() => __Unit
+];
+var PutBucketNotificationConfiguration$ = [
+	9,
+	n0,
+	_PBNC,
+	{ [_h]: [
+		"PUT",
+		"/?notification",
+		200
+	] },
+	() => PutBucketNotificationConfigurationRequest$,
+	() => __Unit
+];
+var PutBucketOwnershipControls$ = [
+	9,
+	n0,
+	_PBOC,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?ownershipControls",
+			200
+		]
+	},
+	() => PutBucketOwnershipControlsRequest$,
+	() => __Unit
+];
+var PutBucketPolicy$ = [
+	9,
+	n0,
+	_PBP,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?policy",
+			200
+		]
+	},
+	() => PutBucketPolicyRequest$,
+	() => __Unit
+];
+var PutBucketReplication$ = [
+	9,
+	n0,
+	_PBR,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?replication",
+			200
+		]
+	},
+	() => PutBucketReplicationRequest$,
+	() => __Unit
+];
+var PutBucketRequestPayment$ = [
+	9,
+	n0,
+	_PBRP,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?requestPayment",
+			200
+		]
+	},
+	() => PutBucketRequestPaymentRequest$,
+	() => __Unit
+];
+var PutBucketTagging$ = [
+	9,
+	n0,
+	_PBT,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?tagging",
+			200
+		]
+	},
+	() => PutBucketTaggingRequest$,
+	() => __Unit
+];
+var PutBucketVersioning$ = [
+	9,
+	n0,
+	_PBV,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?versioning",
+			200
+		]
+	},
+	() => PutBucketVersioningRequest$,
+	() => __Unit
+];
+var PutBucketWebsite$ = [
+	9,
+	n0,
+	_PBW,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?website",
+			200
+		]
+	},
+	() => PutBucketWebsiteRequest$,
+	() => __Unit
+];
+var PutObject$ = [
+	9,
+	n0,
+	_PO,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/{Key+}?x-id=PutObject",
+			200
+		]
+	},
+	() => PutObjectRequest$,
+	() => PutObjectOutput$
+];
+var PutObjectAcl$ = [
+	9,
+	n0,
+	_POA,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/{Key+}?acl",
+			200
+		]
+	},
+	() => PutObjectAclRequest$,
+	() => PutObjectAclOutput$
+];
+var PutObjectLegalHold$ = [
+	9,
+	n0,
+	_POLH,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/{Key+}?legal-hold",
+			200
+		]
+	},
+	() => PutObjectLegalHoldRequest$,
+	() => PutObjectLegalHoldOutput$
+];
+var PutObjectLockConfiguration$ = [
+	9,
+	n0,
+	_POLC,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?object-lock",
+			200
+		]
+	},
+	() => PutObjectLockConfigurationRequest$,
+	() => PutObjectLockConfigurationOutput$
+];
+var PutObjectRetention$ = [
+	9,
+	n0,
+	_PORu,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/{Key+}?retention",
+			200
+		]
+	},
+	() => PutObjectRetentionRequest$,
+	() => PutObjectRetentionOutput$
+];
+var PutObjectTagging$ = [
+	9,
+	n0,
+	_POT,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/{Key+}?tagging",
+			200
+		]
+	},
+	() => PutObjectTaggingRequest$,
+	() => PutObjectTaggingOutput$
+];
+var PutPublicAccessBlock$ = [
+	9,
+	n0,
+	_PPAB,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?publicAccessBlock",
+			200
+		]
+	},
+	() => PutPublicAccessBlockRequest$,
+	() => __Unit
+];
+var RenameObject$ = [
+	9,
+	n0,
+	_RO,
+	{ [_h]: [
+		"PUT",
+		"/{Key+}?renameObject",
+		200
+	] },
+	() => RenameObjectRequest$,
+	() => RenameObjectOutput$
+];
+var RestoreObject$ = [
+	9,
+	n0,
+	_ROe,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"POST",
+			"/{Key+}?restore",
+			200
+		]
+	},
+	() => RestoreObjectRequest$,
+	() => RestoreObjectOutput$
+];
+var SelectObjectContent$ = [
+	9,
+	n0,
+	_SOC,
+	{ [_h]: [
+		"POST",
+		"/{Key+}?select&select-type=2",
+		200
+	] },
+	() => SelectObjectContentRequest$,
+	() => SelectObjectContentOutput$
+];
+var UpdateBucketMetadataInventoryTableConfiguration$ = [
+	9,
+	n0,
+	_UBMITC,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?metadataInventoryTable",
+			200
+		]
+	},
+	() => UpdateBucketMetadataInventoryTableConfigurationRequest$,
+	() => __Unit
+];
+var UpdateBucketMetadataJournalTableConfiguration$ = [
+	9,
+	n0,
+	_UBMJTC,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/?metadataJournalTable",
+			200
+		]
+	},
+	() => UpdateBucketMetadataJournalTableConfigurationRequest$,
+	() => __Unit
+];
+var UploadPart$ = [
+	9,
+	n0,
+	_UP,
+	{
+		[_hC]: "-",
+		[_h]: [
+			"PUT",
+			"/{Key+}?x-id=UploadPart",
+			200
+		]
+	},
+	() => UploadPartRequest$,
+	() => UploadPartOutput$
+];
+var UploadPartCopy$ = [
+	9,
+	n0,
+	_UPC,
+	{ [_h]: [
+		"PUT",
+		"/{Key+}?x-id=UploadPartCopy",
+		200
+	] },
+	() => UploadPartCopyRequest$,
+	() => UploadPartCopyOutput$
+];
+var WriteGetObjectResponse$ = [
+	9,
+	n0,
+	_WGOR,
+	{
+		[_en]: ["{RequestRoute}."],
+		[_h]: [
+			"POST",
+			"/WriteGetObjectResponse",
+			200
+		]
+	},
+	() => WriteGetObjectResponseRequest$,
+	() => __Unit
+];
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/CreateSessionCommand.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/commands/CreateSessionCommand.js
 var CreateSessionCommand = class extends Command.classBuilder().ep({
 	...commonParams,
 	DisableS3ExpressSessionAuth: {
@@ -11231,33 +19571,32 @@ var CreateSessionCommand = class extends Command.classBuilder().ep({
 		name: "Bucket"
 	}
 }).m(function(Command$1, cs$1, config$1, o$1) {
-	return [
-		getSerdePlugin(config$1, this.serialize, this.deserialize),
-		getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()),
-		getThrow200ExceptionsPlugin(config$1)
-	];
-}).s("AmazonS3", "CreateSession", {}).n("S3Client", "CreateSessionCommand").f(CreateSessionRequestFilterSensitiveLog, CreateSessionOutputFilterSensitiveLog).ser(se_CreateSessionCommand).de(de_CreateSessionCommand).build() {};
+	return [getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()), getThrow200ExceptionsPlugin(config$1)];
+}).s("AmazonS3", "CreateSession", {}).n("S3Client", "CreateSessionCommand").sc(CreateSession$).build() {};
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/package.json
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/package.json
 var name = "@aws-sdk/client-s3";
 var description = "AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native";
-var version = "3.717.0";
+var version = "3.974.0";
 var scripts = {
-	"build": "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
+	"build": "concurrently 'yarn:build:types' 'yarn:build:es' && yarn build:cjs",
 	"build:cjs": "node ../../scripts/compilation/inline client-s3",
 	"build:es": "tsc -p tsconfig.es.json",
-	"build:include:deps": "lerna run --scope $npm_package_name --include-dependencies build",
+	"build:include:deps": "yarn g:turbo run build -F=\"$npm_package_name\"",
 	"build:types": "tsc -p tsconfig.types.json",
 	"build:types:downlevel": "downlevel-dts dist-types dist-types/ts3.4",
-	"clean": "rimraf ./dist-* && rimraf *.tsbuildinfo",
+	"clean": "premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo",
 	"extract:docs": "api-extractor run --local",
 	"generate:client": "node ../../scripts/generate-clients/single-service --solo s3",
 	"test": "yarn g:vitest run",
-	"test:browser": "node ./test/browser-build/esbuild && vitest run -c vitest.config.browser.ts --mode development",
-	"test:browser:watch": "node ./test/browser-build/esbuild && yarn g:vitest watch -c vitest.config.browser.ts",
-	"test:e2e": "yarn g:vitest run -c vitest.config.e2e.ts --mode development && yarn test:browser",
-	"test:e2e:watch": "yarn g:vitest watch -c vitest.config.e2e.ts",
+	"test:browser": "node ./test/browser-build/esbuild && yarn g:vitest run -c vitest.config.browser.mts",
+	"test:browser:watch": "node ./test/browser-build/esbuild && yarn g:vitest watch -c vitest.config.browser.mts",
+	"test:e2e": "yarn g:vitest run -c vitest.config.e2e.mts && yarn test:browser",
+	"test:e2e:watch": "yarn g:vitest watch -c vitest.config.e2e.mts",
+	"test:index": "tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs",
+	"test:integration": "yarn g:vitest run -c vitest.config.integ.mts",
+	"test:integration:watch": "yarn g:vitest watch -c vitest.config.integ.mts",
 	"test:watch": "yarn g:vitest watch"
 };
 var main = "./dist-cjs/index.js";
@@ -11268,72 +19607,69 @@ var dependencies = {
 	"@aws-crypto/sha1-browser": "5.2.0",
 	"@aws-crypto/sha256-browser": "5.2.0",
 	"@aws-crypto/sha256-js": "5.2.0",
-	"@aws-sdk/client-sso-oidc": "3.716.0",
-	"@aws-sdk/client-sts": "3.716.0",
-	"@aws-sdk/core": "3.716.0",
-	"@aws-sdk/credential-provider-node": "3.716.0",
-	"@aws-sdk/middleware-bucket-endpoint": "3.714.0",
-	"@aws-sdk/middleware-expect-continue": "3.714.0",
-	"@aws-sdk/middleware-flexible-checksums": "3.717.0",
-	"@aws-sdk/middleware-host-header": "3.714.0",
-	"@aws-sdk/middleware-location-constraint": "3.714.0",
-	"@aws-sdk/middleware-logger": "3.714.0",
-	"@aws-sdk/middleware-recursion-detection": "3.714.0",
-	"@aws-sdk/middleware-sdk-s3": "3.716.0",
-	"@aws-sdk/middleware-ssec": "3.714.0",
-	"@aws-sdk/middleware-user-agent": "3.716.0",
-	"@aws-sdk/region-config-resolver": "3.714.0",
-	"@aws-sdk/signature-v4-multi-region": "3.716.0",
-	"@aws-sdk/types": "3.714.0",
-	"@aws-sdk/util-endpoints": "3.714.0",
-	"@aws-sdk/util-user-agent-browser": "3.714.0",
-	"@aws-sdk/util-user-agent-node": "3.716.0",
-	"@aws-sdk/xml-builder": "3.709.0",
-	"@smithy/config-resolver": "^3.0.13",
-	"@smithy/core": "^2.5.5",
-	"@smithy/eventstream-serde-browser": "^3.0.14",
-	"@smithy/eventstream-serde-config-resolver": "^3.0.11",
-	"@smithy/eventstream-serde-node": "^3.0.13",
-	"@smithy/fetch-http-handler": "^4.1.2",
-	"@smithy/hash-blob-browser": "^3.1.10",
-	"@smithy/hash-node": "^3.0.11",
-	"@smithy/hash-stream-node": "^3.1.10",
-	"@smithy/invalid-dependency": "^3.0.11",
-	"@smithy/md5-js": "^3.0.11",
-	"@smithy/middleware-content-length": "^3.0.13",
-	"@smithy/middleware-endpoint": "^3.2.6",
-	"@smithy/middleware-retry": "^3.0.31",
-	"@smithy/middleware-serde": "^3.0.11",
-	"@smithy/middleware-stack": "^3.0.11",
-	"@smithy/node-config-provider": "^3.1.12",
-	"@smithy/node-http-handler": "^3.3.2",
-	"@smithy/protocol-http": "^4.1.8",
-	"@smithy/smithy-client": "^3.5.1",
-	"@smithy/types": "^3.7.2",
-	"@smithy/url-parser": "^3.0.11",
-	"@smithy/util-base64": "^3.0.0",
-	"@smithy/util-body-length-browser": "^3.0.0",
-	"@smithy/util-body-length-node": "^3.0.0",
-	"@smithy/util-defaults-mode-browser": "^3.0.31",
-	"@smithy/util-defaults-mode-node": "^3.0.31",
-	"@smithy/util-endpoints": "^2.1.7",
-	"@smithy/util-middleware": "^3.0.11",
-	"@smithy/util-retry": "^3.0.11",
-	"@smithy/util-stream": "^3.3.2",
-	"@smithy/util-utf8": "^3.0.0",
-	"@smithy/util-waiter": "^3.2.0",
+	"@aws-sdk/core": "^3.973.0",
+	"@aws-sdk/credential-provider-node": "^3.972.1",
+	"@aws-sdk/middleware-bucket-endpoint": "^3.972.1",
+	"@aws-sdk/middleware-expect-continue": "^3.972.1",
+	"@aws-sdk/middleware-flexible-checksums": "^3.972.1",
+	"@aws-sdk/middleware-host-header": "^3.972.1",
+	"@aws-sdk/middleware-location-constraint": "^3.972.1",
+	"@aws-sdk/middleware-logger": "^3.972.1",
+	"@aws-sdk/middleware-recursion-detection": "^3.972.1",
+	"@aws-sdk/middleware-sdk-s3": "^3.972.1",
+	"@aws-sdk/middleware-ssec": "^3.972.1",
+	"@aws-sdk/middleware-user-agent": "^3.972.1",
+	"@aws-sdk/region-config-resolver": "^3.972.1",
+	"@aws-sdk/signature-v4-multi-region": "3.972.0",
+	"@aws-sdk/types": "^3.973.0",
+	"@aws-sdk/util-endpoints": "3.972.0",
+	"@aws-sdk/util-user-agent-browser": "^3.972.1",
+	"@aws-sdk/util-user-agent-node": "^3.972.1",
+	"@smithy/config-resolver": "^4.4.6",
+	"@smithy/core": "^3.21.0",
+	"@smithy/eventstream-serde-browser": "^4.2.8",
+	"@smithy/eventstream-serde-config-resolver": "^4.3.8",
+	"@smithy/eventstream-serde-node": "^4.2.8",
+	"@smithy/fetch-http-handler": "^5.3.9",
+	"@smithy/hash-blob-browser": "^4.2.9",
+	"@smithy/hash-node": "^4.2.8",
+	"@smithy/hash-stream-node": "^4.2.8",
+	"@smithy/invalid-dependency": "^4.2.8",
+	"@smithy/md5-js": "^4.2.8",
+	"@smithy/middleware-content-length": "^4.2.8",
+	"@smithy/middleware-endpoint": "^4.4.10",
+	"@smithy/middleware-retry": "^4.4.26",
+	"@smithy/middleware-serde": "^4.2.9",
+	"@smithy/middleware-stack": "^4.2.8",
+	"@smithy/node-config-provider": "^4.3.8",
+	"@smithy/node-http-handler": "^4.4.8",
+	"@smithy/protocol-http": "^5.3.8",
+	"@smithy/smithy-client": "^4.10.11",
+	"@smithy/types": "^4.12.0",
+	"@smithy/url-parser": "^4.2.8",
+	"@smithy/util-base64": "^4.3.0",
+	"@smithy/util-body-length-browser": "^4.2.0",
+	"@smithy/util-body-length-node": "^4.2.1",
+	"@smithy/util-defaults-mode-browser": "^4.3.25",
+	"@smithy/util-defaults-mode-node": "^4.2.28",
+	"@smithy/util-endpoints": "^3.2.8",
+	"@smithy/util-middleware": "^4.2.8",
+	"@smithy/util-retry": "^4.2.8",
+	"@smithy/util-stream": "^4.5.10",
+	"@smithy/util-utf8": "^4.2.0",
+	"@smithy/util-waiter": "^4.2.8",
 	"tslib": "^2.6.2"
 };
 var devDependencies = {
-	"@aws-sdk/signature-v4-crt": "3.716.0",
-	"@tsconfig/node16": "16.1.3",
-	"@types/node": "^16.18.96",
+	"@aws-sdk/signature-v4-crt": "3.972.0",
+	"@tsconfig/node20": "20.1.8",
+	"@types/node": "^20.14.8",
 	"concurrently": "7.0.0",
 	"downlevel-dts": "0.10.1",
-	"rimraf": "3.0.2",
-	"typescript": "~4.9.5"
+	"premove": "4.0.0",
+	"typescript": "~5.8.3"
 };
-var engines = { "node": ">=16.0.0" };
+var engines = { "node": ">=20.0.0" };
 var typesVersions = { "<4.0": { "dist-types/*": ["dist-types/ts3.4/*"] } };
 var files = ["dist-*/**"];
 var author = {
@@ -11409,7 +19745,7 @@ var EMPTY_DATA_SHA_1 = new Uint8Array([
 ]);
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+util-locate-window@3.693.0/node_modules/@aws-sdk/util-locate-window/dist-es/index.js
+//#region node_modules/.pnpm/@aws-sdk+util-locate-window@3.965.3/node_modules/@aws-sdk/util-locate-window/dist-es/index.js
 const fallbackWindow = {};
 function locateWindow() {
 	if (typeof window !== "undefined") return window;
@@ -11457,7 +19793,7 @@ var Sha1 = function() {
 	return Sha1$2;
 }();
 function convertToBuffer$1(data) {
-	if (typeof data === "string") return fromUtf8$1(data);
+	if (typeof data === "string") return fromUtf8$2(data);
 	if (ArrayBuffer.isView(data)) return new Uint8Array(data.buffer, data.byteOffset, data.byteLength / Uint8Array.BYTES_PER_ELEMENT);
 	return new Uint8Array(data);
 }
@@ -11483,8 +19819,8 @@ function supportsWebCrypto(window$1) {
 }
 function supportsSecureRandom(window$1) {
 	if (typeof window$1 === "object" && typeof window$1.crypto === "object") {
-		var getRandomValues$1 = window$1.crypto.getRandomValues;
-		return typeof getRandomValues$1 === "function";
+		var getRandomValues = window$1.crypto.getRandomValues;
+		return typeof getRandomValues === "function";
 	}
 	return false;
 }
@@ -11750,16 +20086,16 @@ else {
 				var t2_1 = (u$1 >>> 7 | u$1 << 25) ^ (u$1 >>> 18 | u$1 << 14) ^ u$1 >>> 3;
 				this.temp[i$2] = (t1_1 + this.temp[i$2 - 7] | 0) + (t2_1 + this.temp[i$2 - 16] | 0);
 			}
-			var t1 = (((state4 >>> 6 | state4 << 26) ^ (state4 >>> 11 | state4 << 21) ^ (state4 >>> 25 | state4 << 7)) + (state4 & state5 ^ ~state4 & state6) | 0) + (state7 + (KEY[i$2] + this.temp[i$2] | 0) | 0) | 0;
-			var t2 = ((state0 >>> 2 | state0 << 30) ^ (state0 >>> 13 | state0 << 19) ^ (state0 >>> 22 | state0 << 10)) + (state0 & state1 ^ state0 & state2 ^ state1 & state2) | 0;
+			var t1$1 = (((state4 >>> 6 | state4 << 26) ^ (state4 >>> 11 | state4 << 21) ^ (state4 >>> 25 | state4 << 7)) + (state4 & state5 ^ ~state4 & state6) | 0) + (state7 + (KEY[i$2] + this.temp[i$2] | 0) | 0) | 0;
+			var t2$1 = ((state0 >>> 2 | state0 << 30) ^ (state0 >>> 13 | state0 << 19) ^ (state0 >>> 22 | state0 << 10)) + (state0 & state1 ^ state0 & state2 ^ state1 & state2) | 0;
 			state7 = state6;
 			state6 = state5;
 			state5 = state4;
-			state4 = state3 + t1 | 0;
+			state4 = state3 + t1$1 | 0;
 			state3 = state2;
 			state2 = state1;
 			state1 = state0;
-			state0 = t1 + t2 | 0;
+			state0 = t1$1 + t2$1 | 0;
 		}
 		state[0] += state0;
 		state[1] += state1;
@@ -11854,1187 +20190,50 @@ else this.hash = new Sha256$2(secret);
 }();
 
 //#endregion
-//#region node_modules/.pnpm/bowser@2.11.0/node_modules/bowser/es5.js
-var require_es5 = __commonJS({ "node_modules/.pnpm/bowser@2.11.0/node_modules/bowser/es5.js"(exports, module) {
-	!function(e$2, t$2) {
-		"object" == typeof exports && "object" == typeof module ? module.exports = t$2() : "function" == typeof define && define.amd ? define([], t$2) : "object" == typeof exports ? exports.bowser = t$2() : e$2.bowser = t$2();
-	}(exports, function() {
-		return function(e$2) {
-			var t$2 = {};
-			function r$1(n$1) {
-				if (t$2[n$1]) return t$2[n$1].exports;
-				var i$2 = t$2[n$1] = {
-					i: n$1,
-					l: !1,
-					exports: {}
-				};
-				return e$2[n$1].call(i$2.exports, i$2, i$2.exports, r$1), i$2.l = !0, i$2.exports;
-			}
-			return r$1.m = e$2, r$1.c = t$2, r$1.d = function(e$3, t$3, n$1) {
-				r$1.o(e$3, t$3) || Object.defineProperty(e$3, t$3, {
-					enumerable: !0,
-					get: n$1
-				});
-			}, r$1.r = function(e$3) {
-				"undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e$3, Symbol.toStringTag, { value: "Module" }), Object.defineProperty(e$3, "__esModule", { value: !0 });
-			}, r$1.t = function(e$3, t$3) {
-				if (1 & t$3 && (e$3 = r$1(e$3)), 8 & t$3) return e$3;
-				if (4 & t$3 && "object" == typeof e$3 && e$3 && e$3.__esModule) return e$3;
-				var n$1 = Object.create(null);
-				if (r$1.r(n$1), Object.defineProperty(n$1, "default", {
-					enumerable: !0,
-					value: e$3
-				}), 2 & t$3 && "string" != typeof e$3) for (var i$2 in e$3) r$1.d(n$1, i$2, function(t$4) {
-					return e$3[t$4];
-				}.bind(null, i$2));
-				return n$1;
-			}, r$1.n = function(e$3) {
-				var t$3 = e$3 && e$3.__esModule ? function() {
-					return e$3.default;
-				} : function() {
-					return e$3;
-				};
-				return r$1.d(t$3, "a", t$3), t$3;
-			}, r$1.o = function(e$3, t$3) {
-				return Object.prototype.hasOwnProperty.call(e$3, t$3);
-			}, r$1.p = "", r$1(r$1.s = 90);
-		}({
-			17: function(e$2, t$2, r$1) {
-				"use strict";
-				t$2.__esModule = !0, t$2.default = void 0;
-				var n$1 = r$1(18), i$2 = function() {
-					function e$3() {}
-					return e$3.getFirstMatch = function(e$4, t$3) {
-						var r$2 = t$3.match(e$4);
-						return r$2 && r$2.length > 0 && r$2[1] || "";
-					}, e$3.getSecondMatch = function(e$4, t$3) {
-						var r$2 = t$3.match(e$4);
-						return r$2 && r$2.length > 1 && r$2[2] || "";
-					}, e$3.matchAndReturnConst = function(e$4, t$3, r$2) {
-						if (e$4.test(t$3)) return r$2;
-					}, e$3.getWindowsVersionName = function(e$4) {
-						switch (e$4) {
-							case "NT": return "NT";
-							case "XP": return "XP";
-							case "NT 5.0": return "2000";
-							case "NT 5.1": return "XP";
-							case "NT 5.2": return "2003";
-							case "NT 6.0": return "Vista";
-							case "NT 6.1": return "7";
-							case "NT 6.2": return "8";
-							case "NT 6.3": return "8.1";
-							case "NT 10.0": return "10";
-							default: return;
-						}
-					}, e$3.getMacOSVersionName = function(e$4) {
-						var t$3 = e$4.split(".").splice(0, 2).map(function(e$5) {
-							return parseInt(e$5, 10) || 0;
-						});
-						if (t$3.push(0), 10 === t$3[0]) switch (t$3[1]) {
-							case 5: return "Leopard";
-							case 6: return "Snow Leopard";
-							case 7: return "Lion";
-							case 8: return "Mountain Lion";
-							case 9: return "Mavericks";
-							case 10: return "Yosemite";
-							case 11: return "El Capitan";
-							case 12: return "Sierra";
-							case 13: return "High Sierra";
-							case 14: return "Mojave";
-							case 15: return "Catalina";
-							default: return;
-						}
-					}, e$3.getAndroidVersionName = function(e$4) {
-						var t$3 = e$4.split(".").splice(0, 2).map(function(e$5) {
-							return parseInt(e$5, 10) || 0;
-						});
-						if (t$3.push(0), !(1 === t$3[0] && t$3[1] < 5)) return 1 === t$3[0] && t$3[1] < 6 ? "Cupcake" : 1 === t$3[0] && t$3[1] >= 6 ? "Donut" : 2 === t$3[0] && t$3[1] < 2 ? "Eclair" : 2 === t$3[0] && 2 === t$3[1] ? "Froyo" : 2 === t$3[0] && t$3[1] > 2 ? "Gingerbread" : 3 === t$3[0] ? "Honeycomb" : 4 === t$3[0] && t$3[1] < 1 ? "Ice Cream Sandwich" : 4 === t$3[0] && t$3[1] < 4 ? "Jelly Bean" : 4 === t$3[0] && t$3[1] >= 4 ? "KitKat" : 5 === t$3[0] ? "Lollipop" : 6 === t$3[0] ? "Marshmallow" : 7 === t$3[0] ? "Nougat" : 8 === t$3[0] ? "Oreo" : 9 === t$3[0] ? "Pie" : void 0;
-					}, e$3.getVersionPrecision = function(e$4) {
-						return e$4.split(".").length;
-					}, e$3.compareVersions = function(t$3, r$2, n$2) {
-						void 0 === n$2 && (n$2 = !1);
-						var i$3 = e$3.getVersionPrecision(t$3), s$1 = e$3.getVersionPrecision(r$2), a$1 = Math.max(i$3, s$1), o$1 = 0, u$1 = e$3.map([t$3, r$2], function(t$4) {
-							var r$3 = a$1 - e$3.getVersionPrecision(t$4), n$3 = t$4 + new Array(r$3 + 1).join(".0");
-							return e$3.map(n$3.split("."), function(e$4) {
-								return new Array(20 - e$4.length).join("0") + e$4;
-							}).reverse();
-						});
-						for (n$2 && (o$1 = a$1 - Math.min(i$3, s$1)), a$1 -= 1; a$1 >= o$1;) {
-							if (u$1[0][a$1] > u$1[1][a$1]) return 1;
-							if (u$1[0][a$1] === u$1[1][a$1]) {
-								if (a$1 === o$1) return 0;
-								a$1 -= 1;
-							} else if (u$1[0][a$1] < u$1[1][a$1]) return -1;
-						}
-					}, e$3.map = function(e$4, t$3) {
-						var r$2, n$2 = [];
-						if (Array.prototype.map) return Array.prototype.map.call(e$4, t$3);
-						for (r$2 = 0; r$2 < e$4.length; r$2 += 1) n$2.push(t$3(e$4[r$2]));
-						return n$2;
-					}, e$3.find = function(e$4, t$3) {
-						var r$2, n$2;
-						if (Array.prototype.find) return Array.prototype.find.call(e$4, t$3);
-						for (r$2 = 0, n$2 = e$4.length; r$2 < n$2; r$2 += 1) {
-							var i$3 = e$4[r$2];
-							if (t$3(i$3, r$2)) return i$3;
-						}
-					}, e$3.assign = function(e$4) {
-						for (var t$3, r$2, n$2 = e$4, i$3 = arguments.length, s$1 = new Array(i$3 > 1 ? i$3 - 1 : 0), a$1 = 1; a$1 < i$3; a$1++) s$1[a$1 - 1] = arguments[a$1];
-						if (Object.assign) return Object.assign.apply(Object, [e$4].concat(s$1));
-						var o$1 = function() {
-							var e$5 = s$1[t$3];
-							"object" == typeof e$5 && null !== e$5 && Object.keys(e$5).forEach(function(t$4) {
-								n$2[t$4] = e$5[t$4];
-							});
-						};
-						for (t$3 = 0, r$2 = s$1.length; t$3 < r$2; t$3 += 1) o$1();
-						return e$4;
-					}, e$3.getBrowserAlias = function(e$4) {
-						return n$1.BROWSER_ALIASES_MAP[e$4];
-					}, e$3.getBrowserTypeByAlias = function(e$4) {
-						return n$1.BROWSER_MAP[e$4] || "";
-					}, e$3;
-				}();
-				t$2.default = i$2, e$2.exports = t$2.default;
-			},
-			18: function(e$2, t$2, r$1) {
-				"use strict";
-				t$2.__esModule = !0, t$2.ENGINE_MAP = t$2.OS_MAP = t$2.PLATFORMS_MAP = t$2.BROWSER_MAP = t$2.BROWSER_ALIASES_MAP = void 0;
-				t$2.BROWSER_ALIASES_MAP = {
-					"Amazon Silk": "amazon_silk",
-					"Android Browser": "android",
-					Bada: "bada",
-					BlackBerry: "blackberry",
-					Chrome: "chrome",
-					Chromium: "chromium",
-					Electron: "electron",
-					Epiphany: "epiphany",
-					Firefox: "firefox",
-					Focus: "focus",
-					Generic: "generic",
-					"Google Search": "google_search",
-					Googlebot: "googlebot",
-					"Internet Explorer": "ie",
-					"K-Meleon": "k_meleon",
-					Maxthon: "maxthon",
-					"Microsoft Edge": "edge",
-					"MZ Browser": "mz",
-					"NAVER Whale Browser": "naver",
-					Opera: "opera",
-					"Opera Coast": "opera_coast",
-					PhantomJS: "phantomjs",
-					Puffin: "puffin",
-					QupZilla: "qupzilla",
-					QQ: "qq",
-					QQLite: "qqlite",
-					Safari: "safari",
-					Sailfish: "sailfish",
-					"Samsung Internet for Android": "samsung_internet",
-					SeaMonkey: "seamonkey",
-					Sleipnir: "sleipnir",
-					Swing: "swing",
-					Tizen: "tizen",
-					"UC Browser": "uc",
-					Vivaldi: "vivaldi",
-					"WebOS Browser": "webos",
-					WeChat: "wechat",
-					"Yandex Browser": "yandex",
-					Roku: "roku"
-				};
-				t$2.BROWSER_MAP = {
-					amazon_silk: "Amazon Silk",
-					android: "Android Browser",
-					bada: "Bada",
-					blackberry: "BlackBerry",
-					chrome: "Chrome",
-					chromium: "Chromium",
-					electron: "Electron",
-					epiphany: "Epiphany",
-					firefox: "Firefox",
-					focus: "Focus",
-					generic: "Generic",
-					googlebot: "Googlebot",
-					google_search: "Google Search",
-					ie: "Internet Explorer",
-					k_meleon: "K-Meleon",
-					maxthon: "Maxthon",
-					edge: "Microsoft Edge",
-					mz: "MZ Browser",
-					naver: "NAVER Whale Browser",
-					opera: "Opera",
-					opera_coast: "Opera Coast",
-					phantomjs: "PhantomJS",
-					puffin: "Puffin",
-					qupzilla: "QupZilla",
-					qq: "QQ Browser",
-					qqlite: "QQ Browser Lite",
-					safari: "Safari",
-					sailfish: "Sailfish",
-					samsung_internet: "Samsung Internet for Android",
-					seamonkey: "SeaMonkey",
-					sleipnir: "Sleipnir",
-					swing: "Swing",
-					tizen: "Tizen",
-					uc: "UC Browser",
-					vivaldi: "Vivaldi",
-					webos: "WebOS Browser",
-					wechat: "WeChat",
-					yandex: "Yandex Browser"
-				};
-				t$2.PLATFORMS_MAP = {
-					tablet: "tablet",
-					mobile: "mobile",
-					desktop: "desktop",
-					tv: "tv"
-				};
-				t$2.OS_MAP = {
-					WindowsPhone: "Windows Phone",
-					Windows: "Windows",
-					MacOS: "macOS",
-					iOS: "iOS",
-					Android: "Android",
-					WebOS: "WebOS",
-					BlackBerry: "BlackBerry",
-					Bada: "Bada",
-					Tizen: "Tizen",
-					Linux: "Linux",
-					ChromeOS: "Chrome OS",
-					PlayStation4: "PlayStation 4",
-					Roku: "Roku"
-				};
-				t$2.ENGINE_MAP = {
-					EdgeHTML: "EdgeHTML",
-					Blink: "Blink",
-					Trident: "Trident",
-					Presto: "Presto",
-					Gecko: "Gecko",
-					WebKit: "WebKit"
-				};
-			},
-			90: function(e$2, t$2, r$1) {
-				"use strict";
-				t$2.__esModule = !0, t$2.default = void 0;
-				var n$1, i$2 = (n$1 = r$1(91)) && n$1.__esModule ? n$1 : { default: n$1 }, s$1 = r$1(18);
-				function a$1(e$3, t$3) {
-					for (var r$2 = 0; r$2 < t$3.length; r$2++) {
-						var n$2 = t$3[r$2];
-						n$2.enumerable = n$2.enumerable || !1, n$2.configurable = !0, "value" in n$2 && (n$2.writable = !0), Object.defineProperty(e$3, n$2.key, n$2);
-					}
-				}
-				var o$1 = function() {
-					function e$3() {}
-					var t$3, r$2, n$2;
-					return e$3.getParser = function(e$4, t$4) {
-						if (void 0 === t$4 && (t$4 = !1), "string" != typeof e$4) throw new Error("UserAgent should be a string");
-						return new i$2.default(e$4, t$4);
-					}, e$3.parse = function(e$4) {
-						return new i$2.default(e$4).getResult();
-					}, t$3 = e$3, n$2 = [
-						{
-							key: "BROWSER_MAP",
-							get: function() {
-								return s$1.BROWSER_MAP;
-							}
-						},
-						{
-							key: "ENGINE_MAP",
-							get: function() {
-								return s$1.ENGINE_MAP;
-							}
-						},
-						{
-							key: "OS_MAP",
-							get: function() {
-								return s$1.OS_MAP;
-							}
-						},
-						{
-							key: "PLATFORMS_MAP",
-							get: function() {
-								return s$1.PLATFORMS_MAP;
-							}
-						}
-					], r$2 = null, n$2 && a$1(t$3, n$2), e$3;
-				}();
-				t$2.default = o$1, e$2.exports = t$2.default;
-			},
-			91: function(e$2, t$2, r$1) {
-				"use strict";
-				t$2.__esModule = !0, t$2.default = void 0;
-				var n$1 = u$1(r$1(92)), i$2 = u$1(r$1(93)), s$1 = u$1(r$1(94)), a$1 = u$1(r$1(95)), o$1 = u$1(r$1(17));
-				function u$1(e$3) {
-					return e$3 && e$3.__esModule ? e$3 : { default: e$3 };
-				}
-				var d$1 = function() {
-					function e$3(e$4, t$4) {
-						if (void 0 === t$4 && (t$4 = !1), null == e$4 || "" === e$4) throw new Error("UserAgent parameter can't be empty");
-						this._ua = e$4, this.parsedResult = {}, !0 !== t$4 && this.parse();
-					}
-					var t$3 = e$3.prototype;
-					return t$3.getUA = function() {
-						return this._ua;
-					}, t$3.test = function(e$4) {
-						return e$4.test(this._ua);
-					}, t$3.parseBrowser = function() {
-						var e$4 = this;
-						this.parsedResult.browser = {};
-						var t$4 = o$1.default.find(n$1.default, function(t$5) {
-							if ("function" == typeof t$5.test) return t$5.test(e$4);
-							if (t$5.test instanceof Array) return t$5.test.some(function(t$6) {
-								return e$4.test(t$6);
-							});
-							throw new Error("Browser's test function is not valid");
-						});
-						return t$4 && (this.parsedResult.browser = t$4.describe(this.getUA())), this.parsedResult.browser;
-					}, t$3.getBrowser = function() {
-						return this.parsedResult.browser ? this.parsedResult.browser : this.parseBrowser();
-					}, t$3.getBrowserName = function(e$4) {
-						return e$4 ? String(this.getBrowser().name).toLowerCase() || "" : this.getBrowser().name || "";
-					}, t$3.getBrowserVersion = function() {
-						return this.getBrowser().version;
-					}, t$3.getOS = function() {
-						return this.parsedResult.os ? this.parsedResult.os : this.parseOS();
-					}, t$3.parseOS = function() {
-						var e$4 = this;
-						this.parsedResult.os = {};
-						var t$4 = o$1.default.find(i$2.default, function(t$5) {
-							if ("function" == typeof t$5.test) return t$5.test(e$4);
-							if (t$5.test instanceof Array) return t$5.test.some(function(t$6) {
-								return e$4.test(t$6);
-							});
-							throw new Error("Browser's test function is not valid");
-						});
-						return t$4 && (this.parsedResult.os = t$4.describe(this.getUA())), this.parsedResult.os;
-					}, t$3.getOSName = function(e$4) {
-						var t$4 = this.getOS().name;
-						return e$4 ? String(t$4).toLowerCase() || "" : t$4 || "";
-					}, t$3.getOSVersion = function() {
-						return this.getOS().version;
-					}, t$3.getPlatform = function() {
-						return this.parsedResult.platform ? this.parsedResult.platform : this.parsePlatform();
-					}, t$3.getPlatformType = function(e$4) {
-						void 0 === e$4 && (e$4 = !1);
-						var t$4 = this.getPlatform().type;
-						return e$4 ? String(t$4).toLowerCase() || "" : t$4 || "";
-					}, t$3.parsePlatform = function() {
-						var e$4 = this;
-						this.parsedResult.platform = {};
-						var t$4 = o$1.default.find(s$1.default, function(t$5) {
-							if ("function" == typeof t$5.test) return t$5.test(e$4);
-							if (t$5.test instanceof Array) return t$5.test.some(function(t$6) {
-								return e$4.test(t$6);
-							});
-							throw new Error("Browser's test function is not valid");
-						});
-						return t$4 && (this.parsedResult.platform = t$4.describe(this.getUA())), this.parsedResult.platform;
-					}, t$3.getEngine = function() {
-						return this.parsedResult.engine ? this.parsedResult.engine : this.parseEngine();
-					}, t$3.getEngineName = function(e$4) {
-						return e$4 ? String(this.getEngine().name).toLowerCase() || "" : this.getEngine().name || "";
-					}, t$3.parseEngine = function() {
-						var e$4 = this;
-						this.parsedResult.engine = {};
-						var t$4 = o$1.default.find(a$1.default, function(t$5) {
-							if ("function" == typeof t$5.test) return t$5.test(e$4);
-							if (t$5.test instanceof Array) return t$5.test.some(function(t$6) {
-								return e$4.test(t$6);
-							});
-							throw new Error("Browser's test function is not valid");
-						});
-						return t$4 && (this.parsedResult.engine = t$4.describe(this.getUA())), this.parsedResult.engine;
-					}, t$3.parse = function() {
-						return this.parseBrowser(), this.parseOS(), this.parsePlatform(), this.parseEngine(), this;
-					}, t$3.getResult = function() {
-						return o$1.default.assign({}, this.parsedResult);
-					}, t$3.satisfies = function(e$4) {
-						var t$4 = this, r$2 = {}, n$2 = 0, i$3 = {}, s$2 = 0;
-						if (Object.keys(e$4).forEach(function(t$5) {
-							var a$3 = e$4[t$5];
-							"string" == typeof a$3 ? (i$3[t$5] = a$3, s$2 += 1) : "object" == typeof a$3 && (r$2[t$5] = a$3, n$2 += 1);
-						}), n$2 > 0) {
-							var a$2 = Object.keys(r$2), u$2 = o$1.default.find(a$2, function(e$5) {
-								return t$4.isOS(e$5);
-							});
-							if (u$2) {
-								var d$2 = this.satisfies(r$2[u$2]);
-								if (void 0 !== d$2) return d$2;
-							}
-							var c$1 = o$1.default.find(a$2, function(e$5) {
-								return t$4.isPlatform(e$5);
-							});
-							if (c$1) {
-								var f$1 = this.satisfies(r$2[c$1]);
-								if (void 0 !== f$1) return f$1;
-							}
-						}
-						if (s$2 > 0) {
-							var l$1 = Object.keys(i$3), h$1 = o$1.default.find(l$1, function(e$5) {
-								return t$4.isBrowser(e$5, !0);
-							});
-							if (void 0 !== h$1) return this.compareVersion(i$3[h$1]);
-						}
-					}, t$3.isBrowser = function(e$4, t$4) {
-						void 0 === t$4 && (t$4 = !1);
-						var r$2 = this.getBrowserName().toLowerCase(), n$2 = e$4.toLowerCase(), i$3 = o$1.default.getBrowserTypeByAlias(n$2);
-						return t$4 && i$3 && (n$2 = i$3.toLowerCase()), n$2 === r$2;
-					}, t$3.compareVersion = function(e$4) {
-						var t$4 = [0], r$2 = e$4, n$2 = !1, i$3 = this.getBrowserVersion();
-						if ("string" == typeof i$3) return ">" === e$4[0] || "<" === e$4[0] ? (r$2 = e$4.substr(1), "=" === e$4[1] ? (n$2 = !0, r$2 = e$4.substr(2)) : t$4 = [], ">" === e$4[0] ? t$4.push(1) : t$4.push(-1)) : "=" === e$4[0] ? r$2 = e$4.substr(1) : "~" === e$4[0] && (n$2 = !0, r$2 = e$4.substr(1)), t$4.indexOf(o$1.default.compareVersions(i$3, r$2, n$2)) > -1;
-					}, t$3.isOS = function(e$4) {
-						return this.getOSName(!0) === String(e$4).toLowerCase();
-					}, t$3.isPlatform = function(e$4) {
-						return this.getPlatformType(!0) === String(e$4).toLowerCase();
-					}, t$3.isEngine = function(e$4) {
-						return this.getEngineName(!0) === String(e$4).toLowerCase();
-					}, t$3.is = function(e$4, t$4) {
-						return void 0 === t$4 && (t$4 = !1), this.isBrowser(e$4, t$4) || this.isOS(e$4) || this.isPlatform(e$4);
-					}, t$3.some = function(e$4) {
-						var t$4 = this;
-						return void 0 === e$4 && (e$4 = []), e$4.some(function(e$5) {
-							return t$4.is(e$5);
-						});
-					}, e$3;
-				}();
-				t$2.default = d$1, e$2.exports = t$2.default;
-			},
-			92: function(e$2, t$2, r$1) {
-				"use strict";
-				t$2.__esModule = !0, t$2.default = void 0;
-				var n$1, i$2 = (n$1 = r$1(17)) && n$1.__esModule ? n$1 : { default: n$1 };
-				var s$1 = /version\/(\d+(\.?_?\d+)+)/i, a$1 = [
-					{
-						test: [/googlebot/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Googlebot" }, r$2 = i$2.default.getFirstMatch(/googlebot\/(\d+(\.\d+))/i, e$3) || i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/opera/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Opera" }, r$2 = i$2.default.getFirstMatch(s$1, e$3) || i$2.default.getFirstMatch(/(?:opera)[\s/](\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/opr\/|opios/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Opera" }, r$2 = i$2.default.getFirstMatch(/(?:opr|opios)[\s/](\S+)/i, e$3) || i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/SamsungBrowser/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Samsung Internet for Android" }, r$2 = i$2.default.getFirstMatch(s$1, e$3) || i$2.default.getFirstMatch(/(?:SamsungBrowser)[\s/](\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/Whale/i],
-						describe: function(e$3) {
-							var t$3 = { name: "NAVER Whale Browser" }, r$2 = i$2.default.getFirstMatch(s$1, e$3) || i$2.default.getFirstMatch(/(?:whale)[\s/](\d+(?:\.\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/MZBrowser/i],
-						describe: function(e$3) {
-							var t$3 = { name: "MZ Browser" }, r$2 = i$2.default.getFirstMatch(/(?:MZBrowser)[\s/](\d+(?:\.\d+)+)/i, e$3) || i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/focus/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Focus" }, r$2 = i$2.default.getFirstMatch(/(?:focus)[\s/](\d+(?:\.\d+)+)/i, e$3) || i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/swing/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Swing" }, r$2 = i$2.default.getFirstMatch(/(?:swing)[\s/](\d+(?:\.\d+)+)/i, e$3) || i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/coast/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Opera Coast" }, r$2 = i$2.default.getFirstMatch(s$1, e$3) || i$2.default.getFirstMatch(/(?:coast)[\s/](\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/opt\/\d+(?:.?_?\d+)+/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Opera Touch" }, r$2 = i$2.default.getFirstMatch(/(?:opt)[\s/](\d+(\.?_?\d+)+)/i, e$3) || i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/yabrowser/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Yandex Browser" }, r$2 = i$2.default.getFirstMatch(/(?:yabrowser)[\s/](\d+(\.?_?\d+)+)/i, e$3) || i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/ucbrowser/i],
-						describe: function(e$3) {
-							var t$3 = { name: "UC Browser" }, r$2 = i$2.default.getFirstMatch(s$1, e$3) || i$2.default.getFirstMatch(/(?:ucbrowser)[\s/](\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/Maxthon|mxios/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Maxthon" }, r$2 = i$2.default.getFirstMatch(s$1, e$3) || i$2.default.getFirstMatch(/(?:Maxthon|mxios)[\s/](\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/epiphany/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Epiphany" }, r$2 = i$2.default.getFirstMatch(s$1, e$3) || i$2.default.getFirstMatch(/(?:epiphany)[\s/](\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/puffin/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Puffin" }, r$2 = i$2.default.getFirstMatch(s$1, e$3) || i$2.default.getFirstMatch(/(?:puffin)[\s/](\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/sleipnir/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Sleipnir" }, r$2 = i$2.default.getFirstMatch(s$1, e$3) || i$2.default.getFirstMatch(/(?:sleipnir)[\s/](\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/k-meleon/i],
-						describe: function(e$3) {
-							var t$3 = { name: "K-Meleon" }, r$2 = i$2.default.getFirstMatch(s$1, e$3) || i$2.default.getFirstMatch(/(?:k-meleon)[\s/](\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/micromessenger/i],
-						describe: function(e$3) {
-							var t$3 = { name: "WeChat" }, r$2 = i$2.default.getFirstMatch(/(?:micromessenger)[\s/](\d+(\.?_?\d+)+)/i, e$3) || i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/qqbrowser/i],
-						describe: function(e$3) {
-							var t$3 = { name: /qqbrowserlite/i.test(e$3) ? "QQ Browser Lite" : "QQ Browser" }, r$2 = i$2.default.getFirstMatch(/(?:qqbrowserlite|qqbrowser)[/](\d+(\.?_?\d+)+)/i, e$3) || i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/msie|trident/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Internet Explorer" }, r$2 = i$2.default.getFirstMatch(/(?:msie |rv:)(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/\sedg\//i],
-						describe: function(e$3) {
-							var t$3 = { name: "Microsoft Edge" }, r$2 = i$2.default.getFirstMatch(/\sedg\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/edg([ea]|ios)/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Microsoft Edge" }, r$2 = i$2.default.getSecondMatch(/edg([ea]|ios)\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/vivaldi/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Vivaldi" }, r$2 = i$2.default.getFirstMatch(/vivaldi\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/seamonkey/i],
-						describe: function(e$3) {
-							var t$3 = { name: "SeaMonkey" }, r$2 = i$2.default.getFirstMatch(/seamonkey\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/sailfish/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Sailfish" }, r$2 = i$2.default.getFirstMatch(/sailfish\s?browser\/(\d+(\.\d+)?)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/silk/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Amazon Silk" }, r$2 = i$2.default.getFirstMatch(/silk\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/phantom/i],
-						describe: function(e$3) {
-							var t$3 = { name: "PhantomJS" }, r$2 = i$2.default.getFirstMatch(/phantomjs\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/slimerjs/i],
-						describe: function(e$3) {
-							var t$3 = { name: "SlimerJS" }, r$2 = i$2.default.getFirstMatch(/slimerjs\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/blackberry|\bbb\d+/i, /rim\stablet/i],
-						describe: function(e$3) {
-							var t$3 = { name: "BlackBerry" }, r$2 = i$2.default.getFirstMatch(s$1, e$3) || i$2.default.getFirstMatch(/blackberry[\d]+\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/(web|hpw)[o0]s/i],
-						describe: function(e$3) {
-							var t$3 = { name: "WebOS Browser" }, r$2 = i$2.default.getFirstMatch(s$1, e$3) || i$2.default.getFirstMatch(/w(?:eb)?[o0]sbrowser\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/bada/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Bada" }, r$2 = i$2.default.getFirstMatch(/dolfin\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/tizen/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Tizen" }, r$2 = i$2.default.getFirstMatch(/(?:tizen\s?)?browser\/(\d+(\.?_?\d+)+)/i, e$3) || i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/qupzilla/i],
-						describe: function(e$3) {
-							var t$3 = { name: "QupZilla" }, r$2 = i$2.default.getFirstMatch(/(?:qupzilla)[\s/](\d+(\.?_?\d+)+)/i, e$3) || i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/firefox|iceweasel|fxios/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Firefox" }, r$2 = i$2.default.getFirstMatch(/(?:firefox|iceweasel|fxios)[\s/](\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/electron/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Electron" }, r$2 = i$2.default.getFirstMatch(/(?:electron)\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/MiuiBrowser/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Miui" }, r$2 = i$2.default.getFirstMatch(/(?:MiuiBrowser)[\s/](\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/chromium/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Chromium" }, r$2 = i$2.default.getFirstMatch(/(?:chromium)[\s/](\d+(\.?_?\d+)+)/i, e$3) || i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/chrome|crios|crmo/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Chrome" }, r$2 = i$2.default.getFirstMatch(/(?:chrome|crios|crmo)\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/GSA/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Google Search" }, r$2 = i$2.default.getFirstMatch(/(?:GSA)\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: function(e$3) {
-							var t$3 = !e$3.test(/like android/i), r$2 = e$3.test(/android/i);
-							return t$3 && r$2;
-						},
-						describe: function(e$3) {
-							var t$3 = { name: "Android Browser" }, r$2 = i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/playstation 4/i],
-						describe: function(e$3) {
-							var t$3 = { name: "PlayStation 4" }, r$2 = i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/safari|applewebkit/i],
-						describe: function(e$3) {
-							var t$3 = { name: "Safari" }, r$2 = i$2.default.getFirstMatch(s$1, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/.*/i],
-						describe: function(e$3) {
-							var t$3 = -1 !== e$3.search("\\(") ? /^(.*)\/(.*)[ \t]\((.*)/ : /^(.*)\/(.*) /;
-							return {
-								name: i$2.default.getFirstMatch(t$3, e$3),
-								version: i$2.default.getSecondMatch(t$3, e$3)
-							};
-						}
-					}
-				];
-				t$2.default = a$1, e$2.exports = t$2.default;
-			},
-			93: function(e$2, t$2, r$1) {
-				"use strict";
-				t$2.__esModule = !0, t$2.default = void 0;
-				var n$1, i$2 = (n$1 = r$1(17)) && n$1.__esModule ? n$1 : { default: n$1 }, s$1 = r$1(18);
-				var a$1 = [
-					{
-						test: [/Roku\/DVP/],
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/Roku\/DVP-(\d+\.\d+)/i, e$3);
-							return {
-								name: s$1.OS_MAP.Roku,
-								version: t$3
-							};
-						}
-					},
-					{
-						test: [/windows phone/i],
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/windows phone (?:os)?\s?(\d+(\.\d+)*)/i, e$3);
-							return {
-								name: s$1.OS_MAP.WindowsPhone,
-								version: t$3
-							};
-						}
-					},
-					{
-						test: [/windows /i],
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/Windows ((NT|XP)( \d\d?.\d)?)/i, e$3), r$2 = i$2.default.getWindowsVersionName(t$3);
-							return {
-								name: s$1.OS_MAP.Windows,
-								version: t$3,
-								versionName: r$2
-							};
-						}
-					},
-					{
-						test: [/Macintosh(.*?) FxiOS(.*?)\//],
-						describe: function(e$3) {
-							var t$3 = { name: s$1.OS_MAP.iOS }, r$2 = i$2.default.getSecondMatch(/(Version\/)(\d[\d.]+)/, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/macintosh/i],
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/mac os x (\d+(\.?_?\d+)+)/i, e$3).replace(/[_\s]/g, "."), r$2 = i$2.default.getMacOSVersionName(t$3), n$2 = {
-								name: s$1.OS_MAP.MacOS,
-								version: t$3
-							};
-							return r$2 && (n$2.versionName = r$2), n$2;
-						}
-					},
-					{
-						test: [/(ipod|iphone|ipad)/i],
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/os (\d+([_\s]\d+)*) like mac os x/i, e$3).replace(/[_\s]/g, ".");
-							return {
-								name: s$1.OS_MAP.iOS,
-								version: t$3
-							};
-						}
-					},
-					{
-						test: function(e$3) {
-							var t$3 = !e$3.test(/like android/i), r$2 = e$3.test(/android/i);
-							return t$3 && r$2;
-						},
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/android[\s/-](\d+(\.\d+)*)/i, e$3), r$2 = i$2.default.getAndroidVersionName(t$3), n$2 = {
-								name: s$1.OS_MAP.Android,
-								version: t$3
-							};
-							return r$2 && (n$2.versionName = r$2), n$2;
-						}
-					},
-					{
-						test: [/(web|hpw)[o0]s/i],
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/(?:web|hpw)[o0]s\/(\d+(\.\d+)*)/i, e$3), r$2 = { name: s$1.OS_MAP.WebOS };
-							return t$3 && t$3.length && (r$2.version = t$3), r$2;
-						}
-					},
-					{
-						test: [/blackberry|\bbb\d+/i, /rim\stablet/i],
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/rim\stablet\sos\s(\d+(\.\d+)*)/i, e$3) || i$2.default.getFirstMatch(/blackberry\d+\/(\d+([_\s]\d+)*)/i, e$3) || i$2.default.getFirstMatch(/\bbb(\d+)/i, e$3);
-							return {
-								name: s$1.OS_MAP.BlackBerry,
-								version: t$3
-							};
-						}
-					},
-					{
-						test: [/bada/i],
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/bada\/(\d+(\.\d+)*)/i, e$3);
-							return {
-								name: s$1.OS_MAP.Bada,
-								version: t$3
-							};
-						}
-					},
-					{
-						test: [/tizen/i],
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/tizen[/\s](\d+(\.\d+)*)/i, e$3);
-							return {
-								name: s$1.OS_MAP.Tizen,
-								version: t$3
-							};
-						}
-					},
-					{
-						test: [/linux/i],
-						describe: function() {
-							return { name: s$1.OS_MAP.Linux };
-						}
-					},
-					{
-						test: [/CrOS/],
-						describe: function() {
-							return { name: s$1.OS_MAP.ChromeOS };
-						}
-					},
-					{
-						test: [/PlayStation 4/],
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/PlayStation 4[/\s](\d+(\.\d+)*)/i, e$3);
-							return {
-								name: s$1.OS_MAP.PlayStation4,
-								version: t$3
-							};
-						}
-					}
-				];
-				t$2.default = a$1, e$2.exports = t$2.default;
-			},
-			94: function(e$2, t$2, r$1) {
-				"use strict";
-				t$2.__esModule = !0, t$2.default = void 0;
-				var n$1, i$2 = (n$1 = r$1(17)) && n$1.__esModule ? n$1 : { default: n$1 }, s$1 = r$1(18);
-				var a$1 = [
-					{
-						test: [/googlebot/i],
-						describe: function() {
-							return {
-								type: "bot",
-								vendor: "Google"
-							};
-						}
-					},
-					{
-						test: [/huawei/i],
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/(can-l01)/i, e$3) && "Nova", r$2 = {
-								type: s$1.PLATFORMS_MAP.mobile,
-								vendor: "Huawei"
-							};
-							return t$3 && (r$2.model = t$3), r$2;
-						}
-					},
-					{
-						test: [/nexus\s*(?:7|8|9|10).*/i],
-						describe: function() {
-							return {
-								type: s$1.PLATFORMS_MAP.tablet,
-								vendor: "Nexus"
-							};
-						}
-					},
-					{
-						test: [/ipad/i],
-						describe: function() {
-							return {
-								type: s$1.PLATFORMS_MAP.tablet,
-								vendor: "Apple",
-								model: "iPad"
-							};
-						}
-					},
-					{
-						test: [/Macintosh(.*?) FxiOS(.*?)\//],
-						describe: function() {
-							return {
-								type: s$1.PLATFORMS_MAP.tablet,
-								vendor: "Apple",
-								model: "iPad"
-							};
-						}
-					},
-					{
-						test: [/kftt build/i],
-						describe: function() {
-							return {
-								type: s$1.PLATFORMS_MAP.tablet,
-								vendor: "Amazon",
-								model: "Kindle Fire HD 7"
-							};
-						}
-					},
-					{
-						test: [/silk/i],
-						describe: function() {
-							return {
-								type: s$1.PLATFORMS_MAP.tablet,
-								vendor: "Amazon"
-							};
-						}
-					},
-					{
-						test: [/tablet(?! pc)/i],
-						describe: function() {
-							return { type: s$1.PLATFORMS_MAP.tablet };
-						}
-					},
-					{
-						test: function(e$3) {
-							var t$3 = e$3.test(/ipod|iphone/i), r$2 = e$3.test(/like (ipod|iphone)/i);
-							return t$3 && !r$2;
-						},
-						describe: function(e$3) {
-							var t$3 = i$2.default.getFirstMatch(/(ipod|iphone)/i, e$3);
-							return {
-								type: s$1.PLATFORMS_MAP.mobile,
-								vendor: "Apple",
-								model: t$3
-							};
-						}
-					},
-					{
-						test: [/nexus\s*[0-6].*/i, /galaxy nexus/i],
-						describe: function() {
-							return {
-								type: s$1.PLATFORMS_MAP.mobile,
-								vendor: "Nexus"
-							};
-						}
-					},
-					{
-						test: [/[^-]mobi/i],
-						describe: function() {
-							return { type: s$1.PLATFORMS_MAP.mobile };
-						}
-					},
-					{
-						test: function(e$3) {
-							return "blackberry" === e$3.getBrowserName(!0);
-						},
-						describe: function() {
-							return {
-								type: s$1.PLATFORMS_MAP.mobile,
-								vendor: "BlackBerry"
-							};
-						}
-					},
-					{
-						test: function(e$3) {
-							return "bada" === e$3.getBrowserName(!0);
-						},
-						describe: function() {
-							return { type: s$1.PLATFORMS_MAP.mobile };
-						}
-					},
-					{
-						test: function(e$3) {
-							return "windows phone" === e$3.getBrowserName();
-						},
-						describe: function() {
-							return {
-								type: s$1.PLATFORMS_MAP.mobile,
-								vendor: "Microsoft"
-							};
-						}
-					},
-					{
-						test: function(e$3) {
-							var t$3 = Number(String(e$3.getOSVersion()).split(".")[0]);
-							return "android" === e$3.getOSName(!0) && t$3 >= 3;
-						},
-						describe: function() {
-							return { type: s$1.PLATFORMS_MAP.tablet };
-						}
-					},
-					{
-						test: function(e$3) {
-							return "android" === e$3.getOSName(!0);
-						},
-						describe: function() {
-							return { type: s$1.PLATFORMS_MAP.mobile };
-						}
-					},
-					{
-						test: function(e$3) {
-							return "macos" === e$3.getOSName(!0);
-						},
-						describe: function() {
-							return {
-								type: s$1.PLATFORMS_MAP.desktop,
-								vendor: "Apple"
-							};
-						}
-					},
-					{
-						test: function(e$3) {
-							return "windows" === e$3.getOSName(!0);
-						},
-						describe: function() {
-							return { type: s$1.PLATFORMS_MAP.desktop };
-						}
-					},
-					{
-						test: function(e$3) {
-							return "linux" === e$3.getOSName(!0);
-						},
-						describe: function() {
-							return { type: s$1.PLATFORMS_MAP.desktop };
-						}
-					},
-					{
-						test: function(e$3) {
-							return "playstation 4" === e$3.getOSName(!0);
-						},
-						describe: function() {
-							return { type: s$1.PLATFORMS_MAP.tv };
-						}
-					},
-					{
-						test: function(e$3) {
-							return "roku" === e$3.getOSName(!0);
-						},
-						describe: function() {
-							return { type: s$1.PLATFORMS_MAP.tv };
-						}
-					}
-				];
-				t$2.default = a$1, e$2.exports = t$2.default;
-			},
-			95: function(e$2, t$2, r$1) {
-				"use strict";
-				t$2.__esModule = !0, t$2.default = void 0;
-				var n$1, i$2 = (n$1 = r$1(17)) && n$1.__esModule ? n$1 : { default: n$1 }, s$1 = r$1(18);
-				var a$1 = [
-					{
-						test: function(e$3) {
-							return "microsoft edge" === e$3.getBrowserName(!0);
-						},
-						describe: function(e$3) {
-							if (/\sedg\//i.test(e$3)) return { name: s$1.ENGINE_MAP.Blink };
-							var t$3 = i$2.default.getFirstMatch(/edge\/(\d+(\.?_?\d+)+)/i, e$3);
-							return {
-								name: s$1.ENGINE_MAP.EdgeHTML,
-								version: t$3
-							};
-						}
-					},
-					{
-						test: [/trident/i],
-						describe: function(e$3) {
-							var t$3 = { name: s$1.ENGINE_MAP.Trident }, r$2 = i$2.default.getFirstMatch(/trident\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: function(e$3) {
-							return e$3.test(/presto/i);
-						},
-						describe: function(e$3) {
-							var t$3 = { name: s$1.ENGINE_MAP.Presto }, r$2 = i$2.default.getFirstMatch(/presto\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: function(e$3) {
-							var t$3 = e$3.test(/gecko/i), r$2 = e$3.test(/like gecko/i);
-							return t$3 && !r$2;
-						},
-						describe: function(e$3) {
-							var t$3 = { name: s$1.ENGINE_MAP.Gecko }, r$2 = i$2.default.getFirstMatch(/gecko\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					},
-					{
-						test: [/(apple)?webkit\/537\.36/i],
-						describe: function() {
-							return { name: s$1.ENGINE_MAP.Blink };
-						}
-					},
-					{
-						test: [/(apple)?webkit/i],
-						describe: function(e$3) {
-							var t$3 = { name: s$1.ENGINE_MAP.WebKit }, r$2 = i$2.default.getFirstMatch(/webkit\/(\d+(\.?_?\d+)+)/i, e$3);
-							return r$2 && (t$3.version = r$2), t$3;
-						}
-					}
-				];
-				t$2.default = a$1, e$2.exports = t$2.default;
-			}
-		});
-	});
-} });
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+util-user-agent-browser@3.714.0/node_modules/@aws-sdk/util-user-agent-browser/dist-es/index.js
-var import_es5$1 = __toESM(require_es5());
+//#region node_modules/.pnpm/@aws-sdk+util-user-agent-browser@3.972.1/node_modules/@aws-sdk/util-user-agent-browser/dist-es/index.js
 const createDefaultUserAgentProvider = ({ serviceId, clientVersion }) => async (config$1) => {
-	const parsedUA = typeof window !== "undefined" && window?.navigator?.userAgent ? import_es5$1.default.parse(window.navigator.userAgent) : undefined;
+	const navigator = typeof window !== "undefined" ? window.navigator : undefined;
+	const uaString = navigator?.userAgent ?? "";
+	const osName = navigator?.userAgentData?.platform ?? fallback.os(uaString) ?? "other";
+	const osVersion = undefined;
+	const brands = navigator?.userAgentData?.brands ?? [];
+	const brand = brands[brands.length - 1];
+	const browserName = brand?.brand ?? fallback.browser(uaString) ?? "unknown";
+	const browserVersion = brand?.version ?? "unknown";
 	const sections = [
 		["aws-sdk-js", clientVersion],
 		["ua", "2.1"],
-		[`os/${parsedUA?.os?.name || "other"}`, parsedUA?.os?.version],
+		[`os/${osName}`, osVersion],
 		["lang/js"],
-		["md/browser", `${parsedUA?.browser?.name ?? "unknown"}_${parsedUA?.browser?.version ?? "unknown"}`]
+		["md/browser", `${browserName}_${browserVersion}`]
 	];
 	if (serviceId) sections.push([`api/${serviceId}`, clientVersion]);
 	const appId = await config$1?.userAgentAppId?.();
 	if (appId) sections.push([`app/${appId}`]);
 	return sections;
 };
+const fallback = {
+	os(ua) {
+		if (/iPhone|iPad|iPod/.test(ua)) return "iOS";
+		if (/Macintosh|Mac OS X/.test(ua)) return "macOS";
+		if (/Windows NT/.test(ua)) return "Windows";
+		if (/Android/.test(ua)) return "Android";
+		if (/Linux/.test(ua)) return "Linux";
+		return undefined;
+	},
+	browser(ua) {
+		if (/EdgiOS|EdgA|Edg\//.test(ua)) return "Microsoft Edge";
+		if (/Firefox\//.test(ua)) return "Firefox";
+		if (/Chrome\//.test(ua)) return "Chrome";
+		if (/Safari\//.test(ua)) return "Safari";
+		return undefined;
+	}
+};
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-codec@3.1.10/node_modules/@smithy/eventstream-codec/dist-es/Int64.js
+//#region node_modules/.pnpm/@smithy+eventstream-codec@4.2.8/node_modules/@smithy/eventstream-codec/dist-es/Int64.js
 var Int64 = class Int64 {
+	bytes;
 	constructor(bytes) {
 		this.bytes = bytes;
 		if (bytes.byteLength !== 8) throw new Error("Int64 buffers must be exactly 8 bytes");
@@ -13065,8 +20264,10 @@ function negate(bytes) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-codec@3.1.10/node_modules/@smithy/eventstream-codec/dist-es/HeaderMarshaller.js
+//#region node_modules/.pnpm/@smithy+eventstream-codec@4.2.8/node_modules/@smithy/eventstream-codec/dist-es/HeaderMarshaller.js
 var HeaderMarshaller = class {
+	toUtf8;
+	fromUtf8;
 	constructor(toUtf8$1, fromUtf8$3) {
 		this.toUtf8 = toUtf8$1;
 		this.fromUtf8 = fromUtf8$3;
@@ -13243,7 +20444,7 @@ const UUID_TAG = "uuid";
 const UUID_PATTERN = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-codec@3.1.10/node_modules/@smithy/eventstream-codec/dist-es/splitMessage.js
+//#region node_modules/.pnpm/@smithy+eventstream-codec@4.2.8/node_modules/@smithy/eventstream-codec/dist-es/splitMessage.js
 const PRELUDE_MEMBER_LENGTH = 4;
 const PRELUDE_LENGTH = PRELUDE_MEMBER_LENGTH * 2;
 const CHECKSUM_LENGTH = 4;
@@ -13267,8 +20468,11 @@ function splitMessage({ byteLength: byteLength$3, byteOffset, buffer: buffer$1 }
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-codec@3.1.10/node_modules/@smithy/eventstream-codec/dist-es/EventStreamCodec.js
+//#region node_modules/.pnpm/@smithy+eventstream-codec@4.2.8/node_modules/@smithy/eventstream-codec/dist-es/EventStreamCodec.js
 var EventStreamCodec = class {
+	headerMarshaller;
+	messageBuffer;
+	isEndOfStream;
 	constructor(toUtf8$1, fromUtf8$3) {
 		this.headerMarshaller = new HeaderMarshaller(toUtf8$1, fromUtf8$3);
 		this.messageBuffer = [];
@@ -13332,8 +20536,9 @@ var EventStreamCodec = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-codec@3.1.10/node_modules/@smithy/eventstream-codec/dist-es/MessageDecoderStream.js
+//#region node_modules/.pnpm/@smithy+eventstream-codec@4.2.8/node_modules/@smithy/eventstream-codec/dist-es/MessageDecoderStream.js
 var MessageDecoderStream = class {
+	options;
 	constructor(options) {
 		this.options = options;
 	}
@@ -13349,8 +20554,9 @@ var MessageDecoderStream = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-codec@3.1.10/node_modules/@smithy/eventstream-codec/dist-es/MessageEncoderStream.js
+//#region node_modules/.pnpm/@smithy+eventstream-codec@4.2.8/node_modules/@smithy/eventstream-codec/dist-es/MessageEncoderStream.js
 var MessageEncoderStream = class {
+	options;
 	constructor(options) {
 		this.options = options;
 	}
@@ -13367,8 +20573,9 @@ var MessageEncoderStream = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-codec@3.1.10/node_modules/@smithy/eventstream-codec/dist-es/SmithyMessageDecoderStream.js
+//#region node_modules/.pnpm/@smithy+eventstream-codec@4.2.8/node_modules/@smithy/eventstream-codec/dist-es/SmithyMessageDecoderStream.js
 var SmithyMessageDecoderStream = class {
+	options;
 	constructor(options) {
 		this.options = options;
 	}
@@ -13385,8 +20592,9 @@ var SmithyMessageDecoderStream = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-codec@3.1.10/node_modules/@smithy/eventstream-codec/dist-es/SmithyMessageEncoderStream.js
+//#region node_modules/.pnpm/@smithy+eventstream-codec@4.2.8/node_modules/@smithy/eventstream-codec/dist-es/SmithyMessageEncoderStream.js
 var SmithyMessageEncoderStream = class {
+	options;
 	constructor(options) {
 		this.options = options;
 	}
@@ -13402,7 +20610,7 @@ var SmithyMessageEncoderStream = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-serde-universal@3.0.13/node_modules/@smithy/eventstream-serde-universal/dist-es/getChunkedStream.js
+//#region node_modules/.pnpm/@smithy+eventstream-serde-universal@4.2.8/node_modules/@smithy/eventstream-serde-universal/dist-es/getChunkedStream.js
 function getChunkedStream(source) {
 	let currentMessageTotalLength = 0;
 	let currentMessagePendingLength = 0;
@@ -13457,7 +20665,7 @@ else throw new Error("Truncated event message received.");
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-serde-universal@3.0.13/node_modules/@smithy/eventstream-serde-universal/dist-es/getUnmarshalledStream.js
+//#region node_modules/.pnpm/@smithy+eventstream-serde-universal@4.2.8/node_modules/@smithy/eventstream-serde-universal/dist-es/getUnmarshalledStream.js
 function getMessageUnmarshaller(deserializer, toUtf8$1) {
 	return async function(message) {
 		const { value: messageType } = message.headers[":message-type"];
@@ -13485,8 +20693,10 @@ function getMessageUnmarshaller(deserializer, toUtf8$1) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-serde-universal@3.0.13/node_modules/@smithy/eventstream-serde-universal/dist-es/EventStreamMarshaller.js
+//#region node_modules/.pnpm/@smithy+eventstream-serde-universal@4.2.8/node_modules/@smithy/eventstream-serde-universal/dist-es/EventStreamMarshaller.js
 var EventStreamMarshaller$1 = class {
+	eventStreamCodec;
+	utfEncoder;
 	constructor({ utf8Encoder, utf8Decoder }) {
 		this.eventStreamCodec = new EventStreamCodec(utf8Encoder, utf8Decoder);
 		this.utfEncoder = utf8Encoder;
@@ -13514,7 +20724,7 @@ var EventStreamMarshaller$1 = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-serde-browser@3.0.14/node_modules/@smithy/eventstream-serde-browser/dist-es/utils.js
+//#region node_modules/.pnpm/@smithy+eventstream-serde-browser@4.2.8/node_modules/@smithy/eventstream-serde-browser/dist-es/utils.js
 const readableStreamtoIterable = (readableStream) => ({ [Symbol.asyncIterator]: async function* () {
 	const reader = readableStream.getReader();
 	try {
@@ -13537,8 +20747,9 @@ const iterableToReadableStream = (asyncIterable) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-serde-browser@3.0.14/node_modules/@smithy/eventstream-serde-browser/dist-es/EventStreamMarshaller.js
+//#region node_modules/.pnpm/@smithy+eventstream-serde-browser@4.2.8/node_modules/@smithy/eventstream-serde-browser/dist-es/EventStreamMarshaller.js
 var EventStreamMarshaller = class {
+	universalMarshaller;
 	constructor({ utf8Encoder, utf8Decoder }) {
 		this.universalMarshaller = new EventStreamMarshaller$1({
 			utf8Decoder,
@@ -13557,11 +20768,11 @@ var EventStreamMarshaller = class {
 const isReadableStream = (body) => typeof ReadableStream === "function" && body instanceof ReadableStream;
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+eventstream-serde-browser@3.0.14/node_modules/@smithy/eventstream-serde-browser/dist-es/provider.js
+//#region node_modules/.pnpm/@smithy+eventstream-serde-browser@4.2.8/node_modules/@smithy/eventstream-serde-browser/dist-es/provider.js
 const eventStreamSerdeProvider = (options) => new EventStreamMarshaller(options);
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+chunked-blob-reader@4.0.0/node_modules/@smithy/chunked-blob-reader/dist-es/index.js
+//#region node_modules/.pnpm/@smithy+chunked-blob-reader@5.2.0/node_modules/@smithy/chunked-blob-reader/dist-es/index.js
 async function blobReader(blob, onChunk, chunkSize = 1048576) {
 	const size = blob.size;
 	let totalBytesRead = 0;
@@ -13573,7 +20784,7 @@ async function blobReader(blob, onChunk, chunkSize = 1048576) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+hash-blob-browser@3.1.10/node_modules/@smithy/hash-blob-browser/dist-es/index.js
+//#region node_modules/.pnpm/@smithy+hash-blob-browser@4.2.9/node_modules/@smithy/hash-blob-browser/dist-es/index.js
 const blobHasher = async function blobHasher$1(hashCtor, blob) {
 	const hash = new hashCtor();
 	await blobReader(blob, (chunk) => {
@@ -13583,11 +20794,11 @@ const blobHasher = async function blobHasher$1(hashCtor, blob) {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+invalid-dependency@3.0.11/node_modules/@smithy/invalid-dependency/dist-es/invalidProvider.js
+//#region node_modules/.pnpm/@smithy+invalid-dependency@4.2.8/node_modules/@smithy/invalid-dependency/dist-es/invalidProvider.js
 const invalidProvider = (message) => () => Promise.reject(message);
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+md5-js@3.0.11/node_modules/@smithy/md5-js/dist-es/constants.js
+//#region node_modules/.pnpm/@smithy+md5-js@4.2.8/node_modules/@smithy/md5-js/dist-es/constants.js
 const BLOCK_SIZE = 64;
 const DIGEST_LENGTH = 16;
 const INIT = [
@@ -13598,8 +20809,14 @@ const INIT = [
 ];
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+md5-js@3.0.11/node_modules/@smithy/md5-js/dist-es/index.js
+//#region node_modules/.pnpm/@smithy+md5-js@4.2.8/node_modules/@smithy/md5-js/dist-es/index.js
+init_dist_es();
 var Md5 = class {
+	state;
+	buffer;
+	bufferLength;
+	bytesHashed;
+	finished;
 	constructor() {
 		this.reset();
 	}
@@ -13740,32 +20957,49 @@ function isEmptyData(data) {
 	return data.byteLength === 0;
 }
 function convertToBuffer(data) {
-	if (typeof data === "string") return fromUtf8$2(data);
+	if (typeof data === "string") return fromUtf8(data);
 	if (ArrayBuffer.isView(data)) return new Uint8Array(data.buffer, data.byteOffset, data.byteLength / Uint8Array.BYTES_PER_ELEMENT);
 	return new Uint8Array(data);
 }
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-body-length-browser@3.0.0/node_modules/@smithy/util-body-length-browser/dist-es/calculateBodyLength.js
-const TEXT_ENCODER = typeof TextEncoder == "function" ? new TextEncoder() : null;
-const calculateBodyLength = (body) => {
-	if (typeof body === "string") {
-		if (TEXT_ENCODER) return TEXT_ENCODER.encode(body).byteLength;
-		let len$1 = body.length;
-		for (let i$2 = len$1 - 1; i$2 >= 0; i$2--) {
-			const code$1 = body.charCodeAt(i$2);
-			if (code$1 > 127 && code$1 <= 2047) len$1++;
-else if (code$1 > 2047 && code$1 <= 65535) len$1 += 2;
-			if (code$1 >= 56320 && code$1 <= 57343) i$2--;
-		}
-		return len$1;
-	} else if (typeof body.byteLength === "number") return body.byteLength;
-else if (typeof body.size === "number") return body.size;
-	throw new Error(`Body Length computation failed for ${body}`);
+//#region node_modules/.pnpm/@smithy+util-defaults-mode-browser@4.3.26/node_modules/@smithy/util-defaults-mode-browser/dist-es/constants.js
+const DEFAULTS_MODE_OPTIONS = [
+	"in-region",
+	"cross-region",
+	"mobile",
+	"standard",
+	"legacy"
+];
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+util-defaults-mode-browser@4.3.26/node_modules/@smithy/util-defaults-mode-browser/dist-es/resolveDefaultsModeConfig.js
+const resolveDefaultsModeConfig = ({ defaultsMode } = {}) => memoize(async () => {
+	const mode = typeof defaultsMode === "function" ? await defaultsMode() : defaultsMode;
+	switch (mode?.toLowerCase()) {
+		case "auto": return Promise.resolve(useMobileConfiguration() ? "mobile" : "standard");
+		case "mobile":
+		case "in-region":
+		case "cross-region":
+		case "standard":
+		case "legacy": return Promise.resolve(mode?.toLocaleLowerCase());
+		case undefined: return Promise.resolve("legacy");
+		default: throw new Error(`Invalid parameter for "defaultsMode", expect ${DEFAULTS_MODE_OPTIONS.join(", ")}, got ${mode}`);
+	}
+});
+const useMobileConfiguration = () => {
+	const navigator = window?.navigator;
+	if (navigator?.connection) {
+		const { effectiveType, rtt, downlink } = navigator?.connection;
+		const slow = typeof effectiveType === "string" && effectiveType !== "4g" || Number(rtt) > 100 || Number(downlink) < 10;
+		if (slow) return true;
+	}
+	return navigator?.userAgentData?.mobile || typeof navigator?.maxTouchPoints === "number" && navigator?.maxTouchPoints > 1;
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/runtimeConfig.shared.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/runtimeConfig.shared.js
+init_dist_es();
 const getRuntimeConfig$1 = (config$1) => {
 	return {
 		apiVersion: "2006-03-01",
@@ -13786,51 +21020,26 @@ const getRuntimeConfig$1 = (config$1) => {
 			signer: new AwsSdkSigV4ASigner()
 		}],
 		logger: config$1?.logger ?? new NoOpLogger(),
+		protocol: config$1?.protocol ?? AwsRestXmlProtocol,
+		protocolSettings: config$1?.protocolSettings ?? {
+			defaultNamespace: "com.amazonaws.s3",
+			xmlNamespace: "http://s3.amazonaws.com/doc/2006-03-01/",
+			version: "2006-03-01",
+			serviceTarget: "AmazonS3"
+		},
 		sdkStreamMixin: config$1?.sdkStreamMixin ?? sdkStreamMixin,
 		serviceId: config$1?.serviceId ?? "S3",
 		signerConstructor: config$1?.signerConstructor ?? SignatureV4MultiRegion,
 		signingEscapePath: config$1?.signingEscapePath ?? false,
 		urlParser: config$1?.urlParser ?? parseUrl,
-		useArnRegion: config$1?.useArnRegion ?? false,
-		utf8Decoder: config$1?.utf8Decoder ?? fromUtf8$2,
+		useArnRegion: config$1?.useArnRegion ?? undefined,
+		utf8Decoder: config$1?.utf8Decoder ?? fromUtf8,
 		utf8Encoder: config$1?.utf8Encoder ?? toUtf8
 	};
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+util-defaults-mode-browser@3.0.32/node_modules/@smithy/util-defaults-mode-browser/dist-es/constants.js
-const DEFAULTS_MODE_OPTIONS = [
-	"in-region",
-	"cross-region",
-	"mobile",
-	"standard",
-	"legacy"
-];
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+util-defaults-mode-browser@3.0.32/node_modules/@smithy/util-defaults-mode-browser/dist-es/resolveDefaultsModeConfig.js
-var import_es5 = __toESM(require_es5());
-const resolveDefaultsModeConfig = ({ defaultsMode } = {}) => memoize(async () => {
-	const mode = typeof defaultsMode === "function" ? await defaultsMode() : defaultsMode;
-	switch (mode?.toLowerCase()) {
-		case "auto": return Promise.resolve(isMobileBrowser() ? "mobile" : "standard");
-		case "mobile":
-		case "in-region":
-		case "cross-region":
-		case "standard":
-		case "legacy": return Promise.resolve(mode?.toLocaleLowerCase());
-		case undefined: return Promise.resolve("legacy");
-		default: throw new Error(`Invalid parameter for "defaultsMode", expect ${DEFAULTS_MODE_OPTIONS.join(", ")}, got ${mode}`);
-	}
-});
-const isMobileBrowser = () => {
-	const parsedUA = typeof window !== "undefined" && window?.navigator?.userAgent ? import_es5.default.parse(window.navigator.userAgent) : undefined;
-	const platform = parsedUA?.platform?.type;
-	return platform === "tablet" || platform === "mobile";
-};
-
-//#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/runtimeConfig.browser.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/runtimeConfig.browser.js
 const getRuntimeConfig = (config$1) => {
 	const defaultsMode = resolveDefaultsModeConfig(config$1);
 	const defaultConfigProvider = () => defaultsMode().then(loadConfigsForDefaultMode);
@@ -13862,20 +21071,14 @@ const getRuntimeConfig = (config$1) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+region-config-resolver@3.714.0/node_modules/@aws-sdk/region-config-resolver/dist-es/extensions/index.js
-const getAwsRegionExtensionConfiguration = (runtimeConfig) => {
-	let runtimeConfigRegion = async () => {
-		if (runtimeConfig.region === undefined) throw new Error("Region is missing from runtimeConfig");
-		const region = runtimeConfig.region;
-		if (typeof region === "string") return region;
-		return region();
-	};
+//#region node_modules/.pnpm/@aws-sdk+region-config-resolver@3.972.1/node_modules/@aws-sdk/region-config-resolver/dist-es/extensions/index.js
+const getAwsRegionExtensionConfiguration = (runtimeConfig$1) => {
 	return {
 		setRegion(region) {
-			runtimeConfigRegion = region;
+			runtimeConfig$1.region = region;
 		},
 		region() {
-			return runtimeConfigRegion;
+			return runtimeConfig$1.region;
 		}
 	};
 };
@@ -13884,11 +21087,11 @@ const resolveAwsRegionExtensionConfiguration = (awsRegionExtensionConfiguration)
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/auth/httpAuthExtensionConfiguration.js
-const getHttpAuthExtensionConfiguration = (runtimeConfig) => {
-	const _httpAuthSchemes = runtimeConfig.httpAuthSchemes;
-	let _httpAuthSchemeProvider = runtimeConfig.httpAuthSchemeProvider;
-	let _credentials = runtimeConfig.credentials;
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/auth/httpAuthExtensionConfiguration.js
+const getHttpAuthExtensionConfiguration = (runtimeConfig$1) => {
+	const _httpAuthSchemes = runtimeConfig$1.httpAuthSchemes;
+	let _httpAuthSchemeProvider = runtimeConfig$1.httpAuthSchemeProvider;
+	let _credentials = runtimeConfig$1.credentials;
 	return {
 		setHttpAuthScheme(httpAuthScheme) {
 			const index = _httpAuthSchemes.findIndex((scheme) => scheme.schemeId === httpAuthScheme.schemeId);
@@ -13921,30 +21124,21 @@ const resolveHttpAuthRuntimeConfig = (config$1) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/runtimeExtensions.js
-const asPartial = (t$2) => t$2;
-const resolveRuntimeExtensions = (runtimeConfig, extensions) => {
-	const extensionConfiguration = {
-		...asPartial(getAwsRegionExtensionConfiguration(runtimeConfig)),
-		...asPartial(getDefaultExtensionConfiguration(runtimeConfig)),
-		...asPartial(getHttpHandlerExtensionConfiguration(runtimeConfig)),
-		...asPartial(getHttpAuthExtensionConfiguration(runtimeConfig))
-	};
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/runtimeExtensions.js
+const resolveRuntimeExtensions = (runtimeConfig$1, extensions) => {
+	const extensionConfiguration = Object.assign(getAwsRegionExtensionConfiguration(runtimeConfig$1), getDefaultExtensionConfiguration(runtimeConfig$1), getHttpHandlerExtensionConfiguration(runtimeConfig$1), getHttpAuthExtensionConfiguration(runtimeConfig$1));
 	extensions.forEach((extension) => extension.configure(extensionConfiguration));
-	return {
-		...runtimeConfig,
-		...resolveAwsRegionExtensionConfiguration(extensionConfiguration),
-		...resolveDefaultRuntimeConfig(extensionConfiguration),
-		...resolveHttpHandlerRuntimeConfig(extensionConfiguration),
-		...resolveHttpAuthRuntimeConfig(extensionConfiguration)
-	};
+	return Object.assign(runtimeConfig$1, resolveAwsRegionExtensionConfiguration(extensionConfiguration), resolveDefaultRuntimeConfig(extensionConfiguration), resolveHttpHandlerRuntimeConfig(extensionConfiguration), resolveHttpAuthRuntimeConfig(extensionConfiguration));
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/S3Client.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/S3Client.js
 var S3Client = class extends Client {
+	config;
 	constructor(...[configuration]) {
 		const _config_0 = getRuntimeConfig(configuration || {});
+		super(_config_0);
+		this.initConfig = _config_0;
 		const _config_1 = resolveClientEndpointParameters(_config_0);
 		const _config_2 = resolveUserAgentConfig(_config_1);
 		const _config_3 = resolveFlexibleChecksumsConfig(_config_2);
@@ -13956,8 +21150,8 @@ var S3Client = class extends Client {
 		const _config_9 = resolveHttpAuthSchemeConfig(_config_8);
 		const _config_10 = resolveS3Config(_config_9, { session: [() => this, CreateSessionCommand] });
 		const _config_11 = resolveRuntimeExtensions(_config_10, configuration?.extensions || []);
-		super(_config_11);
 		this.config = _config_11;
+		this.middlewareStack.use(getSchemaSerdePlugin(this.config));
 		this.middlewareStack.use(getUserAgentPlugin(this.config));
 		this.middlewareStack.use(getRetryPlugin(this.config));
 		this.middlewareStack.use(getContentLengthPlugin(this.config));
@@ -13984,7 +21178,7 @@ var S3Client = class extends Client {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/AbortMultipartUploadCommand.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/commands/AbortMultipartUploadCommand.js
 var AbortMultipartUploadCommand = class extends Command.classBuilder().ep({
 	...commonParams,
 	Bucket: {
@@ -13996,15 +21190,11 @@ var AbortMultipartUploadCommand = class extends Command.classBuilder().ep({
 		name: "Key"
 	}
 }).m(function(Command$1, cs$1, config$1, o$1) {
-	return [
-		getSerdePlugin(config$1, this.serialize, this.deserialize),
-		getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()),
-		getThrow200ExceptionsPlugin(config$1)
-	];
-}).s("AmazonS3", "AbortMultipartUpload", {}).n("S3Client", "AbortMultipartUploadCommand").f(void 0, void 0).ser(se_AbortMultipartUploadCommand).de(de_AbortMultipartUploadCommand).build() {};
+	return [getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()), getThrow200ExceptionsPlugin(config$1)];
+}).s("AmazonS3", "AbortMultipartUpload", {}).n("S3Client", "AbortMultipartUploadCommand").sc(AbortMultipartUpload$).build() {};
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+middleware-ssec@3.714.0/node_modules/@aws-sdk/middleware-ssec/dist-es/index.js
+//#region node_modules/.pnpm/@aws-sdk+middleware-ssec@3.972.1/node_modules/@aws-sdk/middleware-ssec/dist-es/index.js
 function ssecMiddleware(options) {
 	return (next) => async (args) => {
 		const input = { ...args.input };
@@ -14060,7 +21250,7 @@ function isValidBase64EncodedSSECustomerKey(str, options) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/CompleteMultipartUploadCommand.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/commands/CompleteMultipartUploadCommand.js
 var CompleteMultipartUploadCommand = class extends Command.classBuilder().ep({
 	...commonParams,
 	Bucket: {
@@ -14073,15 +21263,14 @@ var CompleteMultipartUploadCommand = class extends Command.classBuilder().ep({
 	}
 }).m(function(Command$1, cs$1, config$1, o$1) {
 	return [
-		getSerdePlugin(config$1, this.serialize, this.deserialize),
 		getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()),
 		getThrow200ExceptionsPlugin(config$1),
 		getSsecPlugin(config$1)
 	];
-}).s("AmazonS3", "CompleteMultipartUpload", {}).n("S3Client", "CompleteMultipartUploadCommand").f(CompleteMultipartUploadRequestFilterSensitiveLog, CompleteMultipartUploadOutputFilterSensitiveLog).ser(se_CompleteMultipartUploadCommand).de(de_CompleteMultipartUploadCommand).build() {};
+}).s("AmazonS3", "CompleteMultipartUpload", {}).n("S3Client", "CompleteMultipartUploadCommand").sc(CompleteMultipartUpload$).build() {};
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/CreateMultipartUploadCommand.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/commands/CreateMultipartUploadCommand.js
 var CreateMultipartUploadCommand = class extends Command.classBuilder().ep({
 	...commonParams,
 	Bucket: {
@@ -14094,15 +21283,14 @@ var CreateMultipartUploadCommand = class extends Command.classBuilder().ep({
 	}
 }).m(function(Command$1, cs$1, config$1, o$1) {
 	return [
-		getSerdePlugin(config$1, this.serialize, this.deserialize),
 		getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()),
 		getThrow200ExceptionsPlugin(config$1),
 		getSsecPlugin(config$1)
 	];
-}).s("AmazonS3", "CreateMultipartUpload", {}).n("S3Client", "CreateMultipartUploadCommand").f(CreateMultipartUploadRequestFilterSensitiveLog, CreateMultipartUploadOutputFilterSensitiveLog).ser(se_CreateMultipartUploadCommand).de(de_CreateMultipartUploadCommand).build() {};
+}).s("AmazonS3", "CreateMultipartUpload", {}).n("S3Client", "CreateMultipartUploadCommand").sc(CreateMultipartUpload$).build() {};
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/DeleteObjectCommand.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/commands/DeleteObjectCommand.js
 var DeleteObjectCommand = class extends Command.classBuilder().ep({
 	...commonParams,
 	Bucket: {
@@ -14114,15 +21302,11 @@ var DeleteObjectCommand = class extends Command.classBuilder().ep({
 		name: "Key"
 	}
 }).m(function(Command$1, cs$1, config$1, o$1) {
-	return [
-		getSerdePlugin(config$1, this.serialize, this.deserialize),
-		getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()),
-		getThrow200ExceptionsPlugin(config$1)
-	];
-}).s("AmazonS3", "DeleteObject", {}).n("S3Client", "DeleteObjectCommand").f(void 0, void 0).ser(se_DeleteObjectCommand).de(de_DeleteObjectCommand).build() {};
+	return [getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()), getThrow200ExceptionsPlugin(config$1)];
+}).s("AmazonS3", "DeleteObject", {}).n("S3Client", "DeleteObjectCommand").sc(DeleteObject$).build() {};
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/ListObjectsV2Command.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/commands/ListObjectsV2Command.js
 var ListObjectsV2Command = class extends Command.classBuilder().ep({
 	...commonParams,
 	Bucket: {
@@ -14134,15 +21318,11 @@ var ListObjectsV2Command = class extends Command.classBuilder().ep({
 		name: "Prefix"
 	}
 }).m(function(Command$1, cs$1, config$1, o$1) {
-	return [
-		getSerdePlugin(config$1, this.serialize, this.deserialize),
-		getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()),
-		getThrow200ExceptionsPlugin(config$1)
-	];
-}).s("AmazonS3", "ListObjectsV2", {}).n("S3Client", "ListObjectsV2Command").f(void 0, void 0).ser(se_ListObjectsV2Command).de(de_ListObjectsV2Command).build() {};
+	return [getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()), getThrow200ExceptionsPlugin(config$1)];
+}).s("AmazonS3", "ListObjectsV2", {}).n("S3Client", "ListObjectsV2Command").sc(ListObjectsV2$).build() {};
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/PutObjectCommand.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/commands/PutObjectCommand.js
 var PutObjectCommand = class extends Command.classBuilder().ep({
 	...commonParams,
 	Bucket: {
@@ -14155,12 +21335,11 @@ var PutObjectCommand = class extends Command.classBuilder().ep({
 	}
 }).m(function(Command$1, cs$1, config$1, o$1) {
 	return [
-		getSerdePlugin(config$1, this.serialize, this.deserialize),
 		getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()),
 		getFlexibleChecksumsPlugin(config$1, {
 			requestAlgorithmMember: {
-				httpHeader: "x-amz-sdk-checksum-algorithm",
-				name: "ChecksumAlgorithm"
+				"httpHeader": "x-amz-sdk-checksum-algorithm",
+				"name": "ChecksumAlgorithm"
 			},
 			requestChecksumRequired: false
 		}),
@@ -14168,10 +21347,10 @@ var PutObjectCommand = class extends Command.classBuilder().ep({
 		getThrow200ExceptionsPlugin(config$1),
 		getSsecPlugin(config$1)
 	];
-}).s("AmazonS3", "PutObject", {}).n("S3Client", "PutObjectCommand").f(PutObjectRequestFilterSensitiveLog, PutObjectOutputFilterSensitiveLog).ser(se_PutObjectCommand).de(de_PutObjectCommand).build() {};
+}).s("AmazonS3", "PutObject", {}).n("S3Client", "PutObjectCommand").sc(PutObject$).build() {};
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/PutObjectTaggingCommand.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/commands/PutObjectTaggingCommand.js
 var PutObjectTaggingCommand = class extends Command.classBuilder().ep({
 	...commonParams,
 	Bucket: {
@@ -14180,21 +21359,20 @@ var PutObjectTaggingCommand = class extends Command.classBuilder().ep({
 	}
 }).m(function(Command$1, cs$1, config$1, o$1) {
 	return [
-		getSerdePlugin(config$1, this.serialize, this.deserialize),
 		getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()),
 		getFlexibleChecksumsPlugin(config$1, {
 			requestAlgorithmMember: {
-				httpHeader: "x-amz-sdk-checksum-algorithm",
-				name: "ChecksumAlgorithm"
+				"httpHeader": "x-amz-sdk-checksum-algorithm",
+				"name": "ChecksumAlgorithm"
 			},
 			requestChecksumRequired: true
 		}),
 		getThrow200ExceptionsPlugin(config$1)
 	];
-}).s("AmazonS3", "PutObjectTagging", {}).n("S3Client", "PutObjectTaggingCommand").f(void 0, void 0).ser(se_PutObjectTaggingCommand).de(de_PutObjectTaggingCommand).build() {};
+}).s("AmazonS3", "PutObjectTagging", {}).n("S3Client", "PutObjectTaggingCommand").sc(PutObjectTagging$).build() {};
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/client-s3/dist-es/commands/UploadPartCommand.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/commands/UploadPartCommand.js
 var UploadPartCommand = class extends Command.classBuilder().ep({
 	...commonParams,
 	Bucket: {
@@ -14207,26 +21385,35 @@ var UploadPartCommand = class extends Command.classBuilder().ep({
 	}
 }).m(function(Command$1, cs$1, config$1, o$1) {
 	return [
-		getSerdePlugin(config$1, this.serialize, this.deserialize),
 		getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()),
 		getFlexibleChecksumsPlugin(config$1, {
 			requestAlgorithmMember: {
-				httpHeader: "x-amz-sdk-checksum-algorithm",
-				name: "ChecksumAlgorithm"
+				"httpHeader": "x-amz-sdk-checksum-algorithm",
+				"name": "ChecksumAlgorithm"
 			},
 			requestChecksumRequired: false
 		}),
 		getThrow200ExceptionsPlugin(config$1),
 		getSsecPlugin(config$1)
 	];
-}).s("AmazonS3", "UploadPart", {}).n("S3Client", "UploadPartCommand").f(UploadPartRequestFilterSensitiveLog, UploadPartOutputFilterSensitiveLog).ser(se_UploadPartCommand).de(de_UploadPartCommand).build() {};
+}).s("AmazonS3", "UploadPart", {}).n("S3Client", "UploadPartCommand").sc(UploadPart$).build() {};
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+abort-controller@3.1.9/node_modules/@smithy/abort-controller/dist-es/AbortSignal.js
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/models/enums.js
+const ChecksumAlgorithm = {
+	CRC32: "CRC32",
+	CRC32C: "CRC32C",
+	CRC64NVME: "CRC64NVME",
+	SHA1: "SHA1",
+	SHA256: "SHA256"
+};
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+abort-controller@4.2.8/node_modules/@smithy/abort-controller/dist-es/AbortSignal.js
 var AbortSignal = class {
+	onabort = null;
+	_aborted = false;
 	constructor() {
-		this.onabort = null;
-		this._aborted = false;
 		Object.defineProperty(this, "_aborted", {
 			value: false,
 			writable: true
@@ -14245,11 +21432,9 @@ var AbortSignal = class {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+abort-controller@3.1.9/node_modules/@smithy/abort-controller/dist-es/AbortController.js
+//#region node_modules/.pnpm/@smithy+abort-controller@4.2.8/node_modules/@smithy/abort-controller/dist-es/AbortController.js
 var AbortController$1 = class {
-	constructor() {
-		this.signal = new AbortSignal();
-	}
+	signal = new AbortSignal();
 	abort() {
 		this.signal.abort();
 	}
@@ -15086,7 +22271,7 @@ else buf = new Uint8Array(array, byteOffset, length);
 		if (y$1 < x$1) return 1;
 		return 0;
 	};
-	function bidirectionalIndexOf(buffer$1, val$1, byteOffset, encoding, dir) {
+	function bidirectionalIndexOf(buffer$1, val, byteOffset, encoding, dir) {
 		if (buffer$1.length === 0) return -1;
 		if (typeof byteOffset === "string") {
 			encoding = byteOffset;
@@ -15100,26 +22285,26 @@ else if (byteOffset < -2147483648) byteOffset = -2147483648;
 else byteOffset = buffer$1.length - 1;
 else if (byteOffset < 0) if (dir) byteOffset = 0;
 else return -1;
-		if (typeof val$1 === "string") val$1 = Buffer$11.from(val$1, encoding);
-		if (Buffer$11.isBuffer(val$1)) {
-			if (val$1.length === 0) return -1;
-			return arrayIndexOf(buffer$1, val$1, byteOffset, encoding, dir);
-		} else if (typeof val$1 === "number") {
-			val$1 = val$1 & 255;
-			if (typeof Uint8Array.prototype.indexOf === "function") if (dir) return Uint8Array.prototype.indexOf.call(buffer$1, val$1, byteOffset);
-else return Uint8Array.prototype.lastIndexOf.call(buffer$1, val$1, byteOffset);
-			return arrayIndexOf(buffer$1, [val$1], byteOffset, encoding, dir);
+		if (typeof val === "string") val = Buffer$11.from(val, encoding);
+		if (Buffer$11.isBuffer(val)) {
+			if (val.length === 0) return -1;
+			return arrayIndexOf(buffer$1, val, byteOffset, encoding, dir);
+		} else if (typeof val === "number") {
+			val = val & 255;
+			if (typeof Uint8Array.prototype.indexOf === "function") if (dir) return Uint8Array.prototype.indexOf.call(buffer$1, val, byteOffset);
+else return Uint8Array.prototype.lastIndexOf.call(buffer$1, val, byteOffset);
+			return arrayIndexOf(buffer$1, [val], byteOffset, encoding, dir);
 		}
 		throw new TypeError("val must be string, number or Buffer");
 	}
-	function arrayIndexOf(arr, val$1, byteOffset, encoding, dir) {
+	function arrayIndexOf(arr, val, byteOffset, encoding, dir) {
 		var indexSize = 1;
 		var arrLength = arr.length;
-		var valLength = val$1.length;
+		var valLength = val.length;
 		if (encoding !== undefined) {
 			encoding = String(encoding).toLowerCase();
 			if (encoding === "ucs2" || encoding === "ucs-2" || encoding === "utf16le" || encoding === "utf-16le") {
-				if (arr.length < 2 || val$1.length < 2) return -1;
+				if (arr.length < 2 || val.length < 2) return -1;
 				indexSize = 2;
 				arrLength /= 2;
 				valLength /= 2;
@@ -15133,7 +22318,7 @@ else return buf.readUInt16BE(i$3 * indexSize);
 		var i$2;
 		if (dir) {
 			var foundIndex = -1;
-			for (i$2 = byteOffset; i$2 < arrLength; i$2++) if (read(arr, i$2) === read(val$1, foundIndex === -1 ? 0 : i$2 - foundIndex)) {
+			for (i$2 = byteOffset; i$2 < arrLength; i$2++) if (read(arr, i$2) === read(val, foundIndex === -1 ? 0 : i$2 - foundIndex)) {
 				if (foundIndex === -1) foundIndex = i$2;
 				if (i$2 - foundIndex + 1 === valLength) return foundIndex * indexSize;
 			} else {
@@ -15144,7 +22329,7 @@ else return buf.readUInt16BE(i$3 * indexSize);
 			if (byteOffset + valLength > arrLength) byteOffset = arrLength - valLength;
 			for (i$2 = byteOffset; i$2 >= 0; i$2--) {
 				var found = true;
-				for (var j$1 = 0; j$1 < valLength; j$1++) if (read(arr, i$2 + j$1) !== read(val$1, j$1)) {
+				for (var j$1 = 0; j$1 < valLength; j$1++) if (read(arr, i$2 + j$1) !== read(val, j$1)) {
 					found = false;
 					break;
 				}
@@ -15153,14 +22338,14 @@ else return buf.readUInt16BE(i$3 * indexSize);
 		}
 		return -1;
 	}
-	Buffer$11.prototype.includes = function includes$1(val$1, byteOffset, encoding) {
-		return this.indexOf(val$1, byteOffset, encoding) !== -1;
+	Buffer$11.prototype.includes = function includes$1(val, byteOffset, encoding) {
+		return this.indexOf(val, byteOffset, encoding) !== -1;
 	};
-	Buffer$11.prototype.indexOf = function indexOf$1(val$1, byteOffset, encoding) {
-		return bidirectionalIndexOf(this, val$1, byteOffset, encoding, true);
+	Buffer$11.prototype.indexOf = function indexOf$1(val, byteOffset, encoding) {
+		return bidirectionalIndexOf(this, val, byteOffset, encoding, true);
 	};
-	Buffer$11.prototype.lastIndexOf = function lastIndexOf(val$1, byteOffset, encoding) {
-		return bidirectionalIndexOf(this, val$1, byteOffset, encoding, false);
+	Buffer$11.prototype.lastIndexOf = function lastIndexOf(val, byteOffset, encoding) {
+		return bidirectionalIndexOf(this, val, byteOffset, encoding, false);
 	};
 	function hexWrite(buf, string, offset, length) {
 		offset = Number(offset) || 0;
@@ -15358,20 +22543,20 @@ else return base64.fromByteArray(buf.slice(start, end));
 		offset = offset >>> 0;
 		byteLength$3 = byteLength$3 >>> 0;
 		if (!noAssert) checkOffset(offset, byteLength$3, this.length);
-		var val$1 = this[offset];
+		var val = this[offset];
 		var mul = 1;
 		var i$2 = 0;
-		while (++i$2 < byteLength$3 && (mul *= 256)) val$1 += this[offset + i$2] * mul;
-		return val$1;
+		while (++i$2 < byteLength$3 && (mul *= 256)) val += this[offset + i$2] * mul;
+		return val;
 	};
 	Buffer$11.prototype.readUIntBE = function readUIntBE(offset, byteLength$3, noAssert) {
 		offset = offset >>> 0;
 		byteLength$3 = byteLength$3 >>> 0;
 		if (!noAssert) checkOffset(offset, byteLength$3, this.length);
-		var val$1 = this[offset + --byteLength$3];
+		var val = this[offset + --byteLength$3];
 		var mul = 1;
-		while (byteLength$3 > 0 && (mul *= 256)) val$1 += this[offset + --byteLength$3] * mul;
-		return val$1;
+		while (byteLength$3 > 0 && (mul *= 256)) val += this[offset + --byteLength$3] * mul;
+		return val;
 	};
 	Buffer$11.prototype.readUInt8 = function readUInt8(offset, noAssert) {
 		offset = offset >>> 0;
@@ -15402,13 +22587,13 @@ else return base64.fromByteArray(buf.slice(start, end));
 		offset = offset >>> 0;
 		byteLength$3 = byteLength$3 >>> 0;
 		if (!noAssert) checkOffset(offset, byteLength$3, this.length);
-		var val$1 = this[offset];
+		var val = this[offset];
 		var mul = 1;
 		var i$2 = 0;
-		while (++i$2 < byteLength$3 && (mul *= 256)) val$1 += this[offset + i$2] * mul;
+		while (++i$2 < byteLength$3 && (mul *= 256)) val += this[offset + i$2] * mul;
 		mul *= 128;
-		if (val$1 >= mul) val$1 -= Math.pow(2, 8 * byteLength$3);
-		return val$1;
+		if (val >= mul) val -= Math.pow(2, 8 * byteLength$3);
+		return val;
 	};
 	Buffer$11.prototype.readIntBE = function readIntBE(offset, byteLength$3, noAssert) {
 		offset = offset >>> 0;
@@ -15416,11 +22601,11 @@ else return base64.fromByteArray(buf.slice(start, end));
 		if (!noAssert) checkOffset(offset, byteLength$3, this.length);
 		var i$2 = byteLength$3;
 		var mul = 1;
-		var val$1 = this[offset + --i$2];
-		while (i$2 > 0 && (mul *= 256)) val$1 += this[offset + --i$2] * mul;
+		var val = this[offset + --i$2];
+		while (i$2 > 0 && (mul *= 256)) val += this[offset + --i$2] * mul;
 		mul *= 128;
-		if (val$1 >= mul) val$1 -= Math.pow(2, 8 * byteLength$3);
-		return val$1;
+		if (val >= mul) val -= Math.pow(2, 8 * byteLength$3);
+		return val;
 	};
 	Buffer$11.prototype.readInt8 = function readInt8(offset, noAssert) {
 		offset = offset >>> 0;
@@ -15431,14 +22616,14 @@ else return base64.fromByteArray(buf.slice(start, end));
 	Buffer$11.prototype.readInt16LE = function readInt16LE(offset, noAssert) {
 		offset = offset >>> 0;
 		if (!noAssert) checkOffset(offset, 2, this.length);
-		var val$1 = this[offset] | this[offset + 1] << 8;
-		return val$1 & 32768 ? val$1 | 4294901760 : val$1;
+		var val = this[offset] | this[offset + 1] << 8;
+		return val & 32768 ? val | 4294901760 : val;
 	};
 	Buffer$11.prototype.readInt16BE = function readInt16BE(offset, noAssert) {
 		offset = offset >>> 0;
 		if (!noAssert) checkOffset(offset, 2, this.length);
-		var val$1 = this[offset + 1] | this[offset] << 8;
-		return val$1 & 32768 ? val$1 | 4294901760 : val$1;
+		var val = this[offset + 1] | this[offset] << 8;
+		return val & 32768 ? val | 4294901760 : val;
 	};
 	Buffer$11.prototype.readInt32LE = function readInt32LE(offset, noAssert) {
 		offset = offset >>> 0;
@@ -15675,8 +22860,8 @@ else if (this === target && start < targetStart && targetStart < end) for (var i
 else Uint8Array.prototype.set.call(target, this.subarray(start, end), targetStart);
 		return len$1;
 	};
-	Buffer$11.prototype.fill = function fill(val$1, start, end, encoding) {
-		if (typeof val$1 === "string") {
+	Buffer$11.prototype.fill = function fill(val, start, end, encoding) {
+		if (typeof val === "string") {
 			if (typeof start === "string") {
 				encoding = start;
 				start = 0;
@@ -15687,23 +22872,23 @@ else Uint8Array.prototype.set.call(target, this.subarray(start, end), targetStar
 			}
 			if (encoding !== undefined && typeof encoding !== "string") throw new TypeError("encoding must be a string");
 			if (typeof encoding === "string" && !Buffer$11.isEncoding(encoding)) throw new TypeError("Unknown encoding: " + encoding);
-			if (val$1.length === 1) {
-				var code$1 = val$1.charCodeAt(0);
-				if (encoding === "utf8" && code$1 < 128 || encoding === "latin1") val$1 = code$1;
+			if (val.length === 1) {
+				var code$1 = val.charCodeAt(0);
+				if (encoding === "utf8" && code$1 < 128 || encoding === "latin1") val = code$1;
 			}
-		} else if (typeof val$1 === "number") val$1 = val$1 & 255;
-else if (typeof val$1 === "boolean") val$1 = Number(val$1);
+		} else if (typeof val === "number") val = val & 255;
+else if (typeof val === "boolean") val = Number(val);
 		if (start < 0 || this.length < start || this.length < end) throw new RangeError("Out of range index");
 		if (end <= start) return this;
 		start = start >>> 0;
 		end = end === undefined ? this.length : end >>> 0;
-		if (!val$1) val$1 = 0;
+		if (!val) val = 0;
 		var i$2;
-		if (typeof val$1 === "number") for (i$2 = start; i$2 < end; ++i$2) this[i$2] = val$1;
+		if (typeof val === "number") for (i$2 = start; i$2 < end; ++i$2) this[i$2] = val;
 else {
-			var bytes = Buffer$11.isBuffer(val$1) ? val$1 : Buffer$11.from(val$1, encoding);
+			var bytes = Buffer$11.isBuffer(val) ? val : Buffer$11.from(val, encoding);
 			var len$1 = bytes.length;
-			if (len$1 === 0) throw new TypeError("The value \"" + val$1 + "\" is invalid for argument \"value\"");
+			if (len$1 === 0) throw new TypeError("The value \"" + val + "\" is invalid for argument \"value\"");
 			for (i$2 = 0; i$2 < end - start; ++i$2) this[i$2 + start] = bytes[i$2 % len$1];
 		}
 		return this;
@@ -15808,27 +22993,63 @@ else {
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.717.0_@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/lib-storage/dist-es/runtimeConfig.shared.js
-const ClientSharedValues = { lstatSync: () => {} };
+//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.974.0_@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/lib-storage/dist-es/runtimeConfig.shared.js
+const runtimeConfigShared = {
+	lstatSync: () => {},
+	isFileReadStream(f$1) {
+		return false;
+	}
+};
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.717.0_@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/lib-storage/dist-es/runtimeConfig.browser.js
-const ClientDefaultValues = {
-	...ClientSharedValues,
+//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.974.0_@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/lib-storage/dist-es/runtimeConfig.browser.js
+const runtimeConfig = {
+	...runtimeConfigShared,
 	runtime: "browser"
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.717.0_@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/lib-storage/dist-es/bytelength.js
+//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.974.0_@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/lib-storage/dist-es/byteLength.js
 var import_buffer$4 = __toESM(require_buffer());
 const byteLength = (input) => {
-	if (input === null || input === undefined) return 0;
+	if (input == null) return 0;
 	if (typeof input === "string") return import_buffer$4.Buffer.byteLength(input);
 	if (typeof input.byteLength === "number") return input.byteLength;
 else if (typeof input.length === "number") return input.length;
 else if (typeof input.size === "number") return input.size;
-else if (typeof input.path === "string") try {
-		return ClientDefaultValues.lstatSync(input.path).size;
+else if (typeof input.start === "number" && typeof input.end === "number") return input.end + 1 - input.start;
+else if (runtimeConfig.isFileReadStream(input)) try {
+		return runtimeConfig.lstatSync(input.path).size;
+	} catch (error) {
+		return undefined;
+	}
+	return undefined;
+};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.974.0_@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/lib-storage/dist-es/byteLengthSource.js
+var BYTE_LENGTH_SOURCE;
+(function(BYTE_LENGTH_SOURCE$1) {
+	BYTE_LENGTH_SOURCE$1["EMPTY_INPUT"] = "a null or undefined Body";
+	BYTE_LENGTH_SOURCE$1["CONTENT_LENGTH"] = "the ContentLength property of the params set by the caller";
+	BYTE_LENGTH_SOURCE$1["STRING_LENGTH"] = "the encoded byte length of the Body string";
+	BYTE_LENGTH_SOURCE$1["TYPED_ARRAY"] = "the byteLength of a typed byte array such as Uint8Array";
+	BYTE_LENGTH_SOURCE$1["LENGTH"] = "the value of Body.length";
+	BYTE_LENGTH_SOURCE$1["SIZE"] = "the value of Body.size";
+	BYTE_LENGTH_SOURCE$1["START_END_DIFF"] = "the numeric difference between Body.start and Body.end";
+	BYTE_LENGTH_SOURCE$1["LSTAT"] = "the size of the file given by Body.path on disk as reported by lstatSync";
+})(BYTE_LENGTH_SOURCE || (BYTE_LENGTH_SOURCE = {}));
+const byteLengthSource = (input, override) => {
+	if (override != null) return BYTE_LENGTH_SOURCE.CONTENT_LENGTH;
+	if (input == null) return BYTE_LENGTH_SOURCE.EMPTY_INPUT;
+	if (typeof input === "string") return BYTE_LENGTH_SOURCE.STRING_LENGTH;
+	if (typeof input.byteLength === "number") return BYTE_LENGTH_SOURCE.TYPED_ARRAY;
+else if (typeof input.length === "number") return BYTE_LENGTH_SOURCE.LENGTH;
+else if (typeof input.size === "number") return BYTE_LENGTH_SOURCE.SIZE;
+else if (typeof input.start === "number" && typeof input.end === "number") return BYTE_LENGTH_SOURCE.START_END_DIFF;
+else if (runtimeConfig.isFileReadStream(input)) try {
+		runtimeConfig.lstatSync(input.path).size;
+		return BYTE_LENGTH_SOURCE.LSTAT;
 	} catch (error) {
 		return undefined;
 	}
@@ -16348,9 +23569,9 @@ else console.warn(msg);
 		} catch (_) {
 			return false;
 		}
-		var val$1 = global.localStorage[name$1];
-		if (null == val$1) return false;
-		return String(val$1).toLowerCase() === "true";
+		var val = global.localStorage[name$1];
+		if (null == val) return false;
+		return String(val).toLowerCase() === "true";
 	}
 } });
 
@@ -18272,7 +25493,7 @@ var require_stream_browserify = __commonJS({ "node_modules/.pnpm/stream-browseri
 } });
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.717.0_@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/lib-storage/dist-es/chunks/getChunkStream.js
+//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.974.0_@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/lib-storage/dist-es/chunks/getChunkStream.js
 var import_buffer$3 = __toESM(require_buffer());
 async function* getChunkStream(data, partSize, getNextData) {
 	let partNumber = 1;
@@ -18302,7 +25523,7 @@ async function* getChunkStream(data, partSize, getNextData) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.717.0_@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/lib-storage/dist-es/chunks/getChunkUint8Array.js
+//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.974.0_@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/lib-storage/dist-es/chunks/getChunkUint8Array.js
 async function* getChunkUint8Array(data, partSize) {
 	let partNumber = 1;
 	let startByte = 0;
@@ -18324,7 +25545,7 @@ async function* getChunkUint8Array(data, partSize) {
 }
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.717.0_@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/lib-storage/dist-es/chunks/getDataReadable.js
+//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.974.0_@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/lib-storage/dist-es/chunks/getDataReadable.js
 var import_buffer$2 = __toESM(require_buffer());
 async function* getDataReadable(data) {
 	for await (const chunk of data) if (import_buffer$2.Buffer.isBuffer(chunk) || chunk instanceof Uint8Array) yield chunk;
@@ -18332,7 +25553,7 @@ else yield import_buffer$2.Buffer.from(chunk);
 }
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.717.0_@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/lib-storage/dist-es/chunks/getDataReadableStream.js
+//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.974.0_@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/lib-storage/dist-es/chunks/getDataReadableStream.js
 var import_buffer$1 = __toESM(require_buffer());
 async function* getDataReadableStream(data) {
 	const reader = data.getReader();
@@ -18351,7 +25572,7 @@ else yield import_buffer$1.Buffer.from(value);
 }
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.717.0_@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/lib-storage/dist-es/chunker.js
+//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.974.0_@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/lib-storage/dist-es/chunker.js
 var import_buffer = __toESM(require_buffer());
 var import_stream_browserify = __toESM(require_stream_browserify());
 const getChunk = (data, partSize) => {
@@ -18364,32 +25585,47 @@ const getChunk = (data, partSize) => {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.717.0_@aws-sdk+client-s3@3.717.0/node_modules/@aws-sdk/lib-storage/dist-es/Upload.js
+//#region node_modules/.pnpm/@aws-sdk+lib-storage@3.974.0_@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/lib-storage/dist-es/Upload.js
 var import_events = __toESM(require_events());
 var Upload = class Upload extends import_events.EventEmitter {
+	static MIN_PART_SIZE = 5242880;
+	MAX_PARTS = 1e4;
+	queueSize = 4;
+	partSize;
+	leavePartsOnError = false;
+	tags = [];
+	client;
+	params;
+	totalBytes;
+	totalBytesSource;
+	bytesUploadedSoFar;
+	abortController;
+	concurrentUploaders = [];
+	createMultiPartPromise;
+	abortMultipartUploadCommand = null;
+	uploadedParts = [];
+	uploadEnqueuedPartsCount = 0;
+	expectedPartsCount;
+	uploadId;
+	uploadEvent;
+	isMultiPart = true;
+	singleUploadResult;
+	sent = false;
 	constructor(options) {
 		super();
-		this.MAX_PARTS = 1e4;
-		this.queueSize = 4;
-		this.partSize = Upload.MIN_PART_SIZE;
-		this.leavePartsOnError = false;
-		this.tags = [];
-		this.concurrentUploaders = [];
-		this.abortMultipartUploadCommand = null;
-		this.uploadedParts = [];
-		this.uploadEnqueuedPartsCount = 0;
-		this.isMultiPart = true;
-		this.sent = false;
 		this.queueSize = options.queueSize || this.queueSize;
-		this.partSize = options.partSize || this.partSize;
 		this.leavePartsOnError = options.leavePartsOnError || this.leavePartsOnError;
 		this.tags = options.tags || this.tags;
 		this.client = options.client;
 		this.params = options.params;
-		this.__validateInput();
-		this.totalBytes = byteLength(this.params.Body);
+		if (!this.params) throw new Error(`InputError: Upload requires params to be passed to upload.`);
+		this.totalBytes = this.params.ContentLength ?? byteLength(this.params.Body);
+		this.totalBytesSource = byteLengthSource(this.params.Body, this.params.ContentLength);
 		this.bytesUploadedSoFar = 0;
 		this.abortController = options.abortController ?? new AbortController$1();
+		this.partSize = options.partSize || Math.max(Upload.MIN_PART_SIZE, Math.floor((this.totalBytes || 0) / this.MAX_PARTS));
+		if (this.totalBytes !== undefined) this.expectedPartsCount = Math.ceil(this.totalBytes / this.partSize);
+		this.__validateInput();
 	}
 	async abort() {
 		this.abortController.abort();
@@ -18456,11 +25692,13 @@ var Upload = class Upload extends import_events.EventEmitter {
 		});
 	}
 	async __createMultipartUpload() {
+		const requestChecksumCalculation = await this.client.config.requestChecksumCalculation();
 		if (!this.createMultiPartPromise) {
 			const createCommandParams = {
 				...this.params,
 				Body: undefined
 			};
+			if (requestChecksumCalculation === "WHEN_SUPPORTED") createCommandParams.ChecksumAlgorithm = this.params.ChecksumAlgorithm || ChecksumAlgorithm.CRC32;
 			this.createMultiPartPromise = this.client.send(new CreateMultipartUploadCommand(createCommandParams)).then((createMpuResponse) => {
 				this.abortMultipartUploadCommand = new AbortMultipartUploadCommand({
 					Bucket: this.params.Bucket,
@@ -18503,6 +25741,7 @@ var Upload = class Upload extends import_events.EventEmitter {
 			};
 			if (eventEmitter !== null) eventEmitter.on("xhr.upload.progress", uploadEventListener);
 			this.uploadEnqueuedPartsCount += 1;
+			this.__validateUploadPart(dataPart);
 			const partResult = await this.client.send(new UploadPartCommand({
 				...this.params,
 				ContentLength: undefined,
@@ -18551,6 +25790,13 @@ var Upload = class Upload extends import_events.EventEmitter {
 		}
 		let result;
 		if (this.isMultiPart) {
+			const { expectedPartsCount, uploadedParts, totalBytes, totalBytesSource } = this;
+			if (totalBytes !== undefined && expectedPartsCount !== undefined && uploadedParts.length !== expectedPartsCount) throw new Error(`Expected ${expectedPartsCount} part(s) but uploaded ${uploadedParts.length} part(s).
+The expected part count is based on the byte-count of the input.params.Body,
+which was read from ${totalBytesSource} and is ${totalBytes}.
+If this is not correct, provide an override value by setting a number
+to input.params.ContentLength in bytes.
+`);
 			this.uploadedParts.sort((a$1, b$1) => a$1.PartNumber - b$1.PartNumber);
 			const uploadCompleteParams = {
 				...this.params,
@@ -18586,14 +25832,18 @@ var Upload = class Upload extends import_events.EventEmitter {
 			};
 		});
 	}
+	__validateUploadPart(dataPart) {
+		const actualPartSize = byteLength(dataPart.data);
+		if (actualPartSize === undefined) throw new Error(`A dataPart was generated without a measurable data chunk size for part number ${dataPart.partNumber}`);
+		if (dataPart.partNumber === 1 && dataPart.lastPart) return;
+		if (!dataPart.lastPart && actualPartSize !== this.partSize) throw new Error(`The byte size for part number ${dataPart.partNumber}, size ${actualPartSize} does not match expected size ${this.partSize}`);
+	}
 	__validateInput() {
-		if (!this.params) throw new Error(`InputError: Upload requires params to be passed to upload.`);
 		if (!this.client) throw new Error(`InputError: Upload requires a AWS client to do uploads with.`);
-		if (this.partSize < Upload.MIN_PART_SIZE) throw new Error(`EntityTooSmall: Your proposed upload partsize [${this.partSize}] is smaller than the minimum allowed size [${Upload.MIN_PART_SIZE}] (5MB)`);
+		if (this.partSize < Upload.MIN_PART_SIZE) throw new Error(`EntityTooSmall: Your proposed upload part size [${this.partSize}] is smaller than the minimum allowed size [${Upload.MIN_PART_SIZE}] (5MB)`);
 		if (this.queueSize < 1) throw new Error(`Queue size: Must have at least one uploading queue.`);
 	}
 };
-Upload.MIN_PART_SIZE = 5242880;
 
 //#endregion
 //#region node_modules/.pnpm/xxhash-wasm@1.1.0/node_modules/xxhash-wasm/esm/xxhash-wasm.js
@@ -21883,8 +29133,8 @@ async function deleteFile(key) {
 		Key: key
 	}));
 }
-function formatDate(date) {
-	return new Date(date).toLocaleString();
+function formatDate(date$1) {
+	return new Date(date$1).toLocaleString();
 }
 function getUrl(file, publicUrl) {
 	if (publicUrl) return `${publicUrl}/${file.Key}`;
@@ -21905,7 +29155,7 @@ var import_web$19 = __toESM(require_web());
 var import_web$20 = __toESM(require_web());
 var import_web$21 = __toESM(require_web());
 var import_web$22 = __toESM(require_web());
-const _tmpl$$2 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Drag & drop files here or click to select</p>`, 2), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><input type="file" multiple hidden></div>`, 5), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div></div></div>`, 4), _tmpl$4$1 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Uploading: <!#><!/>%</p>`, 4), _tmpl$5 = /*#__PURE__*/ (0, import_web$11.template)(`<div></div>`, 2), _tmpl$6 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Loading files...</p>`, 2), _tmpl$7 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Total bucket usage: <!#><!/></p>`, 4), _tmpl$8 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/></div>`, 8), _tmpl$9 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Uploading... Please wait</p>`, 2), _tmpl$10 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/><div><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 22), _tmpl$11 = /*#__PURE__*/ (0, import_web$11.template)(`<img>`, 1), _tmpl$12 = /*#__PURE__*/ (0, import_web$11.template)(`<div>📄</div>`, 2), _tmpl$13 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/><div><p></p><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 24);
+const _tmpl$$2 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Drag & drop files here or click to select</p>`, 2), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><input type="file" multiple hidden></div>`, 5), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div></div></div>`, 4), _tmpl$4$1 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Uploading: <!#><!/>%</p>`, 4), _tmpl$5 = /*#__PURE__*/ (0, import_web$11.template)(`<div></div>`, 2), _tmpl$6 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Loading files...</p>`, 2), _tmpl$7 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Total bucket usage: <!#><!/></p>`, 4), _tmpl$8 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/></div>`, 8), _tmpl$9 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Uploading... Please wait</p>`, 2), _tmpl$0 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/><div><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 22), _tmpl$1 = /*#__PURE__*/ (0, import_web$11.template)(`<img>`, 1), _tmpl$10 = /*#__PURE__*/ (0, import_web$11.template)(`<div>📄</div>`, 2), _tmpl$11 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/><div><p></p><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 24);
 const { ui: { ModalRoot, ModalHeader, ModalBody, ModalFooter, ModalSizes, showToast: showToast$1, Button: Button$1, ButtonColors: ButtonColors$1, ButtonSizes: ButtonSizes$1, focusring: focusring$1 }, solid: { createSignal, createEffect, Show, For }, util: { log, getFiber }, plugin: { store } } = shelter;
 function UploadModal(closeModal) {
 	const [files$1, setFiles] = createSignal([]);
@@ -22083,73 +29333,73 @@ function UploadModal(closeModal) {
 											});
 											return _el$6;
 										})(), (() => {
-											const _el$8 = (0, import_web$20.getNextElement)(_tmpl$4$1), _el$9 = _el$8.firstChild, _el$11 = _el$9.nextSibling, [_el$12, _co$2] = (0, import_web$17.getNextMarker)(_el$11.nextSibling), _el$10 = _el$12.nextSibling;
-											(0, import_web$18.insert)(_el$8, () => uploadProgress().toFixed(2), _el$12, _co$2);
+											const _el$8 = (0, import_web$20.getNextElement)(_tmpl$4$1), _el$9 = _el$8.firstChild, _el$1 = _el$9.nextSibling, [_el$10, _co$2] = (0, import_web$17.getNextMarker)(_el$1.nextSibling), _el$0 = _el$10.nextSibling;
+											(0, import_web$18.insert)(_el$8, () => uploadProgress().toFixed(2), _el$10, _co$2);
 											return _el$8;
 										})()];
 									}
 								}),
 								(() => {
-									const _el$13 = (0, import_web$20.getNextElement)(_tmpl$5);
-									(0, import_web$18.insert)(_el$13, (0, import_web$21.createComponent)(For, {
+									const _el$11 = (0, import_web$20.getNextElement)(_tmpl$5);
+									(0, import_web$18.insert)(_el$11, (0, import_web$21.createComponent)(For, {
 										get each() {
 											return files$1();
 										},
 										children: (file, index) => (() => {
-											const _el$28 = (0, import_web$20.getNextElement)(_tmpl$10), _el$33 = _el$28.firstChild, [_el$34, _co$7] = (0, import_web$17.getNextMarker)(_el$33.nextSibling), _el$35 = _el$34.nextSibling, [_el$36, _co$8] = (0, import_web$17.getNextMarker)(_el$35.nextSibling), _el$37 = _el$36.nextSibling, [_el$38, _co$9] = (0, import_web$17.getNextMarker)(_el$37.nextSibling), _el$29 = _el$38.nextSibling, _el$30 = _el$29.firstChild, _el$31 = _el$30.nextSibling, _el$32 = _el$29.nextSibling;
-											(0, import_web$18.insert)(_el$28, (() => {
+											const _el$26 = (0, import_web$20.getNextElement)(_tmpl$0), _el$31 = _el$26.firstChild, [_el$32, _co$7] = (0, import_web$17.getNextMarker)(_el$31.nextSibling), _el$33 = _el$32.nextSibling, [_el$34, _co$8] = (0, import_web$17.getNextMarker)(_el$33.nextSibling), _el$35 = _el$34.nextSibling, [_el$36, _co$9] = (0, import_web$17.getNextMarker)(_el$35.nextSibling), _el$27 = _el$36.nextSibling, _el$28 = _el$27.firstChild, _el$29 = _el$28.nextSibling, _el$30 = _el$27.nextSibling;
+											(0, import_web$18.insert)(_el$26, (() => {
 												const _c$ = (0, import_web$22.memo)(() => !!file.type.startsWith("image/"));
 												return () => _c$() && (() => {
-													const _el$39 = (0, import_web$20.getNextElement)(_tmpl$11);
+													const _el$37 = (0, import_web$20.getNextElement)(_tmpl$1);
 													(0, import_web$15.effect)((_p$) => {
-														const _v$10 = previews()[index()], _v$11 = file.name, _v$12 = modal_jsx_default.previewImage;
-														_v$10 !== _p$._v$10 && (0, import_web$13.setAttribute)(_el$39, "src", _p$._v$10 = _v$10);
-														_v$11 !== _p$._v$11 && (0, import_web$13.setAttribute)(_el$39, "alt", _p$._v$11 = _v$11);
-														_v$12 !== _p$._v$12 && (0, import_web$14.className)(_el$39, _p$._v$12 = _v$12);
+														const _v$0 = previews()[index()], _v$1 = file.name, _v$10 = modal_jsx_default.previewImage;
+														_v$0 !== _p$._v$0 && (0, import_web$13.setAttribute)(_el$37, "src", _p$._v$0 = _v$0);
+														_v$1 !== _p$._v$1 && (0, import_web$13.setAttribute)(_el$37, "alt", _p$._v$1 = _v$1);
+														_v$10 !== _p$._v$10 && (0, import_web$14.className)(_el$37, _p$._v$10 = _v$10);
 														return _p$;
 													}, {
-														_v$10: undefined,
-														_v$11: undefined,
-														_v$12: undefined
+														_v$0: undefined,
+														_v$1: undefined,
+														_v$10: undefined
 													});
-													return _el$39;
+													return _el$37;
 												})();
-											})(), _el$34, _co$7);
-											(0, import_web$18.insert)(_el$28, (() => {
+											})(), _el$32, _co$7);
+											(0, import_web$18.insert)(_el$26, (() => {
 												const _c$2 = (0, import_web$22.memo)(() => !!file.type.startsWith("video/"));
 												return () => _c$2() && (() => {
-													const _el$40 = (0, import_web$20.getNextElement)(_tmpl$11);
+													const _el$38 = (0, import_web$20.getNextElement)(_tmpl$1);
 													(0, import_web$15.effect)((_p$) => {
-														const _v$13 = previews()[index()], _v$14 = file.name, _v$15 = modal_jsx_default.previewVideo;
-														_v$13 !== _p$._v$13 && (0, import_web$13.setAttribute)(_el$40, "src", _p$._v$13 = _v$13);
-														_v$14 !== _p$._v$14 && (0, import_web$13.setAttribute)(_el$40, "alt", _p$._v$14 = _v$14);
-														_v$15 !== _p$._v$15 && (0, import_web$14.className)(_el$40, _p$._v$15 = _v$15);
+														const _v$11 = previews()[index()], _v$12 = file.name, _v$13 = modal_jsx_default.previewVideo;
+														_v$11 !== _p$._v$11 && (0, import_web$13.setAttribute)(_el$38, "src", _p$._v$11 = _v$11);
+														_v$12 !== _p$._v$12 && (0, import_web$13.setAttribute)(_el$38, "alt", _p$._v$12 = _v$12);
+														_v$13 !== _p$._v$13 && (0, import_web$14.className)(_el$38, _p$._v$13 = _v$13);
 														return _p$;
 													}, {
-														_v$13: undefined,
-														_v$14: undefined,
-														_v$15: undefined
+														_v$11: undefined,
+														_v$12: undefined,
+														_v$13: undefined
 													});
-													return _el$40;
+													return _el$38;
 												})();
-											})(), _el$36, _co$8);
-											(0, import_web$18.insert)(_el$28, (() => {
+											})(), _el$34, _co$8);
+											(0, import_web$18.insert)(_el$26, (() => {
 												const _c$3 = (0, import_web$22.memo)(() => !!(!file.type.startsWith("image/") && !file.type.startsWith("video/")));
 												return () => _c$3() && (() => {
-													const _el$41 = (0, import_web$20.getNextElement)(_tmpl$12);
-													(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$41, modal_jsx_default.previewIcon));
-													return _el$41;
+													const _el$39 = (0, import_web$20.getNextElement)(_tmpl$10);
+													(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$39, modal_jsx_default.previewIcon));
+													return _el$39;
 												})();
-											})(), _el$38, _co$9);
-											(0, import_web$18.insert)(_el$30, () => file.name);
-											(0, import_web$18.insert)(_el$31, () => formatFileSize(file.size));
-											_el$32.$$click = () => handleRemoveFile(index());
+											})(), _el$36, _co$9);
+											(0, import_web$18.insert)(_el$28, () => file.name);
+											(0, import_web$18.insert)(_el$29, () => formatFileSize(file.size));
+											_el$30.$$click = () => handleRemoveFile(index());
 											(0, import_web$15.effect)((_p$) => {
 												const _v$6 = modal_jsx_default.previewItem, _v$7 = modal_jsx_default.previewItemInfo, _v$8 = modal_jsx_default.removeButton, _v$9 = isUploading();
-												_v$6 !== _p$._v$6 && (0, import_web$14.className)(_el$28, _p$._v$6 = _v$6);
-												_v$7 !== _p$._v$7 && (0, import_web$14.className)(_el$29, _p$._v$7 = _v$7);
-												_v$8 !== _p$._v$8 && (0, import_web$14.className)(_el$32, _p$._v$8 = _v$8);
-												_v$9 !== _p$._v$9 && (_el$32.disabled = _p$._v$9 = _v$9);
+												_v$6 !== _p$._v$6 && (0, import_web$14.className)(_el$26, _p$._v$6 = _v$6);
+												_v$7 !== _p$._v$7 && (0, import_web$14.className)(_el$27, _p$._v$7 = _v$7);
+												_v$8 !== _p$._v$8 && (0, import_web$14.className)(_el$30, _p$._v$8 = _v$8);
+												_v$9 !== _p$._v$9 && (_el$30.disabled = _p$._v$9 = _v$9);
 												return _p$;
 											}, {
 												_v$6: undefined,
@@ -22158,11 +29408,11 @@ function UploadModal(closeModal) {
 												_v$9: undefined
 											});
 											(0, import_web$16.runHydrationEvents)();
-											return _el$28;
+											return _el$26;
 										})()
 									}));
-									(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$13, modal_jsx_default.previewArea));
-									return _el$13;
+									(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$11, modal_jsx_default.previewArea));
+									return _el$11;
 								})()
 							];
 						} });
@@ -22187,12 +29437,12 @@ function UploadModal(closeModal) {
 								},
 								get children() {
 									return [(() => {
-										const _el$15 = (0, import_web$20.getNextElement)(_tmpl$7), _el$16 = _el$15.firstChild, _el$17 = _el$16.nextSibling, [_el$18, _co$3] = (0, import_web$17.getNextMarker)(_el$17.nextSibling);
-										(0, import_web$18.insert)(_el$15, () => formatFileSize(dashboardFiles().reduce((acc, file) => acc + file.Size, 0)), _el$18, _co$3);
-										return _el$15;
+										const _el$13 = (0, import_web$20.getNextElement)(_tmpl$7), _el$14 = _el$13.firstChild, _el$15 = _el$14.nextSibling, [_el$16, _co$3] = (0, import_web$17.getNextMarker)(_el$15.nextSibling);
+										(0, import_web$18.insert)(_el$13, () => formatFileSize(dashboardFiles().reduce((acc, file) => acc + file.Size, 0)), _el$16, _co$3);
+										return _el$13;
 									})(), (() => {
-										const _el$19 = (0, import_web$20.getNextElement)(_tmpl$5);
-										(0, import_web$18.insert)(_el$19, (0, import_web$21.createComponent)(For, {
+										const _el$17 = (0, import_web$20.getNextElement)(_tmpl$5);
+										(0, import_web$18.insert)(_el$17, (0, import_web$21.createComponent)(For, {
 											get each() {
 												return dashboardFiles();
 											},
@@ -22216,81 +29466,81 @@ function UploadModal(closeModal) {
 													setPreview(url);
 												});
 												return (() => {
-													const _el$42 = (0, import_web$20.getNextElement)(_tmpl$13), _el$48 = _el$42.firstChild, [_el$49, _co$10] = (0, import_web$17.getNextMarker)(_el$48.nextSibling), _el$50 = _el$49.nextSibling, [_el$51, _co$11] = (0, import_web$17.getNextMarker)(_el$50.nextSibling), _el$52 = _el$51.nextSibling, [_el$53, _co$12] = (0, import_web$17.getNextMarker)(_el$52.nextSibling), _el$43 = _el$53.nextSibling, _el$44 = _el$43.firstChild, _el$45 = _el$44.nextSibling, _el$46 = _el$45.nextSibling, _el$47 = _el$43.nextSibling;
-													_el$42.$$click = (e$2) => {
+													const _el$40 = (0, import_web$20.getNextElement)(_tmpl$11), _el$46 = _el$40.firstChild, [_el$47, _co$0] = (0, import_web$17.getNextMarker)(_el$46.nextSibling), _el$48 = _el$47.nextSibling, [_el$49, _co$1] = (0, import_web$17.getNextMarker)(_el$48.nextSibling), _el$50 = _el$49.nextSibling, [_el$51, _co$10] = (0, import_web$17.getNextMarker)(_el$50.nextSibling), _el$41 = _el$51.nextSibling, _el$42 = _el$41.firstChild, _el$43 = _el$42.nextSibling, _el$44 = _el$43.nextSibling, _el$45 = _el$41.nextSibling;
+													_el$40.$$click = (e$2) => {
 														e$2.stopPropagation();
 														const fiber = getFiber(document.querySelector("[class*=\"slateContainer\"]"));
 														const editor = fiber.child.pendingProps.editor;
 														const url = getUrl(file, store.publicUrl);
 														editor.insertText(url + " ");
 													};
-													(0, import_web$19.use)(focusring$1, _el$42, () => true);
-													(0, import_web$18.insert)(_el$42, (() => {
+													(0, import_web$19.use)(focusring$1, _el$40, () => true);
+													(0, import_web$18.insert)(_el$40, (() => {
 														const _c$4 = (0, import_web$22.memo)(() => !!(preview() && isImage));
 														return () => _c$4() && (() => {
-															const _el$54 = (0, import_web$20.getNextElement)(_tmpl$11);
+															const _el$52 = (0, import_web$20.getNextElement)(_tmpl$1);
 															(0, import_web$15.effect)((_p$) => {
-																const _v$19 = preview(), _v$20 = file.Key, _v$21 = modal_jsx_default.previewImage;
-																_v$19 !== _p$._v$19 && (0, import_web$13.setAttribute)(_el$54, "src", _p$._v$19 = _v$19);
-																_v$20 !== _p$._v$20 && (0, import_web$13.setAttribute)(_el$54, "alt", _p$._v$20 = _v$20);
-																_v$21 !== _p$._v$21 && (0, import_web$14.className)(_el$54, _p$._v$21 = _v$21);
+																const _v$17 = preview(), _v$18 = file.Key, _v$19 = modal_jsx_default.previewImage;
+																_v$17 !== _p$._v$17 && (0, import_web$13.setAttribute)(_el$52, "src", _p$._v$17 = _v$17);
+																_v$18 !== _p$._v$18 && (0, import_web$13.setAttribute)(_el$52, "alt", _p$._v$18 = _v$18);
+																_v$19 !== _p$._v$19 && (0, import_web$14.className)(_el$52, _p$._v$19 = _v$19);
 																return _p$;
 															}, {
-																_v$19: undefined,
-																_v$20: undefined,
-																_v$21: undefined
+																_v$17: undefined,
+																_v$18: undefined,
+																_v$19: undefined
 															});
-															return _el$54;
+															return _el$52;
 														})();
-													})(), _el$49, _co$10);
-													(0, import_web$18.insert)(_el$42, (() => {
+													})(), _el$47, _co$0);
+													(0, import_web$18.insert)(_el$40, (() => {
 														const _c$5 = (0, import_web$22.memo)(() => !!(preview() && isVideo));
 														return () => _c$5() && (() => {
-															const _el$55 = (0, import_web$20.getNextElement)(_tmpl$11);
+															const _el$53 = (0, import_web$20.getNextElement)(_tmpl$1);
 															(0, import_web$15.effect)((_p$) => {
-																const _v$22 = preview(), _v$23 = file.Key, _v$24 = modal_jsx_default.previewVideo;
-																_v$22 !== _p$._v$22 && (0, import_web$13.setAttribute)(_el$55, "src", _p$._v$22 = _v$22);
-																_v$23 !== _p$._v$23 && (0, import_web$13.setAttribute)(_el$55, "alt", _p$._v$23 = _v$23);
-																_v$24 !== _p$._v$24 && (0, import_web$14.className)(_el$55, _p$._v$24 = _v$24);
+																const _v$20 = preview(), _v$21 = file.Key, _v$22 = modal_jsx_default.previewVideo;
+																_v$20 !== _p$._v$20 && (0, import_web$13.setAttribute)(_el$53, "src", _p$._v$20 = _v$20);
+																_v$21 !== _p$._v$21 && (0, import_web$13.setAttribute)(_el$53, "alt", _p$._v$21 = _v$21);
+																_v$22 !== _p$._v$22 && (0, import_web$14.className)(_el$53, _p$._v$22 = _v$22);
 																return _p$;
 															}, {
-																_v$22: undefined,
-																_v$23: undefined,
-																_v$24: undefined
+																_v$20: undefined,
+																_v$21: undefined,
+																_v$22: undefined
 															});
-															return _el$55;
+															return _el$53;
 														})();
-													})(), _el$51, _co$11);
-													(0, import_web$18.insert)(_el$42, (() => {
+													})(), _el$49, _co$1);
+													(0, import_web$18.insert)(_el$40, (() => {
 														const _c$6 = (0, import_web$22.memo)(() => !!(!preview() || !isImage && !isVideo));
 														return () => _c$6() && (() => {
-															const _el$56 = (0, import_web$20.getNextElement)(_tmpl$12);
-															(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$56, modal_jsx_default.previewIcon));
-															return _el$56;
+															const _el$54 = (0, import_web$20.getNextElement)(_tmpl$10);
+															(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$54, modal_jsx_default.previewIcon));
+															return _el$54;
 														})();
-													})(), _el$53, _co$12);
-													(0, import_web$18.insert)(_el$44, () => file.Key);
-													(0, import_web$18.insert)(_el$45, () => formatFileSize(file.Size));
-													(0, import_web$18.insert)(_el$46, () => formatDate(file.LastModified));
-													_el$47.$$click = (e$2) => handleDeleteFile(e$2, file);
+													})(), _el$51, _co$10);
+													(0, import_web$18.insert)(_el$42, () => file.Key);
+													(0, import_web$18.insert)(_el$43, () => formatFileSize(file.Size));
+													(0, import_web$18.insert)(_el$44, () => formatDate(file.LastModified));
+													_el$45.$$click = (e$2) => handleDeleteFile(e$2, file);
 													(0, import_web$15.effect)((_p$) => {
-														const _v$16 = modal_jsx_default.dashboardItem, _v$17 = modal_jsx_default.previewItemInfo, _v$18 = modal_jsx_default.removeButton;
-														_v$16 !== _p$._v$16 && (0, import_web$14.className)(_el$42, _p$._v$16 = _v$16);
-														_v$17 !== _p$._v$17 && (0, import_web$14.className)(_el$43, _p$._v$17 = _v$17);
-														_v$18 !== _p$._v$18 && (0, import_web$14.className)(_el$47, _p$._v$18 = _v$18);
+														const _v$14 = modal_jsx_default.dashboardItem, _v$15 = modal_jsx_default.previewItemInfo, _v$16 = modal_jsx_default.removeButton;
+														_v$14 !== _p$._v$14 && (0, import_web$14.className)(_el$40, _p$._v$14 = _v$14);
+														_v$15 !== _p$._v$15 && (0, import_web$14.className)(_el$41, _p$._v$15 = _v$15);
+														_v$16 !== _p$._v$16 && (0, import_web$14.className)(_el$45, _p$._v$16 = _v$16);
 														return _p$;
 													}, {
-														_v$16: undefined,
-														_v$17: undefined,
-														_v$18: undefined
+														_v$14: undefined,
+														_v$15: undefined,
+														_v$16: undefined
 													});
 													(0, import_web$16.runHydrationEvents)();
-													return _el$42;
+													return _el$40;
 												})();
 											}
 										}));
-										(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$19, modal_jsx_default.previewArea));
-										return _el$19;
+										(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$17, modal_jsx_default.previewArea));
+										return _el$17;
 									})()];
 								}
 							})];
@@ -22298,8 +29548,8 @@ function UploadModal(closeModal) {
 					}
 				}),
 				(0, import_web$21.createComponent)(ModalFooter, { get children() {
-					const _el$20 = (0, import_web$20.getNextElement)(_tmpl$8), _el$21 = _el$20.firstChild, [_el$22, _co$4] = (0, import_web$17.getNextMarker)(_el$21.nextSibling), _el$23 = _el$22.nextSibling, [_el$24, _co$5] = (0, import_web$17.getNextMarker)(_el$23.nextSibling), _el$25 = _el$24.nextSibling, [_el$26, _co$6] = (0, import_web$17.getNextMarker)(_el$25.nextSibling);
-					(0, import_web$18.insert)(_el$20, (0, import_web$21.createComponent)(Button$1, {
+					const _el$18 = (0, import_web$20.getNextElement)(_tmpl$8), _el$19 = _el$18.firstChild, [_el$20, _co$4] = (0, import_web$17.getNextMarker)(_el$19.nextSibling), _el$21 = _el$20.nextSibling, [_el$22, _co$5] = (0, import_web$17.getNextMarker)(_el$21.nextSibling), _el$23 = _el$22.nextSibling, [_el$24, _co$6] = (0, import_web$17.getNextMarker)(_el$23.nextSibling);
+					(0, import_web$18.insert)(_el$18, (0, import_web$21.createComponent)(Button$1, {
 						get ["class"]() {
 							return modal_jsx_default.dashboardButton;
 						},
@@ -22313,8 +29563,8 @@ function UploadModal(closeModal) {
 						get children() {
 							return dashOpen() ? "Upload Files" : "Dashboard";
 						}
-					}), _el$22, _co$4);
-					(0, import_web$18.insert)(_el$20, (0, import_web$21.createComponent)(Button$1, {
+					}), _el$20, _co$4);
+					(0, import_web$18.insert)(_el$18, (0, import_web$21.createComponent)(Button$1, {
 						get disabled() {
 							return isUploading();
 						},
@@ -22326,8 +29576,8 @@ function UploadModal(closeModal) {
 						},
 						onClick: () => isUploading() ? null : closeModal(),
 						children: "Cancel"
-					}), _el$24, _co$5);
-					(0, import_web$18.insert)(_el$20, (0, import_web$21.createComponent)(Show, {
+					}), _el$22, _co$5);
+					(0, import_web$18.insert)(_el$18, (0, import_web$21.createComponent)(Show, {
 						get when() {
 							return !dashOpen();
 						},
@@ -22348,9 +29598,9 @@ function UploadModal(closeModal) {
 								}
 							});
 						}
-					}), _el$26, _co$6);
-					(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$20, modal_jsx_default.footer));
-					return _el$20;
+					}), _el$24, _co$6);
+					(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$18, modal_jsx_default.footer));
+					return _el$18;
 				} })
 			];
 		}
@@ -22588,6 +29838,211 @@ const settings = () => [
 	(0, import_web$5.getNextElement)(_tmpl$3)
 ];
 (0, import_web$1.delegateEvents)(["click"]);
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js
+var event_streams_exports = {};
+__export(event_streams_exports, { EventStreamSerde: () => EventStreamSerde });
+var init_event_streams = __esm({ "node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js"() {
+	init_EventStreamSerde();
+} });
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/EventStreamSerde.js
+var EventStreamSerde;
+var init_EventStreamSerde = __esm({ "node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/EventStreamSerde.js"() {
+	init_dist_es();
+	EventStreamSerde = class {
+		marshaller;
+		serializer;
+		deserializer;
+		serdeContext;
+		defaultContentType;
+		constructor({ marshaller, serializer, deserializer, serdeContext, defaultContentType }) {
+			this.marshaller = marshaller;
+			this.serializer = serializer;
+			this.deserializer = deserializer;
+			this.serdeContext = serdeContext;
+			this.defaultContentType = defaultContentType;
+		}
+		async serializeEventStream({ eventStream, requestSchema, initialRequest }) {
+			const marshaller = this.marshaller;
+			const eventStreamMember = requestSchema.getEventStreamMember();
+			const unionSchema = requestSchema.getMemberSchema(eventStreamMember);
+			const serializer = this.serializer;
+			const defaultContentType = this.defaultContentType;
+			const initialRequestMarker = Symbol("initialRequestMarker");
+			const eventStreamIterable = { async *[Symbol.asyncIterator]() {
+				if (initialRequest) {
+					const headers = {
+						":event-type": {
+							type: "string",
+							value: "initial-request"
+						},
+						":message-type": {
+							type: "string",
+							value: "event"
+						},
+						":content-type": {
+							type: "string",
+							value: defaultContentType
+						}
+					};
+					serializer.write(requestSchema, initialRequest);
+					const body = serializer.flush();
+					yield {
+						[initialRequestMarker]: true,
+						headers,
+						body
+					};
+				}
+				for await (const page of eventStream) yield page;
+			} };
+			return marshaller.serialize(eventStreamIterable, (event) => {
+				if (event[initialRequestMarker]) return {
+					headers: event.headers,
+					body: event.body
+				};
+				const unionMember = Object.keys(event).find((key) => {
+					return key !== "__type";
+				}) ?? "";
+				const { additionalHeaders, body, eventType, explicitPayloadContentType } = this.writeEventBody(unionMember, unionSchema, event);
+				const headers = {
+					":event-type": {
+						type: "string",
+						value: eventType
+					},
+					":message-type": {
+						type: "string",
+						value: "event"
+					},
+					":content-type": {
+						type: "string",
+						value: explicitPayloadContentType ?? defaultContentType
+					},
+					...additionalHeaders
+				};
+				return {
+					headers,
+					body
+				};
+			});
+		}
+		async deserializeEventStream({ response, responseSchema, initialResponseContainer }) {
+			const marshaller = this.marshaller;
+			const eventStreamMember = responseSchema.getEventStreamMember();
+			const unionSchema = responseSchema.getMemberSchema(eventStreamMember);
+			const memberSchemas = unionSchema.getMemberSchemas();
+			const initialResponseMarker = Symbol("initialResponseMarker");
+			const asyncIterable = marshaller.deserialize(response.body, async (event) => {
+				const unionMember = Object.keys(event).find((key) => {
+					return key !== "__type";
+				}) ?? "";
+				const body = event[unionMember].body;
+				if (unionMember === "initial-response") {
+					const dataObject = await this.deserializer.read(responseSchema, body);
+					delete dataObject[eventStreamMember];
+					return {
+						[initialResponseMarker]: true,
+						...dataObject
+					};
+				} else if (unionMember in memberSchemas) {
+					const eventStreamSchema = memberSchemas[unionMember];
+					if (eventStreamSchema.isStructSchema()) {
+						const out = {};
+						let hasBindings = false;
+						for (const [name$1, member$1] of eventStreamSchema.structIterator()) {
+							const { eventHeader, eventPayload } = member$1.getMergedTraits();
+							hasBindings = hasBindings || Boolean(eventHeader || eventPayload);
+							if (eventPayload) {
+								if (member$1.isBlobSchema()) out[name$1] = body;
+else if (member$1.isStringSchema()) out[name$1] = (this.serdeContext?.utf8Encoder ?? toUtf8)(body);
+else if (member$1.isStructSchema()) out[name$1] = await this.deserializer.read(member$1, body);
+							} else if (eventHeader) {
+								const value = event[unionMember].headers[name$1]?.value;
+								if (value != null) if (member$1.isNumericSchema()) if (value && typeof value === "object" && "bytes" in value) out[name$1] = BigInt(value.toString());
+else out[name$1] = Number(value);
+else out[name$1] = value;
+							}
+						}
+						if (hasBindings) return { [unionMember]: out };
+						if (body.byteLength === 0) return { [unionMember]: {} };
+					}
+					return { [unionMember]: await this.deserializer.read(eventStreamSchema, body) };
+				} else return { $unknown: event };
+			});
+			const asyncIterator = asyncIterable[Symbol.asyncIterator]();
+			const firstEvent = await asyncIterator.next();
+			if (firstEvent.done) return asyncIterable;
+			if (firstEvent.value?.[initialResponseMarker]) {
+				if (!responseSchema) throw new Error("@smithy::core/protocols - initial-response event encountered in event stream but no response schema given.");
+				for (const [key, value] of Object.entries(firstEvent.value)) initialResponseContainer[key] = value;
+			}
+			return { async *[Symbol.asyncIterator]() {
+				if (!firstEvent?.value?.[initialResponseMarker]) yield firstEvent.value;
+				while (true) {
+					const { done: done$1, value } = await asyncIterator.next();
+					if (done$1) break;
+					yield value;
+				}
+			} };
+		}
+		writeEventBody(unionMember, unionSchema, event) {
+			const serializer = this.serializer;
+			let eventType = unionMember;
+			let explicitPayloadMember = null;
+			let explicitPayloadContentType;
+			const isKnownSchema = (() => {
+				const struct = unionSchema.getSchema();
+				return struct[4].includes(unionMember);
+			})();
+			const additionalHeaders = {};
+			if (!isKnownSchema) {
+				const [type, value] = event[unionMember];
+				eventType = type;
+				serializer.write(15, value);
+			} else {
+				const eventSchema = unionSchema.getMemberSchema(unionMember);
+				if (eventSchema.isStructSchema()) {
+					for (const [memberName, memberSchema] of eventSchema.structIterator()) {
+						const { eventHeader, eventPayload } = memberSchema.getMergedTraits();
+						if (eventPayload) explicitPayloadMember = memberName;
+else if (eventHeader) {
+							const value = event[unionMember][memberName];
+							let type = "binary";
+							if (memberSchema.isNumericSchema()) if (-2147483648 <= value && value <= 2147483647) type = "integer";
+else type = "long";
+else if (memberSchema.isTimestampSchema()) type = "timestamp";
+else if (memberSchema.isStringSchema()) type = "string";
+else if (memberSchema.isBooleanSchema()) type = "boolean";
+							if (value != null) {
+								additionalHeaders[memberName] = {
+									type,
+									value
+								};
+								delete event[unionMember][memberName];
+							}
+						}
+					}
+					if (explicitPayloadMember !== null) {
+						const payloadSchema = eventSchema.getMemberSchema(explicitPayloadMember);
+						if (payloadSchema.isBlobSchema()) explicitPayloadContentType = "application/octet-stream";
+else if (payloadSchema.isStringSchema()) explicitPayloadContentType = "text/plain";
+						serializer.write(payloadSchema, event[unionMember][explicitPayloadMember]);
+					} else serializer.write(eventSchema, event[unionMember]);
+				} else throw new Error("@smithy/core/event-streams - non-struct member not supported in event stream union.");
+			}
+			const messageSerialization = serializer.flush();
+			const body = typeof messageSerialization === "string" ? (this.serdeContext?.utf8Decoder ?? fromUtf8)(messageSerialization) : messageSerialization;
+			return {
+				body,
+				eventType,
+				explicitPayloadContentType,
+				additionalHeaders
+			};
+		}
+	};
+} });
 
 //#endregion
 exports.onLoad = onLoad
