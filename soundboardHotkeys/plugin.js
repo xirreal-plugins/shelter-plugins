@@ -225,22 +225,22 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 `);
 var style_default = {
 	"content": "_6PhcGW_content",
-	"marginTop": "_6PhcGW_marginTop",
-	"spaced": "_6PhcGW_spaced",
-	"emoji": "_6PhcGW_emoji",
-	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable",
 	"preview": "_6PhcGW_preview",
-	"column": "_6PhcGW_column",
-	"margin": "_6PhcGW_margin",
-	"flexRow": "_6PhcGW_flexRow",
-	"sound": "_6PhcGW_sound",
+	"card": "_6PhcGW_card",
+	"inline": "_6PhcGW_inline",
+	"noMarginUnselectable": "_6PhcGW_noMarginUnselectable",
+	"spaced": "_6PhcGW_spaced",
 	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
 	"keybindButton": "_6PhcGW_keybindButton",
-	"inline": "_6PhcGW_inline",
-	"soundPicker": "_6PhcGW_soundPicker",
+	"margin": "_6PhcGW_margin",
+	"sound": "_6PhcGW_sound",
 	"selected": "_6PhcGW_selected",
-	"card": "_6PhcGW_card",
-	"tallerModal": "_6PhcGW_tallerModal"
+	"column": "_6PhcGW_column",
+	"tallerModal": "_6PhcGW_tallerModal",
+	"marginTop": "_6PhcGW_marginTop",
+	"flexRow": "_6PhcGW_flexRow",
+	"emoji": "_6PhcGW_emoji",
+	"soundPicker": "_6PhcGW_soundPicker"
 };
 
 //#endregion
