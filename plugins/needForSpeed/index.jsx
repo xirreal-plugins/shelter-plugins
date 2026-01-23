@@ -2,7 +2,7 @@ const {
    plugin: {
       scoped: { observeDom },
    },
-   solid: { createSignal, Show, onCleanup },
+   solid: { createSignal, Show },
 } = shelter;
 
 import SpeedIcon from "./icon";
