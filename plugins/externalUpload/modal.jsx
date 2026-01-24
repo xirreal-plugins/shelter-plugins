@@ -99,7 +99,12 @@ function UploadProgressItem({ fileId, uploadInfo, onCancel }) {
          <div class={styles.uploadProgressStatus}>
             <span style={{ color: statusColor(true) }}>{statusText()}</span>
             <Show when={status() === "uploading"}>
-               <Button size={ButtonSizes.TINY} color={ButtonColors.CRITICAL_SECONDARY} onClick={() => onCancel(fileId)} tooltip="Cancel upload">
+               <Button
+                  size={ButtonSizes.TINY}
+                  color={ButtonColors.CRITICAL_SECONDARY}
+                  onClick={() => onCancel(fileId)}
+                  tooltip="Cancel upload"
+               >
                   <CloseIcon />
                </Button>
             </Show>
@@ -157,7 +162,11 @@ function DashboardFileItem({ file, manifest, onDelete, onInsert }) {
    };
 
    return (
-      <div class={`${styles.dashboardItem} ${deleting() ? styles.deleting : ""}`} use:focusring onClick={() => !deleting() && onInsert(file)}>
+      <div
+         class={`${styles.dashboardItem} ${deleting() ? styles.deleting : ""}`}
+         use:focusring
+         onClick={() => !deleting() && onInsert(file)}
+      >
          <div class={styles.thumbnailContainer}>
             <Show when={deleting()}>
                <div class={styles.deletingOverlay}>
@@ -412,9 +421,18 @@ export function UploadModal(closeModal) {
                >
                   <div class={styles.uploadAreaContent}>
                      <UploadDropIcon />
-                     <Text>{isUploading() ? "Upload in progress..." : "Drag & drop files here or click to select"}</Text>
+                     <Text>
+                        {isUploading() ? "Upload in progress..." : "Drag & drop files here or click to select"}
+                     </Text>
                   </div>
-                  <input type="file" ref={fileInputRef} onChange={handleFileChange} multiple hidden disabled={isUploading()} />
+                  <input
+                     type="file"
+                     ref={fileInputRef}
+                     onChange={handleFileChange}
+                     multiple
+                     hidden
+                     disabled={isUploading()}
+                  />
                </div>
 
                <Show when={activeUploads().size > 0}>
@@ -424,14 +442,24 @@ export function UploadModal(closeModal) {
                            Uploads
                         </Text>
                         <Show when={hasActiveUploads()}>
-                           <Button size={ButtonSizes.MEDIUM} color={ButtonColors.CRITICAL_PRIMARY} onClick={handleCancelAll}>
+                           <Button
+                              size={ButtonSizes.MEDIUM}
+                              color={ButtonColors.CRITICAL_PRIMARY}
+                              onClick={handleCancelAll}
+                           >
                               Cancel All
                            </Button>
                         </Show>
                      </div>
                      <div class={styles.uploadsList}>
                         <For each={Array.from(activeUploads().entries())}>
-                           {([fileId, uploadInfo]) => <UploadProgressItem fileId={fileId} uploadInfo={uploadInfo} onCancel={handleCancelUpload} />}
+                           {([fileId, uploadInfo]) => (
+                              <UploadProgressItem
+                                 fileId={fileId}
+                                 uploadInfo={uploadInfo}
+                                 onCancel={handleCancelUpload}
+                              />
+                           )}
                         </For>
                      </div>
                   </div>
@@ -443,7 +471,12 @@ export function UploadModal(closeModal) {
                         <Text tag={TextTags.textSM} weight={TextWeights.semibold}>
                            Pending Files ({pendingFiles().length})
                         </Text>
-                        <Button size={ButtonSizes.MEDIUM} color={ButtonColors.CRITICAL_SECONDARY} onClick={clearPendingFiles} disabled={isUploading()}>
+                        <Button
+                           size={ButtonSizes.MEDIUM}
+                           color={ButtonColors.CRITICAL_SECONDARY}
+                           onClick={clearPendingFiles}
+                           disabled={isUploading()}
+                        >
                            Remove All
                         </Button>
                      </div>
@@ -454,9 +487,19 @@ export function UploadModal(closeModal) {
                                  <div class={styles.thumbnailContainer}>
                                     <Show when={pendingPreviews()[index()]}>
                                        {file.type?.startsWith("video/") ? (
-                                          <video src={pendingPreviews()[index()]} class={styles.previewImage} muted playsinline onLoadedData={() => {}} />
+                                          <video
+                                             src={pendingPreviews()[index()]}
+                                             class={styles.previewImage}
+                                             muted
+                                             playsinline
+                                             onLoadedData={() => {}}
+                                          />
                                        ) : (
-                                          <img src={pendingPreviews()[index()]} alt={file.name} class={styles.previewImage} />
+                                          <img
+                                             src={pendingPreviews()[index()]}
+                                             alt={file.name}
+                                             class={styles.previewImage}
+                                          />
                                        )}
                                     </Show>
                                     <Show when={!pendingPreviews()[index()]}>
@@ -490,15 +533,24 @@ export function UploadModal(closeModal) {
                <div class={styles.dashboardControls}>
                   <TextBox placeholder="Search files..." value={searchQuery()} onInput={(v) => setSearchQuery(v)} />
                   <div class={styles.sortControls}>
-                     <button class={`${styles.sortButton} ${sortBy() === "date" ? styles.sortButtonActive : ""}`} onClick={() => handleSortClick("date")}>
+                     <button
+                        class={`${styles.sortButton} ${sortBy() === "date" ? styles.sortButtonActive : ""}`}
+                        onClick={() => handleSortClick("date")}
+                     >
                         Date
                         <SortIcon active={sortBy() === "date"} ascending={sortOrder() === "asc"} />
                      </button>
-                     <button class={`${styles.sortButton} ${sortBy() === "size" ? styles.sortButtonActive : ""}`} onClick={() => handleSortClick("size")}>
+                     <button
+                        class={`${styles.sortButton} ${sortBy() === "size" ? styles.sortButtonActive : ""}`}
+                        onClick={() => handleSortClick("size")}
+                     >
                         Size
                         <SortIcon active={sortBy() === "size"} ascending={sortOrder() === "asc"} />
                      </button>
-                     <button class={`${styles.sortButton} ${sortBy() === "name" ? styles.sortButtonActive : ""}`} onClick={() => handleSortClick("name")}>
+                     <button
+                        class={`${styles.sortButton} ${sortBy() === "name" ? styles.sortButtonActive : ""}`}
+                        onClick={() => handleSortClick("name")}
+                     >
                         Name
                         <SortIcon active={sortBy() === "name"} ascending={sortOrder() === "asc"} />
                      </button>
@@ -520,7 +572,14 @@ export function UploadModal(closeModal) {
                   </Show>
                   <div class={styles.previewArea}>
                      <For each={filteredFiles()}>
-                        {(file) => <DashboardFileItem file={file} manifest={manifest} onDelete={handleDeleteFile} onInsert={handleInsertFile} />}
+                        {(file) => (
+                           <DashboardFileItem
+                              file={file}
+                              manifest={manifest}
+                              onDelete={handleDeleteFile}
+                              onInsert={handleInsertFile}
+                           />
+                        )}
                      </For>
                   </div>
                </Show>
@@ -537,16 +596,33 @@ export function UploadModal(closeModal) {
 
          <ModalFooter>
             <div class={styles.footer}>
-               <Button class={styles.dashboardButton} size={ButtonSizes.MEDIUM} color={ButtonColors.SECONDARY} onClick={() => setDashOpen(!dashOpen())}>
+               <Button
+                  class={styles.dashboardButton}
+                  size={ButtonSizes.MEDIUM}
+                  color={ButtonColors.SECONDARY}
+                  onClick={() => setDashOpen(!dashOpen())}
+               >
                   {dashOpen() ? "Upload Files" : "Dashboard"}
                </Button>
                <Show when={!dashOpen()}>
-                  <Button disabled={isUploading() || pendingFiles().length === 0} size={ButtonSizes.MEDIUM} color={ButtonColors.BRAND} onClick={handleConfirm}>
-                     {isUploading() ? "Uploading..." : `Upload ${pendingFiles().length > 0 ? `(${pendingFiles().length})` : ""}`}
+                  <Button
+                     disabled={isUploading() || pendingFiles().length === 0}
+                     size={ButtonSizes.MEDIUM}
+                     color={ButtonColors.BRAND}
+                     onClick={handleConfirm}
+                  >
+                     {isUploading()
+                        ? "Uploading..."
+                        : `Upload ${pendingFiles().length > 0 ? `(${pendingFiles().length})` : ""}`}
                   </Button>
                </Show>
                <Show when={dashOpen()}>
-                  <Button size={ButtonSizes.MEDIUM} color={ButtonColors.CRITICAL_PRIMARY} onClick={() => refreshDashboard()} disabled={dashboardLoading()}>
+                  <Button
+                     size={ButtonSizes.MEDIUM}
+                     color={ButtonColors.CRITICAL_PRIMARY}
+                     onClick={() => refreshDashboard()}
+                     disabled={dashboardLoading()}
+                  >
                      Refresh
                   </Button>
                </Show>
