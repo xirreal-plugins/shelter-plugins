@@ -1,177 +1,118 @@
 const {
    ui: { focusring },
-   solid: { createSignal, createEffect, onCleanup },
+   solid: { createSignal, createEffect, onCleanup, createUniqueId, onMount },
 } = shelter;
 
 import classes from "./style.scss";
+import { registerListenerElement } from "../utils.js";
 
-const specialCodes = {
-   win32: {
-      CTRL: 162,
-      RCTRL: 163,
-      ALT: 164,
-      RALT: 165,
-      SHIFT: 160,
-      RSHIFT: 161,
-      META: 91,
-      RMETA: 92,
-   },
-   linux: {
-      CTRL: 37,
-      RCTRL: 105,
-      ALT: 64,
-      RALT: 113,
-      SHIFT: 50,
-      RSHIFT: 62,
-      META: 133,
-      RMETA: 134,
-   },
-   darwin: {
-      CTRL: 224,
-      RCTRL: 224,
-      ALT: 226,
-      RALT: 230,
-      SHIFT: 225,
-      RSHIFT: 229,
-      META: 227,
-      RMETA: 231,
-   },
-};
+import { CodeToName } from "./maps.js";
 
-const modifierLabels = {
-   win32: {
-      CTRL: "Ctrl",
-      RCTRL: "Right Ctrl",
-      ALT: "Alt",
-      RALT: "Right Alt",
-      SHIFT: "⇧",
-      RSHIFT: "Right ⇧",
-      META: "⊞",
-      RMETA: "Right ⊞",
-   },
-   linux: {
-      CTRL: "Ctrl",
-      RCTRL: "Right Ctrl",
-      ALT: "Alt",
-      RALT: "Right Alt",
-      SHIFT: "⇧",
-      RSHIFT: "Right ⇧",
-      META: "Super",
-      RMETA: "Right Super",
-   },
-   darwin: {
-      CTRL: "⌃",
-      RCTRL: "Right ⌃",
-      ALT: "⌥",
-      RALT: "Right ⌥",
-      SHIFT: "⇧",
-      RSHIFT: "Right ⇧",
-      META: "⌘",
-      RMETA: "Right ⌘",
-   },
+const getDisplayFromCodes = (codes) => {
+   const platform = DiscordNative.process.platform;
+   const map = CodeToName[platform] || CodeToName.linux;
+   const isMac = platform === "darwin";
+
+   return codes
+      .map((code) => {
+         let name = map[code];
+
+         if (!name) return `Unknown(${code})`;
+
+         name = name.toUpperCase();
+
+         if (isMac) {
+            const symbolMatch = MacSymbols.find(([text]) => text === name || text === name.replace(" ", ""));
+            if (symbolMatch) {
+               return symbolMatch[1];
+            }
+         } else {
+            if (name === "META") return "Win";
+            if (name === "RIGHT META") return "Right Win";
+
+            if (name.length > 1) {
+               name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+               name = name.replace(/\b\w/g, (l) => l.toUpperCase());
+            }
+         }
+
+         return name;
+      })
+      .join(" + ");
 };
 
 export function KeybindCapture({ keybind, setValid, setKeybind, setScancodes }) {
    const [isCapturing, setIsCapturing] = createSignal(false);
+   const inputId = createUniqueId();
+   let inputRef;
 
-   let element;
+   const handleNativeChange = (rawCombo) => {
+      if (!isCapturing()) return;
 
-   const platform = DiscordNative.process.platform;
-   const getPlatformCodes = () => specialCodes[platform] || specialCodes.linux;
-   const getLabels = () => modifierLabels[platform] || modifierLabels.linux;
+      const codes = rawCombo.map((item) => item[1]);
 
-   const handleKeyDown = (e) => {
-      e.preventDefault();
-      if (e.repeat) return;
+      if (codes && codes.length > 0) {
+         const displayString = getDisplayFromCodes(codes);
 
-      const modifiers = [];
-      const modifiersCode = [];
-      const codes = getPlatformCodes();
-      const labels = getLabels();
-
-      if (e.ctrlKey) {
-         if (e.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-            modifiers.push(labels.RCTRL);
-            modifiersCode.push(codes.RCTRL);
-         } else {
-            modifiers.push(labels.CTRL);
-            modifiersCode.push(codes.CTRL);
-         }
-      }
-
-      if (e.altKey) {
-         if (e.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-            modifiers.push(labels.RALT);
-            modifiersCode.push(codes.RALT);
-         } else {
-            modifiers.push(labels.ALT);
-            modifiersCode.push(codes.ALT);
-         }
-      }
-
-      if (e.shiftKey) {
-         if (e.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-            modifiers.push(labels.RSHIFT);
-            modifiersCode.push(codes.RSHIFT);
-         } else {
-            modifiers.push(labels.SHIFT);
-            modifiersCode.push(codes.SHIFT);
-         }
-      }
-
-      if (e.metaKey) {
-         if (e.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-            modifiers.push(labels.RMETA);
-            modifiersCode.push(codes.RMETA);
-         } else {
-            modifiers.push(labels.META);
-            modifiersCode.push(codes.META);
-         }
-      }
-
-      setValid(false);
-
-      if (modifiers.length === 0 && (e.key === "Escape" || e.key === "Enter")) {
-         setIsCapturing(false);
-         return;
-      }
-
-      const key = e.key.toUpperCase();
-      if (!modifiers.includes(key) && key !== "CONTROL" && key !== "ALT" && key !== "SHIFT" && key !== "META") {
-         modifiers.push(key);
-         modifiersCode.push(e.keyCode);
+         setScancodes(codes);
+         setKeybind(displayString);
          setValid(true);
-      }
 
-      setKeybind(modifiers.join(" + "));
-      setScancodes(modifiersCode);
+         setIsCapturing(false);
+      }
    };
+
+   onMount(() => {
+      if (inputRef) {
+         const unregister = registerListenerElement(inputId, handleNativeChange);
+         onCleanup(() => {
+            if (unregister) unregister();
+         });
+      }
+   });
 
    createEffect(() => {
       if (isCapturing()) {
-         element.addEventListener("keydown", handleKeyDown);
+         inputRef?.focus();
       } else {
-         element.removeEventListener("keydown", handleKeyDown);
+         inputRef?.blur();
       }
-
-      onCleanup(() => {
-         element.removeEventListener("keydown", handleKeyDown);
-      });
    });
 
+   const handleClick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsCapturing(!isCapturing());
+   };
+
+   const handleBlur = () => {
+      setIsCapturing(false);
+   };
+
    return (
-      <div ref={element}>
-         <div class={classes.label}>{isCapturing() ? "Press keys or click to stop" : "Keybind"}</div>
-         <button
-            classList={{
-               [classes.keybindButton]: true,
-               [classes.capturing]: isCapturing(),
-            }}
-            onMouseDown={() => setIsCapturing(!isCapturing())}
-            use:focusring
-         >
+      <div class={classes.container}>
+         <div class={classes.label}>{isCapturing() ? "Press keys to record" : "Keybind"}</div>
+
+         <div class={`${classes.keybindButton} ${isCapturing() ? classes.capturing : ""}`} onClick={handleClick}>
+            <input
+               id={inputId}
+               ref={inputRef}
+               type="text"
+               readOnly
+               value={keybind() || ""}
+               placeholder={isCapturing() ? "Waiting for input..." : "Click to set"}
+               style={{
+                  position: "absolute",
+                  opacity: 0,
+                  width: "1px",
+                  height: "1px",
+                  cursor: "none",
+                  "pointer-events": "auto",
+               }}
+               onBlur={handleBlur}
+            />
             <span>{keybind() || (isCapturing() ? "Waiting for input..." : "Click to set")}</span>
-         </button>
+         </div>
       </div>
    );
 }

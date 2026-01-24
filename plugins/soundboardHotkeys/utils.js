@@ -15,6 +15,10 @@ export function loadNativeModule() {
    }
 }
 
+export function registerListenerElement(id, onChange) {
+   return nativeModule.inputCaptureRegisterElement(id, onChange);
+}
+
 export async function loadSounds() {
    return new Promise((resolve) => {
       if (SoundboardStore.hasFetchedAllSounds()) {
@@ -44,19 +48,44 @@ export function playSound(sound) {
    const soundboardButton = document.querySelector('[class*="actionButtons"] > span > div > button');
 
    const soundboardPanel = document.querySelector('[id*="popout"] > div > [class*="picker"]');
-   if (soundboardPanel) {
-      soundboardPanel.querySelector(`[id^="sound-${sound}"]`).click();
-      return;
+
+   if (!soundboardPanel) {
+      soundboardButton.click();
    }
-   soundboardButton.click();
-   const stopObserving = observeDom('[id*="popout"] > div > [class*="picker"]', (element) => {
+
+   const stopObserving = observeDom('[id*="popout"] > div > [class*="picker"]', (pickerElement) => {
       stopObserving();
-      const stopObserving2 = observeDom(`[id^="sound-${sound}"]`, (element) => {
-         stopObserving2();
+
+      pickerElement.style.opacity = "0.0";
+
+      const scroller = pickerElement.querySelector('[class*="thin"]');
+      let currentScroll = 0;
+
+      const interval = setInterval(() => {
+         currentScroll += 300;
+         scroller.scroll(0, currentScroll);
+
+         if (scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight) {
+            clearInterval(interval);
+         }
+      }, 0);
+
+      const stopObservingSound = observeDom(`[id^="sound-${sound}"]`, (element) => {
+         stopObservingSound();
+         clearInterval(interval);
+
          element.click();
          soundboardButton.click();
       });
+
+      setTimeout(() => {
+         stopObservingSound();
+      }, 1000);
    });
+
+   setTimeout(() => {
+      stopObserving();
+   }, 1500);
 }
 
 export function registerKeybind(id, scancodes, sound) {

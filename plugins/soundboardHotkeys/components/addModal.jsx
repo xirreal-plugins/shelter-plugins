@@ -28,12 +28,7 @@ export function AddKeybindModal(closeModal, initialState) {
       <ModalRoot size={ModalSizes.MEDIUM} class={classes.tallerModal}>
          <ModalHeader close={closeModal}>{modalTitle}</ModalHeader>
          <ModalBody>
-            <KeybindCapture
-               keybind={keybind}
-               setValid={setKeybindValid}
-               setKeybind={setKeybind}
-               setScancodes={setScancodes}
-            />
+            <KeybindCapture keybind={keybind} setValid={setKeybindValid} setKeybind={setKeybind} setScancodes={setScancodes} />
             <SoundPicker soundId={soundId} setSoundId={setSoundId} />
          </ModalBody>
          <ModalConfirmFooter
