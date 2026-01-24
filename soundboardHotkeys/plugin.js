@@ -34,6 +34,9 @@ let nativeModule = null;
 function loadNativeModule() {
 	if (!nativeModule) nativeModule = window.DiscordNative.nativeModules.requireModule("discord_utils");
 }
+function registerListenerElement(id, onChange) {
+	return nativeModule.inputCaptureRegisterElement(id, onChange);
+}
 async function loadSounds() {
 	return new Promise((resolve) => {
 		if (SoundboardStore$2.hasFetchedAllSounds()) resolve();
@@ -56,19 +59,30 @@ async function loadSounds() {
 function playSound$1(sound) {
 	const soundboardButton = document.querySelector("[class*=\"actionButtons\"] > span > div > button");
 	const soundboardPanel = document.querySelector("[id*=\"popout\"] > div > [class*=\"picker\"]");
-	if (soundboardPanel) {
-		soundboardPanel.querySelector(`[id^="sound-${sound}"]`).click();
-		return;
-	}
-	soundboardButton.click();
-	const stopObserving = observeDom("[id*=\"popout\"] > div > [class*=\"picker\"]", (element) => {
+	if (!soundboardPanel) soundboardButton.click();
+	const stopObserving = observeDom("[id*=\"popout\"] > div > [class*=\"picker\"]", (pickerElement) => {
 		stopObserving();
-		const stopObserving2 = observeDom(`[id^="sound-${sound}"]`, (element$1) => {
-			stopObserving2();
-			element$1.click();
+		pickerElement.style.opacity = "0.0";
+		const scroller = pickerElement.querySelector("[class*=\"thin\"]");
+		let currentScroll = 0;
+		const interval = setInterval(() => {
+			currentScroll += 300;
+			scroller.scroll(0, currentScroll);
+			if (scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight) clearInterval(interval);
+		}, 0);
+		const stopObservingSound = observeDom(`[id^="sound-${sound}"]`, (element) => {
+			stopObservingSound();
+			clearInterval(interval);
+			element.click();
 			soundboardButton.click();
 		});
+		setTimeout(() => {
+			stopObservingSound();
+		}, 1e3);
 	});
+	setTimeout(() => {
+		stopObserving();
+	}, 1500);
 }
 function registerKeybind(id, scancodes, sound) {
 	if (!nativeModule) return;
@@ -338,29 +352,408 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 }
 `);
 var style_default = {
-	"preview": "_6PhcGW_preview",
-	"inline": "_6PhcGW_inline",
-	"emptyState": "_6PhcGW_emptyState",
-	"label": "_6PhcGW_label",
-	"keybindButton": "_6PhcGW_keybindButton",
-	"cardInfo": "_6PhcGW_cardInfo",
-	"soundItem": "_6PhcGW_soundItem",
-	"pulse": "_6PhcGW_pulse",
-	"playing": "_6PhcGW_playing",
-	"selected": "_6PhcGW_selected",
-	"card": "_6PhcGW_card",
 	"marginTop": "_6PhcGW_marginTop",
-	"cardActions": "_6PhcGW_cardActions",
-	"cardSection": "_6PhcGW_cardSection",
-	"soundName": "_6PhcGW_soundName",
-	"spaced": "_6PhcGW_spaced",
-	"tallerModal": "_6PhcGW_tallerModal",
-	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
 	"soundPicker": "_6PhcGW_soundPicker",
-	"emoji": "_6PhcGW_emoji",
-	"sound": "_6PhcGW_sound",
+	"spaced": "_6PhcGW_spaced",
+	"emptyState": "_6PhcGW_emptyState",
+	"soundItem": "_6PhcGW_soundItem",
+	"cardInfo": "_6PhcGW_cardInfo",
+	"label": "_6PhcGW_label",
+	"cardSection": "_6PhcGW_cardSection",
+	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
+	"iconButton": "_6PhcGW_iconButton",
+	"inline": "_6PhcGW_inline",
+	"preview": "_6PhcGW_preview",
 	"capturing": "_6PhcGW_capturing",
-	"iconButton": "_6PhcGW_iconButton"
+	"keybindButton": "_6PhcGW_keybindButton",
+	"emoji": "_6PhcGW_emoji",
+	"cardActions": "_6PhcGW_cardActions",
+	"selected": "_6PhcGW_selected",
+	"sound": "_6PhcGW_sound",
+	"soundName": "_6PhcGW_soundName",
+	"tallerModal": "_6PhcGW_tallerModal",
+	"playing": "_6PhcGW_playing",
+	"card": "_6PhcGW_card",
+	"pulse": "_6PhcGW_pulse"
+};
+
+//#endregion
+//#region plugins/soundboardHotkeys/components/maps.js
+const NativeMapLinux = {
+	0: 19,
+	1: 10,
+	2: 11,
+	3: 12,
+	4: 13,
+	5: 14,
+	6: 15,
+	7: 16,
+	8: 17,
+	9: 18,
+	esc: 9,
+	f1: 67,
+	f2: 68,
+	f3: 69,
+	f4: 70,
+	f5: 71,
+	f6: 72,
+	f7: 73,
+	f8: 74,
+	f9: 75,
+	f10: 76,
+	f11: 95,
+	f12: 96,
+	f14: 107,
+	f15: 78,
+	f16: 127,
+	"`": 49,
+	"-": 20,
+	"=": 21,
+	backspace: 22,
+	tab: 23,
+	q: 24,
+	w: 25,
+	e: 26,
+	r: 27,
+	t: 28,
+	y: 29,
+	u: 30,
+	i: 31,
+	o: 32,
+	p: 33,
+	"[": 34,
+	"]": 35,
+	"\\": 51,
+	"caps lock": 66,
+	a: 38,
+	s: 39,
+	d: 40,
+	f: 41,
+	g: 42,
+	h: 43,
+	j: 44,
+	k: 45,
+	l: 46,
+	";": 47,
+	"'": 48,
+	enter: 36,
+	shift: 50,
+	z: 52,
+	x: 53,
+	c: 54,
+	v: 55,
+	b: 56,
+	n: 57,
+	m: 58,
+	",": 59,
+	".": 60,
+	"/": 61,
+	"right shift": 62,
+	ctrl: 37,
+	alt: 64,
+	meta: 133,
+	space: 65,
+	"right meta": 134,
+	"right alt": 108,
+	"right ctrl": 105,
+	menu: 135,
+	"num lock": 77,
+	"numpad =": 125,
+	"numpad /": 106,
+	"numpad *": 63,
+	"numpad 7": 79,
+	"numpad 8": 80,
+	"numpad 9": 81,
+	"numpad -": 82,
+	"numpad 4": 83,
+	"numpad 5": 84,
+	"numpad 6": 85,
+	"numpad +": 86,
+	"numpad 1": 87,
+	"numpad 2": 88,
+	"numpad 3": 89,
+	"numpad enter": 104,
+	"numpad 0": 90,
+	"numpad .": 91,
+	home: 110,
+	"page up": 112,
+	end: 115,
+	"page down": 117,
+	insert: 118,
+	delete: 119,
+	left: 113,
+	right: 114,
+	down: 116,
+	up: 111,
+	sleep: 150,
+	back: 166,
+	forward: 167,
+	"home key": 180,
+	favorites: 164,
+	email: 163,
+	play: 172,
+	stop: 174,
+	"vol down": 122,
+	"vol up": 123,
+	"track back": 173,
+	"track skip": 171
+};
+const NativeMapMac = {
+	0: 39,
+	1: 30,
+	2: 31,
+	3: 32,
+	4: 33,
+	5: 34,
+	6: 35,
+	7: 36,
+	8: 37,
+	9: 38,
+	a: 4,
+	s: 22,
+	d: 7,
+	f: 9,
+	h: 11,
+	g: 10,
+	z: 29,
+	x: 27,
+	c: 6,
+	v: 25,
+	b: 5,
+	q: 20,
+	w: 26,
+	e: 8,
+	r: 21,
+	y: 28,
+	t: 23,
+	"=": 46,
+	"-": 45,
+	"]": 48,
+	o: 18,
+	u: 24,
+	"[": 47,
+	i: 12,
+	p: 19,
+	l: 15,
+	j: 13,
+	"'": 52,
+	k: 14,
+	";": 51,
+	"\\": 49,
+	",": 54,
+	"/": 56,
+	n: 17,
+	m: 16,
+	".": 55,
+	"`": 53,
+	"numpad .": 99,
+	"numpad *": 85,
+	"numpad +": 87,
+	"numpad clear": 83,
+	"numpad /": 84,
+	"numpad enter": 88,
+	"numpad -": 86,
+	"numpad =": 103,
+	"numpad 0": 98,
+	"numpad 1": 89,
+	"numpad 2": 90,
+	"numpad 3": 91,
+	"numpad 4": 92,
+	"numpad 5": 93,
+	"numpad 6": 94,
+	"numpad 7": 95,
+	"numpad 8": 96,
+	"numpad 9": 97,
+	enter: 40,
+	tab: 43,
+	space: 44,
+	backspace: 42,
+	esc: 41,
+	meta: 227,
+	cmd: 227,
+	shift: 225,
+	"caps lock": 57,
+	alt: 226,
+	ctrl: 224,
+	"right shift": 229,
+	"right alt": 230,
+	"right ctrl": 228,
+	"right meta": 231,
+	f17: 108,
+	f18: 109,
+	f19: 110,
+	f20: 111,
+	f21: 112,
+	f22: 113,
+	f23: 114,
+	f24: 115,
+	f5: 62,
+	f6: 63,
+	f7: 64,
+	f3: 60,
+	f8: 65,
+	f9: 66,
+	f11: 68,
+	f13: 104,
+	f16: 107,
+	f14: 105,
+	f10: 67,
+	f12: 69,
+	f15: 106,
+	home: 74,
+	"page up": 75,
+	del: 76,
+	f4: 61,
+	end: 77,
+	f2: 59,
+	"page down": 78,
+	f1: 58,
+	left: 80,
+	right: 79,
+	down: 81,
+	up: 82
+};
+const NativeMapWindows = {
+	0: 48,
+	1: 49,
+	2: 50,
+	3: 51,
+	4: 52,
+	5: 53,
+	6: 54,
+	7: 55,
+	8: 56,
+	9: 57,
+	a: 65,
+	s: 83,
+	d: 68,
+	f: 70,
+	h: 72,
+	g: 71,
+	z: 90,
+	x: 88,
+	c: 67,
+	v: 86,
+	b: 66,
+	q: 81,
+	w: 87,
+	e: 69,
+	r: 82,
+	y: 89,
+	t: 84,
+	"=": 187,
+	"-": 189,
+	"]": 221,
+	o: 79,
+	u: 85,
+	"[": 219,
+	i: 73,
+	p: 80,
+	l: 76,
+	j: 74,
+	k: 75,
+	";": 186,
+	",": 188,
+	"/": 191,
+	n: 78,
+	m: 77,
+	".": 190,
+	"numpad .": 110,
+	"numpad *": 106,
+	"numpad +": 107,
+	"numpad clear": 144,
+	"numpad /": 111,
+	"numpad -": 109,
+	"numpad =": 226,
+	"numpad 0": 96,
+	"numpad 1": 97,
+	"numpad 2": 98,
+	"numpad 3": 99,
+	"numpad 4": 100,
+	"numpad 5": 101,
+	"numpad 6": 102,
+	"numpad 7": 103,
+	"numpad 8": 104,
+	"numpad 9": 105,
+	enter: 13,
+	tab: 9,
+	space: 32,
+	backspace: 8,
+	esc: 27,
+	meta: 91,
+	shift: 160,
+	"caps lock": 20,
+	alt: 164,
+	ctrl: 162,
+	"right shift": 161,
+	"right alt": 165,
+	"right ctrl": 163,
+	"right meta": 93,
+	f1: 112,
+	f2: 113,
+	f3: 114,
+	f4: 115,
+	f5: 116,
+	f6: 117,
+	f7: 118,
+	f8: 119,
+	f9: 120,
+	f10: 121,
+	f11: 122,
+	f12: 123,
+	f13: 124,
+	f14: 125,
+	f15: 126,
+	f16: 127,
+	f17: 128,
+	f18: 129,
+	f19: 130,
+	f20: 131,
+	f21: 132,
+	f22: 133,
+	f23: 134,
+	f24: 135,
+	home: 36,
+	"page up": 33,
+	del: 46,
+	end: 35,
+	"page down": 34,
+	left: 37,
+	right: 39,
+	down: 40,
+	up: 38,
+	insert: 45,
+	break: 19,
+	"scroll lock": 145,
+	"print screen": 44,
+	rewind: 177,
+	play: 179,
+	"fast forward": 176,
+	"^": 220,
+	"§": 220,
+	"½": 220,
+	plus: 192,
+	ž: 192,
+	"@": 192,
+	"|": 220,
+	"#": 222,
+	$: 222,
+	process: 229,
+	"·": 229,
+	ذ: 192,
+	"`": 192,
+	"¬": 223,
+	"\\": 220,
+	"'": 222
+};
+const invertMap = (map) => Object.entries(map).reduce((acc, [key, val]) => {
+	acc[val] = key;
+	return acc;
+}, {});
+const CodeToName = {
+	win32: invertMap(NativeMapWindows),
+	linux: invertMap(NativeMapLinux),
+	darwin: invertMap(NativeMapMac)
 };
 
 //#endregion
@@ -375,168 +768,108 @@ var import_web$39 = __toESM(require_web(), 1);
 var import_web$40 = __toESM(require_web(), 1);
 var import_web$41 = __toESM(require_web(), 1);
 var import_web$42 = __toESM(require_web(), 1);
-const _tmpl$$3 = /*#__PURE__*/ (0, import_web$33.template)(`<div><div></div><button><span></span></button></div>`, 8), _tmpl$2$3 = /*#__PURE__*/ (0, import_web$33.template)(`<div></div>`, 2);
-const { ui: { focusring: focusring$2 }, solid: { createSignal: createSignal$4, createEffect, onCleanup: onCleanup$2 } } = shelter;
-const specialCodes = {
-	win32: {
-		CTRL: 162,
-		RCTRL: 163,
-		ALT: 164,
-		RALT: 165,
-		SHIFT: 160,
-		RSHIFT: 161,
-		META: 91,
-		RMETA: 92
-	},
-	linux: {
-		CTRL: 37,
-		RCTRL: 105,
-		ALT: 64,
-		RALT: 113,
-		SHIFT: 50,
-		RSHIFT: 62,
-		META: 133,
-		RMETA: 134
-	},
-	darwin: {
-		CTRL: 224,
-		RCTRL: 224,
-		ALT: 226,
-		RALT: 230,
-		SHIFT: 225,
-		RSHIFT: 229,
-		META: 227,
-		RMETA: 231
-	}
-};
-const modifierLabels = {
-	win32: {
-		CTRL: "Ctrl",
-		RCTRL: "Right Ctrl",
-		ALT: "Alt",
-		RALT: "Right Alt",
-		SHIFT: "⇧",
-		RSHIFT: "Right ⇧",
-		META: "⊞",
-		RMETA: "Right ⊞"
-	},
-	linux: {
-		CTRL: "Ctrl",
-		RCTRL: "Right Ctrl",
-		ALT: "Alt",
-		RALT: "Right Alt",
-		SHIFT: "⇧",
-		RSHIFT: "Right ⇧",
-		META: "Super",
-		RMETA: "Right Super"
-	},
-	darwin: {
-		CTRL: "⌃",
-		RCTRL: "Right ⌃",
-		ALT: "⌥",
-		RALT: "Right ⌥",
-		SHIFT: "⇧",
-		RSHIFT: "Right ⇧",
-		META: "⌘",
-		RMETA: "Right ⌘"
-	}
+const _tmpl$$3 = /*#__PURE__*/ (0, import_web$33.template)(`<div><div></div><div><input type="text" readonly><span></span></div></div>`, 9), _tmpl$2$3 = /*#__PURE__*/ (0, import_web$33.template)(`<div></div>`, 2);
+const { ui: { focusring: focusring$2 }, solid: { createSignal: createSignal$4, createEffect, onCleanup: onCleanup$2, createUniqueId, onMount } } = shelter;
+const getDisplayFromCodes = (codes) => {
+	const platform = DiscordNative.process.platform;
+	const map = CodeToName[platform] || CodeToName.linux;
+	const isMac = platform === "darwin";
+	return codes.map((code) => {
+		let name = map[code];
+		if (!name) return `Unknown(${code})`;
+		name = name.toUpperCase();
+		if (isMac) {
+			const symbolMatch = MacSymbols.find(([text]) => text === name || text === name.replace(" ", ""));
+			if (symbolMatch) return symbolMatch[1];
+		} else {
+			if (name === "META") return "Win";
+			if (name === "RIGHT META") return "Right Win";
+			if (name.length > 1) {
+				name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+				name = name.replace(/\b\w/g, (l) => l.toUpperCase());
+			}
+		}
+		return name;
+	}).join(" + ");
 };
 function KeybindCapture({ keybind, setValid, setKeybind, setScancodes }) {
 	const [isCapturing, setIsCapturing] = createSignal$4(false);
-	let element;
-	const platform = DiscordNative.process.platform;
-	const getPlatformCodes = () => specialCodes[platform] || specialCodes.linux;
-	const getLabels = () => modifierLabels[platform] || modifierLabels.linux;
-	const handleKeyDown = (e) => {
-		e.preventDefault();
-		if (e.repeat) return;
-		const modifiers = [];
-		const modifiersCode = [];
-		const codes = getPlatformCodes();
-		const labels = getLabels();
-		if (e.ctrlKey) if (e.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-			modifiers.push(labels.RCTRL);
-			modifiersCode.push(codes.RCTRL);
-		} else {
-			modifiers.push(labels.CTRL);
-			modifiersCode.push(codes.CTRL);
-		}
-		if (e.altKey) if (e.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-			modifiers.push(labels.RALT);
-			modifiersCode.push(codes.RALT);
-		} else {
-			modifiers.push(labels.ALT);
-			modifiersCode.push(codes.ALT);
-		}
-		if (e.shiftKey) if (e.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-			modifiers.push(labels.RSHIFT);
-			modifiersCode.push(codes.RSHIFT);
-		} else {
-			modifiers.push(labels.SHIFT);
-			modifiersCode.push(codes.SHIFT);
-		}
-		if (e.metaKey) if (e.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) {
-			modifiers.push(labels.RMETA);
-			modifiersCode.push(codes.RMETA);
-		} else {
-			modifiers.push(labels.META);
-			modifiersCode.push(codes.META);
-		}
-		setValid(false);
-		if (modifiers.length === 0 && (e.key === "Escape" || e.key === "Enter")) {
-			setIsCapturing(false);
-			return;
-		}
-		const key = e.key.toUpperCase();
-		if (!modifiers.includes(key) && key !== "CONTROL" && key !== "ALT" && key !== "SHIFT" && key !== "META") {
-			modifiers.push(key);
-			modifiersCode.push(e.keyCode);
+	const inputId = createUniqueId();
+	let inputRef;
+	const handleNativeChange = (rawCombo) => {
+		if (!isCapturing()) return;
+		const codes = rawCombo.map((item) => item[1]);
+		if (codes && codes.length > 0) {
+			const displayString = getDisplayFromCodes(codes);
+			setScancodes(codes);
+			setKeybind(displayString);
 			setValid(true);
+			setIsCapturing(false);
 		}
-		setKeybind(modifiers.join(" + "));
-		setScancodes(modifiersCode);
 	};
-	createEffect(() => {
-		if (isCapturing()) element.addEventListener("keydown", handleKeyDown);
-else element.removeEventListener("keydown", handleKeyDown);
-		onCleanup$2(() => {
-			element.removeEventListener("keydown", handleKeyDown);
-		});
+	onMount(() => {
+		if (inputRef) {
+			const unregister = registerListenerElement(inputId, handleNativeChange);
+			onCleanup$2(() => {
+				if (unregister) unregister();
+			});
+		}
 	});
+	createEffect(() => {
+		if (isCapturing()) inputRef?.focus();
+else inputRef?.blur();
+	});
+	const handleClick = (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		setIsCapturing(!isCapturing());
+	};
+	const handleBlur = () => {
+		setIsCapturing(false);
+	};
 	return (() => {
-		const _el$ = (0, import_web$38.getNextElement)(_tmpl$$3), _el$2 = _el$.firstChild, _el$3 = _el$2.nextSibling, _el$4 = _el$3.firstChild;
-		const _ref$ = element;
-		typeof _ref$ === "function" ? (0, import_web$42.use)(_ref$, _el$) : element = _el$;
-		(0, import_web$40.insert)(_el$2, () => isCapturing() ? "Press keys or click to stop" : "Keybind");
-		(0, import_web$42.use)(focusring$2, _el$3, () => true);
-		_el$3.$$mousedown = () => setIsCapturing(!isCapturing());
-		(0, import_web$40.insert)(_el$4, () => keybind() || (isCapturing() ? "Waiting for input..." : "Click to set"));
-		(0, import_web$37.effect)((_p$) => {
-			const _v$ = style_default.label, _v$2 = {
-				[style_default.keybindButton]: true,
-				[style_default.capturing]: isCapturing()
-			};
-			_v$ !== _p$._v$ && (0, import_web$36.className)(_el$2, _p$._v$ = _v$);
-			_p$._v$2 = (0, import_web$35.classList)(_el$3, _v$2, _p$._v$2);
+		const _el$ = (0, import_web$36.getNextElement)(_tmpl$$3), _el$2 = _el$.firstChild, _el$3 = _el$2.nextSibling, _el$4 = _el$3.firstChild, _el$5 = _el$4.nextSibling;
+		(0, import_web$41.insert)(_el$2, () => isCapturing() ? "Press keys to record" : "Keybind");
+		_el$3.$$click = handleClick;
+		_el$4.addEventListener("blur", handleBlur);
+		const _ref$ = inputRef;
+		typeof _ref$ === "function" ? (0, import_web$39.use)(_ref$, _el$4) : inputRef = _el$4;
+		(0, import_web$40.setAttribute)(_el$4, "id", inputId);
+		_el$4.style.setProperty("position", "absolute");
+		_el$4.style.setProperty("opacity", "0");
+		_el$4.style.setProperty("width", "1px");
+		_el$4.style.setProperty("height", "1px");
+		_el$4.style.setProperty("cursor", "none");
+		_el$4.style.setProperty("pointer-events", "auto");
+		(0, import_web$41.insert)(_el$5, () => keybind() || (isCapturing() ? "Waiting for input..." : "Click to set"));
+		(0, import_web$38.effect)((_p$) => {
+			const _v$ = style_default.container, _v$2 = style_default.label, _v$3 = `${style_default.keybindButton} ${isCapturing() ? style_default.capturing : ""}`, _v$4 = isCapturing() ? "Waiting for input..." : "Click to set";
+			_v$ !== _p$._v$ && (0, import_web$35.className)(_el$, _p$._v$ = _v$);
+			_v$2 !== _p$._v$2 && (0, import_web$35.className)(_el$2, _p$._v$2 = _v$2);
+			_v$3 !== _p$._v$3 && (0, import_web$35.className)(_el$3, _p$._v$3 = _v$3);
+			_v$4 !== _p$._v$4 && (0, import_web$40.setAttribute)(_el$4, "placeholder", _p$._v$4 = _v$4);
 			return _p$;
 		}, {
 			_v$: undefined,
-			_v$2: undefined
+			_v$2: undefined,
+			_v$3: undefined,
+			_v$4: undefined
 		});
-		(0, import_web$39.runHydrationEvents)();
+		(0, import_web$38.effect)(() => _el$4.value = keybind() || "");
+		(0, import_web$37.runHydrationEvents)();
 		return _el$;
 	})();
 }
 function KeybindDisplayOnly({ keybind }) {
 	return (() => {
-		const _el$5 = (0, import_web$38.getNextElement)(_tmpl$2$3);
-		_el$5.style.setProperty("cursor", "default");
-		(0, import_web$40.insert)(_el$5, keybind);
-		(0, import_web$37.effect)(() => (0, import_web$36.className)(_el$5, style_default.keybindButton));
-		return _el$5;
+		const _el$6 = (0, import_web$36.getNextElement)(_tmpl$2$3);
+		_el$6.style.setProperty("cursor", "default");
+		(0, import_web$41.insert)(_el$6, keybind);
+		(0, import_web$38.effect)(() => (0, import_web$35.className)(_el$6, style_default.keybindButton));
+		return _el$6;
 	})();
 }
-(0, import_web$34.delegateEvents)(["mousedown"]);
+(0, import_web$34.delegateEvents)(["click"]);
 
 //#endregion
 //#region plugins/soundboardHotkeys/components/soundPreview.jsx
