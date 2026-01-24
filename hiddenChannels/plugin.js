@@ -109,15 +109,15 @@ shelter.plugin.scoped.ui.injectCss(`.ccAoOa_hiddenChannel > div > div > svg > pa
 }
 `);
 var style_default = {
+	"headerBar": "ccAoOa_headerBar",
+	"divider": "ccAoOa_divider",
+	"topicModal": "ccAoOa_topicModal",
+	"channelTitle": "ccAoOa_channelTitle",
 	"topic": "ccAoOa_topic",
+	"mainBody": "ccAoOa_mainBody",
 	"bold": "ccAoOa_bold",
 	"topicWrapper": "ccAoOa_topicWrapper",
-	"topicModal": "ccAoOa_topicModal",
-	"divider": "ccAoOa_divider",
-	"channelTitle": "ccAoOa_channelTitle",
-	"hiddenChannel": "ccAoOa_hiddenChannel",
-	"mainBody": "ccAoOa_mainBody",
-	"headerBar": "ccAoOa_headerBar"
+	"hiddenChannel": "ccAoOa_hiddenChannel"
 };
 
 //#endregion

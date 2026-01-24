@@ -488,52 +488,52 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadModal {
 }
 `);
 var modal_jsx_default = {
-	"disabled": "-bMcgq_disabled",
 	"uploadProgressSize": "-bMcgq_uploadProgressSize",
-	"previewArea": "-bMcgq_previewArea",
-	"uploadProgressName": "-bMcgq_uploadProgressName",
-	"emptyState": "-bMcgq_emptyState",
-	"uploadProgressBarContainer": "-bMcgq_uploadProgressBarContainer",
-	"uploadsSectionHeader": "-bMcgq_uploadsSectionHeader",
-	"uploadModal": "-bMcgq_uploadModal",
-	"dashboardItem": "-bMcgq_dashboardItem",
-	"previewItemInfo": "-bMcgq_previewItemInfo",
-	"sortControls": "-bMcgq_sortControls",
-	"removeButton": "-bMcgq_removeButton",
-	"uploadsList": "-bMcgq_uploadsList",
-	"sortButtonActive": "-bMcgq_sortButtonActive",
-	"uploadProgressBar": "-bMcgq_uploadProgressBar",
-	"headerProgress": "-bMcgq_headerProgress",
-	"uploadProgressItem": "-bMcgq_uploadProgressItem",
-	"uploadsSection": "-bMcgq_uploadsSection",
-	"uploadProgressInfo": "-bMcgq_uploadProgressInfo",
-	"uploadArea": "-bMcgq_uploadArea",
-	"headerProgressText": "-bMcgq_headerProgressText",
-	"uploadAreaContent": "-bMcgq_uploadAreaContent",
-	"pendingSection": "-bMcgq_pendingSection",
-	"thumbnailLoading": "-bMcgq_thumbnailLoading",
-	"spin": "-bMcgq_spin",
-	"dashboardButton": "-bMcgq_dashboardButton",
-	"thumbnailContainer": "-bMcgq_thumbnailContainer",
-	"deleting": "-bMcgq_deleting",
-	"previewIcon": "-bMcgq_previewIcon",
-	"fileMeta": "-bMcgq_fileMeta",
-	"headerContent": "-bMcgq_headerContent",
-	"previewItem": "-bMcgq_previewItem",
-	"previewImage": "-bMcgq_previewImage",
-	"pendingSectionHeader": "-bMcgq_pendingSectionHeader",
-	"uploadProgressStatus": "-bMcgq_uploadProgressStatus",
 	"deletingOverlay": "-bMcgq_deletingOverlay",
 	"dashboardControls": "-bMcgq_dashboardControls",
-	"replacedButton": "-bMcgq_replacedButton",
-	"statsBar": "-bMcgq_statsBar",
-	"dragOver": "-bMcgq_dragOver",
-	"fileName": "-bMcgq_fileName",
-	"sortButton": "-bMcgq_sortButton",
+	"uploadProgressInfo": "-bMcgq_uploadProgressInfo",
+	"uploadsSectionHeader": "-bMcgq_uploadsSectionHeader",
+	"previewImage": "-bMcgq_previewImage",
+	"uploadArea": "-bMcgq_uploadArea",
 	"uploading": "-bMcgq_uploading",
-	"loadingContainer": "-bMcgq_loadingContainer",
+	"uploadProgressStatus": "-bMcgq_uploadProgressStatus",
+	"uploadsList": "-bMcgq_uploadsList",
+	"statsBar": "-bMcgq_statsBar",
+	"previewIcon": "-bMcgq_previewIcon",
+	"uploadModal": "-bMcgq_uploadModal",
+	"thumbnailContainer": "-bMcgq_thumbnailContainer",
+	"previewItemInfo": "-bMcgq_previewItemInfo",
+	"headerContent": "-bMcgq_headerContent",
+	"disabled": "-bMcgq_disabled",
 	"spinner": "-bMcgq_spinner",
-	"footer": "-bMcgq_footer"
+	"headerProgressText": "-bMcgq_headerProgressText",
+	"uploadProgressName": "-bMcgq_uploadProgressName",
+	"pendingSectionHeader": "-bMcgq_pendingSectionHeader",
+	"removeButton": "-bMcgq_removeButton",
+	"previewArea": "-bMcgq_previewArea",
+	"fileMeta": "-bMcgq_fileMeta",
+	"loadingContainer": "-bMcgq_loadingContainer",
+	"uploadsSection": "-bMcgq_uploadsSection",
+	"previewItem": "-bMcgq_previewItem",
+	"fileName": "-bMcgq_fileName",
+	"sortControls": "-bMcgq_sortControls",
+	"sortButtonActive": "-bMcgq_sortButtonActive",
+	"emptyState": "-bMcgq_emptyState",
+	"footer": "-bMcgq_footer",
+	"dashboardButton": "-bMcgq_dashboardButton",
+	"headerProgress": "-bMcgq_headerProgress",
+	"uploadProgressItem": "-bMcgq_uploadProgressItem",
+	"dashboardItem": "-bMcgq_dashboardItem",
+	"uploadAreaContent": "-bMcgq_uploadAreaContent",
+	"uploadProgressBar": "-bMcgq_uploadProgressBar",
+	"deleting": "-bMcgq_deleting",
+	"dragOver": "-bMcgq_dragOver",
+	"uploadProgressBarContainer": "-bMcgq_uploadProgressBarContainer",
+	"pendingSection": "-bMcgq_pendingSection",
+	"thumbnailLoading": "-bMcgq_thumbnailLoading",
+	"sortButton": "-bMcgq_sortButton",
+	"spin": "-bMcgq_spin",
+	"replacedButton": "-bMcgq_replacedButton"
 };
 
 //#endregion
@@ -31345,6 +31345,14 @@ const settings = () => {
 (0, import_web$1.delegateEvents)(["click"]);
 
 //#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js
+var event_streams_exports = {};
+__export(event_streams_exports, { EventStreamSerde: () => EventStreamSerde });
+var init_event_streams = __esm({ "node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js"() {
+	init_EventStreamSerde();
+} });
+
+//#endregion
 //#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/EventStreamSerde.js
 var EventStreamSerde;
 var init_EventStreamSerde = __esm({ "node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/EventStreamSerde.js"() {
@@ -31539,14 +31547,6 @@ else if (payloadSchema.isStringSchema()) explicitPayloadContentType = "text/plai
 			};
 		}
 	};
-} });
-
-//#endregion
-//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js
-var event_streams_exports = {};
-__export(event_streams_exports, { EventStreamSerde: () => EventStreamSerde });
-var init_event_streams = __esm({ "node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js"() {
-	init_EventStreamSerde();
 } });
 
 //#endregion
