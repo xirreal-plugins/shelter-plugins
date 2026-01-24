@@ -488,52 +488,52 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadModal {
 }
 `);
 var modal_jsx_default = {
-	"uploadProgressSize": "-bMcgq_uploadProgressSize",
-	"deletingOverlay": "-bMcgq_deletingOverlay",
-	"dashboardControls": "-bMcgq_dashboardControls",
+	"spinner": "-bMcgq_spinner",
+	"uploadProgressName": "-bMcgq_uploadProgressName",
 	"uploadProgressInfo": "-bMcgq_uploadProgressInfo",
-	"uploadsSectionHeader": "-bMcgq_uploadsSectionHeader",
+	"emptyState": "-bMcgq_emptyState",
+	"dashboardItem": "-bMcgq_dashboardItem",
+	"dashboardControls": "-bMcgq_dashboardControls",
+	"uploadProgressItem": "-bMcgq_uploadProgressItem",
 	"previewImage": "-bMcgq_previewImage",
-	"uploadArea": "-bMcgq_uploadArea",
-	"uploading": "-bMcgq_uploading",
-	"uploadProgressStatus": "-bMcgq_uploadProgressStatus",
-	"uploadsList": "-bMcgq_uploadsList",
-	"statsBar": "-bMcgq_statsBar",
-	"previewIcon": "-bMcgq_previewIcon",
+	"uploadProgressSize": "-bMcgq_uploadProgressSize",
+	"uploadProgressBar": "-bMcgq_uploadProgressBar",
+	"previewItem": "-bMcgq_previewItem",
+	"disabled": "-bMcgq_disabled",
 	"uploadModal": "-bMcgq_uploadModal",
 	"thumbnailContainer": "-bMcgq_thumbnailContainer",
-	"previewItemInfo": "-bMcgq_previewItemInfo",
-	"headerContent": "-bMcgq_headerContent",
-	"disabled": "-bMcgq_disabled",
-	"spinner": "-bMcgq_spinner",
-	"headerProgressText": "-bMcgq_headerProgressText",
-	"uploadProgressName": "-bMcgq_uploadProgressName",
-	"pendingSectionHeader": "-bMcgq_pendingSectionHeader",
-	"removeButton": "-bMcgq_removeButton",
 	"previewArea": "-bMcgq_previewArea",
-	"fileMeta": "-bMcgq_fileMeta",
-	"loadingContainer": "-bMcgq_loadingContainer",
-	"uploadsSection": "-bMcgq_uploadsSection",
-	"previewItem": "-bMcgq_previewItem",
-	"fileName": "-bMcgq_fileName",
-	"sortControls": "-bMcgq_sortControls",
-	"sortButtonActive": "-bMcgq_sortButtonActive",
-	"emptyState": "-bMcgq_emptyState",
-	"footer": "-bMcgq_footer",
-	"dashboardButton": "-bMcgq_dashboardButton",
-	"headerProgress": "-bMcgq_headerProgress",
-	"uploadProgressItem": "-bMcgq_uploadProgressItem",
-	"dashboardItem": "-bMcgq_dashboardItem",
 	"uploadAreaContent": "-bMcgq_uploadAreaContent",
-	"uploadProgressBar": "-bMcgq_uploadProgressBar",
-	"deleting": "-bMcgq_deleting",
-	"dragOver": "-bMcgq_dragOver",
-	"uploadProgressBarContainer": "-bMcgq_uploadProgressBarContainer",
-	"pendingSection": "-bMcgq_pendingSection",
+	"previewItemInfo": "-bMcgq_previewItemInfo",
 	"thumbnailLoading": "-bMcgq_thumbnailLoading",
-	"sortButton": "-bMcgq_sortButton",
+	"sortButtonActive": "-bMcgq_sortButtonActive",
+	"dashboardButton": "-bMcgq_dashboardButton",
+	"uploadProgressStatus": "-bMcgq_uploadProgressStatus",
+	"uploadsList": "-bMcgq_uploadsList",
+	"pendingSection": "-bMcgq_pendingSection",
+	"headerProgress": "-bMcgq_headerProgress",
+	"headerProgressText": "-bMcgq_headerProgressText",
+	"footer": "-bMcgq_footer",
+	"pendingSectionHeader": "-bMcgq_pendingSectionHeader",
+	"dragOver": "-bMcgq_dragOver",
+	"uploading": "-bMcgq_uploading",
+	"uploadArea": "-bMcgq_uploadArea",
+	"fileName": "-bMcgq_fileName",
+	"previewIcon": "-bMcgq_previewIcon",
+	"headerContent": "-bMcgq_headerContent",
+	"fileMeta": "-bMcgq_fileMeta",
+	"sortControls": "-bMcgq_sortControls",
 	"spin": "-bMcgq_spin",
-	"replacedButton": "-bMcgq_replacedButton"
+	"replacedButton": "-bMcgq_replacedButton",
+	"uploadsSectionHeader": "-bMcgq_uploadsSectionHeader",
+	"deletingOverlay": "-bMcgq_deletingOverlay",
+	"loadingContainer": "-bMcgq_loadingContainer",
+	"statsBar": "-bMcgq_statsBar",
+	"sortButton": "-bMcgq_sortButton",
+	"removeButton": "-bMcgq_removeButton",
+	"deleting": "-bMcgq_deleting",
+	"uploadsSection": "-bMcgq_uploadsSection",
+	"uploadProgressBarContainer": "-bMcgq_uploadProgressBarContainer"
 };
 
 //#endregion
@@ -31345,14 +31345,6 @@ const settings = () => {
 (0, import_web$1.delegateEvents)(["click"]);
 
 //#endregion
-//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js
-var event_streams_exports = {};
-__export(event_streams_exports, { EventStreamSerde: () => EventStreamSerde });
-var init_event_streams = __esm({ "node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js"() {
-	init_EventStreamSerde();
-} });
-
-//#endregion
 //#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/EventStreamSerde.js
 var EventStreamSerde;
 var init_EventStreamSerde = __esm({ "node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/EventStreamSerde.js"() {
@@ -31547,6 +31539,14 @@ else if (payloadSchema.isStringSchema()) explicitPayloadContentType = "text/plai
 			};
 		}
 	};
+} });
+
+//#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js
+var event_streams_exports = {};
+__export(event_streams_exports, { EventStreamSerde: () => EventStreamSerde });
+var init_event_streams = __esm({ "node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/event-streams/index.js"() {
+	init_EventStreamSerde();
 } });
 
 //#endregion

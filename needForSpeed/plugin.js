@@ -97,11 +97,11 @@ shelter.plugin.scoped.ui.injectCss(`._4OA9Bq_icon {
 }
 `);
 var index_jsx_default = {
-	"icon": "_4OA9Bq_icon",
-	"selectorWrapper": "_4OA9Bq_selectorWrapper",
-	"selector": "_4OA9Bq_selector",
 	"item": "_4OA9Bq_item",
-	"active": "_4OA9Bq_active"
+	"icon": "_4OA9Bq_icon",
+	"active": "_4OA9Bq_active",
+	"selectorWrapper": "_4OA9Bq_selectorWrapper",
+	"selector": "_4OA9Bq_selector"
 };
 
 //#endregion

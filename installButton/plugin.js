@@ -135,15 +135,15 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
 var index_jsx_default = {
 	"description": "eeurUa_description",
 	"divider": "eeurUa_divider",
-	"alignRight": "eeurUa_alignRight",
-	"card": "eeurUa_card",
-	"author": "eeurUa_author",
-	"header": "eeurUa_header",
 	"content": "eeurUa_content",
-	"title": "eeurUa_title",
-	"copyLink": "eeurUa_copyLink",
+	"header": "eeurUa_header",
+	"card": "eeurUa_card",
 	"icon": "eeurUa_icon",
-	"copied": "eeurUa_copied"
+	"copyLink": "eeurUa_copyLink",
+	"author": "eeurUa_author",
+	"copied": "eeurUa_copied",
+	"title": "eeurUa_title",
+	"alignRight": "eeurUa_alignRight"
 };
 
 //#endregion
@@ -310,10 +310,21 @@ function handleDispatch(payload) {
 				},
 				url
 			});
-			element.className = "";
-			element.style.all = "unset";
 			element.style.display = "none";
 			element.insertAdjacentElement("afterend", card);
+			const id = element.parentElement.id.split("-").pop();
+			const accessories = document.querySelector(`[id="message-accessories-${id}"]`);
+			if (accessories) {
+				accessories.dataset.instbtn = 1;
+				accessories.style.display = "none";
+				return;
+			}
+			const unobserve = observeDom(`[id="message-accessories-${id}"]`, (embed) => {
+				embed.dataset.instbtn = 1;
+				embed.style.display = "none";
+				unobserve();
+			});
+			setTimeout(unobserve, 5e3);
 		} catch (e) {
 			console.error(e);
 		}
@@ -400,10 +411,12 @@ function onLoad() {
 }
 function onUnload() {
 	trustedUrls.length = 0;
-	for (const element of document.querySelectorAll("[class*=messageContent] [class*=anchor][data-instbtn]")) {
+	for (const element of document.querySelectorAll("[data-instbtn]")) {
 		element.removeAttribute("data-instbtn");
+		element.style.display = "inline-block";
 		element.onclick = null;
 	}
+	for (const element of document.querySelectorAll(`.${index_jsx_default.card}`)) element.remove();
 	window.InstallButtonEnabled = false;
 }
 (0, import_web$1.delegateEvents)(["mousedown"]);
