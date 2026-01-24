@@ -43,148 +43,425 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 
 //#endregion
 //#region plugins/externalUpload/modal.jsx.scss
-shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
-  border: 2px dashed var(--interactive-text-default);
+shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadModal {
+  user-select: none;
+  width: 680px;
+  max-height: 80vh;
+}
+
+.-bMcgq_uploadModal > [class*="body"] {
+  overflow-y: hidden;
+}
+
+.-bMcgq_uploadModal > div > h2 {
+  width: 100%;
+}
+
+.-bMcgq_headerContent {
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  display: flex;
+}
+
+.-bMcgq_headerProgress {
+  background: var(--input-background-default);
+  border: 1px solid var(--input-border-default);
+  border-radius: 12px;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  font-size: 12px;
+  display: flex;
+}
+
+.-bMcgq_headerProgressText {
+  color: var(--text-muted);
+  min-width: 32px;
+  font-weight: 500;
+}
+
+.-bMcgq_uploadArea {
+  border: 2px dashed var(--input-border-default);
   text-align: center;
   cursor: pointer;
-  border-radius: 8px;
-  padding: 20px;
-  transition: all .3s;
+  background: var(--background-base-low);
+  border-radius: 12px;
+  padding: 32px 20px;
+  transition: all .2s;
 }
 
 .-bMcgq_uploadArea:hover, .-bMcgq_uploadArea.-bMcgq_dragOver {
-  background-color: var(--brand-15a);
-  border-color: #fff;
+  border-color: var(--brand-500);
+  background: var(--brand-15a);
 }
 
-.-bMcgq_previewItem:hover, .-bMcgq_dashboardItem:hover {
-  border-color: var(--border-subtle);
-  background-color: var(--brand-15a);
+.-bMcgq_uploadArea:hover:hover svg, .-bMcgq_uploadArea.-bMcgq_dragOver:hover svg {
+  color: var(--interactive-text-active) !important;
 }
 
 .-bMcgq_uploadArea.-bMcgq_uploading {
   pointer-events: none;
-  opacity: .7;
+  opacity: .6;
 }
 
-.-bMcgq_progressBar {
-  background-color: var(--background-base-low);
-  border-radius: 10px;
-  width: 100%;
-  height: 20px;
-  margin-top: 10px;
+.-bMcgq_uploadAreaContent {
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  display: flex;
+}
+
+.-bMcgq_uploadsSection {
+  margin-top: 16px;
+}
+
+.-bMcgq_uploadsSectionHeader {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  display: flex;
+}
+
+.-bMcgq_uploadsList {
+  flex-direction: column;
+  gap: 8px;
+  max-height: 150px;
+  padding-right: 8px;
+  display: flex;
+  overflow-y: auto;
+}
+
+.-bMcgq_uploadProgressItem {
+  background: var(--background-base-low);
+  border-radius: 6px;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 4px 12px;
+  padding: 8px 12px;
+  display: grid;
+}
+
+.-bMcgq_uploadProgressInfo {
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  display: flex;
+}
+
+.-bMcgq_uploadProgressName {
+  color: var(--text-normal);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13px;
   overflow: hidden;
 }
 
-.-bMcgq_progressFill {
-  background-color: var(--status-positive);
+.-bMcgq_uploadProgressSize {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  font-size: 11px;
+}
+
+.-bMcgq_uploadProgressBarContainer {
+  background: var(--background-surface-high);
+  border-radius: 2px;
+  grid-column: 1;
+  height: 4px;
+  overflow: hidden;
+}
+
+.-bMcgq_uploadProgressBar {
+  border-radius: 2px;
   height: 100%;
-  transition: width .3s ease-in-out;
+  transition: width .2s, background-color .2s;
+}
+
+.-bMcgq_uploadProgressStatus {
+  grid-area: 1 / 2 / 3;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+}
+
+.-bMcgq_pendingSection {
+  margin-top: 16px;
+}
+
+.-bMcgq_pendingSectionHeader {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  display: flex;
 }
 
 .-bMcgq_previewArea {
-  flex-wrap: wrap;
-  gap: 10px;
-  width: 110%;
-  margin-top: 20px;
-  display: flex;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  max-height: 50vh;
+  padding-right: 14px;
+  display: grid;
+  overflow-y: auto;
 }
 
 .-bMcgq_previewItem, .-bMcgq_dashboardItem {
+  background: var(--background-base-lower);
   border: 1px solid var(--border-subtle);
-  background-color: var(--background-surface-highest);
   border-radius: 8px;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 180px;
-  height: 180px;
-  margin-left: -3px;
-  padding: 8px;
-  transition: all .3s;
+  transition: all .2s;
   display: flex;
   position: relative;
   overflow: hidden;
+}
+
+.-bMcgq_previewItem:hover, .-bMcgq_dashboardItem:hover {
+  border-color: var(--brand-500);
+  background-color: var(--brand-15a);
+  box-shadow: 0 4px 12px #00000026;
+}
+
+.-bMcgq_previewItem.-bMcgq_deleting, .-bMcgq_dashboardItem.-bMcgq_deleting {
+  border-color: var(--status-danger);
+  background-color: color-mix(in srgb, var(--status-danger) 15%, transparent);
+  pointer-events: none;
+}
+
+.-bMcgq_previewItem.-bMcgq_deleting:hover, .-bMcgq_dashboardItem.-bMcgq_deleting:hover {
+  border-color: var(--status-danger);
+  background-color: color-mix(in srgb, var(--status-danger) 15%, transparent);
+  box-shadow: none;
+}
+
+.-bMcgq_previewItem.-bMcgq_deleting .-bMcgq_thumbnailContainer, .-bMcgq_dashboardItem.-bMcgq_deleting .-bMcgq_thumbnailContainer {
+  filter: saturate(.5) brightness(.9);
+}
+
+.-bMcgq_previewItem.-bMcgq_deleting .-bMcgq_thumbnailContainer .-bMcgq_deletingOverlay, .-bMcgq_dashboardItem.-bMcgq_deleting .-bMcgq_thumbnailContainer .-bMcgq_deletingOverlay {
+  filter: saturate(2) brightness(1.1);
+}
+
+.-bMcgq_previewItem.-bMcgq_deleting .-bMcgq_previewItemInfo, .-bMcgq_dashboardItem.-bMcgq_deleting .-bMcgq_previewItemInfo {
+  opacity: .7;
 }
 
 .-bMcgq_dashboardItem {
   cursor: pointer;
 }
 
-.-bMcgq_previewImage, .-bMcgq_previewVideo {
-  object-fit: contain;
-  border-radius: 8px;
-  max-width: 100%;
-  max-height: 100px;
+.-bMcgq_thumbnailContainer {
+  background: var(--background-surface-highest);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.-bMcgq_deletingOverlay {
+  z-index: 1;
+  background: #ed42454d;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  inset: 0;
+}
+
+.-bMcgq_deletingOverlay .-bMcgq_spinner {
+  border-color: #ed42454d;
+  border-top-color: var(--status-danger);
+  opacity: 1;
+}
+
+.-bMcgq_previewImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .-bMcgq_previewIcon {
+  opacity: .8;
+  font-size: 36px;
+}
+
+.-bMcgq_thumbnailLoading {
   justify-content: center;
   align-items: center;
-  height: 120px;
-  font-size: 48px;
+  width: 100%;
+  height: 100%;
   display: flex;
 }
 
 .-bMcgq_previewItemInfo {
-  text-align: center;
-  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+  padding: 8px;
+}
+
+.-bMcgq_fileName {
+  color: var(--text-normal);
   white-space: nowrap;
-  width: 100%;
+  text-overflow: ellipsis;
+  margin: 0;
   font-size: 12px;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+.-bMcgq_fileMeta {
+  color: var(--text-muted);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 2px 0 0;
+  font-size: 11px;
   overflow: hidden;
 }
 
 .-bMcgq_removeButton {
-  color: var(--status-danger);
-  border: 1px solid color-mix(in srgb, var(--border-subtle) 30%, transparent);
-  background-color: color-mix(in srgb, color-mix(in srgb, var(--status-danger) 40%, var(--background-surface-high)) 40%, transparent);
   backdrop-filter: blur(4px);
+  width: 28px;
+  height: 28px;
+  color: var(--text-danger);
   cursor: pointer;
-  border-radius: 8px;
-  padding: 4px 5px 1px;
-  font-size: 12px;
-  transition: all .3s;
+  opacity: 0;
+  background: #0009;
+  border: none;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  transition: all .2s;
+  display: flex;
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: 6px;
+  right: 6px;
+}
+
+.-bMcgq_previewItem:hover .-bMcgq_removeButton, .-bMcgq_dashboardItem:hover .-bMcgq_removeButton {
+  opacity: 1;
 }
 
 .-bMcgq_removeButton:hover {
-  animation: .3s -bMcgq_shake;
+  background: var(--status-danger);
+  color: #fff;
   transform: scale(1.1);
 }
 
-@keyframes -bMcgq_shake {
-  0% {
-    transform: rotate(0);
-  }
+.-bMcgq_removeButton.-bMcgq_disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 
-  25% {
-    transform: rotate(5deg);
-  }
+.-bMcgq_dashboardControls {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  display: flex;
+}
 
-  50% {
-    transform: rotate(-5deg)scale(1.1);
-  }
+.-bMcgq_sortControls {
+  gap: 4px;
+  display: flex;
+}
 
-  75% {
-    transform: rotate(5deg)scale(1.1);
-  }
+.-bMcgq_sortButton {
+  cursor: pointer;
+  background: var(--control-secondary-background-default);
+  color: var(--control-secondary-text-default);
+  border: 1px solid var(--control-secondary-border-default);
+  border-radius: 4px;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+}
 
-  100% {
-    transform: rotate(0)scale(1.1);
+.-bMcgq_sortButton:hover {
+  background: var(--control-secondary-background-hover);
+  color: var(--control-secondary-text-hover);
+  border-color: var(--control-secondary-border-hover);
+}
+
+.-bMcgq_sortButton:active {
+  background: var(--control-secondary-background-active);
+  color: var(--control-secondary-text-active);
+  border-color: var(--control-secondary-border-active);
+}
+
+.-bMcgq_sortButtonActive {
+  background: var(--control-primary-background-default);
+  color: var(--control-primary-text-default);
+  border-color: var(--control-primary-border-default);
+}
+
+.-bMcgq_sortButtonActive:hover {
+  background: var(--control-primary-background-hover);
+  color: var(--control-primary-text-hover);
+  border-color: var(--control-primary-border-hover);
+}
+
+.-bMcgq_sortButtonActive:active {
+  background: var(--control-primary-background-active);
+  color: var(--control-primary-text-active);
+  border-color: var(--control-primary-border-active);
+}
+
+.-bMcgq_statsBar {
+  color: var(--text-muted);
+  justify-content: space-between;
+  margin-top: 12px;
+  padding: 8px 0;
+  display: flex;
+}
+
+.-bMcgq_loadingContainer {
+  color: var(--text-muted);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 48px;
+  display: flex;
+}
+
+.-bMcgq_spinner {
+  border: 2px solid var(--border-subtle);
+  border-top-color: var(--brand-500);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: .8s linear infinite -bMcgq_spin;
+}
+
+@keyframes -bMcgq_spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
-.-bMcgq_uploadModal {
-  user-select: none;
-  width: 645px;
+.-bMcgq_emptyState {
+  color: var(--text-muted);
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px;
+  display: flex;
 }
 
 .-bMcgq_footer {
   justify-content: flex-end;
-  gap: .5rem;
+  gap: 8px;
   display: flex;
 }
 
@@ -194,59 +471,69 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadArea {
 
 .-bMcgq_replacedButton {
   color: var(--interactive-text-default);
-  transform-origin: bottom;
+  cursor: pointer;
   background: none;
+  border: none;
+  border-radius: 4px;
+  justify-content: center;
   align-items: center;
+  padding: 4px;
+  transition: all .15s;
   display: flex;
 }
 
 .-bMcgq_replacedButton:hover {
-  color: var(--interactive-text-active);
-  animation: 1.2s ease-in-out -bMcgq_sway;
-}
-
-@keyframes -bMcgq_sway {
-  0% {
-    transform: rotate(0);
-  }
-
-  4% {
-    transform: rotate(0);
-  }
-
-  14% {
-    transform: rotate(5deg);
-  }
-
-  39% {
-    transform: rotate(-5deg);
-  }
-
-  41% {
-    transform: rotate(0);
-  }
+  color: var(--interactive-text-hover);
+  transform: scale(1.1);
 }
 `);
 var modal_jsx_default = {
-	"uploadArea": "-bMcgq_uploadArea",
-	"previewVideo": "-bMcgq_previewVideo",
-	"previewItem": "-bMcgq_previewItem",
-	"footer": "-bMcgq_footer",
-	"previewArea": "-bMcgq_previewArea",
-	"dashboardButton": "-bMcgq_dashboardButton",
-	"uploading": "-bMcgq_uploading",
-	"sway": "-bMcgq_sway",
-	"shake": "-bMcgq_shake",
-	"previewImage": "-bMcgq_previewImage",
-	"progressFill": "-bMcgq_progressFill",
-	"dragOver": "-bMcgq_dragOver",
+	"fileName": "-bMcgq_fileName",
+	"uploadAreaContent": "-bMcgq_uploadAreaContent",
+	"uploadsSectionHeader": "-bMcgq_uploadsSectionHeader",
+	"headerContent": "-bMcgq_headerContent",
+	"pendingSectionHeader": "-bMcgq_pendingSectionHeader",
+	"dashboardControls": "-bMcgq_dashboardControls",
+	"pendingSection": "-bMcgq_pendingSection",
 	"dashboardItem": "-bMcgq_dashboardItem",
-	"replacedButton": "-bMcgq_replacedButton",
-	"previewIcon": "-bMcgq_previewIcon",
-	"removeButton": "-bMcgq_removeButton",
-	"uploadModal": "-bMcgq_uploadModal",
+	"sortControls": "-bMcgq_sortControls",
 	"previewItemInfo": "-bMcgq_previewItemInfo",
-	"progressBar": "-bMcgq_progressBar"
+	"uploadModal": "-bMcgq_uploadModal",
+	"spinner": "-bMcgq_spinner",
+	"statsBar": "-bMcgq_statsBar",
+	"uploadArea": "-bMcgq_uploadArea",
+	"dashboardButton": "-bMcgq_dashboardButton",
+	"uploadProgressItem": "-bMcgq_uploadProgressItem",
+	"replacedButton": "-bMcgq_replacedButton",
+	"thumbnailContainer": "-bMcgq_thumbnailContainer",
+	"disabled": "-bMcgq_disabled",
+	"dragOver": "-bMcgq_dragOver",
+	"previewArea": "-bMcgq_previewArea",
+	"uploading": "-bMcgq_uploading",
+	"deletingOverlay": "-bMcgq_deletingOverlay",
+	"headerProgressText": "-bMcgq_headerProgressText",
+	"thumbnailLoading": "-bMcgq_thumbnailLoading",
+	"uploadsSection": "-bMcgq_uploadsSection",
+	"uploadProgressName": "-bMcgq_uploadProgressName",
+	"removeButton": "-bMcgq_removeButton",
+	"sortButtonActive": "-bMcgq_sortButtonActive",
+	"loadingContainer": "-bMcgq_loadingContainer",
+	"previewImage": "-bMcgq_previewImage",
+	"emptyState": "-bMcgq_emptyState",
+	"deleting": "-bMcgq_deleting",
+	"footer": "-bMcgq_footer",
+	"previewItem": "-bMcgq_previewItem",
+	"spin": "-bMcgq_spin",
+	"uploadProgressInfo": "-bMcgq_uploadProgressInfo",
+	"uploadProgressBarContainer": "-bMcgq_uploadProgressBarContainer",
+	"headerProgress": "-bMcgq_headerProgress",
+	"uploadsList": "-bMcgq_uploadsList",
+	"uploadProgressSize": "-bMcgq_uploadProgressSize",
+	"uploadProgressBar": "-bMcgq_uploadProgressBar",
+	"previewIcon": "-bMcgq_previewIcon",
+	"fileMeta": "-bMcgq_fileMeta",
+	"uploadProgressStatus": "-bMcgq_uploadProgressStatus",
+	"sortButton": "-bMcgq_sortButton"
 };
 
 //#endregion
@@ -882,7 +1169,7 @@ var ByteArrayCollector = class {
 
 //#endregion
 //#region node_modules/.pnpm/@smithy+util-stream@4.5.10/node_modules/@smithy/util-stream/dist-es/createBufferedReadableStream.js
-function createBufferedReadableStream(upstream, size, logger) {
+function createBufferedReadableStream(upstream, size, logger$1) {
 	const reader = upstream.getReader();
 	let streamBufferingLoggedWarning = false;
 	let bytesSeen = 0;
@@ -915,7 +1202,7 @@ else {
 				const newSize = merge(buffers, mode, chunk);
 				if (!streamBufferingLoggedWarning && bytesSeen > size * 2) {
 					streamBufferingLoggedWarning = true;
-					logger?.warn(`@smithy/util-stream - stream chunk size ${chunkSize} is below threshold of ${size}, automatically buffering.`);
+					logger$1?.warn(`@smithy/util-stream - stream chunk size ${chunkSize} is below threshold of ${size}, automatically buffering.`);
 				}
 				if (newSize >= size) controller.enqueue(flush(buffers, mode));
 else await pull(controller);
@@ -1702,6 +1989,70 @@ var TypeRegistry = class TypeRegistry {
 };
 
 //#endregion
+//#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/serde/parse-utils.js
+const expectNumber = (value) => {
+	if (value === null || value === undefined) return undefined;
+	if (typeof value === "string") {
+		const parsed = parseFloat(value);
+		if (!Number.isNaN(parsed)) {
+			if (String(parsed) !== String(value)) logger.warn(stackTraceWarning(`Expected number but observed string: ${value}`));
+			return parsed;
+		}
+	}
+	if (typeof value === "number") return value;
+	throw new TypeError(`Expected number, got ${typeof value}: ${value}`);
+};
+const MAX_FLOAT = Math.ceil(34028234663852886e22);
+const expectFloat32 = (value) => {
+	const expected = expectNumber(value);
+	if (expected !== undefined && !Number.isNaN(expected) && expected !== Infinity && expected !== -Infinity) {
+		if (Math.abs(expected) > MAX_FLOAT) throw new TypeError(`Expected 32-bit float, got ${value}`);
+	}
+	return expected;
+};
+const expectLong = (value) => {
+	if (value === null || value === undefined) return undefined;
+	if (Number.isInteger(value) && !Number.isNaN(value)) return value;
+	throw new TypeError(`Expected integer, got ${typeof value}: ${value}`);
+};
+const expectShort = (value) => expectSizedInt(value, 16);
+const expectByte = (value) => expectSizedInt(value, 8);
+const expectSizedInt = (value, size) => {
+	const expected = expectLong(value);
+	if (expected !== undefined && castInt(expected, size) !== expected) throw new TypeError(`Expected ${size}-bit integer, got ${value}`);
+	return expected;
+};
+const castInt = (value, size) => {
+	switch (size) {
+		case 32: return Int32Array.of(value)[0];
+		case 16: return Int16Array.of(value)[0];
+		case 8: return Int8Array.of(value)[0];
+	}
+};
+const strictParseFloat32 = (value) => {
+	if (typeof value == "string") return expectFloat32(parseNumber(value));
+	return expectFloat32(value);
+};
+const NUMBER_REGEX = /(-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?)|(-?Infinity)|(NaN)/g;
+const parseNumber = (value) => {
+	const matches = value.match(NUMBER_REGEX);
+	if (matches === null || matches[0].length !== value.length) throw new TypeError(`Expected real number, got implicit NaN`);
+	return parseFloat(value);
+};
+const strictParseShort = (value) => {
+	if (typeof value === "string") return expectShort(parseNumber(value));
+	return expectShort(value);
+};
+const strictParseByte = (value) => {
+	if (typeof value === "string") return expectByte(parseNumber(value));
+	return expectByte(value);
+};
+const stackTraceWarning = (message) => {
+	return String(new TypeError(message).stack || message).split("\n").slice(0, 5).filter((s$1) => !s$1.includes("stackTraceWarning")).join("\n");
+};
+const logger = { warn: console.warn };
+
+//#endregion
 //#region node_modules/.pnpm/@smithy+core@3.21.1/node_modules/@smithy/core/dist-es/submodules/serde/date-utils.js
 const DAYS = [
 	"Sun",
@@ -1745,6 +2096,99 @@ const RFC3339_WITH_OFFSET$1 = new RegExp(/^(\d{4})-(\d{2})-(\d{2})[tT](\d{2}):(\
 const IMF_FIXDATE$1 = new RegExp(/^(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun), (\d{2}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{4}) (\d{1,2}):(\d{2}):(\d{2})(?:\.(\d+))? GMT$/);
 const RFC_850_DATE$1 = new RegExp(/^(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), (\d{2})-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-(\d{2}) (\d{1,2}):(\d{2}):(\d{2})(?:\.(\d+))? GMT$/);
 const ASC_TIME$1 = new RegExp(/^(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) ( [1-9]|\d{2}) (\d{1,2}):(\d{2}):(\d{2})(?:\.(\d+))? (\d{4})$/);
+const parseRfc7231DateTime = (value) => {
+	if (value === null || value === undefined) return undefined;
+	if (typeof value !== "string") throw new TypeError("RFC-7231 date-times must be expressed as strings");
+	let match = IMF_FIXDATE$1.exec(value);
+	if (match) {
+		const [_, dayStr, monthStr, yearStr, hours, minutes, seconds, fractionalMilliseconds] = match;
+		return buildDate(strictParseShort(stripLeadingZeroes(yearStr)), parseMonthByShortName(monthStr), parseDateValue(dayStr, "day", 1, 31), {
+			hours,
+			minutes,
+			seconds,
+			fractionalMilliseconds
+		});
+	}
+	match = RFC_850_DATE$1.exec(value);
+	if (match) {
+		const [_, dayStr, monthStr, yearStr, hours, minutes, seconds, fractionalMilliseconds] = match;
+		return adjustRfc850Year(buildDate(parseTwoDigitYear(yearStr), parseMonthByShortName(monthStr), parseDateValue(dayStr, "day", 1, 31), {
+			hours,
+			minutes,
+			seconds,
+			fractionalMilliseconds
+		}));
+	}
+	match = ASC_TIME$1.exec(value);
+	if (match) {
+		const [_, monthStr, dayStr, hours, minutes, seconds, fractionalMilliseconds, yearStr] = match;
+		return buildDate(strictParseShort(stripLeadingZeroes(yearStr)), parseMonthByShortName(monthStr), parseDateValue(dayStr.trimLeft(), "day", 1, 31), {
+			hours,
+			minutes,
+			seconds,
+			fractionalMilliseconds
+		});
+	}
+	throw new TypeError("Invalid RFC-7231 date-time value");
+};
+const buildDate = (year$1, month, day, time$1) => {
+	const adjustedMonth = month - 1;
+	validateDayOfMonth(year$1, adjustedMonth, day);
+	return new Date(Date.UTC(year$1, adjustedMonth, day, parseDateValue(time$1.hours, "hour", 0, 23), parseDateValue(time$1.minutes, "minute", 0, 59), parseDateValue(time$1.seconds, "seconds", 0, 60), parseMilliseconds(time$1.fractionalMilliseconds)));
+};
+const parseTwoDigitYear = (value) => {
+	const thisYear = new Date().getUTCFullYear();
+	const valueInThisCentury = Math.floor(thisYear / 100) * 100 + strictParseShort(stripLeadingZeroes(value));
+	if (valueInThisCentury < thisYear) return valueInThisCentury + 100;
+	return valueInThisCentury;
+};
+const FIFTY_YEARS_IN_MILLIS = 15768e8;
+const adjustRfc850Year = (input) => {
+	if (input.getTime() - new Date().getTime() > FIFTY_YEARS_IN_MILLIS) return new Date(Date.UTC(input.getUTCFullYear() - 100, input.getUTCMonth(), input.getUTCDate(), input.getUTCHours(), input.getUTCMinutes(), input.getUTCSeconds(), input.getUTCMilliseconds()));
+	return input;
+};
+const parseMonthByShortName = (value) => {
+	const monthIdx = MONTHS.indexOf(value);
+	if (monthIdx < 0) throw new TypeError(`Invalid month: ${value}`);
+	return monthIdx + 1;
+};
+const DAYS_IN_MONTH = [
+	31,
+	28,
+	31,
+	30,
+	31,
+	30,
+	31,
+	31,
+	30,
+	31,
+	30,
+	31
+];
+const validateDayOfMonth = (year$1, month, day) => {
+	let maxDays = DAYS_IN_MONTH[month];
+	if (month === 1 && isLeapYear(year$1)) maxDays = 29;
+	if (day > maxDays) throw new TypeError(`Invalid day for ${MONTHS[month]} in ${year$1}: ${day}`);
+};
+const isLeapYear = (year$1) => {
+	return year$1 % 4 === 0 && (year$1 % 100 !== 0 || year$1 % 400 === 0);
+};
+const parseDateValue = (value, type, lower, upper) => {
+	const dateVal = strictParseByte(stripLeadingZeroes(value));
+	if (dateVal < lower || dateVal > upper) throw new TypeError(`${type} must be between ${lower} and ${upper}, inclusive`);
+	return dateVal;
+};
+const parseMilliseconds = (value) => {
+	if (value === null || value === undefined) return 0;
+	return strictParseFloat32("0." + value) * 1e3;
+};
+const stripLeadingZeroes = (value) => {
+	let idx = 0;
+	while (idx < value.length - 1 && value.charAt(idx) === "0") idx++;
+	if (idx === 0) return value;
+	return value.slice(idx);
+};
 
 //#endregion
 //#region node_modules/.pnpm/@smithy+uuid@1.1.0/node_modules/@smithy/uuid/dist-es/randomUUID.browser.js
@@ -3258,7 +3702,7 @@ else expandedMiddlewareList.push(...expandRelativeMiddlewareList(entry));
 		});
 		return expandedMiddlewareList;
 	};
-	const getMiddlewareList = (debug$1 = false) => {
+	const getMiddlewareList = (debug$2 = false) => {
 		const normalizedAbsoluteEntries = [];
 		const normalizedRelativeEntries = [];
 		const normalizedEntriesNameMap = {};
@@ -3284,7 +3728,7 @@ else expandedMiddlewareList.push(...expandRelativeMiddlewareList(entry));
 			if (entry.toMiddleware) {
 				const toMiddleware = normalizedEntriesNameMap[entry.toMiddleware];
 				if (toMiddleware === undefined) {
-					if (debug$1) return;
+					if (debug$2) return;
 					throw new Error(`${entry.toMiddleware} is not found when adding ` + `${getMiddlewareNameWithAliases(entry.name, entry.aliases)} ` + `middleware ${entry.relation} ${entry.toMiddleware}`);
 				}
 				if (entry.relation === "after") toMiddleware.after.push(entry);
@@ -3479,9 +3923,9 @@ var Command = class {
 	resolveMiddlewareWithContext(clientStack, configuration, options, { middlewareFn, clientName, commandName, inputFilterSensitiveLog, outputFilterSensitiveLog, smithyContext, additionalContext, CommandCtor }) {
 		for (const mw of middlewareFn.bind(this)(CommandCtor, clientStack, configuration, options)) this.middlewareStack.use(mw);
 		const stack = clientStack.concat(this.middlewareStack);
-		const { logger } = configuration;
+		const { logger: logger$1 } = configuration;
 		const handlerExecutionContext = {
-			logger,
+			logger: logger$1,
 			clientName,
 			commandName,
 			inputFilterSensitiveLog,
@@ -5542,7 +5986,7 @@ const getChecksum = async (body, { checksumAlgorithmFn, base64Encoder }) => base
 
 //#endregion
 //#region node_modules/.pnpm/@aws-sdk+middleware-flexible-checksums@3.972.1/node_modules/@aws-sdk/middleware-flexible-checksums/dist-es/validateChecksumFromResponse.js
-const validateChecksumFromResponse = async (response, { config: config$1, responseAlgorithms, logger }) => {
+const validateChecksumFromResponse = async (response, { config: config$1, responseAlgorithms, logger: logger$1 }) => {
 	const checksumAlgorithms = getChecksumAlgorithmListForResponse(responseAlgorithms);
 	const { body: responseBody, headers: responseHeaders } = response;
 	for (const algorithm of checksumAlgorithms) {
@@ -5554,7 +5998,7 @@ const validateChecksumFromResponse = async (response, { config: config$1, respon
 				checksumAlgorithmFn = selectChecksumAlgorithmFunction(algorithm, config$1);
 			} catch (error) {
 				if (algorithm === ChecksumAlgorithm$1.CRC64NVME) {
-					logger?.warn(`Skipping ${ChecksumAlgorithm$1.CRC64NVME} checksum validation: ${error.message}`);
+					logger$1?.warn(`Skipping ${ChecksumAlgorithm$1.CRC64NVME} checksum validation: ${error.message}`);
 					continue;
 				}
 				throw error;
@@ -5666,12 +6110,12 @@ const getHostHeaderPlugin = (options) => ({ applyToStack: (clientStack) => {
 const loggerMiddleware = () => (next, context) => async (args) => {
 	try {
 		const response = await next(args);
-		const { clientName, commandName, logger, dynamoDbDocumentClientOptions = {} } = context;
+		const { clientName, commandName, logger: logger$1, dynamoDbDocumentClientOptions = {} } = context;
 		const { overrideInputFilterSensitiveLog, overrideOutputFilterSensitiveLog } = dynamoDbDocumentClientOptions;
 		const inputFilterSensitiveLog = overrideInputFilterSensitiveLog ?? context.inputFilterSensitiveLog;
 		const outputFilterSensitiveLog = overrideOutputFilterSensitiveLog ?? context.outputFilterSensitiveLog;
 		const { $metadata,...outputWithoutMetadata } = response.output;
-		logger?.info?.({
+		logger$1?.info?.({
 			clientName,
 			commandName,
 			input: inputFilterSensitiveLog(args.input),
@@ -5680,10 +6124,10 @@ const loggerMiddleware = () => (next, context) => async (args) => {
 		});
 		return response;
 	} catch (error) {
-		const { clientName, commandName, logger, dynamoDbDocumentClientOptions = {} } = context;
+		const { clientName, commandName, logger: logger$1, dynamoDbDocumentClientOptions = {} } = context;
 		const { overrideInputFilterSensitiveLog } = dynamoDbDocumentClientOptions;
 		const inputFilterSensitiveLog = overrideInputFilterSensitiveLog ?? context.inputFilterSensitiveLog;
-		logger?.error?.({
+		logger$1?.error?.({
 			clientName,
 			commandName,
 			input: inputFilterSensitiveLog(args.input),
@@ -5828,6 +6272,37 @@ const regionRedirectMiddlewareOptions = {
 const getRegionRedirectMiddlewarePlugin = (clientConfig) => ({ applyToStack: (clientStack) => {
 	clientStack.add(regionRedirectMiddleware(clientConfig), regionRedirectMiddlewareOptions);
 	clientStack.addRelativeTo(regionRedirectEndpointMiddleware(clientConfig), regionRedirectEndpointMiddlewareOptions);
+} });
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+middleware-sdk-s3@3.972.1/node_modules/@aws-sdk/middleware-sdk-s3/dist-es/s3-expires-middleware.js
+const s3ExpiresMiddleware = (config$1) => {
+	return (next, context) => async (args) => {
+		const result = await next(args);
+		const { response } = result;
+		if (HttpResponse.isInstance(response)) {
+			if (response.headers.expires) {
+				response.headers.expiresstring = response.headers.expires;
+				try {
+					parseRfc7231DateTime(response.headers.expires);
+				} catch (e$2) {
+					context.logger?.warn(`AWS SDK Warning for ${context.clientName}::${context.commandName} response parsing (${response.headers.expires}): ${e$2}`);
+					delete response.headers.expires;
+				}
+			}
+		}
+		return result;
+	};
+};
+const s3ExpiresMiddlewareOptions = {
+	tags: ["S3"],
+	name: "s3ExpiresMiddleware",
+	override: true,
+	relation: "after",
+	toMiddleware: "deserializerMiddleware"
+};
+const getS3ExpiresMiddlewarePlugin = (clientConfig) => ({ applyToStack: (clientStack) => {
+	clientStack.addRelativeTo(s3ExpiresMiddleware(clientConfig), s3ExpiresMiddlewareOptions);
 } });
 
 //#endregion
@@ -6142,9 +6617,9 @@ function resolveUserAgentConfig(input) {
 		userAgentAppId: async () => {
 			const appId = await normalizedAppIdProvider();
 			if (!isValidUserAgentAppId(appId)) {
-				const logger = input.logger?.constructor?.name === "NoOpLogger" || !input.logger ? console : input.logger;
-				if (typeof appId !== "string") logger?.warn("userAgentAppId must be a string or undefined.");
-else if (appId.length > 50) logger?.warn("The provided userAgentAppId exceeds the maximum length of 50 characters.");
+				const logger$1 = input.logger?.constructor?.name === "NoOpLogger" || !input.logger ? console : input.logger;
+				if (typeof appId !== "string") logger$1?.warn("userAgentAppId must be a string or undefined.");
+else if (appId.length > 50) logger$1?.warn("The provided userAgentAppId exceeds the maximum length of 50 characters.");
 			}
 			return appId;
 		}
@@ -6564,7 +7039,7 @@ const group = {
 //#endregion
 //#region node_modules/.pnpm/@smithy+util-endpoints@3.2.8/node_modules/@smithy/util-endpoints/dist-es/resolveEndpoint.js
 const resolveEndpoint = (ruleSetObject, options) => {
-	const { endpointParams, logger } = options;
+	const { endpointParams, logger: logger$1 } = options;
 	const { parameters, rules } = ruleSetObject;
 	options.logger?.debug?.(`${debugId} Initial EndpointParams: ${toDebugString(endpointParams)}`);
 	const paramsWithDefault = Object.entries(parameters).filter(([, v$2]) => v$2.default != null).map(([k$1, v$2]) => [k$1, v$2.default]);
@@ -6573,7 +7048,7 @@ const resolveEndpoint = (ruleSetObject, options) => {
 	for (const requiredParam of requiredParams) if (endpointParams[requiredParam] == null) throw new EndpointError(`Missing required parameter: '${requiredParam}'`);
 	const endpoint = evaluateRules(rules, {
 		endpointParams,
-		logger,
+		logger: logger$1,
 		referenceRecord: {}
 	});
 	options.logger?.debug?.(`${debugId} Resolved endpoint: ${toDebugString(endpoint)}`);
@@ -21306,6 +21781,39 @@ var DeleteObjectCommand = class extends Command.classBuilder().ep({
 }).s("AmazonS3", "DeleteObject", {}).n("S3Client", "DeleteObjectCommand").sc(DeleteObject$).build() {};
 
 //#endregion
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/commands/HeadBucketCommand.js
+var HeadBucketCommand = class extends Command.classBuilder().ep({
+	...commonParams,
+	Bucket: {
+		type: "contextParams",
+		name: "Bucket"
+	}
+}).m(function(Command$1, cs$1, config$1, o$1) {
+	return [getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()), getThrow200ExceptionsPlugin(config$1)];
+}).s("AmazonS3", "HeadBucket", {}).n("S3Client", "HeadBucketCommand").sc(HeadBucket$).build() {};
+
+//#endregion
+//#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/commands/HeadObjectCommand.js
+var HeadObjectCommand = class extends Command.classBuilder().ep({
+	...commonParams,
+	Bucket: {
+		type: "contextParams",
+		name: "Bucket"
+	},
+	Key: {
+		type: "contextParams",
+		name: "Key"
+	}
+}).m(function(Command$1, cs$1, config$1, o$1) {
+	return [
+		getEndpointPlugin(config$1, Command$1.getEndpointParameterInstructions()),
+		getThrow200ExceptionsPlugin(config$1),
+		getSsecPlugin(config$1),
+		getS3ExpiresMiddlewarePlugin(config$1)
+	];
+}).s("AmazonS3", "HeadObject", {}).n("S3Client", "HeadObjectCommand").sc(HeadObject$).build() {};
+
+//#endregion
 //#region node_modules/.pnpm/@aws-sdk+client-s3@3.974.0/node_modules/@aws-sdk/client-s3/dist-es/commands/ListObjectsV2Command.js
 var ListObjectsV2Command = class extends Command.classBuilder().ep({
 	...commonParams,
@@ -24609,9 +25117,9 @@ var require__stream_readable = __commonJS({ "node_modules/.pnpm/readable-stream@
 		return Buffer$5.isBuffer(obj) || obj instanceof OurUint8Array;
 	}
 	var debugUtil = require_lib();
-	var debug;
-	if (debugUtil && debugUtil.debuglog) debug = debugUtil.debuglog("stream");
-else debug = function debug$1() {};
+	var debug$1;
+	if (debugUtil && debugUtil.debuglog) debug$1 = debugUtil.debuglog("stream");
+else debug$1 = function debug$2() {};
 	var BufferList = require_buffer_list();
 	var destroyImpl = require_destroy();
 	var _require = require_state(), getHighWaterMark = _require.getHighWaterMark;
@@ -24716,7 +25224,7 @@ else emitter._events[event] = [fn, emitter._events[event]];
 		return readableAddChunk(this, chunk, null, true, false);
 	};
 	function readableAddChunk(stream, chunk, encoding, addToFront, skipChunkCheck) {
-		debug("readableAddChunk", chunk);
+		debug$1("readableAddChunk", chunk);
 		var state = stream._readableState;
 		if (chunk === null) {
 			state.reading = false;
@@ -24814,13 +25322,13 @@ else return state.length;
 		return state.length;
 	}
 	Readable$1.prototype.read = function(n$1) {
-		debug("read", n$1);
+		debug$1("read", n$1);
 		n$1 = parseInt(n$1, 10);
 		var state = this._readableState;
 		var nOrig = n$1;
 		if (n$1 !== 0) state.emittedReadable = false;
 		if (n$1 === 0 && state.needReadable && ((state.highWaterMark !== 0 ? state.length >= state.highWaterMark : state.length > 0) || state.ended)) {
-			debug("read: emitReadable", state.length, state.ended);
+			debug$1("read: emitReadable", state.length, state.ended);
 			if (state.length === 0 && state.ended) endReadable(this);
 else emitReadable(this);
 			return null;
@@ -24831,16 +25339,16 @@ else emitReadable(this);
 			return null;
 		}
 		var doRead = state.needReadable;
-		debug("need readable", doRead);
+		debug$1("need readable", doRead);
 		if (state.length === 0 || state.length - n$1 < state.highWaterMark) {
 			doRead = true;
-			debug("length less than watermark", doRead);
+			debug$1("length less than watermark", doRead);
 		}
 		if (state.ended || state.reading) {
 			doRead = false;
-			debug("reading or ended", doRead);
+			debug$1("reading or ended", doRead);
 		} else if (doRead) {
-			debug("do read");
+			debug$1("do read");
 			state.reading = true;
 			state.sync = true;
 			if (state.length === 0) state.needReadable = true;
@@ -24866,7 +25374,7 @@ else ret = null;
 		return ret;
 	};
 	function onEofChunk(stream, state) {
-		debug("onEofChunk");
+		debug$1("onEofChunk");
 		if (state.ended) return;
 		if (state.decoder) {
 			var chunk = state.decoder.end();
@@ -24887,17 +25395,17 @@ else {
 	}
 	function emitReadable(stream) {
 		var state = stream._readableState;
-		debug("emitReadable", state.needReadable, state.emittedReadable);
+		debug$1("emitReadable", state.needReadable, state.emittedReadable);
 		state.needReadable = false;
 		if (!state.emittedReadable) {
-			debug("emitReadable", state.flowing);
+			debug$1("emitReadable", state.flowing);
 			state.emittedReadable = true;
 			process.nextTick(emitReadable_, stream);
 		}
 	}
 	function emitReadable_(stream) {
 		var state = stream._readableState;
-		debug("emitReadable_", state.destroyed, state.length, state.ended);
+		debug$1("emitReadable_", state.destroyed, state.length, state.ended);
 		if (!state.destroyed && (state.length || state.ended)) {
 			stream.emit("readable");
 			state.emittedReadable = false;
@@ -24914,7 +25422,7 @@ else {
 	function maybeReadMore_(stream, state) {
 		while (!state.reading && !state.ended && (state.length < state.highWaterMark || state.flowing && state.length === 0)) {
 			var len$1 = state.length;
-			debug("maybeReadMore read 0");
+			debug$1("maybeReadMore read 0");
 			stream.read(0);
 			if (len$1 === state.length) break;
 		}
@@ -24938,14 +25446,14 @@ else {
 				break;
 		}
 		state.pipesCount += 1;
-		debug("pipe count=%d opts=%j", state.pipesCount, pipeOpts);
+		debug$1("pipe count=%d opts=%j", state.pipesCount, pipeOpts);
 		var doEnd = (!pipeOpts || pipeOpts.end !== false) && dest !== process.stdout && dest !== process.stderr;
 		var endFn = doEnd ? onend$1 : unpipe;
 		if (state.endEmitted) process.nextTick(endFn);
 else src.once("end", endFn);
 		dest.on("unpipe", onunpipe);
 		function onunpipe(readable, unpipeInfo) {
-			debug("onunpipe");
+			debug$1("onunpipe");
 			if (readable === src) {
 				if (unpipeInfo && unpipeInfo.hasUnpiped === false) {
 					unpipeInfo.hasUnpiped = true;
@@ -24954,14 +25462,14 @@ else src.once("end", endFn);
 			}
 		}
 		function onend$1() {
-			debug("onend");
+			debug$1("onend");
 			dest.end();
 		}
 		var ondrain = pipeOnDrain(src);
 		dest.on("drain", ondrain);
 		var cleanedUp = false;
 		function cleanup() {
-			debug("cleanup");
+			debug$1("cleanup");
 			dest.removeListener("close", onclose);
 			dest.removeListener("finish", onfinish);
 			dest.removeListener("drain", ondrain);
@@ -24975,19 +25483,19 @@ else src.once("end", endFn);
 		}
 		src.on("data", ondata);
 		function ondata(chunk) {
-			debug("ondata");
+			debug$1("ondata");
 			var ret = dest.write(chunk);
-			debug("dest.write", ret);
+			debug$1("dest.write", ret);
 			if (ret === false) {
 				if ((state.pipesCount === 1 && state.pipes === dest || state.pipesCount > 1 && indexOf(state.pipes, dest) !== -1) && !cleanedUp) {
-					debug("false write response, pause", state.awaitDrain);
+					debug$1("false write response, pause", state.awaitDrain);
 					state.awaitDrain++;
 				}
 				src.pause();
 			}
 		}
 		function onerror(er) {
-			debug("onerror", er);
+			debug$1("onerror", er);
 			unpipe();
 			dest.removeListener("error", onerror);
 			if (EElistenerCount(dest, "error") === 0) errorOrDestroy(dest, er);
@@ -24999,18 +25507,18 @@ else src.once("end", endFn);
 		}
 		dest.once("close", onclose);
 		function onfinish() {
-			debug("onfinish");
+			debug$1("onfinish");
 			dest.removeListener("close", onclose);
 			unpipe();
 		}
 		dest.once("finish", onfinish);
 		function unpipe() {
-			debug("unpipe");
+			debug$1("unpipe");
 			src.unpipe(dest);
 		}
 		dest.emit("pipe", src);
 		if (!state.flowing) {
-			debug("pipe resume");
+			debug$1("pipe resume");
 			src.resume();
 		}
 		return dest;
@@ -25018,7 +25526,7 @@ else src.once("end", endFn);
 	function pipeOnDrain(src) {
 		return function pipeOnDrainFunctionResult() {
 			var state = src._readableState;
-			debug("pipeOnDrain", state.awaitDrain);
+			debug$1("pipeOnDrain", state.awaitDrain);
 			if (state.awaitDrain) state.awaitDrain--;
 			if (state.awaitDrain === 0 && EElistenerCount(src, "data")) {
 				state.flowing = true;
@@ -25067,7 +25575,7 @@ else src.once("end", endFn);
 				state.readableListening = state.needReadable = true;
 				state.flowing = false;
 				state.emittedReadable = false;
-				debug("on readable", state.length, state.reading);
+				debug$1("on readable", state.length, state.reading);
 				if (state.length) emitReadable(this);
 else if (!state.reading) process.nextTick(nReadingNextTick, this);
 			}
@@ -25092,13 +25600,13 @@ else if (!state.reading) process.nextTick(nReadingNextTick, this);
 else if (self$1.listenerCount("data") > 0) self$1.resume();
 	}
 	function nReadingNextTick(self$1) {
-		debug("readable nexttick read 0");
+		debug$1("readable nexttick read 0");
 		self$1.read(0);
 	}
 	Readable$1.prototype.resume = function() {
 		var state = this._readableState;
 		if (!state.flowing) {
-			debug("resume");
+			debug$1("resume");
 			state.flowing = !state.readableListening;
 			resume(this, state);
 		}
@@ -25112,7 +25620,7 @@ else if (self$1.listenerCount("data") > 0) self$1.resume();
 		}
 	}
 	function resume_(stream, state) {
-		debug("resume", state.reading);
+		debug$1("resume", state.reading);
 		if (!state.reading) stream.read(0);
 		state.resumeScheduled = false;
 		stream.emit("resume");
@@ -25120,9 +25628,9 @@ else if (self$1.listenerCount("data") > 0) self$1.resume();
 		if (state.flowing && !state.reading) stream.read(0);
 	}
 	Readable$1.prototype.pause = function() {
-		debug("call pause flowing=%j", this._readableState.flowing);
+		debug$1("call pause flowing=%j", this._readableState.flowing);
 		if (this._readableState.flowing !== false) {
-			debug("pause");
+			debug$1("pause");
 			this._readableState.flowing = false;
 			this.emit("pause");
 		}
@@ -25131,7 +25639,7 @@ else if (self$1.listenerCount("data") > 0) self$1.resume();
 	};
 	function flow(stream) {
 		var state = stream._readableState;
-		debug("flow", state.flowing);
+		debug$1("flow", state.flowing);
 		while (state.flowing && stream.read() !== null);
 	}
 	Readable$1.prototype.wrap = function(stream) {
@@ -25139,7 +25647,7 @@ else if (self$1.listenerCount("data") > 0) self$1.resume();
 		var state = this._readableState;
 		var paused = false;
 		stream.on("end", function() {
-			debug("wrapped end");
+			debug$1("wrapped end");
 			if (state.decoder && !state.ended) {
 				var chunk = state.decoder.end();
 				if (chunk && chunk.length) _this.push(chunk);
@@ -25147,7 +25655,7 @@ else if (self$1.listenerCount("data") > 0) self$1.resume();
 			_this.push(null);
 		});
 		stream.on("data", function(chunk) {
-			debug("wrapped data");
+			debug$1("wrapped data");
 			if (state.decoder) chunk = state.decoder.write(chunk);
 			if (state.objectMode && (chunk === null || chunk === undefined)) return;
 else if (!state.objectMode && (!chunk || !chunk.length)) return;
@@ -25164,7 +25672,7 @@ else if (!state.objectMode && (!chunk || !chunk.length)) return;
 		}(i$2);
 		for (var n$1 = 0; n$1 < kProxyEvents.length; n$1++) stream.on(kProxyEvents[n$1], this.emit.bind(this, kProxyEvents[n$1]));
 		this._read = function(n$2) {
-			debug("wrapped _read", n$2);
+			debug$1("wrapped _read", n$2);
 			if (paused) {
 				paused = false;
 				stream.resume();
@@ -25218,14 +25726,14 @@ else ret = state.buffer.concat(state.length);
 	}
 	function endReadable(stream) {
 		var state = stream._readableState;
-		debug("endReadable", state.endEmitted);
+		debug$1("endReadable", state.endEmitted);
 		if (!state.endEmitted) {
 			state.ended = true;
 			process.nextTick(endReadableNT, state, stream);
 		}
 	}
 	function endReadableNT(state, stream) {
-		debug("endReadableNT", state.endEmitted, state.length);
+		debug$1("endReadableNT", state.endEmitted, state.length);
 		if (!state.endEmitted && state.length === 0) {
 			state.endEmitted = true;
 			stream.readable = false;
@@ -29003,53 +29511,182 @@ async function e() {
 }
 
 //#endregion
+//#region plugins/externalUpload/state.js
+const { solid: { createSignal: createSignal$2, createRoot } } = shelter;
+const uploadState = createRoot(() => {
+	const [pendingFiles, setPendingFiles] = createSignal$2([]);
+	const [pendingPreviews, setPendingPreviews] = createSignal$2([]);
+	const [activeUploads, setActiveUploads] = createSignal$2(new Map());
+	const [overallProgress, setOverallProgress] = createSignal$2(0);
+	const [isUploading, setIsUploading] = createSignal$2(false);
+	const [dashboardFiles, setDashboardFiles] = createSignal$2([]);
+	const [dashboardLoading, setDashboardLoading] = createSignal$2(false);
+	const [dashboardLoaded, setDashboardLoaded] = createSignal$2(false);
+	const [searchQuery, setSearchQuery] = createSignal$2("");
+	const [sortBy, setSortBy] = createSignal$2("date");
+	const [sortOrder, setSortOrder] = createSignal$2("desc");
+	const [manifest, setManifest] = createSignal$2({});
+	return {
+		pendingFiles,
+		setPendingFiles,
+		pendingPreviews,
+		setPendingPreviews,
+		activeUploads,
+		setActiveUploads,
+		overallProgress,
+		setOverallProgress,
+		isUploading,
+		setIsUploading,
+		dashboardFiles,
+		setDashboardFiles,
+		dashboardLoading,
+		setDashboardLoading,
+		dashboardLoaded,
+		setDashboardLoaded,
+		searchQuery,
+		setSearchQuery,
+		sortBy,
+		setSortBy,
+		sortOrder,
+		setSortOrder,
+		manifest,
+		setManifest
+	};
+});
+function addPendingFiles(files$1) {
+	const { pendingFiles, setPendingFiles } = uploadState;
+	setPendingFiles([...pendingFiles(), ...files$1]);
+}
+function cancelUpload(fileId) {
+	const { activeUploads, setActiveUploads } = uploadState;
+	const uploads = activeUploads();
+	const upload = uploads.get(fileId);
+	if (upload && upload.abortController) {
+		upload.abortController.abort();
+		const newUploads = new Map(uploads);
+		newUploads.set(fileId, {
+			...upload,
+			status: "cancelled"
+		});
+		setActiveUploads(newUploads);
+	}
+}
+function cancelAllUploads() {
+	const { activeUploads, setActiveUploads, setIsUploading } = uploadState;
+	const uploads = activeUploads();
+	for (const [fileId, upload] of uploads) if (upload.abortController && upload.status === "uploading") upload.abortController.abort();
+	setActiveUploads(new Map());
+	setIsUploading(false);
+}
+function updateUploadProgress(fileId, progress, status = "uploading") {
+	const { activeUploads, setActiveUploads, setOverallProgress } = uploadState;
+	const uploads = new Map(activeUploads());
+	const upload = uploads.get(fileId);
+	if (upload) {
+		uploads.set(fileId, {
+			...upload,
+			progress,
+			status
+		});
+		setActiveUploads(uploads);
+		let totalProgress = 0;
+		let count = 0;
+		for (const [, u$1] of uploads) if (u$1.status !== "cancelled") {
+			totalProgress += u$1.progress;
+			count++;
+		}
+		setOverallProgress(count > 0 ? totalProgress / count : 0);
+	}
+}
+function resetUploadState() {
+	const { setActiveUploads, setOverallProgress, setIsUploading } = uploadState;
+	setActiveUploads(new Map());
+	setOverallProgress(0);
+	setIsUploading(false);
+}
+function invalidateDashboardCache() {
+	const { setDashboardLoaded } = uploadState;
+	setDashboardLoaded(false);
+}
+function getFilteredSortedFiles() {
+	const { dashboardFiles, searchQuery, sortBy, sortOrder, manifest } = uploadState;
+	let files$1 = dashboardFiles().filter((file) => !file.Key.startsWith(THUMB_PREFIX));
+	const manifestData = manifest();
+	const query = searchQuery().toLowerCase().trim();
+	if (query) files$1 = files$1.filter((file) => {
+		const meta = manifestData[file.Key];
+		const filename = meta?.filename || file.Key;
+		return filename.toLowerCase().includes(query);
+	});
+	const order = sortOrder() === "asc" ? 1 : -1;
+	const sortKey = sortBy();
+	files$1.sort((a$1, b$1) => {
+		switch (sortKey) {
+			case "name": {
+				const nameA = (manifestData[a$1.Key]?.filename || a$1.Key).toLowerCase();
+				const nameB = (manifestData[b$1.Key]?.filename || b$1.Key).toLowerCase();
+				return nameA.localeCompare(nameB) * order;
+			}
+			case "size": return (a$1.Size - b$1.Size) * order;
+			case "date":
+			default: return (new Date(a$1.LastModified) - new Date(b$1.LastModified)) * order;
+		}
+	});
+	return files$1;
+}
+function removeDashboardFile(fileKey) {
+	const { dashboardFiles, setDashboardFiles, manifest, setManifest } = uploadState;
+	setDashboardFiles(dashboardFiles().filter((f$1) => f$1.Key !== fileKey));
+	const newManifest = { ...manifest() };
+	delete newManifest[fileKey];
+	setManifest(newManifest);
+}
+function removePendingFile(index) {
+	const { pendingFiles, setPendingFiles, pendingPreviews, setPendingPreviews } = uploadState;
+	const previews = pendingPreviews();
+	if (previews[index]) revokeLocalPreviewUrl(previews[index]);
+	setPendingFiles(pendingFiles().filter((_, i$2) => i$2 !== index));
+	setPendingPreviews(previews.filter((_, i$2) => i$2 !== index));
+}
+function clearPendingFiles() {
+	const { setPendingFiles, pendingPreviews, setPendingPreviews } = uploadState;
+	pendingPreviews().forEach((url) => revokeLocalPreviewUrl(url));
+	setPendingFiles([]);
+	setPendingPreviews([]);
+}
+
+//#endregion
 //#region plugins/externalUpload/utils.js
-const previewSize = 256;
-async function getFilePreview(file, isImage, isVideo, publicUrl) {
-	const url = file.Key ? getUrl(file, publicUrl) : URL.createObjectURL(file);
-	if (isImage || file?.type?.startsWith("image/")) return new Promise((resolve) => {
-		const img = document.createElement("img");
-		img.crossOrigin = "anonymous";
-		img.src = url;
-		img.onload = () => {
-			const canvas = document.createElement("canvas");
-			const ctx = canvas.getContext("2d");
-			let scale = Math.min(previewSize / img.width, previewSize / img.height, 1);
-			canvas.width = img.width * scale;
-			canvas.height = img.height * scale;
-			ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-			URL.revokeObjectURL(img.src);
-			resolve(canvas.toDataURL("image/webp"));
-		};
-		img.onerror = () => resolve(null);
-	});
-	if (isVideo || file?.type?.startsWith("video/")) return new Promise((resolve) => {
-		const video = document.createElement("video");
-		video.crossOrigin = "anonymous";
-		video.preload = "metadata";
-		video.src = url;
-		video.onloadedmetadata = () => {
-			video.currentTime = 1;
-		};
-		video.onseeked = () => {
-			const canvas = document.createElement("canvas");
-			const ctx = canvas.getContext("2d");
-			let scale = Math.min(previewSize / video.videoWidth, previewSize / video.videoHeight, 1);
-			canvas.width = video.videoWidth * scale;
-			canvas.height = video.videoHeight * scale;
-			ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-			URL.revokeObjectURL(video.src);
-			resolve(canvas.toDataURL("image/webp"));
-		};
-		video.onerror = () => resolve(null);
-	});
-	return null;
+const { plugin: { store: store$1 } } = shelter;
+function debug(...args) {
+	if (store$1.debugLogging) console.log("[ExternalUpload]", ...args);
+}
+const PREVIEW_SIZE = 256;
+const THUMB_PREFIX = ".thumbs/";
+const MULTIPART_THRESHOLD = 5242880;
+const confirmedThumbnails = new Set();
+const loadedThumbnails = new Set();
+function markThumbnailLoaded(fileKey) {
+	loadedThumbnails.add(fileKey);
+}
+function isThumbnailLoaded(fileKey) {
+	return loadedThumbnails.has(fileKey);
 }
 function formatFileSize(bytes) {
 	if (bytes < 1024) return bytes + " bytes";
 else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + " KB";
 else if (bytes < 1073741824) return (bytes / 1048576).toFixed(1) + " MB";
 else return (bytes / 1073741824).toFixed(1) + " GB";
+}
+function formatDate(date$1) {
+	const options = {
+		year: "numeric",
+		month: "short",
+		day: "numeric",
+		hour: "numeric",
+		minute: "numeric"
+	};
+	return new Date(date$1).toLocaleDateString(undefined, options);
 }
 let s3Client = null;
 let BUCKET_NAME = null;
@@ -29070,75 +29707,456 @@ function updateS3Client(region, endpoint, accessKeyId, secretAccessKey, bucket) 
 	});
 	BUCKET_NAME = bucket;
 }
+async function testConnection() {
+	if (!s3Client || !BUCKET_NAME) return {
+		success: false,
+		error: "S3 client not configured"
+	};
+	try {
+		await s3Client.send(new HeadBucketCommand({ Bucket: BUCKET_NAME }));
+		return { success: true };
+	} catch (e$2) {
+		return {
+			success: false,
+			error: e$2.message || "Connection failed"
+		};
+	}
+}
 let hashPromise = null;
-async function getUUID(file) {
+async function getFileHash(file) {
 	const { create64 } = await (hashPromise ??= e());
 	return new Promise((resolve, reject) => {
 		const hash = create64();
 		const reader = file.stream().getReader();
 		function processChunk({ done: done$1, value }) {
 			if (done$1) {
-				const hashHex = hash.digest().toString("16");
-				const extension = file.name.substring(file.name.lastIndexOf("."));
-				resolve(`${hashHex}${extension}`);
+				const hashHex = hash.digest().toString(16).padStart(16, "0");
+				resolve(hashHex);
 				return;
 			}
 			hash.update(value);
-			reader.read().then(processChunk);
+			reader.read().then(processChunk).catch(reject);
 		}
 		reader.read().then(processChunk).catch(reject);
 	});
 }
-function getTotalUploadedSize(uploadedSizes) {
-	return Object.values(uploadedSizes).reduce((acc, size) => acc + size, 0);
+function getUrl(file, publicUrl) {
+	const key = typeof file === "string" ? file : file.Key;
+	if (publicUrl) return `${publicUrl}/${key}`;
+	return file.Location;
 }
-async function uploadFiles(files$1, _previews, onProgress) {
-	const totalSize = files$1.reduce((acc, file) => acc + file.size, 0);
-	let uploadedSizes = {};
-	const previews = {};
-	const uploadPromises = files$1.map(async (file, index) => {
-		const name$1 = await getUUID(file);
-		const upload = new Upload({
-			client: s3Client,
-			params: {
-				Bucket: BUCKET_NAME,
-				Key: name$1,
-				Body: file
-			}
-		});
-		upload.on("httpUploadProgress", (progress) => {
-			uploadedSizes[name$1] = progress.loaded;
-			onProgress(getTotalUploadedSize(uploadedSizes) / totalSize);
-		});
-		const uploadPromise = upload.done();
-		uploadPromise.catch(() => {
-			uploadedSizes[name$1] = file.size;
-			onProgress(getTotalUploadedSize(uploadedSizes) / totalSize);
-		});
-		previews[name$1] = _previews[index];
-		return uploadPromise;
-	});
-	return {
-		uploadedFiles: Promise.allSettled(uploadPromises),
-		previewsToSave: previews
+function cacheFilename(key, filename) {
+	debug(`Caching filename for ${key}: ${filename}`);
+	store$1.filenameCache = {
+		...store$1.filenameCache,
+		[key]: filename
 	};
 }
+function removeCachedFilename(key) {
+	const cache$1 = { ...store$1.filenameCache };
+	delete cache$1[key];
+	store$1.filenameCache = cache$1;
+}
+async function fetchFilenameFromS3(key) {
+	if (!s3Client) return key;
+	try {
+		const response = await s3Client.send(new HeadObjectCommand({
+			Bucket: BUCKET_NAME,
+			Key: key
+		}));
+		const metadata = response.Metadata || {};
+		const filename = metadata.filename ? decodeURIComponent(metadata.filename) : key;
+		cacheFilename(key, filename);
+		return filename;
+	} catch (e$2) {
+		debug("Failed to fetch metadata for:", key, e$2);
+		return key;
+	}
+}
+function createLocalPreviewUrl(file) {
+	const isImage = file.type?.startsWith("image/");
+	const isVideo = file.type?.startsWith("video/");
+	if (!isImage && !isVideo) return null;
+	return URL.createObjectURL(file);
+}
+function revokeLocalPreviewUrl(url) {
+	if (url && url.startsWith("blob:")) URL.revokeObjectURL(url);
+}
+async function uploadSmallFile(key, body, contentType, metadata, abortSignal) {
+	const command = new PutObjectCommand({
+		Bucket: BUCKET_NAME,
+		Key: key,
+		Body: body,
+		ContentType: contentType,
+		Metadata: metadata
+	});
+	return s3Client.send(command, { abortSignal });
+}
+async function uploadLargeFile(key, body, contentType, metadata, abortController, onProgress) {
+	const upload = new Upload({
+		client: s3Client,
+		params: {
+			Bucket: BUCKET_NAME,
+			Key: key,
+			Body: body,
+			ContentType: contentType,
+			Metadata: metadata
+		},
+		abortController,
+		queueSize: 4,
+		partSize: 5242880
+	});
+	if (onProgress) upload.on("httpUploadProgress", onProgress);
+	return upload.done();
+}
+async function generateThumbnail(source, { isImage, isVideo } = {}) {
+	const isFile = source instanceof File;
+	const url = isFile ? URL.createObjectURL(source) : source;
+	debug(`Generating thumbnail for ${url}`, {
+		isFile,
+		isImage,
+		isVideo
+	});
+	try {
+		return await new Promise((resolve, reject) => {
+			const el = document.createElement(isImage ? "img" : "video");
+			debug(`Created element ${el}`);
+			el.crossOrigin = "anonymous";
+			const cleanup = () => {
+				if (isFile) URL.revokeObjectURL(url);
+			};
+			const handleRender = () => {
+				debug(`Handle render called`);
+				const canvas = document.createElement("canvas");
+				const ctx = canvas.getContext("2d");
+				const width = el.naturalWidth || el.videoWidth;
+				const height = el.naturalHeight || el.videoHeight;
+				debug(`Source dimensions: ${width}x${height}`);
+				const scale = Math.min(PREVIEW_SIZE / width, PREVIEW_SIZE / height, 1);
+				canvas.width = width * scale;
+				canvas.height = height * scale;
+				debug(`Target dimensions: ${canvas.width}x${canvas.height}`);
+				ctx.drawImage(el, 0, 0, canvas.width, canvas.height);
+				canvas.toBlob((blob) => {
+					cleanup();
+					debug(`Thumbnail generated successfully`);
+					resolve(blob);
+				}, "image/webp", .7);
+			};
+			el.onerror = (err) => {
+				cleanup();
+				console.error("Thumbnail generation failed", err);
+				resolve(null);
+			};
+			if (isImage) el.onload = handleRender;
+else if (isVideo) {
+				el.preload = "metadata";
+				el.muted = true;
+				el.onloadedmetadata = () => {
+					debug(`Video metadata loaded`);
+					el.currentTime = Math.min(1, el.duration / 10);
+				};
+				el.onseeked = handleRender;
+			}
+			el.src = url;
+		});
+	} catch (e$2) {
+		console.error("Thumbnail generation failed", e$2);
+		if (isFile) URL.revokeObjectURL(url);
+		return null;
+	}
+}
+async function uploadThumbnail(thumbnailBlob, key, originalFilename) {
+	if (!thumbnailBlob || !s3Client) return null;
+	const thumbKey = `${THUMB_PREFIX}${key}.webp`;
+	try {
+		const arrayBuffer = await thumbnailBlob.arrayBuffer();
+		await uploadSmallFile(thumbKey, arrayBuffer, "image/webp", { originalfilename: encodeURIComponent(originalFilename) }, null);
+		return thumbKey;
+	} catch (e$2) {
+		console.error("Failed to upload thumbnail:", e$2);
+		return null;
+	}
+}
+async function getThumbnailUrl(fileKey, publicUrl) {
+	const thumbKey = `${THUMB_PREFIX}${fileKey}.webp`;
+	const thumbUrl = getUrl(thumbKey, publicUrl);
+	if (confirmedThumbnails.has(fileKey)) return thumbUrl;
+	try {
+		await s3Client.send(new HeadObjectCommand({
+			Bucket: BUCKET_NAME,
+			Key: thumbKey
+		}));
+		debug("Thumbnail exists remotely:", thumbKey);
+		confirmedThumbnails.add(fileKey);
+		return thumbUrl;
+	} catch (e$2) {
+		debug("Thumbnail not found remotely, attempting to generate:", fileKey);
+		const extension = fileKey.split(".").pop().toLowerCase();
+		const isImage = [
+			"jpg",
+			"jpeg",
+			"png",
+			"gif",
+			"webp",
+			"svg",
+			"bmp"
+		].includes(extension);
+		const isVideo = [
+			"mp4",
+			"webm",
+			"mov",
+			"avi"
+		].includes(extension);
+		if (!isImage && !isVideo) {
+			debug("File is not an image or video, skipping thumbnail generation");
+			return null;
+		}
+		const fileUrl = getUrl(fileKey, publicUrl);
+		const thumbnailBlob = await generateThumbnail(fileUrl, {
+			isImage,
+			isVideo
+		});
+		if (thumbnailBlob) {
+			debug("Uploading generated thumbnail for:", fileKey);
+			const uploadedThumbKey = await uploadThumbnail(thumbnailBlob, fileKey, fileKey);
+			if (uploadedThumbKey) {
+				debug("Thumbnail uploaded successfully:", thumbUrl);
+				confirmedThumbnails.add(fileKey);
+				return thumbUrl;
+			}
+		}
+		debug("Failed to generate/upload thumbnail for:", fileKey);
+		return null;
+	}
+}
+async function uploadSingleFile(file, fileId, abortController) {
+	const hash = await getFileHash(file);
+	const extension = file.name.substring(file.name.lastIndexOf("."));
+	const key = `${hash}${extension}`;
+	const isImage = file.type?.startsWith("image/");
+	const isVideo = file.type?.startsWith("video/");
+	let thumbnailBlob = null;
+	let thumbKey = null;
+	if (isImage || isVideo) {
+		debug("Generating thumbnail for upload:", file.name);
+		thumbnailBlob = await generateThumbnail(file, {
+			isImage,
+			isVideo
+		});
+		if (thumbnailBlob) {
+			debug("Thumbnail blob generated:", thumbnailBlob.size, "bytes");
+			thumbKey = `${THUMB_PREFIX}${key}.webp`;
+		}
+	}
+	const metadata = { filename: encodeURIComponent(file.name) };
+	const contentType = file.type || "application/octet-stream";
+	let mainUploadPromise;
+	if (file.size <= MULTIPART_THRESHOLD) {
+		debug("Using single-call upload for:", file.name, `(${formatFileSize(file.size)})`);
+		const arrayBuffer = await file.arrayBuffer();
+		mainUploadPromise = uploadSmallFile(key, arrayBuffer, contentType, metadata, abortController?.signal);
+		updateUploadProgress(fileId, 50, "uploading");
+	} else {
+		debug("Using multipart upload for:", file.name, `(${formatFileSize(file.size)})`);
+		mainUploadPromise = uploadLargeFile(key, file, contentType, metadata, abortController, (progress) => {
+			const percent = progress.loaded / progress.total * 100;
+			updateUploadProgress(fileId, percent, "uploading");
+		});
+	}
+	const uploadPromises = [mainUploadPromise];
+	if (thumbnailBlob && thumbKey) {
+		const thumbArrayBuffer = await thumbnailBlob.arrayBuffer();
+		const thumbUploadPromise = uploadSmallFile(thumbKey, thumbArrayBuffer, "image/webp", { originalfilename: encodeURIComponent(file.name) }, abortController?.signal);
+		uploadPromises.push(thumbUploadPromise);
+	}
+	await Promise.all(uploadPromises);
+	debug("Upload complete:", key);
+	cacheFilename(key, file.name);
+	return { key };
+}
+const UPLOAD_BATCH_SIZE = 2;
+async function uploadFiles(files$1, onComplete) {
+	const { setActiveUploads, setIsUploading, setOverallProgress } = uploadState;
+	if (!s3Client || files$1.length === 0) return {
+		uploadedFiles: [],
+		failedFiles: []
+	};
+	setIsUploading(true);
+	setOverallProgress(0);
+	const uploadsMap = new Map();
+	files$1.forEach((file, index) => {
+		const fileId = `file-${index}-${Date.now()}`;
+		const abortController = new AbortController();
+		uploadsMap.set(fileId, {
+			file,
+			progress: 0,
+			status: "pending",
+			abortController,
+			index
+		});
+	});
+	setActiveUploads(uploadsMap);
+	const uploadedFiles = [];
+	const failedFiles = [];
+	const entries = Array.from(uploadsMap.entries());
+	for (let i$2 = 0; i$2 < entries.length; i$2 += UPLOAD_BATCH_SIZE) {
+		const batch = entries.slice(i$2, i$2 + UPLOAD_BATCH_SIZE);
+		const batchPromises = batch.map(async ([fileId, uploadInfo]) => {
+			updateUploadProgress(fileId, 0, "uploading");
+			try {
+				const result = await uploadSingleFile(uploadInfo.file, fileId, uploadInfo.abortController);
+				updateUploadProgress(fileId, 100, "completed");
+				uploadedFiles.push({
+					...result,
+					file: uploadInfo.file
+				});
+				return result;
+			} catch (e$2) {
+				if (e$2.name === "AbortError" || uploadInfo.abortController.signal.aborted) updateUploadProgress(fileId, 0, "cancelled");
+else {
+					console.error("Upload failed:", e$2);
+					updateUploadProgress(fileId, 0, "failed");
+					failedFiles.push({
+						file: uploadInfo.file,
+						error: e$2
+					});
+				}
+				throw e$2;
+			}
+		});
+		await Promise.allSettled(batchPromises);
+	}
+	invalidateDashboardCache();
+	if (onComplete) onComplete(uploadedFiles, failedFiles);
+	return {
+		uploadedFiles,
+		failedFiles
+	};
+}
+async function deleteAllThumbnails() {
+	if (!s3Client) return { deleted: 0 };
+	const response = await s3Client.send(new ListObjectsV2Command({
+		Bucket: BUCKET_NAME,
+		Prefix: THUMB_PREFIX
+	}));
+	const thumbnails = response.Contents || [];
+	if (thumbnails.length === 0) return { deleted: 0 };
+	debug(`Deleting ${thumbnails.length} thumbnails`);
+	const BATCH_SIZE = 10;
+	let deleted = 0;
+	for (let i$2 = 0; i$2 < thumbnails.length; i$2 += BATCH_SIZE) {
+		const batch = thumbnails.slice(i$2, i$2 + BATCH_SIZE);
+		await Promise.all(batch.map(async (thumb) => {
+			try {
+				await s3Client.send(new DeleteObjectCommand({
+					Bucket: BUCKET_NAME,
+					Key: thumb.Key
+				}));
+				deleted++;
+			} catch (e$2) {
+				debug("Failed to delete thumbnail:", thumb.Key, e$2);
+			}
+		}));
+	}
+	confirmedThumbnails.clear();
+	loadedThumbnails.clear();
+	debug(`Deleted ${deleted} thumbnails`);
+	return { deleted };
+}
 async function getAllFiles() {
+	if (!s3Client) return [];
 	const response = await s3Client.send(new ListObjectsV2Command({ Bucket: BUCKET_NAME }));
-	return response.Contents.sort((a$1, b$1) => b$1.LastModified - a$1.LastModified);
+	const allFiles = response.Contents || [];
+	const files$1 = allFiles.filter((file) => !file.Key.startsWith(THUMB_PREFIX));
+	const manifestData = {};
+	const uncachedFiles = files$1.filter((file) => !store$1.filenameCache[file.Key]);
+	if (uncachedFiles.length > 0) {
+		debug(`Fetching metadata for ${uncachedFiles.length} uncached files`);
+		const BATCH_SIZE = 10;
+		for (let i$2 = 0; i$2 < uncachedFiles.length; i$2 += BATCH_SIZE) {
+			const batch = uncachedFiles.slice(i$2, i$2 + BATCH_SIZE);
+			await Promise.all(batch.map((file) => fetchFilenameFromS3(file.Key)));
+		}
+	}
+	for (const file of files$1) manifestData[file.Key] = {
+		filename: store$1.filenameCache[file.Key] || file.Key,
+		size: file.Size,
+		uploadedAt: file.LastModified?.toISOString()
+	};
+	uploadState.setManifest(manifestData);
+	return allFiles.sort((a$1, b$1) => new Date(b$1.LastModified) - new Date(a$1.LastModified));
 }
 async function deleteFile(key) {
+	if (!s3Client) return;
 	await s3Client.send(new DeleteObjectCommand({
 		Bucket: BUCKET_NAME,
 		Key: key
 	}));
+	try {
+		await s3Client.send(new DeleteObjectCommand({
+			Bucket: BUCKET_NAME,
+			Key: `${THUMB_PREFIX}${key}.webp`
+		}));
+	} catch {}
+	removeCachedFilename(key);
 }
-function formatDate(date$1) {
-	return new Date(date$1).toLocaleString();
+async function refreshDashboard() {
+	const { setDashboardFiles, setDashboardLoading, setDashboardLoaded } = uploadState;
+	setDashboardLoading(true);
+	try {
+		const files$1 = await getAllFiles();
+		setDashboardFiles(files$1);
+		setDashboardLoaded(true);
+	} catch (e$2) {
+		console.error("Failed to refresh dashboard:", e$2);
+	} finally {
+		setDashboardLoading(false);
+	}
 }
-function getUrl(file, publicUrl) {
-	if (publicUrl) return `${publicUrl}/${file.Key}`;
-else return file.Location;
+
+//#endregion
+//#region plugins/externalUpload/Icons.jsx
+var import_web$23 = __toESM(require_web());
+var import_web$24 = __toESM(require_web());
+var import_web$25 = __toESM(require_web());
+const _tmpl$$2 = /*#__PURE__*/ (0, import_web$23.template)(`<svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M13.82 21.7c.17.05.14.3-.04.3H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4h7.5c.28 0 .5.22.5.5V5a5 5 0 0 0 5 5h2.5c.28 0 .5.22.5.5v2.3a.4.4 0 0 1-.68.27l-.2-.2a3 3 0 0 0-4.24 0l-4 4a3 3 0 0 0 0 4.25c.3.3.6.46.94.58Z"></path><path fill="currentColor" d="M21.66 8c.03 0 .05-.03.04-.06a3 3 0 0 0-.58-.82l-4.24-4.24a3 3 0 0 0-.82-.58.04.04 0 0 0-.06.04V5a3 3 0 0 0 3 3h2.66ZM18.3 14.3a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1-1.4 1.4L20 17.42V23a1 1 0 1 1-2 0v-5.59l-2.3 2.3a1 1 0 0 1-1.4-1.42l4-4Z"></path></svg>`, 6), _tmpl$2$2 = /*#__PURE__*/ (0, import_web$23.template)(`<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.22876 27.7712C5.22896 28.7714 6.58551 29.3333 8 29.3333H24C25.41 29.3333 26.77 28.77 27.77 27.7712C28.77 26.77 29.3333 25.41 29.3333 24V14C29.3333 13.6267 29.04 13.3333 28.6667 13.3333H25.3333C23.5652 13.3333 21.8695 12.631 20.6193 11.3807C19.369 10.1305 18.6667 8.43478 18.6667 6.66667V3.33333C18.6667 2.96 18.3733 2.66667 18 2.66667H8C6.58551 2.66667 5.22896 3.22857 4.22876 4.22876C3.22857 5.22896 2.66667 6.58551 2.66667 8V24C2.66667 25.4145 3.22857 26.771 4.22876 27.7712Z" fill="currentColor"></path><path d="M28.88 10.6667C28.92 10.6667 28.9467 10.6267 28.9333 10.5867C28.7388 10.1814 28.4774 9.81173 28.16 9.49333L22.5067 3.84C22.1883 3.52261 21.8186 3.26117 21.4133 3.06667C21.4047 3.06154 21.3948 3.05897 21.3847 3.05923C21.3747 3.0595 21.3649 3.0626 21.3566 3.06817C21.3482 3.07375 21.3416 3.08157 21.3375 3.09074C21.3334 3.09991 21.3319 3.11005 21.3333 3.12V6.66667C21.3333 7.72753 21.7548 8.74495 22.5049 9.49509C23.2551 10.2452 24.2725 10.6667 25.3333 10.6667H28.88Z" fill="currentColor"></path></svg>`, 6), _tmpl$3$2 = /*#__PURE__*/ (0, import_web$23.template)(`<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>`, 4), _tmpl$4$2 = /*#__PURE__*/ (0, import_web$23.template)(`<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z"></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd"></path></svg>`, 6), _tmpl$5$2 = /*#__PURE__*/ (0, import_web$23.template)(`<svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M3.71464 0.250125C3.8782 0.0898014 4.09811 0 4.32714 0C4.55617 0 4.77608 0.0898014 4.93964 0.250125L8.43964 3.75012C8.56602 3.91862 8.62737 4.12706 8.61244 4.33715C8.59751 4.54725 8.50729 4.74491 8.35836 4.89384C8.20942 5.04278 8.01176 5.13299 7.80167 5.14792C7.59157 5.16285 7.38314 5.1015 7.21464 4.97513L5.20214 2.98012V7.86263C5.20214 8.09469 5.10995 8.31725 4.94586 8.48134C4.78176 8.64544 4.5592 8.73763 4.32714 8.73763C4.09508 8.73763 3.87252 8.64544 3.70842 8.48134C3.54433 8.31725 3.45214 8.09469 3.45214 7.86263V2.97137L1.43964 4.98387C1.27125 5.12612 1.05537 5.19957 0.835171 5.18953C0.614969 5.1795 0.406668 5.08672 0.25191 4.92975C0.0971516 4.77279 0.00734007 4.56319 0.000430386 4.34287C-0.00647929 4.12255 0.070022 3.90773 0.21464 3.74137L3.71464 0.241375V0.250125Z" fill="currentColor"></path></svg>`, 4), _tmpl$6$1 = /*#__PURE__*/ (0, import_web$23.template)(`<svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M12 15V3M12 3L7 8M12 3L17 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2 17L2.621 19.485C2.72915 19.9177 2.97882 20.3018 3.33033 20.5763C3.68184 20.8508 4.11501 20.9999 4.561 21H19.439C19.885 20.9999 20.3182 20.8508 20.6697 20.5763C21.0212 20.3018 21.2708 19.9177 21.379 19.485L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>`, 6);
+function UploadIcon() {
+	return (0, import_web$25.getNextElement)(_tmpl$$2);
+}
+function FileIcon() {
+	return (0, import_web$25.getNextElement)(_tmpl$2$2);
+}
+function CloseIcon() {
+	return (0, import_web$25.getNextElement)(_tmpl$3$2);
+}
+function TrashIcon() {
+	return (0, import_web$25.getNextElement)(_tmpl$4$2);
+}
+function SortIcon(props) {
+	return (() => {
+		const _el$5 = (0, import_web$25.getNextElement)(_tmpl$5$2);
+		_el$5.style.setProperty("margin-left", "7px");
+		(0, import_web$24.effect)((_p$) => {
+			const _v$ = props.active ? 1 : .2, _v$2 = props.ascending ? "rotate(180deg)" : "rotate(0deg)";
+			_v$ !== _p$._v$ && _el$5.style.setProperty("opacity", _p$._v$ = _v$);
+			_v$2 !== _p$._v$2 && _el$5.style.setProperty("transform", _p$._v$2 = _v$2);
+			return _p$;
+		}, {
+			_v$: undefined,
+			_v$2: undefined
+		});
+		return _el$5;
+	})();
+}
+function UploadDropIcon() {
+	return (() => {
+		const _el$6 = (0, import_web$25.getNextElement)(_tmpl$6$1);
+		_el$6.style.setProperty("transition", "color 0.2s ease");
+		_el$6.style.setProperty("color", "var(--interactive-text-default)");
+		_el$6.style.setProperty("opacity", "0.75");
+		return _el$6;
+	})();
 }
 
 //#endregion
@@ -29155,109 +30173,384 @@ var import_web$19 = __toESM(require_web());
 var import_web$20 = __toESM(require_web());
 var import_web$21 = __toESM(require_web());
 var import_web$22 = __toESM(require_web());
-const _tmpl$$2 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Drag & drop files here or click to select</p>`, 2), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><input type="file" multiple hidden></div>`, 5), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div></div></div>`, 4), _tmpl$4$1 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Uploading: <!#><!/>%</p>`, 4), _tmpl$5 = /*#__PURE__*/ (0, import_web$11.template)(`<div></div>`, 2), _tmpl$6 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Loading files...</p>`, 2), _tmpl$7 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Total bucket usage: <!#><!/></p>`, 4), _tmpl$8 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/></div>`, 8), _tmpl$9 = /*#__PURE__*/ (0, import_web$11.template)(`<p>Uploading... Please wait</p>`, 2), _tmpl$0 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/><div><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 22), _tmpl$1 = /*#__PURE__*/ (0, import_web$11.template)(`<img>`, 1), _tmpl$10 = /*#__PURE__*/ (0, import_web$11.template)(`<div>📄</div>`, 2), _tmpl$11 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/><div><p></p><p></p><p></p></div><button><svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z" class=""></path><path fill="currentColor" fill-rule="evenodd" d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""></path></svg></button></div>`, 24);
-const { ui: { ModalRoot, ModalHeader, ModalBody, ModalFooter, ModalSizes, showToast: showToast$1, Button: Button$1, ButtonColors: ButtonColors$1, ButtonSizes: ButtonSizes$1, focusring: focusring$1 }, solid: { createSignal, createEffect, Show, For }, util: { log, getFiber }, plugin: { store } } = shelter;
+const _tmpl$$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><span></span><span></span></div><div><div></div></div><div><span></span><!#><!/></div></div>`, 18), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div></div></div>`, 4), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$11.template)(`<img>`, 1), _tmpl$4$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div></div>`, 2), _tmpl$5$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div title="Delete file"></div>`, 2), _tmpl$6 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><!#><!/><!#><!/><!#><!/><!#><!/></div><div><p></p><p></p><p></p></div><!#><!/></div>`, 22), _tmpl$7 = /*#__PURE__*/ (0, import_web$11.template)(`<div><span>Uploading: <!#><!/>%</span></div>`, 6), _tmpl$8 = /*#__PURE__*/ (0, import_web$11.template)(`<div><span></span><!#><!/></div>`, 6), _tmpl$9 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><!#><!/><!#><!/></div><input type="file" multiple hidden></div>`, 9), _tmpl$0 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><!#><!/><!#><!/></div><div></div></div>`, 10), _tmpl$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><div><button>Date<!#><!/></button><button>Size<!#><!/></button><button>Name<!#><!/></button></div></div>`, 18), _tmpl$10 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div></div><!#><!/></div>`, 6), _tmpl$11 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$12 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/></div>`, 8), _tmpl$13 = /*#__PURE__*/ (0, import_web$11.template)(`<img loading="lazy">`, 1), _tmpl$14 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><!#><!/><!#><!/></div><div><p></p><p></p></div><div title="Remove file"></div></div>`, 16);
+const { ui: { ModalRoot, ModalHeader, ModalBody, ModalFooter, ModalSizes, showToast: showToast$1, Button: Button$1, ButtonColors: ButtonColors$1, ButtonSizes: ButtonSizes$1, TextBox: TextBox$1, Text: Text$1, TextTags, TextWeights, focusring: focusring$1 }, solid: { createSignal: createSignal$1, createEffect, createMemo, Show, For, onMount }, util: { log, getFiber }, plugin: { store } } = shelter;
+function UploadProgressItem({ fileId, uploadInfo, onCancel }) {
+	const progress = () => uploadInfo.progress;
+	const status = () => uploadInfo.status;
+	const file = uploadInfo.file;
+	const COLORS = {
+		completed: "var(--status-positive)",
+		failed: "var(--status-danger)",
+		cancelled: "var(--text-muted)",
+		pending: "var(--text-muted)",
+		defaultText: "var(--text-interactive-active)",
+		default: "var(--brand-500)"
+	};
+	const statusColor = (isText) => {
+		return COLORS[status()] || (isText ? COLORS.defaultText : COLORS.default);
+	};
+	const statusText = () => {
+		switch (status()) {
+			case "completed": return "Complete";
+			case "failed": return "Failed";
+			case "cancelled": return "Cancelled";
+			case "pending": return "Queued";
+			default: return `${progress().toFixed(0)}%`;
+		}
+	};
+	return (() => {
+		const _el$ = (0, import_web$19.getNextElement)(_tmpl$$1), _el$2 = _el$.firstChild, _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling, _el$5 = _el$2.nextSibling, _el$6 = _el$5.firstChild, _el$7 = _el$5.nextSibling, _el$8 = _el$7.firstChild, _el$9 = _el$8.nextSibling, [_el$0, _co$] = (0, import_web$20.getNextMarker)(_el$9.nextSibling);
+		(0, import_web$22.insert)(_el$3, () => file.name);
+		(0, import_web$22.insert)(_el$4, () => formatFileSize(file.size));
+		(0, import_web$22.insert)(_el$8, statusText);
+		(0, import_web$22.insert)(_el$7, (0, import_web$21.createComponent)(Show, {
+			get when() {
+				return status() === "uploading";
+			},
+			get children() {
+				return (0, import_web$21.createComponent)(Button$1, {
+					get size() {
+						return ButtonSizes$1.TINY;
+					},
+					get color() {
+						return ButtonColors$1.CRITICAL_SECONDARY;
+					},
+					onClick: () => onCancel(fileId),
+					tooltip: "Cancel upload",
+					get children() {
+						return (0, import_web$21.createComponent)(CloseIcon, {});
+					}
+				});
+			}
+		}), _el$0, _co$);
+		(0, import_web$18.effect)((_p$) => {
+			const _v$ = modal_jsx_default.uploadProgressItem, _v$2 = modal_jsx_default.uploadProgressInfo, _v$3 = modal_jsx_default.uploadProgressName, _v$4 = modal_jsx_default.uploadProgressSize, _v$5 = modal_jsx_default.uploadProgressBarContainer, _v$6 = modal_jsx_default.uploadProgressBar, _v$7 = `${status() === "uploading" ? progress() : status() === "completed" ? 100 : 0}%`, _v$8 = statusColor(), _v$9 = modal_jsx_default.uploadProgressStatus, _v$0 = statusColor(true);
+			_v$ !== _p$._v$ && (0, import_web$17.className)(_el$, _p$._v$ = _v$);
+			_v$2 !== _p$._v$2 && (0, import_web$17.className)(_el$2, _p$._v$2 = _v$2);
+			_v$3 !== _p$._v$3 && (0, import_web$17.className)(_el$3, _p$._v$3 = _v$3);
+			_v$4 !== _p$._v$4 && (0, import_web$17.className)(_el$4, _p$._v$4 = _v$4);
+			_v$5 !== _p$._v$5 && (0, import_web$17.className)(_el$5, _p$._v$5 = _v$5);
+			_v$6 !== _p$._v$6 && (0, import_web$17.className)(_el$6, _p$._v$6 = _v$6);
+			_v$7 !== _p$._v$7 && _el$6.style.setProperty("width", _p$._v$7 = _v$7);
+			_v$8 !== _p$._v$8 && _el$6.style.setProperty("background-color", _p$._v$8 = _v$8);
+			_v$9 !== _p$._v$9 && (0, import_web$17.className)(_el$7, _p$._v$9 = _v$9);
+			_v$0 !== _p$._v$0 && _el$8.style.setProperty("color", _p$._v$0 = _v$0);
+			return _p$;
+		}, {
+			_v$: undefined,
+			_v$2: undefined,
+			_v$3: undefined,
+			_v$4: undefined,
+			_v$5: undefined,
+			_v$6: undefined,
+			_v$7: undefined,
+			_v$8: undefined,
+			_v$9: undefined,
+			_v$0: undefined
+		});
+		return _el$;
+	})();
+}
+function DashboardFileItem({ file, manifest, onDelete, onInsert }) {
+	const [thumbnailLoaded, setThumbnailLoaded] = createSignal$1(isThumbnailLoaded(file.Key));
+	const [thumbnailError, setThumbnailError] = createSignal$1(false);
+	const [generatingThumbnail, setGeneratingThumbnail] = createSignal$1(false);
+	const [thumbnailRetry, setThumbnailRetry] = createSignal$1(0);
+	const [deleting, setDeleting] = createSignal$1(false);
+	const extension = () => file.Key.split(".").pop().toLowerCase();
+	const isImage = () => [
+		"jpg",
+		"jpeg",
+		"png",
+		"gif",
+		"webp",
+		"svg",
+		"bmp"
+	].includes(extension());
+	const isVideo = () => [
+		"mp4",
+		"webm",
+		"mov",
+		"avi"
+	].includes(extension());
+	const meta = () => manifest()[file.Key] || {};
+	const displayName = () => meta().filename || file.Key;
+	const canHaveThumbnail = () => isImage() || isVideo();
+	const thumbnailUrl = () => {
+		const retry = thumbnailRetry();
+		const baseUrl = canHaveThumbnail() ? getUrl(`.thumbs/${file.Key}.webp`, store.publicUrl) : null;
+		return baseUrl && retry > 0 ? `${baseUrl}?_r=${retry}` : baseUrl;
+	};
+	const handleThumbnailError = async () => {
+		if (generatingThumbnail() || thumbnailRetry() > 0) {
+			setThumbnailError(true);
+			return;
+		}
+		setGeneratingThumbnail(true);
+		try {
+			await getThumbnailUrl(file.Key, store.publicUrl);
+			setThumbnailRetry(1);
+		} catch (e$2) {
+			setThumbnailError(true);
+		} finally {
+			setGeneratingThumbnail(false);
+		}
+	};
+	const handleDelete = async (e$2) => {
+		e$2.stopPropagation();
+		if (deleting()) return;
+		setDeleting(true);
+		try {
+			await onDelete(file);
+		} catch (e$3) {
+			setDeleting(false);
+		}
+	};
+	return (() => {
+		const _el$1 = (0, import_web$19.getNextElement)(_tmpl$6), _el$10 = _el$1.firstChild, _el$17 = _el$10.firstChild, [_el$18, _co$2] = (0, import_web$20.getNextMarker)(_el$17.nextSibling), _el$19 = _el$18.nextSibling, [_el$20, _co$3] = (0, import_web$20.getNextMarker)(_el$19.nextSibling), _el$21 = _el$20.nextSibling, [_el$22, _co$4] = (0, import_web$20.getNextMarker)(_el$21.nextSibling), _el$23 = _el$22.nextSibling, [_el$24, _co$5] = (0, import_web$20.getNextMarker)(_el$23.nextSibling), _el$25 = _el$10.nextSibling, _el$26 = _el$25.firstChild, _el$27 = _el$26.nextSibling, _el$28 = _el$27.nextSibling, _el$30 = _el$25.nextSibling, [_el$31, _co$6] = (0, import_web$20.getNextMarker)(_el$30.nextSibling);
+		_el$1.$$click = () => !deleting() && onInsert(file);
+		(0, import_web$16.use)(focusring$1, _el$1, () => true);
+		(0, import_web$22.insert)(_el$10, (0, import_web$21.createComponent)(Show, {
+			get when() {
+				return deleting();
+			},
+			get children() {
+				const _el$11 = (0, import_web$19.getNextElement)(_tmpl$2$1), _el$12 = _el$11.firstChild;
+				(0, import_web$18.effect)((_p$) => {
+					const _v$1 = modal_jsx_default.deletingOverlay, _v$10 = modal_jsx_default.spinner;
+					_v$1 !== _p$._v$1 && (0, import_web$17.className)(_el$11, _p$._v$1 = _v$1);
+					_v$10 !== _p$._v$10 && (0, import_web$17.className)(_el$12, _p$._v$10 = _v$10);
+					return _p$;
+				}, {
+					_v$1: undefined,
+					_v$10: undefined
+				});
+				return _el$11;
+			}
+		}), _el$18, _co$2);
+		(0, import_web$22.insert)(_el$10, (0, import_web$21.createComponent)(Show, {
+			get when() {
+				return (0, import_web$15.memo)(() => !!canHaveThumbnail())() && !thumbnailError();
+			},
+			get children() {
+				const _el$13 = (0, import_web$19.getNextElement)(_tmpl$3$1);
+				_el$13.addEventListener("error", handleThumbnailError);
+				_el$13.addEventListener("load", () => {
+					setThumbnailLoaded(true);
+					markThumbnailLoaded(file.Key);
+				});
+				(0, import_web$18.effect)((_p$) => {
+					const _v$11 = thumbnailUrl(), _v$12 = displayName(), _v$13 = modal_jsx_default.previewImage, _v$14 = thumbnailLoaded() ? "block" : "none";
+					_v$11 !== _p$._v$11 && (0, import_web$14.setAttribute)(_el$13, "src", _p$._v$11 = _v$11);
+					_v$12 !== _p$._v$12 && (0, import_web$14.setAttribute)(_el$13, "alt", _p$._v$12 = _v$12);
+					_v$13 !== _p$._v$13 && (0, import_web$17.className)(_el$13, _p$._v$13 = _v$13);
+					_v$14 !== _p$._v$14 && _el$13.style.setProperty("display", _p$._v$14 = _v$14);
+					return _p$;
+				}, {
+					_v$11: undefined,
+					_v$12: undefined,
+					_v$13: undefined,
+					_v$14: undefined
+				});
+				return _el$13;
+			}
+		}), _el$20, _co$3);
+		(0, import_web$22.insert)(_el$10, (0, import_web$21.createComponent)(Show, {
+			get when() {
+				return generatingThumbnail();
+			},
+			get children() {
+				const _el$14 = (0, import_web$19.getNextElement)(_tmpl$2$1), _el$15 = _el$14.firstChild;
+				(0, import_web$18.effect)((_p$) => {
+					const _v$15 = modal_jsx_default.thumbnailLoading, _v$16 = modal_jsx_default.spinner;
+					_v$15 !== _p$._v$15 && (0, import_web$17.className)(_el$14, _p$._v$15 = _v$15);
+					_v$16 !== _p$._v$16 && (0, import_web$17.className)(_el$15, _p$._v$16 = _v$16);
+					return _p$;
+				}, {
+					_v$15: undefined,
+					_v$16: undefined
+				});
+				return _el$14;
+			}
+		}), _el$22, _co$4);
+		(0, import_web$22.insert)(_el$10, (0, import_web$21.createComponent)(Show, {
+			get when() {
+				return !canHaveThumbnail() || thumbnailError() || !thumbnailLoaded() && !generatingThumbnail();
+			},
+			get children() {
+				const _el$16 = (0, import_web$19.getNextElement)(_tmpl$4$1);
+				(0, import_web$22.insert)(_el$16, FileIcon);
+				(0, import_web$18.effect)(() => (0, import_web$17.className)(_el$16, modal_jsx_default.previewIcon));
+				return _el$16;
+			}
+		}), _el$24, _co$5);
+		(0, import_web$22.insert)(_el$26, displayName);
+		(0, import_web$22.insert)(_el$27, () => formatFileSize(file.Size));
+		(0, import_web$22.insert)(_el$28, () => formatDate(file.LastModified));
+		(0, import_web$22.insert)(_el$1, (0, import_web$21.createComponent)(Show, {
+			get when() {
+				return !deleting();
+			},
+			get children() {
+				const _el$29 = (0, import_web$19.getNextElement)(_tmpl$5$1);
+				_el$29.$$click = handleDelete;
+				(0, import_web$22.insert)(_el$29, (0, import_web$21.createComponent)(TrashIcon, {}));
+				(0, import_web$18.effect)(() => (0, import_web$17.className)(_el$29, modal_jsx_default.removeButton));
+				(0, import_web$13.runHydrationEvents)();
+				return _el$29;
+			}
+		}), _el$31, _co$6);
+		(0, import_web$18.effect)((_p$) => {
+			const _v$17 = `${modal_jsx_default.dashboardItem} ${deleting() ? modal_jsx_default.deleting : ""}`, _v$18 = modal_jsx_default.thumbnailContainer, _v$19 = modal_jsx_default.previewItemInfo, _v$20 = modal_jsx_default.fileName, _v$21 = displayName(), _v$22 = modal_jsx_default.fileMeta, _v$23 = modal_jsx_default.fileMeta;
+			_v$17 !== _p$._v$17 && (0, import_web$17.className)(_el$1, _p$._v$17 = _v$17);
+			_v$18 !== _p$._v$18 && (0, import_web$17.className)(_el$10, _p$._v$18 = _v$18);
+			_v$19 !== _p$._v$19 && (0, import_web$17.className)(_el$25, _p$._v$19 = _v$19);
+			_v$20 !== _p$._v$20 && (0, import_web$17.className)(_el$26, _p$._v$20 = _v$20);
+			_v$21 !== _p$._v$21 && (0, import_web$14.setAttribute)(_el$26, "title", _p$._v$21 = _v$21);
+			_v$22 !== _p$._v$22 && (0, import_web$17.className)(_el$27, _p$._v$22 = _v$22);
+			_v$23 !== _p$._v$23 && (0, import_web$17.className)(_el$28, _p$._v$23 = _v$23);
+			return _p$;
+		}, {
+			_v$17: undefined,
+			_v$18: undefined,
+			_v$19: undefined,
+			_v$20: undefined,
+			_v$21: undefined,
+			_v$22: undefined,
+			_v$23: undefined
+		});
+		(0, import_web$13.runHydrationEvents)();
+		return _el$1;
+	})();
+}
 function UploadModal(closeModal) {
-	const [files$1, setFiles] = createSignal([]);
-	const [isDragOver, setIsDragOver] = createSignal(false);
-	const [previews, setPreviews] = createSignal([]);
-	const [isUploading, setIsUploading] = createSignal(false);
-	const [uploadProgress, setUploadProgress] = createSignal(0);
-	const [dashOpen, setDashOpen] = createSignal(false);
-	const [dashboardFiles, setDashboardFiles] = createSignal([]);
-	const [fetchingFiles, setFetchingFiles] = createSignal(false);
+	const [dashOpen, setDashOpen] = createSignal$1(false);
+	const { pendingFiles, setPendingFiles, pendingPreviews, setPendingPreviews, activeUploads, isUploading, overallProgress, dashboardFiles, dashboardLoading, dashboardLoaded, searchQuery, setSearchQuery, sortBy, setSortBy, sortOrder, setSortOrder, manifest } = uploadState;
 	let fileInputRef;
+	const filteredFiles = createMemo(() => getFilteredSortedFiles());
+	const totalBucketSize = createMemo(() => dashboardFiles().reduce((acc, file) => acc + file.Size, 0));
+	const hasActiveUploads = createMemo(() => {
+		const uploads = activeUploads();
+		for (const [, upload] of uploads) if (upload.status === "uploading") return true;
+		return false;
+	});
 	const handleDragOver = (e$2) => {
 		e$2.preventDefault();
-		setIsDragOver(true);
+		e$2.currentTarget.classList.add(modal_jsx_default.dragOver);
 	};
 	const handleDragLeave = (e$2) => {
 		e$2.preventDefault();
-		setIsDragOver(false);
+		e$2.currentTarget.classList.remove(modal_jsx_default.dragOver);
 	};
 	const handleDrop = (e$2) => {
 		e$2.preventDefault();
-		setIsDragOver(false);
+		e$2.currentTarget.classList.remove(modal_jsx_default.dragOver);
 		if (!isUploading()) {
 			const droppedFiles = Array.from(e$2.dataTransfer.files);
-			setFiles((prevFiles) => [...prevFiles, ...droppedFiles]);
+			addPendingFiles(droppedFiles);
 		}
 	};
 	const handleFileChange = (e$2) => {
 		if (e$2.target.files && !isUploading()) {
 			const selectedFiles = Array.from(e$2.target.files);
-			setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+			addPendingFiles(selectedFiles);
+			e$2.target.value = "";
 		}
 	};
 	const handleRemoveFile = (index) => {
-		if (!isUploading()) {
-			setFiles((prevFiles) => prevFiles.filter((_, i$2) => i$2 !== index));
-			setPreviews((prevPreviews) => prevPreviews.filter((_, i$2) => i$2 !== index));
-		}
+		if (!isUploading()) removePendingFile(index);
 	};
 	const handleUploadClick = () => {
 		if (!isUploading()) fileInputRef.click();
 	};
 	const handleConfirm = async () => {
-		setIsUploading(true);
-		setUploadProgress(0);
-		const { uploadedFiles, previewsToSave } = await uploadFiles(files$1(), previews(), (progress) => {
-			setUploadProgress(progress * 100);
-		});
-		const uploadedUrls = (await uploadedFiles).filter((result) => result.status === "fulfilled").map((result) => result.value);
-		const failedUploads = (await uploadedFiles).filter((result) => result.status === "rejected").map((result) => result.reason);
-		if (failedUploads.length == files$1().length) {
-			showToast$1({
-				title: "Upload failed!",
-				content: "All files failed to upload"
+		const files$1 = pendingFiles();
+		if (files$1.length === 0) return;
+		clearPendingFiles();
+		const { uploadedFiles, failedFiles } = await uploadFiles(files$1, (uploaded, failed) => {
+			if (failed.length === files$1.length) {
+				showToast$1({
+					title: "Upload failed!",
+					content: "All files failed to upload"
+				});
+				for (const { error } of failed) log("ExternalUpload - " + error, "error");
+			} else if (failed.length > 0) showToast$1({
+				title: "Upload partially completed",
+				content: `${uploaded.length} files uploaded, ${failed.length} failed`
 			});
-			for (const error of failedUploads) log("ExternalUpload - " + error, "error");
-		} else if (failedUploads.length > 0) {
-			showToast$1({
-				title: "Upload partially failed!",
-				content: "Some files failed to upload"
-			});
-			for (const error of failedUploads) log("ExternalUpload - " + error, "error");
-		} else {
-			showToast$1({
-				title: "Upload successful!",
-				content: "All files uploaded successfully"
-			});
-			store.previews = {
-				...store.previews,
-				...previewsToSave
-			};
-			const fiber = getFiber(document.querySelector("[class*=\"slateContainer\"]"));
-			const editor = fiber.child.pendingProps.editor;
-			for (let i$2 = 0; i$2 < uploadedUrls.length; i$2++) {
-				const result = uploadedUrls[i$2];
-				const url = getUrl(result, store.publicUrl);
-				editor.insertText(url);
-				if (i$2 < uploadedUrls.length - 1) editor.insertText(" ");
+else if (uploaded.length > 0) {
+				showToast$1({
+					title: "Upload successful!",
+					content: `${uploaded.length} file${uploaded.length > 1 ? "s" : ""} uploaded`
+				});
+				const fiber = getFiber(document.querySelector("[class*=\"slateContainer\"]"));
+				if (fiber?.child?.pendingProps?.editor) {
+					const editor = fiber.child.pendingProps.editor;
+					const urls = uploaded.map((f$1) => getUrl(f$1.key, store.publicUrl));
+					editor.insertText(urls.join(" ") + " ");
+				}
 			}
+			resetUploadState();
+		});
+	};
+	const handleCancelUpload = (fileId) => {
+		cancelUpload(fileId);
+	};
+	const handleCancelAll = () => {
+		cancelAllUploads();
+		showToast$1({
+			title: "Uploads cancelled",
+			content: "All uploads have been cancelled"
+		});
+	};
+	const handleDeleteFile = async (file) => {
+		try {
+			await deleteFile(file.Key);
+			removeDashboardFile(file.Key);
+			showToast$1({
+				title: "File deleted",
+				content: file.Key
+			});
+		} catch (e$2) {
+			showToast$1({
+				title: "Delete failed",
+				content: e$2.message
+			});
+			throw e$2;
 		}
-		closeModal();
-		setIsUploading(false);
 	};
-	const fetchDashboardFiles = async () => {
-		setFetchingFiles(true);
-		const files$2 = await getAllFiles();
-		setDashboardFiles(files$2);
-		setFetchingFiles(false);
+	const handleInsertFile = (file) => {
+		const fiber = getFiber(document.querySelector("[class*=\"slateContainer\"]"));
+		if (fiber?.child?.pendingProps?.editor) {
+			const editor = fiber.child.pendingProps.editor;
+			const url = getUrl(file, store.publicUrl);
+			editor.insertText(url + " ");
+		}
 	};
-	const handleDeleteFile = async (e$2, file) => {
-		e$2.stopPropagation();
-		await deleteFile(file.Key);
-		await fetchDashboardFiles();
+	const handleSortClick = (field) => {
+		if (sortBy() === field) setSortOrder(sortOrder() === "asc" ? "desc" : "asc");
+else setSortBy(field);
 	};
 	createEffect(() => {
-		const newFiles = files$1();
-		Promise.all(newFiles.map((file) => getFilePreview(file))).then((newPreviews) => {
-			setPreviews(newPreviews);
-		});
+		const files$1 = pendingFiles();
+		const currentPreviews = pendingPreviews();
+		if (files$1.length > currentPreviews.length) {
+			const newFiles = files$1.slice(currentPreviews.length);
+			const newPreviews = newFiles.map((file) => createLocalPreviewUrl(file));
+			setPendingPreviews([...currentPreviews, ...newPreviews]);
+		}
 	});
 	createEffect(() => {
-		if (dashOpen()) fetchDashboardFiles();
+		const previews = pendingPreviews();
+		const files$1 = pendingFiles();
+		if (files$1.length === 0 && previews.length > 0) {
+			previews.forEach((url) => revokeLocalPreviewUrl(url));
+			setPendingPreviews([]);
+		}
+	});
+	createEffect(() => {
+		if (dashOpen() && !dashboardLoaded()) refreshDashboard();
 	});
 	return (0, import_web$21.createComponent)(ModalRoot, {
 		get size() {
@@ -29271,7 +30564,29 @@ function UploadModal(closeModal) {
 				(0, import_web$21.createComponent)(ModalHeader, {
 					close: closeModal,
 					get children() {
-						return dashOpen() ? "File Dashboard" : "Upload Files";
+						const _el$32 = (0, import_web$19.getNextElement)(_tmpl$8), _el$33 = _el$32.firstChild, _el$40 = _el$33.nextSibling, [_el$41, _co$8] = (0, import_web$20.getNextMarker)(_el$40.nextSibling);
+						(0, import_web$22.insert)(_el$33, () => dashOpen() ? "File Dashboard" : "Upload Files");
+						(0, import_web$22.insert)(_el$32, (0, import_web$21.createComponent)(Show, {
+							get when() {
+								return isUploading();
+							},
+							get children() {
+								const _el$34 = (0, import_web$19.getNextElement)(_tmpl$7), _el$35 = _el$34.firstChild, _el$36 = _el$35.firstChild, _el$38 = _el$36.nextSibling, [_el$39, _co$7] = (0, import_web$20.getNextMarker)(_el$38.nextSibling), _el$37 = _el$39.nextSibling;
+								(0, import_web$22.insert)(_el$35, () => overallProgress().toFixed(0), _el$39, _co$7);
+								(0, import_web$18.effect)((_p$) => {
+									const _v$24 = modal_jsx_default.headerProgress, _v$25 = modal_jsx_default.headerProgressText;
+									_v$24 !== _p$._v$24 && (0, import_web$17.className)(_el$34, _p$._v$24 = _v$24);
+									_v$25 !== _p$._v$25 && (0, import_web$17.className)(_el$35, _p$._v$25 = _v$25);
+									return _p$;
+								}, {
+									_v$24: undefined,
+									_v$25: undefined
+								});
+								return _el$34;
+							}
+						}), _el$41, _co$8);
+						(0, import_web$18.effect)(() => (0, import_web$17.className)(_el$32, modal_jsx_default.headerContent));
+						return _el$32;
 					}
 				}),
 				(0, import_web$21.createComponent)(Show, {
@@ -29282,138 +30597,200 @@ function UploadModal(closeModal) {
 						return (0, import_web$21.createComponent)(ModalBody, { get children() {
 							return [
 								(() => {
-									const _el$ = (0, import_web$20.getNextElement)(_tmpl$2$1), _el$4 = _el$.firstChild, [_el$5, _co$] = (0, import_web$17.getNextMarker)(_el$4.nextSibling), _el$3 = _el$5.nextSibling;
-									_el$.$$click = handleUploadClick;
-									_el$.addEventListener("drop", handleDrop);
-									_el$.addEventListener("dragleave", handleDragLeave);
-									_el$.addEventListener("dragover", handleDragOver);
-									(0, import_web$18.insert)(_el$, (0, import_web$21.createComponent)(Show, {
-										get when() {
-											return !isUploading();
-										},
-										get fallback() {
-											return (0, import_web$20.getNextElement)(_tmpl$9);
-										},
-										get children() {
-											return (0, import_web$20.getNextElement)(_tmpl$$2);
-										}
-									}), _el$5, _co$);
-									_el$3.addEventListener("change", handleFileChange);
+									const _el$42 = (0, import_web$19.getNextElement)(_tmpl$9), _el$43 = _el$42.firstChild, _el$44 = _el$43.firstChild, [_el$45, _co$9] = (0, import_web$20.getNextMarker)(_el$44.nextSibling), _el$46 = _el$45.nextSibling, [_el$47, _co$0] = (0, import_web$20.getNextMarker)(_el$46.nextSibling), _el$48 = _el$43.nextSibling;
+									_el$42.$$click = handleUploadClick;
+									_el$42.addEventListener("drop", handleDrop);
+									_el$42.addEventListener("dragleave", handleDragLeave);
+									_el$42.addEventListener("dragover", handleDragOver);
+									(0, import_web$22.insert)(_el$43, (0, import_web$21.createComponent)(UploadDropIcon, {}), _el$45, _co$9);
+									(0, import_web$22.insert)(_el$43, (0, import_web$21.createComponent)(Text$1, { get children() {
+										return isUploading() ? "Upload in progress..." : "Drag & drop files here or click to select";
+									} }), _el$47, _co$0);
+									_el$48.addEventListener("change", handleFileChange);
 									const _ref$ = fileInputRef;
-									typeof _ref$ === "function" ? (0, import_web$19.use)(_ref$, _el$3) : fileInputRef = _el$3;
-									(0, import_web$15.effect)((_p$) => {
-										const _v$ = `${modal_jsx_default.uploadArea} ${isDragOver() ? modal_jsx_default.dragOver : ""} ${isUploading() ? modal_jsx_default.uploading : ""}`, _v$2 = isUploading();
-										_v$ !== _p$._v$ && (0, import_web$14.className)(_el$, _p$._v$ = _v$);
-										_v$2 !== _p$._v$2 && (_el$3.disabled = _p$._v$2 = _v$2);
+									typeof _ref$ === "function" ? (0, import_web$16.use)(_ref$, _el$48) : fileInputRef = _el$48;
+									(0, import_web$18.effect)((_p$) => {
+										const _v$26 = `${modal_jsx_default.uploadArea} ${isUploading() ? modal_jsx_default.uploading : ""}`, _v$27 = modal_jsx_default.uploadAreaContent, _v$28 = isUploading();
+										_v$26 !== _p$._v$26 && (0, import_web$17.className)(_el$42, _p$._v$26 = _v$26);
+										_v$27 !== _p$._v$27 && (0, import_web$17.className)(_el$43, _p$._v$27 = _v$27);
+										_v$28 !== _p$._v$28 && (_el$48.disabled = _p$._v$28 = _v$28);
 										return _p$;
 									}, {
-										_v$: undefined,
-										_v$2: undefined
+										_v$26: undefined,
+										_v$27: undefined,
+										_v$28: undefined
 									});
-									(0, import_web$16.runHydrationEvents)();
-									return _el$;
+									(0, import_web$13.runHydrationEvents)();
+									return _el$42;
 								})(),
 								(0, import_web$21.createComponent)(Show, {
 									get when() {
-										return isUploading();
+										return activeUploads().size > 0;
 									},
 									get children() {
-										return [(() => {
-											const _el$6 = (0, import_web$20.getNextElement)(_tmpl$3$1), _el$7 = _el$6.firstChild;
-											(0, import_web$15.effect)((_p$) => {
-												const _v$3 = modal_jsx_default.progressBar, _v$4 = modal_jsx_default.progressFill, _v$5 = `${uploadProgress()}%`;
-												_v$3 !== _p$._v$3 && (0, import_web$14.className)(_el$6, _p$._v$3 = _v$3);
-												_v$4 !== _p$._v$4 && (0, import_web$14.className)(_el$7, _p$._v$4 = _v$4);
-												_v$5 !== _p$._v$5 && _el$7.style.setProperty("width", _p$._v$5 = _v$5);
-												return _p$;
-											}, {
-												_v$3: undefined,
-												_v$4: undefined,
-												_v$5: undefined
-											});
-											return _el$6;
-										})(), (() => {
-											const _el$8 = (0, import_web$20.getNextElement)(_tmpl$4$1), _el$9 = _el$8.firstChild, _el$1 = _el$9.nextSibling, [_el$10, _co$2] = (0, import_web$17.getNextMarker)(_el$1.nextSibling), _el$0 = _el$10.nextSibling;
-											(0, import_web$18.insert)(_el$8, () => uploadProgress().toFixed(2), _el$10, _co$2);
-											return _el$8;
-										})()];
+										const _el$49 = (0, import_web$19.getNextElement)(_tmpl$0), _el$50 = _el$49.firstChild, _el$51 = _el$50.firstChild, [_el$52, _co$1] = (0, import_web$20.getNextMarker)(_el$51.nextSibling), _el$53 = _el$52.nextSibling, [_el$54, _co$10] = (0, import_web$20.getNextMarker)(_el$53.nextSibling), _el$55 = _el$50.nextSibling;
+										(0, import_web$22.insert)(_el$50, (0, import_web$21.createComponent)(Text$1, {
+											get tag() {
+												return TextTags.textSM;
+											},
+											get weight() {
+												return TextWeights.semibold;
+											},
+											children: "Uploads"
+										}), _el$52, _co$1);
+										(0, import_web$22.insert)(_el$50, (0, import_web$21.createComponent)(Show, {
+											get when() {
+												return hasActiveUploads();
+											},
+											get children() {
+												return (0, import_web$21.createComponent)(Button$1, {
+													get size() {
+														return ButtonSizes$1.MEDIUM;
+													},
+													get color() {
+														return ButtonColors$1.CRITICAL_PRIMARY;
+													},
+													onClick: handleCancelAll,
+													children: "Cancel All"
+												});
+											}
+										}), _el$54, _co$10);
+										(0, import_web$22.insert)(_el$55, (0, import_web$21.createComponent)(For, {
+											get each() {
+												return Array.from(activeUploads().entries());
+											},
+											children: ([fileId, uploadInfo]) => (0, import_web$21.createComponent)(UploadProgressItem, {
+												fileId,
+												uploadInfo,
+												onCancel: handleCancelUpload
+											})
+										}));
+										(0, import_web$18.effect)((_p$) => {
+											const _v$29 = modal_jsx_default.uploadsSection, _v$30 = modal_jsx_default.uploadsSectionHeader, _v$31 = modal_jsx_default.uploadsList;
+											_v$29 !== _p$._v$29 && (0, import_web$17.className)(_el$49, _p$._v$29 = _v$29);
+											_v$30 !== _p$._v$30 && (0, import_web$17.className)(_el$50, _p$._v$30 = _v$30);
+											_v$31 !== _p$._v$31 && (0, import_web$17.className)(_el$55, _p$._v$31 = _v$31);
+											return _p$;
+										}, {
+											_v$29: undefined,
+											_v$30: undefined,
+											_v$31: undefined
+										});
+										return _el$49;
 									}
 								}),
-								(() => {
-									const _el$11 = (0, import_web$20.getNextElement)(_tmpl$5);
-									(0, import_web$18.insert)(_el$11, (0, import_web$21.createComponent)(For, {
-										get each() {
-											return files$1();
-										},
-										children: (file, index) => (() => {
-											const _el$26 = (0, import_web$20.getNextElement)(_tmpl$0), _el$31 = _el$26.firstChild, [_el$32, _co$7] = (0, import_web$17.getNextMarker)(_el$31.nextSibling), _el$33 = _el$32.nextSibling, [_el$34, _co$8] = (0, import_web$17.getNextMarker)(_el$33.nextSibling), _el$35 = _el$34.nextSibling, [_el$36, _co$9] = (0, import_web$17.getNextMarker)(_el$35.nextSibling), _el$27 = _el$36.nextSibling, _el$28 = _el$27.firstChild, _el$29 = _el$28.nextSibling, _el$30 = _el$27.nextSibling;
-											(0, import_web$18.insert)(_el$26, (() => {
-												const _c$ = (0, import_web$22.memo)(() => !!file.type.startsWith("image/"));
-												return () => _c$() && (() => {
-													const _el$37 = (0, import_web$20.getNextElement)(_tmpl$1);
-													(0, import_web$15.effect)((_p$) => {
-														const _v$0 = previews()[index()], _v$1 = file.name, _v$10 = modal_jsx_default.previewImage;
-														_v$0 !== _p$._v$0 && (0, import_web$13.setAttribute)(_el$37, "src", _p$._v$0 = _v$0);
-														_v$1 !== _p$._v$1 && (0, import_web$13.setAttribute)(_el$37, "alt", _p$._v$1 = _v$1);
-														_v$10 !== _p$._v$10 && (0, import_web$14.className)(_el$37, _p$._v$10 = _v$10);
-														return _p$;
-													}, {
-														_v$0: undefined,
-														_v$1: undefined,
-														_v$10: undefined
-													});
-													return _el$37;
-												})();
-											})(), _el$32, _co$7);
-											(0, import_web$18.insert)(_el$26, (() => {
-												const _c$2 = (0, import_web$22.memo)(() => !!file.type.startsWith("video/"));
-												return () => _c$2() && (() => {
-													const _el$38 = (0, import_web$20.getNextElement)(_tmpl$1);
-													(0, import_web$15.effect)((_p$) => {
-														const _v$11 = previews()[index()], _v$12 = file.name, _v$13 = modal_jsx_default.previewVideo;
-														_v$11 !== _p$._v$11 && (0, import_web$13.setAttribute)(_el$38, "src", _p$._v$11 = _v$11);
-														_v$12 !== _p$._v$12 && (0, import_web$13.setAttribute)(_el$38, "alt", _p$._v$12 = _v$12);
-														_v$13 !== _p$._v$13 && (0, import_web$14.className)(_el$38, _p$._v$13 = _v$13);
-														return _p$;
-													}, {
-														_v$11: undefined,
-														_v$12: undefined,
-														_v$13: undefined
-													});
-													return _el$38;
-												})();
-											})(), _el$34, _co$8);
-											(0, import_web$18.insert)(_el$26, (() => {
-												const _c$3 = (0, import_web$22.memo)(() => !!(!file.type.startsWith("image/") && !file.type.startsWith("video/")));
-												return () => _c$3() && (() => {
-													const _el$39 = (0, import_web$20.getNextElement)(_tmpl$10);
-													(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$39, modal_jsx_default.previewIcon));
-													return _el$39;
-												})();
-											})(), _el$36, _co$9);
-											(0, import_web$18.insert)(_el$28, () => file.name);
-											(0, import_web$18.insert)(_el$29, () => formatFileSize(file.size));
-											_el$30.$$click = () => handleRemoveFile(index());
-											(0, import_web$15.effect)((_p$) => {
-												const _v$6 = modal_jsx_default.previewItem, _v$7 = modal_jsx_default.previewItemInfo, _v$8 = modal_jsx_default.removeButton, _v$9 = isUploading();
-												_v$6 !== _p$._v$6 && (0, import_web$14.className)(_el$26, _p$._v$6 = _v$6);
-												_v$7 !== _p$._v$7 && (0, import_web$14.className)(_el$27, _p$._v$7 = _v$7);
-												_v$8 !== _p$._v$8 && (0, import_web$14.className)(_el$30, _p$._v$8 = _v$8);
-												_v$9 !== _p$._v$9 && (_el$30.disabled = _p$._v$9 = _v$9);
-												return _p$;
-											}, {
-												_v$6: undefined,
-												_v$7: undefined,
-												_v$8: undefined,
-												_v$9: undefined
-											});
-											(0, import_web$16.runHydrationEvents)();
-											return _el$26;
-										})()
-									}));
-									(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$11, modal_jsx_default.previewArea));
-									return _el$11;
-								})()
+								(0, import_web$21.createComponent)(Show, {
+									get when() {
+										return pendingFiles().length > 0;
+									},
+									get children() {
+										const _el$56 = (0, import_web$19.getNextElement)(_tmpl$0), _el$57 = _el$56.firstChild, _el$58 = _el$57.firstChild, [_el$59, _co$11] = (0, import_web$20.getNextMarker)(_el$58.nextSibling), _el$60 = _el$59.nextSibling, [_el$61, _co$12] = (0, import_web$20.getNextMarker)(_el$60.nextSibling), _el$62 = _el$57.nextSibling;
+										(0, import_web$22.insert)(_el$57, (0, import_web$21.createComponent)(Text$1, {
+											get tag() {
+												return TextTags.textSM;
+											},
+											get weight() {
+												return TextWeights.semibold;
+											},
+											get children() {
+												return [
+													"Pending Files (",
+													(0, import_web$15.memo)(() => pendingFiles().length),
+													")"
+												];
+											}
+										}), _el$59, _co$11);
+										(0, import_web$22.insert)(_el$57, (0, import_web$21.createComponent)(Button$1, {
+											get size() {
+												return ButtonSizes$1.MEDIUM;
+											},
+											get color() {
+												return ButtonColors$1.CRITICAL_SECONDARY;
+											},
+											onClick: clearPendingFiles,
+											get disabled() {
+												return isUploading();
+											},
+											children: "Remove All"
+										}), _el$61, _co$12);
+										(0, import_web$22.insert)(_el$62, (0, import_web$21.createComponent)(For, {
+											get each() {
+												return pendingFiles();
+											},
+											children: (file, index) => (() => {
+												const _el$97 = (0, import_web$19.getNextElement)(_tmpl$14), _el$98 = _el$97.firstChild, _el$101 = _el$98.firstChild, [_el$102, _co$23] = (0, import_web$20.getNextMarker)(_el$101.nextSibling), _el$103 = _el$102.nextSibling, [_el$104, _co$24] = (0, import_web$20.getNextMarker)(_el$103.nextSibling), _el$105 = _el$98.nextSibling, _el$106 = _el$105.firstChild, _el$107 = _el$106.nextSibling, _el$108 = _el$105.nextSibling;
+												(0, import_web$22.insert)(_el$98, (0, import_web$21.createComponent)(Show, {
+													get when() {
+														return pendingPreviews()[index()];
+													},
+													get children() {
+														const _el$99 = (0, import_web$19.getNextElement)(_tmpl$13);
+														(0, import_web$18.effect)((_p$) => {
+															const _v$42 = pendingPreviews()[index()], _v$43 = file.name, _v$44 = modal_jsx_default.previewImage;
+															_v$42 !== _p$._v$42 && (0, import_web$14.setAttribute)(_el$99, "src", _p$._v$42 = _v$42);
+															_v$43 !== _p$._v$43 && (0, import_web$14.setAttribute)(_el$99, "alt", _p$._v$43 = _v$43);
+															_v$44 !== _p$._v$44 && (0, import_web$17.className)(_el$99, _p$._v$44 = _v$44);
+															return _p$;
+														}, {
+															_v$42: undefined,
+															_v$43: undefined,
+															_v$44: undefined
+														});
+														return _el$99;
+													}
+												}), _el$102, _co$23);
+												(0, import_web$22.insert)(_el$98, (0, import_web$21.createComponent)(Show, {
+													get when() {
+														return !pendingPreviews()[index()];
+													},
+													get children() {
+														const _el$100 = (0, import_web$19.getNextElement)(_tmpl$4$1);
+														(0, import_web$22.insert)(_el$100, FileIcon);
+														(0, import_web$18.effect)(() => (0, import_web$17.className)(_el$100, modal_jsx_default.previewIcon));
+														return _el$100;
+													}
+												}), _el$104, _co$24);
+												(0, import_web$22.insert)(_el$106, () => file.name);
+												(0, import_web$22.insert)(_el$107, () => formatFileSize(file.size));
+												_el$108.$$click = () => !isUploading() && handleRemoveFile(index());
+												(0, import_web$22.insert)(_el$108, (0, import_web$21.createComponent)(CloseIcon, {}));
+												(0, import_web$18.effect)((_p$) => {
+													const _v$45 = modal_jsx_default.previewItem, _v$46 = modal_jsx_default.thumbnailContainer, _v$47 = modal_jsx_default.previewItemInfo, _v$48 = modal_jsx_default.fileName, _v$49 = file.name, _v$50 = modal_jsx_default.fileMeta, _v$51 = `${modal_jsx_default.removeButton} ${isUploading() ? modal_jsx_default.disabled : ""}`;
+													_v$45 !== _p$._v$45 && (0, import_web$17.className)(_el$97, _p$._v$45 = _v$45);
+													_v$46 !== _p$._v$46 && (0, import_web$17.className)(_el$98, _p$._v$46 = _v$46);
+													_v$47 !== _p$._v$47 && (0, import_web$17.className)(_el$105, _p$._v$47 = _v$47);
+													_v$48 !== _p$._v$48 && (0, import_web$17.className)(_el$106, _p$._v$48 = _v$48);
+													_v$49 !== _p$._v$49 && (0, import_web$14.setAttribute)(_el$106, "title", _p$._v$49 = _v$49);
+													_v$50 !== _p$._v$50 && (0, import_web$17.className)(_el$107, _p$._v$50 = _v$50);
+													_v$51 !== _p$._v$51 && (0, import_web$17.className)(_el$108, _p$._v$51 = _v$51);
+													return _p$;
+												}, {
+													_v$45: undefined,
+													_v$46: undefined,
+													_v$47: undefined,
+													_v$48: undefined,
+													_v$49: undefined,
+													_v$50: undefined,
+													_v$51: undefined
+												});
+												(0, import_web$13.runHydrationEvents)();
+												return _el$97;
+											})()
+										}));
+										(0, import_web$18.effect)((_p$) => {
+											const _v$32 = modal_jsx_default.pendingSection, _v$33 = modal_jsx_default.pendingSectionHeader, _v$34 = modal_jsx_default.previewArea;
+											_v$32 !== _p$._v$32 && (0, import_web$17.className)(_el$56, _p$._v$32 = _v$32);
+											_v$33 !== _p$._v$33 && (0, import_web$17.className)(_el$57, _p$._v$33 = _v$33);
+											_v$34 !== _p$._v$34 && (0, import_web$17.className)(_el$62, _p$._v$34 = _v$34);
+											return _p$;
+										}, {
+											_v$32: undefined,
+											_v$33: undefined,
+											_v$34: undefined
+										});
+										return _el$56;
+									}
+								})
 							];
 						} });
 					}
@@ -29424,132 +30801,148 @@ function UploadModal(closeModal) {
 					},
 					get children() {
 						return (0, import_web$21.createComponent)(ModalBody, { get children() {
-							return [(0, import_web$21.createComponent)(Show, {
-								get when() {
-									return fetchingFiles();
-								},
-								get children() {
-									return (0, import_web$20.getNextElement)(_tmpl$6);
-								}
-							}), (0, import_web$21.createComponent)(Show, {
-								get when() {
-									return !fetchingFiles();
-								},
-								get children() {
-									return [(() => {
-										const _el$13 = (0, import_web$20.getNextElement)(_tmpl$7), _el$14 = _el$13.firstChild, _el$15 = _el$14.nextSibling, [_el$16, _co$3] = (0, import_web$17.getNextMarker)(_el$15.nextSibling);
-										(0, import_web$18.insert)(_el$13, () => formatFileSize(dashboardFiles().reduce((acc, file) => acc + file.Size, 0)), _el$16, _co$3);
-										return _el$13;
-									})(), (() => {
-										const _el$17 = (0, import_web$20.getNextElement)(_tmpl$5);
-										(0, import_web$18.insert)(_el$17, (0, import_web$21.createComponent)(For, {
-											get each() {
-												return dashboardFiles();
+							return [
+								(() => {
+									const _el$63 = (0, import_web$19.getNextElement)(_tmpl$1), _el$77 = _el$63.firstChild, [_el$78, _co$16] = (0, import_web$20.getNextMarker)(_el$77.nextSibling), _el$64 = _el$78.nextSibling, _el$65 = _el$64.firstChild, _el$66 = _el$65.firstChild, _el$67 = _el$66.nextSibling, [_el$68, _co$13] = (0, import_web$20.getNextMarker)(_el$67.nextSibling), _el$69 = _el$65.nextSibling, _el$70 = _el$69.firstChild, _el$71 = _el$70.nextSibling, [_el$72, _co$14] = (0, import_web$20.getNextMarker)(_el$71.nextSibling), _el$73 = _el$69.nextSibling, _el$74 = _el$73.firstChild, _el$75 = _el$74.nextSibling, [_el$76, _co$15] = (0, import_web$20.getNextMarker)(_el$75.nextSibling);
+									(0, import_web$22.insert)(_el$63, (0, import_web$21.createComponent)(TextBox$1, {
+										placeholder: "Search files...",
+										get value() {
+											return searchQuery();
+										},
+										onInput: (v$2) => setSearchQuery(v$2)
+									}), _el$78, _co$16);
+									_el$65.$$click = () => handleSortClick("date");
+									(0, import_web$22.insert)(_el$65, (0, import_web$21.createComponent)(SortIcon, {
+										get active() {
+											return sortBy() === "date";
+										},
+										get ascending() {
+											return sortOrder() === "asc";
+										}
+									}), _el$68, _co$13);
+									_el$69.$$click = () => handleSortClick("size");
+									(0, import_web$22.insert)(_el$69, (0, import_web$21.createComponent)(SortIcon, {
+										get active() {
+											return sortBy() === "size";
+										},
+										get ascending() {
+											return sortOrder() === "asc";
+										}
+									}), _el$72, _co$14);
+									_el$73.$$click = () => handleSortClick("name");
+									(0, import_web$22.insert)(_el$73, (0, import_web$21.createComponent)(SortIcon, {
+										get active() {
+											return sortBy() === "name";
+										},
+										get ascending() {
+											return sortOrder() === "asc";
+										}
+									}), _el$76, _co$15);
+									(0, import_web$18.effect)((_p$) => {
+										const _v$35 = modal_jsx_default.dashboardControls, _v$36 = modal_jsx_default.sortControls, _v$37 = `${modal_jsx_default.sortButton} ${sortBy() === "date" ? modal_jsx_default.sortButtonActive : ""}`, _v$38 = `${modal_jsx_default.sortButton} ${sortBy() === "size" ? modal_jsx_default.sortButtonActive : ""}`, _v$39 = `${modal_jsx_default.sortButton} ${sortBy() === "name" ? modal_jsx_default.sortButtonActive : ""}`;
+										_v$35 !== _p$._v$35 && (0, import_web$17.className)(_el$63, _p$._v$35 = _v$35);
+										_v$36 !== _p$._v$36 && (0, import_web$17.className)(_el$64, _p$._v$36 = _v$36);
+										_v$37 !== _p$._v$37 && (0, import_web$17.className)(_el$65, _p$._v$37 = _v$37);
+										_v$38 !== _p$._v$38 && (0, import_web$17.className)(_el$69, _p$._v$38 = _v$38);
+										_v$39 !== _p$._v$39 && (0, import_web$17.className)(_el$73, _p$._v$39 = _v$39);
+										return _p$;
+									}, {
+										_v$35: undefined,
+										_v$36: undefined,
+										_v$37: undefined,
+										_v$38: undefined,
+										_v$39: undefined
+									});
+									(0, import_web$13.runHydrationEvents)();
+									return _el$63;
+								})(),
+								(0, import_web$21.createComponent)(Show, {
+									get when() {
+										return dashboardLoading();
+									},
+									get children() {
+										const _el$79 = (0, import_web$19.getNextElement)(_tmpl$10), _el$80 = _el$79.firstChild, _el$81 = _el$80.nextSibling, [_el$82, _co$17] = (0, import_web$20.getNextMarker)(_el$81.nextSibling);
+										(0, import_web$22.insert)(_el$79, (0, import_web$21.createComponent)(Text$1, { children: "Loading files..." }), _el$82, _co$17);
+										(0, import_web$18.effect)((_p$) => {
+											const _v$40 = modal_jsx_default.loadingContainer, _v$41 = modal_jsx_default.spinner;
+											_v$40 !== _p$._v$40 && (0, import_web$17.className)(_el$79, _p$._v$40 = _v$40);
+											_v$41 !== _p$._v$41 && (0, import_web$17.className)(_el$80, _p$._v$41 = _v$41);
+											return _p$;
+										}, {
+											_v$40: undefined,
+											_v$41: undefined
+										});
+										return _el$79;
+									}
+								}),
+								(0, import_web$21.createComponent)(Show, {
+									get when() {
+										return !dashboardLoading();
+									},
+									get children() {
+										return [(0, import_web$21.createComponent)(Show, {
+											get when() {
+												return filteredFiles().length === 0;
 											},
-											children: (file) => {
-												const extension = file.Key.split(".").pop();
-												const isImage = [
-													"jpg",
-													"jpeg",
-													"png",
-													"gif",
-													"webp",
-													"svg"
-												].includes(extension);
-												const isVideo = ["mp4", "webm"].includes(extension);
-												const [preview, setPreview] = createSignal(store.previews[file.Key]);
-												if (!preview() && (isImage || isVideo)) getFilePreview(file, isImage, isVideo, store.publicUrl).then((url) => {
-													store.previews = {
-														...store.previews,
-														[file.Key]: url
-													};
-													setPreview(url);
-												});
-												return (() => {
-													const _el$40 = (0, import_web$20.getNextElement)(_tmpl$11), _el$46 = _el$40.firstChild, [_el$47, _co$0] = (0, import_web$17.getNextMarker)(_el$46.nextSibling), _el$48 = _el$47.nextSibling, [_el$49, _co$1] = (0, import_web$17.getNextMarker)(_el$48.nextSibling), _el$50 = _el$49.nextSibling, [_el$51, _co$10] = (0, import_web$17.getNextMarker)(_el$50.nextSibling), _el$41 = _el$51.nextSibling, _el$42 = _el$41.firstChild, _el$43 = _el$42.nextSibling, _el$44 = _el$43.nextSibling, _el$45 = _el$41.nextSibling;
-													_el$40.$$click = (e$2) => {
-														e$2.stopPropagation();
-														const fiber = getFiber(document.querySelector("[class*=\"slateContainer\"]"));
-														const editor = fiber.child.pendingProps.editor;
-														const url = getUrl(file, store.publicUrl);
-														editor.insertText(url + " ");
-													};
-													(0, import_web$19.use)(focusring$1, _el$40, () => true);
-													(0, import_web$18.insert)(_el$40, (() => {
-														const _c$4 = (0, import_web$22.memo)(() => !!(preview() && isImage));
-														return () => _c$4() && (() => {
-															const _el$52 = (0, import_web$20.getNextElement)(_tmpl$1);
-															(0, import_web$15.effect)((_p$) => {
-																const _v$17 = preview(), _v$18 = file.Key, _v$19 = modal_jsx_default.previewImage;
-																_v$17 !== _p$._v$17 && (0, import_web$13.setAttribute)(_el$52, "src", _p$._v$17 = _v$17);
-																_v$18 !== _p$._v$18 && (0, import_web$13.setAttribute)(_el$52, "alt", _p$._v$18 = _v$18);
-																_v$19 !== _p$._v$19 && (0, import_web$14.className)(_el$52, _p$._v$19 = _v$19);
-																return _p$;
-															}, {
-																_v$17: undefined,
-																_v$18: undefined,
-																_v$19: undefined
-															});
-															return _el$52;
-														})();
-													})(), _el$47, _co$0);
-													(0, import_web$18.insert)(_el$40, (() => {
-														const _c$5 = (0, import_web$22.memo)(() => !!(preview() && isVideo));
-														return () => _c$5() && (() => {
-															const _el$53 = (0, import_web$20.getNextElement)(_tmpl$1);
-															(0, import_web$15.effect)((_p$) => {
-																const _v$20 = preview(), _v$21 = file.Key, _v$22 = modal_jsx_default.previewVideo;
-																_v$20 !== _p$._v$20 && (0, import_web$13.setAttribute)(_el$53, "src", _p$._v$20 = _v$20);
-																_v$21 !== _p$._v$21 && (0, import_web$13.setAttribute)(_el$53, "alt", _p$._v$21 = _v$21);
-																_v$22 !== _p$._v$22 && (0, import_web$14.className)(_el$53, _p$._v$22 = _v$22);
-																return _p$;
-															}, {
-																_v$20: undefined,
-																_v$21: undefined,
-																_v$22: undefined
-															});
-															return _el$53;
-														})();
-													})(), _el$49, _co$1);
-													(0, import_web$18.insert)(_el$40, (() => {
-														const _c$6 = (0, import_web$22.memo)(() => !!(!preview() || !isImage && !isVideo));
-														return () => _c$6() && (() => {
-															const _el$54 = (0, import_web$20.getNextElement)(_tmpl$10);
-															(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$54, modal_jsx_default.previewIcon));
-															return _el$54;
-														})();
-													})(), _el$51, _co$10);
-													(0, import_web$18.insert)(_el$42, () => file.Key);
-													(0, import_web$18.insert)(_el$43, () => formatFileSize(file.Size));
-													(0, import_web$18.insert)(_el$44, () => formatDate(file.LastModified));
-													_el$45.$$click = (e$2) => handleDeleteFile(e$2, file);
-													(0, import_web$15.effect)((_p$) => {
-														const _v$14 = modal_jsx_default.dashboardItem, _v$15 = modal_jsx_default.previewItemInfo, _v$16 = modal_jsx_default.removeButton;
-														_v$14 !== _p$._v$14 && (0, import_web$14.className)(_el$40, _p$._v$14 = _v$14);
-														_v$15 !== _p$._v$15 && (0, import_web$14.className)(_el$41, _p$._v$15 = _v$15);
-														_v$16 !== _p$._v$16 && (0, import_web$14.className)(_el$45, _p$._v$16 = _v$16);
-														return _p$;
-													}, {
-														_v$14: undefined,
-														_v$15: undefined,
-														_v$16: undefined
-													});
-													(0, import_web$16.runHydrationEvents)();
-													return _el$40;
-												})();
+											get children() {
+												const _el$83 = (0, import_web$19.getNextElement)(_tmpl$4$1);
+												(0, import_web$22.insert)(_el$83, (0, import_web$21.createComponent)(Text$1, { get children() {
+													return searchQuery() ? "No files match your search" : "No files uploaded yet";
+												} }));
+												(0, import_web$18.effect)(() => (0, import_web$17.className)(_el$83, modal_jsx_default.emptyState));
+												return _el$83;
 											}
-										}));
-										(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$17, modal_jsx_default.previewArea));
-										return _el$17;
-									})()];
-								}
-							})];
+										}), (() => {
+											const _el$84 = (0, import_web$19.getNextElement)(_tmpl$4$1);
+											(0, import_web$22.insert)(_el$84, (0, import_web$21.createComponent)(For, {
+												get each() {
+													return filteredFiles();
+												},
+												children: (file) => (0, import_web$21.createComponent)(DashboardFileItem, {
+													file,
+													manifest,
+													onDelete: handleDeleteFile,
+													onInsert: handleInsertFile
+												})
+											}));
+											(0, import_web$18.effect)(() => (0, import_web$17.className)(_el$84, modal_jsx_default.previewArea));
+											return _el$84;
+										})()];
+									}
+								}),
+								(() => {
+									const _el$85 = (0, import_web$19.getNextElement)(_tmpl$11), _el$86 = _el$85.firstChild, [_el$87, _co$18] = (0, import_web$20.getNextMarker)(_el$86.nextSibling), _el$88 = _el$87.nextSibling, [_el$89, _co$19] = (0, import_web$20.getNextMarker)(_el$88.nextSibling);
+									(0, import_web$22.insert)(_el$85, (0, import_web$21.createComponent)(Text$1, {
+										get tag() {
+											return TextTags.textSM;
+										},
+										get children() {
+											return [
+												(0, import_web$15.memo)(() => filteredFiles().length),
+												" file",
+												(0, import_web$15.memo)(() => filteredFiles().length !== 1 ? "s" : ""),
+												(0, import_web$15.memo)(() => (0, import_web$15.memo)(() => !!searchQuery())() && ` matching "${searchQuery()}"`)
+											];
+										}
+									}), _el$87, _co$18);
+									(0, import_web$22.insert)(_el$85, (0, import_web$21.createComponent)(Text$1, {
+										get tag() {
+											return TextTags.textSM;
+										},
+										get children() {
+											return ["Total: ", (0, import_web$15.memo)(() => formatFileSize(totalBucketSize()))];
+										}
+									}), _el$89, _co$19);
+									(0, import_web$18.effect)(() => (0, import_web$17.className)(_el$85, modal_jsx_default.statsBar));
+									return _el$85;
+								})()
+							];
 						} });
 					}
 				}),
 				(0, import_web$21.createComponent)(ModalFooter, { get children() {
-					const _el$18 = (0, import_web$20.getNextElement)(_tmpl$8), _el$19 = _el$18.firstChild, [_el$20, _co$4] = (0, import_web$17.getNextMarker)(_el$19.nextSibling), _el$21 = _el$20.nextSibling, [_el$22, _co$5] = (0, import_web$17.getNextMarker)(_el$21.nextSibling), _el$23 = _el$22.nextSibling, [_el$24, _co$6] = (0, import_web$17.getNextMarker)(_el$23.nextSibling);
-					(0, import_web$18.insert)(_el$18, (0, import_web$21.createComponent)(Button$1, {
+					const _el$90 = (0, import_web$19.getNextElement)(_tmpl$12), _el$91 = _el$90.firstChild, [_el$92, _co$20] = (0, import_web$20.getNextMarker)(_el$91.nextSibling), _el$93 = _el$92.nextSibling, [_el$94, _co$21] = (0, import_web$20.getNextMarker)(_el$93.nextSibling), _el$95 = _el$94.nextSibling, [_el$96, _co$22] = (0, import_web$20.getNextMarker)(_el$95.nextSibling);
+					(0, import_web$22.insert)(_el$90, (0, import_web$21.createComponent)(Button$1, {
 						get ["class"]() {
 							return modal_jsx_default.dashboardButton;
 						},
@@ -29563,28 +30956,15 @@ function UploadModal(closeModal) {
 						get children() {
 							return dashOpen() ? "Upload Files" : "Dashboard";
 						}
-					}), _el$20, _co$4);
-					(0, import_web$18.insert)(_el$18, (0, import_web$21.createComponent)(Button$1, {
-						get disabled() {
-							return isUploading();
-						},
-						get size() {
-							return ButtonSizes$1.MEDIUM;
-						},
-						get color() {
-							return ButtonColors$1.SECONDARY;
-						},
-						onClick: () => isUploading() ? null : closeModal(),
-						children: "Cancel"
-					}), _el$22, _co$5);
-					(0, import_web$18.insert)(_el$18, (0, import_web$21.createComponent)(Show, {
+					}), _el$92, _co$20);
+					(0, import_web$22.insert)(_el$90, (0, import_web$21.createComponent)(Show, {
 						get when() {
 							return !dashOpen();
 						},
 						get children() {
 							return (0, import_web$21.createComponent)(Button$1, {
 								get disabled() {
-									return isUploading() || files$1().length === 0;
+									return isUploading() || pendingFiles().length === 0;
 								},
 								get size() {
 									return ButtonSizes$1.MEDIUM;
@@ -29594,28 +30974,39 @@ function UploadModal(closeModal) {
 								},
 								onClick: handleConfirm,
 								get children() {
-									return isUploading() ? "Uploading..." : "Upload";
+									return (0, import_web$15.memo)(() => !!isUploading())() ? "Uploading..." : `Upload ${pendingFiles().length > 0 ? `(${pendingFiles().length})` : ""}`;
 								}
 							});
 						}
-					}), _el$24, _co$6);
-					(0, import_web$15.effect)(() => (0, import_web$14.className)(_el$18, modal_jsx_default.footer));
-					return _el$18;
+					}), _el$94, _co$21);
+					(0, import_web$22.insert)(_el$90, (0, import_web$21.createComponent)(Show, {
+						get when() {
+							return dashOpen();
+						},
+						get children() {
+							return (0, import_web$21.createComponent)(Button$1, {
+								get size() {
+									return ButtonSizes$1.MEDIUM;
+								},
+								get color() {
+									return ButtonColors$1.CRITICAL_PRIMARY;
+								},
+								onClick: () => refreshDashboard(),
+								get disabled() {
+									return dashboardLoading();
+								},
+								children: "Refresh"
+							});
+						}
+					}), _el$96, _co$22);
+					(0, import_web$18.effect)(() => (0, import_web$17.className)(_el$90, modal_jsx_default.footer));
+					return _el$90;
 				} })
 			];
 		}
 	});
 }
 (0, import_web$12.delegateEvents)(["click"]);
-
-//#endregion
-//#region plugins/externalUpload/uploadIcon.jsx
-var import_web$9 = __toESM(require_web());
-var import_web$10 = __toESM(require_web());
-const _tmpl$$1 = /*#__PURE__*/ (0, import_web$9.template)(`<svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M13.82 21.7c.17.05.14.3-.04.3H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4h7.5c.28 0 .5.22.5.5V5a5 5 0 0 0 5 5h2.5c.28 0 .5.22.5.5v2.3a.4.4 0 0 1-.68.27l-.2-.2a3 3 0 0 0-4.24 0l-4 4a3 3 0 0 0 0 4.25c.3.3.6.46.94.58Z"></path><path fill="currentColor" d="M21.66 8c.03 0 .05-.03.04-.06a3 3 0 0 0-.58-.82l-4.24-4.24a3 3 0 0 0-.82-.58.04.04 0 0 0-.06.04V5a3 3 0 0 0 3 3h2.66ZM18.3 14.3a1 1 0 0 1 1.4 0l4 4a1 1 0 0 1-1.4 1.4L20 17.42V23a1 1 0 1 1-2 0v-5.59l-2.3 2.3a1 1 0 0 1-1.4-1.42l4-4Z"></path></svg>`, 6);
-function uploadIcon() {
-	return (0, import_web$10.getNextElement)(_tmpl$$1);
-}
 
 //#endregion
 //#region plugins/externalUpload/index.jsx
@@ -29628,6 +31019,8 @@ var import_web$5 = __toESM(require_web());
 var import_web$6 = __toESM(require_web());
 var import_web$7 = __toESM(require_web());
 var import_web$8 = __toESM(require_web());
+var import_web$9 = __toESM(require_web());
+var import_web$10 = __toESM(require_web());
 const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<button></button>`, 2), _tmpl$2 = /*#__PURE__*/ (0, import_web.template)(`<style>
          [class^="_modal"] {
             width: auto;
@@ -29641,16 +31034,16 @@ const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<button></button>`, 2), _
       "ExposeHeaders": ["ETag"]
     }
   ]
-}</code></pre>`, 4);
+}</code></pre>`, 4), _tmpl$5 = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><!#><!/></div>`, 6);
 const { observeDom } = shelter.plugin.scoped;
-const { ui: { openModal, showToast, Header, HeaderTags, Text, TextBox, Button, ButtonSizes, ButtonColors, focusring }, plugin } = shelter;
+const { ui: { openModal, showToast, Header, HeaderTags, Text, TextBox, Button, ButtonSizes, ButtonColors, SwitchItem, focusring }, solid: { createSignal }, plugin } = shelter;
 const { subscribe } = shelter.plugin.scoped.flux;
 function updateConfig() {
 	updateS3Client(plugin.store.region, plugin.store.endpoint, plugin.store.accessKeyId, plugin.store.secretAccessKey, plugin.store.bucket);
 }
 function uploadButton() {
 	return (() => {
-		const _el$ = (0, import_web$5.getNextElement)(_tmpl$);
+		const _el$ = (0, import_web$7.getNextElement)(_tmpl$);
 		_el$.$$click = () => {
 			if (plugin.store.endpoint === "" || plugin.store.accessKeyId === "" || plugin.store.secretAccessKey === "" || plugin.store.bucket === "") {
 				showToast({
@@ -29660,10 +31053,10 @@ function uploadButton() {
 				return;
 			} else openModal((p$1) => UploadModal(p$1.close));
 		};
-		(0, import_web$8.use)(focusring, _el$, () => true);
-		(0, import_web$7.insert)(_el$, uploadIcon);
-		(0, import_web$4.effect)(() => (0, import_web$3.className)(_el$, modal_jsx_default.replacedButton));
-		(0, import_web$6.runHydrationEvents)();
+		(0, import_web$10.use)(focusring, _el$, () => true);
+		(0, import_web$9.insert)(_el$, UploadIcon);
+		(0, import_web$6.effect)(() => (0, import_web$5.className)(_el$, modal_jsx_default.replacedButton));
+		(0, import_web$8.runHydrationEvents)();
 		return _el$;
 	})();
 }
@@ -29674,7 +31067,9 @@ function onLoad() {
 	plugin.store.secretAccessKey ??= "";
 	plugin.store.bucket ??= "";
 	plugin.store.publicUrl ??= "";
-	plugin.store.previews ??= {};
+	plugin.store.filenameCache ??= {};
+	plugin.store.debugLogging ??= false;
+	if (plugin.store.previews) delete plugin.store.previews;
 	updateConfig();
 	subscribe("CHANNEL_SELECT", () => {
 		let unobserve = observeDom("[class*=\"inner\"] > [class*=\"buttons\"], [class*=\"accessoryBarRight\"]", (element) => {
@@ -29686,157 +31081,252 @@ function onLoad() {
 		setTimeout(() => unobserve(), 2e3);
 	});
 }
-const settings = () => [
-	(0, import_web$5.getNextElement)(_tmpl$2),
-	(0, import_web$2.createComponent)(Text, { get children() {
-		return [
-			"Configure the S3 compatible backend to use for external uploads.",
-			(0, import_web$5.getNextElement)(_tmpl$3),
-			(0, import_web$5.getNextElement)(_tmpl$3),
-			"Remember to allow CORS for the endpoint!",
-			(0, import_web$5.getNextElement)(_tmpl$3),
-			(0, import_web$5.getNextElement)(_tmpl$3),
-			"Example CORS configuration:",
-			(0, import_web$5.getNextElement)(_tmpl$3),
-			(0, import_web$5.getNextElement)(_tmpl$3),
-			(0, import_web$5.getNextElement)(_tmpl$4)
-		];
-	} }),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$2.createComponent)(Header, {
-		get tag() {
-			return HeaderTags.H3;
-		},
-		children: "S3 endpoint"
-	}),
-	(0, import_web$2.createComponent)(TextBox, {
-		placeholder: "https://your-user-id.r2.cloudflarestorage.com",
-		get value() {
-			return plugin.store.endpoint;
-		},
-		onInput: (v$2) => {
-			plugin.store.endpoint = v$2;
-			updateConfig();
-		}
-	}),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$2.createComponent)(Header, {
-		get tag() {
-			return HeaderTags.H3;
-		},
-		children: "Region"
-	}),
-	(0, import_web$2.createComponent)(TextBox, {
-		placeholder: "us-east-1",
-		get value() {
-			return plugin.store.region;
-		},
-		onInput: (v$2) => {
-			plugin.store.region = v$2;
-			updateConfig();
-		}
-	}),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$2.createComponent)(Header, {
-		get tag() {
-			return HeaderTags.H3;
-		},
-		children: "Access Key ID"
-	}),
-	(0, import_web$2.createComponent)(TextBox, {
-		placeholder: "b00b5de99be7b50bb9471a5db83aa7a9",
-		get value() {
-			return plugin.store.accessKeyId;
-		},
-		onInput: (v$2) => {
-			plugin.store.accessKeyId = v$2;
-			updateConfig();
-		}
-	}),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$2.createComponent)(Header, {
-		get tag() {
-			return HeaderTags.H3;
-		},
-		children: "Secret Access Key"
-	}),
-	(0, import_web$2.createComponent)(TextBox, {
-		placeholder: "deadbeef1063cb36c699199b48cb26b9475197345c08230c66c1c6a6c54b00b5",
-		get value() {
-			return plugin.store.secretAccessKey;
-		},
-		onInput: (v$2) => {
-			plugin.store.secretAccessKey = v$2;
-			updateConfig();
-		}
-	}),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$2.createComponent)(Header, {
-		get tag() {
-			return HeaderTags.H3;
-		},
-		children: "Bucket"
-	}),
-	(0, import_web$2.createComponent)(TextBox, {
-		placeholder: "discord-uploads",
-		get value() {
-			return plugin.store.bucket;
-		},
-		onInput: (v$2) => {
-			plugin.store.bucket = v$2;
-			updateConfig();
-		}
-	}),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$2.createComponent)(Header, {
-		get tag() {
-			return HeaderTags.H3;
-		},
-		children: "Public URL"
-	}),
-	(0, import_web$2.createComponent)(TextBox, {
-		placeholder: "https://uploads.example.com",
-		get value() {
-			return plugin.store.publicUrl;
-		},
-		onInput: (v$2) => {
-			plugin.store.publicUrl = v$2;
-		}
-	}),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$2.createComponent)(Header, {
-		get tag() {
-			return HeaderTags.H3;
-		},
-		children: "Previews"
-	}),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$2.createComponent)(Button, {
-		style: { width: "auto" },
-		get size() {
-			return ButtonSizes.LARGE;
-		},
-		get color() {
-			return ButtonColors.RED;
-		},
-		onClick: () => {
-			plugin.store.previews = {};
-			showToast({
-				title: "External Upload",
-				content: "Cleared cached previews."
-			});
-		},
-		children: "Clear cached previews"
-	}),
-	(0, import_web$5.getNextElement)(_tmpl$3),
-	(0, import_web$5.getNextElement)(_tmpl$3)
-];
+const settings = () => {
+	const [connectionStatus, setConnectionStatus] = createSignal(null);
+	return [
+		(0, import_web$7.getNextElement)(_tmpl$2),
+		(0, import_web$4.createComponent)(Text, { get children() {
+			return [
+				"Configure the S3 compatible backend to use for external uploads.",
+				(0, import_web$7.getNextElement)(_tmpl$3),
+				(0, import_web$7.getNextElement)(_tmpl$3),
+				"Remember to allow CORS for the endpoint!",
+				(0, import_web$7.getNextElement)(_tmpl$3),
+				(0, import_web$7.getNextElement)(_tmpl$3),
+				"Example CORS configuration:",
+				(0, import_web$7.getNextElement)(_tmpl$3),
+				(0, import_web$7.getNextElement)(_tmpl$3),
+				(0, import_web$7.getNextElement)(_tmpl$4)
+			];
+		} }),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$4.createComponent)(Header, {
+			get tag() {
+				return HeaderTags.H3;
+			},
+			children: "S3 endpoint"
+		}),
+		(0, import_web$4.createComponent)(TextBox, {
+			placeholder: "https://your-user-id.r2.cloudflarestorage.com",
+			get value() {
+				return plugin.store.endpoint;
+			},
+			onInput: (v$2) => {
+				plugin.store.endpoint = v$2;
+				updateConfig();
+			}
+		}),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$4.createComponent)(Header, {
+			get tag() {
+				return HeaderTags.H3;
+			},
+			children: "Region"
+		}),
+		(0, import_web$4.createComponent)(TextBox, {
+			placeholder: "us-east-1",
+			get value() {
+				return plugin.store.region;
+			},
+			onInput: (v$2) => {
+				plugin.store.region = v$2;
+				updateConfig();
+			}
+		}),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$4.createComponent)(Header, {
+			get tag() {
+				return HeaderTags.H3;
+			},
+			children: "Access Key ID"
+		}),
+		(0, import_web$4.createComponent)(TextBox, {
+			placeholder: "b00b5de99be7b50bb9471a5db83aa7a9",
+			get value() {
+				return plugin.store.accessKeyId;
+			},
+			onInput: (v$2) => {
+				plugin.store.accessKeyId = v$2;
+				updateConfig();
+			}
+		}),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$4.createComponent)(Header, {
+			get tag() {
+				return HeaderTags.H3;
+			},
+			children: "Secret Access Key"
+		}),
+		(0, import_web$4.createComponent)(TextBox, {
+			placeholder: "deadbeef1063cb36c699199b48cb26b9475197345c08230c66c1c6a6c54b00b5",
+			get value() {
+				return plugin.store.secretAccessKey;
+			},
+			onInput: (v$2) => {
+				plugin.store.secretAccessKey = v$2;
+				updateConfig();
+			}
+		}),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$4.createComponent)(Header, {
+			get tag() {
+				return HeaderTags.H3;
+			},
+			children: "Bucket"
+		}),
+		(0, import_web$4.createComponent)(TextBox, {
+			placeholder: "discord-uploads",
+			get value() {
+				return plugin.store.bucket;
+			},
+			onInput: (v$2) => {
+				plugin.store.bucket = v$2;
+				updateConfig();
+			}
+		}),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$4.createComponent)(Header, {
+			get tag() {
+				return HeaderTags.H3;
+			},
+			children: "Public URL"
+		}),
+		(0, import_web$4.createComponent)(TextBox, {
+			placeholder: "https://uploads.example.com",
+			get value() {
+				return plugin.store.publicUrl;
+			},
+			onInput: (v$2) => {
+				plugin.store.publicUrl = v$2;
+			}
+		}),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(() => {
+			const _el$21 = (0, import_web$7.getNextElement)(_tmpl$5), _el$22 = _el$21.firstChild, [_el$23, _co$] = (0, import_web$2.getNextMarker)(_el$22.nextSibling), _el$24 = _el$23.nextSibling, [_el$25, _co$2] = (0, import_web$2.getNextMarker)(_el$24.nextSibling);
+			_el$21.style.setProperty("display", "flex");
+			_el$21.style.setProperty("align-items", "center");
+			_el$21.style.setProperty("gap", "12px");
+			(0, import_web$9.insert)(_el$21, (0, import_web$4.createComponent)(Button, {
+				style: { width: "auto" },
+				get size() {
+					return ButtonSizes.LARGE;
+				},
+				get color() {
+					return ButtonColors.BRAND;
+				},
+				get disabled() {
+					return connectionStatus() === "testing";
+				},
+				onClick: async () => {
+					setConnectionStatus("testing");
+					const result = await testConnection();
+					setConnectionStatus(result);
+				},
+				get children() {
+					return connectionStatus() === "testing" ? "Testing..." : "Test Connection";
+				}
+			}), _el$23, _co$);
+			(0, import_web$9.insert)(_el$21, (() => {
+				const _c$ = (0, import_web$3.memo)(() => !!(connectionStatus() && connectionStatus() !== "testing"));
+				return () => _c$() && (0, import_web$4.createComponent)(Text, {
+					get style() {
+						return { color: connectionStatus().success ? "var(--text-feedback-positive)" : "var(--control-critical-secondary-text-default)" };
+					},
+					get children() {
+						return (0, import_web$3.memo)(() => !!connectionStatus().success)() ? "Connection successful!" : `Error: ${connectionStatus().error}`;
+					}
+				});
+			})(), _el$25, _co$2);
+			return _el$21;
+		})(),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$7.getNextElement)(_tmpl$3),
+		(0, import_web$4.createComponent)(Header, {
+			get tag() {
+				return HeaderTags.H3;
+			},
+			children: "Cache"
+		}),
+		(0, import_web$4.createComponent)(Text, { children: "Filenames and thumbnail URLs are cached locally to reduce requests to the bucket." }),
+		(() => {
+			const _el$28 = (0, import_web$7.getNextElement)(_tmpl$5), _el$29 = _el$28.firstChild, [_el$30, _co$3] = (0, import_web$2.getNextMarker)(_el$29.nextSibling), _el$31 = _el$30.nextSibling, [_el$32, _co$4] = (0, import_web$2.getNextMarker)(_el$31.nextSibling);
+			_el$28.style.setProperty("margin", "24px 0px");
+			_el$28.style.setProperty("display", "flex");
+			_el$28.style.setProperty("flex-direction", "row");
+			_el$28.style.setProperty("gap", "16px");
+			(0, import_web$9.insert)(_el$28, (0, import_web$4.createComponent)(Button, {
+				style: { width: "auto" },
+				get size() {
+					return ButtonSizes.LARGE;
+				},
+				get color() {
+					return ButtonColors.RED;
+				},
+				onClick: () => {
+					plugin.store.filenameCache = {};
+					showToast({
+						title: "External Upload",
+						content: "Cleared filename cache. Reload dashboard to fetch from metadata."
+					});
+				},
+				children: "Clear filename cache"
+			}), _el$30, _co$3);
+			(0, import_web$9.insert)(_el$28, (0, import_web$4.createComponent)(Button, {
+				style: { width: "auto" },
+				get size() {
+					return ButtonSizes.LARGE;
+				},
+				get color() {
+					return ButtonColors.RED;
+				},
+				onClick: async () => {
+					showToast({
+						title: "External Upload",
+						content: "Deleting all remote thumbnails..."
+					});
+					try {
+						const { deleted } = await deleteAllThumbnails();
+						showToast({
+							title: "External Upload",
+							content: `Deleted ${deleted} remote thumbnail${deleted !== 1 ? "s" : ""}. They will be regenerated on next view.`
+						});
+					} catch (e$2) {
+						showToast({
+							title: "External Upload",
+							content: "Failed to delete thumbnails: " + e$2.message
+						});
+					}
+				},
+				children: "Delete all remote thumbnails"
+			}), _el$32, _co$4);
+			return _el$28;
+		})(),
+		(0, import_web$4.createComponent)(Header, {
+			get tag() {
+				return HeaderTags.H3;
+			},
+			children: "Advanced"
+		}),
+		(0, import_web$4.createComponent)(SwitchItem, {
+			get value() {
+				return plugin.store.debugLogging;
+			},
+			onChange: (v$2) => {
+				plugin.store.debugLogging = v$2;
+			},
+			hideBorder: true,
+			note: "Log debug messages to the browser console",
+			children: "Enable debug logging"
+		}),
+		(0, import_web$7.getNextElement)(_tmpl$3)
+	];
+};
 (0, import_web$1.delegateEvents)(["click"]);
 
 //#endregion
