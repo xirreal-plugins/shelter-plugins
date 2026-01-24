@@ -1,9 +1,9 @@
 const {
-   ui: { Header, HeaderTags, TextBox, Text, focusring },
+   ui: { TextBox, Text, focusring },
    flux: {
       stores: { SoundboardStore },
    },
-   solid: { For, createSignal },
+   solid: { For, Show, createSignal },
 } = shelter;
 
 import { SoundWithEmoji } from "./soundPreview";
@@ -11,7 +11,8 @@ import classes from "./style.scss";
 
 export function search(sounds, query) {
    if (!query) return sounds;
-   return sounds.filter((sound) => sound.name.toLowerCase().includes(query.toLowerCase()));
+   const lowerQuery = query.toLowerCase();
+   return sounds.filter((sound) => sound.name.toLowerCase().includes(lowerQuery));
 }
 
 export function SoundPicker(props) {
@@ -27,29 +28,32 @@ export function SoundPicker(props) {
    const filteredSounds = () => search(sounds(), query());
 
    return (
-      <div>
-         <Header tag={HeaderTags.EYEBROW} class={classes.marginTop}>
-            Sound
-         </Header>
-         <TextBox value={""} placeholder={"Search sounds..."} onInput={(e) => setQuery(e)} />
+      <div class={classes.marginTop}>
+         <div class={classes.label}>Sound</div>
+         <TextBox value={query()} placeholder="Search sounds..." onInput={(e) => setQuery(e)} />
          <div class={classes.soundPicker}>
-            <Show when={filteredSounds().length === 0}>
-               <Text class={classes.margin}>❌ No sounds found</Text>
+            <Show
+               when={filteredSounds().length > 0}
+               fallback={
+                  <div class={classes.emptyState}>
+                     <Text>No sounds found</Text>
+                     <Text>Try a different search term</Text>
+                  </div>
+               }
+            >
+               <For each={filteredSounds()}>
+                  {(sound) => (
+                     <button
+                        class={classes.sound}
+                        onKeyPress={(e) => e.key === "Enter" && e.target.name !== "preview" && props.setSoundId(sound.soundId)}
+                        onClick={(e) => e.target.name !== "preview" && props.setSoundId(sound.soundId)}
+                        use:focusring
+                     >
+                        <SoundWithEmoji soundId={sound.soundId} selected={() => sound.soundId === props.soundId()} />
+                     </button>
+                  )}
+               </For>
             </Show>
-            <For each={filteredSounds()}>
-               {(sound) => (
-                  <button
-                     class={classes.sound}
-                     onKeyPress={(e) =>
-                        e.key === "Enter" && e.target.name !== "preview" && props.setSoundId(sound.soundId)
-                     }
-                     onClick={(e) => e.target.name !== "preview" && props.setSoundId(sound.soundId)}
-                     use:focusring
-                  >
-                     <SoundWithEmoji soundId={sound.soundId} selected={() => sound.soundId === props.soundId()} />
-                  </button>
-               )}
-            </For>
          </div>
       </div>
    );

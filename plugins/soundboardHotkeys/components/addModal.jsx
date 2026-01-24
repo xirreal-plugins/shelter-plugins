@@ -1,45 +1,42 @@
 const {
    ui: { ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter, ModalSizes },
-   solid: { createSignal },
+   solid: { createSignal, onCleanup },
    plugin: { store },
 } = shelter;
 
 import { registerKeybind } from "../utils";
 import { KeybindCapture } from "./keybinds";
 import { SoundPicker } from "./soundPicker";
+import { stopPreviewSound } from "./soundPreview";
 
 import classes from "./style.scss";
 
 export function AddKeybindModal(closeModal, initialState) {
-   const [keybindValid, setKeybindValid] = createSignal(false);
-   const [keybind, setKeybind] = createSignal("");
-   const [soundId, setSoundId] = createSignal("");
-   const [scancodes, setScancodes] = createSignal([]);
+   const [keybindValid, setKeybindValid] = createSignal(!!initialState);
+   const [keybind, setKeybind] = createSignal(initialState?.text || "");
+   const [soundId, setSoundId] = createSignal(initialState?.sound || "");
+   const [scancodes, setScancodes] = createSignal(initialState?.scancodes || []);
 
-   if (initialState) {
-      setKeybind(initialState.text);
-      setSoundId(initialState.sound);
-      setScancodes(initialState.scancodes);
-   }
+   const isEditing = !!initialState;
+   const modalTitle = isEditing ? "Edit Keybind" : "Add New Keybind";
+
+   onCleanup(() => {
+      stopPreviewSound();
+   });
 
    return (
       <ModalRoot size={ModalSizes.MEDIUM} class={classes.tallerModal}>
-         <ModalHeader close={closeModal}>Adding keybind</ModalHeader>
+         <ModalHeader close={closeModal}>{modalTitle}</ModalHeader>
          <ModalBody>
-            <KeybindCapture
-               keybind={keybind}
-               setValid={setKeybindValid}
-               setKeybind={setKeybind}
-               setScancodes={setScancodes}
-            />
+            <KeybindCapture keybind={keybind} setValid={setKeybindValid} setKeybind={setKeybind} setScancodes={setScancodes} />
             <SoundPicker soundId={soundId} setSoundId={setSoundId} />
          </ModalBody>
          <ModalConfirmFooter
             close={closeModal}
-            confirmText="Save"
+            confirmText={isEditing ? "Save Changes" : "Add Keybind"}
             disabled={!keybindValid() || soundId() === ""}
             onConfirm={async () => {
-               const nextId = initialState?.id || store.keybinds[store.keybinds.length - 1]?.id - 1 || -1;
+               const nextId = initialState?.id ?? (store.keybinds[store.keybinds.length - 1]?.id - 1 || -1);
 
                if (initialState?.id && store.keybinds.find((k) => k.id === initialState.id)) {
                   store.keybinds = store.keybinds.map((k) =>

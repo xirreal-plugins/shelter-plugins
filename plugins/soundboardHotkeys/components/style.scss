@@ -1,125 +1,245 @@
 .spaced {
-    margin-top: 8px;
-    margin-bottom: 12px;
-    display: block;
-}
-
-.margin {
-    margin-top: 16px;
-    margin-bottom: 16px;
-    display: block;
+   margin-top: 8px;
+   margin-bottom: 12px;
+   display: block;
 }
 
 .marginTop {
-    margin-top: 16px;
+   margin-top: 12px;
+}
+
+.label {
+   font-size: 12px;
+   font-weight: 600;
+   text-transform: uppercase;
+   color: var(--text-muted);
+   margin-bottom: 6px;
 }
 
 .flexSpaceBetween {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 }
 
 .card {
-    box-sizing: border-box;
-    border-radius: 4px;
-    padding: 16px;
-    width: 100%;
-    min-width: 160px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-indent: 0;
-    background-color: var(--background-base-low);
-    margin-top: 16px;
+   box-sizing: border-box;
+   border-radius: 8px;
+   padding: 16px;
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   align-items: stretch;
+   justify-content: space-between;
+   gap: 16px;
+   background: var(--background-surface-high);
+   border: 1px solid var(--border-subtle);
+   margin-top: 12px;
+   transition: border-color 0.15s ease;
+
+   &:hover {
+      border-color: var(--border-strong);
+   }
 }
 
-.content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    overflow: hidden;
+.cardInfo {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+   flex: 1;
+   min-width: 0;
+}
+
+.cardSection {
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+}
+
+.cardActions {
+   display: flex;
+   flex-direction: row;
+   align-items: flex-start;
+   gap: 8px;
+   flex-shrink: 0;
+}
+
+.iconButton {
+   padding: 6px 10px 6px 10px !important;
+   min-width: unset !important;
+   width: fit-content !important;
 }
 
 .preview {
-    background-color: var(--brand-500);
-    border: 0px solid transparent;
-    border-radius: 4px;
-    cursor: pointer;
-    display: inline;
-    margin-right: 8px;
-    transition: all 0.2s ease-in-out;
-}
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   background-color: var(--control-primary-background-default);
+   border: 1px solid var(--control-primary-border-default);
+   border-radius: var(--radius-sm);
+   cursor: pointer;
+   margin-right: 8px;
+   padding: 4px 6px;
+   font-size: 14px;
+   transition:
+      background-color 0.15s ease,
+      border-color 0.15s ease,
+      transform 0.1s ease;
 
-.preview:hover {
-    background-color: var(--brand-560);
+   color: white;
+
+   &:hover {
+      background-color: var(--control-primary-background-hover);
+      border-color: var(--control-primary-border-hover);
+   }
+
+   &:active {
+      background-color: var(--control-primary-background-active);
+      border-color: var(--control-primary-border-active);
+   }
+
+   &.playing {
+      background-color: var(--control-critical-primary-background-default);
+      border-color: var(--control-critical-primary-border-default);
+
+      &:hover {
+         background-color: var(--control-critical-primary-background-hover);
+         border-color: var(--control-critical-primary-border-hover);
+      }
+
+      &:active {
+         background-color: var(--control-critical-primary-background-active);
+         border-color: var(--control-critical-primary-border-active);
+      }
+   }
 }
 
 .emoji {
-    image-rendering: crisp-edges;
-    margin-right: 8px;
+   image-rendering: crisp-edges;
+   margin-right: 6px;
+   width: 18px;
+   height: 18px;
 }
 
 .inline {
-    display: inline;
+   display: inline-flex;
+   align-items: center;
 }
 
 .soundPicker {
-    margin-top: 8px;
+   margin-top: 8px;
+   max-height: 360px;
+   overflow-y: auto;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+   gap: 6px;
+   padding: 8px;
+   background: var(--input-background-default);
+   border-radius: var(--radius-sm);
+   border: 1px solid var(--input-border-default);
 }
 
-.flexRow {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding: 8px 10px 8px 8px;
-    background: var(--background-base-lowest);
-    border: 1px solid var(--background-base-low);
-    border-radius: 4px;
-    width: fit-content;
-}
-
-.keybindButton {
-    display: flex;
-    padding: 8px;
-    justify-content: start;
-    align-items: center;
-    background: var(--background-base-lowest);
-    border: 1px solid var(--background-base-low);
-    min-width: 160px;
-    width: fit-content;
-    border-radius: 4px;
-    transition: all 0.2s ease-in-out;
-}
-
-.noMarginUnselectable {
-    margin: 0;
-    user-select: none;
+.soundItem {
+   display: flex;
+   align-items: center;
+   padding: 8px 10px;
+   background: var(--input-background-default);
+   border: 1px solid var(--input-border-default);
+   border-radius: var(--radius-sm);
+   transition: all 0.15s ease;
+   overflow: hidden;
+   color: var(--interactive-text-default);
 }
 
 .sound {
-    cursor: pointer;
-    background-color: var(--background-surface-highest);
-    border: none;
-    padding: 0;
-    margin: 2px;
+   cursor: pointer;
+   background: transparent;
+   border: none;
+   padding: 0;
+   width: 100%;
+   text-align: left;
+
+   &:hover .soundItem {
+      background: var(--background-surface-high);
+      border-color: var(--border-strong);
+   }
+
+   &:active .soundItem {
+      transform: scale(0.98);
+   }
 }
 
 .selected {
-    background-color: var(--control-connect-background-default);
+   background: var(--brand-15a) !important;
+   border-color: var(--brand-500) !important;
 }
 
-.column {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+.soundName {
+   flex: 1;
+   min-width: 0;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
+.keybindButton {
+   display: inline-flex;
+   padding: 10px 14px;
+   justify-content: center;
+   align-items: center;
+   min-width: 120px;
+   width: fit-content;
+   transition: all 0.15s ease;
+   cursor: pointer;
+
+   background-color: var(--input-background-default);
+   border: 1px solid;
+   border-color: var(--input-border-default);
+   border-radius: var(--radius-sm);
+
+   color: var(--text-strong);
+   font-weight: var(--font-weight-semibold);
+
+   &:hover {
+      border-color: var(--status-danger);
+   }
+
+   &.capturing {
+      border-color: var(--status-danger);
+      background: color-mix(in srgb, var(--status-danger) 15%, transparent);
+      animation: pulse 1.5s ease-in-out infinite;
+   }
+}
+
+@keyframes pulse {
+   0%,
+   100% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--status-danger) 25%, transparent);
+   }
+   50% {
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--status-danger) 15%, transparent);
+   }
 }
 
 .tallerModal {
-    min-height: 680px;
-    max-height: 680px;
-    height: 680px;
+   min-height: 580px;
+   max-height: 680px;
+   height: auto;
+}
+
+.emptyState {
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   padding: 32px 16px;
+   color: var(--text-muted);
+   text-align: center;
+   gap: 8px;
+   width: 100%;
+   border-radius: 8px;
+   background: var(--background-surface-high);
+   border: 1px solid var(--border-subtle);
+   margin-top: 12px;
 }
