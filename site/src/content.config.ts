@@ -8,7 +8,20 @@ const pluginsDir = path.resolve(import.meta.dirname, "../../plugins");
 const pluginLoader: Loader = {
    name: "shelter-plugin-loader",
    async load(context: LoaderContext) {
-      const { store, logger } = context;
+      const { store, logger, watcher } = context;
+
+      if (watcher) {
+         const globPattern = path.join(pluginsDir, "*", "plugin.json").split(path.sep).join(path.posix.sep);
+
+         watcher.add(globPattern);
+      }
+
+      watcher?.on("change", async (changedPath) => {
+         if (changedPath.startsWith(pluginsDir)) {
+            logger.info(`Detected plugin manifest change, reloading plugins...`);
+            await this.load(context);
+         }
+      });
 
       store.clear();
 
@@ -18,9 +31,17 @@ const pluginLoader: Loader = {
          if (!folder.isDirectory()) continue;
 
          const pluginJsonPath = path.join(pluginsDir, folder.name, "plugin.json");
+         watcher?.add(pluginJsonPath);
+
          if (!fs.existsSync(pluginJsonPath)) continue;
 
-         const pluginJson = JSON.parse(fs.readFileSync(pluginJsonPath, "utf-8"));
+         let pluginJson;
+         try {
+            pluginJson = JSON.parse(fs.readFileSync(pluginJsonPath, "utf-8"));
+         } catch (e) {
+            logger.error(`Failed to parse JSON for plugin ${folder.name}: ${(e as Error).message}`);
+            continue;
+         }
 
          if (pluginJson.site?.ignored) {
             logger.info(`Skipping ignored plugin: ${folder.name}`);
