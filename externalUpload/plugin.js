@@ -488,52 +488,52 @@ shelter.plugin.scoped.ui.injectCss(`.-bMcgq_uploadModal {
 }
 `);
 var modal_jsx_default = {
-	"uploadsSectionHeader": "-bMcgq_uploadsSectionHeader",
-	"emptyState": "-bMcgq_emptyState",
-	"uploadProgressItem": "-bMcgq_uploadProgressItem",
-	"previewIcon": "-bMcgq_previewIcon",
-	"replacedButton": "-bMcgq_replacedButton",
-	"uploadProgressBarContainer": "-bMcgq_uploadProgressBarContainer",
-	"deleting": "-bMcgq_deleting",
-	"dragOver": "-bMcgq_dragOver",
+	"disabled": "-bMcgq_disabled",
+	"uploadProgressSize": "-bMcgq_uploadProgressSize",
 	"previewArea": "-bMcgq_previewArea",
-	"fileName": "-bMcgq_fileName",
-	"uploadArea": "-bMcgq_uploadArea",
-	"uploadsSection": "-bMcgq_uploadsSection",
+	"uploadProgressName": "-bMcgq_uploadProgressName",
+	"emptyState": "-bMcgq_emptyState",
+	"uploadProgressBarContainer": "-bMcgq_uploadProgressBarContainer",
+	"uploadsSectionHeader": "-bMcgq_uploadsSectionHeader",
+	"uploadModal": "-bMcgq_uploadModal",
+	"dashboardItem": "-bMcgq_dashboardItem",
+	"previewItemInfo": "-bMcgq_previewItemInfo",
+	"sortControls": "-bMcgq_sortControls",
+	"removeButton": "-bMcgq_removeButton",
 	"uploadsList": "-bMcgq_uploadsList",
-	"loadingContainer": "-bMcgq_loadingContainer",
-	"headerContent": "-bMcgq_headerContent",
-	"spinner": "-bMcgq_spinner",
-	"dashboardButton": "-bMcgq_dashboardButton",
-	"thumbnailContainer": "-bMcgq_thumbnailContainer",
-	"uploading": "-bMcgq_uploading",
-	"footer": "-bMcgq_footer",
+	"sortButtonActive": "-bMcgq_sortButtonActive",
 	"uploadProgressBar": "-bMcgq_uploadProgressBar",
 	"headerProgress": "-bMcgq_headerProgress",
-	"dashboardItem": "-bMcgq_dashboardItem",
-	"headerProgressText": "-bMcgq_headerProgressText",
-	"previewImage": "-bMcgq_previewImage",
-	"thumbnailLoading": "-bMcgq_thumbnailLoading",
-	"pendingSectionHeader": "-bMcgq_pendingSectionHeader",
-	"spin": "-bMcgq_spin",
-	"uploadAreaContent": "-bMcgq_uploadAreaContent",
-	"uploadProgressName": "-bMcgq_uploadProgressName",
-	"previewItem": "-bMcgq_previewItem",
-	"uploadModal": "-bMcgq_uploadModal",
-	"disabled": "-bMcgq_disabled",
-	"dashboardControls": "-bMcgq_dashboardControls",
-	"sortControls": "-bMcgq_sortControls",
-	"uploadProgressStatus": "-bMcgq_uploadProgressStatus",
+	"uploadProgressItem": "-bMcgq_uploadProgressItem",
+	"uploadsSection": "-bMcgq_uploadsSection",
 	"uploadProgressInfo": "-bMcgq_uploadProgressInfo",
+	"uploadArea": "-bMcgq_uploadArea",
+	"headerProgressText": "-bMcgq_headerProgressText",
+	"uploadAreaContent": "-bMcgq_uploadAreaContent",
 	"pendingSection": "-bMcgq_pendingSection",
-	"deletingOverlay": "-bMcgq_deletingOverlay",
+	"thumbnailLoading": "-bMcgq_thumbnailLoading",
+	"spin": "-bMcgq_spin",
+	"dashboardButton": "-bMcgq_dashboardButton",
+	"thumbnailContainer": "-bMcgq_thumbnailContainer",
+	"deleting": "-bMcgq_deleting",
+	"previewIcon": "-bMcgq_previewIcon",
 	"fileMeta": "-bMcgq_fileMeta",
-	"previewItemInfo": "-bMcgq_previewItemInfo",
-	"sortButtonActive": "-bMcgq_sortButtonActive",
+	"headerContent": "-bMcgq_headerContent",
+	"previewItem": "-bMcgq_previewItem",
+	"previewImage": "-bMcgq_previewImage",
+	"pendingSectionHeader": "-bMcgq_pendingSectionHeader",
+	"uploadProgressStatus": "-bMcgq_uploadProgressStatus",
+	"deletingOverlay": "-bMcgq_deletingOverlay",
+	"dashboardControls": "-bMcgq_dashboardControls",
+	"replacedButton": "-bMcgq_replacedButton",
 	"statsBar": "-bMcgq_statsBar",
-	"uploadProgressSize": "-bMcgq_uploadProgressSize",
-	"removeButton": "-bMcgq_removeButton",
-	"sortButton": "-bMcgq_sortButton"
+	"dragOver": "-bMcgq_dragOver",
+	"fileName": "-bMcgq_fileName",
+	"sortButton": "-bMcgq_sortButton",
+	"uploading": "-bMcgq_uploading",
+	"loadingContainer": "-bMcgq_loadingContainer",
+	"spinner": "-bMcgq_spinner",
+	"footer": "-bMcgq_footer"
 };
 
 //#endregion
@@ -30173,7 +30173,7 @@ var import_web$19 = __toESM(require_web());
 var import_web$20 = __toESM(require_web());
 var import_web$21 = __toESM(require_web());
 var import_web$22 = __toESM(require_web());
-const _tmpl$$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><span></span><span></span></div><div><div></div></div><div><span></span><!#><!/></div></div>`, 18), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div></div></div>`, 4), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$11.template)(`<img>`, 1), _tmpl$4$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div></div>`, 2), _tmpl$5$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div title="Delete file"></div>`, 2), _tmpl$6 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><!#><!/><!#><!/><!#><!/><!#><!/></div><div><p></p><p></p><p></p></div><!#><!/></div>`, 22), _tmpl$7 = /*#__PURE__*/ (0, import_web$11.template)(`<div><span>Uploading: <!#><!/>%</span></div>`, 6), _tmpl$8 = /*#__PURE__*/ (0, import_web$11.template)(`<div><span></span><!#><!/></div>`, 6), _tmpl$9 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><!#><!/><!#><!/></div><input type="file" multiple hidden></div>`, 9), _tmpl$0 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><!#><!/><!#><!/></div><div></div></div>`, 10), _tmpl$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><div><button>Date<!#><!/></button><button>Size<!#><!/></button><button>Name<!#><!/></button></div></div>`, 18), _tmpl$10 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div></div><!#><!/></div>`, 6), _tmpl$11 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$12 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/></div>`, 8), _tmpl$13 = /*#__PURE__*/ (0, import_web$11.template)(`<img loading="lazy">`, 1), _tmpl$14 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><!#><!/><!#><!/></div><div><p></p><p></p></div><div title="Remove file"></div></div>`, 16);
+const _tmpl$$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><span></span><span></span></div><div><div></div></div><div><span></span><!#><!/></div></div>`, 18), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div></div></div>`, 4), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$11.template)(`<img>`, 1), _tmpl$4$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div></div>`, 2), _tmpl$5$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div title="Delete file"></div>`, 2), _tmpl$6 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><!#><!/><!#><!/><!#><!/><!#><!/></div><div><p></p><p></p><p></p></div><!#><!/></div>`, 22), _tmpl$7 = /*#__PURE__*/ (0, import_web$11.template)(`<div><span>Uploading: <!#><!/>%</span></div>`, 6), _tmpl$8 = /*#__PURE__*/ (0, import_web$11.template)(`<div><span></span><!#><!/></div>`, 6), _tmpl$9 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><!#><!/><!#><!/></div><input type="file" multiple hidden></div>`, 9), _tmpl$0 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><!#><!/><!#><!/></div><div></div></div>`, 10), _tmpl$1 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><div><button>Date<!#><!/></button><button>Size<!#><!/></button><button>Name<!#><!/></button></div></div>`, 18), _tmpl$10 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div></div><!#><!/></div>`, 6), _tmpl$11 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/></div>`, 6), _tmpl$12 = /*#__PURE__*/ (0, import_web$11.template)(`<div><!#><!/><!#><!/><!#><!/></div>`, 8), _tmpl$13 = /*#__PURE__*/ (0, import_web$11.template)(`<div><div><!#><!/><!#><!/></div><div><p></p><p></p></div><div title="Remove file"></div></div>`, 16), _tmpl$14 = /*#__PURE__*/ (0, import_web$11.template)(`<video muted playsinline></video>`, 2);
 const { ui: { ModalRoot, ModalHeader, ModalBody, ModalFooter, ModalSizes, showToast: showToast$1, Button: Button$1, ButtonColors: ButtonColors$1, ButtonSizes: ButtonSizes$1, TextBox: TextBox$1, Text: Text$1, TextTags, TextWeights, focusring: focusring$1 }, solid: { createSignal: createSignal$1, createEffect, createMemo, Show, For, onMount }, util: { log, getFiber }, plugin: { store } } = shelter;
 function UploadProgressItem({ fileId, uploadInfo, onCancel }) {
 	const progress = () => uploadInfo.progress;
@@ -30718,60 +30718,75 @@ else setSortBy(field);
 												return pendingFiles();
 											},
 											children: (file, index) => (() => {
-												const _el$97 = (0, import_web$19.getNextElement)(_tmpl$14), _el$98 = _el$97.firstChild, _el$101 = _el$98.firstChild, [_el$102, _co$23] = (0, import_web$20.getNextMarker)(_el$101.nextSibling), _el$103 = _el$102.nextSibling, [_el$104, _co$24] = (0, import_web$20.getNextMarker)(_el$103.nextSibling), _el$105 = _el$98.nextSibling, _el$106 = _el$105.firstChild, _el$107 = _el$106.nextSibling, _el$108 = _el$105.nextSibling;
+												const _el$97 = (0, import_web$19.getNextElement)(_tmpl$13), _el$98 = _el$97.firstChild, _el$100 = _el$98.firstChild, [_el$101, _co$23] = (0, import_web$20.getNextMarker)(_el$100.nextSibling), _el$102 = _el$101.nextSibling, [_el$103, _co$24] = (0, import_web$20.getNextMarker)(_el$102.nextSibling), _el$104 = _el$98.nextSibling, _el$105 = _el$104.firstChild, _el$106 = _el$105.nextSibling, _el$107 = _el$104.nextSibling;
 												(0, import_web$22.insert)(_el$98, (0, import_web$21.createComponent)(Show, {
 													get when() {
 														return pendingPreviews()[index()];
 													},
 													get children() {
-														const _el$99 = (0, import_web$19.getNextElement)(_tmpl$13);
-														(0, import_web$18.effect)((_p$) => {
-															const _v$42 = pendingPreviews()[index()], _v$43 = file.name, _v$44 = modal_jsx_default.previewImage;
-															_v$42 !== _p$._v$42 && (0, import_web$14.setAttribute)(_el$99, "src", _p$._v$42 = _v$42);
-															_v$43 !== _p$._v$43 && (0, import_web$14.setAttribute)(_el$99, "alt", _p$._v$43 = _v$43);
-															_v$44 !== _p$._v$44 && (0, import_web$17.className)(_el$99, _p$._v$44 = _v$44);
-															return _p$;
-														}, {
-															_v$42: undefined,
-															_v$43: undefined,
-															_v$44: undefined
-														});
-														return _el$99;
+														return (0, import_web$15.memo)(() => !!file.type?.startsWith("video/"))() ? (() => {
+															const _el$108 = (0, import_web$19.getNextElement)(_tmpl$14);
+															_el$108.addEventListener("loadeddata", () => {});
+															(0, import_web$18.effect)((_p$) => {
+																const _v$49 = pendingPreviews()[index()], _v$50 = modal_jsx_default.previewImage;
+																_v$49 !== _p$._v$49 && (0, import_web$14.setAttribute)(_el$108, "src", _p$._v$49 = _v$49);
+																_v$50 !== _p$._v$50 && (0, import_web$17.className)(_el$108, _p$._v$50 = _v$50);
+																return _p$;
+															}, {
+																_v$49: undefined,
+																_v$50: undefined
+															});
+															return _el$108;
+														})() : (() => {
+															const _el$109 = (0, import_web$19.getNextElement)(_tmpl$3$1);
+															(0, import_web$18.effect)((_p$) => {
+																const _v$51 = pendingPreviews()[index()], _v$52 = file.name, _v$53 = modal_jsx_default.previewImage;
+																_v$51 !== _p$._v$51 && (0, import_web$14.setAttribute)(_el$109, "src", _p$._v$51 = _v$51);
+																_v$52 !== _p$._v$52 && (0, import_web$14.setAttribute)(_el$109, "alt", _p$._v$52 = _v$52);
+																_v$53 !== _p$._v$53 && (0, import_web$17.className)(_el$109, _p$._v$53 = _v$53);
+																return _p$;
+															}, {
+																_v$51: undefined,
+																_v$52: undefined,
+																_v$53: undefined
+															});
+															return _el$109;
+														})();
 													}
-												}), _el$102, _co$23);
+												}), _el$101, _co$23);
 												(0, import_web$22.insert)(_el$98, (0, import_web$21.createComponent)(Show, {
 													get when() {
 														return !pendingPreviews()[index()];
 													},
 													get children() {
-														const _el$100 = (0, import_web$19.getNextElement)(_tmpl$4$1);
-														(0, import_web$22.insert)(_el$100, FileIcon);
-														(0, import_web$18.effect)(() => (0, import_web$17.className)(_el$100, modal_jsx_default.previewIcon));
-														return _el$100;
+														const _el$99 = (0, import_web$19.getNextElement)(_tmpl$4$1);
+														(0, import_web$22.insert)(_el$99, FileIcon);
+														(0, import_web$18.effect)(() => (0, import_web$17.className)(_el$99, modal_jsx_default.previewIcon));
+														return _el$99;
 													}
-												}), _el$104, _co$24);
-												(0, import_web$22.insert)(_el$106, () => file.name);
-												(0, import_web$22.insert)(_el$107, () => formatFileSize(file.size));
-												_el$108.$$click = () => !isUploading() && handleRemoveFile(index());
-												(0, import_web$22.insert)(_el$108, (0, import_web$21.createComponent)(CloseIcon, {}));
+												}), _el$103, _co$24);
+												(0, import_web$22.insert)(_el$105, () => file.name);
+												(0, import_web$22.insert)(_el$106, () => formatFileSize(file.size));
+												_el$107.$$click = () => !isUploading() && handleRemoveFile(index());
+												(0, import_web$22.insert)(_el$107, (0, import_web$21.createComponent)(CloseIcon, {}));
 												(0, import_web$18.effect)((_p$) => {
-													const _v$45 = modal_jsx_default.previewItem, _v$46 = modal_jsx_default.thumbnailContainer, _v$47 = modal_jsx_default.previewItemInfo, _v$48 = modal_jsx_default.fileName, _v$49 = file.name, _v$50 = modal_jsx_default.fileMeta, _v$51 = `${modal_jsx_default.removeButton} ${isUploading() ? modal_jsx_default.disabled : ""}`;
-													_v$45 !== _p$._v$45 && (0, import_web$17.className)(_el$97, _p$._v$45 = _v$45);
-													_v$46 !== _p$._v$46 && (0, import_web$17.className)(_el$98, _p$._v$46 = _v$46);
-													_v$47 !== _p$._v$47 && (0, import_web$17.className)(_el$105, _p$._v$47 = _v$47);
-													_v$48 !== _p$._v$48 && (0, import_web$17.className)(_el$106, _p$._v$48 = _v$48);
-													_v$49 !== _p$._v$49 && (0, import_web$14.setAttribute)(_el$106, "title", _p$._v$49 = _v$49);
-													_v$50 !== _p$._v$50 && (0, import_web$17.className)(_el$107, _p$._v$50 = _v$50);
-													_v$51 !== _p$._v$51 && (0, import_web$17.className)(_el$108, _p$._v$51 = _v$51);
+													const _v$42 = modal_jsx_default.previewItem, _v$43 = modal_jsx_default.thumbnailContainer, _v$44 = modal_jsx_default.previewItemInfo, _v$45 = modal_jsx_default.fileName, _v$46 = file.name, _v$47 = modal_jsx_default.fileMeta, _v$48 = `${modal_jsx_default.removeButton} ${isUploading() ? modal_jsx_default.disabled : ""}`;
+													_v$42 !== _p$._v$42 && (0, import_web$17.className)(_el$97, _p$._v$42 = _v$42);
+													_v$43 !== _p$._v$43 && (0, import_web$17.className)(_el$98, _p$._v$43 = _v$43);
+													_v$44 !== _p$._v$44 && (0, import_web$17.className)(_el$104, _p$._v$44 = _v$44);
+													_v$45 !== _p$._v$45 && (0, import_web$17.className)(_el$105, _p$._v$45 = _v$45);
+													_v$46 !== _p$._v$46 && (0, import_web$14.setAttribute)(_el$105, "title", _p$._v$46 = _v$46);
+													_v$47 !== _p$._v$47 && (0, import_web$17.className)(_el$106, _p$._v$47 = _v$47);
+													_v$48 !== _p$._v$48 && (0, import_web$17.className)(_el$107, _p$._v$48 = _v$48);
 													return _p$;
 												}, {
+													_v$42: undefined,
+													_v$43: undefined,
+													_v$44: undefined,
 													_v$45: undefined,
 													_v$46: undefined,
 													_v$47: undefined,
-													_v$48: undefined,
-													_v$49: undefined,
-													_v$50: undefined,
-													_v$51: undefined
+													_v$48: undefined
 												});
 												(0, import_web$13.runHydrationEvents)();
 												return _el$97;

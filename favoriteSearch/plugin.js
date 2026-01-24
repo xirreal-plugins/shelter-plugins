@@ -132,9 +132,9 @@ shelter.plugin.scoped.ui.injectCss(`#AgMsVW_searchBar {
 `);
 var index_jsx_default = {
 	"barContainer": "AgMsVW_barContainer",
+	"counter": "AgMsVW_counter",
 	"align": "AgMsVW_align",
-	"searchBar": "AgMsVW_searchBar",
-	"counter": "AgMsVW_counter"
+	"searchBar": "AgMsVW_searchBar"
 };
 
 //#endregion
