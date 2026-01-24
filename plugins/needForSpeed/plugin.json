@@ -1,6 +1,9 @@
 {
    "name": "Need For Speed",
-   "description": "Control the playback speed of videos",
+   "description": "Adds a speed control widget to embedded videos",
    "author": "xirreal",
-   "hash": "<HASH_PLACEHOLDER>"
+   "hash": "<HASH_PLACEHOLDER>",
+   "site": {
+      "demoImage": "/nfs.png"
+   }
 }

@@ -2,5 +2,8 @@
    "name": "Fweemoji",
    "description": "Send the mojis for free!!!",
    "author": "xirreal, original by yellowsink",
-   "hash": "<HASH_PLACEHOLDER>"
+   "hash": "<HASH_PLACEHOLDER>",
+   "site": {
+      "longDescription": "All the mojis!!! For free!!! No nitro needed to send silly emotes!! Forked from yellowsink's original freemoji."
+   }
 }

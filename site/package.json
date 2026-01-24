@@ -2,9 +2,11 @@
    "name": "site",
    "type": "module",
    "dependencies": {
-      "@astrojs/mdx": "^4.3.13",
       "@unocss/reset": "^66.6.0",
       "astro": "^5.16.15",
       "unocss": "^66.6.0"
+   },
+   "devDependencies": {
+      "@types/node": "^25.0.10"
    }
 }

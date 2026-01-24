@@ -1,0 +1,123 @@
+---
+import { getCollection } from "astro:content";
+import RichHead from "../components/RichHead.astro";
+import GitHub from "../components/GitHub.astro";
+import BackIcon from "../components/BackIcon.astro";
+import InfoBadge from "../components/InfoBadge.astro";
+import CopyIcon from "../components/CopyIcon.astro";
+import WarningBadge from "../components/WarningBadge.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+   const plugins = await getCollection("plugins");
+   return plugins.map((p) => ({ params: { slug: p.id } }));
+}
+
+const { slug } = Astro.params;
+const plugins = await getCollection("plugins");
+const plugin = plugins.find((p) => p.id === slug)!;
+
+const username = "xirreal";
+const profilePicUrl = `https://github.com/${username}.png`;
+---
+
+<!doctype html>
+<html lang="en">
+   <head>
+      <RichHead />
+   </head>
+   <body class="p-8 bg-[#1b1026] text-gray-200 h-screen">
+      <div
+         class="p-4 pb-8 bg-[#372747] shadow-sm hover:shadow-md transition-shadow border border-[#51425e] rounded-2 flex flex-col items-center justify-start shadow-md max-w-3xl mx-auto"
+      >
+         <img src={profilePicUrl} alt={`${username}'s profile picture`} class="profile-image w-24 h-24 rounded-full mb-4 border-2 border-[#51425e]" />
+         <h1 class="text-xl font-bold mb-2 text-center">{plugin.data.title}</h1>
+
+         {
+            plugin.data.demoImage && (
+               <div class="flex-shrink-0 w-80% m-4">
+                  <img src={plugin.data.demoImage} alt={`${plugin.data.title} example`} class="w-full h-auto rounded-2 object-cover" />
+               </div>
+            )
+         }
+
+         <div class="mt-2 w-full">
+            {(<p class="text-gray-400 text-center leading-relaxed">{plugin.data.longDescription || plugin.data.description || "No description available."}</p>)}
+         </div>
+
+         <div class="mt-4 w-full">
+            {
+               plugin.data.warnings &&
+                  plugin.data.warnings.length > 0 &&
+                  plugin.data.warnings.map((w: string) => (
+                     <div class="mx-auto w-full max-w-xl">
+                        <WarningBadge message={w} />
+                     </div>
+                  ))
+            }
+            {
+               plugin.data.infos &&
+                  plugin.data.infos.length > 0 &&
+                  plugin.data.infos.map((i: string) => (
+                     <div class="mx-auto w-full max-w-xl">
+                        <InfoBadge message={i} />
+                     </div>
+                  ))
+            }
+         </div>
+
+         <br />
+
+         <p class="mt-2">OneClick™ install:</p>
+         <a href={`discord:///${plugin.data.url}`} class="inline-block m-2">
+            <img src="/send.svg" alt={`One click installer for ${plugin.data.title}`} class="w-32 h-auto" />
+         </a>
+         <div class="mt-2 relative">
+            <span>Manual installation:</span>
+            <a
+               onclick="document.copyToClipboard(this); return false;"
+               class="text-[#9171ad] underline hover:text-[#bf96e3] break-all cursor-pointer"
+               href={plugin.data.url}
+            >
+               {plugin.data.url}
+               <CopyIcon />
+            </a>
+            <div class="absolute -bottom-10 bg-[#291c36] border-[#51425e] border-1 border-solid px-2 py-1 rounded-2 opacity-0 transition-opacity duration-300">
+               Copied!
+            </div>
+         </div>
+
+         <br />
+
+         <div class="mt-6 text-center w-full">
+            <a href="/" class="text-[#9171ad] underline hover:text-[#bf96e3] inline-flex items-center gap-2 justify-center">
+               <BackIcon /> Back to plugins
+            </a>
+         </div>
+
+         <div class="mt-4">
+            <GitHub />
+         </div>
+      </div>
+
+      <script>
+         // @ts-ignore
+         document.copyToClipboard = (target: HTMLAnchorElement) => {
+            const url = target.href!;
+            navigator.clipboard.writeText(url).then(() => {
+               // @ts-ignore
+               target.nextElementSibling!.style.left = `${target.previousElementSibling.getBoundingClientRect().width + target.getBoundingClientRect().width / 2 - target.nextElementSibling.getBoundingClientRect().width / 2}px`;
+               target.nextElementSibling?.classList.remove("opacity-0");
+               if (target.dataset.timeoutId !== undefined) {
+                  clearTimeout(target.dataset.timeoutId);
+               }
+               // @ts-ignore
+               target.dataset.timeoutId = setTimeout(() => {
+                  target.nextElementSibling?.classList.add("opacity-0");
+               }, 750);
+            });
+         };
+      </script>
+   </body>
+</html>

@@ -3,6 +3,9 @@
    "include": [".astro/types.d.ts", "**/*"],
    "exclude": ["dist"],
    "compilerOptions": {
-      "strictNullChecks": true
-   }
+      "strictNullChecks": true,
+      "module": "ESNext",
+      "moduleResolution": "bundler",
+      "types": ["node"],
+   },
 }

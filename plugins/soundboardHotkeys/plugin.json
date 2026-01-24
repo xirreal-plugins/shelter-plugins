@@ -2,5 +2,9 @@
    "name": "Soundboard Hotkeys",
    "description": "Allows you to bind hotkeys to soundboard buttons. Works even while tabbed out!",
    "author": "xirreal",
-   "hash": "<HASH_PLACEHOLDER>"
+   "hash": "<HASH_PLACEHOLDER>",
+   "site": {
+      "longDescription": "Be extra annoying! Play sounds by pressing a button on your keyboard. Supports complex key combinations and works even when Discord is not focused!",
+      "demoImage": "/soundboard.png"
+   }
 }

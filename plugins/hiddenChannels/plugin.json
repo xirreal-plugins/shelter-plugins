@@ -2,5 +2,9 @@
    "name": "Hidden Channels",
    "description": "Allows you to see the name and description of channels you don't have actually access to.",
    "author": "xirreal",
-   "hash": "<HASH_PLACEHOLDER>"
+   "hash": "<HASH_PLACEHOLDER>",
+   "site": {
+      "longDescription": "Exposes hidden channels, adding a cute little red lock next to them! Updated: now using 100% ethically sourced SolidJS-React bridges!",
+      "demoImage": "/hiddenChannels.png"
+   }
 }
