@@ -6,17 +6,7 @@ const {
       stores: { SelectedChannelStore },
    },
    plugins,
-   ui: {
-      showToast,
-      Button,
-      ButtonColors,
-      ButtonSizes,
-      openModal,
-      ModalRoot,
-      ModalHeader,
-      ModalBody,
-      ModalConfirmFooter,
-   },
+   ui: { showToast, Button, ButtonColors, ButtonSizes, openModal, ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter },
    solid: { createSignal },
 } = shelter;
 
@@ -126,11 +116,7 @@ function Card(props) {
 }
 
 function handleDispatch(payload) {
-   if (
-      (payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") &&
-      payload.message.channel_id !== SelectedChannelStore.getChannelId()
-   )
-      return;
+   if ((payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") && payload.message.channel_id !== SelectedChannelStore.getChannelId()) return;
 
    const unobs = observeDom("[class*=messageContent] [class*=anchor]:not([data-instbtn])", async (element) => {
       // don't find element we've already replaced
@@ -170,10 +156,27 @@ function handleDispatch(payload) {
          );
 
          // removing the element entirely causes react to blow up
-         element.className = "";
-         element.style.all = "unset";
          element.style.display = "none";
          element.insertAdjacentElement("afterend", card);
+
+         // extract message id
+         const id = element.parentElement.id.split("-").pop();
+
+         // attempt to get the message accessories container immediately
+         const accessories = document.querySelector(`[id="message-accessories-${id}"]`);
+         if (accessories) {
+            accessories.dataset.instbtn = 1;
+            accessories.style.display = "none";
+            return;
+         }
+
+         // otherwise we wait a little
+         const unobserve = observeDom(`[id="message-accessories-${id}"]`, (embed) => {
+            embed.dataset.instbtn = 1;
+            embed.style.display = "none";
+            unobserve();
+         });
+         setTimeout(unobserve, 5000); // bail after 5s seems reasonable
       } catch (e) {
          console.error(e);
       }
@@ -260,9 +263,7 @@ async function handleInstall(_, originalUrl) {
 const TRIGGERS = ["MESSAGE_CREATE", "MESSAGE_UPDATE", "UPDATE_CHANNEL_DIMENSIONS"];
 
 export function onLoad() {
-   fetch("https://shindex.uwu.network/data").then((body) =>
-      body.json().then((repos) => repos.forEach((repo) => trustedUrls.push(repo.url))),
-   );
+   fetch("https://shindex.uwu.network/data").then((body) => body.json().then((repos) => repos.forEach((repo) => trustedUrls.push(repo.url))));
 
    for (const t of TRIGGERS) dispatcher.subscribe(t, handleDispatch);
 
@@ -275,10 +276,15 @@ export function onLoad() {
 
 export function onUnload() {
    trustedUrls.length = 0;
-   // select all elements with the class name of anchor_ and remove the data-instbtn attribute
-   for (const element of document.querySelectorAll("[class*=messageContent] [class*=anchor][data-instbtn]")) {
+
+   for (const element of document.querySelectorAll("[data-instbtn]")) {
       element.removeAttribute("data-instbtn");
+      element.style.display = "inline-block";
       element.onclick = null;
+   }
+
+   for (const element of document.querySelectorAll(`.${classes.card}`)) {
+      element.remove();
    }
 
    window.InstallButtonEnabled = false;
