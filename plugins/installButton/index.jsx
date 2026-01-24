@@ -6,7 +6,17 @@ const {
       stores: { SelectedChannelStore },
    },
    plugins,
-   ui: { showToast, Button, ButtonColors, ButtonSizes, openModal, ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter },
+   ui: {
+      showToast,
+      Button,
+      ButtonColors,
+      ButtonSizes,
+      openModal,
+      ModalRoot,
+      ModalHeader,
+      ModalBody,
+      ModalConfirmFooter,
+   },
    solid: { createSignal },
 } = shelter;
 
@@ -116,7 +126,11 @@ function Card(props) {
 }
 
 function handleDispatch(payload) {
-   if ((payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") && payload.message.channel_id !== SelectedChannelStore.getChannelId()) return;
+   if (
+      (payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") &&
+      payload.message.channel_id !== SelectedChannelStore.getChannelId()
+   )
+      return;
 
    const unobs = observeDom("[class*=messageContent] [class*=anchor]:not([data-instbtn])", async (element) => {
       // don't find element we've already replaced
@@ -246,7 +260,9 @@ async function handleInstall(_, originalUrl) {
 const TRIGGERS = ["MESSAGE_CREATE", "MESSAGE_UPDATE", "UPDATE_CHANNEL_DIMENSIONS"];
 
 export function onLoad() {
-   fetch("https://shindex.uwu.network/data").then((body) => body.json().then((repos) => repos.forEach((repo) => trustedUrls.push(repo.url))));
+   fetch("https://shindex.uwu.network/data").then((body) =>
+      body.json().then((repos) => repos.forEach((repo) => trustedUrls.push(repo.url))),
+   );
 
    for (const t of TRIGGERS) dispatcher.subscribe(t, handleDispatch);
 

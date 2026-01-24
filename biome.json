@@ -5,13 +5,14 @@
       "indentWidth": 3,
       "lineWidth": 120
    },
-   "files": {
-      "ignore": ["node_modules"]
-   },
    "linter": {
       "enabled": false
    },
-   "organizeImports": {
-      "enabled": true
+   "assist": {
+      "actions": {
+         "source": {
+            "organizeImports": "on"
+         }
+      }
    }
 }

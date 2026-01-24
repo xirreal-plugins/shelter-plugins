@@ -13,7 +13,15 @@ import { KeybindDisplayOnly } from "./keybinds";
 
 function TrashIcon() {
    return (
-      <svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
+      <svg
+         aria-hidden="true"
+         role="img"
+         xmlns="http://www.w3.org/2000/svg"
+         width="20"
+         height="20"
+         fill="none"
+         viewBox="0 0 24 24"
+      >
          <path
             fill="currentColor"
             d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z"
@@ -53,7 +61,11 @@ export function KeybindCard({ keybind }) {
             >
                <TrashIcon />
             </Button>
-            <Button color={ButtonColors.SECONDARY} size={ButtonSizes.MEDIUM} onclick={() => openModal((p) => AddKeybindModal(p.close, keybind))}>
+            <Button
+               color={ButtonColors.SECONDARY}
+               size={ButtonSizes.MEDIUM}
+               onclick={() => openModal((p) => AddKeybindModal(p.close, keybind))}
+            >
                Edit
             </Button>
          </div>

@@ -45,7 +45,9 @@ export function SoundPicker(props) {
                   {(sound) => (
                      <button
                         class={classes.sound}
-                        onKeyPress={(e) => e.key === "Enter" && e.target.name !== "preview" && props.setSoundId(sound.soundId)}
+                        onKeyPress={(e) =>
+                           e.key === "Enter" && e.target.name !== "preview" && props.setSoundId(sound.soundId)
+                        }
                         onClick={(e) => e.target.name !== "preview" && props.setSoundId(sound.soundId)}
                         use:focusring
                      >

@@ -32,7 +32,10 @@ function SpeedControlComponent({ videoRef }) {
             <div class={classes.selectorWrapper}>
                <div class={classes.selector}>
                   {speeds.map((s) => (
-                     <div on:click={() => selectSpeed(s)} class={`${classes.item} ${s === speed() ? classes.active : ""}`}>
+                     <div
+                        on:click={() => selectSpeed(s)}
+                        class={`${classes.item} ${s === speed() ? classes.active : ""}`}
+                     >
                         {s}x
                      </div>
                   ))}
