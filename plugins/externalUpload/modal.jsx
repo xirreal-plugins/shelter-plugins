@@ -1,5 +1,30 @@
 import styles from "./modal.jsx.scss";
-import { formatFileSize, getAllFiles, getFilePreview, uploadFiles, formatDate, getUrl, deleteFile } from "./utils";
+import {
+   formatFileSize,
+   formatDate,
+   getUrl,
+   deleteFile,
+   uploadFiles,
+   createLocalPreviewUrl,
+   revokeLocalPreviewUrl,
+   getThumbnailUrl,
+   refreshDashboard,
+   markThumbnailLoaded,
+   isThumbnailLoaded,
+} from "./utils";
+import { FileIcon, CloseIcon, TrashIcon, SortIcon, UploadDropIcon } from "./Icons";
+
+import {
+   uploadState,
+   addPendingFiles,
+   removePendingFile,
+   clearPendingFiles,
+   cancelUpload,
+   cancelAllUploads,
+   resetUploadState,
+   getFilteredSortedFiles,
+   removeDashboardFile,
+} from "./state";
 
 const {
    ui: {
@@ -12,55 +37,246 @@ const {
       Button,
       ButtonColors,
       ButtonSizes,
+      TextBox,
+      Text,
+      TextTags,
+      TextWeights,
       focusring,
    },
-   solid: { createSignal, createEffect, Show, For },
+   solid: { createSignal, createEffect, createMemo, Show, For, onMount },
    util: { log, getFiber },
    plugin: { store },
 } = shelter;
 
+function UploadProgressItem({ fileId, uploadInfo, onCancel }) {
+   const progress = () => uploadInfo.progress;
+   const status = () => uploadInfo.status;
+   const file = uploadInfo.file;
+
+   const COLORS = {
+      completed: "var(--status-positive)",
+      failed: "var(--status-danger)",
+      cancelled: "var(--text-muted)",
+      pending: "var(--text-muted)",
+      defaultText: "var(--text-interactive-active)",
+      default: "var(--brand-500)",
+   };
+
+   const statusColor = (isText) => {
+      return COLORS[status()] || (isText ? COLORS.defaultText : COLORS.default);
+   };
+
+   const statusText = () => {
+      switch (status()) {
+         case "completed":
+            return "Complete";
+         case "failed":
+            return "Failed";
+         case "cancelled":
+            return "Cancelled";
+         case "pending":
+            return "Queued";
+         default:
+            return `${progress().toFixed(0)}%`;
+      }
+   };
+
+   return (
+      <div class={styles.uploadProgressItem}>
+         <div class={styles.uploadProgressInfo}>
+            <span class={styles.uploadProgressName}>{file.name}</span>
+            <span class={styles.uploadProgressSize}>{formatFileSize(file.size)}</span>
+         </div>
+         <div class={styles.uploadProgressBarContainer}>
+            <div
+               class={styles.uploadProgressBar}
+               style={{
+                  width: `${status() === "uploading" ? progress() : status() === "completed" ? 100 : 0}%`,
+                  "background-color": statusColor(),
+               }}
+            />
+         </div>
+         <div class={styles.uploadProgressStatus}>
+            <span style={{ color: statusColor(true) }}>{statusText()}</span>
+            <Show when={status() === "uploading"}>
+               <Button
+                  size={ButtonSizes.TINY}
+                  color={ButtonColors.CRITICAL_SECONDARY}
+                  onClick={() => onCancel(fileId)}
+                  tooltip="Cancel upload"
+               >
+                  <CloseIcon />
+               </Button>
+            </Show>
+         </div>
+      </div>
+   );
+}
+
+function DashboardFileItem({ file, manifest, onDelete, onInsert }) {
+   const [thumbnailLoaded, setThumbnailLoaded] = createSignal(isThumbnailLoaded(file.Key));
+   const [thumbnailError, setThumbnailError] = createSignal(false);
+   const [generatingThumbnail, setGeneratingThumbnail] = createSignal(false);
+   const [thumbnailRetry, setThumbnailRetry] = createSignal(0);
+   const [deleting, setDeleting] = createSignal(false);
+
+   const extension = () => file.Key.split(".").pop().toLowerCase();
+   const isImage = () => ["jpg", "jpeg", "png", "gif", "webp", "svg", "bmp"].includes(extension());
+   const isVideo = () => ["mp4", "webm", "mov", "avi"].includes(extension());
+   const meta = () => manifest()[file.Key] || {};
+   const displayName = () => meta().filename || file.Key;
+   const canHaveThumbnail = () => isImage() || isVideo();
+
+   const thumbnailUrl = () => {
+      const retry = thumbnailRetry();
+      const baseUrl = canHaveThumbnail() ? getUrl(`.thumbs/${file.Key}.webp`, store.publicUrl) : null;
+      return baseUrl && retry > 0 ? `${baseUrl}?_r=${retry}` : baseUrl;
+   };
+
+   const handleThumbnailError = async () => {
+      if (generatingThumbnail() || thumbnailRetry() > 0) {
+         setThumbnailError(true);
+         return;
+      }
+      setGeneratingThumbnail(true);
+      try {
+         await getThumbnailUrl(file.Key, store.publicUrl);
+         setThumbnailRetry(1);
+      } catch (e) {
+         setThumbnailError(true);
+      } finally {
+         setGeneratingThumbnail(false);
+      }
+   };
+
+   const handleDelete = async (e) => {
+      e.stopPropagation();
+      if (deleting()) return;
+
+      setDeleting(true);
+      try {
+         await onDelete(file);
+      } catch (e) {
+         setDeleting(false);
+      }
+   };
+
+   return (
+      <div
+         class={`${styles.dashboardItem} ${deleting() ? styles.deleting : ""}`}
+         use:focusring
+         onClick={() => !deleting() && onInsert(file)}
+      >
+         <div class={styles.thumbnailContainer}>
+            <Show when={deleting()}>
+               <div class={styles.deletingOverlay}>
+                  <div class={styles.spinner} />
+               </div>
+            </Show>
+            <Show when={canHaveThumbnail() && !thumbnailError()}>
+               <img
+                  src={thumbnailUrl()}
+                  alt={displayName()}
+                  class={styles.previewImage}
+                  style={{ display: thumbnailLoaded() ? "block" : "none" }}
+                  onLoad={() => {
+                     setThumbnailLoaded(true);
+                     markThumbnailLoaded(file.Key);
+                  }}
+                  onError={handleThumbnailError}
+               />
+            </Show>
+            <Show when={generatingThumbnail()}>
+               <div class={styles.thumbnailLoading}>
+                  <div class={styles.spinner} />
+               </div>
+            </Show>
+            <Show when={!canHaveThumbnail() || thumbnailError() || (!thumbnailLoaded() && !generatingThumbnail())}>
+               <div class={styles.previewIcon}>{FileIcon}</div>
+            </Show>
+         </div>
+         <div class={styles.previewItemInfo}>
+            <p class={styles.fileName} title={displayName()}>
+               {displayName()}
+            </p>
+            <p class={styles.fileMeta}>{formatFileSize(file.Size)}</p>
+            <p class={styles.fileMeta}>{formatDate(file.LastModified)}</p>
+         </div>
+         <Show when={!deleting()}>
+            <div class={styles.removeButton} onClick={handleDelete} title="Delete file">
+               <TrashIcon />
+            </div>
+         </Show>
+      </div>
+   );
+}
+
 export function UploadModal(closeModal) {
-   const [files, setFiles] = createSignal([]);
-   const [isDragOver, setIsDragOver] = createSignal(false);
-   const [previews, setPreviews] = createSignal([]);
-   const [isUploading, setIsUploading] = createSignal(false);
-   const [uploadProgress, setUploadProgress] = createSignal(0);
    const [dashOpen, setDashOpen] = createSignal(false);
-   const [dashboardFiles, setDashboardFiles] = createSignal([]);
-   const [fetchingFiles, setFetchingFiles] = createSignal(false);
+
+   const {
+      pendingFiles,
+      setPendingFiles,
+      pendingPreviews,
+      setPendingPreviews,
+      activeUploads,
+      isUploading,
+      overallProgress,
+      dashboardFiles,
+      dashboardLoading,
+      dashboardLoaded,
+      searchQuery,
+      setSearchQuery,
+      sortBy,
+      setSortBy,
+      sortOrder,
+      setSortOrder,
+      manifest,
+   } = uploadState;
 
    let fileInputRef;
 
+   const filteredFiles = createMemo(() => getFilteredSortedFiles());
+   const totalBucketSize = createMemo(() => dashboardFiles().reduce((acc, file) => acc + file.Size, 0));
+
+   const hasActiveUploads = createMemo(() => {
+      const uploads = activeUploads();
+      for (const [, upload] of uploads) {
+         if (upload.status === "uploading") return true;
+      }
+      return false;
+   });
+
    const handleDragOver = (e) => {
       e.preventDefault();
-      setIsDragOver(true);
+      e.currentTarget.classList.add(styles.dragOver);
    };
 
    const handleDragLeave = (e) => {
       e.preventDefault();
-      setIsDragOver(false);
+      e.currentTarget.classList.remove(styles.dragOver);
    };
 
    const handleDrop = (e) => {
       e.preventDefault();
-      setIsDragOver(false);
+      e.currentTarget.classList.remove(styles.dragOver);
       if (!isUploading()) {
          const droppedFiles = Array.from(e.dataTransfer.files);
-         setFiles((prevFiles) => [...prevFiles, ...droppedFiles]);
+         addPendingFiles(droppedFiles);
       }
    };
 
    const handleFileChange = (e) => {
       if (e.target.files && !isUploading()) {
          const selectedFiles = Array.from(e.target.files);
-         setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+         addPendingFiles(selectedFiles);
+         e.target.value = "";
       }
    };
 
    const handleRemoveFile = (index) => {
       if (!isUploading()) {
-         setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
-         setPreviews((prevPreviews) => prevPreviews.filter((_, i) => i !== index));
+         removePendingFile(index);
       }
    };
 
@@ -71,105 +287,144 @@ export function UploadModal(closeModal) {
    };
 
    const handleConfirm = async () => {
-      setIsUploading(true);
-      setUploadProgress(0);
+      const files = pendingFiles();
+      if (files.length === 0) return;
 
-      const { uploadedFiles, previewsToSave } = await uploadFiles(files(), previews(), (progress) => {
-         setUploadProgress(progress * 100);
-      });
+      clearPendingFiles();
 
-      const uploadedUrls = (await uploadedFiles)
-         .filter((result) => result.status === "fulfilled")
-         .map((result) => result.value);
+      const { uploadedFiles, failedFiles } = await uploadFiles(files, (uploaded, failed) => {
+         if (failed.length === files.length) {
+            showToast({
+               title: "Upload failed!",
+               content: "All files failed to upload",
+            });
+            for (const { error } of failed) {
+               log("ExternalUpload - " + error, "error");
+            }
+         } else if (failed.length > 0) {
+            showToast({
+               title: "Upload partially completed",
+               content: `${uploaded.length} files uploaded, ${failed.length} failed`,
+            });
+         } else if (uploaded.length > 0) {
+            showToast({
+               title: "Upload successful!",
+               content: `${uploaded.length} file${uploaded.length > 1 ? "s" : ""} uploaded`,
+            });
 
-      const failedUploads = (await uploadedFiles)
-         .filter((result) => result.status === "rejected")
-         .map((result) => result.reason);
-
-      if (failedUploads.length == files().length) {
-         showToast({
-            title: "Upload failed!",
-            content: "All files failed to upload",
-         });
-
-         for (const error of failedUploads) {
-            log("ExternalUpload - " + error, "error");
-         }
-      } else if (failedUploads.length > 0) {
-         showToast({
-            title: "Upload partially failed!",
-            content: "Some files failed to upload",
-         });
-
-         for (const error of failedUploads) {
-            log("ExternalUpload - " + error, "error");
-         }
-      } else {
-         showToast({
-            title: "Upload successful!",
-            content: "All files uploaded successfully",
-         });
-
-         store.previews = { ...store.previews, ...previewsToSave };
-
-         const fiber = getFiber(document.querySelector('[class*="slateContainer"]'));
-         const editor = fiber.child.pendingProps.editor;
-
-         for (let i = 0; i < uploadedUrls.length; i++) {
-            const result = uploadedUrls[i];
-            const url = getUrl(result, store.publicUrl);
-            editor.insertText(url);
-            if (i < uploadedUrls.length - 1) {
-               editor.insertText(" ");
+            const fiber = getFiber(document.querySelector('[class*="slateContainer"]'));
+            if (fiber?.child?.pendingProps?.editor) {
+               const editor = fiber.child.pendingProps.editor;
+               const urls = uploaded.map((f) => getUrl(f.key, store.publicUrl));
+               editor.insertText(urls.join(" ") + " ");
             }
          }
+
+         resetUploadState();
+      });
+   };
+
+   const handleCancelUpload = (fileId) => {
+      cancelUpload(fileId);
+   };
+
+   const handleCancelAll = () => {
+      cancelAllUploads();
+      showToast({
+         title: "Uploads cancelled",
+         content: "All uploads have been cancelled",
+      });
+   };
+
+   const handleDeleteFile = async (file) => {
+      try {
+         await deleteFile(file.Key);
+         removeDashboardFile(file.Key);
+         showToast({
+            title: "File deleted",
+            content: file.Key,
+         });
+      } catch (e) {
+         showToast({
+            title: "Delete failed",
+            content: e.message,
+         });
+         throw e;
       }
-
-      closeModal();
-      setIsUploading(false);
    };
 
-   const fetchDashboardFiles = async () => {
-      setFetchingFiles(true);
-      const files = await getAllFiles();
-      setDashboardFiles(files);
-      setFetchingFiles(false);
+   const handleInsertFile = (file) => {
+      const fiber = getFiber(document.querySelector('[class*="slateContainer"]'));
+      if (fiber?.child?.pendingProps?.editor) {
+         const editor = fiber.child.pendingProps.editor;
+         const url = getUrl(file, store.publicUrl);
+         editor.insertText(url + " ");
+      }
    };
 
-   const handleDeleteFile = async (e, file) => {
-      e.stopPropagation();
-      await deleteFile(file.Key);
-      await fetchDashboardFiles();
+   const handleSortClick = (field) => {
+      if (sortBy() === field) {
+         setSortOrder(sortOrder() === "asc" ? "desc" : "asc");
+      } else {
+         setSortBy(field);
+      }
    };
 
    createEffect(() => {
-      const newFiles = files();
-      Promise.all(newFiles.map((file) => getFilePreview(file))).then((newPreviews) => {
-         setPreviews(newPreviews);
-      });
+      const files = pendingFiles();
+      const currentPreviews = pendingPreviews();
+
+      if (files.length > currentPreviews.length) {
+         const newFiles = files.slice(currentPreviews.length);
+         const newPreviews = newFiles.map((file) => createLocalPreviewUrl(file));
+         setPendingPreviews([...currentPreviews, ...newPreviews]);
+      }
    });
 
    createEffect(() => {
-      if (dashOpen()) {
-         fetchDashboardFiles();
+      const previews = pendingPreviews();
+      const files = pendingFiles();
+
+      if (files.length === 0 && previews.length > 0) {
+         previews.forEach((url) => revokeLocalPreviewUrl(url));
+         setPendingPreviews([]);
+      }
+   });
+
+   createEffect(() => {
+      if (dashOpen() && !dashboardLoaded()) {
+         refreshDashboard();
       }
    });
 
    return (
       <ModalRoot size={ModalSizes.MEDIUM} class={styles.uploadModal}>
-         <ModalHeader close={closeModal}>{dashOpen() ? "File Dashboard" : "Upload Files"}</ModalHeader>
+         <ModalHeader close={closeModal}>
+            <div class={styles.headerContent}>
+               <span>{dashOpen() ? "File Dashboard" : "Upload Files"}</span>
+               <Show when={isUploading()}>
+                  <div class={styles.headerProgress}>
+                     <span class={styles.headerProgressText}>Uploading: {overallProgress().toFixed(0)}%</span>
+                  </div>
+               </Show>
+            </div>
+         </ModalHeader>
+
          <Show when={!dashOpen()}>
             <ModalBody>
                <div
-                  class={`${styles.uploadArea} ${isDragOver() ? styles.dragOver : ""} ${isUploading() ? styles.uploading : ""}`}
+                  class={`${styles.uploadArea} ${isUploading() ? styles.uploading : ""}`}
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
                   onDrop={handleDrop}
                   onClick={handleUploadClick}
                >
-                  <Show when={!isUploading()} fallback={<p>Uploading... Please wait</p>}>
-                     <p>Drag & drop files here or click to select</p>
-                  </Show>
+                  <div class={styles.uploadAreaContent}>
+                     <UploadDropIcon />
+                     <Text>
+                        {isUploading() ? "Upload in progress..." : "Drag & drop files here or click to select"}
+                     </Text>
+                  </div>
                   <input
                      type="file"
                      ref={fileInputRef}
@@ -179,145 +434,157 @@ export function UploadModal(closeModal) {
                      disabled={isUploading()}
                   />
                </div>
-               <Show when={isUploading()}>
-                  <div class={styles.progressBar}>
-                     <div class={styles.progressFill} style={{ width: `${uploadProgress()}%` }}></div>
-                  </div>
-                  <p>Uploading: {uploadProgress().toFixed(2)}%</p>
-               </Show>
-               <div class={styles.previewArea}>
-                  <For each={files()}>
-                     {(file, index) => (
-                        <div class={styles.previewItem}>
-                           {file.type.startsWith("image/") && (
-                              <img src={previews()[index()]} alt={file.name} class={styles.previewImage} />
-                           )}
-                           {file.type.startsWith("video/") && (
-                              <img src={previews()[index()]} alt={file.name} class={styles.previewVideo} />
-                           )}
-                           {!file.type.startsWith("image/") && !file.type.startsWith("video/") && (
-                              <div class={styles.previewIcon}>📄</div>
-                           )}
-                           <div class={styles.previewItemInfo}>
-                              <p>{file.name}</p>
-                              <p>{formatFileSize(file.size)}</p>
-                           </div>
-                           <button
-                              class={styles.removeButton}
-                              onClick={() => handleRemoveFile(index())}
-                              disabled={isUploading()}
+
+               <Show when={activeUploads().size > 0}>
+                  <div class={styles.uploadsSection}>
+                     <div class={styles.uploadsSectionHeader}>
+                        <Text tag={TextTags.textSM} weight={TextWeights.semibold}>
+                           Uploads
+                        </Text>
+                        <Show when={hasActiveUploads()}>
+                           <Button
+                              size={ButtonSizes.MEDIUM}
+                              color={ButtonColors.CRITICAL_PRIMARY}
+                              onClick={handleCancelAll}
                            >
-                              <svg
-                                 aria-hidden="true"
-                                 role="img"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 width="24"
-                                 height="24"
-                                 fill="none"
-                                 viewBox="0 0 24 24"
-                              >
-                                 <path
-                                    fill="currentColor"
-                                    d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z"
-                                    class=""
-                                 ></path>
-                                 <path
-                                    fill="currentColor"
-                                    fill-rule="evenodd"
-                                    d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z"
-                                    clip-rule="evenodd"
-                                    class=""
-                                 ></path>
-                              </svg>
-                           </button>
-                        </div>
-                     )}
-                  </For>
-               </div>
+                              Cancel All
+                           </Button>
+                        </Show>
+                     </div>
+                     <div class={styles.uploadsList}>
+                        <For each={Array.from(activeUploads().entries())}>
+                           {([fileId, uploadInfo]) => (
+                              <UploadProgressItem
+                                 fileId={fileId}
+                                 uploadInfo={uploadInfo}
+                                 onCancel={handleCancelUpload}
+                              />
+                           )}
+                        </For>
+                     </div>
+                  </div>
+               </Show>
+
+               <Show when={pendingFiles().length > 0}>
+                  <div class={styles.pendingSection}>
+                     <div class={styles.pendingSectionHeader}>
+                        <Text tag={TextTags.textSM} weight={TextWeights.semibold}>
+                           Pending Files ({pendingFiles().length})
+                        </Text>
+                        <Button
+                           size={ButtonSizes.MEDIUM}
+                           color={ButtonColors.CRITICAL_SECONDARY}
+                           onClick={clearPendingFiles}
+                           disabled={isUploading()}
+                        >
+                           Remove All
+                        </Button>
+                     </div>
+                     <div class={styles.previewArea}>
+                        <For each={pendingFiles()}>
+                           {(file, index) => (
+                              <div class={styles.previewItem}>
+                                 <div class={styles.thumbnailContainer}>
+                                    <Show when={pendingPreviews()[index()]}>
+                                       <img
+                                          loading={"lazy"}
+                                          src={pendingPreviews()[index()]}
+                                          alt={file.name}
+                                          class={styles.previewImage}
+                                       />
+                                    </Show>
+                                    <Show when={!pendingPreviews()[index()]}>
+                                       <div class={styles.previewIcon}>{FileIcon}</div>
+                                    </Show>
+                                 </div>
+                                 <div class={styles.previewItemInfo}>
+                                    <p class={styles.fileName} title={file.name}>
+                                       {file.name}
+                                    </p>
+                                    <p class={styles.fileMeta}>{formatFileSize(file.size)}</p>
+                                 </div>
+                                 <div
+                                    class={`${styles.removeButton} ${isUploading() ? styles.disabled : ""}`}
+                                    onClick={() => !isUploading() && handleRemoveFile(index())}
+                                    title="Remove file"
+                                 >
+                                    <CloseIcon />
+                                 </div>
+                              </div>
+                           )}
+                        </For>
+                     </div>
+                  </div>
+               </Show>
             </ModalBody>
          </Show>
+
          <Show when={dashOpen()}>
             <ModalBody>
-               <Show when={fetchingFiles()}>
-                  <p>Loading files...</p>
+               <div class={styles.dashboardControls}>
+                  <TextBox placeholder="Search files..." value={searchQuery()} onInput={(v) => setSearchQuery(v)} />
+                  <div class={styles.sortControls}>
+                     <button
+                        class={`${styles.sortButton} ${sortBy() === "date" ? styles.sortButtonActive : ""}`}
+                        onClick={() => handleSortClick("date")}
+                     >
+                        Date
+                        <SortIcon active={sortBy() === "date"} ascending={sortOrder() === "asc"} />
+                     </button>
+                     <button
+                        class={`${styles.sortButton} ${sortBy() === "size" ? styles.sortButtonActive : ""}`}
+                        onClick={() => handleSortClick("size")}
+                     >
+                        Size
+                        <SortIcon active={sortBy() === "size"} ascending={sortOrder() === "asc"} />
+                     </button>
+                     <button
+                        class={`${styles.sortButton} ${sortBy() === "name" ? styles.sortButtonActive : ""}`}
+                        onClick={() => handleSortClick("name")}
+                     >
+                        Name
+                        <SortIcon active={sortBy() === "name"} ascending={sortOrder() === "asc"} />
+                     </button>
+                  </div>
+               </div>
+
+               <Show when={dashboardLoading()}>
+                  <div class={styles.loadingContainer}>
+                     <div class={styles.spinner} />
+                     <Text>Loading files...</Text>
+                  </div>
                </Show>
-               <Show when={!fetchingFiles()}>
-                  <p>
-                     Total bucket usage: {formatFileSize(dashboardFiles().reduce((acc, file) => acc + file.Size, 0))}
-                  </p>
+
+               <Show when={!dashboardLoading()}>
+                  <Show when={filteredFiles().length === 0}>
+                     <div class={styles.emptyState}>
+                        <Text>{searchQuery() ? "No files match your search" : "No files uploaded yet"}</Text>
+                     </div>
+                  </Show>
                   <div class={styles.previewArea}>
-                     <For each={dashboardFiles()}>
-                        {(file) => {
-                           const extension = file.Key.split(".").pop();
-                           const isImage = ["jpg", "jpeg", "png", "gif", "webp", "svg"].includes(extension);
-                           const isVideo = ["mp4", "webm"].includes(extension);
-
-                           const [preview, setPreview] = createSignal(store.previews[file.Key]);
-
-                           if (!preview() && (isImage || isVideo)) {
-                              getFilePreview(file, isImage, isVideo, store.publicUrl).then((url) => {
-                                 store.previews = { ...store.previews, [file.Key]: url };
-                                 setPreview(url);
-                              });
-                           }
-
-                           return (
-                              <div
-                                 class={styles.dashboardItem}
-                                 use:focusring
-                                 onclick={(e) => {
-                                    e.stopPropagation();
-                                    const fiber = getFiber(document.querySelector('[class*="slateContainer"]'));
-                                    const editor = fiber.child.pendingProps.editor;
-
-                                    const url = getUrl(file, store.publicUrl);
-                                    editor.insertText(url + " ");
-                                 }}
-                              >
-                                 {preview() && isImage && (
-                                    <img src={preview()} alt={file.Key} class={styles.previewImage} />
-                                 )}
-                                 {preview() && isVideo && (
-                                    <img src={preview()} alt={file.Key} class={styles.previewVideo} />
-                                 )}
-                                 {(!preview() || (!isImage && !isVideo)) && <div class={styles.previewIcon}>📄</div>}
-                                 <div class={styles.previewItemInfo}>
-                                    <p>{file.Key}</p>
-                                    <p>{formatFileSize(file.Size)}</p>
-                                    <p>{formatDate(file.LastModified)}</p>
-                                 </div>
-                                 <button class={styles.removeButton} onClick={(e) => handleDeleteFile(e, file)}>
-                                    <svg
-                                       aria-hidden="true"
-                                       role="img"
-                                       xmlns="http://www.w3.org/2000/svg"
-                                       width="24"
-                                       height="24"
-                                       fill="none"
-                                       viewBox="0 0 24 24"
-                                    >
-                                       <path
-                                          fill="currentColor"
-                                          d="M14.25 1c.41 0 .75.34.75.75V3h5.25c.41 0 .75.34.75.75v.5c0 .41-.34.75-.75.75H3.75A.75.75 0 0 1 3 4.25v-.5c0-.41.34-.75.75-.75H9V1.75c0-.41.34-.75.75-.75h4.5Z"
-                                          class=""
-                                       ></path>
-                                       <path
-                                          fill="currentColor"
-                                          fill-rule="evenodd"
-                                          d="M5.06 7a1 1 0 0 0-1 1.06l.76 12.13a3 3 0 0 0 3 2.81h8.36a3 3 0 0 0 3-2.81l.75-12.13a1 1 0 0 0-1-1.06H5.07ZM11 12a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0v-6Zm3-1a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Z"
-                                          clip-rule="evenodd"
-                                          class=""
-                                       ></path>
-                                    </svg>
-                                 </button>
-                              </div>
-                           );
-                        }}
+                     <For each={filteredFiles()}>
+                        {(file) => (
+                           <DashboardFileItem
+                              file={file}
+                              manifest={manifest}
+                              onDelete={handleDeleteFile}
+                              onInsert={handleInsertFile}
+                           />
+                        )}
                      </For>
                   </div>
                </Show>
+
+               <div class={styles.statsBar}>
+                  <Text tag={TextTags.textSM}>
+                     {filteredFiles().length} file{filteredFiles().length !== 1 ? "s" : ""}
+                     {searchQuery() && ` matching "${searchQuery()}"`}
+                  </Text>
+                  <Text tag={TextTags.textSM}>Total: {formatFileSize(totalBucketSize())}</Text>
+               </div>
             </ModalBody>
          </Show>
+
          <ModalFooter>
             <div class={styles.footer}>
                <Button
@@ -328,22 +595,26 @@ export function UploadModal(closeModal) {
                >
                   {dashOpen() ? "Upload Files" : "Dashboard"}
                </Button>
-               <Button
-                  disabled={isUploading()}
-                  size={ButtonSizes.MEDIUM}
-                  color={ButtonColors.SECONDARY}
-                  onClick={() => (isUploading() ? null : closeModal())}
-               >
-                  Cancel
-               </Button>
                <Show when={!dashOpen()}>
                   <Button
-                     disabled={isUploading() || files().length === 0}
+                     disabled={isUploading() || pendingFiles().length === 0}
                      size={ButtonSizes.MEDIUM}
                      color={ButtonColors.BRAND}
                      onClick={handleConfirm}
                   >
-                     {isUploading() ? "Uploading..." : "Upload"}
+                     {isUploading()
+                        ? "Uploading..."
+                        : `Upload ${pendingFiles().length > 0 ? `(${pendingFiles().length})` : ""}`}
+                  </Button>
+               </Show>
+               <Show when={dashOpen()}>
+                  <Button
+                     size={ButtonSizes.MEDIUM}
+                     color={ButtonColors.CRITICAL_PRIMARY}
+                     onClick={() => refreshDashboard()}
+                     disabled={dashboardLoading()}
+                  >
+                     Refresh
                   </Button>
                </Show>
             </div>
