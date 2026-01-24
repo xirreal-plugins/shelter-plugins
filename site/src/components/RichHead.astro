@@ -1,9 +1,8 @@
 ---
-const title = "Shelter Plugins";
-const description = "Plugins for the Shelter client mod.";
+const { title = "xirreal's shelter plugins", description = "A bunch of plugins for the shelter client mod.", image, url = Astro.url } = Astro.props;
+const resolvedImage = image ? new URL(image, Astro.site).toString() : null;
 ---
 
-<!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -11,7 +10,6 @@ const description = "Plugins for the Shelter client mod.";
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preloads -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
@@ -19,19 +17,19 @@ const description = "Plugins for the Shelter client mod.";
    rel="stylesheet"
 />
 
-<!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:url" content={url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
+{resolvedImage && <meta property="og:image" content={resolvedImage} />}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
+{image && <meta property="twitter:image" content={image} />}

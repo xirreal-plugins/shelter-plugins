@@ -9,4 +9,5 @@ export default defineConfig({
          injectReset: true,
       }),
    ],
+   site: "https://shelter.xirreal.dev",
 });

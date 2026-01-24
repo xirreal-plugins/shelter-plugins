@@ -25,7 +25,7 @@ const profilePicUrl = `https://github.com/${username}.png`;
 <!doctype html>
 <html lang="en">
    <head>
-      <RichHead />
+      <RichHead title={`${plugin.data.title}`} description={plugin.data.description} image={plugin.data.demoImage} url={Astro.url} />
    </head>
    <body class="p-8 bg-[#1b1026] text-gray-200 h-screen">
       <div
