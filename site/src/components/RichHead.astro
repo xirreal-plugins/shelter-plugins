@@ -1,5 +1,10 @@
 ---
-const { title = "xirreal's shelter plugins", description = "A bunch of plugins for the shelter client mod.", image, url = Astro.url } = Astro.props;
+const {
+   title = "xirreal's shelter plugins",
+   description = "A bunch of plugins for the shelter client mod.",
+   image,
+   url = Astro.url,
+} = Astro.props;
 const resolvedImage = image ? new URL(image, Astro.site).toString() : null;
 ---
 

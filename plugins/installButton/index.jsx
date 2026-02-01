@@ -1,20 +1,34 @@
-const { observeDom } = shelter.plugin.scoped;
+const {
+   flux: { subscribe },
+   observeDom,
+} = shelter.plugin.scoped;
 
 const {
    flux: {
-      dispatcher,
-      stores: { SelectedChannelStore },
+      stores: { SelectedChannelStore, DefaultRouteStore },
    },
    plugins,
-   ui: { showToast, Button, ButtonColors, ButtonSizes, openModal, ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter },
+   ui: {
+      showToast,
+      ToastColors,
+      Button,
+      ButtonColors,
+      ButtonSizes,
+      openModal,
+      ModalRoot,
+      ModalHeader,
+      ModalBody,
+      ModalFooter,
+      ModalSizes,
+   },
    solid: { createSignal },
 } = shelter;
 
 import classes from "./index.jsx.scss";
 
-import { ContentIcon, CopyIcon } from "./icons.jsx";
+import { ContentIcon, CopyIcon, WarningIcon } from "./icons.jsx";
 
-const trustedUrls = [];
+const allowedUrls = [];
 
 function copyToClipboard(text) {
    if (window.DiscordNative) {
@@ -92,31 +106,38 @@ function Card(props) {
                </div>
                <div class={classes.description}>{props.json.description}</div>
             </div>
-            <Button
-               color={isInstalled() ? ButtonColors.SECONDARY : ButtonColors.GREEN}
-               disabled={isInstalled()}
-               class={classes.alignRight}
-               size={ButtonSizes.MEDIUM}
-               onClick={async () => {
-                  if (!isInstalled()) {
-                     await plugins.addRemotePlugin(pluginId, props.url);
-                     plugins.startPlugin(pluginId);
-                     showToast({
-                        title: "New plugin installed",
-                        content: props.json.name,
-                     });
-                  }
-               }}
-            >
-               {isInstalled() ? "Installed" : "Install"}
-            </Button>
+            <Show when={!props.withoutButton}>
+               <Button
+                  color={isInstalled() ? ButtonColors.SECONDARY : ButtonColors.GREEN}
+                  disabled={isInstalled()}
+                  class={classes.alignRight}
+                  size={ButtonSizes.MEDIUM}
+                  onClick={async () => {
+                     if (!isInstalled()) {
+                        await plugins.addRemotePlugin(pluginId, props.url);
+                        plugins.startPlugin(pluginId);
+                        showToast({
+                           title: "New plugin installed",
+                           content: props.json.name,
+                           color: ToastColors.SUCCESS,
+                        });
+                     }
+                  }}
+               >
+                  {isInstalled() ? "Installed" : "Install"}
+               </Button>
+            </Show>
          </div>
       </div>
    );
 }
 
 function handleDispatch(payload) {
-   if ((payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") && payload.message.channel_id !== SelectedChannelStore.getChannelId()) return;
+   if (
+      (payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") &&
+      payload.message.channel_id !== SelectedChannelStore.getChannelId()
+   )
+      return;
 
    const unobs = observeDom("[class*=messageContent] [class*=anchor]:not([data-instbtn])", async (element) => {
       // don't find element we've already replaced
@@ -134,8 +155,8 @@ function handleDispatch(payload) {
          url = url.slice(0, -12);
       }
 
-      // Check if the URL is trusted
-      if (!trustedUrls.some((trustedUrl) => url.startsWith(trustedUrl))) {
+      // Check if the URL is allowed
+      if (!allowedUrls.some((allowedUrl) => url.startsWith(allowedUrl))) {
          return;
       }
 
@@ -190,48 +211,67 @@ function InstallationModal(props) {
    const { closeModal, json, url, pluginId } = props;
 
    return (
-      <ModalRoot>
-         <ModalHeader>Install Plugin</ModalHeader>
+      <ModalRoot size={ModalSizes.MEDIUM}>
+         <ModalHeader close={closeModal}>OneClick™ Installer Technologies by UWU NETWORK LLC</ModalHeader>
          <ModalBody>
-            <p>
-               Are you sure you want to install <strong>{json.name}</strong> by <strong>{json.author}</strong>?
-            </p>
-            <p>
-               <i>{json.description}</i>
-            </p>
+            <div class={classes.modalContent}>
+               <Card withoutButton={true} json={json} url={url} />
+               <br />
+               <div class={classes.warningBox}>
+                  <div class={classes.warningIcon}>
+                     <WarningIcon />
+                  </div>
+                  <p class={classes.warningText}>
+                     Only install plugins from sources you trust. Plugins execute code and could access your private
+                     Discord data.
+                  </p>
+               </div>
+            </div>
          </ModalBody>
-         <ModalConfirmFooter
-            close={closeModal}
-            type="danger"
-            confirmText="Install"
-            onConfirm={async () => {
-               await plugins.addRemotePlugin(pluginId, url);
-               plugins.startPlugin(pluginId);
-               showToast({
-                  title: json.name,
-                  content: "has been installed.",
-               });
-            }}
-         />
+         <ModalFooter>
+            <div style={{ display: "flex", "justify-content": "flex-end", gap: "8px" }}>
+               <Button size={ButtonSizes.MEDIUM} color={ButtonColors.SECONDARY} onClick={closeModal}>
+                  Close
+               </Button>
+               <Button
+                  size={ButtonSizes.MEDIUM}
+                  color={ButtonColors.CRITICAL_PRIMARY}
+                  onClick={async () => {
+                     await plugins.addRemotePlugin(pluginId, url);
+                     plugins.startPlugin(pluginId);
+                     showToast({
+                        title: "New plugin installed",
+                        content: props.json.name,
+                        color: ToastColors.SUCCESS,
+                     });
+                     closeModal();
+                  }}
+               >
+                  Install
+               </Button>
+            </div>
+         </ModalFooter>
       </ModalRoot>
    );
 }
 
+const PREFIX = "/installButton/";
+
 async function handleInstall(_, originalUrl) {
    if (window.InstallButtonEnabled === false) return;
 
+   setTimeout(() => {
+      DefaultRouteStore.defaultRoute = "/channels/@me";
+   }, 0);
+
    DiscordNative.window.focus();
 
-   let url = originalUrl.substring(1);
-   url = url.endsWith("/") ? url : `${url}/`;
-
-   if (!trustedUrls.find((trustedUrl) => url.startsWith(trustedUrl))) {
-      showToast({
-         title: "Plugin Installation",
-         content: "This plugin is not trusted.",
-      });
+   if (!originalUrl.startsWith(PREFIX)) {
       return;
    }
+
+   let url = originalUrl.substring(PREFIX.length);
+   url = url.endsWith("/") ? url : `${url}/`;
 
    const response = await fetch(`${url}plugin.json`);
    if (!response.ok) return;
@@ -242,8 +282,9 @@ async function handleInstall(_, originalUrl) {
 
    if (pluginId in plugins.installedPlugins()) {
       showToast({
-         title: json.name,
-         content: "is already installed.",
+         title: "Plugin already installed",
+         content: `${json.name} is already installed.`,
+         color: ToastColors.WARNING,
       });
       return;
    }
@@ -262,10 +303,35 @@ async function handleInstall(_, originalUrl) {
 
 const TRIGGERS = ["MESSAGE_CREATE", "MESSAGE_UPDATE", "UPDATE_CHANNEL_DIMENSIONS"];
 
-export function onLoad() {
-   fetch("https://shindex.uwu.network/data").then((body) => body.json().then((repos) => repos.forEach((repo) => trustedUrls.push(repo.url))));
+function handleNavigate(payload) {
+   const from = payload.currentTarget.currentEntry.url;
+   const to = payload.destination.url;
 
-   for (const t of TRIGGERS) dispatcher.subscribe(t, handleDispatch);
+   if (!to.startsWith(`${window.origin}${PREFIX}`)) {
+      return;
+   }
+
+   const originalPath = from.replace(window.origin, "");
+
+   DefaultRouteStore.defaultRoute = originalPath;
+}
+
+export function onLoad() {
+   fetch("https://shindex.uwu.network/data").then((body) =>
+      body.json().then((repos) => repos.forEach((repo) => allowedUrls.push(repo.url))),
+   );
+
+   // make default route writeable
+   Object.defineProperty(DefaultRouteStore, "defaultRoute", {
+      value: "/channels/@me",
+      writable: true,
+      enumerable: true,
+      configurable: true,
+   });
+
+   navigation.addEventListener("navigate", handleNavigate);
+
+   for (const t of TRIGGERS) subscribe(t, handleDispatch);
 
    window.InstallButtonEnabled = true;
    if (window.DiscordNative && !window.InstallButtonInjected) {
@@ -275,7 +341,11 @@ export function onLoad() {
 }
 
 export function onUnload() {
-   trustedUrls.length = 0;
+   allowedUrls.length = 0;
+
+   DefaultRouteStore.defaultRoute = "/channels/@me";
+
+   navigation.addEventListener("navigate", handleNavigate);
 
    for (const element of document.querySelectorAll("[data-instbtn]")) {
       element.removeAttribute("data-instbtn");
