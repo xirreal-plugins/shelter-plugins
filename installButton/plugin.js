@@ -159,21 +159,21 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
 }
 `);
 var index_jsx_default = {
-	"divider": "eeurUa_divider",
-	"modalContent": "eeurUa_modalContent",
+	"description": "eeurUa_description",
 	"content": "eeurUa_content",
-	"header": "eeurUa_header",
-	"author": "eeurUa_author",
-	"copyLink": "eeurUa_copyLink",
+	"icon": "eeurUa_icon",
 	"warningIcon": "eeurUa_warningIcon",
-	"warningBox": "eeurUa_warningBox",
 	"warningText": "eeurUa_warningText",
 	"title": "eeurUa_title",
+	"divider": "eeurUa_divider",
+	"author": "eeurUa_author",
+	"copied": "eeurUa_copied",
+	"warningBox": "eeurUa_warningBox",
 	"card": "eeurUa_card",
-	"icon": "eeurUa_icon",
-	"description": "eeurUa_description",
-	"alignRight": "eeurUa_alignRight",
-	"copied": "eeurUa_copied"
+	"modalContent": "eeurUa_modalContent",
+	"header": "eeurUa_header",
+	"copyLink": "eeurUa_copyLink",
+	"alignRight": "eeurUa_alignRight"
 };
 
 //#endregion
@@ -509,7 +509,7 @@ function onLoad() {
 function onUnload() {
 	allowedUrls.length = 0;
 	DefaultRouteStore.defaultRoute = "/channels/@me";
-	navigation.addEventListener("navigate", handleNavigate);
+	navigation.removeEventListener("navigate", handleNavigate);
 	for (const element of document.querySelectorAll("[data-instbtn]")) {
 		element.removeAttribute("data-instbtn");
 		element.style.display = "inline-block";
