@@ -345,7 +345,7 @@ export function onUnload() {
 
    DefaultRouteStore.defaultRoute = "/channels/@me";
 
-   navigation.addEventListener("navigate", handleNavigate);
+   navigation.removeEventListener("navigate", handleNavigate);
 
    for (const element of document.querySelectorAll("[data-instbtn]")) {
       element.removeAttribute("data-instbtn");
