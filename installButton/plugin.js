@@ -131,37 +131,70 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
   font-weight: 400;
   line-height: 20px;
 }
+
+.eeurUa_warningBox {
+  background: color-mix(in srgb, var(--status-warning) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--status-warning) 30%, transparent);
+  border-radius: 6px;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  display: flex;
+}
+
+.eeurUa_warningIcon {
+  color: var(--status-warning);
+  flex-shrink: 0;
+}
+
+.eeurUa_warningText {
+  color: var(--text-normal);
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.eeurUa_modalContent .eeurUa_card {
+  background-color: var(--background-surface-highest);
+}
 `);
 var index_jsx_default = {
-	"description": "eeurUa_description",
 	"divider": "eeurUa_divider",
+	"modalContent": "eeurUa_modalContent",
 	"content": "eeurUa_content",
 	"header": "eeurUa_header",
+	"author": "eeurUa_author",
+	"copyLink": "eeurUa_copyLink",
+	"warningIcon": "eeurUa_warningIcon",
+	"warningBox": "eeurUa_warningBox",
+	"warningText": "eeurUa_warningText",
+	"title": "eeurUa_title",
 	"card": "eeurUa_card",
 	"icon": "eeurUa_icon",
-	"copyLink": "eeurUa_copyLink",
-	"author": "eeurUa_author",
-	"copied": "eeurUa_copied",
-	"title": "eeurUa_title",
-	"alignRight": "eeurUa_alignRight"
+	"description": "eeurUa_description",
+	"alignRight": "eeurUa_alignRight",
+	"copied": "eeurUa_copied"
 };
 
 //#endregion
 //#region plugins/installButton/icons.jsx
-var import_web$11 = __toESM(require_web(), 1);
 var import_web$12 = __toESM(require_web(), 1);
 var import_web$13 = __toESM(require_web(), 1);
 var import_web$14 = __toESM(require_web(), 1);
-const _tmpl$$1 = /*#__PURE__*/ (0, import_web$11.template)(`<svg role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><title>Copy</title><path fill="currentColor" d="M16.3 14.7a1 1 0 0 1 0-1.4l2.5-2.5a3.95 3.95 0 1 0-5.6-5.6l-2.5 2.5a1 1 0 1 1-1.4-1.4l2.5-2.5a5.95 5.95 0 1 1 8.4 8.4l-2.5 2.5a1 1 0 0 1-1.4 0ZM7.7 9.3a1 1 0 0 1 0 1.4l-2.5 2.5a3.95 3.95 0 0 0 5.6 5.6l2.5-2.5a1 1 0 1 1 1.4 1.4l-2.5 2.5a5.95 5.95 0 0 1-8.4-8.4l2.5-2.5a1 1 0 0 1 1.4 0Z"></path><path fill="currentColor" d="M14.7 10.7a1 1 0 1 0-1.4-1.4l-4 4a1 1 0 0 0 1.4 1.4l4-4Z"></path></svg>`, 8), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$11.template)(`<svg width="57" height="40" viewBox="0 0 57 40" fill="none" style="display: block; flex: 0 0 auto;"><title>Content</title><path d="M49.4949 36H3.9596C1.78182 36 0 34.2486 0 32.1081V3.89189C0 1.75135 1.78182 0 3.9596 0H49.4949C51.6727 0 53.4545 1.75135 53.4545 3.89189V32.1081C53.4545 34.2486 51.6727 36 49.4949 36Z" style="fill: var(--primary-500);"></path><path d="M44.5456 10.8889H25.7375C24.6486 10.8889 23.7577 9.99798 23.7577 8.90909C23.7577 7.8202 24.6486 6.92929 25.7375 6.92929H44.5456C45.6345 6.92929 46.5254 7.8202 46.5254 8.90909C46.5254 9.99798 45.6345 10.8889 44.5456 10.8889ZM19.7981 10.8889C18.7092 10.8889 17.8183 9.99798 17.8183 8.90909C17.8183 7.8202 18.7092 6.92929 19.7981 6.92929C20.887 6.92929 21.7779 7.8202 21.7779 8.90909C21.7779 9.99798 20.887 10.8889 19.7981 10.8889ZM44.5456 19.798H25.7375C24.6486 19.798 23.7577 18.9071 23.7577 17.8182C23.7577 16.7293 24.6486 15.8384 25.7375 15.8384H44.5456C45.6345 15.8384 46.5254 16.7293 46.5254 17.8182C46.5254 18.9071 45.6345 19.798 44.5456 19.798ZM19.7981 19.798C18.7092 19.798 17.8183 18.9071 17.8183 17.8182C17.8183 16.7293 18.7092 15.8384 19.7981 15.8384C20.887 15.8384 21.7779 16.7293 21.7779 17.8182C21.7779 18.9071 20.887 19.798 19.7981 19.798ZM31.6365 28.7071H25.7375C24.6486 28.7071 23.7577 27.8162 23.7577 26.7273C23.7577 25.6384 24.6486 24.7475 25.7375 24.7475H31.6365C32.7254 24.7475 33.6163 25.6384 33.6163 26.7273C33.6163 27.8162 32.7254 28.7071 31.6365 28.7071ZM19.7981 28.7071C18.7092 28.7071 17.8183 27.8162 17.8183 26.7273C17.8183 25.6384 18.7092 24.7475 19.7981 24.7475C20.887 24.7475 21.7779 25.6384 21.7779 26.7273C21.7779 27.8162 20.887 28.7071 19.7981 28.7071Z" style="fill: var(--primary-400);"></path><path d="M3.9596 36H13.8586V0H3.9596C1.78182 0 0 1.78182 0 3.9596V32.0404C0 34.2182 1.78182 36 3.9596 36Z" style="fill: var(--primary-560);"></path><path d="M6.9293 10.8889C5.24647 10.8889 3.9596 9.60202 3.9596 7.91919C3.9596 6.23636 5.24647 4.94949 6.9293 4.94949C8.61212 4.94949 9.89899 6.23636 9.89899 7.91919C9.89899 9.60202 8.61212 10.8889 6.9293 10.8889ZM6.9293 20.7879C5.24647 20.7879 3.9596 19.501 3.9596 17.8182C3.9596 16.1354 5.24647 14.8485 6.9293 14.8485C8.61212 14.8485 9.89899 16.1354 9.89899 17.8182C9.89899 19.501 8.61212 20.7879 6.9293 20.7879ZM6.9293 30.6869C5.24647 30.6869 3.9596 29.4 3.9596 27.7172C3.9596 26.0343 5.24647 24.7475 6.9293 24.7475C8.61212 24.7475 9.89899 26.0343 9.89899 27.7172C9.89899 29.4 8.61212 30.6869 6.9293 30.6869Z" style="fill: var(--primary-400);"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M41.4328 33L46 37.7129L43.7836 40L37 32.9999L39.2164 30.7128L39.2165 30.7129L43.7836 26L46 28.2871L41.4328 33Z" style="fill: var(--primary-200);"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M54.7821 35.2871L54.7841 35.2892L57 33.0021L50.2159 26L48 28.2871L52.5662 33L48 37.7129L50.2159 40L54.7821 35.2871Z" style="fill: var(--primary-200);"></path></svg>`, 16);
+var import_web$15 = __toESM(require_web(), 1);
+const _tmpl$$1 = /*#__PURE__*/ (0, import_web$12.template)(`<svg role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><title>Copy</title><path fill="currentColor" d="M16.3 14.7a1 1 0 0 1 0-1.4l2.5-2.5a3.95 3.95 0 1 0-5.6-5.6l-2.5 2.5a1 1 0 1 1-1.4-1.4l2.5-2.5a5.95 5.95 0 1 1 8.4 8.4l-2.5 2.5a1 1 0 0 1-1.4 0ZM7.7 9.3a1 1 0 0 1 0 1.4l-2.5 2.5a3.95 3.95 0 0 0 5.6 5.6l2.5-2.5a1 1 0 1 1 1.4 1.4l-2.5 2.5a5.95 5.95 0 0 1-8.4-8.4l2.5-2.5a1 1 0 0 1 1.4 0Z"></path><path fill="currentColor" d="M14.7 10.7a1 1 0 1 0-1.4-1.4l-4 4a1 1 0 0 0 1.4 1.4l4-4Z"></path></svg>`, 8), _tmpl$2$1 = /*#__PURE__*/ (0, import_web$12.template)(`<svg width="57" height="40" viewBox="0 0 57 40" fill="none" style="display: block; flex: 0 0 auto;"><title>Content</title><path d="M49.4949 36H3.9596C1.78182 36 0 34.2486 0 32.1081V3.89189C0 1.75135 1.78182 0 3.9596 0H49.4949C51.6727 0 53.4545 1.75135 53.4545 3.89189V32.1081C53.4545 34.2486 51.6727 36 49.4949 36Z" style="fill: var(--primary-500);"></path><path d="M44.5456 10.8889H25.7375C24.6486 10.8889 23.7577 9.99798 23.7577 8.90909C23.7577 7.8202 24.6486 6.92929 25.7375 6.92929H44.5456C45.6345 6.92929 46.5254 7.8202 46.5254 8.90909C46.5254 9.99798 45.6345 10.8889 44.5456 10.8889ZM19.7981 10.8889C18.7092 10.8889 17.8183 9.99798 17.8183 8.90909C17.8183 7.8202 18.7092 6.92929 19.7981 6.92929C20.887 6.92929 21.7779 7.8202 21.7779 8.90909C21.7779 9.99798 20.887 10.8889 19.7981 10.8889ZM44.5456 19.798H25.7375C24.6486 19.798 23.7577 18.9071 23.7577 17.8182C23.7577 16.7293 24.6486 15.8384 25.7375 15.8384H44.5456C45.6345 15.8384 46.5254 16.7293 46.5254 17.8182C46.5254 18.9071 45.6345 19.798 44.5456 19.798ZM19.7981 19.798C18.7092 19.798 17.8183 18.9071 17.8183 17.8182C17.8183 16.7293 18.7092 15.8384 19.7981 15.8384C20.887 15.8384 21.7779 16.7293 21.7779 17.8182C21.7779 18.9071 20.887 19.798 19.7981 19.798ZM31.6365 28.7071H25.7375C24.6486 28.7071 23.7577 27.8162 23.7577 26.7273C23.7577 25.6384 24.6486 24.7475 25.7375 24.7475H31.6365C32.7254 24.7475 33.6163 25.6384 33.6163 26.7273C33.6163 27.8162 32.7254 28.7071 31.6365 28.7071ZM19.7981 28.7071C18.7092 28.7071 17.8183 27.8162 17.8183 26.7273C17.8183 25.6384 18.7092 24.7475 19.7981 24.7475C20.887 24.7475 21.7779 25.6384 21.7779 26.7273C21.7779 27.8162 20.887 28.7071 19.7981 28.7071Z" style="fill: var(--primary-400);"></path><path d="M3.9596 36H13.8586V0H3.9596C1.78182 0 0 1.78182 0 3.9596V32.0404C0 34.2182 1.78182 36 3.9596 36Z" style="fill: var(--primary-560);"></path><path d="M6.9293 10.8889C5.24647 10.8889 3.9596 9.60202 3.9596 7.91919C3.9596 6.23636 5.24647 4.94949 6.9293 4.94949C8.61212 4.94949 9.89899 6.23636 9.89899 7.91919C9.89899 9.60202 8.61212 10.8889 6.9293 10.8889ZM6.9293 20.7879C5.24647 20.7879 3.9596 19.501 3.9596 17.8182C3.9596 16.1354 5.24647 14.8485 6.9293 14.8485C8.61212 14.8485 9.89899 16.1354 9.89899 17.8182C9.89899 19.501 8.61212 20.7879 6.9293 20.7879ZM6.9293 30.6869C5.24647 30.6869 3.9596 29.4 3.9596 27.7172C3.9596 26.0343 5.24647 24.7475 6.9293 24.7475C8.61212 24.7475 9.89899 26.0343 9.89899 27.7172C9.89899 29.4 8.61212 30.6869 6.9293 30.6869Z" style="fill: var(--primary-400);"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M41.4328 33L46 37.7129L43.7836 40L37 32.9999L39.2164 30.7128L39.2165 30.7129L43.7836 26L46 28.2871L41.4328 33Z" style="fill: var(--primary-200);"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M54.7821 35.2871L54.7841 35.2892L57 33.0021L50.2159 26L48 28.2871L52.5662 33L48 37.7129L50.2159 40L54.7821 35.2871Z" style="fill: var(--primary-200);"></path></svg>`, 16), _tmpl$3$1 = /*#__PURE__*/ (0, import_web$12.template)(`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`, 8);
 function CopyIcon(props) {
 	return (() => {
-		const _el$ = (0, import_web$14.getNextElement)(_tmpl$$1);
-		(0, import_web$13.effect)(() => (0, import_web$12.setAttribute)(_el$, "class", props.class));
+		const _el$ = (0, import_web$15.getNextElement)(_tmpl$$1);
+		(0, import_web$14.effect)(() => (0, import_web$13.setAttribute)(_el$, "class", props.class));
 		return _el$;
 	})();
 }
 function ContentIcon() {
-	return (0, import_web$14.getNextElement)(_tmpl$2$1);
+	return (0, import_web$15.getNextElement)(_tmpl$2$1);
+}
+function WarningIcon() {
+	return (0, import_web$15.getNextElement)(_tmpl$3$1);
 }
 
 //#endregion
@@ -177,10 +210,11 @@ var import_web$7 = __toESM(require_web(), 1);
 var import_web$8 = __toESM(require_web(), 1);
 var import_web$9 = __toESM(require_web(), 1);
 var import_web$10 = __toESM(require_web(), 1);
-const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><div><!#><!/><div><div></div><div><div></div><svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 4 4"><circle cx="2" cy="2" r="2" fill="currentColor"></circle></svg><div><!#><!/><div></div></div></div><div></div></div><!#><!/></div></div>`, 28), _tmpl$2 = /*#__PURE__*/ (0, import_web.template)(`<p>Are you sure you want to install <strong></strong> by <strong></strong>?</p>`, 6), _tmpl$3 = /*#__PURE__*/ (0, import_web.template)(`<p><i></i></p>`, 4);
-const { observeDom } = shelter.plugin.scoped;
-const { flux: { dispatcher, stores: { SelectedChannelStore } }, plugins, ui: { showToast, Button, ButtonColors, ButtonSizes, openModal, ModalRoot, ModalHeader, ModalBody, ModalConfirmFooter }, solid: { createSignal } } = shelter;
-const trustedUrls = [];
+var import_web$11 = __toESM(require_web(), 1);
+const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><div><!#><!/><div><div></div><div><div></div><svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 4 4"><circle cx="2" cy="2" r="2" fill="currentColor"></circle></svg><div><!#><!/><div></div></div></div><div></div></div><!#><!/></div></div>`, 28), _tmpl$2 = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><br><div><div></div><p>Only install plugins from sources you trust. Plugins execute code and could access your private Discord data.</p></div></div>`, 11), _tmpl$3 = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><!#><!/></div>`, 6);
+const { flux: { subscribe }, observeDom } = shelter.plugin.scoped;
+const { flux: { stores: { SelectedChannelStore, DefaultRouteStore } }, plugins, ui: { showToast, ToastColors, Button, ButtonColors, ButtonSizes, openModal, ModalRoot, ModalHeader, ModalBody, ModalFooter, ModalSizes }, solid: { createSignal } } = shelter;
+const allowedUrls = [];
 function copyToClipboard(text) {
 	if (window.DiscordNative) {
 		DiscordNative.clipboard.copy(text);
@@ -225,41 +259,49 @@ function Card(props) {
 		return copied() ? index_jsx_default.copied : "";
 	};
 	return (() => {
-		const _el$ = (0, import_web$5.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, _el$11 = _el$2.firstChild, [_el$12, _co$2] = (0, import_web$8.getNextMarker)(_el$11.nextSibling), _el$3 = _el$12.nextSibling, _el$4 = _el$3.firstChild, _el$5 = _el$4.nextSibling, _el$6 = _el$5.firstChild, _el$7 = _el$6.nextSibling, _el$8 = _el$7.nextSibling, _el$0 = _el$8.firstChild, [_el$1, _co$] = (0, import_web$8.getNextMarker)(_el$0.nextSibling), _el$9 = _el$1.nextSibling, _el$10 = _el$5.nextSibling, _el$13 = _el$3.nextSibling, [_el$14, _co$3] = (0, import_web$8.getNextMarker)(_el$13.nextSibling);
-		(0, import_web$9.insert)(_el$2, (0, import_web$10.createComponent)(ContentIcon, {}), _el$12, _co$2);
-		(0, import_web$9.insert)(_el$4, () => props.json.name);
-		(0, import_web$9.insert)(_el$6, () => props.json.author);
+		const _el$ = (0, import_web$5.getNextElement)(_tmpl$), _el$2 = _el$.firstChild, _el$11 = _el$2.firstChild, [_el$12, _co$2] = (0, import_web$9.getNextMarker)(_el$11.nextSibling), _el$3 = _el$12.nextSibling, _el$4 = _el$3.firstChild, _el$5 = _el$4.nextSibling, _el$6 = _el$5.firstChild, _el$7 = _el$6.nextSibling, _el$8 = _el$7.nextSibling, _el$0 = _el$8.firstChild, [_el$1, _co$] = (0, import_web$9.getNextMarker)(_el$0.nextSibling), _el$9 = _el$1.nextSibling, _el$10 = _el$5.nextSibling, _el$13 = _el$3.nextSibling, [_el$14, _co$3] = (0, import_web$9.getNextMarker)(_el$13.nextSibling);
+		(0, import_web$10.insert)(_el$2, (0, import_web$11.createComponent)(ContentIcon, {}), _el$12, _co$2);
+		(0, import_web$10.insert)(_el$4, () => props.json.name);
+		(0, import_web$10.insert)(_el$6, () => props.json.author);
 		_el$8.$$mousedown = doCopy;
-		(0, import_web$9.insert)(_el$8, (0, import_web$10.createComponent)(CopyIcon, { get ["class"]() {
+		(0, import_web$10.insert)(_el$8, (0, import_web$11.createComponent)(CopyIcon, { get ["class"]() {
 			return index_jsx_default.icon;
 		} }), _el$1, _co$);
-		(0, import_web$9.insert)(_el$9, copyText);
-		(0, import_web$9.insert)(_el$10, () => props.json.description);
-		(0, import_web$9.insert)(_el$2, (0, import_web$10.createComponent)(Button, {
-			get color() {
-				return isInstalled() ? ButtonColors.SECONDARY : ButtonColors.GREEN;
-			},
-			get disabled() {
-				return isInstalled();
-			},
-			get ["class"]() {
-				return index_jsx_default.alignRight;
-			},
-			get size() {
-				return ButtonSizes.MEDIUM;
-			},
-			onClick: async () => {
-				if (!isInstalled()) {
-					await plugins.addRemotePlugin(pluginId, props.url);
-					plugins.startPlugin(pluginId);
-					showToast({
-						title: "New plugin installed",
-						content: props.json.name
-					});
-				}
+		(0, import_web$10.insert)(_el$9, copyText);
+		(0, import_web$10.insert)(_el$10, () => props.json.description);
+		(0, import_web$10.insert)(_el$2, (0, import_web$11.createComponent)(import_web$8.Show, {
+			get when() {
+				return !props.withoutButton;
 			},
 			get children() {
-				return isInstalled() ? "Installed" : "Install";
+				return (0, import_web$11.createComponent)(Button, {
+					get color() {
+						return isInstalled() ? ButtonColors.SECONDARY : ButtonColors.GREEN;
+					},
+					get disabled() {
+						return isInstalled();
+					},
+					get ["class"]() {
+						return index_jsx_default.alignRight;
+					},
+					get size() {
+						return ButtonSizes.MEDIUM;
+					},
+					onClick: async () => {
+						if (!isInstalled()) {
+							await plugins.addRemotePlugin(pluginId, props.url);
+							plugins.startPlugin(pluginId);
+							showToast({
+								title: "New plugin installed",
+								content: props.json.name,
+								color: ToastColors.SUCCESS
+							});
+						}
+					},
+					get children() {
+						return isInstalled() ? "Installed" : "Install";
+					}
+				});
 			}
 		}), _el$14, _co$3);
 		(0, import_web$4.effect)((_p$) => {
@@ -295,12 +337,12 @@ function handleDispatch(payload) {
 		if (element.textContent !== element.href) return;
 		let url = element.href.endsWith("/") ? element.href : `${element.href}/`;
 		if (url.endsWith("plugin.json/")) url = url.slice(0, -12);
-		if (!trustedUrls.some((trustedUrl) => url.startsWith(trustedUrl))) return;
+		if (!allowedUrls.some((allowedUrl) => url.startsWith(allowedUrl))) return;
 		try {
 			const response = await fetch(`${url}plugin.json`);
 			if (!response.ok) return;
 			const json = await response.json();
-			const card = (0, import_web$10.createComponent)(Card, {
+			const card = (0, import_web$11.createComponent)(Card, {
 				get json() {
 					return {
 						name: json.name,
@@ -333,57 +375,98 @@ function handleDispatch(payload) {
 }
 function InstallationModal(props) {
 	const { closeModal, json, url, pluginId } = props;
-	return (0, import_web$10.createComponent)(ModalRoot, { get children() {
-		return [
-			(0, import_web$10.createComponent)(ModalHeader, { children: "Install Plugin" }),
-			(0, import_web$10.createComponent)(ModalBody, { get children() {
-				return [(() => {
-					const _el$15 = (0, import_web$5.getNextElement)(_tmpl$2), _el$16 = _el$15.firstChild, _el$17 = _el$16.nextSibling, _el$18 = _el$17.nextSibling, _el$19 = _el$18.nextSibling;
-					(0, import_web$9.insert)(_el$17, () => json.name);
-					(0, import_web$9.insert)(_el$19, () => json.author);
-					return _el$15;
-				})(), (() => {
-					const _el$20 = (0, import_web$5.getNextElement)(_tmpl$3), _el$21 = _el$20.firstChild;
-					(0, import_web$9.insert)(_el$21, () => json.description);
-					return _el$20;
-				})()];
-			} }),
-			(0, import_web$10.createComponent)(ModalConfirmFooter, {
-				close: closeModal,
-				type: "danger",
-				confirmText: "Install",
-				onConfirm: async () => {
-					await plugins.addRemotePlugin(pluginId, url);
-					plugins.startPlugin(pluginId);
-					showToast({
-						title: json.name,
-						content: "has been installed."
+	return (0, import_web$11.createComponent)(ModalRoot, {
+		get size() {
+			return ModalSizes.MEDIUM;
+		},
+		get children() {
+			return [
+				(0, import_web$11.createComponent)(ModalHeader, {
+					close: closeModal,
+					children: "OneClick™ Installer Technologies by UWU NETWORK LLC"
+				}),
+				(0, import_web$11.createComponent)(ModalBody, { get children() {
+					const _el$15 = (0, import_web$5.getNextElement)(_tmpl$2), _el$20 = _el$15.firstChild, [_el$21, _co$4] = (0, import_web$9.getNextMarker)(_el$20.nextSibling), _el$16 = _el$21.nextSibling, _el$17 = _el$16.nextSibling, _el$18 = _el$17.firstChild, _el$19 = _el$18.nextSibling;
+					(0, import_web$10.insert)(_el$15, (0, import_web$11.createComponent)(Card, {
+						withoutButton: true,
+						json,
+						url
+					}), _el$21, _co$4);
+					(0, import_web$10.insert)(_el$18, (0, import_web$11.createComponent)(WarningIcon, {}));
+					(0, import_web$4.effect)((_p$) => {
+						const _v$9 = index_jsx_default.modalContent, _v$0 = index_jsx_default.warningBox, _v$1 = index_jsx_default.warningIcon, _v$10 = index_jsx_default.warningText;
+						_v$9 !== _p$._v$9 && (0, import_web$3.className)(_el$15, _p$._v$9 = _v$9);
+						_v$0 !== _p$._v$0 && (0, import_web$3.className)(_el$17, _p$._v$0 = _v$0);
+						_v$1 !== _p$._v$1 && (0, import_web$3.className)(_el$18, _p$._v$1 = _v$1);
+						_v$10 !== _p$._v$10 && (0, import_web$3.className)(_el$19, _p$._v$10 = _v$10);
+						return _p$;
+					}, {
+						_v$9: undefined,
+						_v$0: undefined,
+						_v$1: undefined,
+						_v$10: undefined
 					});
-				}
-			})
-		];
-	} });
+					return _el$15;
+				} }),
+				(0, import_web$11.createComponent)(ModalFooter, { get children() {
+					const _el$22 = (0, import_web$5.getNextElement)(_tmpl$3), _el$23 = _el$22.firstChild, [_el$24, _co$5] = (0, import_web$9.getNextMarker)(_el$23.nextSibling), _el$25 = _el$24.nextSibling, [_el$26, _co$6] = (0, import_web$9.getNextMarker)(_el$25.nextSibling);
+					_el$22.style.setProperty("display", "flex");
+					_el$22.style.setProperty("justify-content", "flex-end");
+					_el$22.style.setProperty("gap", "8px");
+					(0, import_web$10.insert)(_el$22, (0, import_web$11.createComponent)(Button, {
+						get size() {
+							return ButtonSizes.MEDIUM;
+						},
+						get color() {
+							return ButtonColors.SECONDARY;
+						},
+						onClick: closeModal,
+						children: "Close"
+					}), _el$24, _co$5);
+					(0, import_web$10.insert)(_el$22, (0, import_web$11.createComponent)(Button, {
+						get size() {
+							return ButtonSizes.MEDIUM;
+						},
+						get color() {
+							return ButtonColors.CRITICAL_PRIMARY;
+						},
+						onClick: async () => {
+							await plugins.addRemotePlugin(pluginId, url);
+							plugins.startPlugin(pluginId);
+							showToast({
+								title: "New plugin installed",
+								content: props.json.name,
+								color: ToastColors.SUCCESS
+							});
+							closeModal();
+						},
+						children: "Install"
+					}), _el$26, _co$6);
+					return _el$22;
+				} })
+			];
+		}
+	});
 }
+const PREFIX = "/installButton/";
 async function handleInstall(_, originalUrl) {
 	if (window.InstallButtonEnabled === false) return;
+	setTimeout(() => {
+		DefaultRouteStore.defaultRoute = "/channels/@me";
+	}, 0);
 	DiscordNative.window.focus();
-	let url = originalUrl.substring(1);
+	if (!originalUrl.startsWith(PREFIX)) return;
+	let url = originalUrl.substring(PREFIX.length);
 	url = url.endsWith("/") ? url : `${url}/`;
-	if (!trustedUrls.find((trustedUrl) => url.startsWith(trustedUrl))) {
-		showToast({
-			title: "Plugin Installation",
-			content: "This plugin is not trusted."
-		});
-		return;
-	}
 	const response = await fetch(`${url}plugin.json`);
 	if (!response.ok) return;
 	const json = await response.json();
 	const pluginId = url.replace("https://", "").replace("http://", "");
 	if (pluginId in plugins.installedPlugins()) {
 		showToast({
-			title: json.name,
-			content: "is already installed."
+			title: "Plugin already installed",
+			content: `${json.name} is already installed.`,
+			color: ToastColors.WARNING
 		});
 		return;
 	}
@@ -400,9 +483,23 @@ const TRIGGERS = [
 	"MESSAGE_UPDATE",
 	"UPDATE_CHANNEL_DIMENSIONS"
 ];
+function handleNavigate(payload) {
+	const from = payload.currentTarget.currentEntry.url;
+	const to = payload.destination.url;
+	if (!to.startsWith(`${window.origin}${PREFIX}`)) return;
+	const originalPath = from.replace(window.origin, "");
+	DefaultRouteStore.defaultRoute = originalPath;
+}
 function onLoad() {
-	fetch("https://shindex.uwu.network/data").then((body) => body.json().then((repos) => repos.forEach((repo) => trustedUrls.push(repo.url))));
-	for (const t of TRIGGERS) dispatcher.subscribe(t, handleDispatch);
+	fetch("https://shindex.uwu.network/data").then((body) => body.json().then((repos) => repos.forEach((repo) => allowedUrls.push(repo.url))));
+	Object.defineProperty(DefaultRouteStore, "defaultRoute", {
+		value: "/channels/@me",
+		writable: true,
+		enumerable: true,
+		configurable: true
+	});
+	navigation.addEventListener("navigate", handleNavigate);
+	for (const t of TRIGGERS) subscribe(t, handleDispatch);
 	window.InstallButtonEnabled = true;
 	if (window.DiscordNative && !window.InstallButtonInjected) {
 		window.DiscordNative.ipc.on("DISCORD_MAIN_WINDOW_PATH", handleInstall);
@@ -410,7 +507,9 @@ function onLoad() {
 	}
 }
 function onUnload() {
-	trustedUrls.length = 0;
+	allowedUrls.length = 0;
+	DefaultRouteStore.defaultRoute = "/channels/@me";
+	navigation.addEventListener("navigate", handleNavigate);
 	for (const element of document.querySelectorAll("[data-instbtn]")) {
 		element.removeAttribute("data-instbtn");
 		element.style.display = "inline-block";
