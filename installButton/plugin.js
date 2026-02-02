@@ -159,21 +159,21 @@ shelter.plugin.scoped.ui.injectCss(`.eeurUa_card {
 }
 `);
 var index_jsx_default = {
-	"description": "eeurUa_description",
-	"content": "eeurUa_content",
 	"icon": "eeurUa_icon",
-	"warningIcon": "eeurUa_warningIcon",
-	"warningText": "eeurUa_warningText",
+	"content": "eeurUa_content",
+	"alignRight": "eeurUa_alignRight",
 	"title": "eeurUa_title",
-	"divider": "eeurUa_divider",
+	"warningIcon": "eeurUa_warningIcon",
 	"author": "eeurUa_author",
-	"copied": "eeurUa_copied",
-	"warningBox": "eeurUa_warningBox",
-	"card": "eeurUa_card",
-	"modalContent": "eeurUa_modalContent",
 	"header": "eeurUa_header",
+	"description": "eeurUa_description",
+	"modalContent": "eeurUa_modalContent",
+	"warningBox": "eeurUa_warningBox",
+	"copied": "eeurUa_copied",
+	"divider": "eeurUa_divider",
 	"copyLink": "eeurUa_copyLink",
-	"alignRight": "eeurUa_alignRight"
+	"card": "eeurUa_card",
+	"warningText": "eeurUa_warningText"
 };
 
 //#endregion
@@ -213,7 +213,7 @@ var import_web$10 = __toESM(require_web(), 1);
 var import_web$11 = __toESM(require_web(), 1);
 const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div><div><!#><!/><div><div></div><div><div></div><svg aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 4 4"><circle cx="2" cy="2" r="2" fill="currentColor"></circle></svg><div><!#><!/><div></div></div></div><div></div></div><!#><!/></div></div>`, 28), _tmpl$2 = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><br><div><div></div><p>Only install plugins from sources you trust. Plugins execute code and could access your private Discord data.</p></div></div>`, 11), _tmpl$3 = /*#__PURE__*/ (0, import_web.template)(`<div><!#><!/><!#><!/></div>`, 6);
 const { flux: { subscribe }, observeDom } = shelter.plugin.scoped;
-const { flux: { stores: { SelectedChannelStore, DefaultRouteStore } }, plugins, ui: { showToast, ToastColors, Button, ButtonColors, ButtonSizes, openModal, ModalRoot, ModalHeader, ModalBody, ModalFooter, ModalSizes }, solid: { createSignal } } = shelter;
+const { flux: { stores: { SelectedChannelStore } }, plugins, ui: { showToast, ToastColors, Button, ButtonColors, ButtonSizes, openModal, ModalRoot, ModalHeader, ModalBody, ModalFooter, ModalSizes }, solid: { createSignal } } = shelter;
 const allowedUrls = [];
 function copyToClipboard(text) {
 	if (window.DiscordNative) {
@@ -448,15 +448,9 @@ function InstallationModal(props) {
 		}
 	});
 }
-const PREFIX = "/installButton/";
-async function handleInstall(_, originalUrl) {
+async function handleInstall(url) {
 	if (window.InstallButtonEnabled === false) return;
-	setTimeout(() => {
-		DefaultRouteStore.defaultRoute = "/channels/@me";
-	}, 0);
 	DiscordNative.window.focus();
-	if (!originalUrl.startsWith(PREFIX)) return;
-	let url = originalUrl.substring(PREFIX.length);
 	url = url.endsWith("/") ? url : `${url}/`;
 	const response = await fetch(`${url}plugin.json`);
 	if (!response.ok) return;
@@ -483,33 +477,26 @@ const TRIGGERS = [
 	"MESSAGE_UPDATE",
 	"UPDATE_CHANNEL_DIMENSIONS"
 ];
-function handleNavigate(payload) {
-	const from = payload.currentTarget.currentEntry.url;
-	const to = payload.destination.url;
-	if (!to.startsWith(`${window.origin}${PREFIX}`)) return;
-	const originalPath = from.replace(window.origin, "");
-	DefaultRouteStore.defaultRoute = originalPath;
-}
 function onLoad() {
 	fetch("https://shindex.uwu.network/data").then((body) => body.json().then((repos) => repos.forEach((repo) => allowedUrls.push(repo.url))));
-	Object.defineProperty(DefaultRouteStore, "defaultRoute", {
-		value: "/channels/@me",
-		writable: true,
-		enumerable: true,
-		configurable: true
-	});
-	navigation.addEventListener("navigate", handleNavigate);
 	for (const t of TRIGGERS) subscribe(t, handleDispatch);
-	window.InstallButtonEnabled = true;
-	if (window.DiscordNative && !window.InstallButtonInjected) {
-		window.DiscordNative.ipc.on("DISCORD_MAIN_WINDOW_PATH", handleInstall);
-		window.InstallButtonInjected = true;
+	if (!window.InstallButtonWSS) {
+		if (!window.DiscordNative) return;
+		const { Server } = DiscordNative.nativeModules.requireModule("discord_rpc")?.RPCWebSocket?.ws;
+		if (!Server) return;
+		const server = new Server({ port: 6767 });
+		server.on("connection", (ws) => {
+			ws.on("message", async (data) => {
+				const message = JSON.parse(data.toString());
+				if (message.type === "install" && message.url) await handleInstall(message.url);
+			});
+		});
+		window.InstallButtonWSS = true;
 	}
+	window.InstallButtonEnabled = true;
 }
 function onUnload() {
 	allowedUrls.length = 0;
-	DefaultRouteStore.defaultRoute = "/channels/@me";
-	navigation.removeEventListener("navigate", handleNavigate);
 	for (const element of document.querySelectorAll("[data-instbtn]")) {
 		element.removeAttribute("data-instbtn");
 		element.style.display = "inline-block";

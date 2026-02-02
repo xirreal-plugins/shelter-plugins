@@ -99,9 +99,9 @@ shelter.plugin.scoped.ui.injectCss(`._4OA9Bq_icon {
 var index_jsx_default = {
 	"selector": "_4OA9Bq_selector",
 	"item": "_4OA9Bq_item",
+	"selectorWrapper": "_4OA9Bq_selectorWrapper",
 	"active": "_4OA9Bq_active",
-	"icon": "_4OA9Bq_icon",
-	"selectorWrapper": "_4OA9Bq_selectorWrapper"
+	"icon": "_4OA9Bq_icon"
 };
 
 //#endregion
