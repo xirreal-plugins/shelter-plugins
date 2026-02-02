@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import { getCollection } from "astro:content";
 import RichHead from "../components/RichHead.astro";
 import GitHub from "../components/GitHub.astro";
@@ -6,8 +8,6 @@ import BackIcon from "../components/BackIcon.astro";
 import InfoBadge from "../components/InfoBadge.astro";
 import CopyIcon from "../components/CopyIcon.astro";
 import WarningBadge from "../components/WarningBadge.astro";
-
-export const prerender = true;
 
 export async function getStaticPaths() {
    const plugins = await getCollection("plugins");
@@ -26,6 +26,13 @@ const profilePicUrl = `https://github.com/${username}.png`;
 <html lang="en">
    <head>
       <RichHead title={`${plugin.data.title}`} description={plugin.data.description} image={plugin.data.demoImage} url={Astro.url} />
+      <noscript>
+         <style>
+            .oneclick-install {
+               display: none !important;
+            }
+         </style>
+      </noscript>
    </head>
    <body class="p-8 bg-[#1b1026] text-gray-200 h-screen">
       <div
@@ -69,8 +76,8 @@ const profilePicUrl = `https://github.com/${username}.png`;
 
          <br />
 
-         <p class="mt-2">OneClick™ install:</p>
-         <a href={`discord:///${plugin.data.url}`} class="inline-block m-2">
+         <p class="mt-2 oneclick-install">OneClick™ install:</p>
+         <a href="#" data-ws-install={plugin.data.url} class="inline-block m-2 cursor-pointer oneclick-install">
             <img src="/send.svg" alt={`One click installer for ${plugin.data.title}`} class="w-32 h-auto" />
          </a>
          <div class="mt-2 relative">
@@ -102,22 +109,50 @@ const profilePicUrl = `https://github.com/${username}.png`;
       </div>
 
       <script>
-         // @ts-ignore
+         declare global {
+            interface Document {
+               copyToClipboard: (target: HTMLAnchorElement) => void;
+            }
+            interface HTMLElement {
+               _copyTimeoutId?: number;
+            }
+         }
+
          document.copyToClipboard = (target: HTMLAnchorElement) => {
-            const url = target.href!;
+            const url = target.href;
             navigator.clipboard.writeText(url).then(() => {
-               // @ts-ignore
-               target.nextElementSibling!.style.left = `${target.previousElementSibling.getBoundingClientRect().width + target.getBoundingClientRect().width / 2 - target.nextElementSibling.getBoundingClientRect().width / 2}px`;
-               target.nextElementSibling?.classList.remove("opacity-0");
-               if (target.dataset.timeoutId !== undefined) {
-                  clearTimeout(target.dataset.timeoutId);
+               const tooltip = target.nextElementSibling as HTMLElement | null;
+               const label = target.previousElementSibling as HTMLElement | null;
+               if (tooltip && label) {
+                  tooltip.style.left = `${label.getBoundingClientRect().width + target.getBoundingClientRect().width / 2 - tooltip.getBoundingClientRect().width / 2}px`;
+                  tooltip.classList.remove("opacity-0");
                }
-               // @ts-ignore
-               target.dataset.timeoutId = setTimeout(() => {
-                  target.nextElementSibling?.classList.add("opacity-0");
+               if (target._copyTimeoutId !== undefined) {
+                  clearTimeout(target._copyTimeoutId);
+               }
+               target._copyTimeoutId = setTimeout(() => {
+                  tooltip?.classList.add("opacity-0");
                }, 750);
             });
          };
+
+         document.querySelectorAll<HTMLAnchorElement>("[data-ws-install]").forEach((el) => {
+            el.addEventListener("click", (e) => {
+               e.preventDefault();
+               const url = el.dataset.wsInstall;
+               if (!url) return;
+               const ws = new WebSocket("ws://127.0.0.1:6767");
+               ws.onopen = () => {
+                  ws.send(JSON.stringify({ type: "install", url }));
+                  ws.close();
+               };
+               ws.onerror = () => {
+                  alert("Could not connect to Discord. Make sure Discord is running and the Install Button plugin is enabled.");
+               };
+            });
+         });
       </script>
+
+
    </body>
 </html>

@@ -5,22 +5,10 @@ const {
 
 const {
    flux: {
-      stores: { SelectedChannelStore, DefaultRouteStore },
+      stores: { SelectedChannelStore },
    },
    plugins,
-   ui: {
-      showToast,
-      ToastColors,
-      Button,
-      ButtonColors,
-      ButtonSizes,
-      openModal,
-      ModalRoot,
-      ModalHeader,
-      ModalBody,
-      ModalFooter,
-      ModalSizes,
-   },
+   ui: { showToast, ToastColors, Button, ButtonColors, ButtonSizes, openModal, ModalRoot, ModalHeader, ModalBody, ModalFooter, ModalSizes },
    solid: { createSignal },
 } = shelter;
 
@@ -133,11 +121,7 @@ function Card(props) {
 }
 
 function handleDispatch(payload) {
-   if (
-      (payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") &&
-      payload.message.channel_id !== SelectedChannelStore.getChannelId()
-   )
-      return;
+   if ((payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") && payload.message.channel_id !== SelectedChannelStore.getChannelId()) return;
 
    const unobs = observeDom("[class*=messageContent] [class*=anchor]:not([data-instbtn])", async (element) => {
       // don't find element we've already replaced
@@ -222,8 +206,7 @@ function InstallationModal(props) {
                      <WarningIcon />
                   </div>
                   <p class={classes.warningText}>
-                     Only install plugins from sources you trust. Plugins execute code and could access your private
-                     Discord data.
+                     Only install plugins from sources you trust. Plugins execute code and could access your private Discord data.
                   </p>
                </div>
             </div>
@@ -255,22 +238,11 @@ function InstallationModal(props) {
    );
 }
 
-const PREFIX = "/installButton/";
-
-async function handleInstall(_, originalUrl) {
+async function handleInstall(url) {
    if (window.InstallButtonEnabled === false) return;
-
-   setTimeout(() => {
-      DefaultRouteStore.defaultRoute = "/channels/@me";
-   }, 0);
 
    DiscordNative.window.focus();
 
-   if (!originalUrl.startsWith(PREFIX)) {
-      return;
-   }
-
-   let url = originalUrl.substring(PREFIX.length);
    url = url.endsWith("/") ? url : `${url}/`;
 
    const response = await fetch(`${url}plugin.json`);
@@ -303,49 +275,40 @@ async function handleInstall(_, originalUrl) {
 
 const TRIGGERS = ["MESSAGE_CREATE", "MESSAGE_UPDATE", "UPDATE_CHANNEL_DIMENSIONS"];
 
-function handleNavigate(payload) {
-   const from = payload.currentTarget.currentEntry.url;
-   const to = payload.destination.url;
-
-   if (!to.startsWith(`${window.origin}${PREFIX}`)) {
-      return;
-   }
-
-   const originalPath = from.replace(window.origin, "");
-
-   DefaultRouteStore.defaultRoute = originalPath;
-}
-
 export function onLoad() {
-   fetch("https://shindex.uwu.network/data").then((body) =>
-      body.json().then((repos) => repos.forEach((repo) => allowedUrls.push(repo.url))),
-   );
-
-   // make default route writeable
-   Object.defineProperty(DefaultRouteStore, "defaultRoute", {
-      value: "/channels/@me",
-      writable: true,
-      enumerable: true,
-      configurable: true,
-   });
-
-   navigation.addEventListener("navigate", handleNavigate);
+   fetch("https://shindex.uwu.network/data").then((body) => body.json().then((repos) => repos.forEach((repo) => allowedUrls.push(repo.url))));
 
    for (const t of TRIGGERS) subscribe(t, handleDispatch);
 
-   window.InstallButtonEnabled = true;
-   if (window.DiscordNative && !window.InstallButtonInjected) {
-      window.DiscordNative.ipc.on("DISCORD_MAIN_WINDOW_PATH", handleInstall);
-      window.InstallButtonInjected = true;
+   if (!window.InstallButtonWSS) {
+      if (!window.DiscordNative) {
+         return;
+      }
+
+      const { Server } = DiscordNative.nativeModules.requireModule("discord_rpc")?.RPCWebSocket?.ws;
+      if (!Server) {
+         return;
+      }
+
+      const server = new Server({ port: 6767 });
+
+      server.on("connection", (ws) => {
+         ws.on("message", async (data) => {
+            const message = JSON.parse(data.toString());
+            if (message.type === "install" && message.url) {
+               await handleInstall(message.url);
+            }
+         });
+      });
+
+      window.InstallButtonWSS = true;
    }
+
+   window.InstallButtonEnabled = true;
 }
 
 export function onUnload() {
    allowedUrls.length = 0;
-
-   DefaultRouteStore.defaultRoute = "/channels/@me";
-
-   navigation.removeEventListener("navigate", handleNavigate);
 
    for (const element of document.querySelectorAll("[data-instbtn]")) {
       element.removeAttribute("data-instbtn");
