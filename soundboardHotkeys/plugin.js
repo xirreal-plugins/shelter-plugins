@@ -352,29 +352,29 @@ shelter.plugin.scoped.ui.injectCss(`._6PhcGW_spaced {
 }
 `);
 var style_default = {
-	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
-	"soundPicker": "_6PhcGW_soundPicker",
-	"cardInfo": "_6PhcGW_cardInfo",
-	"preview": "_6PhcGW_preview",
-	"soundName": "_6PhcGW_soundName",
-	"marginTop": "_6PhcGW_marginTop",
-	"soundItem": "_6PhcGW_soundItem",
-	"iconButton": "_6PhcGW_iconButton",
-	"pulse": "_6PhcGW_pulse",
-	"inline": "_6PhcGW_inline",
-	"card": "_6PhcGW_card",
-	"tallerModal": "_6PhcGW_tallerModal",
-	"emoji": "_6PhcGW_emoji",
-	"label": "_6PhcGW_label",
-	"cardActions": "_6PhcGW_cardActions",
-	"selected": "_6PhcGW_selected",
 	"sound": "_6PhcGW_sound",
 	"keybindButton": "_6PhcGW_keybindButton",
-	"cardSection": "_6PhcGW_cardSection",
+	"pulse": "_6PhcGW_pulse",
+	"tallerModal": "_6PhcGW_tallerModal",
+	"card": "_6PhcGW_card",
+	"inline": "_6PhcGW_inline",
+	"cardInfo": "_6PhcGW_cardInfo",
+	"soundPicker": "_6PhcGW_soundPicker",
 	"capturing": "_6PhcGW_capturing",
-	"playing": "_6PhcGW_playing",
 	"emptyState": "_6PhcGW_emptyState",
-	"spaced": "_6PhcGW_spaced"
+	"marginTop": "_6PhcGW_marginTop",
+	"preview": "_6PhcGW_preview",
+	"cardActions": "_6PhcGW_cardActions",
+	"cardSection": "_6PhcGW_cardSection",
+	"iconButton": "_6PhcGW_iconButton",
+	"spaced": "_6PhcGW_spaced",
+	"playing": "_6PhcGW_playing",
+	"flexSpaceBetween": "_6PhcGW_flexSpaceBetween",
+	"label": "_6PhcGW_label",
+	"soundItem": "_6PhcGW_soundItem",
+	"selected": "_6PhcGW_selected",
+	"soundName": "_6PhcGW_soundName",
+	"emoji": "_6PhcGW_emoji"
 };
 
 //#endregion

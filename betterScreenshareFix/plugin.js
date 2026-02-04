@@ -37,10 +37,12 @@ var require_web = __commonJS({ "solid-js/web"(exports, module) {
 var import_web = __toESM(require_web(), 1);
 var import_web$1 = __toESM(require_web(), 1);
 var import_web$2 = __toESM(require_web(), 1);
-const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div></div>`, 2);
+const _tmpl$ = /*#__PURE__*/ (0, import_web.template)(`<div id="shelter-bsf-cleanup"></div>`, 2);
 const { flux: { subscribe }, observeDom } = shelter.plugin.scoped;
 const { flux: { stores: { UserStore } }, ui: { ReactiveRoot }, solid: { onCleanup } } = shelter;
+const CLEANUP_LISTENER_ID = "shelter-bsf-cleanup";
 let originalPremiumType = null;
+let layoutToggleActive = false;
 function patchNiterState() {
 	const user = UserStore.getCurrentUser();
 	const premiumType = user.premiumType || 0;
@@ -53,28 +55,51 @@ function restoreNiterState() {
 	user.premiumType = originalPremiumType === 0 ? null : originalPremiumType;
 	originalPremiumType = null;
 }
-function CleanupListener() {
+function hasCleanupListener(node) {
+	return node?.querySelector?.(`#${CLEANUP_LISTENER_ID}`) !== null;
+}
+function CleanupListener(props) {
 	onCleanup(() => {
+		if (!props?.isLayoutToggle && layoutToggleActive) return;
+		if (props?.isLayoutToggle) layoutToggleActive = false;
+		props?.onCleanup?.();
 		restoreNiterState();
 	});
+	props?.onMount?.();
 	return (() => {
 		const _el$ = (0, import_web$2.getNextElement)(_tmpl$);
 		_el$.style.setProperty("display", "none");
 		return _el$;
 	})();
 }
+function injectCleanupListener(node, props = {}) {
+	if (hasCleanupListener(node)) return false;
+	node.append((0, import_web$1.createComponent)(ReactiveRoot, { get children() {
+		return (0, import_web$1.createComponent)(CleanupListener, props);
+	} }));
+	return true;
+}
 function onLoad() {
 	subscribe("TRACK", (e) => {
-		if (e.event === "impression_go_live_modal" || e.event == "open_modal" && e.properties.type == "Go Live Modal" || e.event === "impression_call_tile_context_menu") {
-			const searchQuery = e.event == "impression_call_tile_context_menu" ? "#stream-context" : "[class*='focusLock'] > div";
-			patchNiterState();
+		const callButtonClicked = e.event === "call_button_clicked";
+		const callMenuItemClicked = e.event === "call_menu_item_interacted";
+		const streamButtonClicked = callButtonClicked && e.properties.button_name === "Stream";
+		const streamSettingsButtonClicked = callButtonClicked && e.properties.button_name === "Stream Settings";
+		const changeStreamButtonClicked = callMenuItemClicked && e.properties.menu_name === "ManageStreamsButton";
+		const videoLayoutToggled = e.event === "video_layout_toggled";
+		if (streamButtonClicked || streamSettingsButtonClicked || changeStreamButtonClicked) {
+			const searchQuery = streamSettingsButtonClicked ? "#manage-streams" : "[class*='scrim']";
 			const stopObserving = observeDom(searchQuery, (node) => {
 				stopObserving();
-				node.parentNode.append((0, import_web$1.createComponent)(ReactiveRoot, { get children() {
-					return (0, import_web$1.createComponent)(CleanupListener, {});
-				} }));
+				if (injectCleanupListener(node)) patchNiterState();
 			});
 			setTimeout(stopObserving, 500);
+		}
+		if (videoLayoutToggled) {
+			const callContainer = document.querySelector("[class*='callContainer']");
+			if (!callContainer) return;
+			layoutToggleActive = true;
+			if (injectCleanupListener(callContainer, { isLayoutToggle: true })) patchNiterState();
 		}
 	});
 }
