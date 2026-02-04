@@ -8,7 +8,19 @@ const {
       stores: { SelectedChannelStore },
    },
    plugins,
-   ui: { showToast, ToastColors, Button, ButtonColors, ButtonSizes, openModal, ModalRoot, ModalHeader, ModalBody, ModalFooter, ModalSizes },
+   ui: {
+      showToast,
+      ToastColors,
+      Button,
+      ButtonColors,
+      ButtonSizes,
+      openModal,
+      ModalRoot,
+      ModalHeader,
+      ModalBody,
+      ModalFooter,
+      ModalSizes,
+   },
    solid: { createSignal },
 } = shelter;
 
@@ -121,7 +133,11 @@ function Card(props) {
 }
 
 function handleDispatch(payload) {
-   if ((payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") && payload.message.channel_id !== SelectedChannelStore.getChannelId()) return;
+   if (
+      (payload.type === "MESSAGE_CREATE" || payload.type === "MESSAGE_UPDATE") &&
+      payload.message.channel_id !== SelectedChannelStore.getChannelId()
+   )
+      return;
 
    const unobs = observeDom("[class*=messageContent] [class*=anchor]:not([data-instbtn])", async (element) => {
       // don't find element we've already replaced
@@ -206,7 +222,8 @@ function InstallationModal(props) {
                      <WarningIcon />
                   </div>
                   <p class={classes.warningText}>
-                     Only install plugins from sources you trust. Plugins execute code and could access your private Discord data.
+                     Only install plugins from sources you trust. Plugins execute code and could access your private
+                     Discord data.
                   </p>
                </div>
             </div>
@@ -276,7 +293,9 @@ async function handleInstall(url) {
 const TRIGGERS = ["MESSAGE_CREATE", "MESSAGE_UPDATE", "UPDATE_CHANNEL_DIMENSIONS"];
 
 export function onLoad() {
-   fetch("https://shindex.uwu.network/data").then((body) => body.json().then((repos) => repos.forEach((repo) => allowedUrls.push(repo.url))));
+   fetch("https://shindex.uwu.network/data").then((body) =>
+      body.json().then((repos) => repos.forEach((repo) => allowedUrls.push(repo.url))),
+   );
 
    for (const t of TRIGGERS) subscribe(t, handleDispatch);
 
