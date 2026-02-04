@@ -11,7 +11,10 @@ const {
    solid: { onCleanup },
 } = shelter;
 
+const CLEANUP_LISTENER_ID = "shelter-bsf-cleanup";
+
 let originalPremiumType = null;
+let layoutToggleActive = false;
 
 function patchNiterState() {
    const user = UserStore.getCurrentUser();
@@ -31,33 +34,69 @@ function restoreNiterState() {
    originalPremiumType = null;
 }
 
-function CleanupListener() {
+function hasCleanupListener(node) {
+   return node?.querySelector?.(`#${CLEANUP_LISTENER_ID}`) !== null;
+}
+
+function CleanupListener(props) {
    onCleanup(() => {
+      if (!props?.isLayoutToggle && layoutToggleActive) {
+         return;
+      }
+      if (props?.isLayoutToggle) {
+         layoutToggleActive = false;
+      }
+      props?.onCleanup?.();
       restoreNiterState();
    });
 
-   return <div style={{ display: "none" }} />;
+   props?.onMount?.();
+
+   return <div id={CLEANUP_LISTENER_ID} style={{ display: "none" }} />;
+}
+
+function injectCleanupListener(node, props = {}) {
+   if (hasCleanupListener(node)) {
+      return false;
+   }
+   node.append(
+      <ReactiveRoot>
+         <CleanupListener {...props} />
+      </ReactiveRoot>,
+   );
+   return true;
 }
 
 export function onLoad() {
    subscribe("TRACK", (e) => {
-      if (
-         e.event === "impression_go_live_modal" ||
-         (e.event == "open_modal" && e.properties.type == "Go Live Modal") ||
-         e.event === "impression_call_tile_context_menu"
-      ) {
-         const searchQuery =
-            e.event == "impression_call_tile_context_menu" ? "#stream-context" : "[class*='focusLock'] > div";
-         patchNiterState();
+      const callButtonClicked = e.event === "call_button_clicked";
+      const callMenuItemClicked = e.event === "call_menu_item_interacted";
+      const streamButtonClicked = callButtonClicked && e.properties.button_name === "Stream";
+      const streamSettingsButtonClicked = callButtonClicked && e.properties.button_name === "Stream Settings";
+      const changeStreamButtonClicked = callMenuItemClicked && e.properties.menu_name === "ManageStreamsButton";
+      const videoLayoutToggled = e.event === "video_layout_toggled";
+
+      if (streamButtonClicked || streamSettingsButtonClicked || changeStreamButtonClicked) {
+         const searchQuery = streamSettingsButtonClicked ? "#manage-streams" : "[class*='scrim']";
          const stopObserving = observeDom(searchQuery, (node) => {
             stopObserving();
-            node.parentNode.append(
-               <ReactiveRoot>
-                  <CleanupListener />
-               </ReactiveRoot>,
-            );
+            if (injectCleanupListener(node)) {
+               patchNiterState();
+            }
          });
          setTimeout(stopObserving, 500);
+      }
+
+      if (videoLayoutToggled) {
+         const callContainer = document.querySelector("[class*='callContainer']");
+         if (!callContainer) {
+            return;
+         }
+
+         layoutToggleActive = true;
+         if (injectCleanupListener(callContainer, { isLayoutToggle: true })) {
+            patchNiterState();
+         }
       }
    });
 }
