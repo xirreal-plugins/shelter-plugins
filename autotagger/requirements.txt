@@ -1,0 +1,7 @@
+torch
+transformers>=4.46.0,<4.47.0
+Pillow
+opencv-python
+requests
+einops
+timm
