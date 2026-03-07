@@ -1,4 +1,14 @@
 #!/usr/bin/env python3
+"""
+GIF Auto-Tagger — Qwen3-VL edition.
+
+Tags Discord GIFs/videos using Qwen3-VL, which natively understands video,
+reads text (OCR), recognises meme templates, and infers emotional tone — all
+in a single prompted generation call.
+
+Designed to work with the Favorite GIF Search shelter plugin.
+"""
+
 import argparse
 import json
 import re
@@ -10,25 +20,46 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from urllib.parse import urlparse
 
-import cv2
 import requests
 import torch
 from PIL import Image
-from transformers import AutoModelForCausalLM, AutoProcessor
+from qwen_vl_utils import process_vision_info
+from transformers import AutoProcessor, Qwen3VLForConditionalGeneration
 
-MODEL_ID = "microsoft/Florence-2-base"
+MODEL_ID = "Qwen/Qwen3-VL-4B-Instruct"
 MAX_RETRIES = 2
 DOWNLOAD_WORKERS = 8
 REQUEST_TIMEOUT = 30
 
-STOP_WORDS = frozenset(
-    "a an the is are was were be been being have has had do does did will would "
-    "could should may might shall can to of in for on with at by from as into "
-    "through during before after above below between out off over under again "
-    "further then once here there when where why how all both each few more most "
-    "other some such no nor not only own same so than too very just because but "
-    "and or if while that this it its up about".split()
-)
+# ── Prompt ───────────────────────────────────────────────────────────────────
+
+SYSTEM_PROMPT = """\
+You are a GIF/meme tagging assistant. Your job is to generate concise, \
+useful search tags for short animated images and videos so users can find \
+them later by searching.
+
+For every image or video you are shown, output a JSON object with these keys:
+
+- "caption": A short natural-language description of what is happening (1 sentence).
+- "ocr": Any text visible in the image/video, transcribed exactly. Empty string if none.
+- "meme": The name of the meme template if you recognise one, otherwise empty string.
+- "mood": The overall mood/emotion/vibe (e.g. "funny", "sad", "threatening", "wholesome", "chaotic").
+- "tags": A flat JSON array of lowercase search keywords (strings). Include:
+  - Key objects, characters, animals visible
+  - Actions happening (e.g. "dancing", "exploding", "typing")
+  - The meme name if recognised
+  - Important words from any visible text
+  - The mood/emotion
+  - Any franchise, game, or show you recognise
+  - The caption as one tag entry
+  Aim for 5-20 tags. No duplicates. All lowercase.
+
+Respond with ONLY the JSON object. No markdown fences, no explanation."""
+
+USER_PROMPT = "Generate search tags for this media."
+
+
+# ── Helpers ──────────────────────────────────────────────────────────────────
 
 
 def log(msg: str):
@@ -45,9 +76,9 @@ def progress_bar(current: int, total: int, width: int = 35) -> str:
 
 def extract_original_url(proxy_url: str) -> str:
     """
-    Sometimes the src is a Discord proxy URL like:
+    Discord sometimes proxies media through its CDN:
       https://images-ext-1.discordapp.net/external/<hash>/https/media.tenor.com/path.mp4
-    Extract the original URL after /external/<hash>/
+    Extract the original URL hiding after /external/<hash>/.
     """
     try:
         parsed = urlparse(proxy_url)
@@ -57,7 +88,6 @@ def extract_original_url(proxy_url: str) -> str:
         )
         if not is_proxy:
             return proxy_url
-
         match = re.search(r"/external/[^/]+/(https?)/(.*)", parsed.path)
         if match:
             return f"{match.group(1)}://{match.group(2)}"
@@ -78,7 +108,7 @@ def get_candidate_urls(url: str) -> list[str]:
 def guess_extension(url: str) -> str:
     try:
         path = urlparse(url).path.lower()
-        for ext in (".mp4", ".webm", ".webp", ".gif", ".png", ".jpg", ".jpeg"):
+        for ext in (".mp4", ".webm", ".webp", ".gif", ".png", ".jpg", ".jpeg", ".avif"):
             if ext in path:
                 return ext
     except Exception:
@@ -102,90 +132,7 @@ def download(url: str, dest: Path) -> tuple[bool, str]:
                 last_error = str(e)
                 if attempt < MAX_RETRIES:
                     time.sleep(0.5 * (attempt + 1))
-                continue
     return False, last_error
-
-
-def extract_frame(path: Path) -> Image.Image | None:
-    """
-    Extract a representative frame from an image or video file.
-
-    For videos/GIFs, picks a frame at ~25% duration to avoid title cards
-    and outros. Falls back to OpenCV for anything Pillow can't handle.
-    """
-    suffix = path.suffix.lower()
-
-    if suffix in (".mp4", ".webm"):
-        return _extract_video_frame(path)
-    if suffix == ".gif":
-        return _extract_gif_frame(path)
-    if suffix == ".webp":
-        return _extract_webp_frame(path)
-
-    # Static image fallback
-    try:
-        return Image.open(path).convert("RGB")
-    except Exception:
-        # Last resort: try OpenCV (handles some formats Pillow doesn't)
-        return _extract_video_frame(path)
-
-
-def _extract_video_frame(path: Path) -> Image.Image | None:
-    try:
-        cap = cv2.VideoCapture(str(path))
-        if not cap.isOpened():
-            return None
-
-        total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        if total <= 0:
-            total = 1
-        target = max(0, int(total * 0.25))
-
-        cap.set(cv2.CAP_PROP_POS_FRAMES, target)
-        ok, frame = cap.read()
-        cap.release()
-
-        if not ok or frame is None:
-            return None
-
-        return Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-    except Exception:
-        return None
-
-
-def _extract_gif_frame(path: Path) -> Image.Image | None:
-    try:
-        img = Image.open(path)
-        n_frames = getattr(img, "n_frames", 1)
-        target = max(0, int(n_frames * 0.25))
-        if target > 0:
-            img.seek(target)
-        return img.convert("RGB")
-    except Exception:
-        return None
-
-
-def _extract_webp_frame(path: Path) -> Image.Image | None:
-    try:
-        img = Image.open(path)
-        n_frames = getattr(img, "n_frames", 1)
-        if n_frames > 1:
-            target = max(0, int(n_frames * 0.25))
-            if target > 0:
-                img.seek(target)
-        return img.convert("RGB")
-    except Exception:
-        # Fall back to OpenCV for problematic WebPs
-        return _extract_video_frame(path)
-
-
-def extract_keywords(text: str) -> list[str]:
-    if not text:
-        return []
-    words = re.split(r"[\s,;.!?]+", text.strip().lower())
-    words = [re.sub(r"[^a-z0-9'-]", "", w).strip() for w in words]
-    words = [w for w in words if len(w) > 1 and w not in STOP_WORDS]
-    return list(dict.fromkeys(words))
 
 
 def dedupe_tags(tags: list[str]) -> list[str]:
@@ -195,19 +142,151 @@ def dedupe_tags(tags: list[str]) -> list[str]:
         lower = tag.lower().strip()
         if lower and lower not in seen:
             seen.add(lower)
-            result.append(tag.strip())
+            result.append(lower)
     return result
 
 
-class Florence2Tagger:
-    TASKS = {
-        "caption": "<CAPTION>",
-        "detailed_caption": "<DETAILED_CAPTION>",
-        "ocr": "<OCR>",
-        "od": "<OD>",
-    }
+def is_video(path: Path) -> bool:
+    return path.suffix.lower() in (".mp4", ".webm", ".gif")
 
-    def __init__(self, model_id: str = MODEL_ID, device: str | None = None):
+
+def convert_webp_to_mp4(path: Path) -> Path:
+    """Convert an animated webp to mp4 so av can decode it. Returns the new path."""
+    import av as _av
+
+    img = Image.open(path)
+    if not getattr(img, "is_animated", False):
+        return path
+    mp4_path = path.with_suffix(".mp4")
+    fps = round(1000 / img.info.get("duration", 100))
+    output = _av.open(str(mp4_path), mode="w")
+    stream = output.add_stream("h264", rate=fps)
+    stream.width = img.size[0]
+    stream.height = img.size[1]
+    stream.pix_fmt = "yuv420p"
+    for i in range(img.n_frames):
+        img.seek(i)
+        frame = _av.VideoFrame.from_image(img.copy().convert("RGB"))
+        for packet in stream.encode(frame):
+            output.mux(packet)
+    for packet in stream.encode():
+        output.mux(packet)
+    output.close()
+    return mp4_path
+
+
+def build_messages(file_path: Path, as_image: bool = False) -> list[dict]:
+    """Build the Qwen3-VL chat messages for a given media file."""
+    content: list[dict] = []
+
+    if not as_image and is_video(file_path):
+        video_item: dict = {
+            "type": "video",
+            "video": f"file://{file_path.resolve()}",
+            "max_pixels": 360 * 420,
+        }
+        content.append(video_item)
+    else:
+        content.append(
+            {
+                "type": "image",
+                "image": f"file://{file_path.resolve()}",
+            }
+        )
+
+    content.append({"type": "text", "text": USER_PROMPT})
+
+    return [
+        {"role": "system", "content": [{"type": "text", "text": SYSTEM_PROMPT}]},
+        {"role": "user", "content": content},
+    ]
+
+
+def parse_model_output(raw: str) -> dict:
+    """
+    Best-effort parse of the model JSON output.
+    Handles markdown fences, trailing commas, and other common quirks.
+    """
+    text = raw.strip()
+
+    # Strip markdown code fences if present
+    if text.startswith("```"):
+        lines = text.split("\n")
+        # Remove first line (```json or ```)
+        lines = lines[1:]
+        # Remove last line if it's closing backticks
+        if lines and lines[-1].strip().startswith("```"):
+            lines = lines[:-1]
+        text = "\n".join(lines).strip()
+
+    # Try direct parse first
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+
+    # Try to extract JSON object with regex
+    match = re.search(r"\{.*\}", text, re.DOTALL)
+    if match:
+        candidate = match.group(0)
+        # Remove trailing commas before } or ]
+        candidate = re.sub(r",\s*([}\]])", r"\1", candidate)
+        try:
+            return json.loads(candidate)
+        except json.JSONDecodeError:
+            pass
+
+    return {}
+
+
+def tags_from_parsed(parsed: dict) -> list[str]:
+    """Extract a flat tag list from the parsed model output."""
+    all_tags: list[str] = []
+
+    # Direct tags array
+    tags = parsed.get("tags", [])
+    if isinstance(tags, list):
+        all_tags.extend(str(t) for t in tags)
+    elif isinstance(tags, str):
+        all_tags.append(tags)
+
+    # Caption as a tag
+    caption = parsed.get("caption", "")
+    if isinstance(caption, str) and caption.strip():
+        all_tags.append(caption.strip().lower())
+
+    # Meme name
+    meme = parsed.get("meme", "")
+    if isinstance(meme, str) and meme.strip():
+        all_tags.append(meme.strip().lower())
+
+    # Mood
+    mood = parsed.get("mood", "")
+    if isinstance(mood, str) and mood.strip():
+        all_tags.append(mood.strip().lower())
+
+    # OCR words (individual words > 2 chars)
+    ocr = parsed.get("ocr", "")
+    if isinstance(ocr, str) and ocr.strip():
+        words = re.split(r"[\s\n\r]+", ocr)
+        words = [re.sub(r"[^a-zA-Z0-9'-]", "", w).strip().lower() for w in words]
+        all_tags.extend(w for w in words if len(w) > 2)
+
+    return dedupe_tags(all_tags)
+
+
+# ── Tagger class ─────────────────────────────────────────────────────────────
+
+# Qwen3-VL uses patch_size=16 (vs 14 for Qwen2.5-VL)
+QWEN3_VL_PATCH_SIZE = 16
+
+
+class Qwen3VLTagger:
+    def __init__(
+        self,
+        model_id: str = MODEL_ID,
+        device: str | None = None,
+    ):
         # ── Pick device ──
         if device:
             self.device = torch.device(device)
@@ -222,133 +301,108 @@ class Florence2Tagger:
 
         log(f"Loading {model_id} on {self.device} (dtype={dtype})...")
 
-        self.processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
-        self.model = AutoModelForCausalLM.from_pretrained(
-            model_id, torch_dtype=dtype, trust_remote_code=True
-        ).to(self.device)
+        self.processor = AutoProcessor.from_pretrained(model_id)
+        self.model = Qwen3VLForConditionalGeneration.from_pretrained(
+            model_id,
+            torch_dtype=dtype,
+            device_map=self.device if self.device.type == "cuda" else None,
+        )
+        if self.device.type != "cuda":
+            self.model = self.model.to(self.device)
         self.model.eval()
 
         log("Model loaded.")
 
-    def _run_task(self, image: Image.Image, task_prompt: str) -> dict | str:
-        inputs = self.processor(text=task_prompt, images=image, return_tensors="pt")
-        inputs = {k: v.to(self.device) for k, v in inputs.items()}
+    def _process_vision(self, file_path: Path, as_image: bool = False):
+        """Build messages and process vision info, returns (messages, image_inputs, video_inputs, video_kwargs)."""
+        messages = build_messages(file_path, as_image=as_image)
+        image_inputs, video_inputs, video_kwargs = process_vision_info(
+            messages,
+            image_patch_size=QWEN3_VL_PATCH_SIZE,
+            return_video_kwargs=True,
+            return_video_metadata=True,
+        )
+        return messages, image_inputs, video_inputs, video_kwargs
 
+    def tag(self, file_path: Path) -> dict:
+        """
+        Run inference on a single media file.
+        Returns {"caption", "ocr", "meme", "mood", "tags"}.
+        """
+        if file_path.suffix.lower() == ".webp":
+            file_path = convert_webp_to_mp4(file_path)
+
+        # Try as video first; if it fails (e.g. too few frames), fall back to image
+        try:
+            messages, image_inputs, video_inputs, video_kwargs = self._process_vision(file_path)
+        except Exception as e:
+            if is_video(file_path):
+                log(f"\n  Video decode failed, retrying as image: {e}")
+                messages, image_inputs, video_inputs, video_kwargs = self._process_vision(file_path, as_image=True)
+            else:
+                raise
+
+        # Video inputs come back as (tensor, metadata) tuples when
+        # return_video_metadata=True — split them for the processor
+        video_metadatas = None
+        if video_inputs:
+            videos_split, metas_split = zip(*video_inputs)
+            video_inputs = list(videos_split)
+            video_metadatas = list(metas_split)
+
+        # ── Apply chat template (text only, no tokenization) ─────────────
+        text_prompt = self.processor.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=True
+        )
+
+        # ── Tokenize & prepare inputs ────────────────────────────────────
+        # do_resize=False because qwen-vl-utils already resized
+        inputs = self.processor(
+            text=[text_prompt],
+            images=image_inputs,
+            videos=video_inputs,
+            video_metadata=video_metadatas,
+            do_resize=False,
+            return_tensors="pt",
+            **video_kwargs,
+        )
+        inputs = inputs.to(self.device)
+
+        # ── Generate ─────────────────────────────────────────────────────
         with torch.inference_mode():
             generated = self.model.generate(
                 **inputs,
-                max_new_tokens=256,
-                num_beams=3,
-                early_stopping=True,
+                max_new_tokens=512,
+                do_sample=False,
             )
 
-        decoded = self.processor.batch_decode(generated, skip_special_tokens=False)[0]
-        result = self.processor.post_process_generation(
-            decoded, task=task_prompt, image_size=image.size
-        )
+        # Trim prompt tokens from output
+        prompt_len = inputs["input_ids"].shape[1]
+        output_ids = generated[:, prompt_len:]
+        decoded = self.processor.batch_decode(
+            output_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False
+        )[0]
 
-        # post_process_generation returns a dict like {task_prompt: value}
-        if isinstance(result, dict):
-            return result.get(task_prompt, result)
-        return str(result)
+        # Strip thinking tags if present (Qwen3 may wrap reasoning)
+        decoded = re.sub(r"<think>.*?</think>", "", decoded, flags=re.DOTALL).strip()
 
-    # ── High-level tagging ───────────────────────────────────────────────────
+        parsed = parse_model_output(decoded)
 
-    def tag(
-        self,
-        image: Image.Image,
-        run_caption: bool = True,
-        run_ocr: bool = True,
-        run_objects: bool = True,
-    ) -> dict:
-        result = {
-            "caption": "",
-            "detailed_caption": "",
-            "ocr_text": "",
-            "objects": [],
-            "tags": [],
+        return {
+            "caption": parsed.get("caption", ""),
+            "ocr": parsed.get("ocr", ""),
+            "meme": parsed.get("meme", ""),
+            "mood": parsed.get("mood", ""),
+            "tags": tags_from_parsed(parsed),
         }
-        all_tags: list[str] = []
 
-        if run_caption:
-            try:
-                raw = self._run_task(image, self.TASKS["caption"])
-                caption = raw.strip() if isinstance(raw, str) else ""
-                result["caption"] = caption
-                if caption:
-                    all_tags.append(caption.lower())
-                    all_tags.extend(extract_keywords(caption))
-            except Exception as e:
-                log(f"  Caption failed: {e}")
 
-            try:
-                raw = self._run_task(image, self.TASKS["detailed_caption"])
-                detailed = raw.strip() if isinstance(raw, str) else ""
-                result["detailed_caption"] = detailed
-                if detailed:
-                    all_tags.extend(extract_keywords(detailed))
-            except Exception as e:
-                log(f"  Detailed caption failed: {e}")
-
-        if run_objects:
-            try:
-                raw = self._run_task(image, self.TASKS["od"])
-                labels = self._parse_od_labels(raw)
-                result["objects"] = labels
-                all_tags.extend(labels)
-            except Exception as e:
-                log(f"  Object detection failed: {e}")
-
-        if run_ocr:
-            try:
-                raw = self._run_task(image, self.TASKS["ocr"])
-                ocr_text = self._parse_ocr_text(raw)
-                result["ocr_text"] = ocr_text
-                if ocr_text:
-                    words = re.split(r"[\s\n\r]+", ocr_text)
-                    words = [
-                        re.sub(r"[^a-zA-Z0-9'-]", "", w).strip().lower() for w in words
-                    ]
-                    ocr_words = [w for w in words if len(w) > 2]
-                    all_tags.extend(ocr_words)
-            except Exception as e:
-                log(f"  OCR failed: {e}")
-
-        result["tags"] = dedupe_tags(all_tags)
-        return result
-
-    @staticmethod
-    def _parse_od_labels(raw) -> list[str]:
-        labels: list[str] = []
-        if isinstance(raw, dict):
-            labels = raw.get("labels", [])
-        elif isinstance(raw, str) and raw.strip():
-            labels = [raw.strip()]
-
-        seen: set[str] = set()
-        clean: list[str] = []
-        for label in labels:
-            s = str(label).strip().lower()
-            if s and s not in seen:
-                seen.add(s)
-                clean.append(s)
-        return clean
-
-    @staticmethod
-    def _parse_ocr_text(raw) -> str:
-        if isinstance(raw, str):
-            return raw.strip()
-        if isinstance(raw, dict):
-            val = raw.get("<OCR>", "")
-            if isinstance(val, list):
-                return " ".join(str(t) for t in val).strip()
-            return str(val).strip()
-        return ""
+# ── Main ─────────────────────────────────────────────────────────────────────
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Auto-tag GIFs using Florence-2 (captioning + OCR + object detection)",
+        description="Auto-tag GIFs using Qwen3-VL (captioning + OCR + meme recognition)",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Workflow:
@@ -357,11 +411,11 @@ Workflow:
   3. Back in Discord, "Import tags" -> select the output file
 
 Examples:
-  python autotag.py gif-tags.json                       # Full pipeline
-  python autotag.py gif-tags.json --skip-tagged          # Only untagged GIFs
-  python autotag.py gif-tags.json --ocr-only             # Text detection only
-  python autotag.py gif-tags.json --device cpu            # Force CPU
-  python autotag.py gif-tags.json -o my-output.json      # Custom output path
+  python autotag.py gif-tags.json                        # Full pipeline
+  python autotag.py gif-tags.json --skip-tagged           # Only untagged GIFs
+  python autotag.py gif-tags.json --device cpu             # Force CPU
+  python autotag.py gif-tags.json -o my-output.json        # Custom output path
+  python autotag.py gif-tags.json --model Qwen/Qwen3-VL-8B-Instruct  # Larger model
         """,
     )
     parser.add_argument(
@@ -377,15 +431,6 @@ Examples:
         "--overwrite",
         action="store_true",
         help="Replace existing tags instead of merging",
-    )
-    parser.add_argument("--ocr-only", action="store_true", help="Only run OCR")
-    parser.add_argument(
-        "--caption-only",
-        action="store_true",
-        help="Only run captioning (skip OCR and object detection)",
-    )
-    parser.add_argument(
-        "--no-objects", action="store_true", help="Skip object detection"
     )
     parser.add_argument(
         "--model", default=MODEL_ID, help=f"HuggingFace model ID (default: {MODEL_ID})"
@@ -443,38 +488,29 @@ Examples:
         log("Nothing to process.")
         sys.exit(0)
 
-    run_caption = not args.ocr_only
-    run_ocr = not args.caption_only
-    run_objects = not args.ocr_only and not args.caption_only and not args.no_objects
+    tagger = Qwen3VLTagger(
+        model_id=args.model,
+        device=args.device,
+    )
 
-    task_names = []
-    if run_caption:
-        task_names.append("captioning")
-    if run_ocr:
-        task_names.append("OCR")
-    if run_objects:
-        task_names.append("object detection")
-    log(f"Tasks: {', '.join(task_names)}")
-
-    tagger = Florence2Tagger(model_id=args.model, device=args.device)
+    # ── Download ─────────────────────────────────────────────────────────
 
     tmp_dir = Path(tempfile.mkdtemp(prefix="gif-autotagger-"))
     log(f"Downloading {len(to_process)} file(s) to {tmp_dir}...")
 
     url_to_path: dict[str, Path | None] = {}
 
-    def _download_one(key: str) -> tuple[str, Path | None, str]:
+    def _download_one(idx: int, key: str) -> tuple[str, Path | None, str]:
         src = entries[key]["src"]
         ext = guess_extension(src)
-        safe_name = str(abs(hash(key)))[:16] + ext
-        dest = tmp_dir / safe_name
+        dest = tmp_dir / f"{idx:06d}{ext}"
         ok, err = download(src, dest)
         return key, dest if ok else None, err
 
     download_failed = 0
-    failed_downloads: list[tuple[str, str, str]] = []  # (key, src, error)
+    failed_downloads: list[tuple[str, str, str]] = []
     with ThreadPoolExecutor(max_workers=args.download_workers) as pool:
-        futures = {pool.submit(_download_one, k): k for k in to_process}
+        futures = {pool.submit(_download_one, i, k): k for i, k in enumerate(to_process)}
         for i, future in enumerate(as_completed(futures), 1):
             key, path, err = future.result()
             url_to_path[key] = path
@@ -496,6 +532,8 @@ Examples:
             log(f"      src: {fsrc}")
             log(f"      err: {ferr}")
 
+    # ── Inference ────────────────────────────────────────────────────────
+
     log("Running inference...\n")
 
     results: dict[str, list[str]] = {k: list(e["tags"]) for k, e in entries.items()}
@@ -504,6 +542,12 @@ Examples:
 
     for i, key in enumerate(to_process, 1):
         short = key.split("/")[-1][:40] if "/" in key else key[:40]
+
+        print(
+            f"\r  {progress_bar(i - 1, len(to_process))}  ⏳ {short}",
+            end="",
+            flush=True,
+        )
 
         file_path = url_to_path.get(key)
         if file_path is None or not file_path.exists():
@@ -515,23 +559,8 @@ Examples:
             )
             continue
 
-        image = extract_frame(file_path)
-        if image is None:
-            failed += 1
-            print(
-                f"\r  {progress_bar(i, len(to_process))}  [skip: frame extraction failed]",
-                end="",
-                flush=True,
-            )
-            continue
-
         try:
-            tag_result = tagger.tag(
-                image,
-                run_caption=run_caption,
-                run_ocr=run_ocr,
-                run_objects=run_objects,
-            )
+            tag_result = tagger.tag(file_path)
             new_tags = tag_result["tags"]
         except Exception as e:
             log(f"\n  Error on {key[:80]}: {e}")
@@ -555,6 +584,8 @@ Examples:
         )
 
     print()
+
+    # ── Cleanup & output ─────────────────────────────────────────────────
 
     try:
         shutil.rmtree(tmp_dir, ignore_errors=True)

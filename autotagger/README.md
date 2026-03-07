@@ -1,15 +1,20 @@
 # GIF Auto-Tagger
 
-Automatically tag your Discord GIFs using **Florence-2**, which does captioning, OCR, and object detection all at once, with full CUDA/MPS GPU acceleration.
+Automatically tag your Discord GIFs using **Qwen3-VL**, a vision-language model that natively understands video, reads text, recognises meme and infers tone.
 
 Designed to work with the [Favorite GIF Search](https://shelter.xirreal.dev/favoriteSearch) shelter plugin.
 
-| Task | What it does | Example output |
-|---|---|---|
-| **Caption** | Short natural language description | `a cat sitting on a keyboard` |
-| **Detailed caption** | Longer, richer description | `a fluffy orange tabby cat sitting on a mechanical keyboard next to a monitor` |
-| **OCR** | Reads visible text in the image | `one day we will answer to god`, `bottom text` |
-| **Object detection** | Identifies objects and their labels | `cat`, `keyboard`, `monitor` |
+## How
+
+| Field | Example |
+|---|---|
+| **caption** | `a cat kicking another cat off a table` |
+| **ocr** | `when monday hits` |
+| **meme** | `but here's the kicker` |
+| **mood** | `chaotic` |
+| **tags** | `["cat", "kicking", "table", "but here's the kicker", "chaotic", ...]` |
+
+All fields are merged into a flat tag list for search.
 
 ## Setup
 
@@ -24,9 +29,17 @@ pip install -r requirements.txt
 
 ### GPU support
 
-- **NVIDIA GPU**: Install PyTorch with CUDA — `pip install torch --index-url https://download.pytorch.org/whl/cu124`
+- **NVIDIA GPU** (recommended): Install PyTorch with CUDA — `pip install torch --index-url https://download.pytorch.org/whl/cu124`
 - **Apple Silicon**: MPS acceleration works out of the box with the default PyTorch install
-- **CPU only**: Works fine, just slower.
+- **CPU only**: Works, but significantly slower. Consider the 2B model.
+
+### Model variants
+
+| Model | VRAM needed | Quality |
+|---|---|---|
+| `Qwen/Qwen3-VL-2B-Instruct` | ~6 GB | Good for basic tagging |
+| `Qwen/Qwen3-VL-4B-Instruct` (default) | ~10 GB | Strong all-rounder |
+| `Qwen/Qwen3-VL-8B-Instruct` | ~18 GB | Best meme/cultural understanding |
 
 ## Workflow
 
@@ -43,11 +56,11 @@ python autotag.py gif-tags.json
 This will:
 
 1. Download each GIF/video to a temp directory
-2. Extract a representative frame (supports `.gif`, `.mp4`, and static images)
-3. Run Florence-2 captioning, OCR, and object detection
+2. Shove the media down Qwen3-VL's throat
+3. Generate tags via a single prompt
 4. Write results to `gif-tags-tagged.json`
 
-The first run downloads the model (~500 MB, cached by HuggingFace for future runs).
+The first run downloads the model (~8 GB for 4B, cached by HuggingFace for future runs).
 
 ### 3. Import tags back into Discord
 
@@ -64,11 +77,9 @@ python autotag.py <input.json> [options]
 | `-o`, `--output PATH` | Output file path (default: `<input>-tagged.json`) |
 | `--skip-tagged` | Skip GIFs that already have tags |
 | `--overwrite` | Replace existing tags instead of merging |
-| `--ocr-only` | Only run OCR (skip captioning and object detection) |
-| `--caption-only` | Only run captioning (skip OCR and object detection) |
-| `--no-objects` | Skip object detection (still runs captioning and OCR) |
-| `--model ID` | HuggingFace model ID (default: `microsoft/Florence-2-base`) |
+| `--model ID` | HuggingFace model ID (default: `Qwen/Qwen3-VL-4B-Instruct`) |
 | `--device DEVICE` | Force device: `cuda`, `mps`, or `cpu` (default: auto) |
+| `--fps N` | Video frame sampling rate in frames per second (default: 2.0). Higher = more frames = better temporal understanding but slower/more VRAM |
 | `--download-workers N` | Parallel download threads (default: 8) |
 
 ## Examples
@@ -83,14 +94,19 @@ Only tag GIFs that don't have tags yet:
 python autotag.py gif-tags.json --skip-tagged
 ```
 
-Fast OCR-only pass (finds text in memes):
+Better accuracy with the 8B model:
 ```sh
-python autotag.py gif-tags.json --ocr-only
+python autotag.py gif-tags.json --model Qwen/Qwen3-VL-8B-Instruct
 ```
 
-Use the larger Florence-2 variant for better accuracy:
+Higher frame rate for fast-paced GIFs:
 ```sh
-python autotag.py gif-tags.json --model microsoft/Florence-2-large
+python autotag.py gif-tags.json --fps 4
+```
+
+Lighter model for limited hardware:
+```sh
+python autotag.py gif-tags.json --model Qwen/Qwen3-VL-2B-Instruct
 ```
 
 Custom output path:
@@ -98,7 +114,7 @@ Custom output path:
 python autotag.py gif-tags.json -o my-tagged-gifs.json
 ```
 
-## File Format
+## File format
 
 The JSON maps each GIF's store key to an object with `src` (the downloadable media URL) and `tags`:
 
@@ -106,15 +122,11 @@ The JSON maps each GIF's store key to an object with `src` (the downloadable med
 {
   "https://tenor.com/view/funny-cat-12345": {
     "src": "https://media.tenor.com/.../funny-cat.gif",
-    "tags": ["a cat sitting on a keyboard", "cat", "keyboard", "sitting"]
+    "tags": ["a cat sitting on a keyboard", "cat", "keyboard", "wholesome"]
   },
   "https://tenor.com/view/meme-67890": {
     "src": "https://media.tenor.com/.../meme.mp4",
-    "tags": ["when you mass tag", "mass", "tag"]
-  },
-  "https://tenor.com/view/untouched-11111": {
-    "src": "https://media.tenor.com/.../untouched.gif",
-    "tags": []
+    "tags": ["when monday hits", "drake meme", "funny", "monday", "drake"]
   }
 }
 ```
