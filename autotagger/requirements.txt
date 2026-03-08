@@ -1,6 +1,8 @@
 torch
-transformers>=4.57.0
+torchvision
+torchcodec
+transformers==5.2.0
+accelerate
+qwen-vl-utils
 Pillow
 requests
-accelerate
-qwen-vl-utils>=0.0.14

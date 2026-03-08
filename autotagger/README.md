@@ -18,20 +18,22 @@ All fields are merged into a flat tag list for search.
 
 ## Setup
 
-Requires Python 3.10+.
+Requires Python 3.10+ and **ffmpeg** (for converting animated GIFs to video).
 
 ```sh
 cd autotagger
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### GPU support
 
-- **NVIDIA GPU** (recommended): Install PyTorch with CUDA — `pip install torch --index-url https://download.pytorch.org/whl/cu124`
+- **NVIDIA GPU** (recommended): Install PyTorch with CUDA - `pip3 install --force-reinstall torch torchcodec --index-url https://download.pytorch.org/whl/cu130`
 - **Apple Silicon**: MPS acceleration works out of the box with the default PyTorch install
 - **CPU only**: Works, but significantly slower. Consider the 2B model.
+
+Flash attention speeds up inference and VRAM usage but it's kinda tricky to get working. I used a build from here https://flashattn.dev/ otherwise it doesn't compile against Cuda 13.0.
 
 ### Model variants
 
@@ -50,7 +52,7 @@ Go to shelter settings, find Favorite Search and click the gear icon, and click 
 ### 2. Run the auto-tagger
 
 ```sh
-python autotag.py gif-tags.json
+python3 autotag.py gif-tags.json
 ```
 
 This will:
@@ -69,7 +71,7 @@ Back in Discord, same as before and click the **Import tags** button. Select the
 ## Options
 
 ```
-python autotag.py <input.json> [options]
+python3 autotag.py <input.json> [options]
 ```
 
 | Option | Description |
@@ -86,32 +88,32 @@ python autotag.py <input.json> [options]
 
 Full pipeline on all GIFs:
 ```sh
-python autotag.py gif-tags.json
+python3 autotag.py gif-tags.json
 ```
 
 Only tag GIFs that don't have tags yet:
 ```sh
-python autotag.py gif-tags.json --skip-tagged
+python3 autotag.py gif-tags.json --skip-tagged
 ```
 
 Better accuracy with the 8B model:
 ```sh
-python autotag.py gif-tags.json --model Qwen/Qwen3-VL-8B-Instruct
+python3 autotag.py gif-tags.json --model Qwen/Qwen3-VL-8B-Instruct
 ```
 
 Higher frame rate for fast-paced GIFs:
 ```sh
-python autotag.py gif-tags.json --fps 4
+python3 autotag.py gif-tags.json --fps 4
 ```
 
 Lighter model for limited hardware:
 ```sh
-python autotag.py gif-tags.json --model Qwen/Qwen3-VL-2B-Instruct
+python3 autotag.py gif-tags.json --model Qwen/Qwen3-VL-2B-Instruct
 ```
 
 Custom output path:
 ```sh
-python autotag.py gif-tags.json -o my-tagged-gifs.json
+python3 autotag.py gif-tags.json -o my-tagged-gifs.json
 ```
 
 ## File format
