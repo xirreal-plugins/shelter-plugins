@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-GIF Auto-Tagger — tag Discord GIFs using Qwen3-VL.
+GIF Auto-Tagger — tag Discord GIFs using Qwen3.5.
 
-Downloads each GIF/video, runs Qwen3-VL inference, and writes structured tags
+Downloads each GIF/video, runs Qwen3.5 inference, and writes structured tags
 back into the JSON format expected by the Favorite GIF Search shelter plugin.
 """
 
@@ -21,7 +21,6 @@ from pathlib import Path
 import requests
 import torch
 from PIL import Image
-from qwen_vl_utils import process_vision_info
 from transformers import AutoModelForImageTextToText, AutoProcessor
 
 # ─── Prompt ──────────────────────────────────────────────────────────────────
@@ -167,25 +166,25 @@ def _convert_to_static_image(src: Path, dest_dir: Path) -> Path:
 
 
 def prepare_media(url: str, tmp_dir: Path, fps: float) -> dict:
-    """Download and prepare media, returning a qwen-vl-utils content element."""
+    """Download and prepare media, returning a chat message content element."""
     ext = _guess_extension(url)
     raw_path = tmp_dir / f"raw{ext}"
     download_file(url, raw_path)
 
     # Static images → use image type directly
     if is_static_image(raw_path):
-        return {"type": "image", "image": f"file://{raw_path}"}
+        return {"type": "image", "image": f"{raw_path}"}
 
     # Animated content → convert to mp4 for reliable video reading
     mp4_path = tmp_dir / "converted.mp4"
     try:
         convert_to_mp4(raw_path, mp4_path)
-        return {"type": "video", "video": f"file://{mp4_path}", "fps": fps}
+        return {"type": "video", "video": f"{mp4_path}", "fps": fps}
     except subprocess.CalledProcessError:
         # ffmpeg failed — try treating it as a static image via Pillow
         try:
             png_path = _convert_to_static_image(raw_path, tmp_dir)
-            return {"type": "image", "image": f"file://{png_path}"}
+            return {"type": "image", "image": f"{png_path}"}
         except Exception:
             raise  # Re-raise if Pillow also can't handle it
 
@@ -251,7 +250,7 @@ def _generate_text(
     processor,
     content_element: dict,
 ) -> str:
-    """Run Qwen3-VL inference on a single media item and return raw output text."""
+    """Run Qwen3.5 inference on a single media item and return raw output text."""
     messages = [
         {"role": "system", "content": [{"type": "text", "text": SYSTEM_PROMPT}]},
         {
@@ -260,38 +259,28 @@ def _generate_text(
         },
     ]
 
-    # Process vision info for Qwen3-VL
-    images, videos, video_kwargs = process_vision_info(
+    inputs = processor.apply_chat_template(
         messages,
-        image_patch_size=16,
-        return_video_kwargs=True,
-        return_video_metadata=True,
-    )
-
-    video_metadatas = None
-    if videos is not None:
-        videos, video_metadatas = zip(*videos)
-        videos, video_metadatas = list(videos), list(video_metadatas)
-
-    text = processor.apply_chat_template(
-        messages, tokenize=False, add_generation_prompt=True
-    )
-
-    inputs = processor(
-        text=text,
-        images=images,
-        videos=videos,
-        video_metadata=video_metadatas,
+        tokenize=True,
+        add_generation_prompt=True,
+        enable_thinking=False,
+        return_dict=True,
         return_tensors="pt",
-        do_resize=False,
-        **video_kwargs,
-    ).to(model.device)
+    )
+    inputs = {
+        k: v.to(model.device) for k, v in inputs.items() if isinstance(v, torch.Tensor)
+    }
 
     with torch.inference_mode():
-        generated_ids = model.generate(**inputs, max_new_tokens=1024)
+        generated_ids = model.generate(
+            **inputs,
+            max_new_tokens=1024,
+            do_sample=False,
+            temperature=0.0,
+        )
     generated_ids_trimmed = [
         out_ids[len(in_ids) :]
-        for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
+        for in_ids, out_ids in zip(inputs["input_ids"], generated_ids)
     ]
     output_text = processor.batch_decode(
         generated_ids_trimmed,
@@ -397,7 +386,7 @@ def _progress_bar(current: int, total: int, width: int | None = None) -> str:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Auto-tag Discord GIFs using Qwen3-VL")
+    parser = argparse.ArgumentParser(description="Auto-tag Discord GIFs using Qwen3.5")
     parser.add_argument("input", help="Input JSON file (gif-tags.json)")
     parser.add_argument(
         "-o",
@@ -415,8 +404,13 @@ def main():
     )
     parser.add_argument(
         "--model",
-        default="Qwen/Qwen3-VL-4B-Instruct",
-        help="HuggingFace model ID (default: Qwen/Qwen3-VL-4B-Instruct)",
+        default="Qwen/Qwen3.5-4B",
+        help="HuggingFace model ID (default: Qwen/Qwen3.5-4B)",
+    )
+    parser.add_argument(
+        "--load-in-4bit",
+        action="store_true",
+        help="Load model in 4-bit quantization (requires bitsandbytes, saves VRAM)",
     )
     parser.add_argument(
         "--device",
@@ -468,16 +462,18 @@ def main():
     print(f"🤖 Loading model: {args.model}")
     t0 = time.time()
 
-    model_kwargs = {"device_map": "auto"}
+    model_kwargs = {"device_map": "auto", "max_memory": {0: "14GiB", "cpu": "24GiB"}}
+    if args.load_in_4bit:
+        from transformers import BitsAndBytesConfig
+
+        model_kwargs["quantization_config"] = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch.bfloat16,
+            bnb_4bit_quant_type="nf4",
+        )
+        print("   Using 4-bit quantization (bitsandbytes NF4)")
     if device == "cuda":
         model_kwargs["dtype"] = torch.bfloat16
-        try:
-            import flash_attn  # noqa: F401
-
-            model_kwargs["attn_implementation"] = "flash_attention_2"
-            print("   Using flash_attention_2")
-        except ImportError:
-            model_kwargs["attn_implementation"] = "spda"
     elif device == "mps":
         model_kwargs["dtype"] = torch.float16
     else:

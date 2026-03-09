@@ -1,8 +1,8 @@
 torch
 torchvision
 torchcodec
-transformers==5.2.0
+transformers @ git+https://github.com/huggingface/transformers.git@main
 accelerate
-qwen-vl-utils
+bitsandbytes
 Pillow
 requests
