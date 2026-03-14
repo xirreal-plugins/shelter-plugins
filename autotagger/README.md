@@ -18,7 +18,7 @@ All fields are merged into a flat tag list for search.
 
 ## Setup
 
-Requires Python 3.10+ and **ffmpeg** (for converting animated GIFs to video).
+Requires Python 3.10+, **ffmpeg**, and a GPU supported by [vLLM](https://docs.vllm.ai/).
 
 ```sh
 cd autotagger
@@ -27,23 +27,12 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip3 install -r requirements.txt
 ```
 
-### GPU support
-
-- **NVIDIA GPU** (recommended): Install PyTorch with CUDA - For example, `pip3 install --force-reinstall torch torchvision torchcodec --index-url https://download.pytorch.org/whl/cu130`. Change cu130 to your CUDA version (use nvidia-smi).
-- **Apple Silicon**: MPS acceleration works out of the box with the default PyTorch install
-- **CPU only**: Works, but significantly slower. Consider the 2B model.
-
-For best performance on NVIDIA GPUs and CUDA 12.8, consider using flash-linear-attention:
-`pip3 install causal_conv1d flash-linear-attention`
-
 ### Model variants
 
 | Model | VRAM needed | Quality |
 |---|---|---|
-| `Qwen/Qwen3.5-2B` | ~5 GB | Good for basic tagging |
-| `Qwen/Qwen3.5-4B` (default) | ~10 GB | Strong all-rounder |
-| `Qwen/Qwen3.5-9B` | ~19 GB | Best meme/cultural understanding |
-| `Qwen/Qwen3.5-35B-A3B` | ~22 GB (4-bit) | MoE with fast inference, excellent quality |
+| `Qwen/Qwen3.5-4B` | ~10 GB | Good for basic tagging |
+| `Qwen/Qwen3.5-9B` (default) | ~19 GB | Strong all-rounder |
 
 ## Workflow
 
@@ -59,12 +48,13 @@ python3 autotag.py gif-tags.json
 
 This will:
 
-1. Download each GIF/video to a temp directory
-2. Shove the media down Qwen3.5's throat
-3. Generate tags via a single prompt
+1. Start a vLLM server with the model
+2. Download each GIF/video to a temp directory
+3. Extract frames and send them to the server for inference
 4. Write results to `gif-tags-tagged.json`
+5. Shut down the server when done
 
-The first run downloads the model (~10 GB for 4B, cached by HuggingFace for future runs).
+The first run downloads the model (~19 GB for 9B, cached by HuggingFace for future runs).
 
 ### 3. Import tags back into Discord
 
@@ -81,10 +71,10 @@ python3 autotag.py <input.json> [options]
 | `-o`, `--output PATH` | Output file path (default: `<input>-tagged.json`) |
 | `--skip-tagged` | Skip GIFs that already have tags |
 | `--overwrite` | Replace existing tags instead of merging |
-| `--model ID` | HuggingFace model ID (default: `Qwen/Qwen3.5-4B`) |
-| `--device DEVICE` | Force device: `cuda`, `mps`, or `cpu` (default: auto) |
-| `--fps N` | Video frame sampling rate in frames per second (default: 2.0). Higher = more frames = better temporal understanding but slower/more VRAM |
+| `--model ID` | HuggingFace model ID (default: `Qwen/Qwen3.5-9B`) |
+| `--fps N` | Video frame sampling rate in frames per second (default: 2.0) |
 | `--download-workers N` | Parallel download threads (default: 8) |
+| `--vllm-args ...` | Extra arguments passed to vLLM (must be last) |
 
 ## Examples
 
@@ -98,19 +88,14 @@ Only tag GIFs that don't have tags yet:
 python3 autotag.py gif-tags.json --skip-tagged
 ```
 
-Better accuracy with the 9B model:
+Use a smaller model:
 ```sh
-python3 autotag.py gif-tags.json --model Qwen/Qwen3.5-9B
+python3 autotag.py gif-tags.json --model Qwen/Qwen3.5-4B
 ```
 
-Higher frame rate for fast-paced GIFs:
+Pass extra vLLM options (e.g. limit GPU memory):
 ```sh
-python3 autotag.py gif-tags.json --fps 4
-```
-
-Lighter model for limited hardware:
-```sh
-python3 autotag.py gif-tags.json --model Qwen/Qwen3.5-2B
+python3 autotag.py gif-tags.json --vllm-args --gpu-memory-utilization 0.8
 ```
 
 Custom output path:

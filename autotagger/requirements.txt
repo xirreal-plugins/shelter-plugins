@@ -1,8 +1,4 @@
-torch
-torchvision
-torchcodec
-transformers @ git+https://github.com/huggingface/transformers.git@main
-accelerate
-bitsandbytes
+vllm
+openai
 Pillow
 requests

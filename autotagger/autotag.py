@@ -1,17 +1,25 @@
 #!/usr/bin/env python3
 """
-GIF Auto-Tagger — tag Discord GIFs using Qwen3.5.
+GIF Auto-Tagger — tag Discord GIFs using Qwen3.5 via vLLM.
 
-Downloads each GIF/video, runs Qwen3.5 inference, and writes structured tags
-back into the JSON format expected by the Favorite GIF Search shelter plugin.
+Launches a vLLM server as a subprocess, sends frames via the OpenAI-compatible
+API, and writes structured tags back into the JSON format expected by the
+Favorite GIF Search shelter plugin.
+
+Usage:
+    python autotag.py gif-tags.json --model Qwen/Qwen3.5-9B
 """
 
 import argparse
+import atexit
+import base64
 import json
 import os
 import re
 import shutil
+import signal
 import subprocess
+import sys
 import tempfile
 import time
 import traceback
@@ -19,48 +27,46 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import requests
-import torch
+from openai import OpenAI
 from PIL import Image
-from transformers import AutoModelForImageTextToText, AutoProcessor
 
 # ─── Prompt ──────────────────────────────────────────────────────────────────
 
 SYSTEM_PROMPT = """\
-You are a GIF/meme tagging assistant. You will be shown a short animated image or video clip from someone's Discord favorites collection.
+You are an expert multimedia tagging assistant specializing in organizing Discord meme and GIF collections. Your task is to analyze short animated images, GIFs, or video clips and extract highly accurate metadata for searchability.
 
-Analyze it and return a JSON object with exactly these fields:
+You MUST return a single, valid JSON object. Do not wrap the JSON in markdown code blocks (e.g., do not use ```json). Do not include any conversational text or commentary before or after the JSON.
 
-- "caption": A short, natural-language description of what happens in the clip (1-2 sentences).
-- "ocr": Any text visible in the image/video. If there is no text, use an empty string.
-- "meme": If you recognize a known meme template, meme name, or cultural reference, name it. Otherwise use an empty string.
-- "mood": One or two words describing the overall mood/tone (e.g. "funny", "chaotic", "wholesome", "sarcastic", "angry", "sad", "excited").
-- "characters": A list of recognized characters, celebrities, or public figures. If none are recognized, use an empty list.
-- "tags": A flat list of relevant search keywords. Include: objects, actions, emotions, colors, settings, character names, meme names, and any OCR text — anything someone might search for to find this GIF.
+### OUTPUT SCHEMA
+Your output must strictly adhere to the following JSON structure:
+{
+  "caption": "string",
+  "ocr": "string",
+  "meme": "string",
+  "mood": "string",
+  "characters": ["string"],
+  "tags": ["string"]
+}
 
-Rules:
-- Return ONLY the raw JSON object, no markdown fences, no commentary.
-- All string values must be lowercase.
-- The "tags" list should be comprehensive (aim for 5-20 tags) and must include relevant words from all other fields.
-- Do NOT repeat the same tag with slight variations (e.g. don't include both "cat" and "cats").\
-- Do NOT include irrelevant or overly generic tags (e.g. "funny" is good, but "video" is not). Focus on what makes this clip unique and identifiable.
-- Don't be afraid to include specific character names, meme names, or niche references if they are clearly present as these can be very helpful for searchability. But if you're not sure, it's better to leave them out than to guess wildly.
-- Don't be afraid of explicit content if it's clearly present in the clip, just tag it accurately without judgment.
+### FIELD GUIDELINES
+1. "caption": A concise, natural-language description of the visual action (1-2 sentences).
+2. "ocr": Transcribe any visible text. Use an empty string ("") if none is present.
+3. "meme": The specific name of the meme template or cultural reference (e.g., "distracted boyfriend", "this is fine dog"). Use an empty string ("") if unrecognized.
+4. "mood": 1-2 words capturing the overall vibe (e.g., "chaotic", "wholesome", "passive aggressive").
+5. "characters": A list of recognized public figures, fictional characters, or distinct entities. Use an empty list ([]) if none. Do not hallucinate names; leave empty if unsure.
+6. "tags": A comprehensive, flat list of search keywords (aim for 5-20).
+   - INCLUDE: Objects, actions, emotions, colors, settings, character names, meme names, and relevant OCR words.
+   - DO NOT INCLUDE: Overly generic terms (e.g., "video", "gif", "image", "moving").
+   - DO NOT INCLUDE: Redundant variations (e.g., choose "cat" OR "cats", not both).
+   - NOTE: Explicit content is permitted and should be tagged accurately and neutrally without judgment.
+
+### STRICT FORMATTING RULES
+- ALL string values across ALL fields must be strictly lowercase.
+- The output must be raw JSON only.
+- Ensure all brackets and quotes are properly closed to output valid JSON.
 """
 
-USER_PROMPT = "Analyze this media and return the tagging JSON."
-
-
-# ─── Device detection ────────────────────────────────────────────────────────
-
-
-def detect_device(forced: str | None = None) -> str:
-    if forced:
-        return forced
-    if torch.cuda.is_available():
-        return "cuda"
-    if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
-        return "mps"
-    return "cpu"
+USER_PROMPT = "Analyze this media and output the JSON."
 
 
 # ─── Media download & conversion ─────────────────────────────────────────────
@@ -79,7 +85,6 @@ def is_static_image(path: Path) -> bool:
     """Check if a file is a static (non-animated) image."""
     try:
         with Image.open(path) as img:
-            # Check for animation
             try:
                 img.seek(1)
                 return False  # Has multiple frames = animated
@@ -90,12 +95,11 @@ def is_static_image(path: Path) -> bool:
 
 
 def convert_to_mp4(src: Path, dest: Path) -> Path:
-    """Convert GIF/WebP/any format to MP4 using ffmpeg for video reading compatibility.
+    """Convert GIF/WebP/any format to MP4 using ffmpeg for frame extraction.
 
     Animated WebPs are first extracted to PNG frames via Pillow (since ffmpeg's
     WebP demuxer often chokes on them), then stitched into an MP4.
     """
-    # Try Pillow extraction for animated WebP (ffmpeg often can't decode these)
     try:
         with Image.open(src) as img:
             if getattr(img, "is_animated", False) and img.format == "WEBP":
@@ -105,10 +109,9 @@ def convert_to_mp4(src: Path, dest: Path) -> Path:
                     img.seek(i)
                     frame = img.convert("RGB")
                     frame.save(frames_dir / f"{i:05d}.png")
-                # Determine original frame rate from duration (ms per frame)
                 duration = img.info.get("duration", 50) or 50
                 fps = 1000 / max(duration, 1)
-                fps = max(1, min(fps, 60))  # clamp to sane range
+                fps = max(1, min(fps, 60))
                 cmd = [
                     "ffmpeg",
                     "-y",
@@ -133,7 +136,7 @@ def convert_to_mp4(src: Path, dest: Path) -> Path:
                 shutil.rmtree(frames_dir)
                 return dest
     except Exception:
-        pass  # Fall through to direct ffmpeg conversion
+        pass
 
     cmd = [
         "ffmpeg",
@@ -157,6 +160,25 @@ def convert_to_mp4(src: Path, dest: Path) -> Path:
     return dest
 
 
+def extract_frames(video_path: Path, dest_dir: Path, fps: float) -> list[Path]:
+    """Extract frames from a video at the given FPS rate."""
+    frames_dir = dest_dir / "extracted_frames"
+    frames_dir.mkdir(exist_ok=True)
+    cmd = [
+        "ffmpeg",
+        "-y",
+        "-i",
+        str(video_path),
+        "-vf",
+        f"fps={fps}",
+        "-loglevel",
+        "error",
+        str(frames_dir / "frame_%04d.png"),
+    ]
+    subprocess.run(cmd, check=True, capture_output=True)
+    return sorted(frames_dir.glob("*.png"))
+
+
 def _convert_to_static_image(src: Path, dest_dir: Path) -> Path:
     """Convert any image file to PNG via Pillow as a fallback."""
     png_path = dest_dir / "fallback.png"
@@ -165,28 +187,50 @@ def _convert_to_static_image(src: Path, dest_dir: Path) -> Path:
     return png_path
 
 
-def prepare_media(url: str, tmp_dir: Path, fps: float) -> dict:
-    """Download and prepare media, returning a chat message content element."""
+def image_to_data_uri(path: Path) -> str:
+    """Read an image file and return a base64 data URI."""
+    with open(path, "rb") as f:
+        data = base64.b64encode(f.read()).decode("utf-8")
+    suffix = path.suffix.lower()
+    mime = {
+        ".png": "image/png",
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".gif": "image/gif",
+        ".webp": "image/webp",
+    }.get(suffix, "image/png")
+    return f"data:{mime};base64,{data}"
+
+
+def prepare_media(url: str, tmp_dir: Path, fps: float) -> list[Path]:
+    """Download and prepare media, returning a list of image frame paths."""
     ext = _guess_extension(url)
     raw_path = tmp_dir / f"raw{ext}"
     download_file(url, raw_path)
 
-    # Static images → use image type directly
+    # Static images → single frame
     if is_static_image(raw_path):
-        return {"type": "image", "image": f"{raw_path}"}
+        png_path = tmp_dir / "static.png"
+        with Image.open(raw_path) as img:
+            img.convert("RGB").save(png_path, "PNG")
+        return [png_path]
 
-    # Animated content → convert to mp4 for reliable video reading
+    # Animated content → convert to mp4 then extract frames
     mp4_path = tmp_dir / "converted.mp4"
     try:
         convert_to_mp4(raw_path, mp4_path)
-        return {"type": "video", "video": f"{mp4_path}", "fps": fps}
+        frames = extract_frames(mp4_path, tmp_dir, fps)
+        if frames:
+            return frames
     except subprocess.CalledProcessError:
-        # ffmpeg failed — try treating it as a static image via Pillow
-        try:
-            png_path = _convert_to_static_image(raw_path, tmp_dir)
-            return {"type": "image", "image": f"{png_path}"}
-        except Exception:
-            raise  # Re-raise if Pillow also can't handle it
+        pass
+
+    # Fallback: treat as static image
+    try:
+        png_path = _convert_to_static_image(raw_path, tmp_dir)
+        return [png_path]
+    except Exception:
+        raise
 
 
 def _guess_extension(url: str) -> str:
@@ -203,16 +247,13 @@ def _guess_extension(url: str) -> str:
 def extract_json(text: str) -> dict | None:
     """Try to parse JSON from model output, tolerating markdown fences."""
     text = text.strip()
-    # Strip markdown code fences if present
     fence_match = re.search(r"```(?:json)?\s*\n?(.*?)```", text, re.DOTALL)
     if fence_match:
         text = fence_match.group(1).strip()
-    # Try direct parse
     try:
         return json.loads(text)
     except json.JSONDecodeError:
         pass
-    # Try to find a JSON object in the text
     brace_match = re.search(r"\{.*\}", text, re.DOTALL)
     if brace_match:
         try:
@@ -242,52 +283,103 @@ def flatten_tags(parsed: dict) -> list[str]:
     return sorted(tags)
 
 
+# ─── vLLM server management ──────────────────────────────────────────────────
+
+VLLM_PORT = 8182  # Use a non-standard port to avoid conflicts
+
+
+def start_vllm_server(model: str, extra_args: list[str] | None = None) -> subprocess.Popen:
+    """Launch vLLM serve as a subprocess and wait until it's ready."""
+    url = f"http://localhost:{VLLM_PORT}/v1"
+    cmd = [
+        sys.executable, "-m", "vllm.entrypoints.openai.api_server",
+        "--model", model,
+        "--port", str(VLLM_PORT),
+        "--max-model-len", "8192",
+    ]
+    if extra_args:
+        cmd.extend(extra_args)
+
+    print(f"🚀 Starting vLLM server: {model}")
+    print(f"   Command: {' '.join(cmd)}")
+
+    proc = subprocess.Popen(
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+
+    # Ensure cleanup on exit
+    def _cleanup():
+        if proc.poll() is None:
+            print("\n🛑 Shutting down vLLM server...")
+            proc.terminate()
+            try:
+                proc.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+
+    atexit.register(_cleanup)
+    signal.signal(signal.SIGINT, lambda *_: sys.exit(1))
+    signal.signal(signal.SIGTERM, lambda *_: sys.exit(1))
+
+    # Wait for the server to become ready
+    health_url = f"http://localhost:{VLLM_PORT}/health"
+    print("   Waiting for server to be ready", end="", flush=True)
+    deadline = time.time() + 300  # 5 min timeout for model loading
+    while time.time() < deadline:
+        # Check if process died
+        if proc.poll() is not None:
+            # Drain remaining output
+            remaining = proc.stdout.read() if proc.stdout else ""
+            print(f"\n   ✗ vLLM server exited with code {proc.returncode}")
+            if remaining:
+                for line in remaining.strip().splitlines()[-20:]:
+                    print(f"     {line}")
+            sys.exit(1)
+        try:
+            r = requests.get(health_url, timeout=2)
+            if r.status_code == 200:
+                print(" ✓")
+                print(f"   Server ready at {url}")
+                return proc
+        except requests.ConnectionError:
+            pass
+        print(".", end="", flush=True)
+        time.sleep(2)
+
+    print("\n   ✗ Timed out waiting for vLLM server")
+    proc.terminate()
+    sys.exit(1)
+
+
 # ─── Model inference ─────────────────────────────────────────────────────────
 
 
-def _generate_text(
-    model,
-    processor,
-    content_element: dict,
-) -> str:
-    """Run Qwen3.5 inference on a single media item and return raw output text."""
-    messages = [
-        {"role": "system", "content": [{"type": "text", "text": SYSTEM_PROMPT}]},
-        {
-            "role": "user",
-            "content": [content_element, {"type": "text", "text": USER_PROMPT}],
-        },
-    ]
+def _generate_text(client: OpenAI, frame_paths: list[Path], model: str) -> str:
+    """Send frames to the vLLM server and return raw output text."""
+    content: list[dict] = []
 
-    inputs = processor.apply_chat_template(
-        messages,
-        tokenize=True,
-        add_generation_prompt=True,
-        enable_thinking=False,
-        return_dict=True,
-        return_tensors="pt",
-    )
-    inputs = {
-        k: v.to(model.device) for k, v in inputs.items() if isinstance(v, torch.Tensor)
-    }
-
-    with torch.inference_mode():
-        generated_ids = model.generate(
-            **inputs,
-            max_new_tokens=1024,
-            do_sample=False,
-            temperature=0.0,
+    for frame_path in frame_paths:
+        data_uri = image_to_data_uri(frame_path)
+        content.append(
+            {"type": "image_url", "image_url": {"url": data_uri}},
         )
-    generated_ids_trimmed = [
-        out_ids[len(in_ids) :]
-        for in_ids, out_ids in zip(inputs["input_ids"], generated_ids)
-    ]
-    output_text = processor.batch_decode(
-        generated_ids_trimmed,
-        skip_special_tokens=True,
-        clean_up_tokenization_spaces=False,
+
+    content.append({"type": "text", "text": USER_PROMPT})
+
+    response = client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": content},
+        ],
+        max_tokens=1024,
+        temperature=0.0,
     )
-    output_text = output_text[0] if isinstance(output_text, list) else output_text
+
+    output_text = response.choices[0].message.content or ""
 
     # Strip thinking tags if the model produced them
     think_match = re.search(r"</think>\s*(.*)", output_text, re.DOTALL)
@@ -298,14 +390,14 @@ def _generate_text(
 
 
 def run_inference(
-    model,
-    processor,
-    content_element: dict,
+    client: OpenAI,
+    frame_paths: list[Path],
+    model: str,
     max_retries: int = 2,
 ) -> list[str] | None:
     """Run inference with retry on JSON parse failure. Returns None if all attempts fail."""
     for attempt in range(1, max_retries + 1):
-        output_text = _generate_text(model, processor, content_element)
+        output_text = _generate_text(client, frame_paths, model)
         parsed = extract_json(output_text)
         if parsed is not None:
             return flatten_tags(parsed)
@@ -324,17 +416,17 @@ def run_inference(
 
 def download_all(
     entries: dict, tmp_root: Path, fps: float, workers: int
-) -> dict[str, dict]:
-    """Download and prepare all media files in parallel. Returns key→content_element map."""
+) -> dict[str, list[Path]]:
+    """Download and prepare all media files in parallel. Returns key→frame_paths map."""
     results = {}
     total = len(entries)
 
-    def _process(key: str, src: str) -> tuple[str, dict | None]:
+    def _process(key: str, src: str) -> tuple[str, list[Path] | None]:
         item_dir = tmp_root / key.replace("/", "_").replace(":", "_")[:120]
         item_dir.mkdir(parents=True, exist_ok=True)
         try:
-            element = prepare_media(src, item_dir, fps)
-            return key, element
+            frames = prepare_media(src, item_dir, fps)
+            return key, frames
         except Exception as e:
             print(f"  ✗ Download/convert failed for {key}: {e}")
             return key, None
@@ -344,9 +436,9 @@ def download_all(
         done = 0
         for future in as_completed(futures):
             done += 1
-            key, element = future.result()
-            if element is not None:
-                results[key] = element
+            key, frames = future.result()
+            if frames is not None:
+                results[key] = frames
             print(f"  ↓ Downloaded {done}/{total}", end="\r")
 
     print()
@@ -404,19 +496,14 @@ def main():
     )
     parser.add_argument(
         "--model",
-        default="Qwen/Qwen3.5-4B",
-        help="HuggingFace model ID (default: Qwen/Qwen3.5-4B)",
+        default="Qwen/Qwen3.5-9B",
+        help="HuggingFace model ID for vLLM (default: Qwen/Qwen3.5-9B)",
     )
     parser.add_argument(
-        "--load-in-4bit",
-        action="store_true",
-        help="Load model in 4-bit quantization (requires bitsandbytes, saves VRAM)",
-    )
-    parser.add_argument(
-        "--device",
-        default=None,
-        choices=["cuda", "mps", "cpu"],
-        help="Force device (default: auto)",
+        "--vllm-args",
+        nargs=argparse.REMAINDER,
+        default=[],
+        help="Extra arguments to pass to vLLM server (e.g. --vllm-args --quantization awq --gpu-memory-utilization 0.9)",
     )
     parser.add_argument(
         "--fps",
@@ -454,35 +541,10 @@ def main():
         print("Nothing to do!")
         return
 
-    # Detect device
-    device = detect_device(args.device)
-    print(f"🖥  Device: {device}")
-
-    # Load model
-    print(f"🤖 Loading model: {args.model}")
-    t0 = time.time()
-
-    model_kwargs = {"device_map": "auto", "max_memory": {0: "14GiB", "cpu": "24GiB"}}
-    if args.load_in_4bit:
-        from transformers import BitsAndBytesConfig
-
-        model_kwargs["quantization_config"] = BitsAndBytesConfig(
-            load_in_4bit=True,
-            bnb_4bit_compute_dtype=torch.bfloat16,
-            bnb_4bit_quant_type="nf4",
-        )
-        print("   Using 4-bit quantization (bitsandbytes NF4)")
-    if device == "cuda":
-        model_kwargs["dtype"] = torch.bfloat16
-    elif device == "mps":
-        model_kwargs["dtype"] = torch.float16
-    else:
-        model_kwargs["dtype"] = torch.float32
-
-    model = AutoModelForImageTextToText.from_pretrained(args.model, **model_kwargs)
-    processor = AutoProcessor.from_pretrained(args.model)
-
-    print(f"   Model loaded in {time.time() - t0:.1f}s")
+    # Start vLLM server
+    vllm_proc = start_vllm_server(args.model, args.vllm_args or None)
+    server_url = f"http://localhost:{VLLM_PORT}/v1"
+    client = OpenAI(base_url=server_url, api_key="no-key-required")
 
     # Process GIFs
     with tempfile.TemporaryDirectory(prefix="autotag_") as tmp_root:
@@ -499,7 +561,7 @@ def main():
         total = len(media_map)
         inference_times: list[float] = []
         inference_start = time.time()
-        for key, content_element in media_map.items():
+        for key, frame_paths in media_map.items():
             done += 1
             remaining = total - done
             avg_time = (
@@ -516,7 +578,7 @@ def main():
             )
             item_t0 = time.time()
             try:
-                new_tags = run_inference(model, processor, content_element)
+                new_tags = run_inference(client, frame_paths, args.model)
             except Exception as e:
                 print("  ✗ Inference failed:")
                 traceback.print_exc()
@@ -530,7 +592,6 @@ def main():
             if args.overwrite or not results[key].get("tags"):
                 results[key]["tags"] = new_tags
             else:
-                # Merge: case-insensitive dedup
                 existing = {t.lower() for t in results[key]["tags"]}
                 merged = list(results[key]["tags"])
                 for tag in new_tags:
