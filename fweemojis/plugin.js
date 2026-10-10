@@ -2,53 +2,68 @@
 
 "use strict";
 
-//#region plugins/fweemojis/slate.js
-const { flux: { stores: { UserStore: UserStore$1, SelectedGuildStore, EmojiStore } } } = shelter;
-const isInDms = () => !!document.querySelector("[data-list-item-id=\"guildsnav___home\"][class*=\"selected\"]");
-const hasNitro = () => {
-	const user = UserStore$1.getCurrentUser();
-	return user && user.premiumType > 0;
-};
-const extension = (animated) => animated ? "gif" : "webp";
-var slate_default = (slateTree) => {
-	return slateTree.map((line) => {
-		return {
-			...line,
-			children: line.children.map((item) => {
-				if (item?.type === "customEmoji") {
-					const emojiId = item.emoji.emojiId;
-					if (hasNitro() || EmojiStore.getCustomEmojiById(emojiId).guildId === SelectedGuildStore.getLastSelectedGuildId() && !item.emoji.animated && !isInDms()) return item;
-					return { text: `[￴](https://cdn.discordapp.com/emojis/${emojiId}.${extension(item.emoji.animated)}?size=48&quality=lossless)` };
-				}
-				return item;
+//#region lib/premium.js
+const stateKey = Symbol.for("shelter.xirreal.dev/premium-state");
+function getPremiumType(user) {
+	return (user?.[stateKey] ?? user)?.premiumType;
+}
+function spoofPremium(UserStore$2) {
+	if (!UserStore$2.getCurrentUser()) return;
+	if (!UserStore$2[stateKey]) {
+		const users = new WeakMap();
+		UserStore$2[stateKey] = {
+			leases: new Set(),
+			unpatch: shelter.patcher.after("getCurrentUser", UserStore$2, (_, user) => {
+				if (!user) return user;
+				if (!users.has(user)) users.set(user, new Proxy(user, { get(target, key, receiver) {
+					if (key === "premiumType") return 2;
+					if (key === "perks") return null;
+					if (key === stateKey) return target;
+					return Reflect.get(target, key, receiver);
+				} }));
+				return users.get(user);
 			})
 		};
+	}
+	const state = UserStore$2[stateKey];
+	const lease = {};
+	state.leases.add(lease);
+	return () => {
+		if (!state.leases.delete(lease) || state.leases.size) return;
+		state.unpatch();
+		delete UserStore$2[stateKey];
+	};
+}
+
+//#endregion
+//#region plugins/fweemojis/content.js
+const { flux: { stores: { UserStore: UserStore$1, EmojiStore } } } = shelter;
+var content_default = (content, guildId) => {
+	if (getPremiumType(UserStore$1.getCurrentUser()) > 0) return content;
+	return content.replace(/(`+)[\s\S]*?(?:\1(?!`)|$)|\\[\s\S]|<(a?):\w+:(\d+)>/g, (match, code, animated, id) => {
+		if (!id || guildId && EmojiStore.getCustomEmojiById(id)?.guildId === guildId && !animated) return match;
+		return `[￴](https://cdn.discordapp.com/emojis/${id}.${animated ? "gif" : "webp"}?size=48&quality=lossless)`;
 	});
 };
 
 //#endregion
 //#region plugins/fweemojis/index.js
-const { flux: { stores: { UserStore, StickersStore } }, util: { getFiber } } = shelter;
-const { flux: { subscribe }, http: { intercept }, observeDom } = shelter.plugin.scoped;
-let originalPremiumType = null;
+const { flux: { stores: { UserStore, StickersStore } }, util: { getFiber, reactFiberWalker } } = shelter;
+const { flux: { subscribe }, http: { intercept }, patcher: { before }, observeDom } = shelter.plugin.scoped;
+let restorePremium;
 function patchNiterState() {
-	const user = UserStore.getCurrentUser();
-	const premiumType = user.premiumType || 0;
-	if (originalPremiumType === null) originalPremiumType = premiumType;
-	user.premiumType = 2;
+	restorePremium ??= spoofPremium(UserStore);
 }
 function restoreNiterState() {
-	const user = UserStore.getCurrentUser();
-	if (originalPremiumType === null) return;
-	user.premiumType = originalPremiumType === 0 ? null : originalPremiumType;
-	originalPremiumType = null;
+	restorePremium?.();
+	restorePremium = undefined;
 }
-let uninjected = false;
-const extensions = [
-	"lottie",
-	"webp",
-	"png"
-];
+const extensions = {
+	1: "png",
+	2: "png",
+	4: "gif"
+};
+const patchedSenders = new WeakSet();
 function onLoad() {
 	subscribe("UPDATE_CHANNEL_DIMENSIONS", (e) => {
 		restoreNiterState();
@@ -71,35 +86,29 @@ function onLoad() {
 		});
 	});
 	const patchMessagebar = (elem) => {
-		if (elem.dataset.fweemoji) return;
-		elem.dataset.fweemoji = "1";
-		const fiber = getFiber(elem);
-		const editor = fiber.child.pendingProps.editor;
-		elem.onkeydown = (k) => {
-			if (uninjected) {
-				elem.onkeydown = null;
-				return;
-			}
-			if (k.key !== "Enter" || document.querySelector("[class*=autocomplete],[class*=attachedBars]")) return;
-			editor.children = slate_default(editor.children);
-		};
+		const sender = reactFiberWalker(getFiber(elem), (fiber) => typeof fiber.stateNode?.handleSendMessage === "function", true)?.stateNode;
+		if (!sender || patchedSenders.has(sender)) return;
+		patchedSenders.add(sender);
+		before("handleSendMessage", sender, ([message]) => {
+			if (message.command == null) message.value = content_default(message.value, sender.props.channel.getGuildId());
+		});
+		sender.forceUpdate();
 	};
-	observeDom("[class*=\"slateContainer\"]", (e) => {
-		patchMessagebar(e);
-	});
+	document.querySelectorAll("[class*=\"slateContainer\"]").forEach(patchMessagebar);
+	observeDom("[class*=\"slateContainer\"]", patchMessagebar);
 	intercept("post", /\/channels\/\d+\/messages/, (req, send) => {
-		if (req.body.sticker_ids) {
-			const id = req.body.sticker_ids.pop();
+		if (req.body.sticker_ids?.length && !(getPremiumType(UserStore.getCurrentUser()) > 0)) {
+			const id = req.body.sticker_ids[0];
 			const ext = extensions[StickersStore.getStickerById(id)?.format_type];
-			if (ext === undefined || ext === "lottie") return send(req);
-			req.body.sticker_ids = undefined;
-			req.body.content = `https://media.discordapp.net/stickers/${id}.${ext}?size=160`;
+			if (ext === undefined) return send(req);
+			req.body.sticker_ids = req.body.sticker_ids.length > 1 ? req.body.sticker_ids.slice(1) : undefined;
+			req.body.content = [req.body.content, `https://media.discordapp.net/stickers/${id}.${ext}?size=160`].filter(Boolean).join(" ");
 		}
 		return send(req);
 	});
 }
 function onUnload() {
-	uninjected = true;
+	restoreNiterState();
 }
 
 //#endregion
