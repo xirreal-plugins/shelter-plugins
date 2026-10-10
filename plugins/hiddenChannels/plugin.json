@@ -1,10 +1,11 @@
 {
    "name": "Hidden Channels",
-   "description": "Allows you to see the name and description of channels you don't have actually access to.",
+   "description": "DEPRECATED. Allows you to see the name and description of channels you don't have actually access to.",
    "author": "xirreal",
    "hash": "<HASH_PLACEHOLDER>",
    "site": {
-      "longDescription": "Exposes hidden channels, adding a cute little red lock next to them! Updated: now using 100% ethically sourced SolidJS-React bridges!",
-      "demoImage": "/hiddenChannels.png"
+      "longDescription": "**Discord finally got off their ass and decided to fix this blatant oversight in their permissions API.**\n\nExposes hidden channels, adding a cute little red lock next to them! Updated: now using 100% ethically sourced SolidJS-React bridges!",
+      "demoImage": "/hiddenChannels.png",
+      "deprecated": true
    }
 }
