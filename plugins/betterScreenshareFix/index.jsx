@@ -1,3 +1,5 @@
+import { spoofPremium } from "../../lib/premium";
+
 const {
    flux: { subscribe },
    observeDom,
@@ -13,94 +15,80 @@ const {
 
 const CLEANUP_LISTENER_ID = "shelter-bsf-cleanup";
 
-let originalPremiumType = null;
-let layoutToggleActive = false;
+const restores = new Set();
+const roots = new Set();
 
-function patchNiterState() {
-   const user = UserStore.getCurrentUser();
-   const premiumType = user.premiumType || 0;
-   if (originalPremiumType === null) {
-      originalPremiumType = premiumType;
-   }
-   user.premiumType = 2;
-}
-
-function restoreNiterState() {
-   const user = UserStore.getCurrentUser();
-   if (originalPremiumType === null) {
-      return;
-   }
-   user.premiumType = originalPremiumType === 0 ? null : originalPremiumType;
-   originalPremiumType = null;
-}
-
-function hasCleanupListener(node) {
-   return node?.querySelector?.(`#${CLEANUP_LISTENER_ID}`) !== null;
+function restorePremium(restore) {
+   restore?.();
+   restores.delete(restore);
 }
 
 function CleanupListener(props) {
-   onCleanup(() => {
-      if (!props?.isLayoutToggle && layoutToggleActive) {
-         return;
-      }
-      if (props?.isLayoutToggle) {
-         layoutToggleActive = false;
-      }
-      props?.onCleanup?.();
-      restoreNiterState();
-   });
-
-   props?.onMount?.();
-
+   onCleanup(props.onCleanup);
    return <div id={CLEANUP_LISTENER_ID} style={{ display: "none" }} />;
 }
 
-function injectCleanupListener(node, props = {}) {
-   if (hasCleanupListener(node)) {
-      return false;
+function injectCleanupListener(node, restore) {
+   if (node.querySelector(`#${CLEANUP_LISTENER_ID}`)) {
+      restorePremium(restore);
+      return;
    }
-   node.append(
+
+   const root = (
       <ReactiveRoot>
-         <CleanupListener {...props} />
-      </ReactiveRoot>,
+         <CleanupListener
+            onCleanup={() => {
+               restorePremium(restore);
+               roots.delete(root);
+            }}
+         />
+      </ReactiveRoot>
    );
-   return true;
+   roots.add(root);
+   node.append(root);
 }
 
 export function onLoad() {
    subscribe("TRACK", (e) => {
       const callButtonClicked = e.event === "call_button_clicked";
       const callMenuItemClicked = e.event === "call_menu_item_interacted";
-      const streamButtonClicked = callButtonClicked && e.properties.button_name === "Stream";
-      const streamSettingsButtonClicked = callButtonClicked && e.properties.button_name === "Stream Settings";
-      const changeStreamButtonClicked = callMenuItemClicked && e.properties.menu_name === "ManageStreamsButton";
+      const streamButtonClicked = callButtonClicked && e.properties?.button_name === "Stream";
+      const streamSettingsButtonClicked = callButtonClicked && e.properties?.button_name === "Stream Settings";
+      const changeStreamButtonClicked = callMenuItemClicked && e.properties?.menu_name === "ManageStreamsButton";
       const videoLayoutToggled = e.event === "video_layout_toggled";
 
-      if (streamButtonClicked || streamSettingsButtonClicked || changeStreamButtonClicked) {
-         const searchQuery = streamSettingsButtonClicked ? "#manage-streams" : "[class*='scrim']";
-         const stopObserving = observeDom(searchQuery, (node) => {
-            stopObserving();
-            if (injectCleanupListener(node)) {
-               patchNiterState();
-            }
-         });
-         setTimeout(stopObserving, 500);
+      if (!streamButtonClicked && !streamSettingsButtonClicked && !changeStreamButtonClicked && !videoLayoutToggled) {
+         return;
       }
+
+      const restore = spoofPremium(UserStore);
+      restores.add(restore);
 
       if (videoLayoutToggled) {
          const callContainer = document.querySelector("[class*='callContainer']");
-         if (!callContainer) {
-            return;
-         }
-
-         layoutToggleActive = true;
-         if (injectCleanupListener(callContainer, { isLayoutToggle: true })) {
-            patchNiterState();
-         }
+         if (callContainer) injectCleanupListener(callContainer, restore);
+         else restorePremium(restore);
+         return;
       }
+
+      let injected = false;
+      const searchQuery = streamSettingsButtonClicked ? "#manage-streams" : '[role="dialog"]';
+      const stopObserving = observeDom(searchQuery, (node) => {
+         if (injected || !node.isConnected) return;
+         injected = true;
+         stopObserving();
+         injectCleanupListener(node, restore);
+      });
+      setTimeout(() => {
+         stopObserving();
+         if (!injected) restorePremium(restore);
+      }, 5000);
    });
 }
 
 export function onUnload() {
-   restoreNiterState();
+   for (const root of roots) root.remove();
+   roots.clear();
+   for (const restore of restores) restore?.();
+   restores.clear();
 }

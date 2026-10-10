@@ -1,3 +1,7 @@
 packages:
-   - plugins/*
-   - site
+  - plugins/*
+  - site
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  sharp: true

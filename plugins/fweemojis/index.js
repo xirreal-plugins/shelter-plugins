@@ -1,40 +1,33 @@
-import processTree from "./slate";
+import { getPremiumType, spoofPremium } from "../../lib/premium";
+import processContent from "./content";
 
 const {
    flux: {
       stores: { UserStore, StickersStore },
    },
-   util: { getFiber },
+   util: { getFiber, reactFiberWalker },
 } = shelter;
 
 const {
    flux: { subscribe },
    http: { intercept },
+   patcher: { before },
    observeDom,
 } = shelter.plugin.scoped;
 
-let originalPremiumType = null;
+let restorePremium;
 
 function patchNiterState() {
-   const user = UserStore.getCurrentUser();
-   const premiumType = user.premiumType || 0;
-   if (originalPremiumType === null) {
-      originalPremiumType = premiumType;
-   }
-   user.premiumType = 2;
+   restorePremium ??= spoofPremium(UserStore);
 }
 
 function restoreNiterState() {
-   const user = UserStore.getCurrentUser();
-   if (originalPremiumType === null) {
-      return;
-   }
-   user.premiumType = originalPremiumType === 0 ? null : originalPremiumType;
-   originalPremiumType = null;
+   restorePremium?.();
+   restorePremium = undefined;
 }
 
-let uninjected = false;
-const extensions = ["lottie", "webp", "png"];
+const extensions = { 1: "png", 2: "png", 4: "gif" };
+const patchedSenders = new WeakSet();
 
 export function onLoad() {
    // I have no clue why this fires when you click off the autocomplete.
@@ -69,47 +62,44 @@ export function onLoad() {
    });
 
    const patchMessagebar = (elem) => {
-      if (elem.dataset.fweemoji) return;
-      elem.dataset.fweemoji = "1";
+      const sender = reactFiberWalker(
+         getFiber(elem),
+         (fiber) => typeof fiber.stateNode?.handleSendMessage === "function",
+         true,
+      )?.stateNode;
+      if (!sender || patchedSenders.has(sender)) return;
+      patchedSenders.add(sender);
 
-      const fiber = getFiber(elem);
-      const editor = fiber.child.pendingProps.editor;
-
-      elem.onkeydown = (k) => {
-         if (uninjected) {
-            elem.onkeydown = null;
-            return;
+      before("handleSendMessage", sender, ([message]) => {
+         if (message.command == null) {
+            message.value = processContent(message.value, sender.props.channel.getGuildId());
          }
+      });
 
-         if (k.key !== "Enter" || document.querySelector("[class*=autocomplete],[class*=attachedBars]")) {
-            return;
-         }
-
-         // evil twisted and fucked up (replaces customEmoji with text)
-         editor.children = processTree(editor.children);
-      };
+      sender.forceUpdate();
    };
 
-   observeDom('[class*="slateContainer"]', (e) => {
-      patchMessagebar(e);
-   });
+   document.querySelectorAll('[class*="slateContainer"]').forEach(patchMessagebar);
+   observeDom('[class*="slateContainer"]', patchMessagebar);
 
    intercept("post", /\/channels\/\d+\/messages/, (req, send) => {
-      if (req.body.sticker_ids) {
-         const id = req.body.sticker_ids.pop();
+      if (req.body.sticker_ids?.length && !(getPremiumType(UserStore.getCurrentUser()) > 0)) {
+         const id = req.body.sticker_ids[0];
          const ext = extensions[StickersStore.getStickerById(id)?.format_type];
 
-         if (ext === undefined || ext === "lottie") {
+         if (ext === undefined) {
             return send(req);
          }
 
-         req.body.sticker_ids = undefined;
-         req.body.content = `https://media.discordapp.net/stickers/${id}.${ext}?size=160`;
+         req.body.sticker_ids = req.body.sticker_ids.length > 1 ? req.body.sticker_ids.slice(1) : undefined;
+         req.body.content = [req.body.content, `https://media.discordapp.net/stickers/${id}.${ext}?size=160`]
+            .filter(Boolean)
+            .join(" ");
       }
       return send(req);
    });
 }
 
 export function onUnload() {
-   uninjected = true;
+   restoreNiterState();
 }

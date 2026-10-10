@@ -4,7 +4,7 @@ const {
    plugin: { store },
 } = shelter;
 
-export function AddTagModal(closeModal, gifData) {
+export function AddTagModal(closeModal, gifData, onSave) {
    const [tags, setTags] = createSignal("");
 
    let tagsArray = store[gifData.url] || [];
@@ -58,6 +58,7 @@ export function AddTagModal(closeModal, gifData) {
                   .map((tag) => tag.trim())
                   .filter((tag) => tag.length > 0);
                store[gifData.url] = tagsArray;
+               onSave();
                closeModal();
             }}
          />

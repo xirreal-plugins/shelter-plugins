@@ -1,502 +1,665 @@
 const {
-   ui: {
-      Button,
-      ButtonColors,
-      ButtonLooks,
-      ButtonSizes,
-      Checkbox,
-      CheckboxItem,
-      Header,
-      HeaderTags,
-      Switch,
-      SwitchItem,
-      showToast,
-      openModal,
-      ToastColors,
-      TextBox,
-      TextArea,
-      ModalRoot,
-      ModalHeader,
-      ModalBody,
-      ModalFooter,
-      ModalSizes,
-      Slider,
-   },
-   solid: { createSignal },
+	ui: {
+		Button,
+		ButtonColors,
+		ButtonLooks,
+		ButtonSizes,
+		LinkButton,
+		Checkbox,
+		CheckboxItem,
+		Switch,
+		SwitchItem,
+		Header,
+		HeaderTags,
+		HeaderWeights,
+		Text,
+		TextTags,
+		TextWeights,
+		TextBox,
+		TextArea,
+		Slider,
+		openModal,
+		openConfirmationModal,
+		ModalRoot,
+		ModalHeader,
+		ModalBody,
+		ModalFooter,
+		ModalConfirmFooter,
+		ModalSizes,
+		showToast,
+		ToastColors,
+		IconAdd,
+		IconBin,
+		IconClose,
+		IconCog,
+		IconEdit,
+		IconInfo,
+		IconUpdate,
+		IconUpload,
+		ChevronIcon,
+		DevIcon,
+		LocalIcon,
+		SyncIcon,
+		Space,
+		ErrorBoundary,
+		focusring,
+		tooltip,
+		niceScrollbarsClass,
+	},
+	solid: { createSignal, For, Show },
 } = shelter;
 
 import classes from "./index.jsx.scss";
 
-function TestUI() {
-   const [pos, setPos] = createSignal({ x: 0, y: 0 });
-   const [dragging, setDragging] = createSignal(false);
-   const [offset, setOffset] = createSignal({ x: 0, y: 0 });
-   const onMouseDown = (e) => {
-      // check if the mouse is over the element
-      if (e.target.id !== "test-ui") return;
-      e.preventDefault();
-      e.stopPropagation();
-      setDragging(true);
-      setOffset({ x: e.clientX - pos().x, y: e.clientY - pos().y });
-   };
-   const onMouseMove = (e) => {
-      if (dragging()) {
-         setPos({
-            x: e.clientX - offset().x,
-            y: e.clientY - offset().y,
-         });
-      }
-   };
-   const onMouseUp = () => {
-      setDragging(false);
-   };
-   const onMouseLeave = () => {
-      setDragging(false);
-   };
+const Section = (props) => (
+	<div class={classes.section}>
+		<Text tag={TextTags.displaySM} class={classes.sectionTitle}>
+			{props.title}
+		</Text>
+		{props.children}
+	</div>
+);
 
-   const [checked, setChecked] = createSignal(false);
-   const onCheckboxChange = () => {
-      setChecked(!checked());
-   };
+const SubSection = (props) => (
+	<>
+		<Header tag={HeaderTags.HeadingMD} class={classes.subsection}>
+			{props.title}
+		</Header>
+		{props.children}
+	</>
+);
 
-   const [slider, setSlider] = createSignal(50);
-   const onSliderChange = (value) => {
-      setSlider(value);
-   };
+const Row = (props) => <div class={classes.row}>{props.children}</div>;
+const Col = (props) => <div class={classes.col}>{props.children}</div>;
+const Grid = (props) => <div class={classes.grid}>{props.children}</div>;
 
-   return (
-      <div
-         onMouseDown={onMouseDown}
-         onMouseMove={onMouseMove}
-         onMouseUp={onMouseUp}
-         onMouseLeave={onMouseLeave}
-         id="test-ui"
-         style={{
-            position: "absolute",
-            top: `${pos().y}px`,
-            left: `${pos().x}px`,
-            cursor: "move",
-            padding: "48px 128px",
-            border: "1px solid var(--opacity-8)",
-            "border-radius": "8px",
-            display: "flex",
-            "z-index": 10000,
-            background: "var(--background-base-lowest)",
-            display: "flex",
-            "flex-direction": "column",
-            "align-items": "center",
-            "justify-content": "center",
-            gap: "16px",
-         }}
-      >
-         <Header tag={HeaderTags.H2}>Buttons</Header>
-         <div
-            style={{
-               display: "grid",
-               "grid-template-rows": "repeat(5, 1fr)",
-               "grid-auto-flow": "column",
-               "grid-gap": "10px",
-               "align-items": "center",
-               "justify-items": "center",
-            }}
-         >
-            <Button color={ButtonColors.BRAND} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE}>
-               Brand - Filled
-            </Button>
-            <Button color={ButtonColors.BRAND} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE} disabled={true}>
-               Brand - Disabled
-            </Button>
-            <Button color={ButtonColors.BRAND} look={ButtonLooks.INVERTED} size={ButtonSizes.LARGE}>
-               Brand - Inverted
-            </Button>
-            <Button color={ButtonColors.BRAND} look={ButtonLooks.OUTLINED} size={ButtonSizes.LARGE}>
-               Brand - Outlined
-            </Button>
-            <Button color={ButtonColors.BRAND} look={ButtonLooks.LINK} size={ButtonSizes.LARGE}>
-               Brand - Link
-            </Button>
-            <Button color={ButtonColors.RED} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE}>
-               Red - Filled
-            </Button>
-            <Button color={ButtonColors.RED} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE} disabled={true}>
-               Red - Disabled
-            </Button>
-            <Button color={ButtonColors.RED} look={ButtonLooks.INVERTED} size={ButtonSizes.LARGE}>
-               Red - Inverted
-            </Button>
-            <Button color={ButtonColors.RED} look={ButtonLooks.OUTLINED} size={ButtonSizes.LARGE}>
-               Red - Outlined
-            </Button>
-            <Button color={ButtonColors.RED} look={ButtonLooks.LINK} size={ButtonSizes.LARGE}>
-               Red - Link
-            </Button>
-            <Button color={ButtonColors.GREEN} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE}>
-               Green - Filled
-            </Button>
-            <Button color={ButtonColors.GREEN} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE} disabled={true}>
-               Green - Disabled
-            </Button>
-            <Button color={ButtonColors.GREEN} look={ButtonLooks.INVERTED} size={ButtonSizes.LARGE}>
-               Green - Inverted
-            </Button>
-            <Button color={ButtonColors.GREEN} look={ButtonLooks.OUTLINED} size={ButtonSizes.LARGE}>
-               Green - Outlined
-            </Button>
-            <Button color={ButtonColors.GREEN} look={ButtonLooks.LINK} size={ButtonSizes.LARGE}>
-               Green - Link
-            </Button>
-            <Button color={ButtonColors.SECONDARY} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE}>
-               Primary - Filled
-            </Button>
-            <Button color={ButtonColors.SECONDARY} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE} disabled={true}>
-               Primary - Disabled
-            </Button>
-            <Button color={ButtonColors.SECONDARY} look={ButtonLooks.INVERTED} size={ButtonSizes.LARGE}>
-               Primary - Inverted
-            </Button>
-            <Button color={ButtonColors.SECONDARY} look={ButtonLooks.OUTLINED} size={ButtonSizes.LARGE}>
-               Primary - Outlined
-            </Button>
-            <Button color={ButtonColors.SECONDARY} look={ButtonLooks.LINK} size={ButtonSizes.LARGE}>
-               Primary - Link
-            </Button>
-            <Button color={ButtonColors.LINK} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE}>
-               Link - Filled
-            </Button>
-            <Button color={ButtonColors.LINK} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE} disabled={true}>
-               Link - Disabled
-            </Button>
-            <Button color={ButtonColors.LINK} look={ButtonLooks.INVERTED} size={ButtonSizes.LARGE}>
-               Link - Inverted
-            </Button>
-            <Button color={ButtonColors.LINK} look={ButtonLooks.OUTLINED} size={ButtonSizes.LARGE}>
-               Link - Outlined
-            </Button>
-            <Button color={ButtonColors.LINK} look={ButtonLooks.LINK} size={ButtonSizes.LARGE}>
-               Link - Link
-            </Button>
-            <Button color={ButtonColors.WHITE} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE}>
-               White - Filled
-            </Button>
-            <Button color={ButtonColors.WHITE} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE} disabled={true}>
-               White - Disabled
-            </Button>
-            <Button color={ButtonColors.WHITE} look={ButtonLooks.INVERTED} size={ButtonSizes.LARGE}>
-               White - Inverted
-            </Button>
-            <Button color={ButtonColors.WHITE} look={ButtonLooks.OUTLINED} size={ButtonSizes.LARGE}>
-               White - Outlined
-            </Button>
-            <Button color={ButtonColors.WHITE} look={ButtonLooks.LINK} size={ButtonSizes.LARGE}>
-               White - Link
-            </Button>
-            <Button color={ButtonColors.TRANSPARENT} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE}>
-               Transparent - Filled
-            </Button>
-            <Button color={ButtonColors.TRANSPARENT} look={ButtonLooks.FILLED} size={ButtonSizes.LARGE} disabled={true}>
-               Transparent - Disabled
-            </Button>
-            <Button color={ButtonColors.TRANSPARENT} look={ButtonLooks.INVERTED} size={ButtonSizes.LARGE}>
-               Transparent - Inverted
-            </Button>
-            <Button color={ButtonColors.TRANSPARENT} look={ButtonLooks.OUTLINED} size={ButtonSizes.LARGE}>
-               Transparent - Outlined
-            </Button>
-            <Button color={ButtonColors.TRANSPARENT} look={ButtonLooks.LINK} size={ButtonSizes.LARGE}>
-               Transparent - Link
-            </Button>
-         </div>
-         <Header tag={HeaderTags.H2}>Checkboxes</Header>
-         <div style={{ width: "100%" }}>
-            <CheckboxItem tooltip="Interactive Checkbox" checked={checked()} onChange={onCheckboxChange}>
-               Interactive Checkbox
-            </CheckboxItem>
-         </div>
-         <div
-            style={{
-               display: "grid",
-               "grid-template-columns": "repeat(2, 1fr)",
-               "grid-template-rows": "repeat(4, 1fr)",
-               "grid-auto-flow": "column",
-               "grid-gap": "10px",
-               "grid-template-areas": `
-                  "checkbox checkbox checkbox checkbox"
-                  "checkbox-item checkbox-item checkbox-item checkbox-item"
-               `,
-            }}
-         >
-            <Checkbox tooltip="Checked Checkbox" checked={true} />
-            <Checkbox tooltip="Unchecked Checkbox" checked={false} />
-            <Checkbox tooltip="Disabled Checked Checkbox" checked={true} disabled={true} />
-            <Checkbox tooltip="Disabled Unchecked Checkbox" checked={false} disabled={true} />
-            <CheckboxItem tooltip="Checked Checkbox" checked={true}>
-               Checked Checkbox
-            </CheckboxItem>
-            <CheckboxItem tooltip="Unchecked Checkbox" checked={false}>
-               Unchecked Checkbox
-            </CheckboxItem>
-            <CheckboxItem tooltip="Disabled Checked Checkbox" checked={true} disabled={true}>
-               Disabled Checked Checkbox
-            </CheckboxItem>
-            <CheckboxItem tooltip="Disabled Unchecked Checkbox" checked={false} disabled={true}>
-               Disabled Unchecked Checkbox
-            </CheckboxItem>
-         </div>
-         <Header tag={HeaderTags.H2}>Switches</Header>
-         <div style={{ width: "100%" }}>
-            <SwitchItem tooltip="Interactive Switch" value={checked()} onChange={onCheckboxChange} hideBorder={true}>
-               Interactive Switch
-            </SwitchItem>
-         </div>
-         <div
-            style={{
-               display: "grid",
-               "grid-template-columns": "repeat(2, 1fr)",
-               "grid-template-rows": "repeat(4, 1fr)",
-               "grid-auto-flow": "column",
-               "grid-gap": "10px",
-               "grid-template-areas": `
-                  "checkbox checkbox checkbox checkbox"
-                  "checkbox-item checkbox-item checkbox-item checkbox-item"
-               `,
-            }}
-         >
-            <Switch tooltip="Checked Switch" checked={true} />
-            <Switch tooltip="Unchecked Switch" checked={false} />
-            <Switch tooltip="Disabled Checked Switch" checked={true} disabled={true} />
-            <Switch tooltip="Disabled Unchecked Switch" checked={false} disabled={true} />
-            <SwitchItem tooltip="Checked Switch" checked={true}>
-               Checked Switch
-            </SwitchItem>
-            <SwitchItem tooltip="Unchecked Switch" checked={false}>
-               Unchecked Switch
-            </SwitchItem>
-            <SwitchItem tooltip="Disabled Checked Switch" checked={true} disabled={true}>
-               Disabled Checked Switch
-            </SwitchItem>
-            <SwitchItem tooltip="Disabled Unchecked Switch" checked={false} disabled={true}>
-               Disabled Unchecked Switch
-            </SwitchItem>
-         </div>
-         <Header tag={HeaderTags.H2}>Modals and toasts</Header>
-         <div
-            style={{
-               display: "flex",
-               "flex-direction": "row",
-               gap: "16px",
-            }}
-         >
-            <Button
-               color={ButtonColors.PRIMARY}
-               look={ButtonLooks.FILLED}
-               size={ButtonSizes.LARGE}
-               onClick={() => {
-                  showToast({
-                     title: "Neutral",
-                     content: "This is a toast",
-                     color: ToastColors.INFO,
-                  });
-               }}
-            >
-               Neutral
-            </Button>
+const ICONS = [
+	{ Icon: IconAdd, name: "IconAdd" },
+	{ Icon: IconBin, name: "IconBin" },
+	{ Icon: IconClose, name: "IconClose" },
+	{ Icon: IconCog, name: "IconCog" },
+	{ Icon: IconEdit, name: "IconEdit" },
+	{ Icon: IconInfo, name: "IconInfo" },
+	{ Icon: IconUpdate, name: "IconUpdate" },
+	{ Icon: IconUpload, name: "IconUpload" },
+	{ Icon: ChevronIcon, name: "ChevronIcon" },
+	{ Icon: DevIcon, name: "DevIcon" },
+	{ Icon: LocalIcon, name: "LocalIcon" },
+	{ Icon: SyncIcon, name: "SyncIcon" },
+];
 
-            <Button
-               color={ButtonColors.GREEN}
-               look={ButtonLooks.FILLED}
-               size={ButtonSizes.LARGE}
-               onClick={() => {
-                  showToast({
-                     title: "Positive",
-                     content: "Use this for success",
-                     color: ToastColors.SUCCESS,
-                  });
-               }}
-            >
-               Positive
-            </Button>
+const BUTTON_COLORS = ["PRIMARY", "SECONDARY", "CRITICAL_PRIMARY", "CRITICAL_SECONDARY", "ACTIVE", "OVERLAY_PRIMARY", "OVERLAY_SECONDARY"];
+const BUTTON_SIZES = ["TINY", "SMALL", "MEDIUM", "LARGE", "XLARGE"];
 
-            <Button
-               class={`${classes.warning} ${classes.fuck} ${classes.you}`}
-               look={ButtonLooks.FILLED}
-               size={ButtonSizes.LARGE}
-               onClick={() => {
-                  showToast({
-                     title: "Warning",
-                     content: "Use this for warnings",
-                     color: ToastColors.WARNING,
-                  });
-               }}
-            >
-               Warning
-            </Button>
+function ButtonTests() {
+	return (
+		<Section title="Buttons">
+			<SubSection title="Colors">
+				<Grid>
+					<For each={BUTTON_COLORS}>
+						{(color) => (
+							<Button size={ButtonSizes.LARGE} color={ButtonColors[color]}>
+								{color}
+							</Button>
+						)}
+					</For>
+				</Grid>
+			</SubSection>
 
-            <Button
-               color={ButtonColors.RED}
-               look={ButtonLooks.FILLED}
-               size={ButtonSizes.LARGE}
-               onClick={() => {
-                  showToast({
-                     title: "Negative",
-                     content: "Use this for errors",
-                     color: ToastColors.CRITICAL,
-                  });
-               }}
-            >
-               Critical
-            </Button>
-         </div>
-         <div
-            style={{
-               display: "flex",
-               "flex-direction": "row",
-               gap: "16px",
-            }}
-         >
-            <Button
-               color={ButtonColors.PRIMARY}
-               look={ButtonLooks.FILLED}
-               size={ButtonSizes.LARGE}
-               onClick={() => {
-                  showToast({
-                     title: "1s",
-                     content: "Goodbye!",
-                     color: ToastColors.INFO,
-                     duration: 1000,
-                  });
-               }}
-            >
-               1s
-            </Button>
-            <Button
-               color={ButtonColors.PRIMARY}
-               look={ButtonLooks.FILLED}
-               size={ButtonSizes.LARGE}
-               onClick={() => {
-                  showToast({
-                     title: "5s",
-                     content: "Goodbye!",
-                     color: ToastColors.INFO,
-                     duration: 5000,
-                  });
-               }}
-            >
-               5s
-            </Button>
-            <Button
-               color={ButtonColors.PRIMARY}
-               look={ButtonLooks.FILLED}
-               size={ButtonSizes.LARGE}
-               onClick={() => {
-                  showToast({
-                     title: "10s",
-                     content: "Goodbye!",
-                     color: ToastColors.INFO,
-                     duration: 10000,
-                  });
-               }}
-            >
-               10s
-            </Button>
-            <Button
-               color={ButtonColors.PRIMARY}
-               look={ButtonLooks.FILLED}
-               size={ButtonSizes.LARGE}
-               onClick={() => {
-                  showToast({
-                     title: "Infinite",
-                     content: "I'm gonna stick around yo!",
-                     color: ToastColors.INFO,
-                     duration: Number.POSITIVE_INFINITY,
-                  });
-               }}
-            >
-               Infinite
-            </Button>
-         </div>
-         <Button
-            color={ButtonColors.LINK}
-            look={ButtonLooks.FILLED}
-            size={ButtonSizes.LARGE}
-            onClick={() => {
-               openModal((mprops) => (
-                  <ModalRoot size={ModalSizes.LARGE}>
-                     <ModalHeader close={mprops.close}>My modal header</ModalHeader>
-                     <ModalBody>
-                        <div
-                           style={{
-                              display: "flex",
-                              "flex-direction": "column",
-                              gap: "8px",
-                           }}
-                        >
-                           My modal content!
-                           <Button size={ButtonSizes.SMALL} color={ButtonColors.GREEN}>
-                              Smol
-                           </Button>
-                           <TextBox placeholder={"Type something here, for no reason!"} value={""}></TextBox>
-                        </div>
-                     </ModalBody>
-                     <ModalFooter>
-                        <div class={classes.footer}>
-                           <Button
-                              color={ButtonColors.RED}
-                              look={ButtonLooks.FILLED}
-                              size={ButtonSizes.MEDIUM}
-                              onClick={() => {
-                                 mprops.close();
-                                 showToast({
-                                    title: "Modal closed",
-                                    content: "You closed the modal!",
-                                    color: ToastColors.INFO,
-                                 });
-                              }}
-                           >
-                              Cancel
-                           </Button>
-                           <Button
-                              color={ButtonColors.BRAND}
-                              look={ButtonLooks.FILLED}
-                              size={ButtonSizes.MEDIUM}
-                              onClick={() => {
-                                 mprops.close();
-                                 showToast({
-                                    title: "Modal closed",
-                                    content: "You closed the modal!",
-                                    color: ToastColors.INFO,
-                                 });
-                              }}
-                           >
-                              Done
-                           </Button>
-                        </div>
-                     </ModalFooter>
-                  </ModalRoot>
-               ));
-            }}
-         >
-            Open Modal
-         </Button>
-         <Header tag={HeaderTags.H2}>Inputs</Header>
-         <TextBox placeholder={"Search for love..."}></TextBox>
-         <TextArea placeholder={"Can this have multiple lines?\nYes it can!"} counter={true}></TextArea>
-         <Slider min={0} max={100} step={10} tick={10} value={slider()} onInput={onSliderChange} />
-         <Slider min={0} max={100} value={slider()} onInput={onSliderChange} />
-      </div>
-   );
+			<SubSection title="Disabled">
+				<Grid>
+					<For each={["PRIMARY", "SECONDARY", "CRITICAL_PRIMARY", "ACTIVE"]}>
+						{(color) => (
+							<Button size={ButtonSizes.LARGE} color={ButtonColors[color]} disabled>
+								{color}
+							</Button>
+						)}
+					</For>
+				</Grid>
+			</SubSection>
+
+			<SubSection title="Sizes">
+				<Row>
+					<For each={BUTTON_SIZES}>
+						{(size) => (
+							<Button size={ButtonSizes[size]}>{size}</Button>
+						)}
+					</For>
+				</Row>
+			</SubSection>
+
+			<SubSection title="Special Sizes">
+				<Col>
+					<Text>MIN - fits content:</Text>
+					<Button size={ButtonSizes.MIN}>Min Size</Button>
+
+					<Text>MAX - fills container:</Text>
+					<div style={{ width: "300px" }}>
+						<Button size={ButtonSizes.MAX}>Max Size</Button>
+					</div>
+
+					<Text>ICON - icon only:</Text>
+					<Button size={ButtonSizes.ICON}>
+						<IconCog />
+					</Button>
+				</Col>
+			</SubSection>
+
+			<SubSection title="Grow">
+				<Row style={{ width: "100%" }}>
+					<Button grow>Grow 1</Button>
+					<Button grow>Grow 2</Button>
+					<Button grow>Grow 3</Button>
+				</Row>
+			</SubSection>
+
+			<SubSection title="Tooltips">
+				<Row>
+					<Button tooltip="Top tooltip">Hover me</Button>
+					<Button tooltip={[true, "Bottom tooltip"]}>Bottom</Button>
+				</Row>
+			</SubSection>
+
+			<SubSection title="LinkButton">
+				<Row>
+					<LinkButton href="https://github.com/uwu/shelter">GitHub</LinkButton>
+					<LinkButton href="https://discord.com" tooltip="Opens Discord">Discord</LinkButton>
+				</Row>
+			</SubSection>
+		</Section>
+	);
 }
 
-export function onLoad() {
-   document.body.appendChild(<TestUI />);
+function ReactivityTests() {
+	const [color, setColor] = createSignal(ButtonColors.PRIMARY);
+	const [size, setSize] = createSignal(ButtonSizes.MEDIUM);
+
+	const colors = [ButtonColors.PRIMARY, ButtonColors.SECONDARY, ButtonColors.CRITICAL_PRIMARY, ButtonColors.ACTIVE];
+	const sizes = [ButtonSizes.TINY, ButtonSizes.SMALL, ButtonSizes.MEDIUM, ButtonSizes.LARGE];
+
+	const cycleColor = () => setColor(colors[(colors.indexOf(color()) + 1) % colors.length]);
+	const cycleSize = () => setSize(sizes[(sizes.indexOf(size()) + 1) % sizes.length]);
+
+	return (
+		<Section title="Reactivity">
+			<div class={classes.demo}>
+				<Text>Click to cycle through colors and sizes:</Text>
+				<Row>
+					<Button color={color()} size={size()}>Reactive Button</Button>
+					<Button onClick={cycleColor}>Cycle Color</Button>
+					<Button onClick={cycleSize}>Cycle Size</Button>
+				</Row>
+			</div>
+		</Section>
+	);
 }
 
-export function onUnload() {
-   const testUI = document.getElementById("test-ui");
-   if (testUI) {
-      testUI.remove();
-   }
+function CheckboxTests() {
+	const [checked, setChecked] = createSignal(false);
+
+	return (
+		<Section title="Checkboxes">
+			<SubSection title="Interactive">
+				<Row>
+					<Checkbox checked={checked()} onChange={setChecked} tooltip="Click to toggle" />
+					<Text>Checked: {checked() ? "Yes" : "No"}</Text>
+				</Row>
+			</SubSection>
+
+			<SubSection title="States">
+				<Row>
+					<Checkbox checked={true} tooltip="Checked" />
+					<Checkbox checked={false} tooltip="Unchecked" />
+					<Checkbox checked={true} disabled tooltip="Disabled checked" />
+					<Checkbox checked={false} disabled tooltip="Disabled unchecked" />
+				</Row>
+			</SubSection>
+
+			<SubSection title="CheckboxItem">
+				<Col style={{ "max-width": "400px" }}>
+					<CheckboxItem checked={checked()} onChange={setChecked}>Interactive</CheckboxItem>
+					<CheckboxItem checked={true}>Checked</CheckboxItem>
+					<CheckboxItem checked={false}>Unchecked</CheckboxItem>
+					<CheckboxItem checked={true} disabled>Disabled checked</CheckboxItem>
+					<CheckboxItem checked={false} mt>With margin-top</CheckboxItem>
+				</Col>
+			</SubSection>
+		</Section>
+	);
 }
 
-export const settings = () => {
-   throw new Error("nyaboom");
-};
+function SwitchTests() {
+	const [enabled, setEnabled] = createSignal(false);
+
+	return (
+		<Section title="Switches">
+			<SubSection title="Interactive">
+				<Row>
+					<Switch checked={enabled()} onChange={setEnabled} tooltip="Click to toggle" />
+					<Text>Enabled: {enabled() ? "Yes" : "No"}</Text>
+				</Row>
+			</SubSection>
+
+			<SubSection title="States">
+				<Row>
+					<Switch checked={true} tooltip="On" />
+					<Switch checked={false} tooltip="Off" />
+					<Switch checked={true} disabled tooltip="Disabled on" />
+					<Switch checked={false} disabled tooltip="Disabled off" />
+				</Row>
+			</SubSection>
+
+			<SubSection title="SwitchItem">
+				<Col style={{ "max-width": "400px" }}>
+					<SwitchItem checked={enabled()} onChange={setEnabled} note="With note text">Interactive</SwitchItem>
+					<SwitchItem checked={true} note="Always on">Enabled</SwitchItem>
+					<SwitchItem checked={false}>No note</SwitchItem>
+					<SwitchItem checked={true} disabled note="Cannot change">Disabled</SwitchItem>
+					<SwitchItem checked={false} hideBorder>Hidden border</SwitchItem>
+				</Col>
+			</SubSection>
+		</Section>
+	);
+}
+
+function HeaderTests() {
+	return (
+		<Section title="Headers">
+			<SubSection title="Tags">
+				<Col>
+					<Header tag={HeaderTags.HeadingXXL}>HeadingXXL</Header>
+					<Header tag={HeaderTags.HeadingXL}>HeadingXL</Header>
+					<Header tag={HeaderTags.HeadingLG}>HeadingLG</Header>
+					<Header tag={HeaderTags.HeadingMD}>HeadingMD</Header>
+					<Header tag={HeaderTags.HeadingSM}>HeadingSM</Header>
+					<Header tag={HeaderTags.EYEBROW}>EYEBROW</Header>
+				</Col>
+			</SubSection>
+
+			<SubSection title="Weights">
+				<Grid>
+					<For each={["normal", "medium", "semibold", "bold", "extrabold"]}>
+						{(weight) => (
+							<Header tag={HeaderTags.HeadingMD} weight={HeaderWeights[weight]}>{weight}</Header>
+						)}
+					</For>
+				</Grid>
+			</SubSection>
+
+			<SubSection title="No Margin">
+				<div class={classes.demo}>
+					<Header tag={HeaderTags.HeadingMD} margin={false}>No margin</Header>
+					<Text>Directly below</Text>
+				</div>
+			</SubSection>
+		</Section>
+	);
+}
+
+function TextTests() {
+	const TEXT_TAGS = ["displayLG", "displayMD", "displaySM", "textLG", "textMD", "textSM", "textXS", "textXXS", "messagePreview", "channelTitle"];
+
+	return (
+		<Section title="Text">
+			<SubSection title="Tags">
+				<Col>
+					<For each={TEXT_TAGS}>
+						{(tag) => <Text tag={TextTags[tag]}>{tag}</Text>}
+					</For>
+				</Col>
+			</SubSection>
+
+			<SubSection title="Weights">
+				<Row>
+					<For each={["normal", "medium", "semibold", "bold", "extrabold"]}>
+						{(weight) => <Text weight={TextWeights[weight]}>{weight}</Text>}
+					</For>
+				</Row>
+			</SubSection>
+		</Section>
+	);
+}
+
+function InputTests() {
+	const [text, setText] = createSignal("");
+	const [area, setArea] = createSignal("");
+	const [slider, setSlider] = createSignal(50);
+
+	return (
+		<Section title="Inputs">
+			<SubSection title="TextBox">
+				<Col>
+					<div class={classes.inputContainer}>
+						<TextBox value={text()} onInput={setText} placeholder="Type something..." />
+					</div>
+					<Text>Value: "{text()}"</Text>
+					<div class={classes.inputContainer}>
+						<TextBox value={text()} onInput={setText} placeholder="Max 10 chars" maxLength={10} />
+					</div>
+					<div class={classes.inputContainer}>
+						<TextBox value="" placeholder="Disabled" disabled />
+					</div>
+				</Col>
+			</SubSection>
+
+			<SubSection title="TextArea">
+				<Col>
+					<div class={classes.textareaContainer}>
+						<TextArea value={area()} onInput={setArea} placeholder="Multi-line..." resize-y counter maxlength={500} />
+					</div>
+					<div class={classes.textareaContainer}>
+						<TextArea value={area()} onInput={setArea} placeholder="Monospace" mono resize-x resize-y />
+					</div>
+				</Col>
+			</SubSection>
+
+			<SubSection title="Slider">
+				<Col>
+					<Text>Value: {slider()}</Text>
+					<div class={classes.sliderContainer}>
+						<Slider min={0} max={100} value={slider()} onInput={setSlider} />
+					</div>
+					<Text>With ticks:</Text>
+					<div class={classes.sliderContainer}>
+						<Slider min={0} max={100} step={10} tick={20} value={slider()} onInput={setSlider} />
+					</div>
+				</Col>
+			</SubSection>
+		</Section>
+	);
+}
+
+function ToastTests() {
+	const toast = (title, content, color) => () => showToast({ title, content, color });
+
+	return (
+		<Section title="Toasts">
+			<SubSection title="Colors">
+				<Grid>
+					<Button onClick={toast("Info", "Informational message", ToastColors.INFO)}>Info</Button>
+					<Button onClick={toast("Success", "Operation completed", ToastColors.SUCCESS)} color={ButtonColors.ACTIVE}>Success</Button>
+					<Button onClick={toast("Warning", "Something might be wrong", ToastColors.WARNING)} class={classes.warning}>Warning</Button>
+					<Button onClick={toast("Error", "Something went wrong", ToastColors.CRITICAL)} color={ButtonColors.CRITICAL_PRIMARY}>Critical</Button>
+				</Grid>
+			</SubSection>
+
+			<SubSection title="Durations">
+				<Row>
+					<Button onClick={() => showToast({ title: "Quick", content: "1 second", duration: 1000 })}>1s</Button>
+					<Button onClick={() => showToast({ title: "Normal", content: "3 seconds", duration: 3000 })}>3s</Button>
+					<Button onClick={() => showToast({ title: "Long", content: "10 seconds", duration: 10000 })}>10s</Button>
+					<Button onClick={() => showToast({ title: "Persistent", content: "Click to dismiss", duration: Infinity })}>∞</Button>
+				</Row>
+			</SubSection>
+
+			<SubSection title="Clickable">
+				<Button onClick={() => showToast({ title: "Clickable", content: "Click me!", onClick: () => alert("Clicked!"), duration: 5000 })}>
+					Show Clickable Toast
+				</Button>
+			</SubSection>
+		</Section>
+	);
+}
+
+function ModalTests() {
+	const openBasic = () =>
+		openModal((props) => (
+			<ModalRoot>
+				<ModalHeader close={props.close}>Basic Modal</ModalHeader>
+				<ModalBody>
+					<Text>A basic modal with header, body, and footer.</Text>
+				</ModalBody>
+				<ModalFooter>
+					<Button onClick={props.close}>Close</Button>
+				</ModalFooter>
+			</ModalRoot>
+		));
+
+	const openSized = (size, name) => () =>
+		openModal((props) => (
+			<ModalRoot size={size}>
+				<ModalHeader close={props.close}>{name}</ModalHeader>
+				<ModalBody>
+					<Text>ModalSizes.{name}</Text>
+				</ModalBody>
+				<ModalFooter>
+					<Button onClick={props.close}>Close</Button>
+				</ModalFooter>
+			</ModalRoot>
+		));
+
+	const openNoClose = () =>
+		openModal((props) => (
+			<ModalRoot>
+				<ModalHeader close={props.close} noClose>No Close Button</ModalHeader>
+				<ModalBody>
+					<Text>Press Escape or click outside to close.</Text>
+				</ModalBody>
+				<ModalFooter>
+					<Button onClick={props.close}>Manual Close</Button>
+				</ModalFooter>
+			</ModalRoot>
+		));
+
+	const openConfirm = () =>
+		openModal((props) => (
+			<ModalRoot>
+				<ModalHeader close={props.close}>Confirm</ModalHeader>
+				<ModalBody>
+					<Text>Uses ModalConfirmFooter.</Text>
+				</ModalBody>
+				<ModalConfirmFooter
+					close={props.close}
+					confirmText="Confirm"
+					type="confirm"
+					onConfirm={() => showToast({ title: "Confirmed!", color: ToastColors.SUCCESS })}
+				/>
+			</ModalRoot>
+		));
+
+	const openDanger = () =>
+		openModal((props) => (
+			<ModalRoot>
+				<ModalHeader close={props.close}>Danger</ModalHeader>
+				<ModalBody>
+					<Text>Dangerous action!</Text>
+				</ModalBody>
+				<ModalConfirmFooter close={props.close} type="danger" confirmText="Delete" onConfirm={() => {}} />
+			</ModalRoot>
+		));
+
+	const openScrollable = () =>
+		openModal((props) => (
+			<ModalRoot size={ModalSizes.MEDIUM}>
+				<ModalHeader close={props.close}>Scrollable</ModalHeader>
+				<ModalBody>
+					<For each={Array(20).fill(0)}>
+						{(_, i) => <Text style={{ "margin-bottom": "16px" }}>Paragraph {i() + 1}. Lorem ipsum dolor sit amet.</Text>}
+					</For>
+				</ModalBody>
+				<ModalFooter>
+					<Button onClick={props.close}>Close</Button>
+				</ModalFooter>
+			</ModalRoot>
+		));
+
+	const openNested = () =>
+		openModal((props) => (
+			<ModalRoot>
+				<ModalHeader close={props.close}>First Modal</ModalHeader>
+				<ModalBody>
+					<Text>Open another modal on top!</Text>
+				</ModalBody>
+				<ModalFooter>
+					<Button
+						onClick={() =>
+							openModal((props2) => (
+								<ModalRoot>
+									<ModalHeader close={props2.close}>Nested Modal</ModalHeader>
+									<ModalBody>
+										<Text>This is nested!</Text>
+									</ModalBody>
+									<ModalFooter>
+										<Button onClick={props2.close}>Close</Button>
+									</ModalFooter>
+								</ModalRoot>
+							))
+						}
+					>
+						Open Nested
+					</Button>
+				</ModalFooter>
+			</ModalRoot>
+		));
+
+	return (
+		<Section title="Modals">
+			<SubSection title="Basic">
+				<Row>
+					<Button onClick={openBasic}>Basic</Button>
+					<Button onClick={openNoClose}>No Close Button</Button>
+					<Button onClick={openScrollable}>Scrollable</Button>
+					<Button onClick={openNested}>Nested</Button>
+				</Row>
+			</SubSection>
+
+			<SubSection title="Sizes">
+				<Row>
+					<Button onClick={openSized(ModalSizes.SMALL, "SMALL")}>Small</Button>
+					<Button onClick={openSized(ModalSizes.MEDIUM, "MEDIUM")}>Medium</Button>
+					<Button onClick={openSized(ModalSizes.LARGE, "LARGE")}>Large</Button>
+					<Button onClick={openSized(ModalSizes.DYNAMIC, "DYNAMIC")}>Dynamic</Button>
+				</Row>
+			</SubSection>
+
+			<SubSection title="Confirm Footer">
+				<Row>
+					<Button onClick={openConfirm} color={ButtonColors.ACTIVE}>Confirm</Button>
+					<Button onClick={openDanger} color={ButtonColors.CRITICAL_PRIMARY}>Danger</Button>
+				</Row>
+			</SubSection>
+
+			<SubSection title="openConfirmationModal">
+				<Row>
+					<Button
+						onClick={() =>
+							openConfirmationModal({
+								header: () => "Confirm?",
+								body: () => "Are you sure?",
+								type: "confirm",
+								confirmText: "Yes",
+							}).then(() => showToast({ title: "Confirmed!", color: ToastColors.SUCCESS }))
+						}
+					>
+						Confirm Dialog
+					</Button>
+					<Button
+						onClick={() =>
+							openConfirmationModal({
+								header: () => "Delete?",
+								body: () => "Cannot be undone.",
+								type: "danger",
+								confirmText: "Delete",
+							})
+						}
+						color={ButtonColors.CRITICAL_PRIMARY}
+					>
+						Danger Dialog
+					</Button>
+				</Row>
+			</SubSection>
+		</Section>
+	);
+}
+
+function IconTests() {
+	return (
+		<Section title="Icons">
+			<div class={classes.iconGrid}>
+				<For each={ICONS}>
+					{({ Icon, name }) => (
+						<div class={classes.iconItem}>
+							<Icon />
+							<span class={classes.iconLabel}>{name}</span>
+						</div>
+					)}
+				</For>
+			</div>
+
+			<SubSection title="Sizes">
+				<Row>
+					<IconCog width="16" height="16" />
+					<IconCog width="24" height="24" />
+					<IconCog width="32" height="32" />
+					<IconCog width="48" height="48" />
+				</Row>
+			</SubSection>
+
+			<SubSection title="Colors">
+				<Row>
+					<IconCog style={{ color: "var(--text-default)" }} />
+					<IconCog style={{ color: "var(--status-positive)" }} />
+					<IconCog style={{ color: "var(--status-warning)" }} />
+					<IconCog style={{ color: "var(--status-critical)" }} />
+					<IconCog style={{ color: "var(--brand-500)" }} />
+				</Row>
+			</SubSection>
+		</Section>
+	);
+}
+
+function UtilityTests() {
+	return (
+		<Section title="Utilities">
+			<SubSection title="Tooltips">
+				<div class={classes.tooltipDemo}>
+					<span use:tooltip="Top tooltip" class={classes.tooltipTarget}>Hover (top)</span>
+					<span use:tooltip={[true, "Bottom tooltip"]} class={classes.tooltipTarget}>Hover (bottom)</span>
+					<span use:tooltip={<strong>Rich!</strong>} class={classes.tooltipTarget}>Rich tooltip</span>
+				</div>
+			</SubSection>
+
+			<SubSection title="Nice Scrollbars">
+				<div class={`${niceScrollbarsClass()} ${classes.scrollDemo}`}>
+					<For each={Array(20).fill(0)}>{(_, i) => <div>Line {i() + 1}</div>}</For>
+				</div>
+			</SubSection>
+		</Section>
+	);
+}
+
+function CrashingComponent() {
+	throw new Error("Intentional crash for testing");
+}
+
+function ErrorBoundaryTests() {
+	const [showCrash, setShowCrash] = createSignal(false);
+
+	return (
+		<Section title="Error Boundary">
+			<Show when={showCrash()} fallback={<Text>Click to crash component</Text>}>
+				<CrashingComponent />
+			</Show>
+			<Button class={classes.crashButton} onClick={() => setShowCrash(true)} color={ButtonColors.CRITICAL_PRIMARY}>
+				Crash
+			</Button>
+		</Section>
+	);
+}
+
+export const settings = () => (
+	<div>
+		<ButtonTests />
+		<ReactivityTests />
+		<CheckboxTests />
+		<SwitchTests />
+		<HeaderTests />
+		<TextTests />
+		<InputTests />
+		<ToastTests />
+		<ModalTests />
+		<IconTests />
+		<UtilityTests />
+		<ErrorBoundaryTests />
+	</div>
+);

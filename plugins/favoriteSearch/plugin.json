@@ -1,6 +1,6 @@
 {
    "name": "Favorite GIF Search",
-   "description": "Adds search to your favorited GIFs!",
+   "description": "Extends Discord's built-in search with user added tags!",
    "author": "xirreal",
    "hash": "<HASH_PLACEHOLDER>",
    "site": {

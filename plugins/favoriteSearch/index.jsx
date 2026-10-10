@@ -1,44 +1,40 @@
 const {
-   flux: { subscribe },
    observeDom,
+   patcher: { after },
+   onDispose,
+   disposeAllNow,
 } = shelter.plugin.scoped;
 
 const {
-   ui: { TextBox, openModal, CheckboxItem, ReactiveRoot, Button, ButtonSizes, ButtonColors },
-   solid: { createSignal, createEffect, onCleanup },
+   React,
+   ui: { openModal, CheckboxItem, renderSolidInReact, Button, ButtonSizes, ButtonColors, Header, HeaderTags, Divider },
+   solid: { createSignal, createRoot, onCleanup },
    util: { getFiberOwner, getFiber, reactFiberWalker },
    plugin: { store },
-   flux: {
-      stores: { UserSettingsProtoStore },
-   },
 } = shelter;
 
 import { AddTagModal } from "./modal";
+import { filterFavorites } from "./filter";
+import { mergeTags, validateMetadata } from "./autotag";
+import { AutoTagSettings, cancelAutotag, getFavoriteGifs } from "./autotagSettings";
 import classes from "./index.jsx.scss";
 
-function addClickHandlerToFavoritesGifPicker() {
-   const stopObserving = observeDom("[class*='result'] > [class*='categoryFadeBlurple']", (container) => {
-      stopObserving();
-      if (container.parentElement.dataset.clickHandlerAdded) return;
-
-      container.parentElement.dataset.clickHandler = "true";
-      container.parentElement.addEventListener("click", handleClick);
-   });
-   setTimeout(stopObserving, 500);
-}
+const [onlyUntagged, setOnlyUntagged] = createSignal(false);
+const patchedPickers = new Set();
 
 function exportTags() {
-   const gifs = UserSettingsProtoStore.__proto__.frecencyWithoutFetchingLatest.favoriteGifs.gifs;
-
-   const data = {};
-   for (const [url, gif] of Object.entries(gifs)) {
-      data[url] = {
-         src: gif.src || url,
-         tags: store[url] || [],
-      };
-   }
-
-   const json = JSON.stringify(data, null, 2);
+   const json = createRoot((dispose) => {
+      try {
+         const data = {};
+         const metadata = store.aiMetadata ?? {};
+         for (const [url, gif] of Object.entries(getFavoriteGifs())) {
+            data[url] = { src: gif.src || url, tags: store[url] || [], ai: metadata[url] };
+         }
+         return JSON.stringify(data, null, 2);
+      } finally {
+         dispose();
+      }
+   });
    const blob = new Blob([json], { type: "application/json" });
    const url = URL.createObjectURL(blob);
    const a = document.createElement("a");
@@ -55,28 +51,45 @@ function importTags() {
       const input = document.createElement("input");
       input.type = "file";
       input.accept = ".json";
+      input.oncancel = () => resolve(0);
       input.onchange = async (e) => {
          const file = e.target.files[0];
          if (!file) return resolve(0);
          try {
             const text = await file.text();
             const data = JSON.parse(text);
-            let count = 0;
-            for (const [url, value] of Object.entries(data)) {
-               // Support both formats:
-               //   new: { src: "...", tags: [...] }
-               //   old: [...]  (plain tag array)
-               const tags = Array.isArray(value) ? value : Array.isArray(value?.tags) ? value.tags : [];
-               if (tags.length > 0) {
-                  const existing = store[url] || [];
-                  const existingSet = new Set(existing.map((t) => t.toLowerCase()));
-                  const newTags = tags.filter((t) => typeof t === "string" && t.trim().length > 0 && !existingSet.has(t.trim().toLowerCase()));
-                  if (newTags.length > 0) {
-                     store[url] = [...existing, ...newTags.map((t) => t.trim())];
-                     count++;
+            if (!data || typeof data !== "object" || Array.isArray(data)) return resolve(-1);
+            const entries = Object.entries(data)
+               .filter(([url]) => /^https?:\/\//i.test(url))
+               .map(([url, value]) => [url, value, value?.ai ? validateMetadata(value.ai) : undefined]);
+            const count = createRoot((dispose) => {
+               try {
+                  let imported = 0;
+                  for (const [url, value, metadata] of entries) {
+                     let changed = false;
+                     const existing = mergeTags(store[url]);
+                     const merged = mergeTags(existing, Array.isArray(value) ? value : value?.tags);
+                     if (merged.length > existing.length) {
+                        store[url] = merged;
+                        changed = true;
+                     }
+                     if (metadata) {
+                        store.aiMetadata ??= {};
+                        store.aiMetadata[url] = {
+                           ...metadata,
+                           model: typeof value.ai.model === "string" ? value.ai.model : "Imported",
+                           updatedAt:
+                              typeof value.ai.updatedAt === "string" ? value.ai.updatedAt : new Date().toISOString(),
+                        };
+                        changed = true;
+                     }
+                     if (changed) imported++;
                   }
+                  return imported;
+               } finally {
+                  dispose();
                }
-            }
+            });
             resolve(count);
          } catch {
             resolve(-1);
@@ -85,201 +98,156 @@ function importTags() {
       input.click();
    });
 }
-function setupFiberProps(fiber) {
-   if (!Object.getOwnPropertyDescriptor(fiber.props, "__favorites")) {
-      let original = [...(fiber.props.favorites || [])];
-      let internalUpdate = false;
-
-      Object.defineProperty(fiber.props, "__favorites", {
-         configurable: true,
-         get() {
-            return [...original];
-         },
-         set(value) {
-            original = [...(value || [])];
-         },
-      });
-
-      Object.defineProperty(fiber.props, "favorites", {
-         configurable: true,
-         get() {
-            return this.__current ?? original;
-         },
-         set(value) {
-            if (!internalUpdate) {
-               original = [...(value || [])];
-            }
-
-            this.__current = [...(value || [])];
-         },
-      });
-
-      fiber.props.__applyFilter = (filtered) => {
-         internalUpdate = true;
-         fiber.props.favorites = filtered;
-         internalUpdate = false;
-      };
-   }
+function refreshPicker() {
+   const panel = document.querySelector("#gif-picker-tab-panel");
+   if (panel) getFiberOwner(panel)?.forceUpdate();
 }
 
-function getFreshFiber() {
-   const container = document.querySelector("#gif-picker-tab-panel");
-   if (!container) return null;
-   const fiber = getFiberOwner(container);
-   if (!fiber?.props?.favorites) return null;
-   setupFiberProps(fiber);
-   return fiber;
-}
-
-function SearchBar() {
-   const [text, setText] = createSignal("");
-   const [showUntagged, setShowUntagged] = createSignal(false);
-   const container = document.querySelector("#gif-picker-tab-panel");
-   let fiber = getFiberOwner(container);
-   const [counter, setCounter] = createSignal(fiber.props.favorites.length.toString());
-   const total = fiber.props.favorites.length;
-
-   setupFiberProps(fiber);
-
-   function update() {
-      const freshFiber = getFreshFiber();
-      if (freshFiber) {
-         fiber = freshFiber;
-      }
-
-      const favorites = fiber.props.__favorites;
-      if (!favorites) return;
-
-      const searchText = text();
-      const onlyUntagged = showUntagged();
-
-      const filtered = favorites.filter((gif) => {
-         const tags = store[gif.url] || [];
-
-         if (onlyUntagged && tags.length > 0) return false;
-         if (!searchText) return true;
-
-         const lowerSearch = searchText.toLowerCase();
-
-         if (gif.url.toLowerCase().includes(lowerSearch)) return true;
-
-         return tags.some((tag) => tag?.toLowerCase().includes(lowerSearch));
-      });
-
-      fiber.props.__applyFilter(filtered);
-
-      setCounter(filtered.length.toString());
-      fiber.forceUpdate();
-   }
-
-   createEffect(update);
-
-   const stopObserving = observeDom("#gif-picker-tab-panel", () => {
-      setTimeout(update, 100);
-   });
-
-   onCleanup(() => {
-      stopObserving();
-   });
-
+function FilterControls(props) {
    return (
-      <div id={classes.searchBar}>
-         <div class={classes.barContainer}>
-            <TextBox
-               placeholder="Search favorite GIFs..."
-               value={text()}
-               onInput={(value) => {
-                  setText(value ?? "");
-               }}
-            />
-            <div class={classes.counter} aria-hidden="true">
-               {counter()}/{total}
-            </div>
-         </div>
-         <div class={classes.align}>
-            <CheckboxItem checked={showUntagged()} onchange={() => setShowUntagged(!showUntagged())}>
-               Show only untagged GIFs
-            </CheckboxItem>
-         </div>
+      <div class={classes.filters}>
+         <CheckboxItem
+            checked={onlyUntagged()}
+            onchange={(event) => {
+               setOnlyUntagged(event.currentTarget.checked);
+               refreshPicker();
+            }}
+         >
+            Show only untagged GIFs
+         </CheckboxItem>
+         <span class={classes.counter} role="status" aria-label={`${props.visible} of ${props.total} favorite GIFs`}>
+            {props.visible}/{props.total}
+         </span>
       </div>
    );
 }
 
-let stopObservingResults = null;
-function handleClick() {
-   requestAnimationFrame(() => {
-      const header = document.querySelector("#gif-picker-tab-panel > div:first-child");
-      if (!header) return;
-      header.appendChild(
-         <div id="shltr-gifsearch-container">
-            <ReactiveRoot>
-               <SearchBar />
-            </ReactiveRoot>
-         </div>,
-      );
+function setupPicker(panel) {
+   if (!panel.isConnected) return;
+   const picker = getFiberOwner(panel);
+   if (!picker) return;
+   const prototype = Object.getPrototypeOf(picker);
+   if (
+      patchedPickers.has(prototype) ||
+      typeof prototype.renderContent !== "function" ||
+      typeof prototype.renderHeader !== "function"
+   )
+      return;
+   patchedPickers.add(prototype);
 
-      stopObservingResults = observeDom("[class*='results'] > [class*='content'] > div > [class*='result']", (card) => {
-         if (card.dataset.addedRightClick) return;
-         card.dataset.addedRightClick = "true";
+   after("renderContent", prototype, function (_, result) {
+      if (result?.props?.resultType !== "Favorites" || !Array.isArray(this.props.favorites)) return result;
 
-         addRightClickHandler(card);
+      // Shelter storage reads subscribe to Solid; dispose them after each React render.
+      const data = createRoot((dispose) => {
+         try {
+            return filterFavorites(
+               this.props.favorites,
+               result.props.data,
+               this.props.query,
+               store,
+               onlyUntagged(),
+               store.aiMetadata,
+            );
+         } finally {
+            dispose();
+         }
       });
+      return React.cloneElement(result, { data });
    });
+
+   after("renderHeader", prototype, function (_, result) {
+      if (this.state.resultType !== "Favorites" || !React.isValidElement(result)) return result;
+      const controls = renderSolidInReact(FilterControls, {
+         visible: this.renderContent().props.data.length,
+         total: this.props.favorites.length,
+      });
+      return React.createElement("div", { className: classes.header }, result, controls);
+   });
+   picker.forceUpdate();
 }
 
-function handleBack() {
-   document.getElementById("shltr-gifsearch-container")?.remove();
-   if (stopObservingResults) {
-      stopObservingResults();
-      stopObservingResults = null;
-   }
-   addClickHandlerToFavoritesGifPicker();
-}
+function handleContextMenu(event) {
+   if (!(event.target instanceof Element)) return;
 
-function addRightClickHandler(container) {
-   container.addEventListener("contextmenu", (e) => {
-      openModal((p) => AddTagModal(p.close, reactFiberWalker(getFiber(e.target.parentNode), "item", true).memoizedProps.item));
-   });
+   const panel = event.target.closest("#gif-picker-tab-panel");
+   if (!panel || getFiberOwner(panel)?.state.resultType !== "Favorites") return;
+
+   const card = event.target.closest('[role="button"][class*="result_"]');
+   if (!card || !panel.contains(card)) return;
+
+   const item = reactFiberWalker(getFiber(card), "item", true)?.memoizedProps?.item;
+   if (!item?.url || !item.src) return;
+   event.preventDefault();
+   event.stopPropagation();
+
+   openModal((p) => AddTagModal(p.close, item, refreshPicker));
 }
 
 export function onLoad() {
-   subscribe("GIF_PICKER_INITIALIZE", (e) => {
-      addClickHandlerToFavoritesGifPicker();
-   });
+   observeDom("#gif-picker-tab-panel", setupPicker);
+   const panel = document.querySelector("#gif-picker-tab-panel");
+   if (panel) setupPicker(panel);
+   document.addEventListener("contextmenu", handleContextMenu, true);
+   onDispose(() => document.removeEventListener("contextmenu", handleContextMenu, true));
+}
 
-   subscribe("GIF_PICKER_QUERY", (e) => {
-      handleBack();
-   });
+export function onUnload() {
+   cancelAutotag();
+   disposeAllNow();
+   patchedPickers.clear();
+   refreshPicker();
 }
 
 export function settings() {
    const [importStatus, setImportStatus] = createSignal("");
+   const [importResult, setImportResult] = createSignal(0);
+   let statusTimer;
+   onCleanup(() => clearTimeout(statusTimer));
 
    async function handleImport() {
       setImportStatus("Selecting file...");
+      setImportResult(0);
       const result = await importTags();
+      setImportResult(result);
       if (result === -1) {
          setImportStatus("Import failed: invalid JSON file.");
       } else if (result === 0) {
          setImportStatus("No new tags to import.");
       } else {
          setImportStatus(`Imported tags for ${result} GIF(s).`);
-         update();
+         refreshPicker();
       }
-      setTimeout(() => setImportStatus(""), 4000);
+      clearTimeout(statusTimer);
+      statusTimer = setTimeout(() => setImportStatus(""), 4000);
    }
 
    return (
-      <div style={{ display: "flex", "flex-direction": "column", gap: "16px" }}>
-         <div class={classes.buttonRow}>
-            <Button size={ButtonSizes.MEDIUM} color={ButtonColors.SECONDARY} onClick={() => exportTags()}>
-               Export tags
-            </Button>
-            <Button size={ButtonSizes.MEDIUM} color={ButtonColors.PRIMARY} onClick={handleImport}>
-               Import tags
-            </Button>
-         </div>
-         {importStatus() && <span class={classes.importStatus}>{importStatus()}</span>}
+      <div class={classes.settings}>
+         <AutoTagSettings onUpdate={refreshPicker} />
+         <Divider />
+         <section class={classes.section} aria-label="Tag backups">
+            <Header tag={HeaderTags.H4} margin={false}>
+               Tag backups
+            </Header>
+            <div class={classes.buttonRow}>
+               <Button size={ButtonSizes.MEDIUM} grow color={ButtonColors.SECONDARY} onClick={exportTags}>
+                  Export tags
+               </Button>
+               <Button size={ButtonSizes.MEDIUM} grow color={ButtonColors.SECONDARY} onClick={handleImport}>
+                  Import tags
+               </Button>
+            </div>
+            {importStatus() && (
+               <span
+                  class={classes.importStatus}
+                  classList={{ [classes.error]: importResult() < 0, [classes.connected]: importResult() > 0 }}
+                  role="status"
+               >
+                  {importStatus()}
+               </span>
+            )}
+         </section>
       </div>
    );
 }
