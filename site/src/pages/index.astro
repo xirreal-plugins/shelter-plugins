@@ -8,10 +8,12 @@ import GitHub from "../components/GitHub.astro";
 import CopyIcon from "../components/CopyIcon.astro";
 import InfoBadge from "../components/InfoBadge.astro";
 import WarningBadge from "../components/WarningBadge.astro";
+import DeprecatedBadge from "../components/DeprecatedBadge.astro";
 
 const plugins = await getCollection("plugins");
 
 plugins.sort((a: any, b: any) => {
+   if (a.data.deprecated !== b.data.deprecated) return a.data.deprecated ? 1 : -1;
    if (a.data.pinned && !b.data.pinned) return -1;
    if (!a.data.pinned && b.data.pinned) return 1;
    return 0;
@@ -75,14 +77,16 @@ const profilePicUrl = `https://github.com/${username}.png`;
             <div class="mt-4 space-y-4">
                {
                   plugins.map((plugin: any) => {
-                     const displayDescription = plugin.data.longDescription ?? plugin.data.description;
                      return (
                         <div class="plugin-item mb-4 p-4 bg-[#372747] rounded-2 shadow-sm hover:shadow-md transition-shadow border border-[#51425e] flex flex-col md:flex-row gap-4 items-start">
                            <div class="flex-1">
-                              <a href={`/${plugin.id}`} class="inline-block">
-                                 <h3 class="text-lg font-semibold text-gray-100">{plugin.data.title}</h3>
-                              </a>
-                              <p class="text-gray-400 mt-2">{displayDescription}</p>
+                              <div class="flex items-center gap-2 flex-wrap">
+                                 <a href={`/${plugin.id}`} class="inline-block">
+                                    <h3 class="text-lg font-semibold text-gray-100">{plugin.data.title}</h3>
+                                 </a>
+                                 {plugin.data.deprecated && <DeprecatedBadge />}
+                              </div>
+                              <div class="text-gray-400 mt-2 whitespace-pre-line" set:html={plugin.data.descriptionHtml} />
                               {plugin.data.warnings.map((warning: string) => (
                                  <WarningBadge message={warning} />
                               ))}

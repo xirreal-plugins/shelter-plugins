@@ -49,6 +49,8 @@ const pluginLoader: Loader = {
          }
 
          const url = `https://shelter.xirreal.dev/${folder.name}/`;
+         const displayDescription = pluginJson.site?.longDescription ?? pluginJson.description;
+         const { html: descriptionHtml } = await context.renderMarkdown(displayDescription);
 
          store.set({
             id: folder.name,
@@ -56,9 +58,11 @@ const pluginLoader: Loader = {
                title: pluginJson.name,
                description: pluginJson.description,
                longDescription: pluginJson.site?.longDescription,
+               descriptionHtml,
                url,
                demoImage: pluginJson.site?.demoImage,
                pinned: pluginJson.site?.pinned ?? false,
+               deprecated: pluginJson.site?.deprecated ?? false,
                warnings: pluginJson.site?.warnings ?? [],
                infos: pluginJson.site?.infos ?? [],
             },
@@ -74,9 +78,11 @@ const plugins = defineCollection({
       title: z.string(),
       description: z.string(),
       longDescription: z.string().optional(),
+      descriptionHtml: z.string(),
       url: z.string(),
       demoImage: z.string().optional(),
       pinned: z.boolean().default(false),
+      deprecated: z.boolean().default(false),
       warnings: z.array(z.string()).default([]),
       infos: z.array(z.string()).default([]),
    }),

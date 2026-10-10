@@ -8,6 +8,7 @@ import BackIcon from "../components/BackIcon.astro";
 import InfoBadge from "../components/InfoBadge.astro";
 import CopyIcon from "../components/CopyIcon.astro";
 import WarningBadge from "../components/WarningBadge.astro";
+import DeprecatedBadge from "../components/DeprecatedBadge.astro";
 
 export async function getStaticPaths() {
    const plugins = await getCollection("plugins");
@@ -40,6 +41,7 @@ const profilePicUrl = `https://github.com/${username}.png`;
       >
          <img src={profilePicUrl} alt={`${username}'s profile picture`} class="profile-image w-24 h-24 rounded-full mb-4 border-2 border-[#51425e]" />
          <h1 class="text-xl font-bold mb-2 text-center">{plugin.data.title}</h1>
+         {plugin.data.deprecated && <DeprecatedBadge />}
 
          {
             plugin.data.demoImage && (
@@ -50,7 +52,7 @@ const profilePicUrl = `https://github.com/${username}.png`;
          }
 
          <div class="mt-2 w-full">
-            {(<p class="text-gray-400 text-center leading-relaxed">{plugin.data.longDescription || plugin.data.description || "No description available."}</p>)}
+            <div class="text-gray-400 text-center leading-relaxed whitespace-pre-line" set:html={plugin.data.descriptionHtml} />
          </div>
 
          <div class="mt-4 w-full">
