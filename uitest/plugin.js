@@ -152,24 +152,24 @@ shelter.plugin.scoped.ui.injectCss(`.uIWjSa_section {
 }
 `);
 var index_jsx_default = {
-	"iconLabel": "uIWjSa_iconLabel",
-	"scrollDemo": "uIWjSa_scrollDemo",
+	"tooltipTarget": "uIWjSa_tooltipTarget",
+	"textareaContainer": "uIWjSa_textareaContainer",
+	"subsection": "uIWjSa_subsection",
+	"demo": "uIWjSa_demo",
+	"warning": "uIWjSa_warning",
+	"inputContainer": "uIWjSa_inputContainer",
+	"sectionTitle": "uIWjSa_sectionTitle",
+	"iconGrid": "uIWjSa_iconGrid",
 	"sliderContainer": "uIWjSa_sliderContainer",
 	"iconItem": "uIWjSa_iconItem",
-	"tooltipDemo": "uIWjSa_tooltipDemo",
-	"crashButton": "uIWjSa_crashButton",
-	"subsection": "uIWjSa_subsection",
-	"col": "uIWjSa_col",
-	"warning": "uIWjSa_warning",
 	"section": "uIWjSa_section",
-	"tooltipTarget": "uIWjSa_tooltipTarget",
-	"sectionTitle": "uIWjSa_sectionTitle",
-	"row": "uIWjSa_row",
-	"demo": "uIWjSa_demo",
-	"textareaContainer": "uIWjSa_textareaContainer",
-	"inputContainer": "uIWjSa_inputContainer",
 	"grid": "uIWjSa_grid",
-	"iconGrid": "uIWjSa_iconGrid"
+	"col": "uIWjSa_col",
+	"tooltipDemo": "uIWjSa_tooltipDemo",
+	"iconLabel": "uIWjSa_iconLabel",
+	"scrollDemo": "uIWjSa_scrollDemo",
+	"crashButton": "uIWjSa_crashButton",
+	"row": "uIWjSa_row"
 };
 
 //#endregion
